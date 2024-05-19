@@ -9,8 +9,16 @@ import TheWelcome from './components/TheWelcome.vue'
     <strong>Current route path:</strong> {{ $route.fullPath }}
   </p>
   <nav>
-    <RouterLink to="/">Go to Home</RouterLink>
-    <RouterLink to="/lore">Go to About</RouterLink>
+    <RouterLink to="/">
+      <el-link type="primary">
+        Go to Home
+      </el-link>
+    </RouterLink>
+    <RouterLink to="/lore">
+      <el-link type="danger">
+        Go to Lore
+      </el-link>
+    </RouterLink>
   </nav>
   <main>
     <RouterView />
