@@ -22,9 +22,26 @@
       <li v-for="role in currentUser.roles" :key="role">{{role}}</li>
     </ul>
   </div>
+
+
+  <el-switch v-model="value1">
+    <template #active-action>
+      <span class="custom-active-action">T</span>
+    </template>
+    <template #inactive-action>
+      <span class="custom-inactive-action">F</span>
+    </template>
+  </el-switch>
+
+
 </template>
 
 <script>
+
+import { ref } from 'vue'
+const value1 = ref(true)
+console.log(value1);
+
 export default {
   name: 'Profile',
   computed: {
