@@ -24,7 +24,7 @@ export default {
           proficiency: [ "club", "dagger", "dart", "quarterstaff", "scimitar", "scythe", "sickle", "shortspear", "sling", "spear", "natural attacks", "light armor", "medium armor", "shields" ]
         },
         leveled: {
-          bab: [],  // arr index is 
+          bab: [],  // arr index is
           fort: [],
           ref: [],
           will: [],
@@ -61,7 +61,7 @@ export default {
           appearance: {
             gender: "",
             age: 1023,
-            height: "6\'1\"",
+            height: "6'1\"",
             weight: "170 lbs.",
           },
           backstory: "Old norseman turned vampire",

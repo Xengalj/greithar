@@ -15,8 +15,18 @@ import {
   faMap,
   faBook,
   faScroll,
-  
+
+  // faOctopusDeploy, // brands?
+  faHorse,
+  faCogs,
   faDragon,
+  faMale,
+  // faPhoenixFramework,
+  faSplotch,
+  faSeedling,
+  faSkullCrossbones,
+  faFrog,
+
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -35,7 +45,16 @@ library.add(
   faBook,
   faScroll,
 
+  // faOctopusDeploy,
+  faHorse,
+  faCogs,
   faDragon,
+  faMale,
+  // faPhoenixFramework,
+  faSplotch,
+  faSeedling,
+  faSkullCrossbones,
+  faFrog,
 );
 
 export { FontAwesomeIcon };

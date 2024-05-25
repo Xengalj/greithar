@@ -1,28 +1,28 @@
 import { createWebHistory, createRouter } from "vue-router";
 
 import Home from "./components/Home.vue";
-import Login from "./components/Auth/Login.vue";
-import Register from "./components/Auth/Register.vue";
-// import PageNotFoudn from "./components/404.vue";
+import Login from "./components/auth/Login.vue";
+import Register from "./components/auth/Register.vue";
+import PageNotFound from "./components/404.vue";
 
 // lazy-loaded
 // https://router.vuejs.org/guide/advanced/lazy-loading.html#Lazy-Loading-Routes
-// const
 const BoardModerator = () => import("./components/BoardModerator.vue")
 // const User = () => import("./components/BoardUser.vue")
 
 
-const UserProfile = () => import("./components/Auth/Profile.vue")
+// const UserProfile =
+// const
 // character
 
 
 const temp = "<template><div class='user'><h2>User </h2><router-view /></div></template>";
-const PageNotFound = temp;
 
 const Rules = temp;
 const Lore = temp;
 const Timeline = temp;
 const LoreRaces = temp;
+// const CharacterSheet = temp;
 
 
 const routes = [
@@ -36,6 +36,16 @@ const routes = [
     }
   },
   {
+    path: "/login",
+    component: Login,
+  },
+  {
+    path: "/register",
+    component: Register,
+  },
+
+
+  {
     path: "/admin",
     name: "admin",
     // lazy-loaded
@@ -48,14 +58,6 @@ const routes = [
     // lazy-loaded
     component: BoardModerator,
   },
-  {
-    path: "/login",
-    component: Login,
-  },
-  {
-    path: "/register",
-    component: Register,
-  },
 
 
 /*
@@ -63,24 +65,87 @@ const routes = [
 */
   {
     path: "/user",
-    // component: User,
+    meta: { breadcrumbs: "User" },
     children: [
       {
-        // UserProfile will be rendered inside User's <router-view>
-        // when /user/:id/profile is matched
-        path: "profile", // user/:id/profile
-        name: "profile",
-        component: UserProfile,
-        meta: { breadcrumb: "Profile" }
+        path: "list",
+        name: "user-list",
+        component: () => import("./components/user/List.vue"),
+        meta: { breadcrumbs: "User List" }
       },
       {
-        path: "character/:id", // user/:id/character/:id
-        name: "character",
+        path: "/edit",
+        name: "user-edit",
         component: temp,
-        meta: { breadcrumb: "Character Sheet" }
+        meta: { breadcrumbs: "User Edit" }
+      },
+      {
+        // when /user/:id is matched
+        // path: "/:id",
+        path: "/profile",
+        name: "profile",
+        component: () => import("./components/user/Profile.vue"),
+        meta: { breadcrumbs: "Profile" },
       },
     ],
   },
+
+
+/*
+    Character Routes
+*/
+
+  {
+    path: "/hero",
+    name: "hero",
+    component: () => import("./components/user/character.vue"),
+    meta: { breadcrumb: "Character Sheet" }
+  },
+  // {
+    //   path: "characters",
+    //   name: "character-list",
+    //   component: CharacterSheet,
+    //   meta: { breadcrumb: "My Characters" }
+    // },
+    // {
+      //   path: "character/:id", // user/:id/character/:id
+      //   name: "character",
+      //   component: CharacterSheet,
+      //   meta: { breadcrumb: "Character Sheet" }
+      // },
+    // {
+    //   path: "/character",
+    //   meta: { breadcrumbs: "Character" },
+    //   children: [
+    //     {
+    //       path: "/list",
+    //       name: "character-list",
+    //       component: temp,
+    //       meta: { breadcrumbs: "User List" }
+    //     },
+    //     {
+    //       path: "/edit",
+    //       name: "user-edit",
+    //       component: temp,
+    //       meta: { breadcrumbs: "User Edit" }
+    //     },
+    //     {
+    //       path: "/:id",
+    //       meta: { breadcrumbs: ":id" },
+    //       children: [
+    //         {
+    //           // when /user/:id/profile is matched
+    //           path: "/profile", // user/:id/profile
+    //           name: "profile",
+    //           component: () => import("./components/user/Profile.vue"),
+    //           meta: { breadcrumb: "Profile" }
+    //         },
+    //       ]
+    //     },
+
+
+
+
 
 
 /*
@@ -136,7 +201,8 @@ const routes = [
     404 Route
 */
   {
-    path: "*",
+    // path: "*",
+    path: "/:catchAll(.*)",
     name: "404",
     component: PageNotFound,
   },

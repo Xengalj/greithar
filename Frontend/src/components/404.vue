@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <header class="jumbotron">
+      {{ route }}
       <h3>{{ content }}</h3>
     </header>
   </div>
@@ -14,7 +15,19 @@ export default {
   data() {
     return {
       content: "",
+      route: "404",
     };
+  },
+  computed: {
+    breadcrumbs() {
+      const route = this.$route;
+      const matchedRoutes = route.matched;
+
+      return matchedRoutes.map((routeItem) => ({
+        label: routeItem.meta.breadcrumb || routeItem.name,
+        to: this.getRoutePath(route, routeItem),
+      }));
+    },
   },
   mounted() {
     UserService.getPublicContent().then(
