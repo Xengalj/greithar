@@ -7,55 +7,72 @@
       </span>
     </router-link>
 
+    <div class="flex-grow" />
+
+    <!-- TODO
+      - get current active page and coloring working
+      - get click outside closes menu working
+   -->
 
     <el-menu
-      class="el-menu-demo"
+      class="el-menu"
       mode="horizontal"
       menu-trigger="click"
+      style="max-width: 500px"
       ellipsis
     >
-      <div class="flex-grow" />
-      <!-- style="max-width: 100px" -->
+    <!-- close-on-click-outside -->
+    <div class="flex-grow" />
+
 
       <!-- Search -->
-      <el-input
-        v-model="input4"
-        style="width: 240px"
-        placeholder="Type something"
-      >
-        <template #prefix>
-          <font-awesome-icon icon="search" />
-        </template>
-      </el-input>
-
-      <!-- <template>
-         <input type="text" v-model="input" placeholder="Search fruits..." />
-        <div class="item fruit" v-for="fruit in filteredList()" :key="fruit">
-          <p>{{ fruit }}</p>
-        </div>
-        <div class="item error" v-if="input&&!filteredList().length">
-           <p>No results found!</p>
-        </div>
-      </template> -->
-
-
-
-      <!-- Profile -->
-      <el-menu-item v-if="currentUser" index="0">
-        <!-- <router-link to="/profile" class="nav-link"> -->
-        <router-link :to="{ name: 'profile', params: { username: currentUser.username } }" class="nav-link">
-          <font-awesome-icon icon="user" />
-          {{ currentUser.username }}
-        </router-link>
+      <el-menu-item index="search">
+        <el-input
+          v-model="input"
+          style="width: 240px"
+          placeholder="Search"
+        >
+          <template #prefix>
+            <font-awesome-icon icon="search" />
+          </template>
+        </el-input>
       </el-menu-item>
+
+
+      <!-- User Links -->
+      <el-sub-menu index="0">
+        <template #title>
+          <font-awesome-icon icon="user" /> {{ currentUser.username }}
+        </template>
+
+        <el-menu-item v-if="currentUser" index="profile">
+          <router-link :to="{ name: 'profile', params: { username: currentUser.username } }" class="nav-link">
+            <font-awesome-icon icon="user-cog" /> Profile
+          </router-link>
+        </el-menu-item>
+
+        <el-menu-item v-if="currentUser" index="hero">
+          <router-link to="/hero" class="nav-link">
+            <!-- TODO update link to use user/:id/char/:current -->
+            <font-awesome-icon icon="street-view" /> Your Hero <!-- grab user's current toon name -->
+          </router-link>
+        </el-menu-item>
+
+        <el-menu-item v-if="currentUser" index="characters">
+          <router-link to="/toons" class="nav-link">
+            <!-- TODO update link to use user/:id/char/list -->
+            <font-awesome-icon icon="users" /> Other Characters
+          </router-link>
+        </el-menu-item>
+      </el-sub-menu>
 
       <!-- Rules -->
       <el-sub-menu index="1">
         <template #title>
-          <font-awesome-icon icon="book" />
-          Rules
+          <font-awesome-icon icon="book" /> Rules
         </template>
-        <el-menu-item v-for="(page, index) in rules" :key="index" :index="`1-${index}`">
+
+        <el-menu-item v-for="(page, rIndex) in rules" :key="rIndex" :index="`1-${rIndex}`">
           <router-link :to="page.link" class="nav-link">{{ page.title }}</router-link>
         </el-menu-item>
       </el-sub-menu>
@@ -63,10 +80,10 @@
       <!-- Lore -->
       <el-sub-menu index="2">
         <template #title>
-          <font-awesome-icon icon="book" />
-          Lore
+          <font-awesome-icon icon="scroll" /> Lore
         </template>
-        <el-menu-item v-for="(page, index) in lores" :key="index" :index="`2-${index}`">
+
+        <el-menu-item v-for="(page, lIndex) in lores" :key="lIndex" :index="`2-${lIndex}`">
           <router-link :to="page.link" class="nav-link">{{ page.title }}</router-link>
         </el-menu-item>
       </el-sub-menu>
@@ -74,36 +91,44 @@
 
 
       <!-- DM Links -->
-      <el-menu-item v-if="showAdmin" index="3">
-        <router-link to="/admin" class="nav-link">
-          <font-awesome-icon icon="map" /> DM Screen
-        </router-link>
-      </el-menu-item>
+      <el-menu-item-group v-if="showAdmin" title="DM Things">
+        <el-menu-item index="admin">
+          <router-link to="/admin" class="nav-link">
+            <font-awesome-icon icon="map" /> DM Screen
+          </router-link>
+        </el-menu-item>
+
+        <el-menu-item index="monsters">
+          <router-link to="/monsters" class="nav-link">
+            <font-awesome-icon icon="dragon" /> Beastiary
+          </router-link>
+        </el-menu-item>
+      </el-menu-item-group>
+
+
+
 
 
       <!-- Sign In / Out -->
-      <el-menu-item v-if="currentUser" index="0">
+      <el-menu-item v-if="currentUser" index="logout">
         <a class="nav-link" @click.prevent="logOut">
           <font-awesome-icon icon="sign-out-alt" /> LogOut
         </a>
       </el-menu-item>
 
-      <el-menu-item v-if="!currentUser" index="0">
+      <el-menu-item v-if="!currentUser" index="login">
         <router-link to="/login" class="nav-link">
           <font-awesome-icon icon="sign-in-alt" /> Login
         </router-link>
       </el-menu-item>
 
-      <el-menu-item v-if="!currentUser" index="0">
+      <el-menu-item v-if="!currentUser" index="register">
         <router-link to="/register" class="nav-link">
           <font-awesome-icon icon="user-plus" /> Sign Up
         </router-link>
       </el-menu-item>
 
-
-
     </el-menu>
-
 
   </div>
 
@@ -114,40 +139,27 @@
         <router-link :to="crumb.to">{{ crumb.label }}</router-link>
       </el-breadcrumb-item>
     </el-breadcrumb>
-    title
-
+    <!-- title -->
   </div>
-
-
-
-
-
-
-
 
 
 </template>
 
 <script>
 // import { ref } from "vue";
-// let input = ref("");
-// const fruits = ["apple", "banana", "orange"];
-// function filteredList() {
-//   return fruits.filter((fruit) =>
-//     fruit.toLowerCase().includes(input.value.toLowerCase())
-//   );
-// }
-// console.log(ref, filteredList);
+// console.log(ref);
 
 export default {
+  data() {
+    return {
+      input: "",
+      activeIndex:"logout",
+
+    }
+  },
   created() {
     // this.$router.options.routes.forEach(route => {
     //   console.log(route);
-      //lore.children
-    // this.items.push({
-    //     name: route.name
-    //     , path: route.path
-    // })
     // })
   },
 
@@ -201,7 +213,7 @@ export default {
         if (route.name == 'Lore') {
           route.children.forEach(route => {
             lore.push({
-              title: route.name,
+              title: route.name.charAt(0).toUpperCase() + route.name.slice(1), // fancy magic to capitalize
               link: route.path
             })
           });
@@ -229,12 +241,23 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.top-bar {
+  display: flex;
+  border-bottom: 1px solid var(--el-menu-border-color);
+}
+.text-large {
+  font-size: 40px;
+}
 .flex-grow {
   flex-grow: 1;
+}
+.el-menu {
+  border: none !important;
 }
 .nav-link svg {
   vertical-align: middle;
 }
+
 .router-link-active {
   color: var(--el-color-success);
 }

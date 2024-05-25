@@ -2,24 +2,40 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import {
   faHome,
-  faUser,
-  faUserPlus,
+  faSearch,
   faSignInAlt,
   faSignOutAlt,
+  faUserPlus,
+
+  faUser,
+  faUserCog,
+  faStreetView,
+  faUsers,
+
   faMap,
   faBook,
-  faSearch
+  faScroll,
+  
+  faDragon,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
   faHome,
-  faUser,
-  faUserPlus,
+  faSearch,
   faSignInAlt,
   faSignOutAlt,
+  faUserPlus,
+
+  faUser,
+  faUserCog,
+  faStreetView,
+  faUsers,
+
   faMap,
   faBook,
-  faSearch
+  faScroll,
+
+  faDragon,
 );
 
 export { FontAwesomeIcon };
@@ -36,7 +52,6 @@ export { FontAwesomeIcon };
 <font-awesome-icon icon="fa-solid fa-spinner" spin-pulse />
 
 faScreenpal = pokeball icon="screenpal"
-scroll
 dragon
 hat-wizard
 hand-fist
@@ -45,4 +60,5 @@ dice-d6
 dice-d20
 book-skull
 wand-magic-sparkles
+shield-halved
 */
