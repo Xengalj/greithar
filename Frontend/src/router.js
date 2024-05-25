@@ -3,6 +3,7 @@ import { createWebHistory, createRouter } from "vue-router";
 import Home from "./components/Home.vue";
 import Login from "./components/Auth/Login.vue";
 import Register from "./components/Auth/Register.vue";
+// import PageNotFoudn from "./components/404.vue";
 
 // lazy-loaded
 // https://router.vuejs.org/guide/advanced/lazy-loading.html#Lazy-Loading-Routes
@@ -16,11 +17,12 @@ const UserProfile = () => import("./components/Auth/Profile.vue")
 
 
 const temp = "<template><div class='user'><h2>User </h2><router-view /></div></template>";
+const PageNotFound = temp;
 
-// const Rules = temp;
+const Rules = temp;
 const Lore = temp;
 const Timeline = temp;
-// const LoreRaces = temp;
+const LoreRaces = temp;
 
 
 const routes = [
@@ -91,13 +93,13 @@ const routes = [
       {
         path: "combat",
         name: "combat",
-        component: temp,
+        component: Rules,
         meta: { breadcrumb: "Combat" }
       },
       {
         path: "magic",
         name: "magic",
-        component: temp,
+        component: Rules,
         meta: { breadcrumb: "Magic" }
         // children: divine, arcane, spell slots v galdur
       }
@@ -123,13 +125,21 @@ const routes = [
       {
         path: "races/:id", // /lore/races/:id <race_name> ?
         name: "race",
-        component: temp,
+        component: LoreRaces,
         // component: () => import('./views/Races.vue'),
         meta: { breadcrumb: "Race", },
       },
     ]
   },
 
+/*
+    404 Route
+*/
+  {
+    path: "*",
+    name: "404",
+    component: PageNotFound,
+  },
 ];
 
 const router = createRouter({
