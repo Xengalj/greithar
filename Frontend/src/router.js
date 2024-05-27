@@ -197,11 +197,21 @@ const routes = [
     ]
   },
 
+
+/*
+    Codex Routes
+*/
+  {
+    path: "/beastiary",
+    name: "Beastiary",
+    component: () => import("./components/codex/beastiary.vue"),
+    meta: { breadcrumb: "Beastiary" }
+  },
+
 /*
     404 Route
 */
   {
-    // path: "*",
     path: "/:catchAll(.*)",
     name: "404",
     component: PageNotFound,

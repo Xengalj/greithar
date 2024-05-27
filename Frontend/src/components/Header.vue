@@ -18,10 +18,13 @@
       class="el-menu"
       mode="horizontal"
       menu-trigger="click"
-      style="max-width: 500px"
+      width="400px"
       ellipsis
     >
-    <!-- close-on-click-outside -->
+    <!--
+    style="max-width: 500px"
+    close-on-click-outside
+   -->
     <div class="flex-grow" />
 
 
@@ -98,8 +101,8 @@
           </router-link>
         </el-menu-item>
 
-        <el-menu-item index="monsters">
-          <router-link to="/monsters" class="nav-link">
+        <el-menu-item index="beastiary">
+          <router-link to="/beastiary" class="nav-link">
             <font-awesome-icon icon="dragon" /> Beastiary
           </router-link>
         </el-menu-item>
@@ -147,7 +150,7 @@
 
   </div>
 
-  <div class="hero">
+  <div>
     <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/' }">home</el-breadcrumb-item>
       <el-breadcrumb-item v-for="(crumb, index) in breadcrumbs" :key="index">
@@ -162,7 +165,7 @@
 
 <script>
 import { ref } from "vue";
-console.log(ref);
+// console.log(ref);
 
 export default {
   data() {
@@ -173,9 +176,9 @@ export default {
     }
   },
   created() {
-    this.$router.options.routes.forEach(route => {
-      console.log(route);
-    });
+    // this.$router.options.routes.forEach(route => {
+    //   console.log(route);
+    // });
   },
 
   computed: {

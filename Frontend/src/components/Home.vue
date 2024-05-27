@@ -4,6 +4,24 @@
       <h3>{{ content }}</h3>
     </header>
   </div>
+
+  <!--
+  Element Plus Components
+  https://element-plus.org/en-US/component/overview.html
+  -->
+
+
+  <!--
+  Vue Examples
+  https://vuejs.org/examples/#hello-world
+  -->
+
+  <!--
+  <footer>
+  Vectors and icons by <a href="https://www.svgrepo.com" target="_blank">SVG Repo</a>
+  </footer>
+  -->
+
 </template>
 
 <script>
