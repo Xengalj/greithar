@@ -4,28 +4,17 @@
       <h3>{{ content }}</h3>
     </header>
 
-    <!-- https://www.svgrepo.com/collection/game-skills-vectors/ -->
-
-
-    {{ char.name }} <br>
-    {{ char.level }} <br>
-
-    <svg width="200" height="200">
-      <HexGraph :abilities="char.abilities"></HexGraph>
-    </svg>
-
-<pre id="raw">{{ stats }}</pre>
-
     <!--
 
         Hex             abilities
 
 
 
+        init      hp
+        senses    speed
 
       def
-        init      ac      hp
-        senses    speed
+        ac
         saves
         immunes, resist, vuln
 
@@ -38,10 +27,102 @@
 
    -->
 
-    <g-icon iconName="openScroll" /> Player Lore <br>
-      {{ char.rp }} <br><br>
+    <!-- https://www.svgrepo.com/collection/game-skills-vectors/ -->
+    <el-row class="row-bg" justify="space-evenly">
+      <el-col :span="6">
+        {{ char.name }} <br>
+        Level {{ char.level.currLvl }}
+      </el-col>
+      <el-col :span="6">
+        Classes ( {{ char.level.classes }} )
+      </el-col>
+    </el-row>
 
-    <g-icon iconName="combat" /> Melee <br>
+
+    <el-row>
+      <el-col :span="9" class="center">
+        <g-icon iconSize="128px" />
+        <br>
+        HP
+        <br>
+        init, sense, speed
+      </el-col>
+
+
+      <el-col :span="9" class="center">
+        <svg width="200" height="200">
+          <HexGraph :abilities="char.abilities"></HexGraph>
+        </svg>
+      </el-col>
+
+      <el-col :span="6" style="display: inline-grid">
+        <div v-for="(stat, index) in char.abilities" :key="index">
+          <strong>{{ stat.label }}: </strong> {{ stat.value }}
+        </div>
+      </el-col>
+    </el-row>
+
+
+
+    <el-collapse>
+      <el-collapse-item name="Defense">
+        <template #title>
+          <g-icon iconName="armor" />
+          Defense
+        </template>
+
+        <div class="">
+          {{ char.rp }}
+        </div>
+
+      </el-collapse-item>
+
+      <el-collapse-item name="Offense">
+        <template #title>
+          <g-icon iconName="swordShield" />
+          Offense
+        </template>
+        {{ char.rp }}
+      </el-collapse-item>
+
+      <el-collapse-item name="Special">
+        <template #title>
+          <g-icon iconName="star" />
+          Special
+        </template>
+        {{ char.rp }}
+      </el-collapse-item>
+
+      <el-collapse-item name="Inventory">
+        <template #title>
+          <g-icon iconName="inventory" />
+          Inventory
+        </template>
+        {{ char.rp }}
+      </el-collapse-item>
+
+      <el-collapse-item name="Notes">
+        <template #title>
+          <g-icon iconName="openBook" />
+          Notes
+        </template>
+        {{ char.rp }}
+      </el-collapse-item>
+
+      <el-collapse-item name="Lore">
+        <template #title>
+          <g-icon iconName="openScroll" />
+          Player Lore
+        </template>
+        {{ char.rp }}
+      </el-collapse-item>
+
+
+    </el-collapse>
+
+
+
+    <el-row></el-row>
 
 
 
@@ -67,14 +148,20 @@
 <script>
 import UserService from "../../services/user.service";
 import HexGraph from '@/components/template/HexGraph.vue'
-// import HexGraph from '../templates/HexGraph.js'
 
-// TODO: get charID
+/*
+TODO:
+
+- get charID
+- get char data from DB
+- add purple out of 30 HexGraph
+*/
+
+
 
 export default {
   name: "Character",
   components: {
-    // AnimalIcon,
     HexGraph,
   },
   data() {
@@ -120,12 +207,12 @@ export default {
         player: 0, // user_id, 0 = Xengalj
         name: "Smelborp",
         abilities: [
-          { label: 'Str', value: 16/20 * 100 },
-          { label: 'Dex', value: 13/20 * 100 },
-          { label: 'Con', value: 18/20 * 100 },
-          { label: 'Int', value: 10/20 * 100 },
-          { label: 'Wis', value: 11/20 * 100 },
-          { label: 'Cha', value: 8/20 * 100 }
+          { label: 'Str', value: 16, location: { x: 100, y: 12 } },
+          { label: 'Dex', value: 13, location: { x: 176, y: 56 } },
+          { label: 'Con', value: 18, location: { x: 176, y: 144 } },
+          { label: 'Int', value: 10, location: { x: 100, y: 193 } },
+          { label: 'Wis', value: 11, location: { x: 10, y: 144 } },
+          { label: 'Cha', value: 8, location: { x: 10, y: 56 } }
         ],
         rp: {
           alignment: "NG",
@@ -203,3 +290,9 @@ export default {
   }
 };
 </script>
+
+<style media="screen">
+  .center {
+    text-align: center;
+  }
+</style>

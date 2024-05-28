@@ -3,12 +3,19 @@
     <polygon :points="points"></polygon>
     <circle cx="100" cy="100" r="80"></circle>
     <axis-label
-    v-for="(stat, index) in abilities"
-    :stat="stat"
-    :index="index"
-    :key="index"
-    :total="abilities.length"
+      v-for="(stat, index) in abilities"
+      :stat="stat"
+      :index="index"
+      :key="index"
+      :total="abilities.length"
+      class="ability-value"
     ></axis-label>
+
+    <text
+      v-for="(stat, i) in abilities"
+      :key="i"
+      :x="stat.location.x"
+      :y="stat.location.y">{{stat.label}}</text>
   </g>
 </template>
 
@@ -25,11 +32,12 @@ export default {
     points() {
       const total = this.abilities.length
       return this.abilities.map((stat, i) => {
-        const { x, y } = valueToPoint(stat.value, i, total)
+        // abilities are out of 20 for now, then x 100 to get a % of the circle
+        const { x, y } = valueToPoint((stat.value/20*100), i, total)
         return `${x},${y}`
       }).join(' ')
     },
-  },
+  }
 }
 
 function valueToPoint(value, index, total) {
@@ -74,4 +82,9 @@ label {
   top: 0;
   left: 300px;
 }
+
+.ability-value {
+  display: none;
+}
+
 </style>
