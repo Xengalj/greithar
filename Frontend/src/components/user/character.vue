@@ -6,6 +6,9 @@
 
     <!--
 
+    upload a file (profile)
+    https://serversideup.net/uploading-files-vuejs-axios/
+
         Hex             abilities
 
 

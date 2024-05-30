@@ -49,11 +49,9 @@
 
 <script>
 import UserService from "../../services/user.service";
-
-// import {
-//   AberrationIcon,
-
-// } from '@/assets/svg-repo/index.js';
+// import Papa from 'papaparse';
+// import axios from 'axios';
+// import csvFile from '@/assets/d20pfsrd-beastiary.csv';
 
 export default {
   components: {
@@ -84,7 +82,8 @@ export default {
           alignment: 'LE',
           environment: 'temperate underground or deep forest',
         },
-      ]
+      ],
+      data: ""
     };
   },
   mounted() {
@@ -101,11 +100,40 @@ export default {
           error.toString();
       }
     );
+    this.testGet();
   },
   methods: {
     // clearFilter() {
     //   tableRef.value.clearFilter()
     // }
+    async testGet() {
+      console.log('getData');
+
+      // await Papa.parse( '@/assets/d20pfsrd-beastiary.csv', {
+      //   worker: true,
+      //   header: true,
+      //   skipEmptyLines: true,
+      //   complete: function( results ){
+      //     console.log(results);
+      //     this.data = results;
+      //     this.parsed = true;
+      //   }.bind(this)
+      // } );
+      // console.log(this.data);
+
+
+
+
+      // axios.get('https://www.d20pfsrd.com/equipment/weapons')
+      //   .then((response) => {
+      //     console.log(response)
+      //   })
+      //   // Configure error callback
+      //   .catch((error) => {
+      //     console.error(error)
+      //   });
+
+    }
 
   },
   computed: {
