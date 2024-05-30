@@ -10,6 +10,24 @@ module.exports = function(app) {
     next();
   });
 
+  // app.get("/api/user/create", controller.allAccess);
+  app.get(
+    "/api/user/read",
+    [authJwt.verifyToken],
+    controller.read
+  );
+  /*
+  Route path: /users/:userId/books/:bookId
+  Request URL: http://localhost:3000/users/34/books/8989
+  req.params: { "userId": "34", "bookId": "8989" }
+
+  app.get('/users/:userId/books/:bookId', (req, res) => {
+    res.send(req.params)
+  })
+  */
+  // app.get("/api/user/update", controller.allAccess);
+  // app.get("/api/user/delete", controller.allAccess);
+
   app.get("/api/test/all", controller.allAccess);
 
   app.get(
