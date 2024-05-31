@@ -2,7 +2,7 @@ const db = require("../models");
 const User = db.user;
 const Op = db.Sequelize.Op;
 
-var jwt = require("jsonwebtoken");
+// var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 
 // user.create is actually handled by auth/signup
@@ -47,29 +47,20 @@ exports.update = (req, res) => {
       .then(user => {
         if (!users) { return res.status(404).send({ message: "User not found!" }); }
         // update user with new info
+        let newContent = {
+          username: req.body.username ? req.body.username : user.username,
+          email: req.body.email ? req.body.email : user.email,
+          password: req.body.password ? bcrypt.hashSync(req.body.password, 8) : user.password,
+          roles: req.body.roles ? req.body.roles : user.authorities
+        };
+        user.update({
+          username: newContent.username,
+          passwrod: newContent.password,
+          email: newContent.email
+        })
+          .then(user => {
+            // Update roles
 
-        const jane = await User.create({ name: 'Jane' });
-console.log(jane.name); // "Jane"
-console.log(jane.favoriteColor); // "green"
-jane.name = 'Jane II';
-jane.favoriteColor = 'blue';
-await jane.save({ fields: ['name'] });
-console.log(jane.name); // "Jane II"
-console.log(jane.favoriteColor); // "blue"
-// The above printed blue because the local object has it set to blue, but
-// in the database it is still "green":
-await jane.reload();
-console.log(jane.name); // "Jane II"
-console.log(jane.favoriteColor); // "green"
-
-        
-
-        User.update({
-    username: req.body.username,
-    email: req.body.email,
-    password: bcrypt.hashSync(req.body.password, 8)
-  })
-    .then(user => {
       if (req.body.roles) {
         Role.findAll({
           where: {
@@ -82,17 +73,11 @@ console.log(jane.favoriteColor); // "green"
             res.send({ message: "User registered successfully!" });
           });
         });
-      } else {
-        // user role = 1
-        user.setRoles([4]).then(() => {
-          res.send({ message: "User registered successfully!" });
-        });
       }
     })
     .catch(err => {
       res.status(500).send({ message: err.message });
     });
-
         
         // return new user info
         res.status(200).send({
