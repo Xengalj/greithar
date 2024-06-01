@@ -1,12 +1,34 @@
-exports.allAccess = (req, res) => {
-  res.status(200).send(
-    "Public Content."
-  );
-};
+const db = require("../models");
+const User = db.user;
+const Character = db.character;
+// const Op = db.Sequelize.Op;
 
-// users.findByPK(#) // find by primary key
+// Creates and returns a new character
+exports.create = (req, res) => {
+  res.status(200).send("Server Character Created");
+}
 
-// findaAndCountAll //pagination
+
+// returns either a list of characters, or if a character_id was given, returns that character
+exports.read = (req, res) => {
+  if (req.body.character_id) {
+    Character.findOne({
+      where: { id: req.body.character_id }
+    })
+      .then(character => {
+        if (!character) { return res.status(404).send({ message: "Character not found!" }); }
+        // let user = 0; // get user id of character
+        res.status(200).send({
+          // user: user.id,
+          character: character
+        });
+      })
+      .catch(err => {
+        res.status(500).send({ message: err.message });
+      });
+  } else {
+
+    // findaAndCountAll //pagination
 /*
 const { count, rows } = await Project.findAndCountAll({
   where: {
@@ -21,49 +43,52 @@ const { count, rows } = await Project.findAndCountAll({
 console.log(count);
 console.log(rows);
 */
+    
+    Character.findAll()
+      .then(characters => {
+        if (!characters) { return res.status(404).send({ message: "No characters found!" }); }
+        res.status(200).send({
+          characters: JSON.stringify(characters)
+        });
+      })
+      .catch(err => {
+        res.status(500).send({ message: err.message });
+      });
+  }
+};
 
-exports.signup = (req, res) => {
-  // Save User to Database
-  User.create({
-    username: req.body.username,
-    email: req.body.email,
-    password: bcrypt.hashSync(req.body.password, 8)
+// Updates a character, given by character_id
+exports.update = (req, res) => {
+  Character.findOne({
+    where: { id: req.body.character_id }
   })
-    .then(user => {
-      if (req.body.roles) {
-        Role.findAll({
-          where: {
-            name: {
-              [Op.or]: req.body.roles
-            }
-          }
-        }).then(roles => {
-          user.setRoles(roles).then(() => {
-            res.send({ message: "User registered successfully!" });
-          });
-        });
-      } else {
-        // user role = 1
-        user.setRoles([4]).then(() => {
-          res.send({ message: "User registered successfully!" });
-        });
+    .then(character => {
+      if (!character) { return res.status(404).send({ message: "Character not found!" }); }
+
+      // set values to be updated
+      for (const [key, value] of Object.entries(req.body)) {
+        console.log(`${key}: ${value}`);
+        character.key = value;
       }
+      character.save();
+      res.status(200).send({ character });
     })
     .catch(err => {
       res.status(500).send({ message: err.message });
     });
 };
 
-
-
-exports.userBoard = (req, res) => {
-  res.status(200).send("User Content.");
-};
-
-exports.adminBoard = (req, res) => {
-  res.status(200).send("Admin Content.");
-};
-
-exports.moderatorBoard = (req, res) => {
-  res.status(200).send("Moderator Content.");
-};
+// Deletes a character
+exports.delete = (req, res) => {
+  Character.findOne({
+    where: { id: req.body.character_id }
+  })
+    .then(character => {
+      if (!character) { return res.status(404).send({ message: "Character not found!" }); }
+      character.destroy();
+      res.status(200).send("Characer deleted");
+    })
+    .catch(err => {
+      res.status(500).send({ message: err.message });
+    });
+}
