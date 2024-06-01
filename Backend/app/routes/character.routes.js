@@ -10,23 +10,27 @@ module.exports = function(app) {
     next();
   });
 
-  app.get("/api/character/all", controller.get);
+  app.post(
+    "/api/character/create",
+    [authJwt.verifyToken],    
+    controller.create
+  );
 
-  app.get(
-    "/api/character/user",
+  app.post(
+    "/api/character/read",
     [authJwt.verifyToken],
-    controller.userBoard
+    controller.read
+  );
+  
+  app.post(
+    "/api/character/update",
+    [authJwt.verifyToken],
+    controller.update
   );
 
   app.get(
-    "/api/character/mod",
-    [authJwt.verifyToken, authJwt.isModerator],
-    controller.moderatorBoard
-  );
-
-  app.get(
-    "/api/character/admin",
-    [authJwt.verifyToken, authJwt.isAdmin],
-    controller.adminBoard
+    "/api/character/delete",
+    [authJwt.verifyToken],
+    controller.delete
   );
 };
