@@ -1,6 +1,6 @@
 const db = require("../models");
 const User = db.user;
-const Op = db.Sequelize.Op;
+const Op = db.Sequelize.Op; // operators for where clause
 
 // var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
