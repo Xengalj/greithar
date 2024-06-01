@@ -62,7 +62,7 @@
         </el-menu-item>
 
         <el-menu-item v-if="currentUser" index="characters">
-          <router-link to="/toons" class="nav-link">
+          <router-link to="/user/list" class="nav-link">
             <!-- TODO update link to use user/:id/char/list -->
             <font-awesome-icon icon="users" /> Other Characters
           </router-link>

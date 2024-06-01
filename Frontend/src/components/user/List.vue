@@ -37,13 +37,14 @@
 </template>
 
 <script>
+import UserService from "@/services/user.service";
 
-import { ref } from 'vue'
-const value1 = ref(true)
-console.log(value1);
+// import { ref } from 'vue'
+// const value1 = ref(true)
+// console.log(value1);
 
 export default {
-  name: 'Profile',
+  name: "User List",
   computed: {
     currentUser() {
       return this.$store.state.auth.user;
@@ -53,6 +54,20 @@ export default {
     if (!this.currentUser) {
       this.$router.push('/login');
     }
+    this.getUsers();
+  },
+  methods: {
+    getUsers() {
+      // console.log('getting users');
+      // console.log(this.currentUser);
+
+      UserService.getAllUsers(this.currentUser).then(response => {
+        console.log(response);
+        // this.content = response.data;
+      })
+      .catch(err => { console.error(err); });
+    }
+
   }
 };
 </script>

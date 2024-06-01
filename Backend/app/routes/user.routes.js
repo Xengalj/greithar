@@ -10,8 +10,10 @@ module.exports = function(app) {
     next();
   });
 
-  // app.get("/api/user/create", controller.allAccess);
-  app.get(
+  // app.get("/api/user/create", controller.create);
+  // user.create is handled by auth.signup
+
+  app.post(
     "/api/user/read",
     [authJwt.verifyToken],
     controller.read
@@ -25,8 +27,17 @@ module.exports = function(app) {
     res.send(req.params)
   })
   */
-  // app.get("/api/user/update", controller.allAccess);
-  // app.get("/api/user/delete", controller.allAccess);
+  app.post(
+    "/api/user/update",
+    [authJwt.verifyToken],
+    controller.allAccess
+  );
+
+  app.get(
+    "/api/user/delete",
+    [authJwt.verifyToken],
+    controller.allAccess
+  );
 
   app.get("/api/test/all", controller.allAccess);
 

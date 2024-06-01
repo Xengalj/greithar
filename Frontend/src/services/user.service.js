@@ -1,7 +1,8 @@
 import axios from 'axios';
 import authHeader from './auth-header';
 
-const API_URL = 'http://localhost:8080/api/test/';
+// const API_URL = 'http://localhost:8080/api/test/';
+const API_URL = 'http://localhost:8080/api/user/';
 
 class UserService {
   getPublicContent() {
@@ -19,6 +20,34 @@ class UserService {
   getAdminBoard() {
     return axios.get(API_URL + 'admin', { headers: authHeader() });
   }
+
+  getUser(user) {
+    // console.log(user);
+    return axios.post(API_URL + 'read',
+      { user_id: user.id },
+      { headers: authHeader() })
+    .then(response => {
+      return response.data;
+    })
+    .catch(err => {
+      return err;
+    });
+  }
+
+  getAllUsers() {
+    return axios.post(API_URL + 'read',
+      { /*post data*/ },
+      { headers: authHeader() })
+    .then(response => {
+      return response.data;
+    })
+    .catch(err => {
+      return err;
+    });
+  }
+
+
+
 }
 
 export default new UserService();
