@@ -21,6 +21,8 @@
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
     "mysql2": "^2.3.3",
-    "sequelize": "^6.32.1"
+    "papaparse": "^5.4.1",
+    "sequelize": "^6.32.1",
+    "vue-papa-parse": "^3.1.0"
   }
 }

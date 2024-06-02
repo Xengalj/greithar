@@ -46,6 +46,17 @@ class UserService {
     });
   }
 
+  // test beastiary
+  getBeastiary() {
+    return axios.get('http://localhost:8080/api/data/beastiary',
+    { headers: authHeader() })
+    .then(response => {
+      return response.data;
+    })
+    .catch(err => {
+      return err;
+    });
+  }
 
 
 }

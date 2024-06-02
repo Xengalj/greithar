@@ -1,3 +1,6 @@
+const fs = require('fs');
+const Papa = require('papaparse');
+
 const db = require("../models");
 const User = db.user;
 const Op = db.Sequelize.Op; // operators for where clause
@@ -124,4 +127,16 @@ exports.adminBoard = (req, res) => {
 
 exports.moderatorBoard = (req, res) => {
   res.status(200).send("Server Moderator Content.");
+};
+
+exports.beastiary = (req, res) => {
+  Papa.parse(fs.createReadStream("d20pfsrd-beastiary.csv"), {
+    complete: function(results, file) {
+      // console.log(results["data"]);
+      res.status(200).send(results);
+    },
+    errors: function(errors, file) {
+      res.status(200).send(errors);
+    }
+  });
 };

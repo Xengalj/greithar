@@ -55,6 +55,12 @@ export default {
       this.$router.push('/login');
     }
     this.getUsers();
+
+    // test beastiary
+    UserService.getBeastiary().then(response => {
+      console.log(response);
+    })
+    .catch(err => { console.error(err); });
   },
   methods: {
     getUsers() {
