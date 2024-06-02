@@ -4,6 +4,7 @@
       <h3>{{ content }}</h3>
     </header>
   </div>
+  DM SCREEN
 </template>
 
 <script>
@@ -13,7 +14,7 @@ export default {
   name: "Admin",
   data() {
     return {
-      content: "",
+      content: "DM Screen",
     };
   },
   mounted() {

@@ -100,7 +100,7 @@ exports.update = (req, res) => {
     .catch(err => {
       res.status(500).send({ message: err.message });
     });
-}
+};
 
 
 
@@ -110,7 +110,7 @@ exports.delete = (req, res) => {
   // console.log(jane.name); // "Jane"
   // console.log(jane.toJSON()); // This is good!
   // await jane.destroy();
-}
+};
 
 
 exports.allAccess = (req, res) => {
@@ -129,14 +129,20 @@ exports.moderatorBoard = (req, res) => {
   res.status(200).send("Server Moderator Content.");
 };
 
-exports.beastiary = (req, res) => {
-  Papa.parse(fs.createReadStream("d20pfsrd-beastiary.csv"), {
-    complete: function(results, file) {
-      // console.log(results["data"]);
-      res.status(200).send(results);
-    },
-    errors: function(errors, file) {
-      res.status(200).send(errors);
-    }
-  });
-};
+// exports.beastiary = (req, res) => {
+//   Papa.parse(fs.createReadStream("app/d20pfsrd-beastiary.csv"), {
+//     header: true,
+//     // step: function(row) {
+//     //   console.log("Row:", row.data);
+//     // },
+//     complete: function(results, file) {
+//       console.log(results);
+//       console.log(results["data"]);
+//       res.status(200).send(results);
+//     },
+//     errors: function(errors, file) {
+//       console.log(errors);
+//       res.status(200).send(errors);
+//     }
+//   });
+// };

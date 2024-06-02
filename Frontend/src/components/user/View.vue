@@ -1,8 +1,9 @@
-<template>
+<template lang="html">
+
   <div class="container">
     <header class="jumbotron">
       <h3>
-        <strong>User List</strong>
+        <strong>{{currentUser.username}}</strong> Profile
       </h3>
     </header>
     <p>
@@ -33,14 +34,13 @@
     </template>
   </el-switch>
 
-
 </template>
 
 <script>
 import UserService from "@/services/user.service";
 
 export default {
-  name: "List Users",
+  name: "View User",
   computed: {
     currentUser() {
       return this.$store.state.auth.user;
@@ -50,26 +50,22 @@ export default {
     if (!this.currentUser) {
       this.$router.push('/login');
     }
-    this.getUsers();
-
-    // test beastiary
-    UserService.getBeastiary().then(response => {
-      console.log(response);
-    })
-    .catch(err => { console.error(err); });
-  },
-  methods: {
-    getUsers() {
-      // console.log('getting users');
-      // console.log(this.currentUser);
-
-      UserService.getAllUsers(this.currentUser).then(response => {
-        console.log(response);
-        // this.content = response.data;
-      })
-      .catch(err => { console.error(err); });
-    }
-
+    UserService.getPublicContent().then(
+      (response) => {
+        this.content = response.data;
+      },
+      (error) => {
+        this.content =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+      }
+    );
   }
-};
+}
 </script>
+
+<style lang="css" scoped>
+</style>

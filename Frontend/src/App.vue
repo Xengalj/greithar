@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import Header from './components/Header.vue'
+import Header from './components/template/Header.vue'
 export default {
   components: { Header },
   // computed: {

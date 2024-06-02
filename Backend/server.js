@@ -28,7 +28,7 @@ db.sequelize.sync();
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
+  res.json({ message: "Welcome to Greithar's API." });
 });
 
 var bcrypt = require("bcryptjs");
@@ -36,6 +36,7 @@ var bcrypt = require("bcryptjs");
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
 // require('./app/routes/character.routes')(app);
+require('./app/routes/data.routes')(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
@@ -43,6 +44,7 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
 
+// Initialize DB
 function initial() {
   Role.create({
     id: 1,
@@ -63,14 +65,12 @@ function initial() {
     id: 1,
     username: "TrevTest",
     email: "trevor@musson.net",
-    // password: "$2a$08$nDwZ7V9.pFEJfu7lNlXIAu57G5PCxgb5a/natd/840Y5acrEz6opS" // pwd4test
     password: bcrypt.hashSync("pwd4test", 8)
   });
   db.user.create({
     id: 2,
     username: "Xengalj",
     email: "giji4454@gmail.com",
-    // password: "$2a$08$7Lp5NRQxSQeuljyS5Q2Q4OjCUmWpE3CEXvLtAH0iENSiSFsgCwlVi" // Klefki719!
     password: bcrypt.hashSync("Klefki719!", 8)
   });
   db.character.create({

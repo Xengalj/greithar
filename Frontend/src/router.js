@@ -5,24 +5,8 @@ import Login from "./components/auth/Login.vue";
 import Register from "./components/auth/Register.vue";
 import PageNotFound from "./components/404.vue";
 
-// lazy-loaded
-// https://router.vuejs.org/guide/advanced/lazy-loading.html#Lazy-Loading-Routes
-const BoardModerator = () => import("./components/BoardModerator.vue")
-// const User = () => import("./components/BoardUser.vue")
-
-
-// const UserProfile =
-// const
-// character
-
-
+// temporary template
 const temp = "<template><div class='user'><h2>User </h2><router-view /></div></template>";
-
-const Rules = temp;
-const Lore = temp;
-const Timeline = temp;
-const LoreRaces = temp;
-// const CharacterSheet = temp;
 
 
 const routes = [
@@ -49,14 +33,14 @@ const routes = [
     path: "/admin",
     name: "admin",
     // lazy-loaded
-    component: () => import("./components/dmScreen.vue"),
+    component: () => import("./components/dm/dmScreen.vue"),
     meta: { breadcrumb: "Admin", },
   },
   {
     path: "/mod",
     name: "moderator",
     // lazy-loaded
-    component: BoardModerator,
+    component: () => import("./components/auth/BoardModerator.vue"),
   },
 
 
@@ -65,6 +49,7 @@ const routes = [
 */
   {
     path: "/user",
+    name: "user",
     meta: { breadcrumbs: "User" },
     children: [
       {
@@ -74,15 +59,27 @@ const routes = [
         meta: { breadcrumbs: "User List" }
       },
       {
-        path: "/edit",
+        path: "create",
+        name: "user-create",
+        component: () => import("./components/user/Create.vue"),
+        meta: { breadcrumbs: "Create User" }
+      },
+      {
+        path: "view",
+        name: "user-view",
+        component: () => import("./components/user/View.vue"),
+        meta: { breadcrumbs: "View User" }
+      },
+      {
+        path: "edit",
         name: "user-edit",
         component: temp,
-        meta: { breadcrumbs: "User Edit" }
+        meta: { breadcrumbs: "Edit User" }
       },
       {
         // when /user/:id is matched
         // path: "/:id",
-        path: "/profile",
+        path: "profile",
         name: "profile",
         component: () => import("./components/user/Profile.vue"),
         meta: { breadcrumbs: "Profile" },
@@ -95,55 +92,52 @@ const routes = [
     Character Routes
 */
 
-  {
-    path: "/hero",
-    name: "hero",
-    component: () => import("./components/user/character.vue"),
-    meta: { breadcrumb: "Character Sheet" }
-  },
   // {
-    //   path: "characters",
-    //   name: "character-list",
-    //   component: CharacterSheet,
-    //   meta: { breadcrumb: "My Characters" }
-    // },
-    // {
-      //   path: "character/:id", // user/:id/character/:id
-      //   name: "character",
-      //   component: CharacterSheet,
-      //   meta: { breadcrumb: "Character Sheet" }
-      // },
-    // {
-    //   path: "/character",
-    //   meta: { breadcrumbs: "Character" },
-    //   children: [
-    //     {
-    //       path: "/list",
-    //       name: "character-list",
-    //       component: temp,
-    //       meta: { breadcrumbs: "User List" }
-    //     },
-    //     {
-    //       path: "/edit",
-    //       name: "user-edit",
-    //       component: temp,
-    //       meta: { breadcrumbs: "User Edit" }
-    //     },
-    //     {
-    //       path: "/:id",
-    //       meta: { breadcrumbs: ":id" },
-    //       children: [
-    //         {
-    //           // when /user/:id/profile is matched
-    //           path: "/profile", // user/:id/profile
-    //           name: "profile",
-    //           component: () => import("./components/user/Profile.vue"),
-    //           meta: { breadcrumb: "Profile" }
-    //         },
-    //       ]
-    //     },
-
-
+  //   path: "/hero",
+  //   name: "hero",
+  //   component: () => import("./components/user/character.vue"),
+  //   meta: { breadcrumb: "Character Sheet" }
+  // },
+    {
+      path: "/character",
+      name: "character",
+      meta: { breadcrumbs: "User" },
+      children: [
+        {
+          path: "list",
+          name: "character-list",
+          component: () => import("./components/character/List.vue"),
+          meta: { breadcrumbs: "Character List" }
+        },
+        {
+          path: "create",
+          name: "character-create",
+          component: () => import("./components/character/Create.vue"),
+          meta: { breadcrumbs: "Create Character" }
+        },
+        {
+          path: "view",
+          alias: "/hero",
+          name: "character-view",
+          component: () => import("./components/character/View.vue"),
+          meta: { breadcrumbs: "View Character" }
+        },
+        {
+          path: "edit",
+          name: "character-edit",
+          component: temp,
+          meta: { breadcrumbs: "Edit Character" }
+        },
+        // {
+        //   // when /user/:id is matched
+        //   // path: "/:id",
+        //   path: "profile",
+        //   name: "profile",
+        //   component: () => import("./components/user/Profile.vue"),
+        //   meta: { breadcrumbs: "Profile" },
+        // },
+      ],
+    },
 
 
 
@@ -158,13 +152,13 @@ const routes = [
       {
         path: "combat",
         name: "combat",
-        component: Rules,
+        component: temp,
         meta: { breadcrumb: "Combat" }
       },
       {
         path: "magic",
         name: "magic",
-        component: Rules,
+        component: temp,
         meta: { breadcrumb: "Magic" }
         // children: divine, arcane, spell slots v galdur
       }
@@ -178,19 +172,19 @@ const routes = [
   {
     path: "/lore",
     name: "Lore",
-    component: Lore,
+    component: temp,
     meta: { breadcrumb: "Lore", },
     children: [
       {
         path: "timeline",
         name: "timeline",
-        component: Timeline,
+        component: temp,
         meta: { breadcrumb: "Timeline", },
       },
       {
         path: "races/:id", // /lore/races/:id <race_name> ?
         name: "race",
-        component: LoreRaces,
+        component: temp,
         // component: () => import('./views/Races.vue'),
         meta: { breadcrumb: "Race", },
       },

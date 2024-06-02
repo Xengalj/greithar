@@ -149,7 +149,7 @@
 </template>
 
 <script>
-import UserService from "../../services/user.service";
+import UserService from "@/services/user.service";
 import HexGraph from '@/components/template/HexGraph.vue'
 
 /*
@@ -163,7 +163,7 @@ TODO:
 
 
 export default {
-  name: "Character",
+  name: "View Character",
   components: {
     HexGraph,
   },

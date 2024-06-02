@@ -14,21 +14,22 @@
       stripe
       style="width: 80%"
     >
-      <el-table-column sortable prop="name" label="Name" width="180" />
-      <el-table-column sortable prop="type" label="Type" width="75" />
-      <el-table-column sortable prop="cr" label="CR"
+      <el-table-column sortable prop="Name" label="Name" width="180" />
+      <el-table-column sortable prop="Type" label="Type" width="75" />
+      <el-table-column sortable prop="CR" label="CR"
     />
     <!-- :filters="[
     { text: '1', value: '1' },
     { text: '1/4', value: '1/4' },
     ]"
     :filter-method="filterHandler" -->
-      <el-table-column sortable prop="hp" label="HP" />
-      <el-table-column sortable prop="ac" label="AC" />
-      <el-table-column sortable prop="alignment" label="Alignment" />
-      <el-table-column sortable prop="environment" label="Environment" />
+      <el-table-column sortable prop="HP" label="HP" />
+      <el-table-column sortable prop="AC" label="AC" />
+      <el-table-column sortable prop="Alignment" label="Alignment" />
+      <el-table-column sortable prop="Environment" label="Environment" />
     </el-table>
 
+    {{ tableData[0] }} <br><br>
 
     <g-icon iconSize="64px" iconName="aberration"/> Aberrations<br>
     <g-icon iconSize="64px" iconName="animal"/> Animals<br>
@@ -48,17 +49,12 @@
 </template>
 
 <script>
-import UserService from "../../services/user.service";
-// import Papa from 'papaparse';
-// import axios from 'axios';
-// import csvFile from '@/assets/d20pfsrd-beastiary.csv';
+import DataService from "@/services/data.service";
 
 export default {
   components: {
     // AberrationIcon,
-
   },
-
   name: "Beastiary",
   data() {
     return {
@@ -87,52 +83,20 @@ export default {
     };
   },
   mounted() {
-    UserService.getAdminBoard().then(
-      (response) => {
-        this.content = response.data;
-      },
-      (error) => {
-        this.content =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-      }
-    );
-    this.testGet();
+    this.getBeastiary();
   },
   methods: {
     // clearFilter() {
     //   tableRef.value.clearFilter()
-    // }
-    async testGet() {
+    // },
+    async getBeastiary() {
       console.log('getData');
-
-      // await Papa.parse( '@/assets/d20pfsrd-beastiary.csv', {
-      //   worker: true,
-      //   header: true,
-      //   skipEmptyLines: true,
-      //   complete: function( results ){
-      //     console.log(results);
-      //     this.data = results;
-      //     this.parsed = true;
-      //   }.bind(this)
-      // } );
-      // console.log(this.data);
-
-
-
-
-      // axios.get('https://www.d20pfsrd.com/equipment/weapons')
-      //   .then((response) => {
-      //     console.log(response)
-      //   })
-      //   // Configure error callback
-      //   .catch((error) => {
-      //     console.error(error)
-      //   });
-
+      DataService.getBeastiary()
+      .then(response => {
+        console.log(response[0]);
+        this.tableData = response;
+      })
+      .catch(err => { console.error(err); });
     }
 
   },

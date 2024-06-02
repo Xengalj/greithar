@@ -2,7 +2,8 @@
   <div class="container">
     <header class="jumbotron">
       <h3>
-        <strong>{{currentUser.username}}</strong> Profile
+        <strong>TOMBSTONE</strong><br>
+        upadate link to use uesr id and auto load user data there
       </h3>
     </header>
     <p>

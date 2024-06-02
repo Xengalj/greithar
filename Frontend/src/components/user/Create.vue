@@ -1,23 +1,28 @@
-<template>
+<template lang="html">
+
   <div class="container">
     <header class="jumbotron">
       <h3>{{ content }}</h3>
     </header>
   </div>
+
 </template>
 
 <script>
-import UserService from "../services/user.service";
+import UserService from "@/services/user.service";
 
 export default {
-  name: "User",
+  name: "Create User",
   data() {
     return {
       content: "",
     };
   },
   mounted() {
-    UserService.getUserBoard().then(
+    if (!this.currentUser) {
+      this.$router.push('/login');
+    }
+    UserService.getPublicContent().then(
       (response) => {
         this.content = response.data;
       },
@@ -30,6 +35,9 @@ export default {
           error.toString();
       }
     );
-  },
-};
+  }
+}
 </script>
+
+<style lang="css" scoped>
+</style>
