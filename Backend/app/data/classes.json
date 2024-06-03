@@ -1,36 +1,246 @@
-{}
-class: {
-  id: 3,
-  gen: {
-    hd: "d8",
-    name: "Druid",
-    skills: ["Climb (Str), Craft (Int), Fly (Dex), Handle Animal (Cha), Heal (Wis), Knowledge (geography) (Int), Knowledge (nature) (Int), Perception (Wis), Profession (Wis), Ride (Dex), Spellcraft (Int), Survival (Wis), and Swim (Str)"],
-    ranks: 4, // 4 + int mod / level
-    proficiency: [ "club", "dagger", "dart", "quarterstaff", "scimitar", "scythe", "sickle", "shortspear", "sling", "spear", "natural attacks", "light armor", "medium armor", "shields" ]
-  },
-  leveled: {
-    bab: [],  // arr index is
-    fort: [],
-    ref: [],
-    will: [],
-    spells: [
-      [3, 1],  // 3 orisons, 1 first level at level 0
+{
+  [
+    "name": "Barbarian",
+    "general": {
+      "hd": "d12",
+      "skills": [ "Acrobatics (Dex), Climb (Str), Craft (Int), Handle Animal (Cha), Intimidate (Cha), Knowledge (nature) (Int), Perception (Wis), Ride (Dex), Survival (Wis), and Swim (Str)" ],
+      "ranks": 4,
+      "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "shields" ]
+    },
+    "bab":  [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ],
+    "fort": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6,  7,  7,  8,  8,  9,  9, 10, 10, 11, 11, 12 ],
+    "ref":  [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3,  3,  3,  4,  4,  4,  5,  5,  5,  6,  6,  6 ],
+    "will": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3,  3,  3,  4,  4,  4,  5,  5,  5,  6,  6,  6 ],
+    "special": [ [],
+      [ "Fast Movement", "Rage" ],
+      [ "Rage" ],
+      [ "Trackless Step (ex)" ],
+      [ "Resist Nature's Lure (ex)", "Wild Shape (su)" ],
+      [], [], [], [], 
+      [ "Venom Imunity (ex)" ], 
+      [], [], [],
+      [ "A Thousand Faces (su)" ],
+      [],
+      [ "Timeles Body (ex)"]
+    ],
+    "restrictions": {
+      "alignment": "Cannot be Lawful"
+    }
+
+  ],
+  [
+    "name": "Bard",
+    "general": {
+      "hd": "",
+      "skills": [  ],
+      "ranks": 4,
+      "proficiency": [ "club", "dagger", "dart", "quarterstaff", "scimitar", "scythe", "sickle", "shortspear", "sling", "spear", "natural attacks", "light armor", "medium armor", "shields" ]
+    },
+    "bab": [ 0, 0, 1, 2, 3, 3, 4, 5, 6, 6, 7, 8, 9, 9, 10, 11, 12, 12, 13, 14, 15],
+    "fort": [0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12],
+    "ref": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4,  4,  5,  5,  5,  6,  6,  6],
+    "will": [0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12],
+    "spells": [ [],
+      [3, 1],
       [4, 2],
       [4, 2, 1],
+      [4, 3, 2],
+      [4, 3, 2, 1],
+      [4, 3, 3, 2],
+      [4, 4, 3, 2, 1],
+      [4, 4, 3, 3, 2],
+      [4, 4, 4, 3, 2, 1],
+      [4, 4, 4, 3, 3, 2],
+      [4, 4, 4, 4, 3, 2, 1],
+      [4, 4, 4, 4, 3, 3, 2],
+      [4, 4, 4, 4, 4, 3, 2, 1],
+      [4, 4, 4, 4, 4, 3, 3, 2],
+      [4, 4, 4, 4, 4, 4, 3, 3, 2],
+      [4, 4, 4, 4, 4, 4, 4, 3, 2, 1],
+      [4, 4, 4, 4, 4, 4, 4, 3, 3, 2],
+      [4, 4, 4, 4, 4, 4, 4, 4, 3, 3],
+      [4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
     ],
-    galdur: [],
-  },
-  special: [
-    [  // level 1 class abilities
-      "Spontaneous Casting", "Bonus Languages", "Nature Bond (ex)", "Nature Sense (ex)", "Wild Empathy (ex)"
+    "galdur": [ 0, 3, 5, 7, 10, 13, 16, 20, 24, 29, 35, 42, 50, 59, 69, 80, 92, 105, 119, 134, 150 ],
+    "special": [ [],
+      [ "Spontaneous Casting", "Bonus Languages", "Nature Bond (ex)", "Nature Sense (ex)", "Wild Empathy (ex)" ],
+      [ "Woodland Stride (ex)" ],
+      [ "Trackless Step (ex)" ],
+      [ "Resist Nature's Lure (ex)", "Wild Shape (su)" ],
+      [], [], [], [], 
+      [ "Venom Imunity (ex)" ], 
+      [], [], [],
+      [ "A Thousand Faces (su)" ],
+      [],
+      [ "Timeles Body (ex)"]
     ],
-    [  // lvl 2
-      "Woodland Stride (ex)"
+    "restrictions": {
+      "alignment": "Must be Neutral",
+      "spells": "Cannot cast spells of oposing alignment",
+      "armor": "Cannot wear metal armor"
+    }
+  ]  
+
+  
+  [
+    "name": "Cleric",
+    "general": {
+      "hd": "d8",
+      "skills": ["Climb (Str), Craft (Int), Fly (Dex), Handle Animal (Cha), Heal (Wis), Knowledge (geography) (Int), Knowledge (nature) (Int), Perception (Wis), Profession (Wis), Ride (Dex), Spellcraft (Int), Survival (Wis), and Swim (Str)"],
+      "ranks": 4,
+      "proficiency": [ "club", "dagger", "dart", "quarterstaff", "scimitar", "scythe", "sickle", "shortspear", "sling", "spear", "natural attacks", "light armor", "medium armor", "shields" ]
+    },
+    "bab": [ 0, 0, 1, 2, 3, 3, 4, 5, 6, 6, 7, 8, 9, 9, 10, 11, 12, 12, 13, 14, 15],
+    "fort": [0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12],
+    "ref": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4,  4,  5,  5,  5,  6,  6,  6],
+    "will": [0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12],
+    "spells": [ [],
+      [3, 1],
+      [4, 2],
+      [4, 2, 1],
+      [4, 3, 2],
+      [4, 3, 2, 1],
+      [4, 3, 3, 2],
+      [4, 4, 3, 2, 1],
+      [4, 4, 3, 3, 2],
+      [4, 4, 4, 3, 2, 1],
+      [4, 4, 4, 3, 3, 2],
+      [4, 4, 4, 4, 3, 2, 1],
+      [4, 4, 4, 4, 3, 3, 2],
+      [4, 4, 4, 4, 4, 3, 2, 1],
+      [4, 4, 4, 4, 4, 3, 3, 2],
+      [4, 4, 4, 4, 4, 4, 3, 3, 2],
+      [4, 4, 4, 4, 4, 4, 4, 3, 2, 1],
+      [4, 4, 4, 4, 4, 4, 4, 3, 3, 2],
+      [4, 4, 4, 4, 4, 4, 4, 4, 3, 3],
+      [4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
     ],
+    "galdur": [ 0, 5, 8, 11, 14, 17, 21, 26, 34, 42, 51, 61, 72, 84, 97, 84, 97, 111, 116, 132, 149, 167, 186 ],
+    "special": [ [],
+      [ "Spontaneous Casting", "Bonus Languages", "Nature Bond (ex)", "Nature Sense (ex)", "Wild Empathy (ex)" ],
+      [ "Woodland Stride (ex)" ],
+      [ "Trackless Step (ex)" ],
+      [ "Resist Nature's Lure (ex)", "Wild Shape (su)" ],
+      [], [], [], [], 
+      [ "Venom Imunity (ex)" ], 
+      [], [], [],
+      [ "A Thousand Faces (su)" ],
+      [],
+      [ "Timeles Body (ex)"]
+    ],
+    "restrictions": {
+      "alignment": "Must be Neutral",
+      "spells": "Cannot cast spells of oposing alignment",
+      "armor": "Cannot wear metal armor"
+    }
   ],
-  restrictions: {
-    alignment: "Neutral",
-    spells: "cannot cast spells of oposing alignment",
-    armor: "can't be metal"
-  },
-},
+
+
+  
+  [
+    "name": "Druid",
+    "general": {
+      "hd": "d8",
+      "skills": ["Climb (Str), Craft (Int), Fly (Dex), Handle Animal (Cha), Heal (Wis), Knowledge (geography) (Int), Knowledge (nature) (Int), Perception (Wis), Profession (Wis), Ride (Dex), Spellcraft (Int), Survival (Wis), and Swim (Str)"],
+      "ranks": 4,
+      "proficiency": [ "club", "dagger", "dart", "quarterstaff", "scimitar", "scythe", "sickle", "shortspear", "sling", "spear", "natural attacks", "light armor", "medium armor", "shields" ]
+    },
+    "bab": [ 0, 0, 1, 2, 3, 3, 4, 5, 6, 6, 7, 8, 9, 9, 10, 11, 12, 12, 13, 14, 15],
+    "fort": [0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12],
+    "ref": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4,  4,  5,  5,  5,  6,  6,  6],
+    "will": [0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12],
+    "spells": [ [],
+      [3, 1],
+      [4, 2],
+      [4, 2, 1],
+      [4, 3, 2],
+      [4, 3, 2, 1],
+      [4, 3, 3, 2],
+      [4, 4, 3, 2, 1],
+      [4, 4, 3, 3, 2],
+      [4, 4, 4, 3, 2, 1],
+      [4, 4, 4, 3, 3, 2],
+      [4, 4, 4, 4, 3, 2, 1],
+      [4, 4, 4, 4, 3, 3, 2],
+      [4, 4, 4, 4, 4, 3, 2, 1],
+      [4, 4, 4, 4, 4, 3, 3, 2],
+      [4, 4, 4, 4, 4, 4, 3, 3, 2],
+      [4, 4, 4, 4, 4, 4, 4, 3, 2, 1],
+      [4, 4, 4, 4, 4, 4, 4, 3, 3, 2],
+      [4, 4, 4, 4, 4, 4, 4, 4, 3, 3],
+      [4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
+    ],
+    "galdur": [ 0, 5, 8, 11, 14, 19, 21, 26, 34, 42, 51, 61, 72, 84, 97, 111, 116, 132, 149, 186 ],
+    "special": [ [],
+      [ "Spontaneous Casting", "Bonus Languages", "Nature Bond (ex)", "Nature Sense (ex)", "Wild Empathy (ex)" ],
+      [ "Woodland Stride (ex)" ],
+      [ "Trackless Step (ex)" ],
+      [ "Resist Nature's Lure (ex)", "Wild Shape (su)" ],
+      [], [], [], [], 
+      [ "Venom Imunity (ex)" ], 
+      [], [], [],
+      [ "A Thousand Faces (su)" ],
+      [],
+      [ "Timeles Body (ex)"]
+    ],
+    "restrictions": {
+      "alignment": "Must be Neutral",
+      "spells": "Cannot cast spells of oposing alignment",
+      "armor": "Cannot wear metal armor"
+    }
+  ],
+  [],
+    [
+    "name": "Magus",
+    "general": {
+      "hd": "d8",
+      "skills": ["Climb (Str), Craft (Int), Fly (Dex), Handle Animal (Cha), Heal (Wis), Knowledge (geography) (Int), Knowledge (nature) (Int), Perception (Wis), Profession (Wis), Ride (Dex), Spellcraft (Int), Survival (Wis), and Swim (Str)"],
+      "ranks": 4,
+      "proficiency": [ "club", "dagger", "dart", "quarterstaff", "scimitar", "scythe", "sickle", "shortspear", "sling", "spear", "natural attacks", "light armor", "medium armor", "shields" ]
+    },
+    "bab": [ 0, 0, 1, 2, 3, 3, 4, 5, 6, 6, 7, 8, 9, 9, 10, 11, 12, 12, 13, 14, 15],
+    "fort": [0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12],
+    "ref": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4,  4,  5,  5,  5,  6,  6,  6],
+    "will": [0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12],
+    "spells": [ [],
+      [3, 1],
+      [4, 2],
+      [4, 2, 1],
+      [4, 3, 2],
+      [4, 3, 2, 1],
+      [4, 3, 3, 2],
+      [4, 4, 3, 2, 1],
+      [4, 4, 3, 3, 2],
+      [4, 4, 4, 3, 2, 1],
+      [4, 4, 4, 3, 3, 2],
+      [4, 4, 4, 4, 3, 2, 1],
+      [4, 4, 4, 4, 3, 3, 2],
+      [4, 4, 4, 4, 4, 3, 2, 1],
+      [4, 4, 4, 4, 4, 3, 3, 2],
+      [4, 4, 4, 4, 4, 4, 3, 3, 2],
+      [4, 4, 4, 4, 4, 4, 4, 3, 2, 1],
+      [4, 4, 4, 4, 4, 4, 4, 3, 3, 2],
+      [4, 4, 4, 4, 4, 4, 4, 4, 3, 3],
+      [4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
+    ],
+    "galdur": [ 0, 6, 9, 11, 14, 17, 21, 25, 29, 34, 40, 47, 55, 64, 74, 85, 97, 110, 114, 139, 155 ],
+    "special": [ [],
+      [ "Spontaneous Casting", "Bonus Languages", "Nature Bond (ex)", "Nature Sense (ex)", "Wild Empathy (ex)" ],
+      [ "Woodland Stride (ex)" ],
+      [ "Trackless Step (ex)" ],
+      [ "Resist Nature's Lure (ex)", "Wild Shape (su)" ],
+      [], [], [], [], 
+      [ "Venom Imunity (ex)" ], 
+      [], [], [],
+      [ "A Thousand Faces (su)" ],
+      [],
+      [ "Timeles Body (ex)"]
+    ],
+    "restrictions": {
+      "alignment": "Must be Neutral",
+      "spells": "Cannot cast spells of oposing alignment",
+      "armor": "Cannot wear metal armor"
+    }
+  ],
+
+}
