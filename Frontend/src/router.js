@@ -44,37 +44,38 @@ const routes = [
   },
 
 
-/*
+  /*
     User Routes
-*/
+  */
   {
     path: "/user",
     name: "user",
-    meta: { breadcrumbs: "User" },
+    meta: { breadcrumb: "User" },
     children: [
       {
         path: "list",
         name: "user-list",
         component: () => import("./components/user/List.vue"),
-        meta: { breadcrumbs: "User List" }
+        meta: { breadcrumb: "User List" }
       },
       {
         path: "create",
         name: "user-create",
         component: () => import("./components/user/Create.vue"),
-        meta: { breadcrumbs: "Create User" }
+        meta: { breadcrumb: "Create User" }
       },
       {
-        path: "view",
+        // when /user/view/:id is matched
+        path: "view/:id",
         name: "user-view",
         component: () => import("./components/user/View.vue"),
-        meta: { breadcrumbs: "View User" }
+        meta: { breadcrumb: "View User" }
       },
       {
         path: "edit",
         name: "user-edit",
         component: temp,
-        meta: { breadcrumbs: "Edit User" }
+        meta: { breadcrumb: "Edit User" }
       },
       {
         // when /user/:id is matched
@@ -82,7 +83,7 @@ const routes = [
         path: "profile",
         name: "profile",
         component: () => import("./components/user/Profile.vue"),
-        meta: { breadcrumbs: "Profile" },
+        meta: { breadcrumb: "Profile" },
       },
     ],
   },

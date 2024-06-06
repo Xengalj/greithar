@@ -5,16 +5,31 @@
     </header>
   </div>
   DM SCREEN
+
+
+  <div class="">
+    <p v-for="(icon, name, index) in icons" :key="index">
+      <strong>{{ name }}</strong>
+      <g-icon :iconName="name" />
+
+    </p>
+  </div>
+
+
+
+
 </template>
 
 <script>
 import UserService from "@/services/user.service";
+const icons = require('../template/svgPaths.json');
 
 export default {
   name: "Admin",
   data() {
     return {
       content: "DM Screen",
+      icons: icons
     };
   },
   mounted() {
@@ -31,6 +46,8 @@ export default {
           error.toString();
       }
     );
+
+
   },
 };
 </script>

@@ -21,10 +21,10 @@ class UserService {
     return axios.get(API_URL + 'admin', { headers: authHeader() });
   }
 
-  getUser(user) {
+  getUser(id) {
     // console.log(user);
     return axios.post(API_URL + 'read',
-      { user_id: user.id },
+      { user_id: id },
       { headers: authHeader() })
     .then(response => {
       return response.data;
@@ -45,19 +45,6 @@ class UserService {
       return err;
     });
   }
-
-  // test beastiary
-  getBeastiary() {
-    return axios.get('http://localhost:8080/api/data/beastiary',
-    { headers: authHeader() })
-    .then(response => {
-      return response.data;
-    })
-    .catch(err => {
-      return err;
-    });
-  }
-
 
 }
 

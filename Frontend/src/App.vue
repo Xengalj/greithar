@@ -1,8 +1,8 @@
-<template>
+<template class="dark">
 
   <Header/>
 
-  <div id="app">
+  <div id="app" class="dark">
     <div class="container">
       <router-view />
     </div>

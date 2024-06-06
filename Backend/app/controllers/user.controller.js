@@ -43,7 +43,7 @@ exports.read = (req, res) => {
       .then(users => {
         if (!users) { return res.status(404).send({ message: "No users found!" }); }
         res.status(200).send({
-          users: JSON.stringify(users)
+          data: users
         });
       })
       .catch(err => {

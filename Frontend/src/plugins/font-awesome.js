@@ -1,9 +1,11 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import {
-  faHome,
+  faPen,
+
+  // faHome,
   faSearch,
-  faSignInAlt,
+  // faSignInAlt,
   faSignOutAlt,
   faUserPlus,
 
@@ -30,9 +32,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
-  faHome,
+  faPen,
+
+  // faHome,
   faSearch,
-  faSignInAlt,
+  // faSignInAlt,
   faSignOutAlt,
   faUserPlus,
 

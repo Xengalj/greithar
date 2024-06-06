@@ -10,26 +10,21 @@
     <el-table
       :data="tableData"
       :default-sort="{ prop: 'cr', order: 'ascending' }"
-      height="250"
+      v-loading="loading"
+      height="500"
+      style="width: 100%"
       stripe
-      style="width: 80%"
     >
       <el-table-column sortable prop="Name" label="Name" width="180" />
-      <el-table-column sortable prop="Type" label="Type" width="75" />
-      <el-table-column sortable prop="CR" label="CR"
-    />
-    <!-- :filters="[
-    { text: '1', value: '1' },
-    { text: '1/4', value: '1/4' },
-    ]"
-    :filter-method="filterHandler" -->
+      <el-table-column sortable prop="Type" label="Type" width="75" :filters="typeFilter" :filter-method="filterHandler" />
+      <el-table-column sortable prop="CR" label="CR" />
       <el-table-column sortable prop="HP" label="HP" />
       <el-table-column sortable prop="AC" label="AC" />
       <el-table-column sortable prop="Alignment" label="Alignment" />
-      <el-table-column sortable prop="Environment" label="Environment" />
+      <el-table-column sortable prop="Environment" label="Environment" :filters="environFilter" :filter-method="filterHandler" />
     </el-table>
 
-    {{ tableData[0] }} <br><br>
+    <br><br>
 
     <g-icon iconSize="64px" iconName="aberration"/> Aberrations<br>
     <g-icon iconSize="64px" iconName="animal"/> Animals<br>
@@ -58,58 +53,40 @@ export default {
   name: "Beastiary",
   data() {
     return {
-      content: "",
-      tableData: [
-        {
-          name: 'Wolf',
-          type: 'animal',
-          hp: '13',
-          ac: '14',
-          cr: '1',
-          alignment: 'N',
-          environment: 'cold or temperate forests',
-        },
-        {
-          name: 'Kobold',
-          type: 'humanoid (reptilian)',
-          hp: '5',
-          ac: '15',
-          cr: '1/4',
-          alignment: 'LE',
-          environment: 'temperate underground or deep forest',
-        },
+      content: "Super Temp",
+      loading: false,
+      tableData: [],
+      typeFilter: [
+        { text: 'Aberrations', value: 'aberration' },
+        { text: 'Animal', value: 'animal' },
+        { text: 'Construct', value: 'construct' },
       ],
-      data: ""
+      environFilter: [
+        { text: 'Any', value: 'any' },
+      ]
     };
   },
   mounted() {
     this.getBeastiary();
   },
   methods: {
-    // clearFilter() {
-    //   tableRef.value.clearFilter()
-    // },
     async getBeastiary() {
-      console.log('getData');
+      this.loading = true;
       DataService.getBeastiary()
       .then(response => {
-        console.log(response[0]);
+        console.log(response);
         this.tableData = response;
+        this.loading = false;
       })
       .catch(err => { console.error(err); });
+    },
+    clearFilter() {
+      this.$router.go();
+    },
+    filterHandler( value, row, column ) {
+      const property = column['property'];
+      return row[property] === value;
     }
-
   },
-  computed: {
-    // filterHandler(
-    //   value: string,
-    //   row: User,
-    //   column: TableColumnCtx<User>
-    // ) {
-    //   const property = column['property']
-    //   return row[property] === value
-    // }
-
-  }
 };
 </script>

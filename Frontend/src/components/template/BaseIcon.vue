@@ -1,30 +1,29 @@
 <template>
   <svg
     :width="iconSize"
-    :viewBox="viewBox"
+    :viewBox="icon.viewBox"
     role="img"
     xmlns="http://www.w3.org/2000/svg"
   >
     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
     <g id="SVGRepo_iconCarrier">
-      <path :fill="iconColor" :d="svgPath(iconName)"></path>
+      <path v-for="(path, index) in icon.paths" :key="index" :fill="iconColor" :d="path"></path>
     </g>
   </svg>
 </template>
 
 <script>
 const icons = require('./svgPaths.json');
+// https://www.svgrepo.com/collection/hearthsim-game-icons/
+// Font Awesome = https://www.svgrepo.com/collection/font-awesome-solid-icons
+
 export default {
   name: 'g-icon',
   props: {
     iconSize: {
       type: String,
       default: '32px'
-    },
-    viewBox: {
-      type: String,
-      default: '0 0 512 512'
     },
     iconColor: {
       type: String,
@@ -35,10 +34,13 @@ export default {
       default: 'runeStone'
     },
   },
-  methods: {
-    svgPath(iconName) {
-      return icons[iconName];
+  data() {
+    return {
+      icon: {}
     }
+  },
+  mounted() {
+    this.icon = icons[this.iconName];
   }
 }
 </script>
