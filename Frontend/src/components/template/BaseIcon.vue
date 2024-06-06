@@ -40,7 +40,7 @@ export default {
     }
   },
   mounted() {
-    this.icon = icons[this.iconName];
+    this.icon = icons[this.iconName.toLowerCase()];
   }
 }
 </script>
