@@ -91,6 +91,29 @@
     <g-icon iconSize="64px" iconName="undead"/> Undead<br>
     <g-icon iconSize="64px" iconName="vermin"/> Vermin<br>
 
+
+    <el-button plain @click="dialogVisible = true">
+      Click to open the Dialog
+    </el-button>
+
+    <el-dialog
+      v-model="dialogVisible"
+      title="Tips"
+      width="500"
+      :before-close="handleClose"
+    >
+    <span>This is a message</span>
+    <template #footer>
+      <div class="dialog-footer">
+        <el-button @click="dialogVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="dialogVisible = false">
+          Confirm
+        </el-button>
+      </div>
+    </template>
+  </el-dialog>
+
+    
   </div>
 </template>
 
@@ -105,6 +128,7 @@ export default {
   data() {
     return {
       content: "Super Temp",
+      dialogVisable: false,
       loading: false,
       tableSearch: "",
       tableData: [],
@@ -158,7 +182,16 @@ const filterTableData = computed(() =>
 )
 */
 
-    }
-  },
+    },
+    handleClose() {
+      console.log("Closing modal");
+      // ElMessageBox.confirm('Are you sure to close this dialog?')
+      // .then(() => {
+      //   done()
+      // })
+      // .catch(() => {
+      //   // catch error
+      // }
+  }
 };
 </script>
