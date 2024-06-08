@@ -13,25 +13,25 @@
     "will": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3,  3,  3,  4,  4,  4,  5,  5,  5,  6,  6,  6 ],
     "special": [ [],
       [ "Fast Movement (Ex)", "Rage (Ex)" ],
-      [ "Rage Power (Ex)", "Uncanny Dodge (Ex)" ],
+      [ "Rage Power (Ex) (REPLACE)", "Uncanny Dodge (Ex)" ],
       [ "Trap Sense (Ex)" ],
-      [ "Rage Power (Ex)" ],
+      [ "Rage Power (Ex) (REPLACE)" ],
       [ "Improved Uncanny Dodge (Ex)" ],
-      [ "Rage Power (Ex)" ],
+      [ "Rage Power (Ex) (REPLACE)" ],
       [ "Damage Reduction (Ex)" ],
-      [ "Rage Power (Ex)" ],
+      [ "Rage Power (Ex) (REPLACE)" ],
       [  ],
-      [ "Rage Power (Ex)" ],
+      [ "Rage Power (Ex) (REPLACE)" ],
       [ "Greater Rage (Ex)" ],
-      [ "Rage Power (Ex)" ],
+      [ "Rage Power (Ex) (REPLACE)" ],
       [  ],
-      [ "Indomitable Will (Ex)", "Rage Power (Ex)" ],
+      [ "Indomitable Will (Ex)", "Rage Power (Ex) (REPLACE)" ],
       [  ],
-      [ "Rage Power (Ex)" ],
+      [ "Rage Power (Ex) (REPLACE)" ],
       [ "Tireless Rage (Ex)" ],
-      [ "Rage Power (Ex)" ],
+      [ "Rage Power (Ex) (REPLACE)" ],
       [  ],
-      [ "Mighty Rage (Ex)", "Rage Power (Ex)" ]
+      [ "Mighty Rage (Ex)", "Rage Power (Ex) (REPLACE)" ]
     ],
     "restrictions": {
       "alignment": "Cannot be Lawful"
@@ -49,6 +49,7 @@
     "fort": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4,  4,  5,  5,  5,  6,  6,  6 ],
     "ref":  [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12 ],
     "will": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12 ],
+    "castingAtr": "Charisma",
     "spellsPerDay": [ [],
       [0, 1],
       [0, 2],
@@ -93,34 +94,29 @@
       [6, 6, 6, 6, 5, 5, 4],
       [6, 6, 6, 6, 6, 5, 5]
     ],
-    "galdur": [ 0, 3, 5, 7, 10, 13, 16, 20, 24, 29, 35, 42, 50, 59, 69, 80, 92, 105, 119, 134, 150 ],
+    "galdur":         [ 0, 3, 5, 7, 10, 13, 16, 20, 24, 29, 35, 42, 50, 59, 69, 80, 92, 105, 119, 134, 150 ],
+    "galdurPerLevel": [ 0, 3, 2, 2,  3,  3,  3,  4,  4,  5,  6,  7,  8,  9, 10, 11, 12,  13,  14,  15,  16 ]
     "special": [ [],
-      [ "Bardic Knowledge", "Bardic Performance", "Countersong", "Distraction", "Fascinate", "Inspire Courage" ],
-      [  ],
-      [  ],
-      [  ],
-      [], [], [], [],
-      [  ],
-      [], [], [],
-      [ ],
+      [ "Bardic Knowledge (Ex)", "Bardic Performance", "Countersong (Su)", "Distraction (Su)", "Fascinate (Su)", "Inspire Courage (Su)" ],
+      [ "Versatile Performance (Ex) (REPLACE)", "Well-Versed (Ex)" ],
+      [ "Inspire Competence (Su)" ],
       [],
-      [  ]
+      [ "Lore Master (Ex)" ],
+      [ "Suggestion (Sp)", "Versatile Performance (Ex) (REPLACE)" ], [], [ "Dirge of Doom (Su)" ], [ "Inspire Greatness (Su)" ], [ "Jack-of-all-Trades (Ex)", "Versatile Performance (Ex) (REPLACE)" ],
+      [], [ "Soothing Performance (Su)" ], [], [ "Frightening Tune (Sp)", "Versatile Performance" ], [ "Inspire Heroics (Su)" ]
+      [], [], [ "Mass Suggestion (Sp)", "Versatile Performance (Ex) (REPLACE)" ], [], [ "Deadly Performance (Su)" ]
     ],
     "restrictions": {
-      "alignment": "Must be Neutral",
       "spells": "Arcane spell failure from medium and havy armor",
-      "armor": "Arcane spell failure from medium and havy armor"
     }
-  ]
-
-
+  ],
   [
     "name": "Cleric",
     "general": {
       "hd": "d8",
-      "skills": ["Climb (Str), Craft (Int), Fly (Dex), Handle Animal (Cha), Heal (Wis), Knowledge (geography) (Int), Knowledge (nature) (Int), Perception (Wis), Profession (Wis), Ride (Dex), Spellcraft (Int), Survival (Wis), and Swim (Str)"],
-      "ranks": 4,
-      "proficiency": [ "club", "dagger", "dart", "quarterstaff", "scimitar", "scythe", "sickle", "shortspear", "sling", "spear", "natural attacks", "light armor", "medium armor", "shields" ]
+      "skills": [" Appraise (Int), Craft (Int), Diplomacy (Cha), Heal (Wis), Knowledge (arcana) (Int), Knowledge (history) (Int), Knowledge (nobility) (Int), Knowledge (planes) (Int), Knowledge (religion) (Int), Linguistics (Int), Profession (Wis), Sense Motive (Wis), and Spellcraft (Int)"],
+      "ranks": 2,
+      "proficiency": [ "simple weapons", "light armor", "medium armor", "shields" ]
     },
     "bab":  [ 0, 0, 1, 2, 3, 3, 4, 5, 6, 6, 7, 8, 9, 9, 10, 11, 12, 12, 13, 14, 15],
     "fort": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12],
@@ -141,34 +137,28 @@
       [4, 4, 4, 4, 3, 3, 2],
       [4, 4, 4, 4, 4, 3, 2, 1],
       [4, 4, 4, 4, 4, 3, 3, 2],
+      [4, 4, 4, 4, 4, 4, 3, 2, 1],
       [4, 4, 4, 4, 4, 4, 3, 3, 2],
-      [4, 4, 4, 4, 4, 4, 4, 3, 2, 1],
+      [4, 4, 4, 4, 4, 4, 4, 3, 3, 1],
       [4, 4, 4, 4, 4, 4, 4, 3, 3, 2],
       [4, 4, 4, 4, 4, 4, 4, 4, 3, 3],
       [4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
     ],
-    "galdur": [ 0, 5, 8, 11, 14, 17, 21, 26, 34, 42, 51, 61, 72, 84, 97, 84, 97, 111, 116, 132, 149, 167, 186 ],
+    "galdur":       [ 0, 5, 8, 11, 14, 17, 21, 26, 34, 42, 51, 61, 72, 84, 97, 111, 116, 132, 149, 167, 186 ],
+  "galdurPerLevel": [ 0, 5, 3,  3,  3,  3,  4,  5,  8,  8,  9, 10, 11, 12, 13,  14,   5,  16,  17,  18,  19 ],
+    "domainGaldur": [ "=casterLevel" ],
     "special": [ [],
-      [ "Spontaneous Casting", "Bonus Languages", "Nature Bond (ex)", "Nature Sense (ex)", "Wild Empathy (ex)" ],
-      [ "Woodland Stride (ex)" ],
-      [ "Trackless Step (ex)" ],
-      [ "Resist Nature's Lure (ex)", "Wild Shape (su)" ],
+      [ "Aura (Ex)", "Channel Energy (Su)", "Domains (REPLACE)", "Spontaneous Casting", "Bonus Languages" ],
       [], [], [], [],
-      [ "Venom Imunity (ex)" ],
-      [], [], [],
-      [ "A Thousand Faces (su)" ],
-      [],
-      [ "Timeles Body (ex)"]
+      [], [], [], [], [],
+      [], [], [], [], [], 
+      [], [], [], [], []
     ],
     "restrictions": {
-      "alignment": "Must be Neutral",
+      "alignment": "Must be within one step of their diety's",
       "spells": "Cannot cast spells of oposing alignment",
-      "armor": "Cannot wear metal armor"
     }
   ],
-
-
-
   [
     "name": "Druid",
     "general": {
@@ -181,6 +171,7 @@
     "fort": [0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12],
     "ref": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4,  4,  5,  5,  5,  6,  6,  6],
     "will": [0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12],
+    "castingAtr": "Wisdom",
     "spells": [ [],
       [3, 1],
       [4, 2],
@@ -196,24 +187,24 @@
       [4, 4, 4, 4, 3, 3, 2],
       [4, 4, 4, 4, 4, 3, 2, 1],
       [4, 4, 4, 4, 4, 3, 3, 2],
+      [4, 4, 4, 4, 4, 4, 3, 2, 1],
       [4, 4, 4, 4, 4, 4, 3, 3, 2],
       [4, 4, 4, 4, 4, 4, 4, 3, 2, 1],
       [4, 4, 4, 4, 4, 4, 4, 3, 3, 2],
       [4, 4, 4, 4, 4, 4, 4, 4, 3, 3],
       [4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
     ],
-    "galdur": [ 0, 5, 8, 11, 14, 19, 21, 26, 34, 42, 51, 61, 72, 84, 97, 111, 116, 132, 149, 186 ],
+    "galdur":         [ 0, 5, 8, 11, 14, 17, 21, 26, 34, 42, 51, 61, 72, 84, 97, 111, 116, 132, 149, 167, 186 ],
+    "galdurPerLevel": [ 0, 5, 3,  3,  3,  3,  4,  5,  8,  8,  9, 10, 11, 12, 13,  14,   5,  16,  17,  18,  19 ],
     "special": [ [],
-      [ "Spontaneous Casting", "Bonus Languages", "Nature Bond (ex)", "Nature Sense (ex)", "Wild Empathy (ex)" ],
-      [ "Woodland Stride (ex)" ],
-      [ "Trackless Step (ex)" ],
-      [ "Resist Nature's Lure (ex)", "Wild Shape (su)" ],
-      [], [], [], [],
-      [ "Venom Imunity (ex)" ],
-      [], [], [],
-      [ "A Thousand Faces (su)" ],
+      [ "Nature Bond (Ex)", "Nature Sense (Ex)", "Wild Empathy (Ex)", "Spontaneous Casting", "Bonus Languages" ],
+      [ "Woodland Stride (Ex)" ],
+      [ "Trackless Step (Ex)" ],
+      [ "Resist Nature's Lure (Ex)", "Wild Shape (Su)" ],
       [],
-      [ "Timeles Body (ex)"]
+      [], [], [], [ "Venom Imunity (Ex)" ], [],
+      [], [], [ "A Thousand Faces (Su)" ], [], [ "Timeles Body (Ex)" ],
+      [], [], [], [], []
     ],
     "restrictions": {
       "alignment": "Must be Neutral",
@@ -221,16 +212,77 @@
       "armor": "Cannot wear metal armor"
     }
   ],
+  [
+    "name": "Fighter",
+    "general": {
+      "hd": "d10",
+      "skills": [ "Climb (Str), Craft (Int), Handle Animal (Cha), Intimidate (Cha), Knowledge (dungeoneering) (Int), Knowledge (engineering) (Int), Profession (Wis), Ride (Dex), Survival (Wis), and Swim (Str)" ],
+      "ranks": 2,
+      "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "heavy armor", "shields" ]
+    },
+    "bab":  [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ],
+    "fort": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6,  7,  7,  8,  8,  9,  9, 10, 10, 11, 11, 12 ],
+    "ref":  [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3,  3,  3,  4,  4,  4,  5,  5,  5,  6,  6,  6 ],
+    "will": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3,  3,  3,  4,  4,  4,  5,  5,  5,  6,  6,  6 ],
+    "special": [ [],
+      [ "Bonus Feat (REPLACE)" ],
+      [ "Bonus Feat (REPLACE)", "Bravery (Ex)" ],
+      [ "Armor Training (Ex)" ],
+      [ "Bonus Feat (REPLACE)" ],
+        [ "Weapon Training (Ex) (REPLACE)" ],
+      [ "Bonus Feat (REPLACE)" ],
+      [ "Armor Training (Ex) (REPLACE)" ],
+      [ "Bonus Feat (REPLACE)" ],
+      [ "Weapon Training (Ex) (REPLACE)" ],
+        [ "Bonus Feat (REPLACE)" ],
+      [ "Armor Training (Ex) (REPLACE)" ],
+      [ "Bonus Feat (REPLACE)" ],
+      [ "Weapon Training (Ex) (REPLACE)" ],
+      [ "Bonus Feat (REPLACE)" ],
+        [ "Armor Training (Ex) (REPLACE)" ],
+      [ "Bonus Feat (REPLACE)" ],
+      [ "Weapon Training (Ex) (REPLACE)" ],
+      [ "Bonus Feat (REPLACE)" ],
+      [ "Armor Mastery (Ex)" ],
+      [ "Bonus Feat (REPLACE)", "Weapon Mastery (Ex)" ]
+    ],
+    "restrictions": {
+    }
+  ],
+  [
+    "name": "Monk",
+    "general": {
+      "hd": "",
+      "skills": [ "" ],
+      "ranks": 4,
+      "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "shields" ]
+    },
+    "bab":  [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ],
+    "fort": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6,  7,  7,  8,  8,  9,  9, 10, 10, 11, 11, 12 ],
+    "ref":  [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3,  3,  3,  4,  4,  4,  5,  5,  5,  6,  6,  6 ],
+    "will": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3,  3,  3,  4,  4,  4,  5,  5,  5,  6,  6,  6 ],
+    "CastingAtr": "",
+    "special": [ [],
+      [  ],
+      [  ],
+      [  ],
+      [  ],
+      [],
+      [], [], [], [], [],
+      [], [], [], [], [],
+      [], [], [], [], []
+    ],
+    "restrictions": {
+      "alignment": "Cannot be Lawful"
+    }
+  ],
 
 
 
 
+  "Monk, Paladin, Ranger, Rougue, Sorcerer, Wizard", "https://www.d20pfsrd.com/classes/core-classes/",
+  "Alchemist, Cavalier, Gunslinger, Inquisitor, Magus, Omdura, Oracle, Shifter, Summoner, Vampire Hunter, Vigilante, Witch", "https://www.d20pfsrd.com/classes/base-classes",
 
-
-
-
-
-  
   [
     "name": "",
     "general": {
@@ -243,294 +295,35 @@
     "fort": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6,  7,  7,  8,  8,  9,  9, 10, 10, 11, 11, 12 ],
     "ref":  [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3,  3,  3,  4,  4,  4,  5,  5,  5,  6,  6,  6 ],
     "will": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3,  3,  3,  4,  4,  4,  5,  5,  5,  6,  6,  6 ],
+    "CastingAtr": "",
     "special": [ [],
-      [ "Fast Movement", "Rage" ],
-      [ "Rage Power", "Uncanny Dodge" ],
       [  ],
       [  ],
       [  ],
       [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ]
-    ],
-    "restrictions": {
-      "alignment": "Cannot be Lawful"
-    }
-  ],
-  [
-    "name": "Barbarian",
-    "general": {
-      "hd": "d12",
-      "skills": [ "Acrobatics (Dex), Climb (Str), Craft (Int), Handle Animal (Cha), Intimidate (Cha), Knowledge (nature) (Int), Perception (Wis), Ride (Dex), Survival (Wis), and Swim (Str)" ],
-      "ranks": 4,
-      "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "shields" ]
-    },
-    "bab":  [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ],
-    "fort": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6,  7,  7,  8,  8,  9,  9, 10, 10, 11, 11, 12 ],
-    "ref":  [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3,  3,  3,  4,  4,  4,  5,  5,  5,  6,  6,  6 ],
-    "will": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3,  3,  3,  4,  4,  4,  5,  5,  5,  6,  6,  6 ],
-    "special": [ [],
-      [ "Fast Movement", "Rage" ],
-      [ "Rage Power", "Uncanny Dodge" ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ]
-    ],
-    "restrictions": {
-      "alignment": "Cannot be Lawful"
-    }
-  ],
-  [
-    "name": "Barbarian",
-    "general": {
-      "hd": "d12",
-      "skills": [ "Acrobatics (Dex), Climb (Str), Craft (Int), Handle Animal (Cha), Intimidate (Cha), Knowledge (nature) (Int), Perception (Wis), Ride (Dex), Survival (Wis), and Swim (Str)" ],
-      "ranks": 4,
-      "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "shields" ]
-    },
-    "bab":  [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ],
-    "fort": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6,  7,  7,  8,  8,  9,  9, 10, 10, 11, 11, 12 ],
-    "ref":  [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3,  3,  3,  4,  4,  4,  5,  5,  5,  6,  6,  6 ],
-    "will": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3,  3,  3,  4,  4,  4,  5,  5,  5,  6,  6,  6 ],
-    "special": [ [],
-      [ "Fast Movement", "Rage" ],
-      [ "Rage Power", "Uncanny Dodge" ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ]
-    ],
-    "restrictions": {
-      "alignment": "Cannot be Lawful"
-    }
-  ],
-  [
-    "name": "Barbarian",
-    "general": {
-      "hd": "d12",
-      "skills": [ "Acrobatics (Dex), Climb (Str), Craft (Int), Handle Animal (Cha), Intimidate (Cha), Knowledge (nature) (Int), Perception (Wis), Ride (Dex), Survival (Wis), and Swim (Str)" ],
-      "ranks": 4,
-      "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "shields" ]
-    },
-    "bab":  [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ],
-    "fort": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6,  7,  7,  8,  8,  9,  9, 10, 10, 11, 11, 12 ],
-    "ref":  [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3,  3,  3,  4,  4,  4,  5,  5,  5,  6,  6,  6 ],
-    "will": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3,  3,  3,  4,  4,  4,  5,  5,  5,  6,  6,  6 ],
-    "special": [ [],
-      [ "Fast Movement", "Rage" ],
-      [ "Rage Power", "Uncanny Dodge" ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ]
-    ],
-    "restrictions": {
-      "alignment": "Cannot be Lawful"
-    }
-  ],
-  [
-    "name": "Barbarian",
-    "general": {
-      "hd": "d12",
-      "skills": [ "Acrobatics (Dex), Climb (Str), Craft (Int), Handle Animal (Cha), Intimidate (Cha), Knowledge (nature) (Int), Perception (Wis), Ride (Dex), Survival (Wis), and Swim (Str)" ],
-      "ranks": 4,
-      "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "shields" ]
-    },
-    "bab":  [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ],
-    "fort": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6,  7,  7,  8,  8,  9,  9, 10, 10, 11, 11, 12 ],
-    "ref":  [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3,  3,  3,  4,  4,  4,  5,  5,  5,  6,  6,  6 ],
-    "will": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3,  3,  3,  4,  4,  4,  5,  5,  5,  6,  6,  6 ],
-    "special": [ [],
-      [ "Fast Movement", "Rage" ],
-      [ "Rage Power", "Uncanny Dodge" ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ]
-    ],
-    "restrictions": {
-      "alignment": "Cannot be Lawful"
-    }
-  ],
-  [
-    "name": "Barbarian",
-    "general": {
-      "hd": "d12",
-      "skills": [ "Acrobatics (Dex), Climb (Str), Craft (Int), Handle Animal (Cha), Intimidate (Cha), Knowledge (nature) (Int), Perception (Wis), Ride (Dex), Survival (Wis), and Swim (Str)" ],
-      "ranks": 4,
-      "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "shields" ]
-    },
-    "bab":  [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ],
-    "fort": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6,  7,  7,  8,  8,  9,  9, 10, 10, 11, 11, 12 ],
-    "ref":  [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3,  3,  3,  4,  4,  4,  5,  5,  5,  6,  6,  6 ],
-    "will": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3,  3,  3,  4,  4,  4,  5,  5,  5,  6,  6,  6 ],
-    "special": [ [],
-      [ "Fast Movement", "Rage" ],
-      [ "Rage Power", "Uncanny Dodge" ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ]
-    ],
-    "restrictions": {
-      "alignment": "Cannot be Lawful"
-    }
-  ],
-  [
-    "name": "Barbarian",
-    "general": {
-      "hd": "d12",
-      "skills": [ "Acrobatics (Dex), Climb (Str), Craft (Int), Handle Animal (Cha), Intimidate (Cha), Knowledge (nature) (Int), Perception (Wis), Ride (Dex), Survival (Wis), and Swim (Str)" ],
-      "ranks": 4,
-      "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "shields" ]
-    },
-    "bab":  [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ],
-    "fort": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6,  7,  7,  8,  8,  9,  9, 10, 10, 11, 11, 12 ],
-    "ref":  [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3,  3,  3,  4,  4,  4,  5,  5,  5,  6,  6,  6 ],
-    "will": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3,  3,  3,  4,  4,  4,  5,  5,  5,  6,  6,  6 ],
-    "special": [ [],
-      [ "Fast Movement", "Rage" ],
-      [ "Rage Power", "Uncanny Dodge" ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ]
-    ],
-    "restrictions": {
-      "alignment": "Cannot be Lawful"
-    }
-  ],
-  [
-    "name": "Barbarian",
-    "general": {
-      "hd": "d12",
-      "skills": [ "Acrobatics (Dex), Climb (Str), Craft (Int), Handle Animal (Cha), Intimidate (Cha), Knowledge (nature) (Int), Perception (Wis), Ride (Dex), Survival (Wis), and Swim (Str)" ],
-      "ranks": 4,
-      "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "shields" ]
-    },
-    "bab":  [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ],
-    "fort": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6,  7,  7,  8,  8,  9,  9, 10, 10, 11, 11, 12 ],
-    "ref":  [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3,  3,  3,  4,  4,  4,  5,  5,  5,  6,  6,  6 ],
-    "will": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3,  3,  3,  4,  4,  4,  5,  5,  5,  6,  6,  6 ],
-    "special": [ [],
-      [ "Fast Movement", "Rage" ],
-      [ "Rage Power", "Uncanny Dodge" ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ]
-    ],
-    "restrictions": {
-      "alignment": "Cannot be Lawful"
-    }
-  ],
-  [
-    "name": "Barbarian",
-    "general": {
-      "hd": "d12",
-      "skills": [ "Acrobatics (Dex), Climb (Str), Craft (Int), Handle Animal (Cha), Intimidate (Cha), Knowledge (nature) (Int), Perception (Wis), Ride (Dex), Survival (Wis), and Swim (Str)" ],
-      "ranks": 4,
-      "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "shields" ]
-    },
-    "bab":  [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ],
-    "fort": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6,  7,  7,  8,  8,  9,  9, 10, 10, 11, 11, 12 ],
-    "ref":  [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3,  3,  3,  4,  4,  4,  5,  5,  5,  6,  6,  6 ],
-    "will": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3,  3,  3,  4,  4,  4,  5,  5,  5,  6,  6,  6 ],
-    "special": [ [],
-      [ "Fast Movement", "Rage" ],
-      [ "Rage Power", "Uncanny Dodge" ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
-      [  ]
+      [],
+      [], [], [], [], [],
+      [], [], [], [], [],
+      [], [], [], [], []
     ],
     "restrictions": {
       "alignment": "Cannot be Lawful"
     }
   ],
 
+
+
+
+
+
+
+
+
+
+
+
+
   
-  [],
     [
     "name": "Magus",
     "general": {
