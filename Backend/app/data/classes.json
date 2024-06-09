@@ -17,24 +17,12 @@
       [ "Trap Sense (Ex)" ],
       [ "Rage Power (Ex) (REPLACE)" ],
       [ "Improved Uncanny Dodge (Ex)" ],
-      [ "Rage Power (Ex) (REPLACE)" ],
-      [ "Damage Reduction (Ex)" ],
-      [ "Rage Power (Ex) (REPLACE)" ],
-      [  ],
-      [ "Rage Power (Ex) (REPLACE)" ],
-      [ "Greater Rage (Ex)" ],
-      [ "Rage Power (Ex) (REPLACE)" ],
-      [  ],
-      [ "Indomitable Will (Ex)", "Rage Power (Ex) (REPLACE)" ],
-      [  ],
-      [ "Rage Power (Ex) (REPLACE)" ],
-      [ "Tireless Rage (Ex)" ],
-      [ "Rage Power (Ex) (REPLACE)" ],
-      [  ],
-      [ "Mighty Rage (Ex)", "Rage Power (Ex) (REPLACE)" ]
+      [ "Rage Power (Ex) (REPLACE)" ], [ "Damage Reduction (Ex)" ], [ "Rage Power (Ex) (REPLACE)" ], [], [ "Rage Power (Ex) (REPLACE)" ],
+      [ "Greater Rage (Ex)" ], [ "Rage Power (Ex) (REPLACE)" ], [], [ "Indomitable Will (Ex)", "Rage Power (Ex) (REPLACE)" ], [],
+      [ "Rage Power (Ex) (REPLACE)" ], [ "Tireless Rage (Ex)" ], [ "Rage Power (Ex) (REPLACE)" ], [], [ "Mighty Rage (Ex)", "Rage Power (Ex) (REPLACE)" ]
     ],
     "restrictions": {
-      "alignment": "Cannot be Lawful"
+      "alignment": [ "NG", "CG", "N", "CN", "NE", "CE" ]
     }
   ],
   [
@@ -50,27 +38,27 @@
     "ref":  [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12 ],
     "will": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12 ],
     "castingAtr": "Charisma",
-    "spellsPerDay": [ [],
-      [0, 1],
-      [0, 2],
-      [0, 3],
-      [0, 3, 1],
-      [0, 4, 2],
-      [0, 4, 3],
-      [0, 4, 3, 1],
-      [0, 4, 4, 2],
-      [0, 5, 4, 3],
-      [0, 5, 4, 4, 1],
-      [0, 5, 4, 4, 2],
-      [0, 5, 5, 4, 3],
-      [0, 5, 5, 4, 3, 1],
-      [0, 5, 5, 4, 4, 2],
-      [0, 5, 5, 5, 4, 3],
-      [0, 5, 5, 5, 4, 3, 1],
-      [0, 5, 5, 5, 4, 4, 2],
-      [0, 5, 5, 5, 5, 4, 3],
-      [0, 5, 5, 5, 5, 5, 4],
-      [0, 5, 5, 5, 5, 5, 5]
+    "spellsPerDay": [ [ "Spontaneous Arcane" ],
+      ["∞", 1],
+      ["∞", 2],
+      ["∞", 3],
+      ["∞", 3, 1],
+      ["∞", 4, 2],
+      ["∞", 4, 3],
+      ["∞", 4, 3, 1],
+      ["∞", 4, 4, 2],
+      ["∞", 5, 4, 3],
+      ["∞", 5, 4, 4, 1],
+      ["∞", 5, 4, 4, 2],
+      ["∞", 5, 5, 4, 3],
+      ["∞", 5, 5, 4, 3, 1],
+      ["∞", 5, 5, 4, 4, 2],
+      ["∞", 5, 5, 5, 4, 3],
+      ["∞", 5, 5, 5, 4, 3, 1],
+      ["∞", 5, 5, 5, 4, 4, 2],
+      ["∞", 5, 5, 5, 5, 4, 3],
+      ["∞", 5, 5, 5, 5, 5, 4],
+      ["∞", 5, 5, 5, 5, 5, 5]
     ],
     "spellsKnown": [ [],
       [4, 2],
@@ -107,6 +95,8 @@
       [], [], [ "Mass Suggestion (Sp)", "Versatile Performance (Ex) (REPLACE)" ], [], [ "Deadly Performance (Su)" ]
     ],
     "restrictions": {
+      "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
+      "AraceSpellFailure": true,
       "spells": "Arcane spell failure from medium and havy armor",
     }
   ],
@@ -122,7 +112,7 @@
     "fort": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12],
     "ref":  [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4,  4,  5,  5,  5,  6,  6,  6],
     "will": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12],
-    "spells": [ [],
+    "spellsPerDay": [ ["Prepared Divine"],
       [3, 1],
       [4, 2],
       [4, 2, 1],
@@ -172,7 +162,7 @@
     "ref": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4,  4,  5,  5,  5,  6,  6,  6],
     "will": [0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12],
     "castingAtr": "Wisdom",
-    "spells": [ [],
+    "spellsPerDay": [ [ "Prepared Divine" ],
       [3, 1],
       [4, 2],
       [4, 2, 1],
@@ -207,7 +197,7 @@
       [], [], [], [], []
     ],
     "restrictions": {
-      "alignment": "Must be Neutral",
+      "alignment": [ "NG", "LN", "N", "CN", "NE" ]
       "spells": "Cannot cast spells of oposing alignment",
       "armor": "Cannot wear metal armor"
     }
@@ -229,39 +219,332 @@
       [ "Bonus Feat (REPLACE)", "Bravery (Ex)" ],
       [ "Armor Training (Ex)" ],
       [ "Bonus Feat (REPLACE)" ],
-        [ "Weapon Training (Ex) (REPLACE)" ],
-      [ "Bonus Feat (REPLACE)" ],
-      [ "Armor Training (Ex) (REPLACE)" ],
-      [ "Bonus Feat (REPLACE)" ],
       [ "Weapon Training (Ex) (REPLACE)" ],
-        [ "Bonus Feat (REPLACE)" ],
-      [ "Armor Training (Ex) (REPLACE)" ],
-      [ "Bonus Feat (REPLACE)" ],
-      [ "Weapon Training (Ex) (REPLACE)" ],
-      [ "Bonus Feat (REPLACE)" ],
-        [ "Armor Training (Ex) (REPLACE)" ],
-      [ "Bonus Feat (REPLACE)" ],
-      [ "Weapon Training (Ex) (REPLACE)" ],
-      [ "Bonus Feat (REPLACE)" ],
-      [ "Armor Mastery (Ex)" ],
-      [ "Bonus Feat (REPLACE)", "Weapon Mastery (Ex)" ]
+      [ "Bonus Feat (REPLACE)" ], [ "Armor Training (Ex) (REPLACE)" ], [ "Bonus Feat (REPLACE)" ], [ "Weapon Training (Ex) (REPLACE)" ], [ "Bonus Feat (REPLACE)" ],
+      [ "Armor Training (Ex) (REPLACE)" ], [ "Bonus Feat (REPLACE)" ], [ "Weapon Training (Ex) (REPLACE)" ], [ "Bonus Feat (REPLACE)" ], [ "Armor Training (Ex) (REPLACE)" ],
+      [ "Bonus Feat (REPLACE)" ], [ "Weapon Training (Ex) (REPLACE)" ], [ "Bonus Feat (REPLACE)" ], [ "Armor Mastery (Ex)" ], [ "Bonus Feat (REPLACE)", "Weapon Mastery (Ex)" ]
     ],
     "restrictions": {
+      "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ]
     }
   ],
   [
     "name": "Monk",
     "general": {
-      "hd": "",
-      "skills": [ "" ],
+      "hd": "d8",
+      "skills": [ "Acrobatics (Dex), Climb (Str), Craft (Int), Escape Artist (Dex), Intimidate (Cha), Knowledge (history) (Int), Knowledge (religion) (Int), Perception (Wis), Perform (Cha), Profession (Wis), Ride (Dex), Sense Motive (Wis), Stealth (Dex), and Swim (Str)" ],
       "ranks": 4,
-      "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "shields" ]
+      "proficiency": [ "brass knuckles, cestus, club, crossbow (light or heavy), dagger, handaxe, javelin, kama, nunchaku, quarterstaff, sai, shortspear, short sword, shuriken, siangham, sling, spear and temple sword" ]
+    },
+    "bab":  [ 0, 0, 1, 2, 3, 3, 4, 5, 6, 6, 7, 8, 9, 9, 10, 11, 12, 12, 13, 14, 15 ],
+    "fort": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12 ],
+    "ref":  [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12 ],
+    "will": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12 ],
+    "special": [ [],
+      [ "AC Bonus (Ex)", "Flurry of Blows (Ex)", "Unarmed Strike", "Stunning Fist (Ex)", "Bonus Feat (REPLACE)" ],
+      [ "Evasion (Ex)", "Bonus Feat (REPLACE)" ],
+      [ "Fast Movement (Ex)", "Maneuver Training (Ex)", "Still Mind (Ex)" ],
+      [ "Ki Pool (Su)", "Slow Fall (Ex)" ],
+      [ "High Jump (Ex)", "Purity of Body (Ex)" ],
+      [ "Bonus Feat (REPLACE)" ], [ "Wholeness of Body (Su)" ], [], [ "Improved Evasion (Ex)" ], [ "Bonus Feat (REPLACE)" ],
+      [ "Diamond Body (Su)" ], [ "Abundant Step (Su)" ], [ "Diamond Soul (Ex)" ], [ "Bonus Feat (REPLACE)" ], [ "Quivering Palm (Su)" ],
+      [], [ "Timeless Body (Ex)", "Tongue of the Sun and Moon (Ex)" ], [ "Bonus Feat (REPLACE)" ], [ "Empty Body (Su)" ], [ "Perfect Self" ]
+    ],
+    "restrictions": {
+      "alignment": [ "LG", "LN", "LE" ]
+    }
+  ],
+  [
+    "name": "Paladin",
+    "general": {
+      "hd": "d10",
+      "skills": [ " Craft (Int), Diplomacy (Cha), Handle Animal (Cha), Heal (Wis), Knowledge (nobility) (Int), Knowledge (religion) (Int), Profession (Wis), Ride (Dex), Sense Motive (Wis), and Spellcraft (Int)" ],
+      "ranks": 2,
+      "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "heavy armor", "shields" ]
     },
     "bab":  [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ],
     "fort": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6,  7,  7,  8,  8,  9,  9, 10, 10, 11, 11, 12 ],
     "ref":  [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3,  3,  3,  4,  4,  4,  5,  5,  5,  6,  6,  6 ],
+    "will": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6,  7,  7,  8,  8,  9,  9, 10, 10, 11, 11, 12 ],
+    "CastingAtr": "Charisma",
+    "spells": [ [ "Prepared Divine" ],
+      [],
+      [],
+      [],
+      [0, 0],
+      [0, 1],
+      [0, 1],
+      [0, 1, 0],
+      [0, 1, 1],
+      [0, 2, 1],
+      [0, 2, 1, 0],
+      [0, 2, 1, 1],
+      [0, 2, 2, 1],
+      [0, 3, 2, 1, 0],
+      [0, 3, 2, 1, 1],
+      [0, 3, 2, 2, 1],
+      [0, 3, 3, 2, 1],
+      [0, 4, 3, 2, 1],
+      [0, 4, 3, 2, 2],
+      [0, 4, 3, 3, 2],
+      [0, 4, 4, 3, 3]
+    ],
+    "galdur":         [ 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 8, 10, 12, 14, 17, 20, 23, 26, 29, 32, 35 ],
+    "galdurPerLevel": [ 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2,  2,  2,  2,  3,  3,  3,  3,  3,  3,  3 ],
+    "special": [ [],
+      [ "Aura of Good (Ex)", "Detect Evil (Sp)", "Smite Evil (Su)" ],
+      [ "Divine Grace (Su)", "Lay on Hands (Su)" ],
+      [ "Aura of Courage (Su)", "Divine Health (Ex)", "Mercy (Su) (REPLACE)" ],
+      [ "Channel Positive Energy (Su)" ],
+      [ "Divine Bond (Sp)" ],
+      [ "Mercy (Su) (REPLACE)" ], [], [ "Aura of Resolve (Su)" ], [ "Mercy (Su) (REPLACE)" ], [],
+      [ "Aura of Justice (Su)" ], [ "Mercy (Su) (REPLACE)" ], [], [ "Aura of Faith (Su)" ], [ "Mercy (Su) (REPLACE)" ],
+      [], [ "Aura of Righteousness (Su)" ], [ "Mercy (Su) (REPLACE)" ], [], [ "Holy Champion (Su)" ]
+    ],
+    "restrictions": {
+      "alignment": [ "LG" ]
+    }
+  ],
+  [
+    "name": "Ranger",
+    "general": {
+      "hd": "d10",
+      "skills": [ " Climb (Str), Craft (Int), Handle Animal (Cha), Heal (Wis), Intimidate (Cha), Knowledge (dungeoneering) (Int), Knowledge (geography) (Int), Knowledge (nature) (Int), Perception (Wis), Profession (Wis), Ride (Dex), Spellcraft (Int), Stealth (Dex), Survival (Wis), and Swim (Str)" ],
+      "ranks": 6,
+      "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "shields" ]
+    },
+    "bab":  [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ],
+    "fort": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6,  7,  7,  8,  8,  9,  9, 10, 10, 11, 11, 12 ],
+    "ref":  [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6,  7,  7,  8,  8,  9,  9, 10, 10, 11, 11, 12 ],
     "will": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3,  3,  3,  4,  4,  4,  5,  5,  5,  6,  6,  6 ],
-    "CastingAtr": "",
+    "CastingAtr": "Wis",
+    "spells": [ [ "Prepared Divine" ],
+      [],
+      [],
+      [],
+      [0, 0],
+      [0, 1],
+      [0, 1],
+      [0, 1, 0],
+      [0, 1, 1],
+      [0, 2, 1],
+      [0, 2, 1, 0],
+      [0, 2, 1, 1],
+      [0, 2, 2, 1],
+      [0, 3, 2, 1, 0],
+      [0, 3, 2, 1, 1],
+      [0, 3, 2, 2, 1],
+      [0, 3, 3, 2, 1],
+      [0, 4, 3, 2, 1],
+      [0, 4, 3, 2, 2],
+      [0, 4, 3, 3, 2],
+      [0, 4, 4, 3, 3]
+    ],
+    "galdur":         [ 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 8, 10, 12, 14, 17, 20, 23, 26, 29, 32, 35 ],
+    "galdurPerLevel": [ 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2,  2,  2,  2,  3,  3,  3,  3,  3,  3,  3 ],
+    "special": [ [],
+      [ "Favored Enemy (Ex) (REPLACE)", "Track (Ex)", "Wild Empathy (Ex)" ],
+      [ "Combat Style Feat (Ex) (REPLACE)" ],
+      [ "Endurance", "Favored Terrain (Ex) (REPLACE)" ],
+      [ "Hunter's Bond (Ex)" ],
+      [ "Favored Enemy (Ex) (REPLACE)" ],
+      [ "Combat Style Feat (Ex) (REPLACE)" ], [ "Woodland Stride (Ex)" ], [ "Swift Tracker (Ex)", "Favored Terain (Ex) (REPLACE)" ], [ "Evasion (Ex)" ], [ "Favored Enemy (Ex) (REPLACE)", "Combat Style Feat (Ex) (REPLACE)" ],
+      [ "Quarry (Ex)" ], [ "Camouflage (Ex)" ], [ "Favored Terrain (Ex) (REPLACE)" ], [ "Combat Style Feat (Ex) (REPLACE)" ], [ "Favored Enemy (Ex) (REPLACE)" ],
+      [ "Imroved Evasion (Ex)" ], [ "Hide in Plain Sight (Ex)" ], [ "Favored Terrain (Ex) (REPLACE)", "Combat Style Feat (Ex) (REPLACE)" ], [ "Improved Quarry (Ex)" ], [ "Favored Enemy (Ex) (REPLACE)", "Master Hunter (Ex)" ]
+    ],
+    "restrictions": {
+      "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ]
+    }
+  ],
+  [
+    "name": "Rogue",
+    "general": {
+      "hd": "d8",
+      "skills": [ " Acrobatics (Dex), Appraise (Int), Bluff (Cha), Climb (Str), Craft (Int), Diplomacy (Cha), Disable Device (Dex), Disguise (Cha), Escape Artist (Dex), Intimidate (Cha), Knowledge (dungeoneering) (Int), Knowledge (local) (Int), Linguistics (Int), Perception (Wis), Perform (Cha), Profession (Wis), Sense Motive (Wis), Sleight of Hand (Dex), Stealth (Dex), Swim (Str), and Use Magic Device (Cha)" ],
+      "ranks": 8,
+      "proficiency": [ "simple weapons", "hand crossbow", "rapier", "sap", "shortbow", "short sword", "light armor" ]
+    },
+    "bab":  [ 0, 0, 1, 2, 3, 3, 4, 5, 6, 6, 7, 8, 9, 9, 10, 11, 12, 12, 13, 14, 15 ],
+    "fort": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4,  4,  5,  5,  5,  6,  6,  6 ],
+    "ref":  [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12 ],
+    "will": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4,  4,  5,  5,  5,  6,  6,  6 ],
+    "special": [ [],
+      [ "Sneak Attack", "Trapfinding" ],
+      [ "Evasion (Ex)", "Rougue Talent (REPLACE)" ],
+      [ "Trapsense (Ex)" ],
+      [ "Rougue Talent (REPLACE)", "Uncanny Dodge (Ex)" ],
+      [],
+      [ "Rougue Talent (REPLACE)" ], [], [ "Improved Uncanny Dodge (Ex)", "Rougue Talent (REPLACE)" ], [], [ "Advanced Talents", "Rougue Talent (REPLACE)" ],
+      [], [ "Rougue Talent (REPLACE)" ], [], [ "Rougue Talent (REPLACE)" ], [],
+      [ "Rougue Talent (REPLACE)" ], [], [ "Rougue Talent (REPLACE)" ], [], [ "Master Strike (Ex)", "Rougue Talent (REPLACE)" ]
+    ],
+    "restrictions": {
+      "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ]
+    }
+  ],
+    [
+    "name": "Sorcerer",
+    "general": {
+      "hd": "d6",
+      "skills": [ " Appraise (Int), Bluff (Cha), Craft (Int), Fly (Dex), Intimidate (Cha), Knowledge (arcana) (Int), Profession (Wis), Spellcraft (Int), and Use Magic Device (Cha)" ],
+      "ranks": 2,
+      "proficiency": [ "simple weapons" ]
+    },
+    "bab":  [ 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7,  8,  8,  9,  9, 10 ],
+    "fort": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5,  5,  5,  6,  6,  6 ],
+    "ref":  [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5,  5,  5,  6,  6,  6 ],
+    "will": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12 ],
+    "CastingAtr": "Charisma",
+    "spellsPerDay": [ [ "Spontaneous Arcane" ],
+      ["∞", 3],
+      ["∞", 4],
+      ["∞", 5],
+      ["∞", 6, 3],
+      ["∞", 6, 4],
+      ["∞", 6, 5, 3],
+      ["∞", 6, 6, 4],
+      ["∞", 6, 6, 5, 3],
+      ["∞", 6, 6, 6, 4],
+      ["∞", 6, 6, 6, 5, 3],
+      ["∞", 6, 6, 6, 6, 4],
+      ["∞", 6, 6, 6, 6, 5, 3],
+      ["∞", 6, 6, 6, 6, 6, 4],
+      ["∞", 6, 6, 6, 6, 6, 5, 3],
+      ["∞", 6, 6, 6, 6, 6, 6, 4],
+      ["∞", 6, 6, 6, 6, 6, 6, 5, 3],
+      ["∞", 6, 6, 6, 6, 6, 6, 6, 4],
+      ["∞", 6, 6, 6, 6, 6, 6, 6, 5, 3],
+      ["∞", 6, 6, 6, 6, 6, 6, 6, 6, 4],
+      ["∞", 6, 6, 6, 6, 6, 6, 6, 6, 6]
+    ],
+      "spellsKnown": [ [],
+      [4, 2],
+      [5, 2],
+      [5, 3],
+      [6, 3, 1],
+      [6, 4, 2],
+      [7, 4, 2, 1],
+      [7, 5, 3, 2],
+      [8, 5, 3, 2, 1],
+      [8, 5, 4, 3, 2],
+      [9, 5, 4, 3, 2, 1],
+      [9, 5, 5, 4, 3, 2],
+      [9, 5, 5, 4, 3, 2, 1],
+      [9, 5, 5, 4, 4, 3, 2],
+      [9, 5, 5, 4, 4, 3, 2, 1],
+      [9, 5, 5, 4, 4, 4, 3, 2],
+      [9, 5, 5, 4, 4, 4, 3, 2, 1],
+      [9, 5, 5, 4, 4, 4, 3, 3, 2],
+      [9, 5, 5, 4, 4, 4, 3, 3, 3, 1],
+      [9, 5, 5, 4, 4, 4, 3, 3, 3, 2],
+      [9, 5, 5, 4, 4, 4, 3, 3, 3, 3]
+    ],
+    "galdur":         [ 0, 6, 9, 11, 14, 20, 30, 40, 50, 63, 75, 90, 105, 120, 140, 165, 170, 195, 225, 240, 260 ],
+    "galdurPerLevel": [ 0, 6, 3,  2,  3,  6, 10, 10, 10, 13, 12, 25,  15,  15,  20,  25,   5,  25,  30,  15, 20 ],
+    "special": [ [],
+      [ "Eschew Materials", "Bloodline Power (REPLACE)" ],
+      [],
+      [ "Bloodline Power (REPLACE)", "Bloodline Spell (REPLACE)" ],
+      [],
+      [ "Bloodline Spell (REPLACE)" ],
+      [], [ "Bloodline Feat (REPLACE)", "Bloodline Spell (REPLACE)" ], [], [ "Bloodline Power (REPLACE)", "Bloodline Spell (REPLACE)" ], [],
+      [ "Bloodline Spell (REPLACE)" ], [], [ "Bloodline Feat (REPLACE)", "Bloodline Spell (REPLACE)" ], [], [ "Bloodline Power (REPLACE)", "Bloodline Spell (REPLACE)" ],
+      [], [ "Bloodline Spell (REPLACE)" ], [], [ "Bloodline Feat (REPLACE)", "Bloodline Spell (REPLACE)" ], [ "Bloodline Power (REPLACE)" ]
+    ],
+    "restrictions": {
+      "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
+      "AraceSpellFailure": true
+    }
+  ],
+  [
+    "name": "Wizard",
+    "general": {
+      "hd": "d6",
+      "skills": [ "Appraise (Int), Craft (Int), Fly (Dex), Knowledge (all) (Int), Linguistics (Int), Profession (Wis), and Spellcraft (Int)" ],
+      "ranks": 2,
+      "proficiency": [ "club", "dagger", "heavy crossbow", "quarterstaff" ]
+    },
+    "bab":  [ 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7,  8,  8,  9,  9, 10 ],
+    "fort": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5,  5,  5,  6,  6,  6 ],
+    "ref":  [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5,  5,  5,  6,  6,  6 ],
+    "will": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12 ],
+    "CastingAtr": "Int",
+    "spellsPerDay": [ [ "Prepared Arcane" ],
+      [3, 1],
+      [4, 2],
+      [4, 2, 1],
+      [4, 3, 2],
+      [4, 3, 2, 1],
+      [4, 3, 3, 2],
+      [4, 4, 3, 2, 1],
+      [4, 4, 3, 3, 2],
+      [4, 4, 4, 3, 2, 1],
+      [4, 4, 4, 3, 3, 2],
+      [4, 4, 4, 4, 3, 2, 1],
+      [4, 4, 4, 4, 3, 3, 2],
+      [4, 4, 4, 4, 4, 3, 2, 1],
+      [4, 4, 4, 4, 4, 3, 3, 2],
+      [4, 4, 4, 4, 4, 4, 3, 2, 1],
+      [4, 4, 4, 4, 4, 4, 3, 3, 2],
+      [4, 4, 4, 4, 4, 4, 4, 3, 2, 1],
+      [4, 4, 4, 4, 4, 4, 4, 3, 3, 2],
+      [4, 4, 4, 4, 4, 4, 4, 4, 3, 3],
+      [4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
+    ],
+    "galdur":         [ 0, 5, 8, 11, 14, 17, 21, 26, 34, 42, 51, 61, 72, 84, 97, 111, 116, 132, 149, 167, 186 ],
+    "galdurPerLevel": [ 0, 5, 3,  3,  3,  3,  4,  5,  8,  8,  9, 10, 11, 12, 13,  14,   5,  16,  17,  18,  19 ],
+    "special": [ [],
+      [ "Arcane Bond (Ex od Sp)", "Arcane School", "Scribe Scroll", "Bonus Languages" ],
+      [],
+      [],
+      [],
+      [ "Bonus Feat (REPLACE)" ],
+      [], [], [], [], [ "Bonus Feat (REPLACE)" ],
+      [], [], [], [], [ "Bonus Feat (REPLACE)" ],
+      [], [], [], [], [ "Bonus Feat (REPLACE)" ]
+    ],
+    "restrictions": {
+      "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
+      "AraceSpellFailure": true
+    }
+  ],
+  [
+    "name": "Alchemist",
+    "general": {
+      "hd": "d8",
+      "skills": [ " Appraise (Int), Craft (any) (Int), Disable Device (Dex), Fly (Dex), Heal (Wis), Knowledge (arcana) (Int), Knowledge (nature) (Int), Perception (Wis), Profession (Wis), Sleight of Hand (Dex), Spellcraft (Int), Survival (Wis), Use Magic Device (Cha)" ],
+      "ranks": 4,
+      "proficiency": [ "simple weapons", "bombs", "light armor" ]
+    },
+    "bab":  [ 0, 0, 1, 2, 3, 3, 4, 5, 6, 6, 7, 8, 9, 9, 10, 11, 12, 12, 13, 14, 15 ],
+    "fort": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12 ],
+    "ref":  [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12 ],
+    "will": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4,  4,  5,  5,  5,  6,  6,  6 ],
+    "CastingAtr": "Intelligence",
+    "spellsPerDay": [ [],
+      [0, 1],
+      [0, 2],
+      [0, 3],
+      [0, 3, 1],
+      [0, 4, 2],
+      [0, 4, 3],
+      [0, 4, 3, 1],
+      [0, 4, 4, 2],
+      [0, 5, 4, 3],
+      [0, 5, 4, 3, 1],
+      [0, 5, 4, 4, 2],
+      [0, 5, 5, 4, 3],
+      [0, 5, 5, 4, 3, 1],
+      [0, 5, 5, 4, 4, 2],
+      [0, 5, 5, 5, 4, 3],
+      [0, 5, 5, 5, 4, 3, 1],
+      [0, 5, 5, 5, 4, 4, 2],
+      [0, 5, 5, 5, 5, 4, 3],
+      [0, 5, 5, 5, 5, 5, 4],
+      [0, 5, 5, 5, 5, 5, 5]
+    ],
+    "galdur":         [ 0,  ],
+    "galdurPerLevel": [ 0, 5, 3,  3,  3,  3,  4,  5,  8,  8,  9, 10, 11, 12, 13,  14,   5,  16,  17,  18,  19 ],
     "special": [ [],
       [  ],
       [  ],
@@ -273,14 +556,15 @@
       [], [], [], [], []
     ],
     "restrictions": {
-      "alignment": "Cannot be Lawful"
+      "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ]
     }
   ],
 
+  
+
+  
 
 
-
-  "Monk, Paladin, Ranger, Rougue, Sorcerer, Wizard", "https://www.d20pfsrd.com/classes/core-classes/",
   "Alchemist, Cavalier, Gunslinger, Inquisitor, Magus, Omdura, Oracle, Shifter, Summoner, Vampire Hunter, Vigilante, Witch", "https://www.d20pfsrd.com/classes/base-classes",
 
   [
@@ -291,11 +575,35 @@
       "ranks": 4,
       "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "shields" ]
     },
-    "bab":  [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ],
-    "fort": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6,  7,  7,  8,  8,  9,  9, 10, 10, 11, 11, 12 ],
-    "ref":  [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3,  3,  3,  4,  4,  4,  5,  5,  5,  6,  6,  6 ],
-    "will": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3,  3,  3,  4,  4,  4,  5,  5,  5,  6,  6,  6 ],
+    "bab":  [ 0, , , , , 5, , , , , 10, , , , , 15, , , , , 20 ],
+    "fort": [ 0, , , , , , , , , , , , , , , , , , , ,  ],
+    "ref":  [ 0, , , , , , , , , , , , , , , , , , , ,  ],
+    "will": [ 0, , , , , , , , , , , , , , , , , , , ,  ],
     "CastingAtr": "",
+    "spellsPerDay": [ [],
+      [3, 1],
+      [4, 2],
+      [4, 2, 1],
+      [4, 3, 2],
+      [4, 3, 2, 1],
+      [4, 3, 3, 2],
+      [4, 4, 3, 2, 1],
+      [4, 4, 3, 3, 2],
+      [4, 4, 4, 3, 2, 1],
+      [4, 4, 4, 3, 3, 2],
+      [4, 4, 4, 4, 3, 2, 1],
+      [4, 4, 4, 4, 3, 3, 2],
+      [4, 4, 4, 4, 4, 3, 2, 1],
+      [4, 4, 4, 4, 4, 3, 3, 2],
+      [4, 4, 4, 4, 4, 4, 3, 2, 1],
+      [4, 4, 4, 4, 4, 4, 3, 3, 2],
+      [4, 4, 4, 4, 4, 4, 4, 3, 2, 1],
+      [4, 4, 4, 4, 4, 4, 4, 3, 3, 2],
+      [4, 4, 4, 4, 4, 4, 4, 4, 3, 3],
+      [4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
+    ],
+    "galdur":         [ 0, 5, 8, 11, 14, 17, 21, 26, 34, 42, 51, 61, 72, 84, 97, 111, 116, 132, 149, 167, 186 ],
+    "galdurPerLevel": [ 0, 5, 3,  3,  3,  3,  4,  5,  8,  8,  9, 10, 11, 12, 13,  14,   5,  16,  17,  18,  19 ],
     "special": [ [],
       [  ],
       [  ],
@@ -307,7 +615,7 @@
       [], [], [], [], []
     ],
     "restrictions": {
-      "alignment": "Cannot be Lawful"
+      "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ]
     }
   ],
 
