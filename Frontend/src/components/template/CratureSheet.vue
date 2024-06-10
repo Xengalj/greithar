@@ -130,6 +130,7 @@
     </div>
   </div>
 
+
   <div>
     <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/' }">home</el-breadcrumb-item>
@@ -139,10 +140,19 @@
     </el-breadcrumb>
   </div>
 
+
 </template>
 
 <script>
+
 export default {
+  name: 'CreatureSheet',
+  props: {
+    id: {
+      type: Int,
+      default: 40
+    }
+  },
   data() {
     return {
       input: "",
@@ -154,7 +164,15 @@ export default {
     //   console.log(route);
     // });
   },
-
+  mounted() {
+    // Called from the header once, not everytime time SFC loads a new 'page'
+    console.log("just once please");
+    // TODO:
+    /*
+    get lore & rule pages from DB ?
+    get curr user data (hero, darkmode, etc)
+    */
+  },
   computed: {
     breadcrumbs() {
       const route = this.$route;
@@ -213,16 +231,6 @@ export default {
       const npcs = [];
       return npcs;
     }
-  },
-  mounted() {
-    // Called from the header once, not everytime time SFC loads a new 'page'
-    console.log("just once please");
-    // TODO:
-    /*
-    get lore & rule pages from DB ?
-    get curr user data (hero, darkmode, etc)
-    */
-
   },
   methods: {
     getRoutePath(route, routeItem) {

@@ -17,9 +17,6 @@
   -->
 
 
-  <footer>
-    Vectors and icons by <a href="https://www.svgrepo.com" target="_blank">SVG Repo</a>
-  </footer>
 </template>
 
 <script>
@@ -31,6 +28,7 @@ export default {
   name: "Home",
   data() {
     return {
+      title: "Home",
       content: "",
     };
   },
@@ -48,7 +46,7 @@ export default {
           error.toString();
       }
     );
-    
+
   },
 };
 </script>

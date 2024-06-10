@@ -1,35 +1,37 @@
 <template>
   <div class="container">
-    <header class="jumbotron">
-      <h3>{{ content }}</h3>
-    </header>
 
-    <!-- https://www.svgrepo.com/collection/game-skills-vectors/ -->
-    <!-- https://element-plus.org/en-US/component/table.html -->
+    <!--
+     https://www.svgrepo.com/collection/game-skills-vectors
+    https://element-plus.org/en-US/component/table.html
+    https://element-plus.org/en-US/component/pagination.html
+    -->
+
 
     <el-row class="row-bg" justify="space-between">
       <el-col :span="6">
         <el-input v-model="tableSearch" size="small" placeholder="Type to search" />
       </el-col>
       <el-col :span="6">
-        <!--
+
         <el-select v-model="value" multiple placeholder="Select" style="width: 240px">
+
           <el-option
-            v-for="item in colors"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
+          v-for="item in colors"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
           >
-            <div class="flex items-center">
-              <el-tag :color="item.value" style="margin-right: 8px" size="small" />
-              <span :style="{ color: item.value }">{{ item.label }}</span>
-            </div>
-          </el-option>
-          <template #tag>
-            <el-tag v-for="color in value" :key="color" :color="color" />
-          </template>
-        </el-select>
-       -->
+          <div class="flex items-center">
+            <el-tag :color="item.value" style="margin-right: 8px" size="small" />
+            <span :style="{ color: item.value }">{{ item.label }}</span>
+          </div>
+        </el-option>
+        <template #tag>
+          <el-tag v-for="color in value" :key="color" :color="color" />
+        </template>
+      </el-select>
+
       </el-col>
       <el-col :span="6">
         <el-button @click="filterHandler">Filter</el-button>
@@ -46,13 +48,6 @@
       style="width: 100%"
       stripe
     >
-
-      <el-table-column type="expand">
-        <template #default="scope">
-          <div>{{ scope.row }}</div>
-        </template>
-      </el-table-column>
-
       <el-table-column sortable prop="Name" label="Name" width="180" />
 
       <el-table-column sortable prop="Type" label="Type">
@@ -102,22 +97,25 @@
       width="500"
       :before-close="handleClose"
     >
+    <!-- holds
+    <CreatureSheet id="{{row.id}}"
+   -->
     <span>This is a message</span>
-    <template #footer>
-      <div class="dialog-footer">
-        <el-button @click="dialogVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="dialogVisible = false">
+    <template #footer :before-close="handleClose">
+      <div class="dialog-footer" :before-close="handleClose">
+        <el-button @click="dialogVisible = false" :before-close="handleClose">Cancel</el-button>
+        <el-button type="primary" @click="dialogVisible = false" :before-close="handleClose">
           Confirm
         </el-button>
       </div>
     </template>
   </el-dialog>
 
-    
+
   </div>
 </template>
 
-<script>
+<script land="ts">
 import DataService from "@/services/data.service";
 
 export default {
@@ -127,11 +125,9 @@ export default {
   name: "Beastiary",
   data() {
     return {
-      content: "Super Temp",
-      dialogVisable: false,
       loading: false,
-      tableSearch: "",
       tableData: [],
+      tableSearch: "",
       typeFilter: [
         // { text: 'Aberrations', value: 'aberration' },
         // { text: 'Animals', value: 'animal' },
@@ -149,11 +145,15 @@ export default {
       ],
       environFilter: [
         { text: 'Any', value: 'any' },
-      ]
+      ],
+      dialogVisible: false,
+      content: "Super Temp",
     };
   },
   mounted() {
     this.getBeastiary();
+  },
+  computed: {
   },
   methods: {
     async getBeastiary() {
@@ -183,15 +183,19 @@ const filterTableData = computed(() =>
 */
 
     },
+    handleOpen() {
+      this.dialogVisible = true;
+    },
     handleClose() {
       console.log("Closing modal");
+      this.dialogVisible = false;
       // ElMessageBox.confirm('Are you sure to close this dialog?')
       // .then(() => {
       //   done()
       // })
       // .catch(() => {
       //   // catch error
-      // }
+      }
   }
 };
 </script>

@@ -17,6 +17,7 @@ const routes = [
     component: Home,
     meta: {
       breadcrumb: "Home", //cutom breadcrumb label
+      title: "Home",
     }
   },
   {
@@ -27,14 +28,15 @@ const routes = [
     path: "/register",
     component: Register,
   },
-
-
   {
     path: "/admin",
     name: "admin",
     // lazy-loaded
     component: () => import("./components/dm/dmScreen.vue"),
-    meta: { breadcrumb: "Admin", },
+    meta: {
+      breadcrumb: "Admin",
+      title: "Admin",
+    },
   },
   {
     path: "/mod",
@@ -44,108 +46,126 @@ const routes = [
   },
 
 
-  /*
-    User Routes
-  */
+  /*****************************
+  *         User Routes        *
+  *****************************/
   {
     path: "/user",
     name: "user",
-    meta: { breadcrumb: "User" },
+    meta: {
+      breadcrumb: "User",
+      title: "User",
+    },
     children: [
       {
         path: "list",
         name: "user-list",
         component: () => import("./components/user/List.vue"),
-        meta: { breadcrumb: "User List" }
+        meta: {
+          breadcrumb: "User List",
+          title: "User List",
+        }
       },
       {
         path: "create",
         name: "user-create",
         component: () => import("./components/user/Create.vue"),
-        meta: { breadcrumb: "Create User" }
+        meta: {
+          breadcrumb: "Create User",
+          title: "Create User"
+        }
       },
       {
         // when /user/view/:id is matched
         path: "view/:id",
+        // alias: "/profile",
         name: "user-view",
         component: () => import("./components/user/View.vue"),
-        meta: { breadcrumb: "View User" }
+        meta: {
+          breadcrumb: "View User",
+          title: "View User",
+        }
       },
       {
-        path: "edit",
+        path: "edit/:id",
         name: "user-edit",
         component: temp,
-        meta: { breadcrumb: "Edit User" }
+        meta: {
+          breadcrumb: "Edit User",
+          title: "Edit User",
+        }
       },
       {
-        // when /user/:id is matched
-        // path: "/:id",
+        // loads current user from $store,
+        // combine template with view?
         path: "profile",
         name: "profile",
         component: () => import("./components/user/Profile.vue"),
-        meta: { breadcrumb: "Profile" },
+        meta: {
+          breadcrumb: "Profile",
+          title: "Profile",
+        }
       },
     ],
   },
 
 
-/*
-    Character Routes
-*/
-
-  // {
-  //   path: "/hero",
-  //   name: "hero",
-  //   component: () => import("./components/user/character.vue"),
-  //   meta: { breadcrumb: "Character Sheet" }
-  // },
-    {
-      path: "/character",
-      name: "character",
-      meta: { breadcrumbs: "User" },
-      children: [
-        {
-          path: "list",
-          name: "character-list",
-          component: () => import("./components/character/List.vue"),
-          meta: { breadcrumbs: "Character List" }
-        },
-        {
-          path: "create",
-          name: "character-create",
-          component: () => import("./components/character/Create.vue"),
-          meta: { breadcrumbs: "Create Character" }
-        },
-        {
-          path: "view",
-          alias: "/hero",
-          name: "character-view",
-          component: () => import("./components/character/View.vue"),
-          meta: { breadcrumbs: "View Character" }
-        },
-        {
-          path: "edit",
-          name: "character-edit",
-          component: temp,
-          meta: { breadcrumbs: "Edit Character" }
-        },
-        // {
-        //   // when /user/:id is matched
-        //   // path: "/:id",
-        //   path: "profile",
-        //   name: "profile",
-        //   component: () => import("./components/user/Profile.vue"),
-        //   meta: { breadcrumbs: "Profile" },
-        // },
-      ],
+  /*****************************
+  *     Character Routes       *
+  *****************************/
+  {
+    path: "/character",
+    name: "character",
+    meta: {
+      breadcrumb: "Character",
+      title: "Character",
     },
+    children: [
+      {
+        path: "list",
+        name: "character-list",
+        component: () => import("./components/character/List.vue"),
+        meta: {
+          breadcrumb: "Character List",
+          title: "Character List",
+        }
+      },
+      {
+        path: "create",
+        name: "character-create",
+        component: () => import("./components/character/Create.vue"),
+        meta: {
+          breadcrumb: "Create Character",
+          title: "Create Character",
+        }
+      },
+      {
+        // load hero from $store, after /profile
+        path: "view/:id",
+        alias: "/hero",
+        name: "character-view",
+        component: () => import("./components/character/View.vue"),
+        meta: {
+          breadcrumb: "View Character",
+          title: "View Character",
+        }
+      },
+      {
+        path: "edit/:id",
+        name: "character-edit",
+        component: temp,
+        meta: {
+          breadcrumb: "Edit Character",
+          title: "Edit character",
+        }
+      },
+    ],
+  },
 
 
-
-
-/*
-    Rule Routes
-*/
+  /*****************************
+  *         Rule Routes        *
+  *****************************/
   {
     path: "/rules",
     // component: Rules,
@@ -154,62 +174,84 @@ const routes = [
         path: "combat",
         name: "combat",
         component: temp,
-        meta: { breadcrumb: "Combat" }
+        meta: {
+          breadcrumb: "Combat",
+          title: "Combat"
+        }
       },
       {
         path: "magic",
         name: "magic",
         component: temp,
-        meta: { breadcrumb: "Magic" }
+        meta: {
+          breadcrumb: "Magic",
+          title: "Magic"
+        }
         // children: divine, arcane, spell slots v galdur
       }
     ]
   },
 
 
-/*
-    Lore Routes
-*/
+  /*****************************
+  *         Lore Routes        *
+  *****************************/
   {
     path: "/lore",
     name: "Lore",
     component: temp,
-    meta: { breadcrumb: "Lore", },
+    meta: {
+      breadcrumb: "Lore",
+      title: "Lore",
+    },
     children: [
       {
         path: "timeline",
         name: "timeline",
         component: temp,
-        meta: { breadcrumb: "Timeline", },
+        meta: {
+          breadcrumb: "Timeline",
+          title: "Timeline",
+        }
       },
       {
         path: "races/:id", // /lore/races/:id <race_name> ?
         name: "race",
         component: temp,
         // component: () => import('./views/Races.vue'),
-        meta: { breadcrumb: "Race", },
+        meta: {
+          breadcrumb: "Race",
+          title: "Race",
+        }
       },
     ]
   },
 
 
-/*
-    Codex Routes
-*/
+  /*****************************
+  *        Codex Routes        *
+  *****************************/
   {
     path: "/beastiary",
     name: "Beastiary",
     component: () => import("./components/codex/beastiary.vue"),
-    meta: { breadcrumb: "Beastiary" }
+    meta: {
+      breadcrumb: "Beastiary",
+      title: "Beastiary"
+    }
   },
 
-/*
-    404 Route
-*/
+
+  /*****************************
+  *         404 Route          *
+  *****************************/
   {
     path: "/:catchAll(.*)",
     name: "404",
     component: PageNotFound,
+    meta: {
+      title: "404",
+    }
   },
 ];
 

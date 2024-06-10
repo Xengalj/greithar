@@ -8,18 +8,18 @@ class UserService {
     return axios.get(API_URL + 'admin', { headers: authHeader() });
   }
 
-  getUser(user) {
-    // console.log(user);
-    return axios.post(API_URL + 'read',
-      { user_id: user.id },
-      { headers: authHeader() })
-    .then(response => {
-      return response.data;
-    })
-    .catch(err => {
-      return err;
-    });
-  }
+  // getUser(user) {
+  //   // console.log(user);
+  //   return axios.post(API_URL + 'read',
+  //     { user_id: user.id },
+  //     { headers: authHeader() })
+  //   .then(response => {
+  //     return response.data;
+  //   })
+  //   .catch(err => {
+  //     return err;
+  //   });
+  // }
 
 
   // get the beastiary.csv as a json from backend

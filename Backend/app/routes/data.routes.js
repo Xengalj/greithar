@@ -17,6 +17,7 @@ module.exports = function(app) {
     (req, res) => {
       Papa.parse(fs.createReadStream("app/data/d20pfsrd-beastiary.csv"), {
         header: true,
+        dynamicTyping: true,
         complete: function(results, file) {
           res.status(200).send(results["data"]);
         },

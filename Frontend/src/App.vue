@@ -1,29 +1,25 @@
 <template class="dark">
-
-  <Header/>
-
-  <div id="app" class="dark">
-    <div class="container">
-      <router-view />
-    </div>
-  </div>
-
-  <!--
-
   <div class="common-layout">
     <el-container>
-      <el-header>Header</el-header>
+      <el-header>
+        <Header/>
+      </el-header>
       <el-container>
-        <el-aside width="200px">Aside</el-aside>
-        <el-container>
-          <el-main>Main</el-main>
-          <el-footer>Footer</el-footer>
+        <el-container class="wrapper">
+          <el-main class="main">
+            <h1 class="jumbotron">{{ pageTitle }}</h1>
+            <router-view v-model="pageTitle"/>
+
+          </el-main>
+          <el-footer>
+            Vectors and icons by <a href="https://www.svgrepo.com" target="_blank">SVG Repo</a>
+          </el-footer>
         </el-container>
+        <!-- <el-aside width="200px">Aside</el-aside> -->
       </el-container>
     </el-container>
   </div>
 
- -->
 
 </template>
 
@@ -31,11 +27,19 @@
 import Header from './components/template/Header.vue'
 export default {
   components: { Header },
-  // computed: {
-  //   currentUser() {
-  //     return this.$store.state.auth.user;
-  //   },
+  // data() {
+  //   return {
+  //     loading: false,
+  //   };
   // },
+  computed: {
+    pageTitle() {
+      return this.$route.meta.title;
+    }
+    // currentUser() {
+    //   return this.$store.state.auth.user;
+    // },
+  },
   // methods: {
   //   logOut() {
   //     this.$store.dispatch('auth/logout');
@@ -46,7 +50,22 @@ export default {
 </script>
 
 <style scoped>
+/* Colors */
 :root {
   --el-color-primary: green;
+}
+
+.main {
+  height: calc(100vh - 120px);
+}
+h1 {
+  text-align: center;
+}
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: grey;
 }
 </style>
