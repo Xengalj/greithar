@@ -96,7 +96,7 @@
     ],
     "restrictions": {
       "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
-      "AraceSpellFailure": true,
+      "araceSpellFailure": true,
       "spells": "Arcane spell failure from medium and havy armor",
     }
   ],
@@ -453,7 +453,7 @@
     ],
     "restrictions": {
       "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
-      "AraceSpellFailure": true
+      "araceSpellFailure": true
     }
   ],
   [
@@ -505,7 +505,7 @@
     ],
     "restrictions": {
       "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
-      "AraceSpellFailure": true
+      "araceSpellFailure": true
     }
   ],
   [
@@ -543,29 +543,276 @@
       [0, 5, 5, 5, 5, 5, 4],
       [0, 5, 5, 5, 5, 5, 5]
     ],
-    "galdur":         [ 0,  ],
-    "galdurPerLevel": [ 0, 5, 3,  3,  3,  3,  4,  5,  8,  8,  9, 10, 11, 12, 13,  14,   5,  16,  17,  18,  19 ],
+    "galdur":         [ 0, 2, 4, 6, 8, 11, 14, 17, 22, 27, 32, 38, 44, 50, 58, 64, 72, 80, 89, 98, 108 ],
+    "galdurPerLevel": [ 0, 2, 2, 2, 2,  3,  3,  3,  5,  5,  5,  6,  6,  6,  8,  6,  8,  8,  9,  9,  10 ],
     "special": [ [],
-      [  ],
-      [  ],
-      [  ],
-      [  ],
+      [ "Alchemy (Su)", "Bomb (Su)", "Brew Potion (Ex)", "Mutagen (Su)", "Throw Anything (Ex)" ],
+      [ "Poison Resistance (Ex)", "Poison Use (Ex)", "Discovery (Su) (REPLACE)" ],
+      [ "Swift Alchemy (Ex)" ],
+      [ "Discovery (Su) (REPLACE)" ],
       [],
-      [], [], [], [], [],
-      [], [], [], [], [],
-      [], [], [], [], []
+      [ "Swift Poisoning (Ex)", "Discovery (Su) (REPLACE)" ], [], [ "Discovery (Su) (REPLACE)" ], [], [ "Poison Immunity (Ex)", "Discovery (Su) (REPLACE)" ],
+      [], [ "Discovery (Su) (REPLACE)" ], [], [ "Persistent Mutagen (Su)", "Discovery (Su) (REPLACE)" ], [],
+      [ "Discovery (Su) (REPLACE)" ], [], [ "Instant Alchemy (Ex)", "Discovery (Su) (REPLACE)" ], [], [ "Grand Discovery (Su)" ]
     ],
     "restrictions": {
       "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ]
     }
   ],
+  [
+    "name": "Cavalier"
+  ],
+  [
+    "name": "Gunslinger"
+  ],
+  [
+    "name": "Inquisitor"
+  ],
+  [
+    "name": "Magus",
+    "general": {
+      "hd": "d8",
+      "skills": [ " Climb (Str), Craft (Int), Fly (Dex), Intimidate (Cha), Knowledge (arcana) (Int), Knowledge (dungeoneering) (Int), Knowledge (planes) (Int), Profession (Wis), Ride (Dex), Spellcraft (Int), Swim (Str), and Use Magic Device (Cha)" ],
+      "ranks": 2,
+      "proficiency": [ "simple weapons", "martial weapons", "light armor" ]
+    },
+    "bab": [ 0, 0, 1, 2, 3, 3, 4, 5, 6, 6, 7, 8, 9, 9, 10, 11, 12, 12, 13, 14, 15],
+    "fort": [0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12],
+    "ref": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4,  4,  5,  5,  5,  6,  6,  6],
+    "will": [0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12],
+  "CastingAtr": "Charisma",
+    "spellsPerDay": [ [ "Prepared Arcane" ],
+      [3, 1],
+      [4, 2],
+      [4, 3],
+      [4, 3, 1],
+      [4, 4, 2],
+      [5, 4, 3],
+      [5, 4, 3, 1],
+      [5, 4, 4, 2],
+      [5, 5, 4, 3],
+      [5, 5, 4, 3, 1],
+      [5, 5, 4, 4, 2],
+      [5, 5, 5, 4, 3],
+      [5, 5, 5, 4, 3, 1],
+      [5, 5, 5, 4, 4, 2],
+      [5, 5, 5, 4, 4, 3],
+      [5, 5, 5, 5, 4, 3, 1],
+      [5, 5, 5, 5, 4, 4, 2],
+      [5, 5, 5, 5, 5, 4, 3],
+      [5, 5, 5, 5, 5, 5, 4],
+      [5, 5, 5, 5, 5, 5, 5]
+    ],
+    "OLD_galdur":          [ 0, 6, 9, 11, 14, 17, 21, 25, 29, 34, 40, 47, 55, 64, 74, 85, 97, 110, 114, 139, 155 ],
+    "OLD_galdurPerLevel":  [ 0, 6, 3,  3,  3,  3,  4,  4,  4,  5,  6,  7,  8,  9, 10, 11, 12,  13,   4,  25,  16 ],
+    "galdur":              [ 0, 6, 9, 11, 14, 17, 21, 25, 29, 34, 40, 47, 55, 64, 74, 85, 97, 110, 124, 139, 155 ],
+    "galdurPerLevel":      [ 0, 6, 3,  3,  3,  3,  4,  4,  4,  5,  6,  7,  8,  9, 10, 11, 12,  13,  14,  15,  16 ],
 
+    "special": [ [],
+      [ "Spontaneous Casting", "Bonus Languages", "Nature Bond (ex)", "Nature Sense (ex)", "Wild Empathy (ex)" ],
+      [ "Woodland Stride (ex)" ],
+      [ "Trackless Step (ex)" ],
+      [ "Resist Nature's Lure (ex)", "Wild Shape (su)" ],
+      [], [], [], [],
+      [ "Venom Imunity (ex)" ],
+      [], [], [],
+      [ "A Thousand Faces (su)" ],
+      [],
+      [ "Timeles Body (ex)"]
+    ],
+    "restrictions": {
+      "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
+      "AraceSpellFailure": true,
+      "spells": "Arcane spell failure from medium, havy armor, and shields",
+    }
+  ],
+  [
+    "name": "Omdura"
+  ],
+  [
+    "name": "Oracle",
+    "general": {
+      "hd": "d8",
+      "skills": [ "Craft (Int), Diplomacy (Cha), Heal (Wis), Knowledge (history) (Int), Knowledge (planes) (Int), Knowledge (religion) (Int), Profession (Wis), Sense Motive (Wis), and Spellcraft (Int)" ],
+      "ranks": 4,
+      "proficiency": [ "simple weapons", "light armor", "medium armor", "shields" ]
+    },
+    "bab":  [ 0, 0, 1, 2, 3, 3, 4, 5, 6, 6, 7, 8, 9, 9, 10, 11, 12, 12, 13, 14, 15 ],
+    "fort": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4,  4,  5,  5,  5,  6,  6,  6 ],
+    "ref":  [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4,  4,  5,  5,  5,  6,  6,  6 ],
+    "will": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12 ],
+    "CastingAtr": "Charisma",
+    "spellsPerDay": [ [ "Spontaneous Divine" ],
+      ["∞", 3],
+      ["∞", 4],
+      ["∞", 5],
+      ["∞", 6, 3],
+      ["∞", 6, 4],
+      ["∞", 6, 5, 3],
+      ["∞", 6, 6, 4],
+      ["∞", 6, 6, 5, 3],
+      ["∞", 6, 6, 6, 4],
+      ["∞", 6, 6, 6, 5, 3],
+      ["∞", 6, 6, 6, 6, 4],
+      ["∞", 6, 6, 6, 6, 5, 3],
+      ["∞", 6, 6, 6, 6, 6, 4],
+      ["∞", 6, 6, 6, 6, 6, 5, 3],
+      ["∞", 6, 6, 6, 6, 6, 6, 4],
+      ["∞", 6, 6, 6, 6, 6, 6, 5, 3],
+      ["∞", 6, 6, 6, 6, 6, 6, 6, 4],
+      ["∞", 6, 6, 6, 6, 6, 6, 6, 5, 3],
+      ["∞", 6, 6, 6, 6, 6, 6, 6, 6, 4],
+      ["∞", 6, 6, 6, 6, 6, 6, 6, 6, 6]
+    ],
+      "spellsKnown": [ [],
+      [4, 2],
+      [5, 2],
+      [5, 3],
+      [6, 3, 1],
+      [6, 4, 2],
+      [7, 4, 2, 1],
+      [7, 5, 3, 2],
+      [8, 5, 3, 2, 1],
+      [8, 5, 4, 3, 2],
+      [9, 5, 4, 3, 2, 1],
+      [9, 5, 5, 4, 3, 2],
+      [9, 5, 5, 4, 3, 2, 1],
+      [9, 5, 5, 4, 4, 3, 2],
+      [9, 5, 5, 4, 4, 3, 2, 1],
+      [9, 5, 5, 4, 4, 4, 3, 2],
+      [9, 5, 5, 4, 4, 4, 3, 2, 1],
+      [9, 5, 5, 4, 4, 4, 3, 3, 2],
+      [9, 5, 5, 4, 4, 4, 3, 3, 2, 1],
+      [9, 5, 5, 4, 4, 4, 3, 3, 3, 2],
+      [9, 5, 5, 4, 4, 4, 3, 3, 3, 3]
+    ],
+  
+    "galdur":          [ 0, 6, 9, 11, 14, 20, 30, 40, 50, 63, 75, 90, 105, 120, 140, 165, 170, 195, 225, 240, 260 ],
+    "galdurPerLevel":  [ 0, 6, 3,  3,  3,  6, 10, 10, 10, 13, 12, 15,  10,  15,  20,  25,   5,  25,  20,  15,  20 ],
+    "NEW_galdur":              [ 0, 6, 9, 11, 14, 17, 21, 25, 29, 34, 40, 47, 55, 64, 74, 85, 97, 110, 124, 139, 155 ],
+    "NEW_galdurPerLevel":      [ 0, 6, 3,  3,  3,  3,  4,  4,  4,  5,  6,  7,  8,  9, 10, 11, 12,  13,  14,  15,  16 ],
+    "special": [ [],
+      [ "Mystery", "Oracle's Curse (Ex)",  "Revelation" ],
+      [ "Mystery Spell (REPLACE)" ],
+      [ "Revelation (REPLACE)" ],
+      [ "Mystery Spell (REPLACE)" ],
+      [],
+      [ "Mystery Spell (REPLACE)" ], [ "Revelation (REPLACE)" ], [ "Mystery Spell (REPLACE)" ], [], [ "Mystery Spell (REPLACE)" ],
+      [ "Revelation (REPLACE)" ], [ "Mystery Spell (REPLACE)" ], [], [ "Mystery Spell (REPLACE)" ], [ "Revelation (REPLACE)" ],
+      [ "Mystery Spell (REPLACE)" ], [], [ "Mystery Spell (REPLACE)" ], [ "Revelation (REPLACE)" ], [ "Final Revelation" ]
+    ],
+    "restrictions": {
+      "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
+      "AraceSpellFailure": true,
+      "spells": "Arcane spell failure from medium, havy armor, and shields",
+    }
+  ],
+  [
+    "name": "Shifter",
+    "general": {
+      "hd": "d10",
+      "skills": [ " Acrobatics (Dex), Climb (Str), Craft (Int), Fly (Dex), Handle Animal (Cha), Knowledge (nature) (Int), Perception (Wis), Profession (Wis), Ride (Dex), Stealth (Dex), Survival (Wis), and Swim (Str)" ],
+      "ranks": 4,
+      "proficiency": [ "club", "dagger", "dart", "quarterstaff", "scimitar", "scythe", "sickle", "shortspear", "sling", "spear", "natural attacks", "light armor", "medium armor", "shields" ]
+    },
+    "bab":  [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ],
+    "fort": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6,  7,  7,  8,  8,  9,  9, 10, 10, 11, 11, 12 ],
+    "ref":  [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6,  7,  7,  8,  8,  9,  9, 10, 10, 11, 11, 12 ],
+    "will": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3,  3,  3,  4,  4,  4,  5,  5,  5,  6,  6,  6 ],
+    "special": [ [],
+      [ "Shifter Aspect (Su)", "Shifter Claws (Su)", "Wild Empahy (Ex)", "Bonus Languages" ],
+      [ "Defensive Instinct (Ex)", "Track (Ex)" ],
+      [ "Woodland Stride (Ex)" ],
+      [ "Wild Shape (Su)" ],
+      [ "Trackless Step (Ex)" ],
+      [], [], [], [], [],
+      [], [], [], [], [],
+      [], [], [], [], []
+    ],
+    "restrictions": {
+      "alignment": [ "NG", "LN", "N", "CN", "NE" ],
+      "armor": "Cannot wear metal armor"
+    }
+  ],
+    [
+    "name": "Summoner",
+    "general": {
+      "hd": "d8",
+      "skills": [ "Craft (Int), Fly (Dex), Handle Animal (Cha), Knowledge (all) (Int), Linguistics (Int), Profession (Wis), Ride (Dex), Spellcraft (Int), and Use Magic Device (Cha)" ],
+      "ranks": 2,
+      "proficiency": [ "simple weapons", "light armor" ]
+    },
+    "bab":  [ 0, 0, 1, 2, 3, 3, 4, 5, 6, 6, 7, 8, 9, 9, 10, 11, 12, 12, 13, 14, 15 ],
+    "fort": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4,  4,  5,  5,  5,  6,  6,  6 ],
+    "ref":  [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4,  4,  5,  5,  5,  6,  6,  6 ],
+    "will": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12 ],
+    "CastingAtr": "Charisma",
+    "spellsPerDay": [ [ "Arcane Preppared" ],
+      ["∞", 1],
+      ["∞", 2],
+      ["∞", 3],
+      ["∞", 3, 1],
+      ["∞", 4, 2],
+      ["∞", 4, 3],
+      ["∞", 4, 3, 1],
+      ["∞", 4, 4, 2],
+      ["∞", 5, 4, 3],
+      ["∞", 5, 4, 3, 1],
+      ["∞", 5, 4, 4, 2],
+      ["∞", 5, 5, 4, 3],
+      ["∞", 5, 5, 4, 3, 1],
+      ["∞", 5, 5, 4, 4, 2],
+      ["∞", 5, 5, 5, 4, 3],
+      ["∞", 5, 5, 5, 4, 3, 1],
+      ["∞", 5, 5, 5, 4, 4, 2],
+      ["∞", 5, 5, 5, 5, 4, 3],
+      ["∞", 5, 5, 5, 5, 5, 4],
+      ["∞", 5, 5, 5, 5, 5, 5]
+    ],
+      "spellsPerDay": [ [],
+      [4, 2],
+      [5, 3],
+      [6, 4],
+      [6, 4, 2],
+      [6, 4, 3],
+      [6, 4, 4],
+      [6, 5, 4, 2],
+      [6, 5, 4, 3],
+      [6, 5, 4, 4],
+      [6, 5, 5, 4, 2],
+      [6, 6, 5, 4, 3],
+      [6, 6, 5, 4, 4],
+      [6, 6, 5, 5, 4, 2],
+      [6, 6, 6, 5, 4, 3],
+      [6, 6, 6, 5, 4, 4],
+      [6, 6, 6, 5, 5, 4, 2],
+      [6, 6, 6, 6, 5, 4, 3],
+      [6, 6, 6, 6, 5, 4, 4],
+      [6, 6, 6, 6, 5, 5, 4],
+      [6, 6, 6, 6, 6, 5, 5]
+    ],
+    "galdur":          [ 0, 3, 5, 7, 10, 13, 16, 20, 24, 29, 35, 42, 50, 59, 69, 80, 92, 105, 119, 134, 150 ],
+    "galdurPerLevel":  [ 0, 3, 2, 2,  3,  3,  3,  4,  4,  5,  6,  7,  8,  9, 10, 11, 12,  13,  14,  15,  16 ],
+    "special": [ [],
+      [ "Eidolon", "Life Link (Su)", "Summon Monster (Sp)" ],
+      [ "Bond Senses (Su)" ],
+      [  ],
+      [ "Shield Ally (Ex)" ],
+      [],
+      [ "Maker's Call (Su)" ], [], [ "Transposition (Su)" ], [], [ "Aspect (Su)" ],
+      [], [ "Grater Shield Ally (Su)" ], [], [ "Life Bond(Su)" ], [],
+      [ "Merge Forms (Su)" ], [], [ "Greater Aspect (Su)" ], [], [ "Twin Eidolon (Su)" ]
+    ],
+    "restrictions": {
+      "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
+      "AraceSpellFailure": true,
+      "spells": "Arcane spell failure from medium, havy armor, and shields",
+    }
+  ],
   
 
-  
 
-
-  "Alchemist, Cavalier, Gunslinger, Inquisitor, Magus, Omdura, Oracle, Shifter, Summoner, Vampire Hunter, Vigilante, Witch", "https://www.d20pfsrd.com/classes/base-classes",
+  "Vampire Hunter, Vigilante, Witch", "https://www.d20pfsrd.com/classes/base-classes",
 
   [
     "name": "",
@@ -602,8 +849,10 @@
       [4, 4, 4, 4, 4, 4, 4, 4, 3, 3],
       [4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
     ],
-    "galdur":         [ 0, 5, 8, 11, 14, 17, 21, 26, 34, 42, 51, 61, 72, 84, 97, 111, 116, 132, 149, 167, 186 ],
-    "galdurPerLevel": [ 0, 5, 3,  3,  3,  3,  4,  5,  8,  8,  9, 10, 11, 12, 13,  14,   5,  16,  17,  18,  19 ],
+    "OLD_galdur":          [ 0, 6, 9, 11, 14, 17, 21, 25, 29, 34, 40, 47, 55, 64, 74, 85, 97, 110, 114, 139, 155 ],
+    "OLD_galdurPerLevel":  [ 0, 6, 3,  3,  3,  3,  4,  4,  4,  5,  6,  7,  8,  9, 10, 11, 12,  13,   4,  25,  16 ],
+    "galdur":              [ 0, 6, 9, 11, 14, 17, 21, 25, 29, 34, 40, 47, 55, 64, 74, 85, 97, 110, 124, 139, 155 ],
+    "galdurPerLevel":      [ 0, 6, 3,  3,  3,  3,  4,  4,  4,  5,  6,  7,  8,  9, 10, 11, 12,  13,  14,  15,  16 ],
     "special": [ [],
       [  ],
       [  ],
@@ -615,7 +864,9 @@
       [], [], [], [], []
     ],
     "restrictions": {
-      "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ]
+      "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
+      "AraceSpellFailure": true,
+      "spells": "Arcane spell failure from medium, havy armor, and shields",
     }
   ],
 
@@ -632,57 +883,6 @@
 
 
   
-    [
-    "name": "Magus",
-    "general": {
-      "hd": "d8",
-      "skills": ["Climb (Str), Craft (Int), Fly (Dex), Handle Animal (Cha), Heal (Wis), Knowledge (geography) (Int), Knowledge (nature) (Int), Perception (Wis), Profession (Wis), Ride (Dex), Spellcraft (Int), Survival (Wis), and Swim (Str)"],
-      "ranks": 4,
-      "proficiency": [ "club", "dagger", "dart", "quarterstaff", "scimitar", "scythe", "sickle", "shortspear", "sling", "spear", "natural attacks", "light armor", "medium armor", "shields" ]
-    },
-    "bab": [ 0, 0, 1, 2, 3, 3, 4, 5, 6, 6, 7, 8, 9, 9, 10, 11, 12, 12, 13, 14, 15],
-    "fort": [0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12],
-    "ref": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4,  4,  5,  5,  5,  6,  6,  6],
-    "will": [0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12],
-    "spells": [ [],
-      [3, 1],
-      [4, 2],
-      [4, 2, 1],
-      [4, 3, 2],
-      [4, 3, 2, 1],
-      [4, 3, 3, 2],
-      [4, 4, 3, 2, 1],
-      [4, 4, 3, 3, 2],
-      [4, 4, 4, 3, 2, 1],
-      [4, 4, 4, 3, 3, 2],
-      [4, 4, 4, 4, 3, 2, 1],
-      [4, 4, 4, 4, 3, 3, 2],
-      [4, 4, 4, 4, 4, 3, 2, 1],
-      [4, 4, 4, 4, 4, 3, 3, 2],
-      [4, 4, 4, 4, 4, 4, 3, 3, 2],
-      [4, 4, 4, 4, 4, 4, 4, 3, 2, 1],
-      [4, 4, 4, 4, 4, 4, 4, 3, 3, 2],
-      [4, 4, 4, 4, 4, 4, 4, 4, 3, 3],
-      [4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
-    ],
-    "galdur": [ 0, 6, 9, 11, 14, 17, 21, 25, 29, 34, 40, 47, 55, 64, 74, 85, 97, 110, 114, 139, 155 ],
-    "special": [ [],
-      [ "Spontaneous Casting", "Bonus Languages", "Nature Bond (ex)", "Nature Sense (ex)", "Wild Empathy (ex)" ],
-      [ "Woodland Stride (ex)" ],
-      [ "Trackless Step (ex)" ],
-      [ "Resist Nature's Lure (ex)", "Wild Shape (su)" ],
-      [], [], [], [],
-      [ "Venom Imunity (ex)" ],
-      [], [], [],
-      [ "A Thousand Faces (su)" ],
-      [],
-      [ "Timeles Body (ex)"]
-    ],
-    "restrictions": {
-      "alignment": "Must be Neutral",
-      "spells": "Cannot cast spells of oposing alignment",
-      "armor": "Cannot wear metal armor"
-    }
-  ],
+
 
 }
