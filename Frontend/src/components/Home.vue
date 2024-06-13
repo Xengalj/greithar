@@ -4,25 +4,10 @@
       <h3>{{ content }}</h3>
     </header>
   </div>
-
-  <!--
-  Element Plus Components
-  https://element-plus.org/en-US/component/overview.html
-  -->
-
-
-  <!--
-  Vue Examples
-  https://vuejs.org/examples/#hello-world
-  -->
-
-
 </template>
 
 <script>
 import UserService from "@/services/user.service";
-// import data from "../assets/d20pfsrd-beastiary.csv";
-
 
 export default {
   name: "Home",

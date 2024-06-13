@@ -7,38 +7,39 @@
     https://element-plus.org/en-US/component/pagination.html
     -->
 
-
+    <!-- FILTERS -->
     <el-row class="row-bg" justify="space-between">
       <el-col :span="6">
         <el-input v-model="tableSearch" size="small" placeholder="Type to search" />
       </el-col>
+
       <el-col :span="6">
-
         <el-select v-model="value" multiple placeholder="Select" style="width: 240px">
-
           <el-option
-          v-for="item in colors"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
+            v-for="item in colors"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
           >
-          <div class="flex items-center">
-            <el-tag :color="item.value" style="margin-right: 8px" size="small" />
-            <span :style="{ color: item.value }">{{ item.label }}</span>
-          </div>
-        </el-option>
-        <template #tag>
-          <el-tag v-for="color in value" :key="color" :color="color" />
-        </template>
-      </el-select>
-
+            <div class="flex items-center">
+              <el-tag :color="item.value" style="margin-right: 8px" size="small" />
+              <span :style="{ color: item.value }">{{ item.label }}</span>
+            </div>
+          </el-option>
+          <template #tag>
+            <el-tag v-for="color in value" :key="color" :color="color" />
+          </template>
+        </el-select>
       </el-col>
+
       <el-col :span="6">
         <el-button @click="filterHandler">Filter</el-button>
         <el-button @click="clearFilter">Reset</el-button>
       </el-col>
     </el-row>
 
+
+    <!-- MONSTER TABLE -->
     <el-table
       :data="tableData"
       :default-sort="{ prop: 'cr', order: 'ascending' }"
@@ -68,45 +69,64 @@
       <el-table-column sortable prop="AC" label="AC" />
       <el-table-column sortable prop="Alignment" label="Align" />
       <el-table-column sortable prop="Environment" label="Environment" />
+
+      <el-table-column label="Actions" width="100px;">
+        <template #default="scope">
+          <el-row class="row-bg" justify="space-between">
+            <el-button type="primary" circle @click="openMonster(scope.row)">
+              <g-icon iconSize="24px" iconName="eye" />
+            </el-button>
+
+            <el-button type="primary" circle @click="addMonster(scope.row)">
+              <g-icon iconSize="24px" iconName="createScroll" />
+            </el-button>
+          </el-row>
+         </template>
+       </el-table-column>
     </el-table>
 
-    <br><br>
 
-    <g-icon iconSize="64px" iconName="aberration"/> Aberrations<br>
-    <g-icon iconSize="64px" iconName="animal"/> Animals<br>
-    <g-icon iconSize="64px" iconName="construct"/> Constructs<br>
-    <g-icon iconSize="64px" iconName="dragon"/> Dragons<br>
-    <g-icon iconSize="64px" iconName="fey"/> Fey<br>
-    <g-icon iconSize="64px" iconName="humanoid"/> Humanoids<br>
-    <g-icon iconSize="64px" iconName="magical beast"/> Magical Beasts<br>
-    <g-icon iconSize="64px" iconName="monstrous humanoid"/> Monsterous Humanoids<br>
-    <g-icon iconSize="64px" iconName="ooze"/> Oozes<br>
-    <g-icon iconSize="64px" iconName="outsider"/> Outsiders<br>
-    <g-icon iconSize="64px" iconName="plant"/> Plants<br>
-    <g-icon iconSize="64px" iconName="undead"/> Undead<br>
-    <g-icon iconSize="64px" iconName="vermin"/> Vermin<br>
-
-
-    <el-button plain @click="dialogVisible = true">
-      Click to open the Dialog
-    </el-button>
-
+    <!-- MONSTER MODAL -->
     <el-dialog
-      v-model="dialogVisible"
-      title="Tips"
       width="500"
+      v-model="cardVisible"
+      :title="this.monster.Name"
       :before-close="handleClose"
     >
-    <!-- holds
-    <CreatureSheet id="{{row.id}}"
-   -->
-    <span>This is a message</span>
-    <template #footer :before-close="handleClose">
-      <div class="dialog-footer" :before-close="handleClose">
-        <el-button @click="dialogVisible = false" :before-close="handleClose">Cancel</el-button>
-        <el-button type="primary" @click="dialogVisible = false" :before-close="handleClose">
-          Confirm
-        </el-button>
+
+    {{ monster }}
+
+
+
+      <el-row>
+        <el-col :span="9" class="center">
+          <g-icon iconSize="128px" />
+          <br>
+          HP
+          <br>
+          init, sense, speed
+        </el-col>
+
+
+        <el-col :span="9" class="center">
+          <svg width="200" height="200">
+            <!-- <HexGraph :abilities="abilities"></HexGraph> -->
+            <HexGraph :abilities="[this.monster.str, this.monster.dex, this.monster.con, this.monster.int, this.monster.wis, this.monster.cha]"></HexGraph>
+            <!-- <HexGraph :abilities="[18, 16, 14, 12, 10, 8]"></HexGraph> -->
+          </svg>
+        </el-col>
+
+        <el-col :span="6" style="display: inline-grid">
+          <div v-for="(stat, index) in abilities" :key="index">
+            <strong>{{ stat }}: </strong>
+          </div>
+        </el-col>
+      </el-row>
+
+    <template #footer>
+      <div class="dialog-footer">
+        <el-button @click="handleClose()"> Close </el-button>
+        <el-button type="primary" @click="addMonster()"> Add to Session </el-button>
       </div>
     </template>
   </el-dialog>
@@ -115,14 +135,17 @@
   </div>
 </template>
 
-<script land="ts">
+<script>
 import DataService from "@/services/data.service";
+// import CreatureSheet from '@/components/template/CreatureSheet.vue'
+import HexGraph from '@/components/template/HexGraph.vue'
 
 export default {
-  components: {
-    // AberrationIcon,
-  },
   name: "Beastiary",
+  components: {
+    // CreatureSheet,
+    HexGraph
+  },
   data() {
     return {
       loading: false,
@@ -146,21 +169,45 @@ export default {
       environFilter: [
         { text: 'Any', value: 'any' },
       ],
-      dialogVisible: false,
-      content: "Super Temp",
+
+      colors: [
+        { value: '#E63415', label: 'red' },
+        { value: '#FF6600', label: 'orange' },
+        { value: '#FFDE0A', label: 'yellow' },
+        { value: '#1EC79D', label: 'green' },
+        { value: '#14CCCC', label: 'cyan' },
+        { value: '#4167F0', label: 'blue' },
+        { value: '#6222C9', label: 'purple' },
+      ],
+      value: "",
+
+
+
+      abilities: [
+        { label: 'Str', value: 16, location: { x: 100, y: 12 } },
+        { label: 'Dex', value: 13, location: { x: 176, y: 56 } },
+        { label: 'Con', value: 18, location: { x: 176, y: 144 } },
+        { label: 'Int', value: 10, location: { x: 100, y: 193 } },
+        { label: 'Wis', value: 11, location: { x: 10, y: 144 } },
+        { label: 'Cha', value: 8, location: { x: 10, y: 56 } }
+      ],
+
+
+
+      // MONSTER MODAL
+      monster: {},
+      cardVisible: false,
     };
   },
+  computed: {},
   mounted() {
     this.getBeastiary();
-  },
-  computed: {
   },
   methods: {
     async getBeastiary() {
       this.loading = true;
       DataService.getBeastiary()
       .then(response => {
-        console.log(response);
         this.tableData = response;
         this.loading = false;
       })
@@ -172,23 +219,31 @@ export default {
     filterHandler( value, row, column ) {
       const property = column['property'];
       return row[property] === value;
-/*
-const filterTableData = computed(() =>
-  tableData.filter(
-    (data) =>
-      !tableSearch.value ||
-      data.name.toLowerCase().includes(tableSearch.value.toLowerCase())
-  )
-)
-*/
-
+      /*
+      const filterTableData = computed(() =>
+        tableData.filter(
+          (data) =>
+            !tableSearch.value ||
+            data.name.toLowerCase().includes(tableSearch.value.toLowerCase())
+        )
+      )
+      */
     },
-    handleOpen() {
-      this.dialogVisible = true;
+    addMonster(monster) {
+      console.log('add', monster);
+    },
+
+
+    // MONSTER MODAL
+    openMonster(monster) {
+      this.monster = monster;
+      // console.log(monster);
+      this.cardVisible = true;
     },
     handleClose() {
       console.log("Closing modal");
-      this.dialogVisible = false;
+      this.cardVisible = false;
+      this.monster = {};
       // ElMessageBox.confirm('Are you sure to close this dialog?')
       // .then(() => {
       //   done()
@@ -196,6 +251,8 @@ const filterTableData = computed(() =>
       // .catch(() => {
       //   // catch error
       }
+
+
   }
 };
 </script>

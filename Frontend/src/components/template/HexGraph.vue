@@ -12,10 +12,10 @@
     ></axis-label>
 
     <text
-      v-for="(stat, i) in abilities"
+      v-for="(stat, i) in locations"
       :key="i"
-      :x="stat.location.x"
-      :y="stat.location.y">{{stat.label}}</text>
+      :x="stat.x"
+      :y="stat.y">{{stat.label}}</text>
   </g>
 </template>
 
@@ -25,18 +25,48 @@ export default {
   name: "HexGraph",
   components: { AxisLabel },
   props: {
-    abilities: Array,
+    abilities: {
+      type: Array,
+      default: () => [10, 10, 10, 10, 10, 10]
+    }
   },
   computed: {
     // a computed property for the polygon's points
     points() {
-      const total = this.abilities.length
+      const total = this.abilities.length;
       return this.abilities.map((stat, i) => {
         // abilities are out of 20 for now, then x 100 to get a % of the circle
-        const { x, y } = valueToPoint((stat.value/20*100), i, total)
-        return `${x},${y}`
-      }).join(' ')
+        const { x, y } = valueToPoint((stat/20*100), i, total);
+        return `${x},${y}`;
+      }).join(' ');
     },
+  },
+  data() {
+    return {
+      locations: [
+        { label: 'Str', x: 100, y: 12 },
+        { label: 'Dex', x: 176, y: 56 },
+        { label: 'Con', x: 176, y: 144 },
+        { label: 'Int', x: 100, y: 193 },
+        { label: 'Wis', x: 10, y: 144 },
+        { label: 'Cha', x: 10, y: 56 }
+      ]
+
+      // abilities: [
+      //   { label: 'Str', value: 16, location: { x: 100, y: 12 } },
+      //   { label: 'Dex', value: 13, location: { x: 176, y: 56 } },
+      //   { label: 'Con', value: 18, location: { x: 176, y: 144 } },
+      //   { label: 'Int', value: 10, location: { x: 100, y: 193 } },
+      //   { label: 'Wis', value: 11, location: { x: 10, y: 144 } },
+      //   { label: 'Cha', value: 8, location: { x: 10, y: 56 } }
+      // ],
+    }
+  },
+  watch: {
+
+  },
+  mounted() {
+    console.log(this.abilites);
   }
 }
 

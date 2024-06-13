@@ -26,12 +26,21 @@
 <script>
 import Header from './components/template/Header.vue'
 export default {
+  // name: "App",
   components: { Header },
+  // props: {
+  //   id: {
+  //     type: Int,
+  //     default: 40
+  //   }
+  // },
+
   // data() {
   //   return {
   //     loading: false,
   //   };
   // },
+
   computed: {
     pageTitle() {
       return this.$route.meta.title;
@@ -40,6 +49,14 @@ export default {
     //   return this.$store.state.auth.user;
     // },
   },
+
+  // created() {
+  //   console.log("created");
+  // },
+  // mounted() {
+  //   console.log("mounted");
+  // },
+
   // methods: {
   //   logOut() {
   //     this.$store.dispatch('auth/logout');
@@ -47,6 +64,18 @@ export default {
   //   }
   // }
 };
+
+/* TODO:
+ *
+ *  get lore & rules pages from DB
+ *  get curr user data (hero, darkmode, etc)
+ *
+ *
+ */
+
+
+
+
 </script>
 
 <style scoped>

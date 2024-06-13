@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import ElementPlus from 'element-plus'
-import GIcon from './components/template/BaseIcon.vue'
+import GIcon from './components/template/GIcon.vue'
 
 import { FontAwesomeIcon } from './plugins/font-awesome'
 // import * as ElementPlusIconsVue from '@element-plus/icons-vue'

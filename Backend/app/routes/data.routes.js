@@ -13,13 +13,38 @@ module.exports = function(app) {
 
   // return a json of the beastiary csv in /data
   app.get(
-    "/api/data/beastiary",
+    "/api/data/beastiary/getAll",
     (req, res) => {
       Papa.parse(fs.createReadStream("app/data/d20pfsrd-beastiary.csv"), {
         header: true,
         dynamicTyping: true,
         complete: function(results, file) {
           res.status(200).send(results["data"]);
+        },
+        errors: function(errors, file) {
+          res.status(200).send(errors);
+        }
+      });
+    }
+  );
+
+  app.post(
+    "/api/data/beastiary/getOne",
+    (req, res) => {
+      if (!req.body.name) {
+        return res.status(404).send({ message: "No monster name provided" });
+      }
+      let search = req.body.name;
+
+      Papa.parse(fs.createReadStream("app/data/d20pfsrd-beastiary.csv"), {
+        header: true,
+        dynamicTyping: true,
+        complete: function(results, file) {
+          results["data"].forEach((monster, i) => {
+            if (monster.Name == search) {
+              res.status(200).send(JSON.stringify(monster))
+            }
+          });
         },
         errors: function(errors, file) {
           res.status(200).send(errors);

@@ -1,17 +1,17 @@
 <template lang="html">
-  <text :x="point.x" :y="point.y">{{stat.value}}</text>
+  <text :x="point.x" :y="point.y">{{stat}}</text>
 </template>
 
 <script>
 export default {
   props: {
-    stat: Object,
+    stat: Number,
     index: Number,
     total: Number
   },
   computed: {
     point: function () {
-      return valueToPoint(+(this.stat.value/20*100) + 10, this.index, this.total)
+      return valueToPoint(+(this.stat/20*100) + 10, this.index, this.total)
     }
   },
 }

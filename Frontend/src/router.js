@@ -142,7 +142,7 @@ const routes = [
       {
         // load hero from $store, after /profile
         path: "view/:id",
-        alias: "/hero",
+        alias: "/hero/:id",
         name: "character-view",
         component: () => import("./components/character/View.vue"),
         meta: {

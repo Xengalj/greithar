@@ -24,7 +24,20 @@ class UserService {
 
   // get the beastiary.csv as a json from backend
   getBeastiary() {
-    return axios.get(API_URL + 'beastiary',
+    return axios.get(API_URL + 'beastiary/getAll',
+    { headers: authHeader() })
+    .then(response => {
+      return response.data;
+    })
+    .catch(err => {
+      return err;
+    });
+  }
+
+  // get a single mosnter, by name
+  getMonster(monster) {
+    return axios.post(API_URL + 'beastiary/getOne',
+    { name: monster.Name },
     { headers: authHeader() })
     .then(response => {
       return response.data;

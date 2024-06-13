@@ -22,7 +22,7 @@
 
 <script>
 import UserService from "@/services/user.service";
-const icons = require('../template/svgPaths.json');
+const icons = require('@/components/template/svgPaths.json');
 
 export default {
   name: "Admin",
@@ -33,6 +33,7 @@ export default {
     };
   },
   mounted() {
+    console.log(this.icons);
     UserService.getAdminBoard().then(
       (response) => {
         this.content = response.data;
