@@ -1,4 +1,5 @@
 <template lang="html">
+  TOMBSTONE
   <text :x="point.x" :y="point.y">{{stat}}</text>
 </template>
 

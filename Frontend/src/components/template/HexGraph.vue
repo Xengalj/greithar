@@ -2,28 +2,18 @@
   <g>
     <polygon :points="points"></polygon>
     <circle cx="100" cy="100" r="80"></circle>
-    <axis-label
-      v-for="(stat, index) in abilities"
-      :stat="stat"
-      :index="index"
-      :key="index"
-      :total="abilities.length"
-      class="ability-value"
-    ></axis-label>
 
     <text
-      v-for="(stat, i) in locations"
+      v-for="(stat, i) in labels"
       :key="i"
       :x="stat.x"
-      :y="stat.y">{{stat.label}}</text>
+      :y="stat.y">{{stat.label}}: {{ Math.floor((abilities[i] - 10) / 2) }}</text>
   </g>
 </template>
 
 <script>
-import AxisLabel from './AxisLabel.vue'
 export default {
   name: "HexGraph",
-  components: { AxisLabel },
   props: {
     abilities: {
       type: Array,
@@ -43,30 +33,18 @@ export default {
   },
   data() {
     return {
-      locations: [
-        { label: 'Str', x: 100, y: 12 },
-        { label: 'Dex', x: 176, y: 56 },
-        { label: 'Con', x: 176, y: 144 },
-        { label: 'Int', x: 100, y: 193 },
-        { label: 'Wis', x: 10, y: 144 },
-        { label: 'Cha', x: 10, y: 56 }
+      labels: [
+        { label: 'Str', x: 90, y: 12 },
+        { label: 'Dex', x: 175, y: 56 },
+        { label: 'Con', x: 175, y: 144 },
+        { label: 'Int', x: 90, y: 193 },
+        { label: 'Wis', x: 1, y: 144 },
+        { label: 'Cha', x: 1, y: 56 }
       ]
-
-      // abilities: [
-      //   { label: 'Str', value: 16, location: { x: 100, y: 12 } },
-      //   { label: 'Dex', value: 13, location: { x: 176, y: 56 } },
-      //   { label: 'Con', value: 18, location: { x: 176, y: 144 } },
-      //   { label: 'Int', value: 10, location: { x: 100, y: 193 } },
-      //   { label: 'Wis', value: 11, location: { x: 10, y: 144 } },
-      //   { label: 'Cha', value: 8, location: { x: 10, y: 56 } }
-      // ],
     }
   },
-  watch: {
-
-  },
   mounted() {
-    console.log(this.abilites);
+    // console.log(this.abilities);
   }
 }
 

@@ -87,6 +87,7 @@
 
 
     <!-- MONSTER MODAL -->
+
     <el-dialog
       width="500"
       v-model="cardVisible"
@@ -110,9 +111,7 @@
 
         <el-col :span="9" class="center">
           <svg width="200" height="200">
-            <!-- <HexGraph :abilities="abilities"></HexGraph> -->
-            <HexGraph :abilities="[this.monster.str, this.monster.dex, this.monster.con, this.monster.int, this.monster.wis, this.monster.cha]"></HexGraph>
-            <!-- <HexGraph :abilities="[18, 16, 14, 12, 10, 8]"></HexGraph> -->
+            <HexGraph :abilities="[this.monster.Str, this.monster.Dex, this.monster.Con, this.monster.Int, this.monster.Wis, this.monster.Cha]"></HexGraph>
           </svg>
         </el-col>
 
@@ -137,13 +136,11 @@
 
 <script>
 import DataService from "@/services/data.service";
-// import CreatureSheet from '@/components/template/CreatureSheet.vue'
 import HexGraph from '@/components/template/HexGraph.vue'
 
 export default {
   name: "Beastiary",
   components: {
-    // CreatureSheet,
     HexGraph
   },
   data() {
