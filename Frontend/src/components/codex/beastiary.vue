@@ -5,6 +5,7 @@
      https://www.svgrepo.com/collection/game-skills-vectors
     https://element-plus.org/en-US/component/table.html
     https://element-plus.org/en-US/component/pagination.html
+    https://www.w3schools.com/howto/howto_js_sort_table.asp
     -->
 
     <!-- FILTERS -->

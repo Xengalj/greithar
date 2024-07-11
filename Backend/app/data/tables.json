@@ -7,7 +7,7 @@
       "stealth":    16,
       "carry mod":  0.125,
       "extra legs": 0.25,
-      
+
       "space":      "1/2 ft.",
       "reach tall": "0 ft.",
       "reach long": "0 ft.",
@@ -21,7 +21,7 @@
       "stealth":    12,
       "carry mod":  0.25,
       "extra legs": 0.5,
-      
+
       "space":      "1 ft.",
       "reach tall": "0 ft.",
       "reach long": "0 ft.",
@@ -35,7 +35,7 @@
       "stealth":    8,
       "carry mod":  0.5,
       "extra legs": 0.75,
-      
+
       "space":      "2 - 2.5 ft.",
       "reach tall": "0 ft.",
       "reach long": "0 ft.",
@@ -49,7 +49,7 @@
       "stealth":    4,
       "carry mod":  0.5,
       "extra legs": 1,
-      
+
       "space":      "5 ft.",
       "reach tall": "5 ft.",
       "reach long": "5 ft.",
@@ -61,9 +61,9 @@
       "cmb / cmd":  0,
       "flight":     0,
       "stealth":    0,
-      "carry mod":  0,
-      "extra legs": 0,
-      
+      "carry mod":  1,
+      "extra legs": 1.5,
+
       "space":      "5 ft.",
       "reach tall": "5 ft.",
       "reach long": "5 ft.",
@@ -75,9 +75,9 @@
       "cmb / cmd":  1,
       "flight":     -2,
       "stealth":    -4,
-      "carry mod":  ,
-      "extra legs": ,
-      
+      "carry mod":  2,
+      "extra legs": 3,
+
       "space":      "10 ft.",
       "reach tall": "10 ft.",
       "reach long": "5 ft.",
@@ -89,9 +89,9 @@
       "cmb / cmd":  2,
       "flight":     -4,
       "stealth":    -8,
-      "carry mod":  ,
-      "extra legs": ,
-      
+      "carry mod":  4,
+      "extra legs": 6,
+
       "space":      "15 ft.",
       "reach tall": "15 ft.",
       "reach long": "10 ft.",
@@ -103,9 +103,9 @@
       "cmb / cmd":  4,
       "flight":     -6,
       "stealth":    -12,
-      "carry mod":  ,
-      "extra legs": ,
-      
+      "carry mod":  8,
+      "extra legs": 12,
+
       "space":      "20 ft.",
       "reach tall": "20 ft.",
       "reach long": "15 ft.",
@@ -117,9 +117,9 @@
       "cmb / cmd":  8,
       "flight":     -8,
       "stealth":    -16,
-      "carry mod":  ,
-      "extra legs": ,
-      
+      "carry mod":  16,
+      "extra legs": 24,
+
       "space":      "30 ft.",
       "reach tall": "30 ft.",
       "reach long": "20 ft.",
