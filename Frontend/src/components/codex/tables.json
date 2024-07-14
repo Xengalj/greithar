@@ -1,0 +1,136 @@
+{
+  "size": {
+    "fine": {
+      "ac / atk":   8,
+      "cmb / cmd": -8,
+      "flight":     8,
+      "stealth":    16,
+      "carry mod":  0.125,
+      "extra legs": 0.25,
+
+      "space":      "1/2 ft.",
+      "reach tall": "0 ft.",
+      "reach long": "0 ft.",
+      "dimensions": "6 inches or less",
+      "weight":     "1/8 lb. or less"
+    },
+    "diminuitive": {
+      "ac / atk":   4,
+      "cmb / cmd": -4,
+      "flight":     6,
+      "stealth":    12,
+      "carry mod":  0.25,
+      "extra legs": 0.5,
+
+      "space":      "1 ft.",
+      "reach tall": "0 ft.",
+      "reach long": "0 ft.",
+      "dimensions": "6 in. - 1 ft.",
+      "weight":     "1/8 lb. - 1 lb."
+    },
+    "tiny": {
+      "ac / atk":   2,
+      "cmb / cmd":  -2,
+      "flight":     4,
+      "stealth":    8,
+      "carry mod":  0.5,
+      "extra legs": 0.75,
+
+      "space":      "2 - 2.5 ft.",
+      "reach tall": "0 ft.",
+      "reach long": "0 ft.",
+      "dimensions": "1 - 2 ft.",
+      "weight":     "1 - 8 lbs."
+    },
+    "small": {
+      "ac / atk":   1,
+      "cmb / cmd":  -1,
+      "flight":     2,
+      "stealth":    4,
+      "carry mod":  0.5,
+      "extra legs": 1,
+
+      "space":      "5 ft.",
+      "reach tall": "5 ft.",
+      "reach long": "5 ft.",
+      "dimensions": "2 - 4 ft.",
+      "weight":     "8 - 60 lbs."
+    },
+    "medium": {
+      "ac / atk":   0,
+      "cmb / cmd":  0,
+      "flight":     0,
+      "stealth":    0,
+      "carry mod":  1,
+      "extra legs": 1.5,
+
+      "space":      "5 ft.",
+      "reach tall": "5 ft.",
+      "reach long": "5 ft.",
+      "dimensions": "4 - 8 ft.",
+      "weight":     "60 - 500 lbs."
+    },
+    "large": {
+      "ac / atk":   -1,
+      "cmb / cmd":  1,
+      "flight":     -2,
+      "stealth":    -4,
+      "carry mod":  2,
+      "extra legs": 3,
+
+      "space":      "10 ft.",
+      "reach tall": "10 ft.",
+      "reach long": "5 ft.",
+      "dimensions": "8 - 16 ft.",
+      "weight":     "500 - 4000 lbs."
+    },
+    "huge": {
+      "ac / atk":   -2,
+      "cmb / cmd":  2,
+      "flight":     -4,
+      "stealth":    -8,
+      "carry mod":  4,
+      "extra legs": 6,
+
+      "space":      "15 ft.",
+      "reach tall": "15 ft.",
+      "reach long": "10 ft.",
+      "dimensions": "16 - 32 ft.",
+      "weight":     "2 - 16 tons"
+    },
+    "gargantuan": {
+      "ac / atk":   -4,
+      "cmb / cmd":  4,
+      "flight":     -6,
+      "stealth":    -12,
+      "carry mod":  8,
+      "extra legs": 12,
+
+      "space":      "20 ft.",
+      "reach tall": "20 ft.",
+      "reach long": "15 ft.",
+      "dimensions": "32 - 64 ft.",
+      "weight":     "16 - 125 tons"
+    },
+    "colossal": {
+      "ac / atk":   -8,
+      "cmb / cmd":  8,
+      "flight":     -8,
+      "stealth":    -16,
+      "carry mod":  16,
+      "extra legs": 24,
+
+      "space":      "30 ft.",
+      "reach tall": "30 ft.",
+      "reach long": "20 ft.",
+      "dimensions": "64 ft. or more",
+      "weight":     "125 tons or more"
+    }
+  },
+  "dice steps": {
+    "1d4": {
+      "up": ["", "1d6", "1d8"],
+      "down": ["", "1d3", "1d2"]
+    }
+  }
+}

@@ -86,8 +86,6 @@
             </el-row>
           </el-col>
         </el-row>
-
-
         <el-row>
           <el-col :span="4" class="center">
             <g-icon iconSize="24px" icon-name="treasure"/>
@@ -96,7 +94,6 @@
             {{ this.monster.Treasure }}
           </el-col>
         </el-row>
-
         <el-row>
           <el-col :span="4" class="center">
             <g-icon iconSize="24px" icon-name="forest"/>
@@ -110,6 +107,13 @@
     </el-row>
     <el-divider border-style="hidden"/>
 
+
+    <el-button type="primary" circle @click="console.log(tables)">
+      <g-icon iconSize="24px" iconName="eye" />
+    </el-button>
+
+
+
     <el-collapse v-model="openSections">
       <!-- Defense -->
       <el-collapse-item title="Defense" name="defense">
@@ -119,18 +123,19 @@
           </el-col>
 
           <el-col :span="7" class="center">
-            HP: {{ this.monster.HP }} ({{ this.monster.HD }})
-            <br>
-            HP: {{ this.monster.HP }} ({{ this.monster.HDNum }}{{ this.monster.HDType }} + {{this.monster.HDNum * this.monster.ConMod}})
+            HP: {{ monsterHealth.total }} ({{ this.monster.HDNum }}{{ monsterHealth.HDString }}{{ monsterHealth.bonus}} / {{ this.monster.HP }})
 
             <br><br>
-            AC:  {{ this.monster.AC }}
+            AC: {{ monsterAC.total }}  /   {{ this.monster.AC }}
             <br>
             Touch: {{ this.monster.AC_Touch }}
             <br>
             Flat Footed: {{ this.monster["AC_Flat-footed"] }}
             <br>
-            (+21 natural, –2 size)
+            (+21 natural, –2 size)<br>
+            (+2 armor, +1 Dex, +1 natural, +1 size)
+
+            <br><br>
           </el-col>
 
           <el-col :span="7" class="center">
@@ -143,6 +148,11 @@
             DR: ##
             <br>
             SR: ##
+
+<br><br>
+
+{{ monsterSize }}
+
           </el-col>
 
           <el-col :span="7" class="center">
@@ -300,6 +310,7 @@ import DataService from "@/services/data.service";
 import UserService from "@/services/user.service";
 import HexGraph from '@/components/template/HexGraph.vue'
 const icons = require('@/components/template/svgPaths.json');
+const tables = require('@/components/codex/tables.json');
 
 export default {
   name: "DM Screen",
@@ -313,28 +324,77 @@ export default {
       title = this.original.Name.concat(" CR ", this.original.CR);
       return title;
     },
-    // monster: {}
+    abilityMods() {
+      let abilities = {
+        StrMod: Math.floor((this.monster.Str - 10) / 2),
+        DexMod: Math.floor((this.monster.Dex - 10) / 2),
+        ConMod: Math.floor((this.monster.Con - 10) / 2),
+        IntMod: Math.floor((this.monster.Int - 10) / 2),
+        WisMod: Math.floor((this.monster.Wis - 10) / 2),
+        ChaMod: Math.floor((this.monster.Cha - 10) / 2),
+      }
+      return abilities;
+    },
+    monsterHealth() {
+      // TODO: Toughness Feat, Favored Class Bonus
+      let health = {
+        total: Math.floor( (Math.floor(this.monster.HDType/2)+0.5) * this.monster.HDNum ) + ( this.abilityMods.ConMod * this.monster.HDNum ),
+        bonus: this.abilityMods.ConMod * this.monster.HDNum,
+        HDString: ""
+      };
+      health.HDString = health.HDString.toString();
+      health.HDString = health.HDString.concat("d", this.monster.HDType, "+");
+      return health;
+    },
+    monsterAC() {
+      let ac = {
+        total: 10,
+        touch: 10,
+        flat: 10
+      };
+      let bonus = {
+        size: this.monsterSize["ac / atk"],
+        armor: 0,   // not touch
+        shield: 0,  // not touch
+        natural: 0, // not touch
+        dex: this.abilityMods.DexMod, // not flat
+        dodge: 0                      // not flat
+      };
+      Object.values(bonus).forEach(item => { ac.total = ac.total + item; });
+      ac.touch = ac.total - bonus.armor - bonus.shield - bonus.natural;
+      ac.flat = ac.total - bonus.dex - bonus.dodge;
+      return ac;
+    },
+    monsterSize() {
+      let size = {};
+      let temp = this.monster.Size ? this.monster.Size : 'medium'; // sets a default until monster is known?
+      size = this.tables.size[temp.toLowerCase()];
+      return size;
+    },
   },
   data() {
     return {
       content: "DM Screen",
       loading: false,
       icons: icons,
+      tables: tables,
 
-      monsterVisible: false,
+      monsterVisible: true,
       openSections: [ "defense", "offense", "special", "other" ],
       original: {
         /*
-        Name: "Kobold"
-        */
         Name: "Adult Red Dragon"
+        */
+        Name: "Kobold"
       },
       monster: {}
 
     };
   },
   mounted() {
-    // console.log(this.icons);
+
+    console.log(this.tables);
+
     this.getMonster(this.original);
 
     UserService.getAdminBoard().then(
@@ -364,23 +424,19 @@ export default {
     },
     monsterSetup(original){
       this.monster = original;
-
-      // Ability Mods
-      let abilities = [{ key: "StrMod", value: this.monster.Str }, { key: "DexMod", value: this.monster.Dex }, { key: "ConMod", value: this.monster.Con }, { key: "IntMod", value: this.monster.Int }, { key: "WisMod", value: this.monster.Wis }, { key: "ChaMod", value: this.monster.Cha }];
-      abilities.map(({key, value}) => { this.monster[key] = Math.floor((value - 10) / 2) });
-
-
       this.monster.HDNum = parseInt(this.monster.HD.split('d')[0]);
-      this.monster.HDType = "d" + this.monster.HD.split('d')[1].split('+')[0];
+      this.monster.HDType = this.monster.HD.split('d')[1].split('+')[0];
 
-
-
-      // TODO: split atk strongs to use abil mods
+      // TODO: split atk strings to use abil mods
       this.monster.Melee = this.monster.Melee ? this.monster.Melee.split(',') : null;
       this.monster.Ranged = this.monster.Ranged ? this.monster.Ranged.split(',') : null;
 
+      // TODO: add ac stuff to monster DB
+      this.monster.ac = {};
+      this.monster.ac.natural = 2;
 
-      console.log(this.monster);
+
+      // console.log(this.monster);
     },
     monsterOpen() {
       this.monsterVisible = true;
@@ -390,15 +446,6 @@ export default {
       this.monsterVisible = false;
       // this.monster = {};
     },
-    // updateStat(stat, ammount) {
-    //   this.monster[stat] = this.monster[stat] + ammount;
-    //
-    //   console.log(typeof stat, stat);
-    //
-    // },
-    sectionClose() {
-      console.log('changed?');
-    }
   }
 };
 </script>
