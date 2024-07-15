@@ -16,7 +16,7 @@
   <el-dialog
     width="600"
     v-model="monsterVisible"
-    :title="monsterTitle"
+    :title="creature.title"
     :before-close="monsterClose"
   >
 
@@ -123,10 +123,10 @@
           </el-col>
 
           <el-col :span="7" class="center">
-            HP: {{ monsterHealth.total }} ({{ this.monster.HDNum }}{{ monsterHealth.HDString }}{{ monsterHealth.bonus}} / {{ this.monster.HP }})
+            HP: {{ creature.health.total }} ({{ this.monster.HDNum }}{{ creature.health.HDString }}{{ creature.health.bonus}} / {{ this.monster.HP }})
 
             <br><br>
-            AC: {{ monsterAC.total }}  /   {{ this.monster.AC }}
+            AC: {{ creature.AC.total }}  /   {{ this.monster.AC }}
             <br>
             Touch: {{ this.monster.AC_Touch }}
             <br>
@@ -151,7 +151,6 @@
 
 <br><br>
 
-{{ monsterSize }}
 
           </el-col>
 
@@ -318,59 +317,84 @@ export default {
     HexGraph
   },
   computed: {
-    // a computed property for the creature's card title
-    monsterTitle() {
-      let title = "";
-      title = this.original.Name.concat(" CR ", this.original.CR);
-      return title;
-    },
-    abilityMods() {
-      let abilities = {
-        StrMod: Math.floor((this.monster.Str - 10) / 2),
-        DexMod: Math.floor((this.monster.Dex - 10) / 2),
-        ConMod: Math.floor((this.monster.Con - 10) / 2),
-        IntMod: Math.floor((this.monster.Int - 10) / 2),
-        WisMod: Math.floor((this.monster.Wis - 10) / 2),
-        ChaMod: Math.floor((this.monster.Cha - 10) / 2),
-      }
-      return abilities;
-    },
-    monsterHealth() {
+    creature() {
+      let creature = {
+        title: this.original.Name.concat(" CR ", this.original.CR),
+        abilities: {
+          StrMod: Math.floor((this.monster.Str - 10) / 2),
+          DexMod: Math.floor((this.monster.Dex - 10) / 2),
+          ConMod: Math.floor((this.monster.Con - 10) / 2),
+          IntMod: Math.floor((this.monster.Int - 10) / 2),
+          WisMod: Math.floor((this.monster.Wis - 10) / 2),
+          ChaMod: Math.floor((this.monster.Cha - 10) / 2),
+        },
+        health: {
+          total: 0,
+          bonus: 0,
+          HDString: "d".concat(this.monster.HDType, "+")
+        },
+        AC: {
+          total: 10,
+          touch: 10,
+          flat: 10
+
+        }
+      };
+
+      // Ability Mods can only be accesed affter initialization
+
+      // set health
       // TODO: Toughness Feat, Favored Class Bonus
-      let health = {
-        total: Math.floor( (Math.floor(this.monster.HDType/2)+0.5) * this.monster.HDNum ) + ( this.abilityMods.ConMod * this.monster.HDNum ),
-        bonus: this.abilityMods.ConMod * this.monster.HDNum,
-        HDString: ""
-      };
-      health.HDString = health.HDString.toString();
-      health.HDString = health.HDString.concat("d", this.monster.HDType, "+");
-      return health;
-    },
-    monsterAC() {
-      let ac = {
-        total: 10,
-        touch: 10,
-        flat: 10
-      };
+      creature.health.total = Math.floor( (Math.floor(this.monster.HDType/2)+0.5) * this.monster.HDNum ) + ( creature.abilities.ConMod * this.monster.HDNum );
+      creature.health.bonus = creature.abilities.ConMod * this.monster.HDNum;
+
+      // set AC
       let bonus = {
-        size: this.monsterSize["ac / atk"],
-        armor: 0,   // not touch
-        shield: 0,  // not touch
-        natural: 0, // not touch
-        dex: this.abilityMods.DexMod, // not flat
+        size: this.race.size["ac / atk"],
+        armor: this.equipment.armor.bonus,   // not touch
+        shield: this.equipment.shield.bonus,  // not touch
+        natural: this.race.naturalArmor, // not touch
+        dex: creature.abilities.DexMod, // not flat
         dodge: 0                      // not flat
       };
-      Object.values(bonus).forEach(item => { ac.total = ac.total + item; });
-      ac.touch = ac.total - bonus.armor - bonus.shield - bonus.natural;
-      ac.flat = ac.total - bonus.dex - bonus.dodge;
-      return ac;
+      Object.values(bonus).forEach(item => { creature.AC.total = creature.AC.total + item; });
+      creature.AC.touch = creature.AC.total - bonus.armor - bonus.shield - bonus.natural;
+      creature.AC.flat = creature.AC.total - bonus.dex - bonus.dodge;
+
+
+
+      return creature;
     },
-    monsterSize() {
-      let size = {};
-      let temp = this.monster.Size ? this.monster.Size : 'medium'; // sets a default until monster is known?
-      size = this.tables.size[temp.toLowerCase()];
-      return size;
+
+    equipment() {
+      let equipment = {
+        armor: {
+          name: "temp",
+          bonus: 0,
+          type: "armor"
+        },
+        shield: {
+          name: "temp",
+          bonus: 0,
+          type: "shield"
+        }
+      }
+      return equipment;
     },
+    race() {
+      let race = {
+        naturalArmor: 0,
+        size: {}
+      };
+
+      // sets a default until monster is known?
+      let temp = this.monster.Size ? this.monster.Size : 'medium';
+      race.size = this.tables.size[temp.toLowerCase()];
+
+      return race;
+    },
+
+
   },
   data() {
     return {
@@ -392,9 +416,6 @@ export default {
     };
   },
   mounted() {
-
-    console.log(this.tables);
-
     this.getMonster(this.original);
 
     UserService.getAdminBoard().then(
@@ -442,9 +463,7 @@ export default {
       this.monsterVisible = true;
     },
     monsterClose() {
-      console.log("Closing modal");
       this.monsterVisible = false;
-      // this.monster = {};
     },
   }
 };
