@@ -1,0 +1,19 @@
+{
+  "Death Worm": {
+    "senses": [ "Darkvision 60 ft.", "Low-light vision", "Tremorsense 60 ft." ],
+    "ac": { "natural": 9, "dodge": 0 },
+    "saves": { "fort": 6, "ref": 6, "will": 4 },
+    "immunities": [ "Acid", "Electricity", "Poison" ],
+    "bab": 8,
+    "magic": "Special Attacks breath weapon (30-ft. line, 8d6 acid damage, Reflex DC 17 for half, usable every 1d4 rounds)"
+  },
+  "Kobold": {
+    "senses": [ "Darkvision 60 ft." ],
+    "ac": { "natural": 1, "dodge": 0 },
+    "saves": { "fort": 2, "ref": 0, "will": 0 },
+    "weaknesses": [ "Light sensitivity" ],
+    "bab": 1
+
+  }
+
+}

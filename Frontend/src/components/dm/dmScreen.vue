@@ -14,7 +14,7 @@
 
 
   <el-dialog
-    width="600"
+    width="650"
     v-model="monsterVisible"
     :title="creature.title"
     :before-close="monsterClose"
@@ -107,13 +107,6 @@
     </el-row>
     <el-divider border-style="hidden"/>
 
-
-    <el-button type="primary" circle @click="console.log(tables)">
-      <g-icon iconSize="24px" iconName="eye" />
-    </el-button>
-
-
-
     <el-collapse v-model="openSections">
       <!-- Defense -->
       <el-collapse-item title="Defense" name="defense">
@@ -124,63 +117,64 @@
 
           <el-col :span="7" class="center">
             HP: {{ creature.health.total }} ({{ this.monster.HDNum }}{{ creature.health.HDString }}{{ creature.health.bonus}} / {{ this.monster.HP }})
-
             <br><br>
-            AC: {{ creature.AC.total }}  /   {{ this.monster.AC }}
-            <br>
-            Touch: {{ this.monster.AC_Touch }}
-            <br>
-            Flat Footed: {{ this.monster["AC_Flat-footed"] }}
-            <br>
-            (+21 natural, –2 size)<br>
-            (+2 armor, +1 Dex, +1 natural, +1 size)
 
-            <br><br>
+            AC: {{ creature.AC.total }} / {{ this.monster.AC }}
+            <br>
+            Touch: {{ creature.AC.touch }}
+            <br>
+            Flat Footed: {{ creature.AC.flat }}
           </el-col>
 
           <el-col :span="7" class="center">
-            Fort: {{ this.monster.Fort }}
-            <br>
-            Ref: {{ this.monster.Ref }}
-            <br>
-            Will: {{ this.monster.Will }}
-            <br>
-            DR: ##
-            <br>
-            SR: ##
+            <br><br>
 
-<br><br>
-
-
+            Fort: {{ creature.saves.fort }} / {{ this.monster.Fort }}
+            <br>
+            Ref: {{ creature.saves.ref}} / {{ this.monster.Ref }}
+            <br>
+            Will: {{ creature.saves.will}} / {{ this.monster.Will }}
+            <br>
+            <span v-if="this.monster.dr">
+            DR: {{ this.monster.dr }}
+            </span>
+            <br>
+            <span v-if="this.monster.sr">
+              SR: {{ this.monster.sr }}
+            </span>
           </el-col>
 
           <el-col :span="7" class="center">
-            Init: ##
+            Init: {{ creature.init }}
             <br>
-            Senses: XX
+            Senses: <span v-for="item in creature.senses" :key="item.id"> {{ item }}, </span>
             <br>
             Speed: {{ this.monster.Speed }}
           </el-col>
         </el-row>
 
-        <el-row>
+        <el-row v-if="this.monster.Immunities">
           <el-col :span="3" class="center">
           </el-col>
           <el-col :span="7" class="center">
             Immunities
           </el-col>
           <el-col :span="14" class="center">
-            xx, xx, xx
+            <span v-for="item in this.monster.Immunities" :key="item.id">
+              {{ item }},
+            </span>
           </el-col>
         </el-row>
-        <el-row>
+        <el-row v-if="this.monster.Weaknesses">
           <el-col :span="3" class="center">
           </el-col>
           <el-col :span="7" class="center">
             Weaknesses
           </el-col>
           <el-col :span="14" class="center">
-            xx, xx, xx
+            <span v-for="item in this.monster.Weaknesses" :key="item.id">
+              {{ item }},
+            </span>
           </el-col>
         </el-row>
       </el-collapse-item>
@@ -196,15 +190,15 @@
           <el-col :span="7" class="center">
             <div class="center-horz">Melee</div>
             Reach: {{ this.monster.Reach }} ft.
-            <div v-for="atk in this.monster.Melee" :key="atk.id">
-               {{ atk }}
-             </div>
+            <div v-for="atk in creature.melee" :key="atk.id">
+              <span v-if="atk.atkNum"> {{ atk.atkNum }} </span> {{ atk.atkName }} {{ atk.atkMod }} ({{ atk.dmgDie }}{{ atk.dmgMod }}<span v-if="atk.bonus"> plus {{ atk.bonus }}</span>)<br>
+            </div>
           </el-col>
 
           <el-col :span="7" class="center">
             <div class="center-horz">Ranged</div>
-            <div v-for="atk in this.monster.Ranged" :key="atk.id">
-              {{ atk }}
+            <div v-for="atk in creature.ranged" :key="atk.id">
+              {{ atk.atkName }} {{ atk.atkMod }} <span v-if="atk.dmgType">{{ atk.atkType }}</span> ({{ atk.dmgDie }}<span v-if="atk.dmgMod">{{ atk.dmgMod }}</span> <span v-if="atk.dmgType">{{ atk.dmgType }}</span>)<br>
             </div>
           </el-col>
 
@@ -270,14 +264,6 @@
         </el-row>
       </el-collapse-item>
     </el-collapse>
-<br><br>
-
-
-<br><br>
-
-
-<br><br>
-    {{ monster }}
 
   <template #footer>
     <div class="dialog-footer">
@@ -310,6 +296,7 @@ import UserService from "@/services/user.service";
 import HexGraph from '@/components/template/HexGraph.vue'
 const icons = require('@/components/template/svgPaths.json');
 const tables = require('@/components/codex/tables.json');
+const supplement = require('@/components/codex/monsters.json');
 
 export default {
   name: "DM Screen",
@@ -319,7 +306,7 @@ export default {
   computed: {
     creature() {
       let creature = {
-        title: this.original.Name.concat(" CR ", this.original.CR),
+        title: this.monster.Name.concat(" CR ", this.monster.CR),
         abilities: {
           StrMod: Math.floor((this.monster.Str - 10) / 2),
           DexMod: Math.floor((this.monster.Dex - 10) / 2),
@@ -328,40 +315,98 @@ export default {
           WisMod: Math.floor((this.monster.Wis - 10) / 2),
           ChaMod: Math.floor((this.monster.Cha - 10) / 2),
         },
-        health: {
-          total: 0,
-          bonus: 0,
-          HDString: "d".concat(this.monster.HDType, "+")
-        },
-        AC: {
-          total: 10,
-          touch: 10,
-          flat: 10
-
-        }
+        health: { total: 0, bonus: 0, HDString: "d".concat(this.monster.HDType, "+") },
+        AC: { total: 10, touch: 10, flat: 10 },
+        saves: { fort: 0, ref: 0, will: 0 },
+        init: 0,
+        sneses: [],
+        melee: [],
+        ranged: [],
+        magic: []
       };
 
       // Ability Mods can only be accesed affter initialization
 
-      // set health
-      // TODO: Toughness Feat, Favored Class Bonus
+      // SET DEFENSE
+      // TODO: Toughness Feat
       creature.health.total = Math.floor( (Math.floor(this.monster.HDType/2)+0.5) * this.monster.HDNum ) + ( creature.abilities.ConMod * this.monster.HDNum );
       creature.health.bonus = creature.abilities.ConMod * this.monster.HDNum;
 
-      // set AC
       let bonus = {
-        size: this.race.size["ac / atk"],
-        armor: this.equipment.armor.bonus,   // not touch
+        size: this.monster.size ? this.monster.size["ac / atk"] : 0,
+        armor: this.equipment.armor.bonus,    // not touch
         shield: this.equipment.shield.bonus,  // not touch
-        natural: this.race.naturalArmor, // not touch
-        dex: creature.abilities.DexMod, // not flat
-        dodge: 0                      // not flat
+        natural: this.monster.ac.natural,     // not touch
+        dex: creature.abilities.DexMod,       // not flat
+        dodge: this.monster.ac.dodge          // not flat
       };
       Object.values(bonus).forEach(item => { creature.AC.total = creature.AC.total + item; });
       creature.AC.touch = creature.AC.total - bonus.armor - bonus.shield - bonus.natural;
       creature.AC.flat = creature.AC.total - bonus.dex - bonus.dodge;
 
+      if (this.monster.Saves) {
+        creature.saves.fort = this.monster.Saves.fort + creature.abilities.ConMod;
+        creature.saves.ref = this.monster.Saves.ref + creature.abilities.DexMod;
+        creature.saves.will = this.monster.Saves.will + creature.abilities.WisMod;
+      }
 
+      creature.init = creature.abilities.DexMod;
+      creature.senses = this.monster.Senses;
+
+
+      // SET OFFENSE
+      if (this.monster.Melee) {
+        this.monster.Melee.forEach((atk, i) => {
+          // console.log("original : ", atk);
+          let atkArr = atk.split(" ");
+          let atkNum = 0;
+          if (!isNaN(parseInt(atkArr[0])) ) {
+            atkNum = atkArr[0];
+            atkArr.shift();
+          }
+          let [atkName, atkMod, dmgDie, dmgMod] = [ atkArr[0], atkArr[1], atkArr[2], 0 ];
+          let bonus = atkArr[3] ? atkArr[4].slice(0, -1) : "";
+          dmgDie = dmgDie.split("+")[0].substr(1);
+          dmgDie = dmgDie.split("-")[0];
+          if (this.monster.Melee.length == 1 && !atkNum && ["bite", "claw", "gore", "slam", "sting", "talons"].includes(atkName)) {
+            // 1 Natural Attack
+            atkMod = this.monster.BAB + creature.abilities.StrMod + this.monster.size["ac / atk"];
+            dmgMod = creature.abilities.StrMod + creature.abilities.StrMod/2;
+          } else if (["hoof", "tentacle", "wing", "pincers", "tail slap"].includes(atkName)) {
+            // Secondary Natural Attack
+            atkMod = this.monster.BAB - 5 + creature.abilities.StrMod + this.monster.size["ac / atk"];
+            dmgMod = creature.abilities.StrMod / 2;
+          } else {
+            // Primary Natural Attack / Weapon Attack
+            atkMod = this.monster.BAB + creature.abilities.StrMod + this.monster.size["ac / atk"];
+            dmgMod = creature.abilities.StrMod;
+          }
+          atkMod = atkMod>0 ? `+${atkMod}` : atkMod;
+          dmgMod = dmgMod>0 ? `+${dmgMod}` : dmgMod;
+          creature.melee[i] = { atkNum, atkName, atkMod, dmgDie, dmgMod, bonus };
+        });
+      }
+
+      if (this.monster.Ranged) {
+        this.monster.Ranged.forEach((atk, i) => {
+          // console.log("original : ", atk);
+          let atkArr = atk.split("+");
+          let [atkName, atkMod, atkType, dmgDie, dmgMod, dmgType] = [ atkArr[0].slice(0, -1), 0, "ranged", "d", 0, "slashing" ];
+
+          atkMod = this.monster.BAB + creature.abilities.DexMod + this.monster.size["ac / atk"];
+          atkMod = atkMod>0 ? `+${atkMod}` : atkMod;
+
+          atkArr = atkArr[1].substring(2).split("(");
+          atkType = atkArr[0].slice(0, -1);
+
+          atkArr = atkArr[1].split(" ");
+          dmgDie = atkArr[0];
+          dmgMod = dmgMod>0 ? `+${dmgMod}` : dmgMod;
+          dmgType = atkArr[1].slice(0 ,-1);
+
+          creature.ranged[i] = { atkName, atkMod, atkType, dmgDie, dmgMod, dmgType };
+        });
+      }
 
       return creature;
     },
@@ -380,21 +425,7 @@ export default {
         }
       }
       return equipment;
-    },
-    race() {
-      let race = {
-        naturalArmor: 0,
-        size: {}
-      };
-
-      // sets a default until monster is known?
-      let temp = this.monster.Size ? this.monster.Size : 'medium';
-      race.size = this.tables.size[temp.toLowerCase()];
-
-      return race;
-    },
-
-
+    }
   },
   data() {
     return {
@@ -402,21 +433,23 @@ export default {
       loading: false,
       icons: icons,
       tables: tables,
+      supplement: supplement,
 
       monsterVisible: true,
       openSections: [ "defense", "offense", "special", "other" ],
-      original: {
+      monster: {
         /*
-        Name: "Adult Red Dragon"
+        Name: "Adult Red Dragon",
+        Name: "Kobold",
         */
-        Name: "Kobold"
-      },
-      monster: {}
+        Name: "Death Worm",
+        ac: 10
+      }
 
     };
   },
   mounted() {
-    this.getMonster(this.original);
+    this.getMonster(this.monster);
 
     UserService.getAdminBoard().then(
       (response) => {
@@ -437,27 +470,38 @@ export default {
       this.loading = true;
       DataService.getMonster(monster)
       .then(response => {
-        this.original = response;
-        this.monsterSetup(this.original);
+        this.monsterSetup(response);
         this.loading = false;
       })
       .catch(err => { console.error(err); });
     },
-    monsterSetup(original){
-      this.monster = original;
+    monsterSetup(monster){
+      this.monster = monster;
+      // Add supplemental base stats
+      let sup = this.supplement[this.monster.Name];
+      this.monster.Senses = sup.senses
+
+      let temp = this.monster.Size ? this.monster.Size : 'medium';
+      this.monster.size = this.tables.size[temp.toLowerCase()];
+
+      // DEFENSE
       this.monster.HDNum = parseInt(this.monster.HD.split('d')[0]);
       this.monster.HDType = this.monster.HD.split('d')[1].split('+')[0];
+      this.monster.ac = sup.ac;
+      this.monster.DR = sup.dr;
+      this.monster.SR = sup.sr;
+      this.monster.Saves = sup.saves;
+      this.monster.Immunities = sup.immunities;
+      this.monster.Weaknesses = sup.weaknesses;
 
-      // TODO: split atk strings to use abil mods
+      // OFFENSE
+      this.monster.BAB = sup.bab;
       this.monster.Melee = this.monster.Melee ? this.monster.Melee.split(',') : null;
       this.monster.Ranged = this.monster.Ranged ? this.monster.Ranged.split(',') : null;
 
-      // TODO: add ac stuff to monster DB
-      this.monster.ac = {};
-      this.monster.ac.natural = 2;
 
 
-      // console.log(this.monster);
+      console.log(this.monster);
     },
     monsterOpen() {
       this.monsterVisible = true;

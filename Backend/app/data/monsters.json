@@ -18,7 +18,7 @@
     "hp": { "Class HD": "1d10", "Con": 0 },
     "saves": { "Fort": 2, "Ref": 1, "Will": -1 },
     "weaknesses": "Light sensitivity",
-    
+
     "OFFENSE": "",
     "speed": "30 ft.",
     "melee": "spear +1(Str) (1d6-1 / x3)",
@@ -34,6 +34,9 @@
     "Treasure": "NPC gear (leather armor, spear, sling, other treasure)",
 
   },
+  "death worm": {
+
+  }
 
 
 }

@@ -127,10 +127,11 @@
       "weight":     "125 tons or more"
     }
   },
-  "dice steps": {
-    "1d4": {
-      "up": ["", "1d6", "1d8"],
-      "down": ["", "1d3", "1d2"]
-    }
+  "damage types": {
+    "aligned":    [ "chaoic", "evil", "good", "lawful" ],
+    "energy":     [ "acid", "cold", "electricity", "fire", "force", "negative", "positive", "sonic" ],
+    "misc":       [ "bleed", "nonlethal", "precision", "spell", "untyped" ],
+    "substance":  [ "adamantine", "cold Iron", "epic", "magic", "silver" ],
+    "weapon":     [ "budgeoning", "piercing", "slashing" ]
   }
 }
