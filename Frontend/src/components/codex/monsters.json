@@ -1,19 +1,100 @@
 {
   "Death Worm": {
-    "senses": [ "Darkvision 60 ft.", "Low-light vision", "Tremorsense 60 ft." ],
-    "ac": { "natural": 9, "dodge": 0 },
-    "saves": { "fort": 6, "ref": 6, "will": 4 },
-    "immunities": [ "Acid", "Electricity", "Poison" ],
-    "bab": 8,
-    "magic": "Special Attacks breath weapon (30-ft. line, 8d6 acid damage, Reflex DC 17 for half, usable every 1d4 rounds)"
+    "Senses": [ "Darkvision 60 ft.", "Low-light vision", "Tremorsense 60 ft." ],
+    "AC": { "natural": 14, "dodge": 0 },
+    "Saves": { "fort": 6, "ref": 6, "will": 4 },
+    "Immunities": [ "Acid", "Electricity", "Poison" ],
+    "BAB": 8,
+    "Melee": "bite +11 (3d8+6 plus poison), 2 big claws -2 (2d6-10)",
+    "Ranged": "electrical jolt +8 ranged touch (4d6 electricity), needle -2 (10d4-5 plus trip)",
+    "Special": [ "Breath Weapon (30-ft. line, 8d6 acid damage, Reflex DC 17 for half, usable every 1d4 rounds)" ],
+    "Extras": {
+      "Corrosive Blood (Ex)": "A death worm’s blood can corrode metal on contact. If a creature damages a death worm with a piercing or slashing weapon made of metal, the creature’s blood deals 3d6 points of acid damage to the metal weapon (unlike most forms of energy damage, this damage is not halved when applied to a metal object, although it does still have to penetrate the metal’s hardness). The weapon’s wielder can halve the damage the weapon takes by making a successful DC 17 Reflex save. Creatures made of metal that deal slashing or piercing damage to a death worm with a natural attack take 3d6 points of acid damage (a DC 17 Reflex save halves this damage). The corrosive elements of the blood fade 1 round after it leaves the worm’s body or the worm dies. The save DC is Constitution-based.",
+      "Venomous Skin (Ex)": "A death worm’s skin secretes a noxious, waxy substance. This venomous sheen poisons any creature that touches a death worm, either by making a successful attack with an unarmed strike or natural weapon or with a touch attack. A creature that grapples a death worm is also exposed to the creature’s venomous skin.",
+      "Poison (Ex)": "Bite-injury, or skin-contact; save Fort DC 17; frequency 1/round for 6 rounds; effect 1d2 Con damage; cure 2 saves."
+    },
+    "Feats": {
+      "Cleave": "As a standard action, you can make a single attack at your full base attack bonus against a foe within reach. If you hit, you deal damage normally and can make an additional attack (using your full base attack bonus) against a foe that is adjacent to the first and also within reach. You can only make one additional attack per round with this feat. When you use this feat, you take a –2 penalty to your Armor Class until your next turn.",
+      "Improved Overrun": "You do not provoke an attack of opportunity when performing an overrun combat maneuver. In addition, you receive a +2 bonus on checks made to overrun a foe. You also receive a +2 bonus to your Combat Maneuver Defense whenever an opponent tries to overrun you. Targets of your overrun attempt may not chose to avoid you.",
+      "Iron Will": "You get a +2 bonus on all Will saving throws.",
+      "Power Attack": "You may choose to take a -3 on your Attack Roll for a +9 on your Damage Roll."
+    },
+    "Languages": "Terran (cannot speak)"
   },
+
+  "Basic Death Worm": {
+    "Senses": [ "Darkvision 60 ft.", "Low-light vision", "Tremorsense 60 ft." ],
+    "AC": { "natural": 9, "dodge": 0 },
+    "Saves": { "fort": 6, "ref": 6, "will": 4 },
+    "Immunities": [ "Acid", "Electricity", "Poison" ],
+    "BAB": 8,
+    "Melee": "bite +11 (3d8+6 plus poison), 2 big claws -2 (2d6-10)",
+    "Ranged": "electrical jolt +8 ranged touch (4d6 electricity), needle -2 (10d4-5 plus trip)",
+    "Special": [ "Breath Weapon (30-ft. line, 8d6 acid damage, Reflex DC 17 for half, usable every 1d4 rounds)" ],
+    "Extras": {
+      "Corrosive Blood (Ex)": "A death worm’s blood can corrode metal on contact. If a creature damages a death worm with a piercing or slashing weapon made of metal, the creature’s blood deals 3d6 points of acid damage to the metal weapon (unlike most forms of energy damage, this damage is not halved when applied to a metal object, although it does still have to penetrate the metal’s hardness). The weapon’s wielder can halve the damage the weapon takes by making a successful DC 17 Reflex save. Creatures made of metal that deal slashing or piercing damage to a death worm with a natural attack take 3d6 points of acid damage (a DC 17 Reflex save halves this damage). The corrosive elements of the blood fade 1 round after it leaves the worm’s body or the worm dies. The save DC is Constitution-based.",
+      "Venomous Skin (Ex)": "A death worm’s skin secretes a noxious, waxy substance. This venomous sheen poisons any creature that touches a death worm, either by making a successful attack with an unarmed strike or natural weapon or with a touch attack. A creature that grapples a death worm is also exposed to the creature’s venomous skin.",
+      "Poison (Ex)": "Bite-injury, or skin-contact; save Fort DC 17; frequency 1/round for 6 rounds; effect 1d2 Con damage; cure 2 saves."
+    },
+    "Feats": {
+      "Cleave": "As a standard action, you can make a single attack at your full base attack bonus against a foe within reach. If you hit, you deal damage normally and can make an additional attack (using your full base attack bonus) against a foe that is adjacent to the first and also within reach. You can only make one additional attack per round with this feat. When you use this feat, you take a –2 penalty to your Armor Class until your next turn.",
+      "Improved Overrun": "You do not provoke an attack of opportunity when performing an overrun combat maneuver. In addition, you receive a +2 bonus on checks made to overrun a foe. You also receive a +2 bonus to your Combat Maneuver Defense whenever an opponent tries to overrun you. Targets of your overrun attempt may not chose to avoid you.",
+      "Iron Will": "You get a +2 bonus on all Will saving throws.",
+      "Power Attack": "You may choose to take a -3 on your Attack Roll for a +9 on your Damage Roll."
+    },
+    "Languages": "Terran (cannot speak)"
+  },
+
+
   "Kobold": {
-    "senses": [ "Darkvision 60 ft." ],
-    "ac": { "natural": 1, "dodge": 0 },
-    "saves": { "fort": 2, "ref": 0, "will": 0 },
-    "weaknesses": [ "Light sensitivity" ],
-    "bab": 1
+    "Senses": [ "Darkvision 60 ft." ],
+    "AC": { "natural": 1, "dodge": 0 },
+    "Saves": { "fort": 2, "ref": 0, "will": 0 },
+    "Weaknesses": [ "Light sensitivity" ],
+    "BAB": 1,
+    "Melee": "spear +1 (1d6–1/x3)"
+  },
+
+  "Adult Red Dragon": {
+    "Senses": [ "Darkvision 60 ft.", "Low-light vision", "Tremorsense 60 ft." ],
+    "AC": { "natural": 21, "dodge": 0 },
+    "Saves": { "fort": 10, "ref": 10, "will": 12 },
+    "Immunities": [ "Fire", "Paralysis", "Sleep" ],
+    "Weaknesses": [ "Cold" ],
+    "DR": "5/magic",
+    "SR": 25,
+    "BAB": 17,
+    "Special": [ "Breath Weapon (50-ft. cone, DC 24, 12d10 fire)", "Crush (Small Creatures, DC 24, 2d8+15)" ],
+
+    "Magic": {
+      "Spell-Like": {
+        "Basics": { "CL": 17, "concentration": 20 },
+        "0": [ "detect magic", "pyrotechnics (DC 15)", "suggestion (DC 16)" ]
+      },
+      "Spells": {
+        "Basics": { "CL": 7, "concentration": 10 },
+        "3": {
+          "Frequency": "7 / day",
+          "Known": [ "dispel magic", "haste" ]
+        },
+        "2": {
+          "Frequency": "7 / day",
+          "Known": [ "invisibility", "resist energy", "see invisibility" ]
+        },
+        "1": {
+          "Frequency": "7 / day",
+          "Known": [ "alarm", "grease (DC 14)", "magic missile", "shield", "true strike" ]
+        },
+        "0": {
+          "Frequency": "At Will",
+          "Known": [ "arcane mark", "light", "mage hand", "mending", "message", "prestidigitation", "read magic" ]
+        }
+      }
+    },
+    "Extras": {
+      "Fire Aura (Su)": "An adult red dragon is surrounded by an aura of intense heat. All creatures within 5 feet take 1d6 points of fire damage at the beginning of the dragon’s turn. An old dragon’s aura extends to 10 feet. An ancient dragon’s damage increases to 2d6.",
+      "Smoke Vision (Ex)": "A very young red dragon can see perfectly in smoky conditions (such as those created by pyrotechnics)."
+    }
 
   }
-
 }

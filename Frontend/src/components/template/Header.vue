@@ -216,7 +216,7 @@ export default {
   },
   mounted() {
     // Called from the header once, not everytime time SFC loads a new 'page'
-    console.log("just once please");
+    console.log("Load Header");
     // TODO:
     /*
     get lore & rule pages from DB ?
