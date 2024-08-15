@@ -1,12 +1,7 @@
 <template>
   <div class="container">
 
-    <!--
-     https://www.svgrepo.com/collection/game-skills-vectors
-    https://element-plus.org/en-US/component/table.html
-    https://element-plus.org/en-US/component/pagination.html
-    https://www.w3schools.com/howto/howto_js_sort_table.asp
-    -->
+    {{ tableSearch }}
 
     <!-- FILTERS -->
     <el-row class="row-bg" justify="space-between">
@@ -15,20 +10,15 @@
       </el-col>
 
       <el-col :span="6">
-        <el-select v-model="value" multiple placeholder="Select" style="width: 240px">
-          <el-option
-            v-for="item in colors"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          >
+        <el-select v-model="tableColor" multiple placeholder="Select" style="width: 240px">
+          <el-option v-for="item in colors" :key="item.value" :label="item.label" :value="item.value" >
             <div class="flex items-center">
               <el-tag :color="item.value" style="margin-right: 8px" size="small" />
               <span :style="{ color: item.value }">{{ item.label }}</span>
             </div>
           </el-option>
           <template #tag>
-            <el-tag v-for="color in value" :key="color" :color="color" />
+            <el-tag v-for="color in tableColor" :key="color" :color="color" />
           </template>
         </el-select>
       </el-col>
@@ -88,48 +78,19 @@
 
 
     <!-- MONSTER MODAL -->
-
     <el-dialog
-      width="500"
-      v-model="cardVisible"
-      :title="this.monster.Name"
-      :before-close="handleClose"
+      width="650"
+      v-model="monsterVisible"
+      :before-close="closeMonster"
     >
-
-    {{ monster }}
-
-
-
-      <el-row>
-        <el-col :span="9" class="center">
-          <g-icon iconSize="128px" />
-          <br>
-          HP
-          <br>
-          init, sense, speed
-        </el-col>
-
-
-        <el-col :span="9" class="center">
-          <svg width="200" height="200">
-            <HexGraph :abilities="[this.monster.Str, this.monster.Dex, this.monster.Con, this.monster.Int, this.monster.Wis, this.monster.Cha]"></HexGraph>
-          </svg>
-        </el-col>
-
-        <el-col :span="6" style="display: inline-grid">
-          <div v-for="(stat, index) in abilities" :key="index">
-            <strong>{{ stat }}: </strong>
-          </div>
-        </el-col>
-      </el-row>
-
-    <template #footer>
-      <div class="dialog-footer">
-        <el-button @click="handleClose()"> Close </el-button>
-        <el-button type="primary" @click="addMonster()"> Add to Session </el-button>
-      </div>
-    </template>
-  </el-dialog>
+      <CreatureCard :creatureName="creatureName"></CreatureCard>
+      <template #footer>
+        <div class="dialog-footer">
+          <el-button @click="closeMonster()"> Close </el-button>
+          <el-button type="primary" @click="addMonster()"> Add to Session </el-button>
+        </div>
+      </template>
+    </el-dialog>
 
 
   </div>
@@ -137,12 +98,12 @@
 
 <script>
 import DataService from "@/services/data.service";
-import HexGraph from '@/components/template/HexGraph.vue'
+import CreatureCard from "@/components/template/CreatureCard.vue";
 
 export default {
   name: "Beastiary",
   components: {
-    HexGraph
+    CreatureCard
   },
   data() {
     return {
@@ -168,6 +129,7 @@ export default {
         { text: 'Any', value: 'any' },
       ],
 
+      tableColor: "",
       colors: [
         { value: '#E63415', label: 'red' },
         { value: '#FF6600', label: 'orange' },
@@ -177,27 +139,14 @@ export default {
         { value: '#4167F0', label: 'blue' },
         { value: '#6222C9', label: 'purple' },
       ],
-      value: "",
-
-
-
-      abilities: [
-        { label: 'Str', value: 16, location: { x: 100, y: 12 } },
-        { label: 'Dex', value: 13, location: { x: 176, y: 56 } },
-        { label: 'Con', value: 18, location: { x: 176, y: 144 } },
-        { label: 'Int', value: 10, location: { x: 100, y: 193 } },
-        { label: 'Wis', value: 11, location: { x: 10, y: 144 } },
-        { label: 'Cha', value: 8, location: { x: 10, y: 56 } }
-      ],
-
 
 
       // MONSTER MODAL
-      monster: {},
-      cardVisible: false,
+      monsterVisible: false,
+      creatureName: "",
     };
   },
-  computed: {},
+
   mounted() {
     this.getBeastiary();
   },
@@ -212,7 +161,9 @@ export default {
       .catch(err => { console.error(err); });
     },
     clearFilter() {
-      this.$router.go();
+      // this.$router.go();
+      this.tableColor = {};
+      this.tableSearch = "";
     },
     filterHandler( value, row, column ) {
       const property = column['property'];
@@ -231,26 +182,14 @@ export default {
       console.log('add', monster);
     },
 
-
     // MONSTER MODAL
-    openMonster(monster) {
-      this.monster = monster;
-      // console.log(monster);
-      this.cardVisible = true;
+    openMonster(name) {
+      this.creatureName = name.Name;
+      this.monsterVisible = true;
     },
-    handleClose() {
-      console.log("Closing modal");
-      this.cardVisible = false;
-      this.monster = {};
-      // ElMessageBox.confirm('Are you sure to close this dialog?')
-      // .then(() => {
-      //   done()
-      // })
-      // .catch(() => {
-      //   // catch error
-      }
-
-
+    closeMonster() {
+      this.monsterVisible = false;
+    }
   }
 };
 </script>

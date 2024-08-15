@@ -57,6 +57,10 @@ A tutorial can be found [here](https://www.bezkoder.com/vue-js-node-js-express-m
 
 
 ## ToDo
-- Add element plus to frontend
+- Get icons to update dynamically
+- get table filtering working in bestiary
+- add NPC builder / advancer
+- add player builder / advancer
+- move (some) json tables to DB
 - Get Backend MYSQL running not in Laragon?
 - Deploy built files to backend

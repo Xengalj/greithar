@@ -216,7 +216,6 @@ export default {
   },
   mounted() {
     // Called from the header once, not everytime time SFC loads a new 'page'
-    console.log("Load Header");
     // TODO:
     /*
     get lore & rule pages from DB ?
@@ -270,7 +269,6 @@ export default {
 .el-sub-menu svg.svg-inline--fa, .nav-link svg.svg-inline--fa {
   width: 20px;
 }
-
 
 .router-link-active {
   color: var(--el-color-success);

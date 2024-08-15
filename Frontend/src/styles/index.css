@@ -1,0 +1,9 @@
+.center-vert {
+  align-content: center;
+}
+.center-horz {
+  text-align: center;
+}
+.stat-controls .el-input-number {
+  width: 70px;
+}

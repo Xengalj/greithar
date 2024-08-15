@@ -1,0 +1,93 @@
+{
+  "armor": [
+    {
+      "name": "Armored Kilt",
+      "cost": 20,
+      "weight": 10,
+      "acBonus": 1,
+      "maxDex": 6,
+      "penalty": 0,
+      "spellFailure": "0%",
+      "speed": [ 30, 20 ],
+      "type": "Light"
+    },
+    {
+      "name": "Armored Coat",
+      "cost": 50,
+      "weight": 20,
+      "acBonus": 4,
+      "maxDex": 3,
+      "penalty": -2,
+      "spellFailure": "20%",
+      "speed": [ 20, 15 ],
+      "type": "Medium"
+    },
+    {
+      "name": "Banded Mail",
+      "cost": 250,
+      "weight": 35,
+      "acBonus": 7,
+      "maxDex": 1,
+      "penalty": -6,
+      "spellFailure": "35%",
+      "speed": [ 20, 15 ],
+      "type": "Heavy"
+    },
+    {
+      "name": "Buckler",
+      "cost": 5,
+      "weight": 5,
+      "acBonus": 1,
+      "maxDex": 100,
+      "penalty": -1,
+      "spellFailure": "5%",
+      "speed": [ 1000, 1000 ],
+      "type": "Shield"
+    },
+    {
+      "name": "Custom",
+      "cost": 0,
+      "weight": 0,
+      "acBonus": 0,
+      "maxDex": 100,
+      "penalty": 0,
+      "spellFailure": "0%",
+      "speed": [ 1000, 1000 ],
+      "type": "Custom"
+    }
+  ],
+  "weapons": [
+    {
+      "name": "Unarmed Strike",
+      "cost": 0,
+      "weight": 1,
+      "damage": [ "1d2", "1d3", "" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "range": 0,
+      "dmgType": [ "budgeoning", "nonlethal" ],
+      "special": "nonlethal",
+      "type": "Melee",
+      "category": "Light",
+      "proficiency": "Simple",
+      "group": [ "Close" ]
+    },
+    {
+      "name": "Brass Knife",
+      "cost": 2,
+      "weight": 1,
+      "damage": [ "1d3", "1d4", "" ],
+      "critRange": 19,
+      "critMultiplier": 2,
+      "range": 10,
+      "dmgType": [ "piercing", "slashing" ],
+      "special": "fragile",
+      "type": "Melee",
+      "category": "Light",
+      "proficiency": "Simple",
+      "group": [ "Light Blades", "Thrown" ]
+    }
+
+
+  ]
+}
