@@ -9,7 +9,8 @@
       "penalty": 0,
       "spellFailure": "0%",
       "speed": [ 30, 20 ],
-      "type": "Light"
+      "type": "Light",
+      "description": ""
     },
     {
       "name": "Armored Coat",
@@ -20,7 +21,8 @@
       "penalty": -2,
       "spellFailure": "20%",
       "speed": [ 20, 15 ],
-      "type": "Medium"
+      "type": "Medium",
+      "description": ""
     },
     {
       "name": "Banded Mail",
@@ -31,7 +33,8 @@
       "penalty": -6,
       "spellFailure": "35%",
       "speed": [ 20, 15 ],
-      "type": "Heavy"
+      "type": "Heavy",
+      "description": ""
     },
     {
       "name": "Buckler",
@@ -42,7 +45,8 @@
       "penalty": -1,
       "spellFailure": "5%",
       "speed": [ 1000, 1000 ],
-      "type": "Shield"
+      "type": "Shield",
+      "description": ""
     },
     {
       "name": "Custom",
@@ -53,9 +57,12 @@
       "penalty": 0,
       "spellFailure": "0%",
       "speed": [ 1000, 1000 ],
-      "type": "Custom"
+      "type": "Custom",
+      "description": ""
     }
   ],
+
+  
   "weapons": [
     {
       "name": "Unarmed Strike",
@@ -68,9 +75,42 @@
       "dmgType": [ "budgeoning", "nonlethal" ],
       "special": "nonlethal",
       "type": "Melee",
+      "category": "Unarmed",
+      "proficiency": "Simple",
+      "group": [ "Close" ],
+      "description": "Just a punch or slap of the hand."
+    },
+    {
+      "name": "Gauntlet",
+      "cost": 2,
+      "weight": 1,
+      "damage": [ "1d2", "1d3", "" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "range": 0,
+      "dmgType": [ "bludgeoning" ],
+      "special": "",
+      "type": "Melee",
+      "category": "Unarmed",
+      "proficiency": "Simple",
+      "group": [ "Close" ],
+      "description": "A metal glove that lets you deal lethal damage with unarmed strikes. Medium and heavy armors (except breastplate) come with gauntlets."
+    },
+    {
+      "name": "Battle Aspergillum",
+      "cost": 5,
+      "weight": 4,
+      "damage": [ "1d4", "1d6", "" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "range": 0,
+      "dmgType": [ "budgeoning" ],
+      "special": "",
+      "type": "Melee",
       "category": "Light",
       "proficiency": "Simple",
-      "group": [ "Close" ]
+      "group": [ "Hammers" ],
+      "description": "Named for the common aspergillum, a mace-like tool used by priests to sprinkle holy water, this light mace has a hollow head and a metal plug to fit the hollow’s neck."
     },
     {
       "name": "Brass Knife",
@@ -85,9 +125,703 @@
       "type": "Melee",
       "category": "Light",
       "proficiency": "Simple",
-      "group": [ "Light Blades", "Thrown" ]
-    }
+      "group": [ "Blades", "Thrown" ],
+      "description": ""
+    },
+    {
+      "name": "Brass Knuckles",
+      "cost": 1,
+      "weight": 1,
+      "damage": [ "1d2", "1d3", "" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "range": 0,
+      "dmgType": [ "bludgeoning", "" ],
+      "special": "monk",
+      "type": "Melee",
+      "category": "Light",
+      "proficiency": "Simple",
+      "group": [ "Close", "Monk" ],
+      "description": ""
+    },
+    {
+      "name": "Cestus",
+      "cost": 5,
+      "weight": 1,
+      "damage": [ "1d3", "1d4", "" ],
+      "critRange": 19,
+      "critMultiplier": 2,
+      "range": 0,
+      "dmgType": [ "bludgeoning", "piercing" ],
+      "special": "monk",
+      "type": "Melee",
+      "category": "Light",
+      "proficiency": "Simple",
+      "group": [ "Close", "Monk" ],
+      "description": ""
+    },
+    {
+      "name": "Dagger",
+      "cost": 2,
+      "weight": 1,
+      "damage": [ "1d3", "1d4", "" ],
+      "critRange": 19,
+      "critMultiplier": 2,
+      "range": 10,
+      "dmgType": [ "piercing", "slashing" ],
+      "special": "",
+      "type": "Melee",
+      "category": "Light",
+      "proficiency": "Simple",
+      "group": [ "Blades", "Thrown", "Tribal" ],
+      "description": ""
+    },
+    {
+      "name": "Punching Dagger",
+      "cost": 2,
+      "weight": 1,
+      "damage": [ "1d3", "1d4", "" ],
+      "critRange": 20,
+      "critMultiplier": 3,
+      "range": 0,
+      "dmgType": [ "piercing" ],
+      "special": "",
+      "type": "Melee",
+      "category": "Light",
+      "proficiency": "Simple",
+      "group": [ "Close" ],
+      "description": ""
+    },
+    {
+      "name": "Spiked Gauntlet",
+      "cost": 5,
+      "weight": 1,
+      "damage": [ "1d3", "1d4", "" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "range": 0,
+      "dmgType": [ "piercing" ],
+      "special": "",
+      "type": "Melee",
+      "category": "Light",
+      "proficiency": "Simple",
+      "group": [ "Close" ],
+      "description": ""
+    },
+    {
+      "name": "Traveling Kettle",
+      "cost": 5,
+      "weight": 2,
+      "damage": [ "1d4", "1d6", "" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "range": 0,
+      "dmgType": [ "bludgeoning" ],
+      "special": "monk",
+      "type": "Melee",
+      "category": "Light",
+      "proficiency": "Simple",
+      "group": [ "Monk" ],
+      "description": ""
+    },
+    {
+      "name": "Hook Hand",
+      "cost": 10,
+      "weight": 1,
+      "damage": [ "1d3", "1d4", "" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "range": 0,
+      "dmgType": [ "slashing" ],
+      "special": "disarm",
+      "type": "Melee",
+      "category": "Light",
+      "proficiency": "Simple",
+      "group": [ "Close" ],
+      "description": ""
+    },
+    {
+      "name": "Kunai",
+      "cost": 2,
+      "weight": 2,
+      "damage": [ "1d3", "1d4", "" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "range": 10,
+      "dmgType": [ "bludgeoning", "piercing" ],
+      "special": "",
+      "type": "Melee",
+      "category": "Light",
+      "proficiency": "Simple",
+      "group": [ "Close", "Thrown" ],
+      "description": ""
+    },
+    {
+      "name": "Light Mace",
+      "cost": 5,
+      "weight": 4,
+      "damage": [ "1d4", "1d6", "" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "range": 0,
+      "dmgType": [ "bludgeoning" ],
+      "special": "",
+      "type": "Melee",
+      "category": "Light",
+      "proficiency": "Simple",
+      "group": [ "Hammers" ],
+      "description": ""
+    },
+    {
+      "name": "Sickle",
+      "cost": 6,
+      "weight": 2,
+      "damage": [ "1d4", "1d6", "" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "range": 0,
+      "dmgType": [ "slashing" ],
+      "special": "trip",
+      "type": "Melee",
+      "category": "Light",
+      "proficiency": "Simple",
+      "group": [ "Blades" ],
+      "description": ""
+    },
+    {
+      "name": "Spring Blade",
+      "cost": 70,
+      "weight": 1,
+      "damage": [ "1d3", "1d4", "" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "range": 10,
+      "dmgType": [ "piercing", "slashing" ],
+      "special": "",
+      "type": "Melee",
+      "category": "Light",
+      "proficiency": "Simple",
+      "group": [ "Blades", "Thrown" ],
+      "description": ""
+    },
+    {
+      "name": "Wodden Stake",
+      "cost": 0,
+      "weight": 1,
+      "damage": [ "1d3", "1d4", "" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "range": 10,
+      "dmgType": [ "piercing" ],
+      "special": "",
+      "type": "Melee",
+      "category": "Light",
+      "proficiency": "Simple",
+      "group": [ "Close", "Thrown" ],
+      "description": ""
+    },
+
+    {
+      "name": "Club",
+      "cost": 0,
+      "weight": 3,
+      "damage": [ "1d4", "1d6", "" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "range": 10,
+      "dmgType": [ "bludgeoning" ],
+      "special": "",
+      "type": "Melee",
+      "category": "One-Handed",
+      "proficiency": "Simple",
+      "group": [ "Hammers", "Tribal" ],
+      "description": ""
+    },
+    {
+      "name": "Mere Club",
+      "cost": 2,
+      "weight": 2,
+      "damage": [ "1d3", "1d4", "" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "range": 0,
+      "dmgType": [ "bludgeoning", "piercing" ],
+      "special": "fragile",
+      "type": "Melee",
+      "category": "One-Handed",
+      "proficiency": "Simple",
+      "group": [ "Close", "Hammers" ],
+      "description": ""
+    },
+    {
+      "name": "Heavy Mace",
+      "cost": 12,
+      "weight": 8,
+      "damage": [ "1d6", "1d8", "" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "range": 0,
+      "dmgType": [ "bludgeoning" ],
+      "special": "",
+      "type": "Melee",
+      "category": "One-Handed",
+      "proficiency": "Simple",
+      "group": [ "Hammers" ],
+      "description": ""
+    },
+    {
+      "name": "Morningstar",
+      "cost": 8,
+      "weight": 6,
+      "damage": [ "1d6", "1d8", "" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "range": 0,
+      "dmgType": [ "bludgeoning", "piercing" ],
+      "special": "",
+      "type": "Melee",
+      "category": "One-Handed",
+      "proficiency": "Simple",
+      "group": [ "Mace", "Flail" ],
+      "description": ""
+    },
+    {
+      "name": "Shortspear",
+      "cost": 1,
+      "weight": 3,
+      "damage": [ "1d4", "1d6", "" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "range": 20,
+      "dmgType": [ "piercing" ],
+      "special": "",
+      "type": "Melee",
+      "category": "One-Handed",
+      "proficiency": "Simple",
+      "group": [ "Spears", "Thrown", "Tribal" ],
+      "description": ""
+    },
+    
+    {
+      "name": "Bayonet",
+      "cost": 5,
+      "weight": 1,
+      "damage": [ "1d4", "1d6", "" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "range": 0,
+      "dmgType": [ "piercing" ],
+      "special": "",
+      "type": "Melee",
+      "category": "Two-Handed",
+      "proficiency": "Simple",
+      "group": [ "Blades", "Close" ],
+      "description": "Bayonets are close combat weapons designed to fit into the grooves or muzzles of crossbows and firearms."
+    },
+    {
+      "name": "Boarding Pike",
+      "cost": 8,
+      "weight": 9,
+      "damage": [ "1d6", "1d8", "" ],
+      "critRange": 20,
+      "critMultiplier": 3,
+      "range": 0,
+      "dmgType": [ "piercing" ],
+      "special": "brace, reach",
+      "type": "Melee",
+      "category": "Two-Handed",
+      "proficiency": "Simple",
+      "group": [ "Polearm" ],
+      "description": "A boarding pike is an 8-foot-long pole topped with a foot-long tapered metal tip."
+    },
+    {
+      "name": "Kumade",
+      "cost": 5,
+      "weight": 4,
+      "damage": [ "1d4", "1d6", "" ],
+      "critRange": 20,
+      "critMultiplier": 3,
+      "range": 0,
+      "dmgType": [ "piercing" ],
+      "special": "grapple",
+      "type": "Melee",
+      "category": "Two-Handed",
+      "proficiency": "Simple",
+      "group": [ "Axes" ],
+      "description": "Adapted from a garden rake, the kumade consists of a wood or bamboo pole topped with a metal claw. The rake head doubles as a grappling hook."
+    },
+    {
+      "name": "Collapsible Kumade",
+      "cost": 10,
+      "weight": 4,
+      "damage": [ "1d4", "1d6", "" ],
+      "critRange": 20,
+      "critMultiplier": 3,
+      "range": 0,
+      "dmgType": [ "piercing" ],
+      "special": "grapple",
+      "type": "Melee",
+      "category": "Two-Handed",
+      "proficiency": "Simple",
+      "group": [ "Axes" ],
+      "description": "This weapon acts as a kumade, but the handle consists of bamboo sections held together by a taut rope running through the center."
+    },
+    {
+      "name": "Lantern Staff",
+      "cost": 15,
+      "weight": 9,
+      "damage": [ "1d4", "1d6", "" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "range": 0,
+      "dmgType": [ "bludgeoning" ],
+      "special": "",
+      "type": "Melee",
+      "category": "Two-Handed",
+      "proficiency": "Simple",
+      "group": [ "Hammers" ],
+      "description": "This long metal staff has reservoirs for lamp oil, and a lantern-like structure at its head."
+    },
+    {
+      "name": "Longspear",
+      "cost": 5,
+      "weight": 9,
+      "damage": [ "1d6", "1d8", "" ],
+      "critRange": 20,
+      "critMultiplier": 3,
+      "range": 0,
+      "dmgType": [ "piercing" ],
+      "special": "brace, reach",
+      "type": "Melee",
+      "category": "Two-Handed",
+      "proficiency": "Simple",
+      "group": [ "Spears" ],
+      "description": "A longspear is about 8 feet in length."
+    },
+    {
+      "name": "Quarterstaff",
+      "cost": 0,
+      "weight": 4,
+      "damage": [ "1d4/1d4", "1d6/1d6", "" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "range": 0,
+      "dmgType": [ "bludgeoning" ],
+      "special": "double, monk",
+      "type": "Melee",
+      "category": "Two-Handed",
+      "proficiency": "Simple",
+      "group": [ "Double", "Monk" ],
+      "description": "A quarterstaff is a simple piece of wood, about 5 feet in length."
+    },
+    {
+      "name": "Spear",
+      "cost": 2,
+      "weight": 6,
+      "damage": [ "1d6", "1d8", "" ],
+      "critRange": 20,
+      "critMultiplier": 3,
+      "range": 0,
+      "dmgType": [ "piercing" ],
+      "special": "brace",
+      "type": "Melee",
+      "category": "Two-Handed",
+      "proficiency": "Simple",
+      "group": [ "Spears", "Thrown", "Tribal" ],
+      "description": "A spear is 5 feet in length and can be thrown."
+    },
+    {
+      "name": "Boar Spear",
+      "cost": 5,
+      "weight": 8,
+      "damage": [ "1d6", "1d8", "" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "range": 0,
+      "dmgType": [ "piercing" ],
+      "special": "brace",
+      "type": "Melee",
+      "category": "Two-Handed",
+      "proficiency": "Simple",
+      "group": [ "Spears" ],
+      "description": "This spear with a spiraling blade has a metal crossbar approximately halfway down its length."
+    },
+    {
+      "name": "Weighted Spear",
+      "cost": 10,
+      "weight": 8,
+      "damage": [ "1d6/1d4", "1d8/1d6", "" ],
+      "critRange": 20,
+      "critMultiplier": 3,
+      "range": 0,
+      "dmgType": [ "bludgeoning", "slashing" ],
+      "special": "brace, double",
+      "type": "Melee",
+      "category": "Two-Handed",
+      "proficiency": "Simple",
+      "group": [ "Spears", "Double" ],
+      "description": "This pole has a spear head at one end and a mace head at the other. It can be wielded like a standard spear (though it isn’t balanced for throwing), or it can be used as a double weapon, alternately thrusting and bashing."
+    },
+    
+    {
+      "name": "Blowgun",
+      "cost": 2,
+      "weight": 1,
+      "damage": [ "1", "1d2", "" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "range": 20,
+      "dmgType": [ "piercing" ],
+      "special": "",
+      "type": "Ranged",
+      "category": "Ranged",
+      "proficiency": "Simple",
+      "group": [ "Thrown" ],
+      "description": "Blowguns are generally used to deliver debilitating (but rarely fatal) poisons from a distance. They are nearly silent when fired."
+    },
+    {
+      "name": "",
+      "cost": ,
+      "weight": ,
+      "damage": [ "", "", "" ],
+      "critRange": ,
+      "critMultiplier": ,
+      "range": 0,
+      "dmgType": [ "" ],
+      "special": "",
+      "type": "Ranged",
+      "category": "Ranged",
+      "proficiency": "Simple",
+      "group": [ "" ],
+      "description": ""
+    },
+Crossbow, Heavy
+Cost 50 gp Weight 8 lbs.
+Damage 1d8 (small), 1d10 (medium) Critical 19-20/x2 Type piercing
+Range Increment 120 ft. (projectile)
+Category ranged Proficiency simple
+Weapon Group crossbows
+Load: Loading a heavy crossbow is a full-round action that provokes attacks of opportunity.
+You draw a heavy crossbow back by turning a small winch
+
+    {
+      "name": "",
+      "cost": ,
+      "weight": ,
+      "damage": [ "", "", "" ],
+      "critRange": ,
+      "critMultiplier": ,
+      "range": 0,
+      "dmgType": [ "" ],
+      "special": "",
+      "type": "Ranged",
+      "category": "Ranged",
+      "proficiency": "Simple",
+      "group": [ "" ],
+      "description": ""
+    },
+Crossbow, Heavy (Underwater)
+Cost 100 gp Weight 8 lbs.
+Damage 1d8 (small), 1d10 (medium) Critical 19-20/x2 Type piercing
+Range Increment 120 ft. (projectile)
+Category ranged Proficiency simple
+Weapon Group crossbows
+Race Merfolk
+An underwater crossbow functions like its normal counterpart above water, and can be used underwater.
 
 
+    {
+      "name": "",
+      "cost": ,
+      "weight": ,
+      "damage": [ "", "", "" ],
+      "critRange": ,
+      "critMultiplier": ,
+      "range": 0,
+      "dmgType": [ "" ],
+      "special": "",
+      "type": "Ranged",
+      "category": "Ranged",
+      "proficiency": "Simple",
+      "group": [ "" ],
+      "description": ""
+    },
+Crossbow, Light
+Cost 35 gp Weight 4 lbs.
+Damage 1d6 (small), 1d8 (medium) Critical 19-20/x2 Type piercing
+Range Increment 80 ft. (projectile)
+Category ranged Proficiency simple
+Weapon Group crossbow
+Load: Loading a light crossbow is a move action that provokes attacks of opportunity.
+You draw a light crossbow back by pulling a lever.
+
+    {
+      "name": "",
+      "cost": ,
+      "weight": ,
+      "damage": [ "", "", "" ],
+      "critRange": ,
+      "critMultiplier": ,
+      "range": 0,
+      "dmgType": [ "" ],
+      "special": "",
+      "type": "Ranged",
+      "category": "Ranged",
+      "proficiency": "Simple",
+      "group": [ "" ],
+      "description": ""
+    },
+Crossbow, Light (Underwater)
+Cost 70 gp Weight 4 lbs.
+Damage 1d6 (small), 1d8 (medium) Critical 19-20/x2 Type piercing
+Range Increment 80 ft. (projectile)
+Category ranged Proficiency simple
+Weapon Group crossbows
+An underwater light crossbow functions like its normal counterpart above water, and can be used underwater.
+
+    {
+      "name": "",
+      "cost": ,
+      "weight": ,
+      "damage": [ "", "", "" ],
+      "critRange": ,
+      "critMultiplier": ,
+      "range": 0,
+      "dmgType": [ "" ],
+      "special": "",
+      "type": "Ranged",
+      "category": "Ranged",
+      "proficiency": "Simple",
+      "group": [ "" ],
+      "description": ""
+    },
+Ammunition (Thrown): Darts
+Cost 5 sp Weight 1/2 lb.
+Damage 1d3 (small), 1d4 (medium) Critical x2 Type piercing
+Range Increment 20 ft. (thrown)
+Category ranged Proficiency simple
+Weapon Group thrown
+Darts are missile weapons, designed to fly such that a sharp, often weighted point will strike first.
+
+    {
+      "name": "",
+      "cost": ,
+      "weight": ,
+      "damage": [ "", "", "" ],
+      "critRange": ,
+      "critMultiplier": ,
+      "range": 0,
+      "dmgType": [ "" ],
+      "special": "",
+      "type": "Ranged",
+      "category": "Ranged",
+      "proficiency": "Simple",
+      "group": [ "" ],
+      "description": ""
+    },
+Javelin
+Cost 1 gp Weight 2 lbs.
+Damage 1d4 (small), 1d6 (medium) Critical x2 Type piercing
+Range Increment 30 ft. (thrown)
+Category ranged Proficiency simple
+Weapon Groups spears, thrown
+A javelin is a thin throwing spear.
+
+    {
+      "name": "",
+      "cost": ,
+      "weight": ,
+      "damage": [ "", "", "" ],
+      "critRange": ,
+      "critMultiplier": ,
+      "range": 0,
+      "dmgType": [ "" ],
+      "special": "",
+      "type": "Ranged",
+      "category": "Ranged",
+      "proficiency": "Simple",
+      "group": [ "" ],
+      "description": ""
+    },
+Sling
+Cost — Weight —
+Damage 1d3 (small), 1d4 (medium) Critical x2 Type bludgeoning
+Range Increment 50 ft. (projectile)
+Category ranged Proficiency simple
+Weapon Groups thrown
+A sling is little more than a leather cup attached to a pair of strings.
+
+    {
+      "name": "",
+      "cost": ,
+      "weight": ,
+      "damage": [ "", "", "" ],
+      "critRange": ,
+      "critMultiplier": ,
+      "range": 0,
+      "dmgType": [ "" ],
+      "special": "",
+      "type": "Ranged",
+      "category": "Ranged",
+      "proficiency": "Simple",
+      "group": [ "" ],
+      "description": ""
+    },
+Stingchuck
+Cost — Weight 9 lbs.
+Damage 1d3 (small), 1d4 (medium) Critical x2 Type bludgeoning
+Range Increment 10 ft. (thrown)
+Category ranged Proficiency simple
+Weapon Group thrown
+A stingchuck is a foul bag made of a humanoid’s head with the brain removed and the skull heavily scored so that it bursts open when thrown.
+
+    {
+      "name": "",
+      "cost": ,
+      "weight": ,
+      "damage": [ "", "", "" ],
+      "critRange": ,
+      "critMultiplier": ,
+      "range": 0,
+      "dmgType": [ "" ],
+      "special": "",
+      "type": "Ranged",
+      "category": "Ranged",
+      "proficiency": "Simple",
+      "group": [ "" ],
+      "description": ""
+    },
+Stonebow
+Cost 35 gp Weight 4 lbs.
+Damage 1d4 (small), 1d6 (medium) Critical x2 Type bludgeoning
+Range Increment 50 ft. (projectile)
+Category ranged Proficiency simple
+Weapon Groups bows
+A stonebow, or bullet crossbow, resembles a light crossbow except for the distinct U-shaped bend in the stock.
+
+
+
+
+
+
+
+    {
+      "name": "",
+      "cost": ,
+      "weight": ,
+      "damage": [ "", "", "" ],
+      "critRange": ,
+      "critMultiplier": ,
+      "range": 0,
+      "dmgType": [ "" ],
+      "special": "",
+      "type": "Ranged",
+      "category": "Ranged",
+      "proficiency": "Simple",
+      "group": [ "" ],
+      "description": ""
+    },
+
+    
   ]
 }
