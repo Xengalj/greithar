@@ -12,6 +12,32 @@
       "type": "Light",
       "description": ""
     },
+    Armored Kilt
+Light Armor
+Cost 20 gp; Weight 10 lbs.
+Armor Bonus +1; Max Dex Bonus +6; Armor Check Penalty 0
+Arcane Spell Failure Chance 0%; Speed 30 ft./20 ft.
+
+When you add an armored kilt to a suit of light armor, the set counts as medium armor. Likewise, a kilt and medium armor counts as heavy armor. Adding an armored kilt to heavy armor has no effect.
+
+    {
+      "name": "Unarmed Strike",
+      "cost": 0,
+      "weight": 1,
+      "damage": [ "1d2", "1d3", "" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "range": 0,
+      "dmgType": [ "budgeoning", "nonlethal" ],
+      "special": "nonlethal",
+      "type": "Melee",
+      "category": "Unarmed",
+      "proficiency": "Simple",
+      "group": [ "Close" ],
+      "description": "Just a punch or slap of the hand."
+    },
+
+    
     {
       "name": "Armored Coat",
       "cost": 50,
