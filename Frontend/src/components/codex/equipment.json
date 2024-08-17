@@ -126,7 +126,7 @@
       "category": "Light",
       "proficiency": "Simple",
       "group": [ "Blades", "Thrown" ],
-      "description": ""
+      "description": "Though brass doesn’t hold as sharp an edge as steel, it isn’t vulnerable to rust like steel is."
     },
     {
       "name": "Brass Knuckles",
@@ -142,7 +142,7 @@
       "category": "Light",
       "proficiency": "Simple",
       "group": [ "Close", "Monk" ],
-      "description": ""
+      "description": "These close combat weapons are designed to fit comfortably around the knuckles, narrowing the contact area and therefore magnifying the amount of force delivered by a punch."
     },
     {
       "name": "Cestus",
@@ -158,7 +158,7 @@
       "category": "Light",
       "proficiency": "Simple",
       "group": [ "Close", "Monk" ],
-      "description": ""
+      "description": "The cestus is a glove of leather or thick cloth that covers the wielder from mid-finger to mid-forearm, ofen reinforced with metal plates over the fingers."
     },
     {
       "name": "Dagger",
@@ -174,7 +174,7 @@
       "category": "Light",
       "proficiency": "Simple",
       "group": [ "Blades", "Thrown", "Tribal" ],
-      "description": ""
+      "description": "A dagger has a blade that is about 1 foot in length."
     },
     {
       "name": "Punching Dagger",
@@ -190,7 +190,7 @@
       "category": "Light",
       "proficiency": "Simple",
       "group": [ "Close" ],
-      "description": ""
+      "description": "A punching dagger’s blade is attached to a horizontal handle that projects out from the fist when held."
     },
     {
       "name": "Spiked Gauntlet",
@@ -206,7 +206,7 @@
       "category": "Light",
       "proficiency": "Simple",
       "group": [ "Close" ],
-      "description": ""
+      "description": "An attack with a spiked gauntlet is considered an armed attack, and the cost and weight given are for a single gauntlet."
     },
     {
       "name": "Traveling Kettle",
@@ -222,7 +222,7 @@
       "category": "Light",
       "proficiency": "Simple",
       "group": [ "Monk" ],
-      "description": ""
+      "description": "These small tea kettles are made with clamping lids and heavily reinforced handles."
     },
     {
       "name": "Hook Hand",
@@ -238,7 +238,7 @@
       "category": "Light",
       "proficiency": "Simple",
       "group": [ "Close" ],
-      "description": ""
+      "description": "Pirates who lose a hand in the course of their adventures sometimes attach hooks to their wrists."
     },
     {
       "name": "Kunai",
@@ -254,7 +254,7 @@
       "category": "Light",
       "proficiency": "Simple",
       "group": [ "Close", "Thrown" ],
-      "description": ""
+      "description": "Crafted from a single piece of iron, a kunai has a leaf-shaped blade and a ring for a pommel. Adapted from the common trowel, the kunai has a thick blade that is sharpened only near the tip."
     },
     {
       "name": "Light Mace",
@@ -270,7 +270,7 @@
       "category": "Light",
       "proficiency": "Simple",
       "group": [ "Hammers" ],
-      "description": ""
+      "description": "A light mace is made up of an ornate metal head attached to a simple wooden or metal shaft."
     },
     {
       "name": "Sickle",
@@ -286,7 +286,7 @@
       "category": "Light",
       "proficiency": "Simple",
       "group": [ "Blades" ],
-      "description": ""
+      "description": "A curved blade extends from the basic wooden handle, though usable in a pinch the sickle is mainly a farming tool."
     },
     {
       "name": "Spring Blade",
@@ -302,7 +302,7 @@
       "category": "Light",
       "proficiency": "Simple",
       "group": [ "Blades", "Thrown" ],
-      "description": ""
+      "description": "This 4-inch blade is attached via a hinge to a wooden handle with a slot in the center, into which the blade can be folded. With a click of a switch, a spring thrusts the blade outward, where it locks into place until it is reset."
     },
     {
       "name": "Wodden Stake",
@@ -318,7 +318,7 @@
       "category": "Light",
       "proficiency": "Simple",
       "group": [ "Close", "Thrown" ],
-      "description": ""
+      "description": "This close combat weapon is just a sharpened piece of wood. Iron spikes used as weapons deal damage as wooden stakes."
     },
 
     {
@@ -335,7 +335,7 @@
       "category": "One-Handed",
       "proficiency": "Simple",
       "group": [ "Hammers", "Tribal" ],
-      "description": ""
+      "description": "This weapon is usually just a shaped piece of wood, sometimes with a few nails or studs embedded in it."
     },
     {
       "name": "Mere Club",
@@ -351,7 +351,7 @@
       "category": "One-Handed",
       "proficiency": "Simple",
       "group": [ "Close", "Hammers" ],
-      "description": ""
+      "description": "Traditionally made of carved stone, the mere (MEH-reh) is a short, flat-sided, sharp-pointed club."
     },
     {
       "name": "Heavy Mace",
@@ -367,7 +367,7 @@
       "category": "One-Handed",
       "proficiency": "Simple",
       "group": [ "Hammers" ],
-      "description": ""
+      "description": "A heavy mace has a larger head and a longer handle than a normal (light) mace."
     },
     {
       "name": "Morningstar",
@@ -382,8 +382,8 @@
       "type": "Melee",
       "category": "One-Handed",
       "proficiency": "Simple",
-      "group": [ "Mace", "Flail" ],
-      "description": ""
+      "group": [ "Maces", "Flails" ],
+      "description": "A morningstar is a spiked metal ball, affixed to the top of a long handle."
     },
     {
       "name": "Shortspear",
@@ -399,7 +399,7 @@
       "category": "One-Handed",
       "proficiency": "Simple",
       "group": [ "Spears", "Thrown", "Tribal" ],
-      "description": ""
+      "description": "A shortspear is about 3 feet in length, making it a suitable thrown weapon."
     },
     
     {
@@ -431,7 +431,7 @@
       "type": "Melee",
       "category": "Two-Handed",
       "proficiency": "Simple",
-      "group": [ "Polearm" ],
+      "group": [ "Polearms" ],
       "description": "A boarding pike is an 8-foot-long pole topped with a foot-long tapered metal tip."
     },
     {
@@ -580,30 +580,281 @@
       "description": "Blowguns are generally used to deliver debilitating (but rarely fatal) poisons from a distance. They are nearly silent when fired."
     },
     {
-      "name": "",
-      "cost": ,
-      "weight": ,
-      "damage": [ "", "", "" ],
-      "critRange": ,
-      "critMultiplier": ,
-      "range": 0,
-      "dmgType": [ "" ],
+      "name": "Heavy Crossbow",
+      "cost": 50,
+      "weight": 8,
+      "damage": [ "1d8", "1d10", "" ],
+      "critRange": 19,
+      "critMultiplier": 2,
+      "range": 120,
+      "dmgType": [ "piercing" ],
       "special": "",
       "type": "Ranged",
       "category": "Ranged",
       "proficiency": "Simple",
-      "group": [ "" ],
-      "description": ""
+      "group": [ "Crossbows" ],
+      "description": "You draw a Heavy Crossbow back by truning a small winch, this takes a full-round action that provkes Attacks of Opportunity"
     },
-Crossbow, Heavy
-Cost 50 gp Weight 8 lbs.
-Damage 1d8 (small), 1d10 (medium) Critical 19-20/x2 Type piercing
-Range Increment 120 ft. (projectile)
-Category ranged Proficiency simple
-Weapon Group crossbows
-Load: Loading a heavy crossbow is a full-round action that provokes attacks of opportunity.
-You draw a heavy crossbow back by turning a small winch
+    {
+      "name": "Heavy Crossbow (Underwater)",
+      "cost": 100,
+      "weight": 8,
+      "damage": [ "1d8", "1d10", "" ],
+      "critRange": 19,
+      "critMultiplier": 2,
+      "range": 20,
+      "dmgType": [ "piercing" ],
+      "special": "",
+      "type": "Ranged",
+      "category": "Ranged",
+      "proficiency": "Simple",
+      "group": [ "Crossbows" ],
+      "description": "An Underwater Crossbow functions as a regular crossbow above water."
+    },
+    {
+      "name": "Light Crossbow",
+      "cost": 35,
+      "weight": 4,
+      "damage": [ "1d6", "1d8", "" ],
+      "critRange": 19,
+      "critMultiplier": 2,
+      "range": 80,
+      "dmgType": [ "piercing" ],
+      "special": "",
+      "type": "Ranged",
+      "category": "Ranged",
+      "proficiency": "Simple",
+      "group": [ "Crossbows" ],
+      "description": "You draw a Light Crossbow back by pulling a lever, this takes a move action that provokes Attacks of Opportunity."
+    },
+    {
+      "name": "Light Crossbow (Underwater)",
+      "cost": 70,
+      "weight": 4,
+      "damage": [ "1d6", "1d8", "" ],
+      "critRange": 19,
+      "critMultiplier": 2,
+      "range": 20,
+      "dmgType": [ "piercing" ],
+      "special": "",
+      "type": "Ranged",
+      "category": "Ranged",
+      "proficiency": "Simple",
+      "group": [ "Crossbows" ],
+      "description": "An Underwater Crossbow functions as a regular crossbow above water."
+    },
+    {
+      "name": "Javelin",
+      "cost": 1,
+      "weight": 2,
+      "damage": [ "1d4", "1d6", "" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "range": 30,
+      "dmgType": [ "piercing" ],
+      "special": "",
+      "type": "Ranged",
+      "category": "Ranged",
+      "proficiency": "Simple",
+      "group": [ "Spears", "Thrown" ],
+      "description": "A javelin is a thin throwing spear."
+    },
+    {
+      "name": "Sling",
+      "cost": 0,
+      "weight": 0,
+      "damage": [ "1d3", "1d4", "" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "range": 50,
+      "dmgType": [ "bludgeoning" ],
+      "special": "",
+      "type": "Ranged",
+      "category": "Ranged",
+      "proficiency": "Simple",
+      "group": [ "Thrown" ],
+      "description": "A sling is little more than a leather cup attached to a pair of strings."
+    },
+    {
+      "name": "Stingchuck",
+      "cost": 0,
+      "weight": 9,
+      "damage": [ "1d3", "1d4", "" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "range": 10,
+      "dmgType": [ "bludgeoning" ],
+      "special": "",
+      "type": "Ranged",
+      "category": "Ranged",
+      "proficiency": "Simple",
+      "group": [ "Thrown" ],
+      "description": "A stingchuck is a foul bag made of a humanoid’s head with the brain removed and the skull heavily scored so that it bursts open when thrown."
+    },
+    {
+      "name": "Stonebow",
+      "cost": 35,
+      "weight": 4,
+      "damage": [ "1d4", "1d6", "" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "range": 50,
+      "dmgType": [ "bludgeoning" ],
+      "special": "",
+      "type": "Ranged",
+      "category": "Ranged",
+      "proficiency": "Simple",
+      "group": [ "Crossbows" ],
+      "description": "A stonebow, or bullet crossbow, resembles a light crossbow except for the distinct U-shaped bend in the stock."
+    },
 
+    {
+      "name": "Throwing Darts",
+      "cost": 5,
+      "weight": 0.5,
+      "damage": [ "1d3", "1d4", "" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "range": 20,
+      "dmgType": [ "piercing" ],
+      "special": "",
+      "type": "Ranged",
+      "category": "Ammunition",
+      "proficiency": "Simple",
+      "group": [ "Thrown" ],
+      "description": "Darts are missile weapons, designed to fly such that a sharp, often weighted point will strike first."
+    },
+    {
+      "name": "Crossbow Bolts",
+      "cost": 0.1,
+      "weight": 0.1,
+      "damage": [ "1d3", "1d4", "" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "range": 0,
+      "dmgType": [ "piercing" ],
+      "special": "",
+      "type": "Melee",
+      "category": "Ammunition",
+      "proficiency": "Simple",
+      "group": [ "Crossbows" ],
+      "description": "These bolts come in a case or quiver that holds 10 bolts. You may stab with the bolt as a Light Improvised Weapon (-4 to hit) using the damage given."
+    },
+    {
+      "name": "Crossbow Bolts, Acid",
+      "cost": 40,
+      "weight": 0.1,
+      "damage": [ "1d3" ],
+      "critRange": 0,
+      "critMultiplier": 0,
+      "range": 0,
+      "dmgType": [ "acid" ],
+      "special": "",
+      "type": "Melee",
+      "category": "Ammunition",
+      "proficiency": "Simple",
+      "group": [ "Crossbows" ],
+      "description": "These metal bolts have a glass section in the middle, filled with acid."
+    },
+    {
+      "name": "Crossbow Bolts, Drow Poison",
+      "cost": 100,
+      "weight": 0.1,
+      "damage": [ "0" ],
+      "critRange": 0,
+      "critMultiplier": 0,
+      "range": 0,
+      "dmgType": [ "none" ],
+      "special": "drow poison (DC 13 Fort)",
+      "type": "Melee",
+      "category": "Ammunition",
+      "proficiency": "Simple",
+      "group": [ "Crossbows" ],
+      "description": "These bolts have a strange tip that delivers the poison, but also affects accuracy. Double the range penalties for this bolt."
+    },
+    {
+      "name": "Crossbow Bolts, Fire",
+      "cost": 50,
+      "weight": 0.1,
+      "damage": [ "1d4" ],
+      "critRange": 0,
+      "critMultiplier": 0,
+      "range": 0,
+      "dmgType": [ "fire" ],
+      "special": "",
+      "type": "Melee",
+      "category": "Ammunition",
+      "proficiency": "Simple",
+      "group": [ "Crossbows" ],
+      "description": "These metal bolts have a glass section in the middle, filled with a alchemical fire."
+    },
+    {
+      "name": "Sling Bullets",
+      "cost": 0.01,
+      "weight": 0.5,
+      "damage": [ "0" ],
+      "critRange": 0,
+      "critMultiplier": 0,
+      "range": 0,
+      "dmgType": [ "none" ],
+      "special": "",
+      "type": "Melee",
+      "category": "Ammunition",
+      "proficiency": "Simple",
+      "group": [ "Crossbows" ],
+      "description": "These bullets come in a leather pouch that holds 10 bullets."
+    },
+    {
+      "name": "Sling Bullets, Groaning",
+      "cost": 0.2,
+      "weight": 0.5,
+      "damage": [ "0" ],
+      "critRange": 0,
+      "critMultiplier": 0,
+      "range": 0,
+      "dmgType": [ "none" ],
+      "special": "",
+      "type": "Melee",
+      "category": "Ammunition",
+      "proficiency": "Simple",
+      "group": [ "Crossbows" ],
+      "description": "These sling bullets are honeycombed with overlapping perforations that cause them to emit an eerie moan audible within 500 feet of their flight path."
+    },    
+    {
+      "name": "Sling Bullets, Smoke",
+      "cost": 10,
+      "weight": 0.5,
+      "damage": [ "0" ],
+      "critRange": 0,
+      "critMultiplier": 0,
+      "range": 0,
+      "dmgType": [ "none" ],
+      "special": "",
+      "type": "Melee",
+      "category": "Ammunition",
+      "proficiency": "Simple",
+      "group": [ "Crossbows" ],
+      "description": "Uses a touch attack to release noxious smoke (DC 13 Fort), nauseating target for 2 rounds."
+    },    
+    {
+      "name": "Blowgun Darts",
+      "cost": 0.5,
+      "weight": 0,
+      "damage": [ "", "", "" ],
+      "critRange": 0,
+      "critMultiplier": 0,
+      "range": 0,
+      "dmgType": [ "none" ],
+      "special": "poison",
+      "type": "Ranged",
+      "category": "Ammunition",
+      "proficiency": "Simple",
+      "group": [ "Misc" ],
+      "description": "These light darts have tiny grooves behind the tips. A character can apply poison to a blowgun dart without risk of poisoning himself."
+    },
+
+    
+      
     {
       "name": "",
       "cost": ,
@@ -615,213 +866,13 @@ You draw a heavy crossbow back by turning a small winch
       "dmgType": [ "" ],
       "special": "",
       "type": "Ranged",
-      "category": "Ranged",
-      "proficiency": "Simple",
-      "group": [ "" ],
-      "description": ""
-    },
-Crossbow, Heavy (Underwater)
-Cost 100 gp Weight 8 lbs.
-Damage 1d8 (small), 1d10 (medium) Critical 19-20/x2 Type piercing
-Range Increment 120 ft. (projectile)
-Category ranged Proficiency simple
-Weapon Group crossbows
-Race Merfolk
-An underwater crossbow functions like its normal counterpart above water, and can be used underwater.
-
-
-    {
-      "name": "",
-      "cost": ,
-      "weight": ,
-      "damage": [ "", "", "" ],
-      "critRange": ,
-      "critMultiplier": ,
-      "range": 0,
-      "dmgType": [ "" ],
-      "special": "",
-      "type": "Ranged",
-      "category": "Ranged",
-      "proficiency": "Simple",
-      "group": [ "" ],
-      "description": ""
-    },
-Crossbow, Light
-Cost 35 gp Weight 4 lbs.
-Damage 1d6 (small), 1d8 (medium) Critical 19-20/x2 Type piercing
-Range Increment 80 ft. (projectile)
-Category ranged Proficiency simple
-Weapon Group crossbow
-Load: Loading a light crossbow is a move action that provokes attacks of opportunity.
-You draw a light crossbow back by pulling a lever.
-
-    {
-      "name": "",
-      "cost": ,
-      "weight": ,
-      "damage": [ "", "", "" ],
-      "critRange": ,
-      "critMultiplier": ,
-      "range": 0,
-      "dmgType": [ "" ],
-      "special": "",
-      "type": "Ranged",
-      "category": "Ranged",
-      "proficiency": "Simple",
-      "group": [ "" ],
-      "description": ""
-    },
-Crossbow, Light (Underwater)
-Cost 70 gp Weight 4 lbs.
-Damage 1d6 (small), 1d8 (medium) Critical 19-20/x2 Type piercing
-Range Increment 80 ft. (projectile)
-Category ranged Proficiency simple
-Weapon Group crossbows
-An underwater light crossbow functions like its normal counterpart above water, and can be used underwater.
-
-    {
-      "name": "",
-      "cost": ,
-      "weight": ,
-      "damage": [ "", "", "" ],
-      "critRange": ,
-      "critMultiplier": ,
-      "range": 0,
-      "dmgType": [ "" ],
-      "special": "",
-      "type": "Ranged",
-      "category": "Ranged",
-      "proficiency": "Simple",
-      "group": [ "" ],
-      "description": ""
-    },
-Ammunition (Thrown): Darts
-Cost 5 sp Weight 1/2 lb.
-Damage 1d3 (small), 1d4 (medium) Critical x2 Type piercing
-Range Increment 20 ft. (thrown)
-Category ranged Proficiency simple
-Weapon Group thrown
-Darts are missile weapons, designed to fly such that a sharp, often weighted point will strike first.
-
-    {
-      "name": "",
-      "cost": ,
-      "weight": ,
-      "damage": [ "", "", "" ],
-      "critRange": ,
-      "critMultiplier": ,
-      "range": 0,
-      "dmgType": [ "" ],
-      "special": "",
-      "type": "Ranged",
-      "category": "Ranged",
-      "proficiency": "Simple",
-      "group": [ "" ],
-      "description": ""
-    },
-Javelin
-Cost 1 gp Weight 2 lbs.
-Damage 1d4 (small), 1d6 (medium) Critical x2 Type piercing
-Range Increment 30 ft. (thrown)
-Category ranged Proficiency simple
-Weapon Groups spears, thrown
-A javelin is a thin throwing spear.
-
-    {
-      "name": "",
-      "cost": ,
-      "weight": ,
-      "damage": [ "", "", "" ],
-      "critRange": ,
-      "critMultiplier": ,
-      "range": 0,
-      "dmgType": [ "" ],
-      "special": "",
-      "type": "Ranged",
-      "category": "Ranged",
-      "proficiency": "Simple",
-      "group": [ "" ],
-      "description": ""
-    },
-Sling
-Cost — Weight —
-Damage 1d3 (small), 1d4 (medium) Critical x2 Type bludgeoning
-Range Increment 50 ft. (projectile)
-Category ranged Proficiency simple
-Weapon Groups thrown
-A sling is little more than a leather cup attached to a pair of strings.
-
-    {
-      "name": "",
-      "cost": ,
-      "weight": ,
-      "damage": [ "", "", "" ],
-      "critRange": ,
-      "critMultiplier": ,
-      "range": 0,
-      "dmgType": [ "" ],
-      "special": "",
-      "type": "Ranged",
-      "category": "Ranged",
-      "proficiency": "Simple",
-      "group": [ "" ],
-      "description": ""
-    },
-Stingchuck
-Cost — Weight 9 lbs.
-Damage 1d3 (small), 1d4 (medium) Critical x2 Type bludgeoning
-Range Increment 10 ft. (thrown)
-Category ranged Proficiency simple
-Weapon Group thrown
-A stingchuck is a foul bag made of a humanoid’s head with the brain removed and the skull heavily scored so that it bursts open when thrown.
-
-    {
-      "name": "",
-      "cost": ,
-      "weight": ,
-      "damage": [ "", "", "" ],
-      "critRange": ,
-      "critMultiplier": ,
-      "range": 0,
-      "dmgType": [ "" ],
-      "special": "",
-      "type": "Ranged",
-      "category": "Ranged",
-      "proficiency": "Simple",
-      "group": [ "" ],
-      "description": ""
-    },
-Stonebow
-Cost 35 gp Weight 4 lbs.
-Damage 1d4 (small), 1d6 (medium) Critical x2 Type bludgeoning
-Range Increment 50 ft. (projectile)
-Category ranged Proficiency simple
-Weapon Groups bows
-A stonebow, or bullet crossbow, resembles a light crossbow except for the distinct U-shaped bend in the stock.
-
-
-
-
-
-
-
-    {
-      "name": "",
-      "cost": ,
-      "weight": ,
-      "damage": [ "", "", "" ],
-      "critRange": ,
-      "critMultiplier": ,
-      "range": 0,
-      "dmgType": [ "" ],
-      "special": "",
-      "type": "Ranged",
-      "category": "Ranged",
+      "category": "Ammunition",
       "proficiency": "Simple",
       "group": [ "" ],
       "description": ""
     },
 
+    
     
   ]
 }
