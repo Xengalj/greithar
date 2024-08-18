@@ -10,33 +10,224 @@
       "spellFailure": "0%",
       "speed": [ 30, 20 ],
       "type": "Light",
-      "description": ""
+      "description": "An armored kilt can be worn with other armor, and turns light armor into medium armor, and medium armor into heavy armor."
     },
-    Armored Kilt
-Light Armor
-Cost 20 gp; Weight 10 lbs.
-Armor Bonus +1; Max Dex Bonus +6; Armor Check Penalty 0
-Arcane Spell Failure Chance 0%; Speed 30 ft./20 ft.
-
-When you add an armored kilt to a suit of light armor, the set counts as medium armor. Likewise, a kilt and medium armor counts as heavy armor. Adding an armored kilt to heavy armor has no effect.
-
     {
-      "name": "Unarmed Strike",
-      "cost": 0,
-      "weight": 1,
-      "damage": [ "1d2", "1d3", "" ],
-      "critRange": 20,
-      "critMultiplier": 2,
-      "range": 0,
-      "dmgType": [ "budgeoning", "nonlethal" ],
-      "special": "nonlethal",
-      "type": "Melee",
-      "category": "Unarmed",
-      "proficiency": "Simple",
-      "group": [ "Close" ],
-      "description": "Just a punch or slap of the hand."
+      "name": "Dancing Scarves",
+      "cost": 150,
+      "weight": 8,
+      "acBonus": 0,
+      "maxDex": 10,
+      "penalty": 0,
+      "spellFailure": "0%",
+      "speed": [ 30, 20 ],
+      "type": "Light",
+      "description": "This set of colorful scarves is made of heavy silk and reinforced with leather straps. You only get their AC bonus if you move at least 10 feet during your turn, this lasts until your next turn."
     },
-
+    {
+      "name": "Haramaki",
+      "cost": 3,
+      "weight": 1,
+      "acBonus": 1,
+      "maxDex": 10,
+      "penalty": 0,
+      "spellFailure": "0%",
+      "speed": [ 30, 20 ],
+      "type": "Light",
+      "description": "Also called a belly-warmer, a haramaki is a simple silken sash lined with chainmail or articulated metal plates and tied about the stomach to protect it."
+    },
+    {
+      "name": "Padded",
+      "cost": 5,
+      "weight": 10,
+      "acBonus": 1,
+      "maxDex": 8,
+      "penalty": 0,
+      "spellFailure": "5%",
+      "speed": [ 30, 20 ],
+      "type": "Light",
+      "description": "More than simple clothing, padded armor combines heavy, quilted cloth and layers of densely packed stuffing to create a cheap and basic protection."
+    },
+    {
+      "name": "Quilted Cloth",
+      "cost": 100,
+      "weight": 15,
+      "acBonus": 1,
+      "maxDex": 8,
+      "penalty": 0,
+      "spellFailure": "10%",
+      "speed": [ 30, 20 ],
+      "type": "Light",
+      "description": "This enhanced form of padded armor has internal layers specifically designed to trap arrows, bolts, darts, shuriken, thrown daggers, and other small ranged piercing weapons. Wearing quilted cloth armor gives you DR 3/— against attacks of this kind."
+    },
+    {
+      "name": "Reinforced Tunic",
+      "cost": 1,
+      "weight": 5,
+      "acBonus": 1,
+      "maxDex": 5,
+      "penalty": 0,
+      "spellFailure": "5%",
+      "speed": [ 30, 20 ],
+      "type": "Light",
+      "description": "Sometimes called a leine, this belted tunic has thick cords woven through it that cover vital areas. You also get a +2 to AC versus confirming critical hits."
+    },
+    {
+      "name": "Silken Ceremonial Armor",
+      "cost": 30,
+      "weight": 4,
+      "acBonus": 1,
+      "maxDex": 10,
+      "penalty": 0,
+      "spellFailure": "0%",
+      "speed": [ 30, 20 ],
+      "type": "Light",
+      "description": "These robes consist of several layers of cloth and an outer layer of silk intricately woven with gold brocade designs and covered with metal studs."
+    },
+    {
+      "name": "Lamellar Cuirass",
+      "cost": 15,
+      "weight": 8,
+      "acBonus": 2,
+      "maxDex": 4,
+      "penalty": 0,
+      "spellFailure": "5%",
+      "speed": [ 30, 20 ],
+      "type": "Light",
+      "description": "This armor consists of a light breastplate and shoulder guards made from lacquered leather plates bound together and fitted over a silk shirt."
+    },
+    {
+      "name": "Leather",
+      "cost": 10,
+      "weight": 15,
+      "acBonus": 2,
+      "maxDex": 6,
+      "penalty": 0,
+      "spellFailure": "10%",
+      "speed": [ 30, 20 ],
+      "type": "Light",
+      "description": "Leather armor is made up of multiple overlapping pieces of leather, boiled to increase their natural toughness and then deliberately stitched together."
+    },
+    {
+      "name": "Rosewood Armor",
+      "cost": 50,
+      "weight": 15,
+      "acBonus": 2,
+      "maxDex": 6,
+      "penalty": 0,
+      "spellFailure": "10%",
+      "speed": [ 30, 20 ],
+      "type": "Light",
+      "description": "This suit of leather armor is wrapped in special rose vines, granting it armor spikes. You must water the vines with a gallon of water each day to maintain the spikes."
+    },
+    {
+      "name": "Hell Knight Leather",
+      "cost": 30,
+      "weight": 25,
+      "acBonus": 3,
+      "maxDex": 5,
+      "penalty": -1,
+      "spellFailure": "15%",
+      "speed": [ 30, 20 ],
+      "type": "Light",
+      "description": "This studded leather armor includes heavy gloves and a helm of sculpted leather designed to look like a skull-either a human’s or that of some aquatic creature."
+    },
+    {
+      "name": "Hide Shirt",
+      "cost": 20,
+      "weight": 18,
+      "acBonus": 3,
+      "maxDex": 4,
+      "penalty": -1,
+      "spellFailure": "15%",
+      "speed": [ 30, 20 ],
+      "type": "Light",
+      "description": "Made from animal hide and giant lizard scales over a shirt of interwoven cords, these chest and shoulder coverings protect without restricting mobility."
+    },
+    {
+      "name": "Leaf Armor",
+      "cost": 500,
+      "weight": 20,
+      "acBonus": 3,
+      "maxDex": 5,
+      "penalty": 0,
+      "spellFailure": "15%",
+      "speed": [ 30, 20 ],
+      "type": "Light",
+      "description": "Alchemically treated leaves have been sticthed together to make jerkins, bracers, and leggings."
+    },
+    {
+      "name": "Parade Armor",
+      "cost": 25,
+      "weight": 20,
+      "acBonus": 3,
+      "maxDex": 5,
+      "penalty": -1,
+      "spellFailure": "15%",
+      "speed": [ 30, 20 ],
+      "type": "Light",
+      "description": "A showy noncombat uniform that grants a +2 circumstance bonus on Diplomacy and Intimidat checks to influence someone from the uniform's country or region."
+    },
+    {
+      "name": "Spider-Silk Bodysuit",
+      "cost": 850,
+      "weight": 4,
+      "acBonus": 3,
+      "maxDex": 6,
+      "penalty": -1,
+      "spellFailure": "10%",
+      "speed": [ 30, 20 ],
+      "type": "Light",
+      "description": "This exotic form-fitting garment is woven entirely from alchemically treated silk harvested from giant spiders or other arachnid creatures."
+    },
+    {
+      "name": "Studded Leather",
+      "cost": 25,
+      "weight": 20,
+      "acBonus": 3,
+      "maxDex": 5,
+      "penalty": -1,
+      "spellFailure": "15%",
+      "speed": [ 30, 20 ],
+      "type": "Light",
+      "description": "An improved form of leather armor, studded leather armor is covered with dozens of metal protuberances."
+    },
+    {
+      "name": "Wooden",
+      "cost": 20,
+      "weight": 25,
+      "acBonus": 3,
+      "maxDex": 3,
+      "penalty": -1,
+      "spellFailure": "15%",
+      "speed": [ 30, 20 ],
+      "type": "Light",
+      "description": "This suit of leather armor has plates of fire-treated wood sewn over vital areas, and the wood is slightly bouyant, the armor check penalty for swimming in this armor is 0."
+    },
+    {
+      "name": "Chain Shirt",
+      "cost": 100,
+      "weight": 25,
+      "acBonus": 4,
+      "maxDex": 4,
+      "penalty": -2,
+      "spellFailure": "20%",
+      "speed": [ 30, 20 ],
+      "type": "Light",
+      "description": "Covering the torso, this shirt is made up of thousands of interlocking metal rings."
+    },
+    {
+      "name": "Lamellar (Leather)",
+      "cost": 60,
+      "weight": 25,
+      "acBonus": 4,
+      "maxDex": 3,
+      "penalty": -2,
+      "spellFailure": "20%",
+      "speed": [ 30, 20 ],
+      "type": "Light",
+      "description": "Lamellar is a type of armor in which small plates of various types of materials are strung together in parallel rows using fine cord."
+    },
     
     {
       "name": "Armored Coat",
