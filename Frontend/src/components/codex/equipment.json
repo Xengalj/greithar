@@ -1,6 +1,6 @@
 {
-  "armor": [
-    {
+  "armor": {
+    "Armored Kilt" : {
       "name": "Armored Kilt",
       "cost": 20,
       "weight": 10,
@@ -12,7 +12,7 @@
       "type": "Light",
       "description": "An armored kilt can be worn with other armor, and turns light armor into medium armor, and medium armor into heavy armor."
     },
-    {
+    "Dancing Scarves": {
       "name": "Dancing Scarves",
       "cost": 150,
       "weight": 8,
@@ -24,7 +24,7 @@
       "type": "Light",
       "description": "This set of colorful scarves is made of heavy silk and reinforced with leather straps. You only get their AC bonus if you move at least 10 feet during your turn, this lasts until your next turn."
     },
-    {
+    "Haramaki": {
       "name": "Haramaki",
       "cost": 3,
       "weight": 1,
@@ -36,7 +36,7 @@
       "type": "Light",
       "description": "Also called a belly-warmer, a haramaki is a simple silken sash lined with chainmail or articulated metal plates and tied about the stomach to protect it."
     },
-    {
+    "Padded": {
       "name": "Padded",
       "cost": 5,
       "weight": 10,
@@ -48,7 +48,7 @@
       "type": "Light",
       "description": "More than simple clothing, padded armor combines heavy, quilted cloth and layers of densely packed stuffing to create a cheap and basic protection."
     },
-    {
+    "Quilted Cloth": {
       "name": "Quilted Cloth",
       "cost": 100,
       "weight": 15,
@@ -60,7 +60,7 @@
       "type": "Light",
       "description": "This enhanced form of padded armor has internal layers specifically designed to trap arrows, bolts, darts, shuriken, thrown daggers, and other small ranged piercing weapons. Wearing quilted cloth armor gives you DR 3/— against attacks of this kind."
     },
-    {
+    "Reinforced Tunic": {
       "name": "Reinforced Tunic",
       "cost": 1,
       "weight": 5,
@@ -72,7 +72,7 @@
       "type": "Light",
       "description": "Sometimes called a leine, this belted tunic has thick cords woven through it that cover vital areas. You also get a +2 to AC versus confirming critical hits."
     },
-    {
+    "Silken Ceremonial Armor": {
       "name": "Silken Ceremonial Armor",
       "cost": 30,
       "weight": 4,
@@ -84,7 +84,7 @@
       "type": "Light",
       "description": "These robes consist of several layers of cloth and an outer layer of silk intricately woven with gold brocade designs and covered with metal studs."
     },
-    {
+    "Lamellar Cuirass": {
       "name": "Lamellar Cuirass",
       "cost": 15,
       "weight": 8,
@@ -96,7 +96,7 @@
       "type": "Light",
       "description": "This armor consists of a light breastplate and shoulder guards made from lacquered leather plates bound together and fitted over a silk shirt."
     },
-    {
+    "Leather": {
       "name": "Leather",
       "cost": 10,
       "weight": 15,
@@ -108,7 +108,7 @@
       "type": "Light",
       "description": "Leather armor is made up of multiple overlapping pieces of leather, boiled to increase their natural toughness and then deliberately stitched together."
     },
-    {
+    "Rosewood Armor": {
       "name": "Rosewood Armor",
       "cost": 50,
       "weight": 15,
@@ -120,7 +120,7 @@
       "type": "Light",
       "description": "This suit of leather armor is wrapped in special rose vines, granting it armor spikes. You must water the vines with a gallon of water each day to maintain the spikes."
     },
-    {
+    "Hell Knight Leather": {
       "name": "Hell Knight Leather",
       "cost": 30,
       "weight": 25,
@@ -132,7 +132,7 @@
       "type": "Light",
       "description": "This studded leather armor includes heavy gloves and a helm of sculpted leather designed to look like a skull-either a human’s or that of some aquatic creature."
     },
-    {
+    "Hide Shirt": {
       "name": "Hide Shirt",
       "cost": 20,
       "weight": 18,
@@ -144,7 +144,7 @@
       "type": "Light",
       "description": "Made from animal hide and giant lizard scales over a shirt of interwoven cords, these chest and shoulder coverings protect without restricting mobility."
     },
-    {
+    "Leaf Armor": {
       "name": "Leaf Armor",
       "cost": 500,
       "weight": 20,
@@ -156,7 +156,7 @@
       "type": "Light",
       "description": "Alchemically treated leaves have been sticthed together to make jerkins, bracers, and leggings."
     },
-    {
+    "Parade Armor": {
       "name": "Parade Armor",
       "cost": 25,
       "weight": 20,
@@ -168,7 +168,7 @@
       "type": "Light",
       "description": "A showy noncombat uniform that grants a +2 circumstance bonus on Diplomacy and Intimidat checks to influence someone from the uniform's country or region."
     },
-    {
+    "Spider-Silk Bodysuit": {
       "name": "Spider-Silk Bodysuit",
       "cost": 850,
       "weight": 4,
@@ -180,7 +180,7 @@
       "type": "Light",
       "description": "This exotic form-fitting garment is woven entirely from alchemically treated silk harvested from giant spiders or other arachnid creatures."
     },
-    {
+    "Studded Leather": {
       "name": "Studded Leather",
       "cost": 25,
       "weight": 20,
@@ -192,7 +192,7 @@
       "type": "Light",
       "description": "An improved form of leather armor, studded leather armor is covered with dozens of metal protuberances."
     },
-    {
+    "Wooden": {
       "name": "Wooden",
       "cost": 20,
       "weight": 25,
@@ -204,7 +204,7 @@
       "type": "Light",
       "description": "This suit of leather armor has plates of fire-treated wood sewn over vital areas, and the wood is slightly bouyant, the armor check penalty for swimming in this armor is 0."
     },
-    {
+    "Chain Shirt": {
       "name": "Chain Shirt",
       "cost": 100,
       "weight": 25,
@@ -216,7 +216,7 @@
       "type": "Light",
       "description": "Covering the torso, this shirt is made up of thousands of interlocking metal rings."
     },
-    {
+    "Lamellar (Leather)": {
       "name": "Lamellar (Leather)",
       "cost": 60,
       "weight": 25,
@@ -229,7 +229,7 @@
       "description": "Lamellar is a type of armor in which small plates of various types of materials are strung together in parallel rows using fine cord."
     },
     
-    {
+    "Armored Coat": {
       "name": "Armored Coat",
       "cost": 50,
       "weight": 20,
@@ -239,9 +239,328 @@
       "spellFailure": "20%",
       "speed": [ 20, 15 ],
       "type": "Medium",
+      "description": "This sturdy leather coat is reinforced with metal plates sewn into the lining. You may don or remove the coat as a move action."
+    },
+    "Chain Coat": {
+      "name": "Chain Coat",
+      "cost": 75,
+      "weight": 40,
+      "acBonus": 4,
+      "maxDex": 5,
+      "penalty": -2,
+      "spellFailure": "30%",
+      "speed": [ 20, 15 ],
+      "type": "Medium",
+      "description": "This relatively simple armor consists of heavy chains that wrap around your body and limbs, and you may affix a spiked chain to each hand, to use as weapons."
+    },
+    "Hide": {
+      "name": "Hide",
+      "cost": 15,
+      "weight": 25,
+      "acBonus": 4,
+      "maxDex": 4,
+      "penalty": -3,
+      "spellFailure": "20%",
+      "speed": [ 20, 15 ],
+      "type": "Medium",
+      "description": "Hide armor is made from the tanned skin of particularly thick-hided beasts, stitched with either multiple overlapping layers of crude leather or exterior pieces of leather stuffed with padding or fur."
+    },
+    "Ice Coat": {
+      "name": "Ice Coat",
+      "cost": 80,
+      "weight": 24,
+      "acBonus": 4,
+      "maxDex": 3,
+      "penalty": -2,
+      "spellFailure": "20%",
+      "speed": [ 20, 15 ],
+      "type": "Medium",
+      "description": "Used by natives to the arctic tundra, this heavy parka is treated as an armored coat. It provides the benefits of a cold-weather outfit, grants a +2 circumstance bonus to stealth in snow, and it can be donned or removed as a move action."
+    },
+    "Do-Maru": {
+      "name": "Do-Maru",
+      "cost": 200,
+      "weight": 30,
+      "acBonus": 5,
+      "maxDex": 4,
+      "penalty": -4,
+      "spellFailure": "25%",
+      "speed": [ 20, 15 ],
+      "type": "Medium",
+      "description": "It consists primarily of lamellar and lacks a solid breastplate or sleeves, leaving the shoulders and upper body somewhat exposed, but permitting the wearer greater flexibility than do the majority of heavier armors."
+    },
+    "Kikko Armor": {
+      "name": "Kikko Armor",
+      "cost": 250,
+      "weight": 25,
+      "acBonus": 5,
+      "maxDex": 4,
+      "penalty": -3,
+      "spellFailure": "20%",
+      "speed": [ 20, 15 ],
+      "type": "Medium",
+      "description": "Kikko armor consists of a clever arrangement of hexagonal plates made from iron and sewn to cloth, granting the wearer greater  flexibility than that provided by many armors that afford similar defense."
+    },
+    "": {
+      "name": "",
+      "cost": ,
+      "weight": ,
+      "acBonus": ,
+      "maxDex": ,
+      "penalty": ,
+      "spellFailure": "%",
+      "speed": [ 20, 15 ],
+      "type": "Medium",
       "description": ""
     },
-    {
+Lamellar (Horn)
+Eastern Medium Armor
+Cost 100 gp; Weight 30 lbs.
+Armor Bonus +5; Max Dex Bonus +3; Armor Check Penalty -4
+Arcane Spell Failure Chance 25%; Speed 20 ft./15 ft.
+
+Lamellar is a type of armor in which small plates of various types of materials are strung together in parallel rows using fine cord. Lamellar plates can be constructed from lacquered leather, horn, or even stone, though suits of iron and steel are the most common. Lamellar armor can be crafted into various shapes, including partial pieces such as breastplates, greaves, or even entire coats. The properties of specific suits and pieces of lamellar armor are determined by their material.
+
+    "": {
+      "name": "",
+      "cost": ,
+      "weight": ,
+      "acBonus": ,
+      "maxDex": ,
+      "penalty": ,
+      "spellFailure": "%",
+      "speed": [ 20, 15 ],
+      "type": "Medium",
+      "description": ""
+    },
+Scale Mail
+Medium Armor
+Cost 50 gp; Weight 30 lbs.
+Armor Bonus +5; Max Dex Bonus +3; Armor Check Penalty -4
+Arcane Spell Failure Chance 25%; Speed 20 ft./15 ft.
+
+Scale mail is made up of dozens of small, overlapping metal plates. Similar to both splint mail and banded mail, scalemail has a flexible arrangement of scales in an attempt to avoid hindering the wearer’s mobility, but at the expense of omitting additional protective layers of armor. A suit of scale mail includes gauntlets.
+
+
+
+    "": {
+      "name": "",
+      "cost": ,
+      "weight": ,
+      "acBonus": ,
+      "maxDex": ,
+      "penalty": ,
+      "spellFailure": "%",
+      "speed": [ 20, 15 ],
+      "type": "Medium",
+      "description": ""
+    },
+Breastplate
+Medium Armor
+Cost 200 gp; Weight 30 lbs.
+Armor Bonus +6; Max Dex Bonus +3; Armor Check Penalty -4
+Arcane Spell Failure Chance 25%; Speed 20 ft./15 ft.
+
+A breastplate protects a wearer’s torso with a single piece of sculpted metal, similar to the core piece of a suit of full plate. Despite its sturdiness, its inflexibility and open back make it inferior to complete suits of metal armor, but still an improvement over most non-metal armors.
+
+
+
+
+
+
+
+    "": {
+      "name": "",
+      "cost": ,
+      "weight": ,
+      "acBonus": ,
+      "maxDex": ,
+      "penalty": ,
+      "spellFailure": "%",
+      "speed": [ 20, 15 ],
+      "type": "Medium",
+      "description": ""
+    },
+Agile Breastplate
+Medium Armor
+Cost 400 gp; Weight 25 lbs.
+Armor Bonus +6; Max Dex Bonus +3; Armor Check Penalty -4
+Arcane Spell Failure Chance 25%; Speed 20 ft./15 ft.
+
+This breastplate is specially crafted in a manner that allows extra maneuverability for some physical activities. The armor check penalty for Climb checks and Acrobatics checks made to jump is only –1 (masterwork and mithral versions of this armor reduce this penalty as well as the normal penalty).
+
+
+
+
+    "": {
+      "name": "",
+      "cost": ,
+      "weight": ,
+      "acBonus": ,
+      "maxDex": ,
+      "penalty": ,
+      "spellFailure": "%",
+      "speed": [ 20, 15 ],
+      "type": "Medium",
+      "description": ""
+    },
+Chainmail
+
+
+
+
+Medium Armor
+Cost 150 gp; Weight 40 lbs.
+Armor Bonus +6; Max Dex Bonus +2; Armor Check Penalty -5
+Arcane Spell Failure Chance 30%; Speed 20 ft./15 ft.
+
+Unlike a chain shirt, which covers only the chest, chainmail protects the wearer with a complete mesh of chain links that cover the torso and arms, and extends below the waist. Multiple interconnected pieces offer additional protection over vital areas. The suit includes gauntlets.
+
+
+
+
+
+
+    "": {
+      "name": "",
+      "cost": ,
+      "weight": ,
+      "acBonus": ,
+      "maxDex": ,
+      "penalty": ,
+      "spellFailure": "%",
+      "speed": [ 20, 15 ],
+      "type": "Medium",
+      "description": ""
+    },
+Four-Mirror Armor
+
+
+
+Eastern Medium Armor
+Cost 125 gp; Weight 45 lbs.
+Armor Bonus +6; Max Dex Bonus +2; Armor Check Penalty -5
+Arcane Spell Failure Chance 30%; Speed 20 ft./15 ft.
+
+This armor consists of four plates harnessed together with leather shoulder straps. Two round plates protect your front and back, while two smaller rectangular plates cover the sides of the torso. Four-mirror armor is worn over chainmail to provide added protection, and comes with a spiked helmet with a chainmail hood.
+
+
+
+
+
+
+    "": {
+      "name": "",
+      "cost": ,
+      "weight": ,
+      "acBonus": ,
+      "maxDex": ,
+      "penalty": ,
+      "spellFailure": "%",
+      "speed": [ 20, 15 ],
+      "type": "Medium",
+      "description": ""
+    },
+Lamellar (Steel)
+
+
+
+
+Eastern Medium Armor
+Cost 150 gp; Weight 35 lbs.
+Armor Bonus +6; Max Dex Bonus +3; Armor Check Penalty -5
+Arcane Spell Failure Chance 25%; Speed 20 ft./15 ft.
+
+Lamellar is a type of armor in which small plates of various types of materials are strung together in parallel rows using fine cord. Lamellar plates can be constructed from lacquered leather, horn, or even stone, though suits of iron and steel are the most common. Lamellar armor can be crafted into various shapes, including partial pieces such as breastplates, greaves, or even entire coats. The properties of specific suits and pieces of lamellar armor are determined by their material.
+
+
+
+
+
+
+    "": {
+      "name": "",
+      "cost": ,
+      "weight": ,
+      "acBonus": ,
+      "maxDex": ,
+      "penalty": ,
+      "spellFailure": "%",
+      "speed": [ 20, 15 ],
+      "type": "Medium",
+      "description": ""
+    },
+Mountain Pattern Armor
+
+
+
+
+Eastern Medium Armor
+Cost 250 gp; Weight 40 lbs.
+Armor Bonus +6; Max Dex Bonus +3; Armor Check Penalty -4
+Arcane Spell Failure Chance 30%; Speed 20 ft./15 ft.
+
+This medium armor consists of hundreds of small, interlocking pieces of steel shaped to resemble an ancient symbol for the word “mountain.” The mail is then riveted to a cloth or leather backing. It is worn like a mail coat and covers your torso, shoulders, and thighs.
+
+
+
+
+
+
+    "": {
+      "name": "",
+      "cost": ,
+      "weight": ,
+      "acBonus": ,
+      "maxDex": ,
+      "penalty": ,
+      "spellFailure": "%",
+      "speed": [ 20, 15 ],
+      "type": "Medium",
+      "description": ""
+    },
+
+
+
+
+
+
+
+
+    "": {
+      "name": "",
+      "cost": ,
+      "weight": ,
+      "acBonus": ,
+      "maxDex": ,
+      "penalty": ,
+      "spellFailure": "%",
+      "speed": [ 20, 15 ],
+      "type": "Medium",
+      "description": ""
+    },
+
+
+
+
+
+
+
+
+    "": {
+      "name": "",
+      "cost": ,
+      "weight": ,
+      "acBonus": ,
+      "maxDex": ,
+      "penalty": ,
+      "spellFailure": "%",
+      "speed": [ 20, 15 ],
+      "type": "Medium",
+      "description": ""
+    },
+  
+      {
       "name": "Banded Mail",
       "cost": 250,
       "weight": 35,
@@ -253,7 +572,8 @@
       "type": "Heavy",
       "description": ""
     },
-    {
+  
+{
       "name": "Buckler",
       "cost": 5,
       "weight": 5,
