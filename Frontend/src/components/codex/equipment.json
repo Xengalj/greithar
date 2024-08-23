@@ -301,126 +301,66 @@
       "type": "Medium",
       "description": "Kikko armor consists of a clever arrangement of hexagonal plates made from iron and sewn to cloth, granting the wearer greater  flexibility than that provided by many armors that afford similar defense."
     },
-    "": {
-      "name": "",
-      "cost": ,
-      "weight": ,
-      "acBonus": ,
-      "maxDex": ,
-      "penalty": ,
-      "spellFailure": "%",
+    "Lamellar (Horn)": {
+      "name": "Lamellar (Horn)",
+      "cost": 100,
+      "weight": 30,
+      "acBonus": 5,
+      "maxDex": 3,
+      "penalty": -4,
+      "spellFailure": "25%",
       "speed": [ 20, 15 ],
       "type": "Medium",
-      "description": ""
+      "description": "Lamellar is a type of armor in which small plates of various types of materials are strung together in parallel rows using fine cord."
     },
-Lamellar (Horn)
-Eastern Medium Armor
-Cost 100 gp; Weight 30 lbs.
-Armor Bonus +5; Max Dex Bonus +3; Armor Check Penalty -4
-Arcane Spell Failure Chance 25%; Speed 20 ft./15 ft.
-
-Lamellar is a type of armor in which small plates of various types of materials are strung together in parallel rows using fine cord. Lamellar plates can be constructed from lacquered leather, horn, or even stone, though suits of iron and steel are the most common. Lamellar armor can be crafted into various shapes, including partial pieces such as breastplates, greaves, or even entire coats. The properties of specific suits and pieces of lamellar armor are determined by their material.
-
-    "": {
-      "name": "",
-      "cost": ,
-      "weight": ,
-      "acBonus": ,
-      "maxDex": ,
-      "penalty": ,
-      "spellFailure": "%",
+    "Scale Mail": {
+      "name": "Scale Mail",
+      "cost": 50,
+      "weight": 30,
+      "acBonus": 5,
+      "maxDex": 3,
+      "penalty": -4,
+      "spellFailure": "25%",
       "speed": [ 20, 15 ],
       "type": "Medium",
-      "description": ""
+      "description": "Scale mail is made up of dozens of small, overlapping metal plates and includes a pair of gauntlets."
     },
-Scale Mail
-Medium Armor
-Cost 50 gp; Weight 30 lbs.
-Armor Bonus +5; Max Dex Bonus +3; Armor Check Penalty -4
-Arcane Spell Failure Chance 25%; Speed 20 ft./15 ft.
-
-Scale mail is made up of dozens of small, overlapping metal plates. Similar to both splint mail and banded mail, scalemail has a flexible arrangement of scales in an attempt to avoid hindering the wearer’s mobility, but at the expense of omitting additional protective layers of armor. A suit of scale mail includes gauntlets.
-
-
-
-    "": {
-      "name": "",
-      "cost": ,
-      "weight": ,
-      "acBonus": ,
-      "maxDex": ,
-      "penalty": ,
-      "spellFailure": "%",
+    "Breaastplate": {
+      "name": "Breastplate",
+      "cost": 200,
+      "weight": 30,
+      "acBonus": 6,
+      "maxDex": 3,
+      "penalty": -4,
+      "spellFailure": "25%",
       "speed": [ 20, 15 ],
       "type": "Medium",
-      "description": ""
+      "description": "A breastplate protects a wearer’s torso with a single piece of sculpted metal, similar to the core piece of a suit of full plate."
     },
-Breastplate
-Medium Armor
-Cost 200 gp; Weight 30 lbs.
-Armor Bonus +6; Max Dex Bonus +3; Armor Check Penalty -4
-Arcane Spell Failure Chance 25%; Speed 20 ft./15 ft.
-
-A breastplate protects a wearer’s torso with a single piece of sculpted metal, similar to the core piece of a suit of full plate. Despite its sturdiness, its inflexibility and open back make it inferior to complete suits of metal armor, but still an improvement over most non-metal armors.
-
-
-
-
-
-
-
-    "": {
-      "name": "",
-      "cost": ,
-      "weight": ,
-      "acBonus": ,
-      "maxDex": ,
-      "penalty": ,
-      "spellFailure": "%",
+    "Agile Breastplate": {
+      "name": "Agile Breastplate",
+      "cost": 400,
+      "weight": 25,
+      "acBonus": 6,
+      "maxDex": 3,
+      "penalty": -4,
+      "spellFailure": "25%",
       "speed": [ 20, 15 ],
       "type": "Medium",
-      "description": ""
+      "description": "This breastplate is specially crafted in a manner that allows extra maneuverability, the armor check penalty for Climb and Acrobatics checks made to jump is only –1."
     },
-Agile Breastplate
-Medium Armor
-Cost 400 gp; Weight 25 lbs.
-Armor Bonus +6; Max Dex Bonus +3; Armor Check Penalty -4
-Arcane Spell Failure Chance 25%; Speed 20 ft./15 ft.
-
-This breastplate is specially crafted in a manner that allows extra maneuverability for some physical activities. The armor check penalty for Climb checks and Acrobatics checks made to jump is only –1 (masterwork and mithral versions of this armor reduce this penalty as well as the normal penalty).
-
-
-
-
-    "": {
-      "name": "",
-      "cost": ,
-      "weight": ,
-      "acBonus": ,
-      "maxDex": ,
-      "penalty": ,
-      "spellFailure": "%",
+    "Chainmail": {
+      "name": "Chainmail",
+      "cost": 150,
+      "weight": 40,
+      "acBonus": 6,
+      "maxDex": 2,
+      "penalty": -5,
+      "spellFailure": "30%",
       "speed": [ 20, 15 ],
       "type": "Medium",
-      "description": ""
+      "description": "Chainmail protects the wearer with a complete mesh of chain links that cover the torso and arms, and extends below the waist. The suit includes gauntlets."
     },
-Chainmail
-
-
-
-
-Medium Armor
-Cost 150 gp; Weight 40 lbs.
-Armor Bonus +6; Max Dex Bonus +2; Armor Check Penalty -5
-Arcane Spell Failure Chance 30%; Speed 20 ft./15 ft.
-
-Unlike a chain shirt, which covers only the chest, chainmail protects the wearer with a complete mesh of chain links that cover the torso and arms, and extends below the waist. Multiple interconnected pieces offer additional protection over vital areas. The suit includes gauntlets.
-
-
-
-
-
-
     "": {
       "name": "",
       "cost": ,
@@ -434,9 +374,6 @@ Unlike a chain shirt, which covers only the chest, chainmail protects the wearer
       "description": ""
     },
 Four-Mirror Armor
-
-
-
 Eastern Medium Armor
 Cost 125 gp; Weight 45 lbs.
 Armor Bonus +6; Max Dex Bonus +2; Armor Check Penalty -5
@@ -459,13 +396,9 @@ This armor consists of four plates harnessed together with leather shoulder stra
       "spellFailure": "%",
       "speed": [ 20, 15 ],
       "type": "Medium",
-      "description": ""
+      "description": "Lamellar is a type of armor in which small plates of various types of materials are strung together in parallel rows using fine cord."
     },
 Lamellar (Steel)
-
-
-
-
 Eastern Medium Armor
 Cost 150 gp; Weight 35 lbs.
 Armor Bonus +6; Max Dex Bonus +3; Armor Check Penalty -5
@@ -491,10 +424,6 @@ Lamellar is a type of armor in which small plates of various types of materials 
       "description": ""
     },
 Mountain Pattern Armor
-
-
-
-
 Eastern Medium Armor
 Cost 250 gp; Weight 40 lbs.
 Armor Bonus +6; Max Dex Bonus +3; Armor Check Penalty -4
@@ -559,7 +488,10 @@ This medium armor consists of hundreds of small, interlocking pieces of steel sh
       "type": "Medium",
       "description": ""
     },
-  
+
+
+
+Lamellar is a type of armor in which small plates of various types of materials are strung together in parallel rows using fine cord.
       {
       "name": "Banded Mail",
       "cost": 250,
