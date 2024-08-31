@@ -1,3 +1,6 @@
+todo:
+  replace "type" with "proficiency"
+
 {
   "armor": {
     "Armored Kilt" : {
@@ -554,69 +557,46 @@
       "type": "Heavy",
       "description": "A complete suit of full plate (or platemail, as it is often called) includes gauntlets, heavy leather boots, a visored helmet, and a thick layer of padding that is worn underneath the armor. Each suit of full plate must be individually fitted to its owner by a master armorsmith, although a captured suit can be resized to fit a new owner at a cost of 200 to 800 (2d4 x 100) gold pieces."
     },
-    "": {
-      "name": "",
-      "cost": ,
-      "weight": ,
-      "acBonus": ,
-      "maxDex": ,
-      "penalty": ,
-      "spellFailure": "%",
+    "Gray Maiden Plate": {
+      "name": "Gray Maiden Plate",
+      "cost": 1500,
+      "weight": 50,
+      "acBonus": 9,
+      "maxDex": 1,
+      "penalty": -6,
+      "spellFailure": "35%",
       "speed": [ 20, 15 ],
       "type": "Heavy",
-      "description": ""
+      "description": "This armor is functionally identical to full plate, but is distinctive to the Gray Maidens."
     },
-Gray Maiden Plate
-Cost 1,500 gp; Weight 50 lbs.
-Armor Bonus +9; Max Dex Bonus +1; Armor Check Penalty -6
-Arcane Spell Failure Chance 35%; Speed 20 ft./15 ft.
 
-The Gray Maidens’ distinctive armor is one of their most iconic identifiers. Gray Maiden plate is mechanically identical to full plate, and any effect that functions with full plate functions with Gray Maiden plate. Certain options for Gray Maidens function only when they wear Gray Maiden plate.
-
-
-
-    "": {
-      "name": "",
-      "cost": ,
-      "weight": ,
-      "acBonus": ,
-      "maxDex": ,
-      "penalty": ,
-      "spellFailure": "%",
+    "Hell Knight Plate": {
+      "name": "Hell Knight Plate",
+      "cost": 2000,
+      "weight": 50,
+      "acBonus": 9,
+      "maxDex": 1,
+      "penalty": -5,
+      "spellFailure": "35%",
       "speed": [ 20, 15 ],
       "type": "Heavy",
-      "description": ""
+      "description": "A special type of full plate that grants extra effects to Hell Knights."
     },
-Hell Knight Plate
-Heavy Armor
-Cost 2,000 gp; Weight 50 lbs.
-Armor Bonus +9; Max Dex Bonus +1; Armor Check Penalty -5
-Arcane Spell Failure Chance 35%; Speed 20 ft./15 ft.
-
-These distinctive suits of armor are a special type of masterwork full plate that grant additional effects when worn by a character with levels in the Hell Knight prestige class. Apart from its distinctive look (each order of Hell Knights has its own style of armor), a suit of Hell Knight plate functions the same as a suit of masterwork full plate.
-
-
-    "": {
-      "name": "",
-      "cost": ,
-      "weight": ,
-      "acBonus": ,
-      "maxDex": ,
-      "penalty": ,
-      "spellFailure": "%",
-      "speed": [ 20, 15 ],
+    "Stone Plate": {
+      "name": "Stone Plate",
+      "cost": 1800,
+      "weight": 75,
+      "acBonus": 9,
+      "maxDex": 1,
+      "penalty": -6,
+      "spellFailure": "35%",
+      "speed": [ 15, 10 ],
       "type": "Heavy",
-      "description": ""
-    },
-Stone Plate
-Heavy Armor
-Cost 1,800 gp; Weight 75 lbs.
-Armor Bonus +9; Max Dex Bonus +1; Armor Check Penalty -6
-Arcane Spell Failure Chance 35%; Speed 15 ft./10 ft.
+      "description": "This armor is crafted by dwarven stonesmiths from alchemically strengthened plates of basalt and primarily worn by dwarven druids."
+    }
+  }
 
-This armor is crafted by dwarven stonesmiths from alchemically strengthened plates of basalt. Stoneplate is heavy and unwieldy, but offers incredible protection to its wearer. It is primarily used by dwarven druids who cannot wear metal armor.
-  
-  
+  "shields": {
     "Buckler": {
       "name": "Buckler",
       "cost": 5,
@@ -626,10 +606,59 @@ This armor is crafted by dwarven stonesmiths from alchemically strengthened plat
       "penalty": -1,
       "spellFailure": "5%",
       "speed": [ 1000, 1000 ],
-      "type": "Shield",
-      "description": ""
+
+      "damage": [ "0", "0", "" ],
+      "critRange": 0,
+      "critMultiplier": 0,
+      "dmgType": [ "none" ],
+      "special": "You cannot make a shield bash with a buckler",
+      "category": "",
+      "proficiency": "",
+      "group": [ "" ],
+      
+      "description": "This small metal shield "
     },
-  "": {
+
+    
+    Light Shield
+Cost 3 gp (wooden)/9 gp (steel) Weight 5 lbs. (wooden)/6 lbs. (steel)
+Damage 1d2 (small), 1d3 (medium) Critical x2 Type bludgeoning
+Category light Proficiency martial
+Weapon Groups close, tribal
+
+    
+  This small metal shield is worn strapped to your forearm.
+  You can use a bow or crossbow without penalty while carrying it.
+  You can also use your shield arm to wield a weapon (whether you are using an offhand weapon or using your off hand to help 
+    wield a two-handed weapon), but you take a –1 penalty on attack rolls while doing so.
+  This penalty stacks with those that may apply for fighting with your off hand and for fighting with two weapons. 
+In any case, if you use a weapon in your off hand, you lose the buckler’s Armor Class bonus until your next turn. 
+You can cast a spell with somatic components using your shield arm, but you lose the buckler’s Armor Class bonus until your next turn. 
+You can’t make a shield bash with a buckler.
+
+    "Klar": {
+      "name": "Klar",
+      "cost": 12,
+      "weight": 6,
+      "acBonus": 1,
+      "maxDex": 10,
+      "penalty": -1,
+      "spellFailure": "5%",
+      "speed": [ 1000, 1000 ],
+
+      "damage": [ "1d4", "1d6", "" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "dmgType": [ "slashing" ],
+      "special": "",
+      "category": "One-Handed",
+      "proficiency": "Martial",
+      "group": [ "Blades", "Close" ],
+      
+      "description": "A small shield with spikes used for both offense and defense."
+    },
+
+    "": {
       "name": "",
       "cost": ,
       "weight": ,
@@ -637,8 +666,90 @@ This armor is crafted by dwarven stonesmiths from alchemically strengthened plat
       "maxDex": ,
       "penalty": ,
       "spellFailure": "%",
-      "speed": [ 20, 15 ],
-      "type": "Heavy",
+      "speed": [ 1000, 1000 ],
+      "type": "Shield",
+      "description": ""
+    },
+Madu
+
+
+Madu, leather	30 gp	+1	—	-2	5%	—	—	5 lbs.	PPZO9410
+Madu, steel	40 gp	+1	—	-2	5%	—	—	6 lbs.
+
+Benefit: If you are proficient with the madu, you may wield it and fight defensively with a –2 penalty instead of the normal–4 penalty for fighting defensively, and your attack penalty for using Combat Expertise improves by +1 (minimum –1 penalty). You cannot hold anything else in the hand that bears a madu. If you are not proficient in madu, treat it as a light spiked shield.
+
+
+    "": {
+      "name": "",
+      "cost": ,
+      "weight": ,
+      "acBonus": ,
+      "maxDex": ,
+      "penalty": ,
+      "spellFailure": "%",
+      "speed": [ 1000, 1000 ],
+      "type": "Shield",
+      "description": ""
+    },
+Madu, steel	40 gp	+1	—	-2	5%	—	—	6 lbs.
+
+Benefit: If you are proficient with the madu, you may wield it and fight defensively with a –2 penalty instead of the normal–4 penalty for fighting defensively, and your attack penalty for using Combat Expertise improves by +1 (minimum –1 penalty). You cannot hold anything else in the hand that bears a madu. If you are not proficient in madu, treat it as a light spiked shield.
+
+
+
+    "": {
+      "name": "",
+      "cost": ,
+      "weight": ,
+      "acBonus": ,
+      "maxDex": ,
+      "penalty": ,
+      "spellFailure": "%",
+      "speed": [ 1000, 1000 ],
+      "type": "Shield",
+      "description": ""
+    },
+Shield, light steel	9 gp	+1	—	-1	5%	—	—	6 lbs.	PZO1110
+Shield, light steel (quickdraw)	59 gp	+1	—	-2	5%	—	—	7 lbs.	PZO1115
+Shield, light wooden	3 gp	+1	—	-1	5%	—	—	5 lbs.	PZO1110
+Shield, light wooden (quickdraw)	53 gp	+1	—	-2	5%	—	—	6 lbs.	PZO1115
+Shield, heavy steel	20 gp	+2	—	-2	15%	—	—	15 lbs.	PZO1110
+Shield, heavy wooden	7 gp	+2	—	–2	15%	—	—	10 lbs.	PZO1110
+Shield, tower	30 gp	+43	+2	-10	50%	—	—	45 lbs.	PZO1110
+Snarlshield, steel	50 gp	+2	—	-3	15%	—	—	20 lbs.	PPZO94102
+Snarlshield, wooden	37 gp	+2	—	-3	15%	—	—	15 lbs.	PPZO94102
+War-shield, dwarven	50 gp	+1	—	-1	20%	—	—	8 lbs.
+
+
+
+
+    "": {
+      "name": "",
+      "cost": ,
+      "weight": ,
+      "acBonus": ,
+      "maxDex": ,
+      "penalty": ,
+      "spellFailure": "%",
+      "speed": [ 1000, 1000 ],
+      "type": "Shield",
+      "description": ""
+    },
+
+
+
+
+
+    "": {
+      "name": "",
+      "cost": ,
+      "weight": ,
+      "acBonus": ,
+      "maxDex": ,
+      "penalty": ,
+      "spellFailure": "%",
+      "speed": [ 1000, 1000 ],
+      "type": "Shield",
       "description": ""
     },
 
