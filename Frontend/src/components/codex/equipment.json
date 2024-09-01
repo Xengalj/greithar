@@ -1,5 +1,6 @@
 todo:
   replace "type" with "proficiency"
+  heavy vs light blades
 
 {
   "armor": {
@@ -13,7 +14,8 @@ todo:
       "spellFailure": "0%",
       "speed": [ 30, 20 ],
       "type": "Light",
-      "description": "An armored kilt can be worn with other armor, and turns light armor into medium armor, and medium armor into heavy armor."
+      "description": "The armored kilt is made of a thick cloth skirt with bars of steel hanging down from the waist and a ring of horizontal steel plates just above the hem.",
+      "bonus": "An armored kilt can be worn with other armor, and turns light armor into medium armor, and medium armor into heavy armor."
     },
     "Dancing Scarves": {
       "name": "Dancing Scarves",
@@ -25,7 +27,8 @@ todo:
       "spellFailure": "0%",
       "speed": [ 30, 20 ],
       "type": "Light",
-      "description": "This set of colorful scarves is made of heavy silk and reinforced with leather straps. You only get their AC bonus if you move at least 10 feet during your turn, this lasts until your next turn."
+      "description": "This set of colorful scarves is made of heavy silk and reinforced with leather straps.",
+      "bonus": "You only get their AC bonus if you move at least 10 feet during your turn, this lasts until your next turn."
     },
     "Haramaki": {
       "name": "Haramaki",
@@ -61,7 +64,8 @@ todo:
       "spellFailure": "10%",
       "speed": [ 30, 20 ],
       "type": "Light",
-      "description": "This enhanced form of padded armor has internal layers specifically designed to trap arrows, bolts, darts, shuriken, thrown daggers, and other small ranged piercing weapons. Wearing quilted cloth armor gives you DR 3/— against attacks of this kind."
+      "description": "This enhanced form of padded armor has internal layers specifically designed to trap arrows, bolts, darts, shuriken, thrown daggers, and other small ranged piercing weapons.",
+      "bonus": "Wearing quilted cloth armor gives you DR 3/— against small ranged weapon attacks."
     },
     "Reinforced Tunic": {
       "name": "Reinforced Tunic",
@@ -73,7 +77,8 @@ todo:
       "spellFailure": "5%",
       "speed": [ 30, 20 ],
       "type": "Light",
-      "description": "Sometimes called a leine, this belted tunic has thick cords woven through it that cover vital areas. You also get a +2 to AC versus confirming critical hits."
+      "description": "Sometimes called a leine, this belted tunic has thick cords woven through it that cover vital areas.",
+      "bonus": "You get a +2 to AC versus confirming critical hits."
     },
     "Silken Ceremonial Armor": {
       "name": "Silken Ceremonial Armor",
@@ -145,7 +150,8 @@ todo:
       "spellFailure": "15%",
       "speed": [ 30, 20 ],
       "type": "Light",
-      "description": "Made from animal hide and giant lizard scales over a shirt of interwoven cords, these chest and shoulder coverings protect without restricting mobility."
+      "description": "Made from animal hide and giant lizard scales over a shirt of interwoven cords, these chest and shoulder coverings protect without restricting mobility.",
+      "bonus": "You may attempt a DC 15 Strength check as a standard action. If it succeeds, the armor gains the broken condition and drops to the ground rather than requiring the usual 1 minute to remove".
     },
     "Leaf Armor": {
       "name": "Leaf Armor",
@@ -169,7 +175,8 @@ todo:
       "spellFailure": "15%",
       "speed": [ 30, 20 ],
       "type": "Light",
-      "description": "A showy noncombat uniform that grants a +2 circumstance bonus on Diplomacy and Intimidat checks to influence someone from the uniform's country or region."
+      "description": "A showy noncombat uniform that still grants a small ammount of protection.",
+      "bonus": "Wearing a country’s parade armor, grants a +2 circumstance bonus on Diplomacy and Intimidate checks to influence a person from that country."
     },
     "Spider-Silk Bodysuit": {
       "name": "Spider-Silk Bodysuit",
@@ -181,7 +188,8 @@ todo:
       "spellFailure": "10%",
       "speed": [ 30, 20 ],
       "type": "Light",
-      "description": "This exotic form-fitting garment is woven entirely from alchemically treated silk harvested from giant spiders or other arachnid creatures."
+      "description": "This exotic form-fitting garment is woven entirely from alchemically treated silk harvested from giant spiders or other arachnid creatures.",
+      "bonus": "If you have the drow’s weapon familiarity racial trait, you treat the spider-silk bodysuit’s maximum Dexterity bonus as 2 higher."
     },
     "Studded Leather": {
       "name": "Studded Leather",
@@ -205,7 +213,8 @@ todo:
       "spellFailure": "15%",
       "speed": [ 30, 20 ],
       "type": "Light",
-      "description": "This suit of leather armor has plates of fire-treated wood sewn over vital areas, and the wood is slightly bouyant, the armor check penalty for swimming in this armor is 0."
+      "description": "This suit of leather armor has plates of fire-treated wood sewn over vital areas.",
+      "bonus": "Wooden armor is slightly bouyant and the armor check penalty for swimming in this armor is 0."
     },
     "Chain Shirt": {
       "name": "Chain Shirt",
@@ -242,7 +251,8 @@ todo:
       "spellFailure": "20%",
       "speed": [ 20, 15 ],
       "type": "Medium",
-      "description": "This sturdy leather coat is reinforced with metal plates sewn into the lining. You may don or remove the coat as a move action."
+      "description": "This sturdy leather coat is reinforced with metal plates sewn into the lining.",
+      "bonus": "You may don or remove the coat as a move action."
     },
     "Chain Coat": {
       "name": "Chain Coat",
@@ -254,7 +264,8 @@ todo:
       "spellFailure": "30%",
       "speed": [ 20, 15 ],
       "type": "Medium",
-      "description": "This relatively simple armor consists of heavy chains that wrap around your body and limbs, and you may affix a spiked chain to each hand, to use as weapons."
+      "description": "This relatively simple armor consists of heavy chains that wrap around your body and limbs.",
+      "bonus": "You may affix a spiked chain to each hand, to use as weapons which cannot be disarmed."
     },
     "Hide": {
       "name": "Hide",
@@ -278,7 +289,8 @@ todo:
       "spellFailure": "20%",
       "speed": [ 20, 15 ],
       "type": "Medium",
-      "description": "Used by natives to the arctic tundra, this heavy parka is treated as an armored coat. It provides the benefits of a cold-weather outfit, grants a +2 circumstance bonus to stealth in snow, and it can be donned or removed as a move action."
+      "description": "Used by natives to the arctic tundra, this heavy parka is treated as an armored coat.",
+      "bonus": "It provides the benefits of a cold-weather outfit, grants a +2 circumstance bonus to stealth in snow, and it can be donned or removed as a move action."
     },
     "Do-Maru": {
       "name": "Do-Maru",
@@ -328,7 +340,7 @@ todo:
       "type": "Medium",
       "description": "Scale mail is made up of dozens of small, overlapping metal plates and includes a pair of gauntlets."
     },
-    "Breaastplate": {
+    "Breastplate": {
       "name": "Breastplate",
       "cost": 200,
       "weight": 30,
@@ -350,7 +362,8 @@ todo:
       "spellFailure": "25%",
       "speed": [ 20, 15 ],
       "type": "Medium",
-      "description": "This breastplate is specially crafted in a manner that allows extra maneuverability, the armor check penalty for Climb and Acrobatics checks made to jump is only –1."
+      "description": "This breastplate is specially crafted in a manner that allows extra maneuverability in some physical activities.",
+      "bonus": "The armor check penalty for Climb and Acrobatics checks made to jump is only –1."
     },
     "Chainmail": {
       "name": "Chainmail",
@@ -483,7 +496,8 @@ todo:
       "spellFailure": "40%",
       "speed": [ 20, 15 ],
       "type": "Heavy",
-      "description": "Fortress plate is incredibly bulky, and its armor category can’t be reduced by any effect (including by special materials, such as mithral), it also includes gauntlets and a helm."
+      "description": "Fortress plate is incredibly bulky, featuring layers of overlapping plates.",
+      "bonus": "Fortress plate is incredibly bulky and cannot have it's armor category reduced (even by mithral)."
     },
     "Half-Plate": {
       "name": "Half-Plate",
@@ -507,7 +521,8 @@ todo:
       "spellFailure": "40%",
       "speed": [ 20, 15 ],
       "type": "Heavy",
-      "description": "This style of half-plate is specially crafted in a manner that allows extra maneuverability for some physical activities. Climb checks are made at only a -4, and you can still run ad x4 speed."
+      "description": "This style of half-plate is specially crafted in a manner that allows extra maneuverability for some physical activities.",
+      "bonus": "The armor check penalty for Climb and Acrobatics checks made to jump is only –1, and you can still run at 4x speed."
     },
     "Hell Knight Half-Plate": {
       "name": "Hell Knight Half-Plate",
@@ -602,12 +617,11 @@ todo:
       "cost": 5,
       "weight": 5,
       "acBonus": 1,
-      "maxDex": 100,
+      "maxDex": 10,
       "penalty": -1,
       "spellFailure": "5%",
       "speed": [ 1000, 1000 ],
-
-      "damage": [ "0", "0", "" ],
+        "damage": [ "0", "0", "0" ],
       "critRange": 0,
       "critMultiplier": 0,
       "dmgType": [ "none" ],
@@ -615,27 +629,8 @@ todo:
       "category": "",
       "proficiency": "",
       "group": [ "" ],
-      
-      "description": "This small metal shield "
+      "description": "This small metal shield is worn strapped to your forearm to allow you to still wield a weapon with that hand at a -1."
     },
-
-    
-    Light Shield
-Cost 3 gp (wooden)/9 gp (steel) Weight 5 lbs. (wooden)/6 lbs. (steel)
-Damage 1d2 (small), 1d3 (medium) Critical x2 Type bludgeoning
-Category light Proficiency martial
-Weapon Groups close, tribal
-
-    
-  This small metal shield is worn strapped to your forearm.
-  You can use a bow or crossbow without penalty while carrying it.
-  You can also use your shield arm to wield a weapon (whether you are using an offhand weapon or using your off hand to help 
-    wield a two-handed weapon), but you take a –1 penalty on attack rolls while doing so.
-  This penalty stacks with those that may apply for fighting with your off hand and for fighting with two weapons. 
-In any case, if you use a weapon in your off hand, you lose the buckler’s Armor Class bonus until your next turn. 
-You can cast a spell with somatic components using your shield arm, but you lose the buckler’s Armor Class bonus until your next turn. 
-You can’t make a shield bash with a buckler.
-
     "Klar": {
       "name": "Klar",
       "cost": 12,
@@ -645,113 +640,260 @@ You can’t make a shield bash with a buckler.
       "penalty": -1,
       "spellFailure": "5%",
       "speed": [ 1000, 1000 ],
-
-      "damage": [ "1d4", "1d6", "" ],
+        "damage": [ "1d4", "1d6", "1d10" ],
       "critRange": 20,
       "critMultiplier": 2,
       "dmgType": [ "slashing" ],
       "special": "",
       "category": "One-Handed",
       "proficiency": "Martial",
-      "group": [ "Blades", "Close" ],
-      
+      "group": [ "Heavy Blades", "Close" ],
       "description": "A small shield with spikes used for both offense and defense."
     },
-
-    "": {
-      "name": "",
-      "cost": ,
-      "weight": ,
-      "acBonus": ,
-      "maxDex": ,
-      "penalty": ,
-      "spellFailure": "%",
+    "Madu (Leather)": {
+      "name": "Madu (Leather)",
+      "cost": 30,
+      "weight": 5,
+      "acBonus": 1,
+      "maxDex": 10,
+      "penalty": -2,
+      "spellFailure": "5%",
       "speed": [ 1000, 1000 ],
-      "type": "Shield",
-      "description": ""
+        "damage": [ "1d3", "1d4", "1d8" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "dmgType": [ "piercing" ],
+      "special": "",
+      "category": "Light",
+      "proficiency": "Exotic",
+      "group": [ "Close" , "Tribal" ],
+      "description": "This small shield has two antlers, usually from an antelope extending out either side. If you are proficient with the madu, you take only a -2 when fighting defensively instead of the usual -4."
     },
-Madu
-
-
-Madu, leather	30 gp	+1	—	-2	5%	—	—	5 lbs.	PPZO9410
-Madu, steel	40 gp	+1	—	-2	5%	—	—	6 lbs.
-
-Benefit: If you are proficient with the madu, you may wield it and fight defensively with a –2 penalty instead of the normal–4 penalty for fighting defensively, and your attack penalty for using Combat Expertise improves by +1 (minimum –1 penalty). You cannot hold anything else in the hand that bears a madu. If you are not proficient in madu, treat it as a light spiked shield.
-
-
-    "": {
-      "name": "",
-      "cost": ,
-      "weight": ,
-      "acBonus": ,
-      "maxDex": ,
-      "penalty": ,
-      "spellFailure": "%",
+    "Madu (Steel)": {
+      "name": "Madu (Steel)",
+      "cost": 40,
+      "weight": 6,
+      "acBonus": 1,
+      "maxDex": 10,
+      "penalty": -2,
+      "spellFailure": "5%",
       "speed": [ 1000, 1000 ],
-      "type": "Shield",
-      "description": ""
+        "damage": [ "1d3", "1d4", "1d8" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "dmgType": [ "piercing" ],
+      "special": "",
+      "category": "Light",
+      "proficiency": "Exotic",
+      "group": [ "Close", "Tribal" ],
+      "description": "This small shield has two antlers, usually from an antelope extending out either side. If you are proficient with the madu, you take only a -2 when fighting defensively instead of the usual -4."
     },
-Madu, steel	40 gp	+1	—	-2	5%	—	—	6 lbs.
-
-Benefit: If you are proficient with the madu, you may wield it and fight defensively with a –2 penalty instead of the normal–4 penalty for fighting defensively, and your attack penalty for using Combat Expertise improves by +1 (minimum –1 penalty). You cannot hold anything else in the hand that bears a madu. If you are not proficient in madu, treat it as a light spiked shield.
-
-
-
-    "": {
-      "name": "",
-      "cost": ,
-      "weight": ,
-      "acBonus": ,
-      "maxDex": ,
-      "penalty": ,
-      "spellFailure": "%",
+    "Light Shield (Steel)": {
+      "name": "Light Shield (Steel)",
+      "cost": 9,
+      "weight": 6,
+      "acBonus": 1,
+      "maxDex": 10,
+      "penalty": -1,
+      "spellFailure": "5%",
       "speed": [ 1000, 1000 ],
-      "type": "Shield",
-      "description": ""
+        "damage": [ "1d2", "1d3", "1d6" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "dmgType": [ "bludgeoning" ],
+      "special": "",
+      "category": "Light",
+      "proficiency": "Martial",
+      "group": [ "Close", "Tribal" ],
+      "description": "A simple shield made of good steel."
     },
-Shield, light steel	9 gp	+1	—	-1	5%	—	—	6 lbs.	PZO1110
-Shield, light steel (quickdraw)	59 gp	+1	—	-2	5%	—	—	7 lbs.	PZO1115
-Shield, light wooden	3 gp	+1	—	-1	5%	—	—	5 lbs.	PZO1110
-Shield, light wooden (quickdraw)	53 gp	+1	—	-2	5%	—	—	6 lbs.	PZO1115
-Shield, heavy steel	20 gp	+2	—	-2	15%	—	—	15 lbs.	PZO1110
-Shield, heavy wooden	7 gp	+2	—	–2	15%	—	—	10 lbs.	PZO1110
-Shield, tower	30 gp	+43	+2	-10	50%	—	—	45 lbs.	PZO1110
-Snarlshield, steel	50 gp	+2	—	-3	15%	—	—	20 lbs.	PPZO94102
-Snarlshield, wooden	37 gp	+2	—	-3	15%	—	—	15 lbs.	PPZO94102
-War-shield, dwarven	50 gp	+1	—	-1	20%	—	—	8 lbs.
-
-
-
-
-    "": {
-      "name": "",
-      "cost": ,
-      "weight": ,
-      "acBonus": ,
-      "maxDex": ,
-      "penalty": ,
-      "spellFailure": "%",
+    "Light Shield (Steel Quickdraw)": {
+      "name": "Light Shield (Steel Quickdraw)",
+      "cost": 59,
+      "weight": 7,
+      "acBonus": 1,
+      "maxDex": 10,
+      "penalty": -2,
+      "spellFailure": "5%",
       "speed": [ 1000, 1000 ],
-      "type": "Shield",
-      "description": ""
+        "damage": [ "1d2", "1d3", "1d6" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "dmgType": [ "bludgeoning" ],
+      "special": "",
+      "category": "Light",
+      "proficiency": "Martial",
+      "group": [ "Close", "Tribal" ],
+      "description": "If your BAB is at least +1 you may don or remove this shield as a swift action combined with a move action."
     },
-
-
-
-
-
-    "": {
-      "name": "",
-      "cost": ,
-      "weight": ,
-      "acBonus": ,
-      "maxDex": ,
-      "penalty": ,
-      "spellFailure": "%",
+    "Light Shield (Wooden)": {
+      "name": "Light Shield (Wooden)",
+      "cost": 3,
+      "weight": 5,
+      "acBonus": 1,
+      "maxDex": 10,
+      "penalty": -1,
+      "spellFailure": "5%",
       "speed": [ 1000, 1000 ],
-      "type": "Shield",
-      "description": ""
+        "damage": [ "1d2", "1d3", "1d6" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "dmgType": [ "bludgeoning" ],
+      "special": "",
+      "category": "Light",
+      "proficiency": "Martial",
+      "group": [ "Close", "Tribal" ],
+      "description": "A simple shield made of solid wood."
     },
+    "Light Shield (Wooden Quickdraw)": {
+      "name": "Light Shield (Wooden Quickdraw)",
+      "cost": 53,
+      "weight": 6,
+      "acBonus": 1,
+      "maxDex": 10,
+      "penalty": -2,
+      "spellFailure": "5%",
+      "speed": [ 1000, 1000 ],
+        "damage": [ "1d2", "1d3", "1d6" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "dmgType": [ "bludgeoning" ],
+      "special": "",
+      "category": "Light",
+      "proficiency": "Martial",
+      "group": [ "Close", "Tribal" ],
+      "description": "If your BAB is at least +1 you may don or remove this shield as a swift action combined with a move action."
+    },
+    "Heavy Shield (Steel)": {
+      "name": "Heavy Shield (Steel)",
+      "cost": 20,
+      "weight": 15,
+      "acBonus": 2,
+      "maxDex": 10,
+      "penalty": -2,
+      "spellFailure": "15%",
+      "speed": [ 1000, 1000 ],
+        "damage": [ "1d3", "1d4", "1d8" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "dmgType": [ "blugeoning" ],
+      "special": "",
+      "category": "One-Handed",
+      "proficiency": "Martial",
+      "group": [ "Close", "Tribal" ],
+      "description": "A sturdy metal shield reinforced with good steel."
+    },
+    "Heavy Shield (Wooden)": {
+      "name": "Heavy Shield (Wooden)",
+      "cost": 7,
+      "weight": 10,
+      "acBonus": 2,
+      "maxDex": 10,
+      "penalty": -2,
+      "spellFailure": "15%",
+      "speed": [ 1000, 1000 ],
+        "damage": [ "1d3", "1d4", "1d8" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "dmgType": [ "blugeoning" ],
+      "special": "",
+      "category": "One-Handed",
+      "proficiency": "Martial",
+      "group": [ "Close", "Tribal" ],
+      "description": "A sturdy wooden shield reinforced with bands of solid hardwood."
+    },
+    "Tower Shield": {
+      "name": "Tower Shield",
+      "cost": 30,
+      "weight": 45,
+      "acBonus": 4,
+      "maxDex": 2,
+      "penalty": -10,
+      "spellFailure": "50%",
+      "speed": [ 1000, 1000 ],
+        "damage": [ "0", "0", "0" ],
+      "critRange": 0,
+      "critMultiplier": 0,
+      "dmgType": [ "none" ],
+      "special": "You cannot make a shield bash with a tower shield",
+      "category": "",
+      "proficiency": "",
+      "group": [ "" ],
+      "description": "A tower shield is unweildy and applies a -2 to your attack rolls when equiped. As a standard action, you can use the tower shield to grant yourself total cover until the beggining of your next turn. Choose one edge of your space and that edge is treated as a wall for attacks targeting you."
+    },
+    "Snarlshield (Steel)": {
+      "name": "Snarlshield (Steel)",
+      "cost": 50,
+      "weight": 20,
+      "acBonus": 2,
+      "maxDex": 10,
+      "penalty": -3,
+      "spellFailure": "15%",
+      "speed": [ 1000, 1000 ],
+        "damage": [ "1d3", "1d4", "1d8" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "dmgType": [ "blugeoning" ],
+      "special": "disarm",
+      "category": "One-Handed",
+      "proficiency": "Martial",
+      "group": [ "Close", "Tribal" ],
+      "description": "A sturdy metal shield reinforced with good steel and a dozen rods protruding from the surface to grab enemy weapons."
+    },
+    "Snarlshield (Wooden)": {
+      "name": "Snarlshield (Wooden)",
+      "cost": 37,
+      "weight": 15,
+      "acBonus": 2,
+      "maxDex": 10,
+      "penalty": -3,
+      "spellFailure": "15%",
+      "speed": [ 1000, 1000 ],
+        "damage": [ "1d3", "1d4", "1d8" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "dmgType": [ "blugeoning" ],
+      "special": "disarm",
+      "category": "One-Handed",
+      "proficiency": "Martial",
+      "group": [ "Close", "Tribal" ],
+      "description": "A sturdy wooden shield reinforced with bands of solid hardwood with a dozen protruding rods to grab enemy weapons."
+    },
+    "Dwarven War-Shield": {
+      "name": "Dwarven War-Shield",
+      "cost": 50,
+      "weight": 8,
+      "acBonus": 1,
+      "maxDex": 10,
+      "penalty": -1,
+      "spellFailure": "20%",
+      "speed": [ 1000, 1000 ],
+        "damage": [ "1d4", "1d6", "1d10" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "dmgType": [ "piercing", "slashing" ],
+      "special": "",
+      "category": "Light",
+      "proficiency": "Exotic",
+      "group": [ "Close" ],
+      "description": "The shield's sides are cut into jagged angles, honed to razor sharpness.",
+      "bonus": "If you have Two-Weapon Fighting, you increase the higher shield bonus by 1. You lose this bonus for 1 round when you make an attack with one or both shields."
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     {
       "name": "Custom",
