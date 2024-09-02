@@ -609,7 +609,15 @@ todo:
       "type": "Heavy",
       "description": "This armor is crafted by dwarven stonesmiths from alchemically strengthened plates of basalt and primarily worn by dwarven druids."
     }
-  }
+  },
+
+
+
+
+
+
+
+
 
   "shields": {
     "Buckler": {
@@ -625,11 +633,12 @@ todo:
       "critRange": 0,
       "critMultiplier": 0,
       "dmgType": [ "none" ],
-      "special": "You cannot make a shield bash with a buckler",
+      "special": "",
       "category": "",
       "proficiency": "",
       "group": [ "" ],
-      "description": "This small metal shield is worn strapped to your forearm to allow you to still wield a weapon with that hand at a -1."
+      "description": "This small metal shield is worn strapped to your forearm to allow you to still wield a weapon with that hand.",
+      "bonus": "While using a weapon in the hand a buckler is strapped to, you take a -1 on attack rolls."
     },
     "Klar": {
       "name": "Klar",
@@ -640,7 +649,7 @@ todo:
       "penalty": -1,
       "spellFailure": "5%",
       "speed": [ 1000, 1000 ],
-        "damage": [ "1d4", "1d6", "1d10" ],
+        "damage": [ "1d4", "1d6", "1d8" ],
       "critRange": 20,
       "critMultiplier": 2,
       "dmgType": [ "slashing" ],
@@ -659,7 +668,7 @@ todo:
       "penalty": -2,
       "spellFailure": "5%",
       "speed": [ 1000, 1000 ],
-        "damage": [ "1d3", "1d4", "1d8" ],
+        "damage": [ "1d3", "1d4", "1d6" ],
       "critRange": 20,
       "critMultiplier": 2,
       "dmgType": [ "piercing" ],
@@ -667,7 +676,8 @@ todo:
       "category": "Light",
       "proficiency": "Exotic",
       "group": [ "Close" , "Tribal" ],
-      "description": "This small shield has two antlers, usually from an antelope extending out either side. If you are proficient with the madu, you take only a -2 when fighting defensively instead of the usual -4."
+      "description": "This small shield has two antlers, usually from an antelope extending out either side.",
+      "bonus": "If you are proficient with the madu, you take only a -2 when fighting defensively instead of the usual -4."
     },
     "Madu (Steel)": {
       "name": "Madu (Steel)",
@@ -678,7 +688,7 @@ todo:
       "penalty": -2,
       "spellFailure": "5%",
       "speed": [ 1000, 1000 ],
-        "damage": [ "1d3", "1d4", "1d8" ],
+        "damage": [ "1d3", "1d4", "1d6" ],
       "critRange": 20,
       "critMultiplier": 2,
       "dmgType": [ "piercing" ],
@@ -686,7 +696,8 @@ todo:
       "category": "Light",
       "proficiency": "Exotic",
       "group": [ "Close", "Tribal" ],
-      "description": "This small shield has two antlers, usually from an antelope extending out either side. If you are proficient with the madu, you take only a -2 when fighting defensively instead of the usual -4."
+      "description": "This small shield has two antlers, usually from an antelope extending out either side.",
+      "bonus": "If you are proficient with the madu, you take only a -2 when fighting defensively instead of the usual -4."
     },
     "Light Shield (Steel)": {
       "name": "Light Shield (Steel)",
@@ -697,7 +708,7 @@ todo:
       "penalty": -1,
       "spellFailure": "5%",
       "speed": [ 1000, 1000 ],
-        "damage": [ "1d2", "1d3", "1d6" ],
+        "damage": [ "1d2", "1d3", "1d4" ],
       "critRange": 20,
       "critMultiplier": 2,
       "dmgType": [ "bludgeoning" ],
@@ -716,7 +727,7 @@ todo:
       "penalty": -2,
       "spellFailure": "5%",
       "speed": [ 1000, 1000 ],
-        "damage": [ "1d2", "1d3", "1d6" ],
+        "damage": [ "1d2", "1d3", "1d4" ],
       "critRange": 20,
       "critMultiplier": 2,
       "dmgType": [ "bludgeoning" ],
@@ -724,7 +735,8 @@ todo:
       "category": "Light",
       "proficiency": "Martial",
       "group": [ "Close", "Tribal" ],
-      "description": "If your BAB is at least +1 you may don or remove this shield as a swift action combined with a move action."
+      "description": "A simple shield made of good steel and designed for quick retrieval.",
+      "bonus": "If your BAB is at least +1 you may don or remove this shield as a swift action combined with a move action."
     },
     "Light Shield (Wooden)": {
       "name": "Light Shield (Wooden)",
@@ -735,7 +747,7 @@ todo:
       "penalty": -1,
       "spellFailure": "5%",
       "speed": [ 1000, 1000 ],
-        "damage": [ "1d2", "1d3", "1d6" ],
+        "damage": [ "1d2", "1d3", "1d4" ],
       "critRange": 20,
       "critMultiplier": 2,
       "dmgType": [ "bludgeoning" ],
@@ -754,7 +766,7 @@ todo:
       "penalty": -2,
       "spellFailure": "5%",
       "speed": [ 1000, 1000 ],
-        "damage": [ "1d2", "1d3", "1d6" ],
+        "damage": [ "1d2", "1d3", "1d4" ],
       "critRange": 20,
       "critMultiplier": 2,
       "dmgType": [ "bludgeoning" ],
@@ -762,7 +774,8 @@ todo:
       "category": "Light",
       "proficiency": "Martial",
       "group": [ "Close", "Tribal" ],
-      "description": "If your BAB is at least +1 you may don or remove this shield as a swift action combined with a move action."
+      "description": "A simple shield made of solid wood and designed for quick retrieval.",
+      "bonus": "If your BAB is at least +1 you may don or remove this shield as a swift action combined with a move action."
     },
     "Heavy Shield (Steel)": {
       "name": "Heavy Shield (Steel)",
@@ -773,7 +786,7 @@ todo:
       "penalty": -2,
       "spellFailure": "15%",
       "speed": [ 1000, 1000 ],
-        "damage": [ "1d3", "1d4", "1d8" ],
+        "damage": [ "1d3", "1d4", "1d6" ],
       "critRange": 20,
       "critMultiplier": 2,
       "dmgType": [ "blugeoning" ],
@@ -792,7 +805,7 @@ todo:
       "penalty": -2,
       "spellFailure": "15%",
       "speed": [ 1000, 1000 ],
-        "damage": [ "1d3", "1d4", "1d8" ],
+        "damage": [ "1d3", "1d4", "1d6" ],
       "critRange": 20,
       "critMultiplier": 2,
       "dmgType": [ "blugeoning" ],
@@ -819,7 +832,8 @@ todo:
       "category": "",
       "proficiency": "",
       "group": [ "" ],
-      "description": "A tower shield is unweildy and applies a -2 to your attack rolls when equiped. As a standard action, you can use the tower shield to grant yourself total cover until the beggining of your next turn. Choose one edge of your space and that edge is treated as a wall for attacks targeting you."
+      "description": "These massive shields can be used to provide cover to nearly the entire body.",
+      "bonus": "A tower shield is unweildy and applies a -2 to your attack rolls when equiped. As a standard action, you can use the tower shield to grant yourself total cover until the beggining of your next turn. Choose one edge of your space and that edge is treated as a wall for attacks targeting you."
     },
     "Snarlshield (Steel)": {
       "name": "Snarlshield (Steel)",
@@ -830,7 +844,7 @@ todo:
       "penalty": -3,
       "spellFailure": "15%",
       "speed": [ 1000, 1000 ],
-        "damage": [ "1d3", "1d4", "1d8" ],
+        "damage": [ "1d3", "1d4", "1d6" ],
       "critRange": 20,
       "critMultiplier": 2,
       "dmgType": [ "blugeoning" ],
@@ -849,7 +863,7 @@ todo:
       "penalty": -3,
       "spellFailure": "15%",
       "speed": [ 1000, 1000 ],
-        "damage": [ "1d3", "1d4", "1d8" ],
+        "damage": [ "1d3", "1d4", "1d6" ],
       "critRange": 20,
       "critMultiplier": 2,
       "dmgType": [ "blugeoning" ],
@@ -868,7 +882,7 @@ todo:
       "penalty": -1,
       "spellFailure": "20%",
       "speed": [ 1000, 1000 ],
-        "damage": [ "1d4", "1d6", "1d10" ],
+        "damage": [ "1d4", "1d6", "1d8" ],
       "critRange": 20,
       "critMultiplier": 2,
       "dmgType": [ "piercing", "slashing" ],
@@ -878,60 +892,41 @@ todo:
       "group": [ "Close" ],
       "description": "The shield's sides are cut into jagged angles, honed to razor sharpness.",
       "bonus": "If you have Two-Weapon Fighting, you increase the higher shield bonus by 1. You lose this bonus for 1 round when you make an attack with one or both shields."
-    },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    {
-      "name": "Custom",
-      "cost": 0,
-      "weight": 0,
-      "acBonus": 0,
-      "maxDex": 100,
-      "penalty": 0,
-      "spellFailure": "0%",
-      "speed": [ 1000, 1000 ],
-      "type": "Custom",
-      "description": ""
     }
-  ],
+  },
+
+
+
+
+
+
+
 
   
-  "weapons": [
-    {
+
+  "weapons": {
+    "Unarmed Strike": {
       "name": "Unarmed Strike",
       "cost": 0,
       "weight": 1,
-      "damage": [ "1d2", "1d3", "" ],
+      "damage": [ "1d2", "1d3", "1d4" ],
       "critRange": 20,
       "critMultiplier": 2,
       "range": 0,
       "dmgType": [ "budgeoning", "nonlethal" ],
-      "special": "nonlethal",
+      "special": "",
       "type": "Melee",
       "category": "Unarmed",
       "proficiency": "Simple",
       "group": [ "Close" ],
-      "description": "Just a punch or slap of the hand."
+      "description": "Just a punch or slap of the hand.",
+      "bonus": "Unarmed strikes are always considered light attacks and can be used with the weapon finesse feat."
     },
     {
       "name": "Gauntlet",
       "cost": 2,
       "weight": 1,
-      "damage": [ "1d2", "1d3", "" ],
+      "damage": [ "1d2", "1d3", "1d4" ],
       "critRange": 20,
       "critMultiplier": 2,
       "range": 0,
@@ -947,7 +942,7 @@ todo:
       "name": "Battle Aspergillum",
       "cost": 5,
       "weight": 4,
-      "damage": [ "1d4", "1d6", "" ],
+      "damage": [ "1d4", "1d6", "1d8" ],
       "critRange": 20,
       "critMultiplier": 2,
       "range": 0,
@@ -957,13 +952,14 @@ todo:
       "category": "Light",
       "proficiency": "Simple",
       "group": [ "Hammers" ],
-      "description": "Named for the common aspergillum, a mace-like tool used by priests to sprinkle holy water, this light mace has a hollow head and a metal plug to fit the hollow’s neck."
+      "description": "Named for the common aspergillum, a mace-like tool used by priests to sprinkle holy water, this light mace has a hollow head and a metal plug to fit the hollow’s neck.",
+      "bonus": "When the mace hits a creature, holy water sprinkles out; creatures subject to damage from holy water take 1 point of additional damage. You must refill the aspergillum after 5 hits with a standard action that provokes an AoO."
     },
     {
       "name": "Brass Knife",
       "cost": 2,
       "weight": 1,
-      "damage": [ "1d3", "1d4", "" ],
+      "damage": [ "1d3", "1d4", "1d6" ],
       "critRange": 19,
       "critMultiplier": 2,
       "range": 10,
@@ -979,7 +975,7 @@ todo:
       "name": "Brass Knuckles",
       "cost": 1,
       "weight": 1,
-      "damage": [ "1d2", "1d3", "" ],
+      "damage": [ "1d2", "1d3", "1d4" ],
       "critRange": 20,
       "critMultiplier": 2,
       "range": 0,
@@ -989,13 +985,14 @@ todo:
       "category": "Light",
       "proficiency": "Simple",
       "group": [ "Close", "Monk" ],
-      "description": "These close combat weapons are designed to fit comfortably around the knuckles, narrowing the contact area and therefore magnifying the amount of force delivered by a punch."
+      "description": "These close combat weapons are designed to fit comfortably around the knuckles, narrowing the contact area and therefore magnifying the amount of force delivered by a punch.",
+      "bonus": "You may hold an object in a hand wearing brass knucles, but you cannot weild a weapon. You may also cast a spell with somantic components with a concentration check (DC 10 + spell level)."
     },
     {
       "name": "Cestus",
       "cost": 5,
       "weight": 1,
-      "damage": [ "1d3", "1d4", "" ],
+      "damage": [ "1d3", "1d4", "1d6" ],
       "critRange": 19,
       "critMultiplier": 2,
       "range": 0,
@@ -1005,13 +1002,14 @@ todo:
       "category": "Light",
       "proficiency": "Simple",
       "group": [ "Close", "Monk" ],
-      "description": "The cestus is a glove of leather or thick cloth that covers the wielder from mid-finger to mid-forearm, ofen reinforced with metal plates over the fingers."
+      "description": "The cestus is a glove of leather or thick cloth that covers the wielder from mid-finger to mid-forearm, ofen reinforced with metal plates over the fingers.",
+      "bonus": "You may wield or carry items while wearing a cestus, howeveer you take a -2 to all precision-based tasks involving that hand (such as opening locks)."
     },
     {
       "name": "Dagger",
       "cost": 2,
       "weight": 1,
-      "damage": [ "1d3", "1d4", "" ],
+      "damage": [ "1d3", "1d4", "1d6" ],
       "critRange": 19,
       "critMultiplier": 2,
       "range": 10,
@@ -1021,13 +1019,14 @@ todo:
       "category": "Light",
       "proficiency": "Simple",
       "group": [ "Blades", "Thrown", "Tribal" ],
-      "description": "A dagger has a blade that is about 1 foot in length."
+      "description": "A dagger has a blade that is about 1 foot in length.",
+      "bonus": "You get a +2 bonus on Sleight of Hand skill checks made to conceal a dagger on your body."
     },
     {
       "name": "Punching Dagger",
       "cost": 2,
       "weight": 1,
-      "damage": [ "1d3", "1d4", "" ],
+      "damage": [ "1d3", "1d4", "1d6" ],
       "critRange": 20,
       "critMultiplier": 3,
       "range": 0,
@@ -1043,7 +1042,7 @@ todo:
       "name": "Spiked Gauntlet",
       "cost": 5,
       "weight": 1,
-      "damage": [ "1d3", "1d4", "" ],
+      "damage": [ "1d3", "1d4", "1d6" ],
       "critRange": 20,
       "critMultiplier": 2,
       "range": 0,
@@ -1053,7 +1052,8 @@ todo:
       "category": "Light",
       "proficiency": "Simple",
       "group": [ "Close" ],
-      "description": "An attack with a spiked gauntlet is considered an armed attack, and the cost and weight given are for a single gauntlet."
+      "description": "A glove made of metal with jagged spikes for extra damage, and the cost and weight given are for a single gauntlet.",
+      "bonus": "An attack with a spiked guantlet is considered an armed attack, and it cannot be disarmed."
     },
     {
       "name": "Traveling Kettle",
@@ -1069,7 +1069,8 @@ todo:
       "category": "Light",
       "proficiency": "Simple",
       "group": [ "Monk" ],
-      "description": "These small tea kettles are made with clamping lids and heavily reinforced handles."
+      "description": "These small tea kettles are made with clamping lids and heavily reinforced handles.",
+      "bonus": "A traveling kettle with boiling water inside deals an additional 1 point of fire damage on a hit. Boiling water cools to a non-damaging temperature after 5 minutes."
     },
     {
       "name": "Hook Hand",
@@ -1149,7 +1150,8 @@ todo:
       "category": "Light",
       "proficiency": "Simple",
       "group": [ "Blades", "Thrown" ],
-      "description": "This 4-inch blade is attached via a hinge to a wooden handle with a slot in the center, into which the blade can be folded. With a click of a switch, a spring thrusts the blade outward, where it locks into place until it is reset."
+      "description": "This 4-inch blade is attached via a hinge to a wooden handle with a slot in the center, into which the blade can be folded.",
+      "bonus": "A spring blade is easy to conceal: an observer must succeed at a DC 20 Perception check to notice the blade hidden within the wooden handle, and you gain a +4 bonus on Sleight of Hand checks to conceal a spring blade on your body."
     },
     {
       "name": "Wodden Stake",
