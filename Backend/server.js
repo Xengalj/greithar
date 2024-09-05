@@ -19,12 +19,16 @@ app.use(express.urlencoded({ extended: true }));
 const db = require("./app/models");
 const Role = db.role;
 
-db.sequelize.sync();
-// force: true will drop the table if it already exists
-// db.sequelize.sync({force: true}).then(() => {
-//   console.log('Drop and Resync Database with { force: true }');
-//   initial();
-// });
+let reSeed = 0;
+if (reSeed) {
+  // force: true will drop the table if it already exists
+  db.sequelize.sync({force: true}).then(() => {
+    console.log('Drop and Resync Database with { force: true }');
+    initial();
+  });
+} else {
+  db.sequelize.sync();
+}
 
 // simple route
 app.get("/", (req, res) => {
@@ -116,5 +120,9 @@ function initial() {
       "heroPoints": 1,
       "notes": "Your notes here...",
     }
+  });
+  db.equipment.create({
+    type: "Currency",
+    items: { "platinum": { "value": 10, "weight": 0.02 }, "gold": { "value": 1, "weight": 0.02 }, "silver": { "value": 0.1, "weight": 0.02 }, "copper": { "value": 0.01, "weight": 0.02 } }
   });
 }

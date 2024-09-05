@@ -2,6 +2,8 @@
 const fs = require('fs');
 const Papa = require('papaparse');
 
+const ItemController = require("../controllers/equipment.controller");
+
 module.exports = function(app) {
   app.use(function(req, res, next) {
     res.header(
@@ -10,6 +12,12 @@ module.exports = function(app) {
     );
     next();
   });
+
+  /***************************\
+  *                           *
+  *         BEASTIARY         *
+  *                           *
+  \***************************/
 
   // return a json of the beastiary csv in /data
   app.get(
@@ -28,6 +36,7 @@ module.exports = function(app) {
     }
   );
 
+  // return a single monster from beastiary csv, using it's name
   app.post(
     "/api/data/beastiary/getOne",
     (req, res) => {
@@ -53,6 +62,9 @@ module.exports = function(app) {
     }
   );
 
+
+
+
   // return the classes json in /data
   app.get(
     "/api/data/classes",
@@ -74,4 +86,21 @@ module.exports = function(app) {
   //   [authJwt.verifyToken],
   //   controller.read
   // );
+
+
+  /***************************\
+  *                           *
+  *         EQUIPMENT         *
+  *                           *
+  \***************************/
+
+  // return a JSON of items, either all or given type
+  app.post("/api/data/equipment/read", ItemController.read);
+
+  // update list of items in a given type
+  app.post("/api/data/equipment/update", ItemController.update);
+
+  // delete items of a given type
+  app.get("/api/data/equipment/delete", ItemController.delete)
+
 };

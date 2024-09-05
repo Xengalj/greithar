@@ -1,10 +1,10 @@
 <template>
   <div class="container">
-    <!--
+
     <header class="jumbotron">
-      <h3>{{ content }}</h3>
+      <h3>{{ user }}</h3>
     </header>
-  -->
+
   </div>
 
   <el-button type="primary" circle @click="monsterOpen('Death Worm')">
@@ -41,7 +41,7 @@
 </template>
 
 <script>
-// import DataService from "@/services/data.service";
+import DataService from "@/services/data.service";
 import UserService from "@/services/user.service";
 import CreatureCard from '@/components/template/CreatureCard.vue'
 const icons = require('@/components/template/svgPaths.json');
@@ -52,46 +52,40 @@ const icons = require('@/components/template/svgPaths.json');
 export default {
   name: "DM Screen",
   components: {
-    // HexGraph,
     CreatureCard
   },
-
   data() {
     return {
         content: "DM Screen",
+
       icons: icons,
 
-      // loading: false,
-      // tables: miscTables,
-      // equipment: equipmentTables,
-      // supplement: supplementTables,
-      // sizeSelect: [
-      //   { value: "Fine", label: "Fine", },
-      //   { value: "Diminuitive", label: "Diminuitive", },
-      //   { value: "Tiny", label: "Tiny", },
-      //   { value: "Small", label: "Small", },
-      //   { value: "Medium", label: "Medium", },
-      //   { value: "Large", label: "Large", },
-      //   { value: "Huge", label: "Huge", },
-      //   { value: "Gargantuan", label: "Gargantuan", },
-      //   { value: "Colossal", label: "Colossal", } ],
-
       monsterVisible: false,
-      // openSections: [ "defense", "offense" ],
-      // monster: {
-      //   // Name: "Death Worm",
-      //   /*
-      //   Name: "Adult Red Dragon",
-      //   Name: "Kobold",
-      //   */
-      // },
       creatureName: ""
 
+
+
     };
+  },
+  computed: {
+    user() {
+      let user = "Xen";
+      user = localStorage.getItem('user');
+      // console.log(user);
+
+      // this.$store.state.auth.status.loggedIn
+      console.log(this.$store.state.auth);
+      return user;
+    }
   },
   mounted() {
     // console.log(this.tables);
     // this.getMonster(this.monster);
+    DataService.getEquipment().then(
+      (response) => {
+        console.log(response.data);
+      }
+    );
 
     UserService.getAdminBoard().then(
       (response) => {
@@ -108,39 +102,6 @@ export default {
     );
   },
   methods: {
-    // async getMonster(monster) {
-    //   this.loading = true;
-    //   DataService.getMonster(monster)
-    //   .then(response => {
-    //     this.monsterSetup(response);
-    //     this.loading = false;
-    //   })
-    //   .catch(err => { console.error(err); });
-    // },
-    // monsterSetup(monster){
-    //   // console.log(monster);
-    //   this.monster = monster;
-    //   let ac = this.monster.AC;
-    //
-    //   // Add supplemental stats
-    //   let sup = this.supplement[this.monster.Name];
-    //   for (const [key, value] of Object.entries(sup)) { this.monster[key] = value; }
-    //
-    //   // DEFENSE
-    //   this.monster.AC.total = ac;
-    //   this.monster.HDNum = parseInt(this.monster.HD.split('d')[0]);
-    //   this.monster.HDType = this.monster.HD.split('d')[1].split('+')[0];
-    //
-    //   // OFFENSE
-    //   this.monster.Melee = this.monster.Melee ? this.monster.Melee.split(',') : null;
-    //   this.monster.Ranged = this.monster.Ranged ? this.monster.Ranged.split(',') : null;
-    //   this.monster.Special = this.monster.Special ? this.monster.Special : null;
-    //   // this.monster.Magic = this.monster.Magic ? this.monster.Magic : null;
-    //
-    //   this.creature.title = this.monster.Name.concat(" CR ", this.monster.CR);
-    //
-    //   // console.log(this.monster);
-    // },
     monsterOpen(name) {
       this.creatureName = name
 

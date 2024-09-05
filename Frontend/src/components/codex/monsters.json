@@ -5,8 +5,8 @@
     "Saves": { "fort": 6, "ref": 6, "will": 4 },
     "Immunities": [ "Acid", "Electricity", "Poison" ],
     "BAB": 8,
-    "Melee": "bite +11 (3d8+6 plus poison), 2 big claws -2 (2d6-10)",
-    "Ranged": "electrical jolt +8 ranged touch (4d6 electricity), needle -2 (10d4-5 plus trip)",
+    "Melee": "bite +11 (3d8+6 plus poison)",
+    "Ranged": "electrical jolt +8 ranged touch (4d6 electricity)",
     "Special": [ "Breath Weapon (30-ft. line, 8d6 acid damage, Reflex DC 17 for half, usable every 1d4 rounds)" ],
     "Extras": {
       "Corrosive Blood (Ex)": "A death worm’s blood can corrode metal on contact. If a creature damages a death worm with a piercing or slashing weapon made of metal, the creature’s blood deals 3d6 points of acid damage to the metal weapon (unlike most forms of energy damage, this damage is not halved when applied to a metal object, although it does still have to penetrate the metal’s hardness). The weapon’s wielder can halve the damage the weapon takes by making a successful DC 17 Reflex save. Creatures made of metal that deal slashing or piercing damage to a death worm with a natural attack take 3d6 points of acid damage (a DC 17 Reflex save halves this damage). The corrosive elements of the blood fade 1 round after it leaves the worm’s body or the worm dies. The save DC is Constitution-based.",

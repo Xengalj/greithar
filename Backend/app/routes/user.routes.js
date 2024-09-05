@@ -51,8 +51,4 @@ module.exports = function(app) {
     controller.adminBoard
   );
 
-  // app.get(
-  //   "/api/data/beastiary",
-  //   controller.beastiary
-  // )
 };

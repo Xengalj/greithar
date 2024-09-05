@@ -141,7 +141,7 @@
       [ "Aura (Ex)", "Channel Energy (Su)", "Domains (REPLACE)", "Spontaneous Casting", "Bonus Languages" ],
       [], [], [], [],
       [], [], [], [], [],
-      [], [], [], [], [], 
+      [], [], [], [], [],
       [], [], [], [], []
     ],
     "restrictions": {
@@ -686,7 +686,7 @@
       [9, 5, 5, 4, 4, 4, 3, 3, 3, 2],
       [9, 5, 5, 4, 4, 4, 3, 3, 3, 3]
     ],
-  
+
     "galdur":          [ 0, 6, 9, 11, 14, 20, 30, 40, 50, 63, 75, 90, 105, 120, 140, 165, 170, 195, 225, 240, 260 ],
     "galdurPerLevel":  [ 0, 6, 3,  3,  3,  6, 10, 10, 10, 13, 12, 15,  10,  15,  20,  25,   5,  25,  20,  15,  20 ],
     "NEW_galdur":              [ 0, 6, 9, 11, 14, 17, 21, 25, 29, 34, 40, 47, 55, 64, 74, 85, 97, 110, 124, 139, 155 ],
@@ -809,10 +809,14 @@
       "spells": "Arcane spell failure from medium, havy armor, and shields",
     }
   ],
-  
+
 
 
   "Vampire Hunter, Vigilante, Witch", "https://www.d20pfsrd.com/classes/base-classes",
+  "Witch": {
+    "galdur":              [ 0, 5, 8, 11, 14, 17, 21, 26, 34, 42, 51, 61, 72, 84, 97, 111, 116, 132, 149, 167, 186 ],
+    "galdurPerLevel":      [ 0, 5, 3,  3,  3,  3,  4,  5,  8,  8,  9, 10, 11, 12, 13,  14,   5,  16,  17,  18,  19 ],
+  }
 
   [
     "name": "",
@@ -875,6 +879,26 @@
 
 
 
+  Class       Last Galdur   MxLvl    Type       Casting
+  Alchemist   10    108       6     P Arcane      Int
+  Bard        16    150             S Arcane      Cha     /
+  Cleric      19    186(206)  9     P Divine      Wis     /
+  Druid       19    186       9     P Divine      Wis     /
+  Inquisitor  20    150             S Divine      Wis
+  Magus       16    155       6     P Arcane      Int     /
+  Oracle      20    260             S Divine      Cha     *
+  Paladin      3    35        4     P Divine      Cha
+  Ranger       3    35        4     P Divine      Wis
+  Sorcerer    20    260             S Arcane      Cha     *
+  Summoner    16    150             S Arcane      Cha     /
+  Witch       19    186       9     P Arcane      Int     *
+  Wizard      19    186(206)  9     P Arcane      Int     *
+
+  260           186       155     150           108             35
+  Sorcerer      Cleric    Magus   Bard          Alchemist       Paladin
+  Oracle        Druid             Inquisitor                    Ranger
+                Witch             Summoner
+                Wizard
 
 
 
@@ -882,7 +906,6 @@
 
 
 
-  
 
 
 }

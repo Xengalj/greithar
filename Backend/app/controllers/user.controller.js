@@ -65,7 +65,7 @@ exports.update = (req, res) => {
       };
       user.update({
         username: newContent.username,
-        passwrod: newContent.password,
+        password: newContent.password,
         email: newContent.email
       })
         .then(user => {
@@ -128,21 +128,3 @@ exports.adminBoard = (req, res) => {
 exports.moderatorBoard = (req, res) => {
   res.status(200).send("Server Moderator Content.");
 };
-
-// exports.beastiary = (req, res) => {
-//   Papa.parse(fs.createReadStream("app/d20pfsrd-beastiary.csv"), {
-//     header: true,
-//     // step: function(row) {
-//     //   console.log("Row:", row.data);
-//     // },
-//     complete: function(results, file) {
-//       console.log(results);
-//       console.log(results["data"]);
-//       res.status(200).send(results);
-//     },
-//     errors: function(errors, file) {
-//       console.log(errors);
-//       res.status(200).send(errors);
-//     }
-//   });
-// };
