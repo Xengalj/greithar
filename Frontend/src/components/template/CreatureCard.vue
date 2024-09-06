@@ -2,6 +2,7 @@
 
   <h2>{{ creature.title }}</h2>
 
+
   <!-- Basics -->
   <el-row :gutter="20">
     <el-col :span="12" class="center-horz">
@@ -43,8 +44,9 @@
     </el-col>
 
     <el-col :span="12">
-      <g-icon iconSize="128px" :icon-name="this.original.Type" class="center-horz"/>
-      <br>
+      <div class="center-horz">
+        <g-icon iconSize="128px" :icon-name="this.original.Type" :key="this.original.Type"/>
+      </div>
       <el-row :gutter="5">
         <el-col :span="4" class="center center-vert">
           <g-icon iconSize="24px" icon-name="compass"/>
@@ -250,13 +252,23 @@
         <el-col :span="7" class="center">
           <span v-if="this.original.Class1">
             Classes: {{ this.original.Class1}} ({{ this.original.Class1_Lvl }})
+            <br><br>
           </span>
-          <br><br>
+          Languages
+          <br>
           {{ this.original.Languages }}
         </el-col>
       </el-row>
     </el-collapse-item>
   </el-collapse>
+
+  <br>
+  <el-row :gutter="20">
+    <el-col :span="3" class="center">
+      <el-button type="primary" @click="addMonster()"> Add to Session </el-button>
+    </el-col>
+  </el-row>
+
 </template>
 
 <script>
@@ -518,8 +530,14 @@ export default {
       this.original.Melee = this.original.Melee ? this.original.Melee.split(',') : null;
       this.original.Ranged = this.original.Ranged ? this.original.Ranged.split(',') : null;
       this.original.Special = this.original.Special ? this.original.Special : null;
+    },
 
-      console.log(this.original);
+    addMonster() {
+      let creatures = JSON.parse(localStorage.getItem("encounter"));
+      if (!creatures) { creatures = {}; } // if no encounter monsters yet, make em
+
+      creatures[this.creatureName] = this.creature;
+      localStorage.setItem("encounter", JSON.stringify(creatures));
     }
   }
 }

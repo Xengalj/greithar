@@ -80,16 +80,11 @@
     <!-- MONSTER MODAL -->
     <el-dialog
       width="650"
+      style="margin-top: 75px"
       v-model="monsterVisible"
       :before-close="closeMonster"
     >
       <CreatureCard :creatureName="creatureName"></CreatureCard>
-      <template #footer>
-        <div class="dialog-footer">
-          <el-button @click="closeMonster()"> Close </el-button>
-          <el-button type="primary" @click="addMonster()"> Add to Session </el-button>
-        </div>
-      </template>
     </el-dialog>
 
 
@@ -177,9 +172,6 @@ export default {
         )
       )
       */
-    },
-    addMonster(monster) {
-      console.log('add', monster);
     },
 
     // MONSTER MODAL

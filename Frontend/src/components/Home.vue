@@ -21,6 +21,7 @@ export default {
     UserService.getPublicContent().then(
       (response) => {
         this.content = response.data;
+        this.content = localStorage.getItem('encounter');
       },
       (error) => {
         this.content =
