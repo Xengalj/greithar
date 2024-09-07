@@ -1,4 +1,161 @@
 {
+  "Alchemist": {
+    "hd": "d8",
+    "ranks": 4,
+    "skills": [ "Appraise (Int)", "Craft (any) (Int)", "Disable Device (Dex)", "Fly (Dex)", "Heal (Wis)", "Knowledge (arcana) (Int)", "Knowledge (nature) (Int)", "Perception (Wis)", "Profession (Wis)", "Sleight of Hand (Dex)", "Spellcraft (Int)", "Survival (Wis)", "Use Magic Device (Cha)" ],
+    "proficiency": [ "simple weapons", "bombs", "light armor" ],
+    "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
+
+    "bab":  [ 0, 0, 1, 2, 3, 3, 4, 5, 6, 6, 7, 8, 9, 9, 10, 11, 12, 12, 13, 14, 15 ],
+    "fort": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12 ],
+    "ref":  [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12 ],
+    "will": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4,  4,  5,  5,  5,  6,  6,  6 ],
+
+    "magic": {
+      "style": "Prepared Arcane",
+      "castingAtr": "Intelligence",
+      "spellsPerLevel": 2,
+      "galdur":             [ 0, 2, 4, 6, 8, 11,        14, 17, 22, 27, 32,     38, 44, 50, 58, 64,         72, 80, 89, 98, 108 ],
+      "galdurPerLevel":     [ 0, 2, 2, 2, 2,  3,         3,  3,  5,  5,  5,      6,  6,  6,  8,  6,          8,  8,  9,  9,  10 ],
+      "spellsPerDay": [ [],
+        [0, 1],
+        [0, 2],
+        [0, 3],
+        [0, 3, 1],
+        [0, 4, 2],
+        [0, 4, 3],
+        [0, 4, 3, 1],
+        [0, 4, 4, 2],
+        [0, 5, 4, 3],
+        [0, 5, 4, 3, 1],
+        [0, 5, 4, 4, 2],
+        [0, 5, 5, 4, 3],
+        [0, 5, 5, 4, 3, 1],
+        [0, 5, 5, 4, 4, 2],
+        [0, 5, 5, 5, 4, 3],
+        [0, 5, 5, 5, 4, 3, 1],
+        [0, 5, 5, 5, 4, 4, 2],
+        [0, 5, 5, 5, 5, 4, 3],
+        [0, 5, 5, 5, 5, 5, 4],
+        [0, 5, 5, 5, 5, 5, 5]
+      ],
+      "special": [ [],
+        [ "Alchemy (Su)", "Bomb (Su)", "Brew Potion (Ex)", "Mutagen (Su)", "Throw Anything (Ex)" ],
+        [ "Poison Resistance (Ex)", "Poison Use (Ex)", "Discovery (Su) (REPLACE)" ],
+        [ "Swift Alchemy (Ex)" ],
+        [ "Discovery (Su) (REPLACE)" ],
+        [],
+        [ "Swift Poisoning (Ex)", "Discovery (Su) (REPLACE)" ], [], [ "Discovery (Su) (REPLACE)" ], [], [ "Poison Immunity (Ex)", "Discovery (Su) (REPLACE)" ],
+        [], [ "Discovery (Su) (REPLACE)" ], [], [ "Persistent Mutagen (Su)", "Discovery (Su) (REPLACE)" ], [],
+        [ "Discovery (Su) (REPLACE)" ], [], [ "Instant Alchemy (Ex)", "Discovery (Su) (REPLACE)" ], [], [ "Grand Discovery (Su)" ]
+      ],
+    },
+
+    
+  },
+  "Arcanist": {"wiz sorc": 0},
+  "Barbarian": {},
+  "Bard": {
+    "hd": "d8",
+    "ranks": 6,
+    "skills": [ " Acrobatics (Dex), Appraise (Int), Bluff (Cha), Climb (Str), Craft (Int), Diplomacy (Cha), Disguise (Cha), Escape Artist (Dex), Intimidate (Cha), Knowledge (all) (Int), Linguistics (Int), Perception (Wis), Perform (Cha), Profession (Wis), Sense Motive (Wis), Sleight of Hand (Dex), Spellcraft (Int), Stealth (Dex), and Use Magic Device (Cha)" ],
+    "proficiency": [ "simple weapons", "longsword", "rapier", "sap", "shortsword", "shortbow", "whip", "light armor", "shields" ],
+    "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
+
+    "bab":  [ 0, 0, 1, 2, 3, 3, 4, 5, 6, 6, 7, 8, 9, 9, 10, 11, 12, 12, 13, 14, 15 ],
+    "fort": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4,  4,  5,  5,  5,  6,  6,  6 ],
+    "ref":  [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12 ],
+    "will": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12 ],
+
+    "magic": {
+      "style": "Spontaneous Arcane",
+      "castingAtr": "Charisma",
+      "spellsKnown": [ [],
+        [4, 2],
+        [5, 3],
+        [6, 4],
+        [6, 4, 2],
+        [6, 4, 3],
+        [6, 4, 4],
+        [6, 5, 4, 2],
+        [6, 5, 4, 3],
+        [6, 5, 4, 4],
+        [6, 5, 5, 4, 2],
+        [6, 6, 5, 4, 3],
+        [6, 6, 5, 4, 4],
+        [6, 6, 5, 5, 4, 2],
+        [6, 6, 6, 5, 4, 3],
+        [6, 6, 6, 5, 4, 4],
+        [6, 6, 6, 5, 5, 4, 2],
+        [6, 6, 6, 6, 5, 4, 3],
+        [6, 6, 6, 6, 5, 4, 4],
+        [6, 6, 6, 6, 5, 5, 4],
+        [6, 6, 6, 6, 6, 5, 5]
+      ],
+      "galdur":              [ 0, 6, 9, 12, 15, 18,     22, 26, 30, 35, 40,     47, 55, 64, 74, 85,         97, 110, 124, 139, 155 ],
+      "galdurPerLevel":      [ 0, 6, 3,  3,  3,  3,      4,  4,  4,  5,  5,      7,  8,  9, 10, 11,         12,  13,  14,  15,  16 ],
+      "spellsPerDay": [ [],
+        ["∞", 1],
+        ["∞", 2],
+        ["∞", 3],
+        ["∞", 3, 1],
+        ["∞", 4, 2],
+        ["∞", 4, 3],
+        ["∞", 4, 3, 1],
+        ["∞", 4, 4, 2],
+        ["∞", 5, 4, 3],
+        ["∞", 5, 4, 4, 1],
+        ["∞", 5, 4, 4, 2],
+        ["∞", 5, 5, 4, 3],
+        ["∞", 5, 5, 4, 3, 1],
+        ["∞", 5, 5, 4, 4, 2],
+        ["∞", 5, 5, 5, 4, 3],
+        ["∞", 5, 5, 5, 4, 3, 1],
+        ["∞", 5, 5, 5, 4, 4, 2],
+        ["∞", 5, 5, 5, 5, 4, 3],
+        ["∞", 5, 5, 5, 5, 5, 4],
+        ["∞", 5, 5, 5, 5, 5, 5]
+      ],
+    },
+
+    "special": [ [],
+      [ "Bardic Knowledge (Ex)", "Bardic Performance", "Countersong (Su)", "Distraction (Su)", "Fascinate (Su)", "Inspire Courage (Su)" ],
+      [ "Versatile Performance (Ex) (REPLACE)", "Well-Versed (Ex)" ],
+      [ "Inspire Competence (Su)" ],
+      [],
+      [ "Lore Master (Ex)" ],
+      [ "Suggestion (Sp)", "Versatile Performance (Ex) (REPLACE)" ], [], [ "Dirge of Doom (Su)" ], [ "Inspire Greatness (Su)" ], [ "Jack-of-all-Trades (Ex)", "Versatile Performance (Ex) (REPLACE)" ],
+      [], [ "Soothing Performance (Su)" ], [], [ "Frightening Tune (Sp)", "Versatile Performance" ], [ "Inspire Heroics (Su)" ]
+      [], [], [ "Mass Suggestion (Sp)", "Versatile Performance (Ex) (REPLACE)" ], [], [ "Deadly Performance (Su)" ]
+    ]
+  },
+  "Bloodrager": {"barb sorc": 0},
+  "Brawler": {"fighter monk":0},
+  "Cavalier": {},
+  "Cleric": {},
+  "Druid": {},
+  "Fighter": {},
+  "Hunter": {"druid ranger":0},
+  "Inquisitor": {},
+  "Investigator": {"alchem rogue":0},
+  "Magus": {},
+  "Monk": {},
+  "Oracle": {},
+  "Paladin": {},
+  "Ranger": {},
+  "Rogue": {},
+  "Shaman": {"oracle witch":0}
+  "Shifter": {},
+  "Skald": {"Bard Barian":0},
+  "Slayer": {"Ranger Rogue":0},
+  "Sorcerer": {},
+  "Summoner": {},
+  "Warpriest": {"fighter cleric":0},
+  "Witch": {},
+  "Wizard": {},
+
+
+  
   [
     "name": "Barbarian",
     "general": {
@@ -25,81 +182,7 @@
       "alignment": [ "NG", "CG", "N", "CN", "NE", "CE" ]
     }
   ],
-  [
-    "name": "Bard",
-    "general": {
-      "hd": "d8",
-      "skills": [ " Acrobatics (Dex), Appraise (Int), Bluff (Cha), Climb (Str), Craft (Int), Diplomacy (Cha), Disguise (Cha), Escape Artist (Dex), Intimidate (Cha), Knowledge (all) (Int), Linguistics (Int), Perception (Wis), Perform (Cha), Profession (Wis), Sense Motive (Wis), Sleight of Hand (Dex), Spellcraft (Int), Stealth (Dex), and Use Magic Device (Cha)" ],
-      "ranks": 6,
-      "proficiency": [ "simple weapons", "longsword", "rapier", "sap", "shortsword", "shortbow", "whip", "light armor", "shields" ]
-    },
-    "bab":  [ 0, 0, 1, 2, 3, 3, 4, 5, 6, 6, 7, 8, 9, 9, 10, 11, 12, 12, 13, 14, 15 ],
-    "fort": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4,  4,  5,  5,  5,  6,  6,  6 ],
-    "ref":  [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12 ],
-    "will": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12 ],
-    "castingAtr": "Charisma",
-    "spellsPerDay": [ [ "Spontaneous Arcane" ],
-      ["∞", 1],
-      ["∞", 2],
-      ["∞", 3],
-      ["∞", 3, 1],
-      ["∞", 4, 2],
-      ["∞", 4, 3],
-      ["∞", 4, 3, 1],
-      ["∞", 4, 4, 2],
-      ["∞", 5, 4, 3],
-      ["∞", 5, 4, 4, 1],
-      ["∞", 5, 4, 4, 2],
-      ["∞", 5, 5, 4, 3],
-      ["∞", 5, 5, 4, 3, 1],
-      ["∞", 5, 5, 4, 4, 2],
-      ["∞", 5, 5, 5, 4, 3],
-      ["∞", 5, 5, 5, 4, 3, 1],
-      ["∞", 5, 5, 5, 4, 4, 2],
-      ["∞", 5, 5, 5, 5, 4, 3],
-      ["∞", 5, 5, 5, 5, 5, 4],
-      ["∞", 5, 5, 5, 5, 5, 5]
-    ],
-    "spellsKnown": [ [],
-      [4, 2],
-      [5, 3],
-      [6, 4],
-      [6, 4, 2],
-      [6, 4, 3],
-      [6, 4, 4],
-      [6, 5, 4, 2],
-      [6, 5, 4, 3],
-      [6, 5, 4, 4],
-      [6, 5, 5, 4, 2],
-      [6, 6, 5, 4, 3],
-      [6, 6, 5, 4, 4],
-      [6, 6, 5, 5, 4, 2],
-      [6, 6, 6, 5, 4, 3],
-      [6, 6, 6, 5, 4, 4],
-      [6, 6, 6, 5, 5, 4, 2],
-      [6, 6, 6, 6, 5, 4, 3],
-      [6, 6, 6, 6, 5, 4, 4],
-      [6, 6, 6, 6, 5, 5, 4],
-      [6, 6, 6, 6, 6, 5, 5]
-    ],
-    "galdur":         [ 0, 3, 5, 7, 10, 13, 16, 20, 24, 29, 35, 42, 50, 59, 69, 80, 92, 105, 119, 134, 150 ],
-    "galdurPerLevel": [ 0, 3, 2, 2,  3,  3,  3,  4,  4,  5,  6,  7,  8,  9, 10, 11, 12,  13,  14,  15,  16 ]
-    "special": [ [],
-      [ "Bardic Knowledge (Ex)", "Bardic Performance", "Countersong (Su)", "Distraction (Su)", "Fascinate (Su)", "Inspire Courage (Su)" ],
-      [ "Versatile Performance (Ex) (REPLACE)", "Well-Versed (Ex)" ],
-      [ "Inspire Competence (Su)" ],
-      [],
-      [ "Lore Master (Ex)" ],
-      [ "Suggestion (Sp)", "Versatile Performance (Ex) (REPLACE)" ], [], [ "Dirge of Doom (Su)" ], [ "Inspire Greatness (Su)" ], [ "Jack-of-all-Trades (Ex)", "Versatile Performance (Ex) (REPLACE)" ],
-      [], [ "Soothing Performance (Su)" ], [], [ "Frightening Tune (Sp)", "Versatile Performance" ], [ "Inspire Heroics (Su)" ]
-      [], [], [ "Mass Suggestion (Sp)", "Versatile Performance (Ex) (REPLACE)" ], [], [ "Deadly Performance (Su)" ]
-    ],
-    "restrictions": {
-      "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
-      "araceSpellFailure": true,
-      "spells": "Arcane spell failure from medium and havy armor",
-    }
-  ],
+
   [
     "name": "Cleric",
     "general": {
@@ -508,66 +591,14 @@
       "araceSpellFailure": true
     }
   ],
-  [
-    "name": "Alchemist",
-    "general": {
-      "hd": "d8",
-      "skills": [ " Appraise (Int), Craft (any) (Int), Disable Device (Dex), Fly (Dex), Heal (Wis), Knowledge (arcana) (Int), Knowledge (nature) (Int), Perception (Wis), Profession (Wis), Sleight of Hand (Dex), Spellcraft (Int), Survival (Wis), Use Magic Device (Cha)" ],
-      "ranks": 4,
-      "proficiency": [ "simple weapons", "bombs", "light armor" ]
-    },
-    "bab":  [ 0, 0, 1, 2, 3, 3, 4, 5, 6, 6, 7, 8, 9, 9, 10, 11, 12, 12, 13, 14, 15 ],
-    "fort": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12 ],
-    "ref":  [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12 ],
-    "will": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4,  4,  5,  5,  5,  6,  6,  6 ],
-    "CastingAtr": "Intelligence",
-    "spellsPerDay": [ [],
-      [0, 1],
-      [0, 2],
-      [0, 3],
-      [0, 3, 1],
-      [0, 4, 2],
-      [0, 4, 3],
-      [0, 4, 3, 1],
-      [0, 4, 4, 2],
-      [0, 5, 4, 3],
-      [0, 5, 4, 3, 1],
-      [0, 5, 4, 4, 2],
-      [0, 5, 5, 4, 3],
-      [0, 5, 5, 4, 3, 1],
-      [0, 5, 5, 4, 4, 2],
-      [0, 5, 5, 5, 4, 3],
-      [0, 5, 5, 5, 4, 3, 1],
-      [0, 5, 5, 5, 4, 4, 2],
-      [0, 5, 5, 5, 5, 4, 3],
-      [0, 5, 5, 5, 5, 5, 4],
-      [0, 5, 5, 5, 5, 5, 5]
-    ],
-    "galdur":         [ 0, 2, 4, 6, 8, 11, 14, 17, 22, 27, 32, 38, 44, 50, 58, 64, 72, 80, 89, 98, 108 ],
-    "galdurPerLevel": [ 0, 2, 2, 2, 2,  3,  3,  3,  5,  5,  5,  6,  6,  6,  8,  6,  8,  8,  9,  9,  10 ],
-    "special": [ [],
-      [ "Alchemy (Su)", "Bomb (Su)", "Brew Potion (Ex)", "Mutagen (Su)", "Throw Anything (Ex)" ],
-      [ "Poison Resistance (Ex)", "Poison Use (Ex)", "Discovery (Su) (REPLACE)" ],
-      [ "Swift Alchemy (Ex)" ],
-      [ "Discovery (Su) (REPLACE)" ],
-      [],
-      [ "Swift Poisoning (Ex)", "Discovery (Su) (REPLACE)" ], [], [ "Discovery (Su) (REPLACE)" ], [], [ "Poison Immunity (Ex)", "Discovery (Su) (REPLACE)" ],
-      [], [ "Discovery (Su) (REPLACE)" ], [], [ "Persistent Mutagen (Su)", "Discovery (Su) (REPLACE)" ], [],
-      [ "Discovery (Su) (REPLACE)" ], [], [ "Instant Alchemy (Ex)", "Discovery (Su) (REPLACE)" ], [], [ "Grand Discovery (Su)" ]
-    ],
-    "restrictions": {
-      "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ]
-    }
-  ],
-  [
-    "name": "Cavalier"
-  ],
-  [
-    "name": "Gunslinger"
-  ],
-  [
-    "name": "Inquisitor"
-  ],
+
+
+
+
+
+
+  
+
   [
     "name": "Magus",
     "general": {
@@ -870,26 +901,25 @@
     }
   ],
 
-
-
-Sorc / Oracle
-    "galdur":              [ 0, 6, 9, 12, 17, 20,     30, 40, 50, 62, 75,     90, 110, 125, 145, 160,     170, 195, 225, 240, 260 ],
-    "galdurPerLevel":      [ 0, 6, 3,  3,  5,  3,     10, 10, 10, 12, 13,     15,  20,  15,  20,  15,      20,  15,  20,  15,  30 ],
-                                           *           *       *       *            *         *             *         *
-Cleric / Druid / Witch / Wizard
-    "galdur":              [ 0, 5, 8, 11, 14, 17,     21, 25, 30, 35, 42,     51, 62, 74, 87, 101,        116, 132, 149, 167, 186 ],
-    "galdurPerLevel":      [ 0, 5, 3,  3,  3,  3,      4,  4,  5,  5, 7,       9, 11, 12, 13,  14,         15,  16,  17,  18,  19 ],
-                                       *       *           *       *           *       *        *                *
-Bard / Inquisitor / Magus / Summoner / Warpriest 
-    "galdur":              [ 0, 6, 9, 12, 15, 18,     22, 26, 30, 35, 40,     47, 55, 64, 74, 85,         97, 110, 124, 139, 155 ],
-    "galdurPerLevel":      [ 0, 6, 3,  3,  3,  3,      4,  4,  4,  5,  5,      7,  8,  9, 10, 11,         12,  13,  14,  15,  16 ],
-                                           *               *           *               *                   *
-Alchemist
-    "galdur":             [ 0, 2, 4, 6, 8, 11,        14, 17, 22, 27, 32,     38, 44, 50, 58, 64,         72, 80, 89, 98, 108 ],
-    "galdurPerLevel":     [ 0, 2, 2, 2, 2,  3,         3,  3,  5,  5,  5,      6,  6,  6,  8,  6,          8,  8,  9,  9,  10 ],
-                                        *                  *           *               *                   *
-Paladin / Ranger
-    "galdur":             [ 0, 0, 0, 0, 1, 2,          3, 4, 5, 6, 8,         10, 12, 14, 17, 20,         23, 26, 29, 32, 35 ],
-    "galdurPerLevel":     [ 0, 0, 0, 0, 1, 1,          1, 1, 1, 1, 2,          2,  2,  2,  3,  3,          3,  3,  3,  3,  3 ],
-                                        *                 *        *                   *
+  "Galdur": {
+    "Sorc / Oracle": {
+      "galdur":              [ 0, 6, 9, 12, 17, 20,     30, 40, 50, 62, 75,     90, 110, 125, 145, 160,     170, 195, 225, 240, 260 ],
+      "galdurPerLevel":      [ 0, 6, 3,  3,  5,  3,     10, 10, 10, 12, 13,     15,  20,  15,  20,  15,      20,  15,  20,  15,  30 ]
+    },
+    "Cleric / Druid / Witch / Wizard": {
+      "galdur":              [ 0, 5, 8, 11, 14, 17,     21, 25, 30, 35, 42,     51, 62, 74, 87, 101,        116, 132, 149, 167, 186 ],
+      "galdurPerLevel":      [ 0, 5, 3,  3,  3,  3,      4,  4,  5,  5, 7,       9, 11, 12, 13,  14,         15,  16,  17,  18,  19 ]
+    },
+    "Bard / Inquisitor / Magus / Summoner / Warpriest": {
+      "galdur":              [ 0, 6, 9, 12, 15, 18,     22, 26, 30, 35, 40,     47, 55, 64, 74, 85,         97, 110, 124, 139, 155 ],
+      "galdurPerLevel":      [ 0, 6, 3,  3,  3,  3,      4,  4,  4,  5,  5,      7,  8,  9, 10, 11,         12,  13,  14,  15,  16 ]
+    },
+    "Alchemist": {
+      "galdur":             [ 0, 2, 4, 6, 8, 11,        14, 17, 22, 27, 32,     38, 44, 50, 58, 64,         72, 80, 89, 98, 108 ],
+      "galdurPerLevel":     [ 0, 2, 2, 2, 2,  3,         3,  3,  5,  5,  5,      6,  6,  6,  8,  6,          8,  8,  9,  9,  10 ]
+    },
+    "Paladin / Ranger": {
+      "galdur":             [ 0, 0, 0, 0, 1, 2,          3, 4, 5, 6, 8,         10, 12, 14, 17, 20,         23, 26, 29, 32, 35 ],
+      "galdurPerLevel":     [ 0, 0, 0, 0, 1, 1,          1, 1, 1, 1, 2,          2,  2,  2,  3,  3,          3,  3,  3,  3,  3 ]
+    }
 }
