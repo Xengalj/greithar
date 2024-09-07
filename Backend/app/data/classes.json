@@ -813,21 +813,6 @@
 
 
   "Vampire Hunter, Vigilante, Witch", "https://www.d20pfsrd.com/classes/base-classes",
-  "Witch": {
-    "galdur":              [ 0, 5, 8, 11, 14, 17,     21, 26, 32, 39, 47,     57, 67, 78, 89, 101,        116, 132, 149, 167, 186 ],
-    "galdurPerLevel":      [ 0, 5, 3,  3,  3,  3,      4,  5,  6,  7, 8,      10, 10, 11, 11,  12,         15,  16,  17,  18,  19 ],
-
-    "galdur":              [ 0, 6, 9, 11, 14, 20,     30, 40, 50, 63, 75,     90, 105, 120, 140, 165,     170, 195, 225, 240, 260 ],
-    "galdurPerLevel":      [ 0, 6, 3,  2,  3,  6,     10, 10, 10, 13, 12,     25,  15,  15,  20,  25,       5,  25,  30,  15,  20 ],
-
-    "galdur":              [ 0, 6, 9, 11, 14, 20,     30, 40, 50, 63, 75,     90, 105, 120, 140, 165,     170, 195, 225, 240, 260 ],
-    "galdurPerLevel":      [ 0, 6, 3,  2,  3,  6,     10, 10, 10, 13, 12,     25,  15,  15,  20,  25,       5,  25,  30,  15,  20 ],
-
-    "OLD_galdur":          [ 0, 6, 9, 11, 14, 17, 21, 25, 29, 34, 40, 47, 55, 64, 74, 85, 97, 110, 114, 139, 155 ],
-    "OLD_galdurPerLevel":  [ 0, 6, 3,  3,  3,  3,  4,  4,  4,  5,  6,  7,  8,  9, 10, 11, 12,  13,   4,  25,  16 ],
-    "galdur":              [ 0, 6, 9, 11, 14, 17, 21, 25, 29, 34, 40, 47, 55, 64, 74, 85, 97, 110, 124, 139, 155 ],
-    "galdurPerLevel":      [ 0, 6, 3,  3,  3,  3,  4,  4,  4,  5,  6,  7,  8,  9, 10, 11, 12,  13,  14,  15,  16 ],
-  }
 
   [
     "name": "",
@@ -887,36 +872,24 @@
 
 
 
-
-
-
-  Class       Last Galdur   MxLvl    Type       Casting
-  Alchemist   10    108       6     P Arcane      Int
-  Bard        16    150             S Arcane      Cha     /
-  Cleric      19    186(206)  9     P Divine      Wis     *
-  Druid       19    186       9     P Divine      Wis     /
-  Inquisitor  20    150             S Divine      Wis
-  Magus       16    155       6     P Arcane      Int     /
-  Oracle      20    260             S Divine      Cha     *
-  Paladin      3    35        4     P Divine      Cha
-  Ranger       3    35        4     P Divine      Wis
-  Sorcerer    20    260             S Arcane      Cha     *
-  Summoner    16    150             S Arcane      Cha     /
-  Witch       19    186       9     P Arcane      Int     *
-  Wizard      19    186(206)  9     P Arcane      Int     *
-
-  260           186       155     150           108             35
-  Sorcerer      Cleric    Magus   Bard          Alchemist       Paladin
-  Oracle        Druid             Inquisitor                    Ranger
-                Witch             Summoner
-                Wizard
-
-
-
-
-
-
-
-
-
+Sorc / Oracle
+    "galdur":              [ 0, 6, 9, 12, 17, 20,     30, 40, 50, 62, 75,     90, 110, 125, 145, 160,     170, 195, 225, 240, 260 ],
+    "galdurPerLevel":      [ 0, 6, 3,  3,  5,  3,     10, 10, 10, 12, 13,     15,  20,  15,  20,  15,      20,  15,  20,  15,  30 ],
+                                           *           *       *       *            *         *             *         *
+Cleric / Druid / Witch / Wizard
+    "galdur":              [ 0, 5, 8, 11, 14, 17,     21, 25, 30, 35, 42,     51, 62, 74, 87, 101,        116, 132, 149, 167, 186 ],
+    "galdurPerLevel":      [ 0, 5, 3,  3,  3,  3,      4,  4,  5,  5, 7,       9, 11, 12, 13,  14,         15,  16,  17,  18,  19 ],
+                                       *       *           *       *           *       *        *                *
+Bard / Inquisitor / Magus / Summoner / Warpriest 
+    "galdur":              [ 0, 6, 9, 12, 15, 18,     22, 26, 30, 35, 40,     47, 55, 64, 74, 85,         97, 110, 124, 139, 155 ],
+    "galdurPerLevel":      [ 0, 6, 3,  3,  3,  3,      4,  4,  4,  5,  5,      7,  8,  9, 10, 11,         12,  13,  14,  15,  16 ],
+                                           *               *           *               *                   *
+Alchemist
+    "galdur":             [ 0, 2, 4, 6, 8, 11,        14, 17, 22, 27, 32,     38, 44, 50, 58, 64,         72, 80, 89, 98, 108 ],
+    "galdurPerLevel":     [ 0, 2, 2, 2, 2,  3,         3,  3,  5,  5,  5,      6,  6,  6,  8,  6,          8,  8,  9,  9,  10 ],
+                                        *                  *           *               *                   *
+Paladin / Ranger
+    "galdur":             [ 0, 0, 0, 0, 1, 2,          3, 4, 5, 6, 8,         10, 12, 14, 17, 20,         23, 26, 29, 32, 35 ],
+    "galdurPerLevel":     [ 0, 0, 0, 0, 1, 1,          1, 1, 1, 1, 2,          2,  2,  2,  3,  3,          3,  3,  3,  3,  3 ],
+                                        *                 *        *                   *
 }
