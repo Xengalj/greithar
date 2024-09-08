@@ -46,7 +46,48 @@
 
 
   "Arcanist": {
-    "Parent Classes": [ "Sorcerer", "Wizard" ]
+    "Parent Classes": [ "Sorcerer", "Wizard" ],
+    "hd": "d6",
+    "ranks": 2,
+    "skills": [ "Appraise (Int)", "Craft (Int)", "Fly (Dex)", "Knowledge (all) (Int)", "Linguistics (Int)", "Profession (Wis)", "Spellcraft (Int)", "Use Magic Device (Cha)" ],
+    "proficiency": [ "simple weapons" ],
+    "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
+
+    "bab": [ 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7,  8,  8,  9,  9, 10],
+    "fort": [0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 3, 3, 4, 5,  5,  5,  6,  6,  6],
+    "ref": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5,  5,  5,  6,  6,  6],
+    "will": [0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12],
+
+    "special": [ [],
+      [ "Cantrips", "Arcane Reservoir (Su)", "Consume Spells (Su)", "Arcanist Exploit (REPLACE)" ],
+      [],
+      [ "Arcanist Exploit (REPLACE)" ],
+      [],
+      [ "Arcanist Exploit (REPLACE)" ],
+      [], [ "Arcanist Exploit (REPLACE)" ], [], [ "Arcanist Exploit (REPLACE)" ], [],
+      [ "Arcanist Exploit (REPLACE)", "Greater Exploits" ], [], [], [ "Arcanist Exploit (REPLACE)" ], [],
+      [ "Arcanist Exploit (REPLACE)" ], [], [ "Arcanist Exploit (REPLACE)" ], [], [ "Magical Supremacy (Su)" ]
+    ],
+
+    "magic": {
+      "style": "Prepared Arcane",
+      "castingAtr": "Intelligence",
+      "spellsPerLevel": 2,
+        "special cost": "1+spellLevel + ((level * casts) / 2) round up",
+      "galdur":              [ 0, 5, 8, 11, 14, 17,     21, 25, 30, 35, 42,     51, 62, 74, 87, 101,        116, 132, 149, 167, 186 ],
+      "galdurPerLevel":      [ 0, 5, 3,  3,  3,  3,      4,  4,  5,  5, 7,       9, 11, 12, 13,  14,         15,  16,  17,  18,  19 ]
+      "spellsPerDay": [ [],
+        ["∞", 2], ["∞", 3], ["∞", 4], ["∞", 4, 2], ["∞", 4, 3],
+        ["∞", 4, 4, 2], ["∞", 4, 4, 3], ["∞", 4, 4, 4, 2], ["∞", 4, 4, 4, 3], ["∞", 4, 4, 4, 4, 2],
+        ["∞", 4, 4, 4, 4, 3], ["∞", 4, 4, 4, 4, 4, 2], ["∞", 4, 4, 4, 4, 4, 3], ["∞", 4, 4, 4, 4, 4, 4, 2], ["∞", 4, 4, 4, 4, 4, 4, 3],
+        ["∞", 4, 4, 4, 4, 4, 4, 4, 2], ["∞", 4, 4, 4, 4, 4, 4, 4, 3], ["∞", 4, 4, 4, 4, 4, 4, 4, 4, 2], ["∞", 4, 4, 4, 4, 4, 4, 4, 4, 3], ["∞", 4, 4, 4, 4, 4, 4, 4, 4, 4]
+      ],
+      "spellSlots": [ [],
+        [4, 2], [5, 2], [5, 3], [6, 3, 1], [6, 4, 2],
+        [7, 4, 2, 1], [7, 5, 3, 2], [8, 5, 3, 2, 1], [8, 5, 4, 3, 2], [9, 5, 4, 3, 2, 1],
+        [9, 5, 5, 4, 3, 2], [9, 5, 5, 4, 3, 2, 1], [9, 5, 5, 4, 4, 3, 2], [9, 5, 5, 4, 4, 3, 2, 1], [9, 5, 5, 4, 4, 4, 3, 2],
+        [9, 5, 5, 4, 4, 4, 3, 2, 1], [9, 5, 5, 4, 4, 4, 3, 3, 2], [9, 5, 5, 4, 4, 4, 3, 3, 2, 1], [9, 5, 5, 4, 4, 4, 3, 3, 3, 2], [9, 5, 5, 4, 4, 4, 3, 3, 3, 3],
+    }
   },
 
 
@@ -120,7 +161,37 @@
 
 
   "Bloodrager": {
-    "Parent Classes": [ "Barbarian", "Sorcerer" ]
+    "Parent Classes": [ "Barbarian", "Sorcerer" ],
+    "hd": "d10",
+    "ranks": 4,
+    "skills": [ "Acrobatics (Dex)", "Climb (Str)", "Craft (Int)", "Handle Animal (Cha)", "Intimidate (Cha)", "Knowledge (arcana) (Int)", "Perception (Wis)", "Ride (Dex)", "Spellcraft (Int)", "Survival (Wis)", "Swim (Str)" ],
+    "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "shields" ],
+    "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
+
+    "bab": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ],
+    "fort": [0, 2, 3, 3, 4, 4, 5, 5, 6, 6,  7,  7,  8,  8,  9,  9, 10, 10, 11, 11, 12 ],
+    "ref": [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3,  3,  3,  4,  4,  4,  5,  5,  5,  6,  6,  6 ],
+    "will": [0, 0, 0, 1, 1, 1, 2, 2, 2, 3,  3,  3,  4,  4,  4,  5,  5,  5,  6,  6,  6 ],
+
+    "special": [ [],
+      [ "Fast Movement (Ex)", "Bloodrage (Su)", "Bloodline (REPLACE)", "Bloodline Power (REPLACE)" ],
+      [ "Uncanny DOdge" ],
+      [ "Blood Sanctuary (Su)" ],
+      [ "Blood Casting (Su)", "Eschew Materials" ],
+      [ "Improved Uncanny Dodge (Ex)" ],
+      [], [ "Damage Reduction (Ex)" ], [], [], [],
+      [], [], [], [], [],
+      [], [], [], [], [ ""]
+    ],
+
+    "magic": {
+      "style": "",
+      "castingAtr": "",
+
+      "spellsPerDay": [ [],
+      ]
+    }
+
   },
 
 
@@ -129,7 +200,27 @@
   },
 
 
-  "Cavalier": {},
+  "Cavalier": {
+    "hd": "d10",
+    "ranks": 4,
+    "skills": [ "Appraise (Int)", "Craft (Int)", "Diplomacy (Cha)", "Heal (Wis)", "Knowledge (arcana) (Int)", "Knowledge (history) (Int)", "Knowledge (nobility) (Int)", "Knowledge (planes) (Int)", "Knowledge (religion) (Int)", "Linguistics (Int)", "Profession (Wis)", "Sense Motive (Wis)", "Spellcraft (Int)" ],
+    "proficiency": [ "simple weapons", "light armor", "medium armor", "shields" ],
+    "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
+
+    "bab":  [ 0, 0, 1, 2, 3, 3, 4, 5, 6, 6, 7, 8, 9, 9, 10, 11, 12, 12, 13, 14, 15],
+    "fort": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12],
+    "ref":  [ 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4,  4,  5,  5,  5,  6,  6,  6],
+    "will": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9,  9, 10, 10, 11, 11, 12],
+
+    "special": [ [],
+      [ "Aura (Ex)", "Channel Energy (Su)", "Domains (REPLACE)", "Spontaneous Casting", "Bonus Languages" ],
+      [], [], [], [],
+      [], [], [], [], [],
+      [], [], [], [], [],
+      [], [], [], [], []
+    ],
+    
+  },
 
 
   "Cleric": {
@@ -511,7 +602,7 @@
     "will": [ 0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12 ],
 
     "special": [ [],
-      [ "Eschew Materials", "Bloodline Power (REPLACE)" ],
+      [ "Eschew Materials", "Bloodline (REPLACE)", "Bloodline Power (REPLACE)" ],
       [],
       [ "Bloodline Power (REPLACE)", "Bloodline Spell (REPLACE)" ],
       [],
@@ -655,4 +746,38 @@
       "galdur":             [ 0, 0, 0, 0, 1, 2,          3, 4, 5, 6, 8,         10, 12, 14, 17, 20,         23, 26, 29, 32, 35 ],
       "galdurPerLevel":     [ 0, 0, 0, 0, 1, 1,          1, 1, 1, 1, 2,          2,  2,  2,  3,  3,          3,  3,  3,  3,  3 ]
     }
+  },
+
+  
+  "name": {
+    "hd": "d",
+    "ranks": ,
+    "skills": [  ],
+    "proficiency": [  ],
+    "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
+
+    "bab": [ 0, , , , , , , , , , , , , , , , , , , , ],
+    "fort": [0, , , , , , , , , , , , , , , , , , , , ],
+    "ref": [ 0, , , , , , , , , , , , , , , , , , , , ],
+    "will": [0, , , , , , , , , , , , , , , , , , , , ],
+
+    "special": [ [],
+      [ "", "", "" ],
+      [],
+      [],
+      [],
+      [],
+      [], [], [], [], [],
+      [], [], [], [], [],
+      [], [], [], [], [ ""]
+    ],
+
+    "magic": {
+      "style": "",
+      "castingAtr": "",
+
+      "spellsPerDay": [ [],
+      ]
+    }
+  }
 }
