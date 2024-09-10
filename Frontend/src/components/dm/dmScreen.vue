@@ -1,11 +1,25 @@
 <template>
-  <div class="container">
 
+  <!--
+  <div class="container">
     <header class="jumbotron">
       <h3>{{ user }}</h3>
     </header>
-
   </div>
+  -->
+
+  <!-- <table id="equipmentTable">
+    <tr>
+      <th onclick="sortTable('Name')">Name</th>
+      <th onclick="sortTable('Name')">Name</th>
+    </tr>
+  </table> -->
+
+  <div class="">
+    {{ equipment }}
+  </div>
+
+
 
   <el-button type="primary" circle @click="monsterOpen('Death Worm')">
     <g-icon iconSize="24px" iconName="eye" />
@@ -13,7 +27,6 @@
   <el-button type="primary" circle @click="monsterOpen('Adult Red Dragon')">
     <g-icon iconSize="24px" iconName="firebolt" />
   </el-button>
-
 
   <el-dialog
     width="650"
@@ -30,24 +43,21 @@
   </el-dialog>
 
 
-  <div class="">
-    <p v-for="(icon, name, index) in icons" :key="index">
-      <strong>{{ name }}</strong>
-      <g-icon :iconName="name" />
-
-    </p>
-  </div>
+  <p v-for="(icon, name, index) in icons" :key="index">
+    <strong>{{ name }}</strong>
+    <g-icon :iconName="name" />
+  </p>
 
 </template>
 
 <script>
-import DataService from "@/services/data.service";
 import UserService from "@/services/user.service";
+// import DataService from "@/services/data.service";
 import CreatureCard from '@/components/template/CreatureCard.vue'
 const icons = require('@/components/template/svgPaths.json');
 // const miscTables = require('@/components/codex/tables.json');
 // const supplementTables = require('@/components/codex/monsters.json');
-// const equipmentTables = require('@/components/codex/equipment.json');
+const equipmentTables = require('@/components/codex/equipment.json');
 
 export default {
   name: "DM Screen",
@@ -56,14 +66,13 @@ export default {
   },
   data() {
     return {
-        content: "DM Screen",
+      content: "DM Screen",
 
       icons: icons,
 
       monsterVisible: false,
-      creatureName: ""
-
-
+      creatureName: "",
+      equipment: equipmentTables
 
     };
   },
@@ -71,21 +80,21 @@ export default {
     user() {
       let user = "Xen";
       user = localStorage.getItem('user');
-      // console.log(user);
 
       // this.$store.state.auth.status.loggedIn
-      console.log(this.$store.state.auth);
+      // console.log(this.$store.state.auth);
       return user;
     }
   },
   mounted() {
-    // console.log(this.tables);
-    // this.getMonster(this.monster);
-    DataService.getEquipment().then(
-      (response) => {
-        console.log(response.data);
-      }
-    );
+
+    // DataService.getEquipment().then(
+    //   (response) => {
+    //     this.equipment = response.data;
+    //     console.log(response.data);
+    //   }
+    // );
+    console.log(this.equipment);
 
     UserService.getAdminBoard().then(
       (response) => {
@@ -93,11 +102,8 @@ export default {
       },
       (error) => {
         this.content =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
+          (error.response && error.response.data && error.response.data.message)
+          || error.message || error.toString();
       }
     );
   },

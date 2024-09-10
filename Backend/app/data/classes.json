@@ -75,7 +75,7 @@
       "spellsPerLevel": 2,
         "special cost": "1+spellLevel + ((level * casts) / 2) round up",
       "galdur":              [ 0, 5, 8, 11, 14, 17,     21, 25, 30, 35, 42,     51, 62, 74, 87, 101,        116, 132, 149, 167, 186 ],
-      "galdurPerLevel":      [ 0, 5, 3,  3,  3,  3,      4,  4,  5,  5, 7,       9, 11, 12, 13,  14,         15,  16,  17,  18,  19 ]
+      "galdurPerLevel":      [ 0, 5, 3,  3,  3,  3,      4,  4,  5,  5, 7,       9, 11, 12, 13,  14,         15,  16,  17,  18,  19 ],
       "spellsPerDay": [ [],
         ["∞", 2], ["∞", 3], ["∞", 4], ["∞", 4, 2], ["∞", 4, 3],
         ["∞", 4, 4, 2], ["∞", 4, 4, 3], ["∞", 4, 4, 4, 2], ["∞", 4, 4, 4, 3], ["∞", 4, 4, 4, 4, 2],
@@ -86,7 +86,8 @@
         [4, 2], [5, 2], [5, 3], [6, 3, 1], [6, 4, 2],
         [7, 4, 2, 1], [7, 5, 3, 2], [8, 5, 3, 2, 1], [8, 5, 4, 3, 2], [9, 5, 4, 3, 2, 1],
         [9, 5, 5, 4, 3, 2], [9, 5, 5, 4, 3, 2, 1], [9, 5, 5, 4, 4, 3, 2], [9, 5, 5, 4, 4, 3, 2, 1], [9, 5, 5, 4, 4, 4, 3, 2],
-        [9, 5, 5, 4, 4, 4, 3, 2, 1], [9, 5, 5, 4, 4, 4, 3, 3, 2], [9, 5, 5, 4, 4, 4, 3, 3, 2, 1], [9, 5, 5, 4, 4, 4, 3, 3, 3, 2], [9, 5, 5, 4, 4, 4, 3, 3, 3, 3],
+        [9, 5, 5, 4, 4, 4, 3, 2, 1], [9, 5, 5, 4, 4, 4, 3, 3, 2], [9, 5, 5, 4, 4, 4, 3, 3, 2, 1], [9, 5, 5, 4, 4, 4, 3, 3, 3, 2], [9, 5, 5, 4, 4, 4, 3, 3, 3, 3]
+      ]
     }
   },
 
@@ -177,21 +178,30 @@
       [ "Fast Movement (Ex)", "Bloodrage (Su)", "Bloodline (REPLACE)", "Bloodline Power (REPLACE)" ],
       [ "Uncanny DOdge" ],
       [ "Blood Sanctuary (Su)" ],
-      [ "Blood Casting (Su)", "Eschew Materials" ],
+      [ "Blood Casting (Su)", "Eschew Materials", "Bloodline Power (REPLACE)" ],
       [ "Improved Uncanny Dodge (Ex)" ],
-      [], [ "Damage Reduction (Ex)" ], [], [], [],
-      [], [], [], [], [],
-      [], [], [], [], [ ""]
+      [ "Bloodline Feat (REPLACE)" ], [ "Damage Reduction (Ex)", "Bloodline Spell (REPLACE)" ], [ "Bloodline Power (REPLACE)" ], [ "Bloodline Feat (REPLACE)" ], [ "Bloodline Spell (REPLACE)" ],
+      [ "Greater Bloodrage (Su)" ], [ "Bloodline Feat (REPLACE)", "Bloodline Power (REPLACE)" ], [ "Bloodline Spell (REPLACE)" ], [ "Indomitable Will (Ex)" ], [ "Bloodline Feat (REPLACE)" ],
+      [ "Bloodline Spell (REPLACE)", "Bloodline Power (REPLACE)" ], [ "Tireless Bloodrage (Su)" ], [ "Bloodline Feat (REPLACE)" ], [], [ "Mighty Bloodrage (Su)", "Bloodline Power (REPLACE)" ]
     ],
 
     "magic": {
-      "style": "",
-      "castingAtr": "",
-
+      "style": "Spontaneous Arcane",
+      "castingAtr": "Charisma",
+      "spellsKnown": [ [],
+        [0], [0], [0], [2], [3],
+        [4], [4, 2], [4, 3], [5, 4], [5, 4, 2],
+        [5, 4, 3], [6, 5, 4], [6, 5, 4, 2], [6, 5, 4, 3], [6, 6, 5, 4],
+        [6, 6, 5, 4], [6, 6, 5, 4], [6, 6, 6, 5], [6, 6, 6, 5], [6, 6, 6 ,5]
+      ],
       "spellsPerDay": [ [],
+        [0], [0], [0], [1], [1],
+        [1], [1, 1], [1, 1], [2, 1], [2, 1, 1],
+        [2, 1, 1], [2, 2, 1], [3, 2, 1, 1], [3, 2, 1, 1], [3, 2, 2, 1],
+        [3, 3, 2, 1], [4, 3, 2, 1], [4, 3, 2, 2], [4, 3, 3, 2], [4, 4, 3, 2]
       ]
-    }
-
+    },
+    "unique": "may cast bloodrager spells in light / medium armor with no failure"
   },
 
 
@@ -219,7 +229,7 @@
       [], [], [], [], [],
       [], [], [], [], []
     ],
-    
+
   },
 
 
@@ -659,7 +669,7 @@
     "magic": {
       "style": "Spontaneous Arcane",
       "castingAtr": "Charisma",
-      "spellsPerDay": [ [],
+      "spellsKnown": [ [],
         [4, 2], [5, 3], [6, 4], [6, 4, 2], [6, 4, 3],
         [6, 4, 4], [6, 5, 4, 2], [6, 5, 4, 3], [6, 5, 4, 4], [6, 5, 5, 4, 2],
         [6, 6, 5, 4, 3], [6, 6, 5, 4, 4], [6, 6, 5, 5, 4, 2], [6, 6, 6, 5, 4, 3], [6, 6, 6, 5, 4, 4],
@@ -748,7 +758,7 @@
     }
   },
 
-  
+
   "name": {
     "hd": "d",
     "ranks": ,
