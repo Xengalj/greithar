@@ -1,9 +1,107 @@
-.center-vert {
-  align-content: center;
+/***************************\
+*                           *
+*         VARIABLES         *
+*                           *
+\***************************/
+
+:root {
+  /** CSS DARK THEME PRIMARY COLORS */
+  --color-primary-100:  #e63415;
+  --color-primary-200:  #ed532f;
+  --color-primary-300:  #f46b48;
+  --color-primary-400:  #fa8261;
+  --color-primary-500:  #fe987a;
+  --color-primary-600:  #ffad93;
+
+  /** CSS DARK THEME SURFACE COLORS */
+  --color-surface-100:  #121212;
+  --color-surface-200:  #282828;
+  --color-surface-300:  #3f3f3f;
+  --color-surface-400:  #575757;
+  --color-surface-500:  #717171;
+  --color-surface-600:  #8b8b8b;
+
+  /** CSS DARK THEME MIXED SURFACE COLORS */
+  --color-surface-mixed-100:  #4d2216;
+  --color-surface-mixed-200:  #61382b;
+  --color-surface-mixed-300:  #744e42;
+  --color-surface-mixed-400:  #88655a;
+  --color-surface-mixed-500:  #9c7d74;
+  --color-surface-mixed-600:  #af968e;
+
+  /* OVERWRITE ELMENT PLUS COLORS */
+  --el-color-primary: #E63415;
+
 }
+
+
+/*    https://colorffy.com/dark-theme-generator
+Dark/Mixed - 100: For body background color
+
+Dark/Mixed - 200: For cards background color
+
+Dark/Mixed - 300: For chips buttons, dropdowns background color
+
+Dark/Mixed - 400: For sidebars, navbar background color
+
+Dark/Mixed - 500: For modal, dialogs background color
+
+Dark/Mixed - 600: For on background texts color */
+
+
+/***************************\
+*                           *
+*          COLORS           *
+*                           *
+\***************************/
+body #app .dark{
+  color: var(--el-color-info);
+  background-color: var(--color-surface-100);
+}
+
+.dark .el-menu,
+.dark .el-input,
+.dark .el-input__wrapper {
+  background-color: var(--color-surface-300);
+}
+
+
+
+/***************************\
+*                           *
+*          LAYOUT           *
+*                           *
+\***************************/
+.main {
+  height: calc(100vh - 120px);
+}
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: var(--color-surface-200);
+}
+
 .center-horz {
   text-align: center;
 }
+.center-vert {
+  align-content: center;
+  /*
+  display: flex;
+  align-items: center;
+   */
+}
+
+
+
+
 .stat-controls .el-input-number {
   width: 70px;
+}
+
+.title {
+  color: red;
+  text-align: center;
 }

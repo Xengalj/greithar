@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="top-bar">
     <router-link :to="{ name: 'home', params: {} }">
-      <span class="text-large font-600 mr-3">
+      <span class="font-600 mr-3 site-title">
         Greiðar
       </span>
     </router-link>
@@ -11,6 +11,7 @@
     <!-- TODO
       - get current active page and coloring working
       - get click outside closes menu working
+      https://element-plus.org/en-US/component/menu.html
     -->
 
     <div class="menu-container">
@@ -24,55 +25,73 @@
         </el-input>
       </div>
 
-      <el-menu menu-trigger="click" mode="horizontal" class="el-menu" ellipsis>
+      <el-menu
+      menu-trigger="click"
+      mode="horizontal"
+      class="el-menu"
+      ellipsis
+      >
         <!-- close-on-click-outside -->
 
+
         <!-- User Links -->
-        <el-sub-menu index="0">
+        <el-sub-menu v-if="currentUser" index="0">
           <template #title>
-            <font-awesome-icon icon="user" /> {{ currentUser.username }}
+            <g-icon iconSize="24px" iconName="user" /> {{ currentUser.username }}
           </template>
 
-          <el-menu-item v-if="currentUser" index="profile">
+          <el-menu-item index="profile">
             <router-link :to="{ name: 'user-view', params: { id: currentUser.id } }" class="nav-link">
-              <font-awesome-icon icon="user-cog" /> Your Profile
+              <g-icon iconSize="24px" iconName="userProfile" /> Your Profile
             </router-link>
           </el-menu-item>
 
-          <el-menu-item v-if="currentUser" index="hero">
+          <el-menu-item index="hero">
             <router-link to="/hero" class="nav-link">
               <!-- <router-link :to="{ name: 'character-view', params: { id: currentUser.hero.id } }" class="nav-link"> -->
               <!-- /character/view/<character_id> -->
-              <font-awesome-icon icon="street-view" /> Your Hero <!-- {{ currentUser.hero.name }} -->
+              <g-icon iconSize="24px" iconName="userHero" /> Your Hero <!-- {{ currentUser.hero.name }} -->
             </router-link>
           </el-menu-item>
 
-          <el-menu-item v-if="currentUser" index="characters">
+          <el-menu-item index="characters">
             <router-link to="/user/list" class="nav-link">
               <!-- <router-link :to="{ name: 'character-list', params: { id: currentUser.id } }" class="nav-link"> -->
               <!-- /character/list/<user_id> -->
-              <font-awesome-icon icon="users" /> Your Characters
+              <g-icon iconSize="24px" iconName="userList" /> Your Characters
             </router-link>
           </el-menu-item>
         </el-sub-menu>
 
 
-
         <!-- Rules -->
         <el-sub-menu index="1">
           <template #title>
-            <font-awesome-icon icon="book" /> Rules
+            <g-icon iconSize="24px" iconName="openBook" /> Rules
           </template>
+
+          <el-menu-item index="beastiary">
+            <router-link to="/beastiary" class="nav-link">
+              <g-icon iconSize="24px" iconName="dragon" /> Beastiary
+            </router-link>
+          </el-menu-item>
+          <el-menu-item index="equipment">
+            <router-link to="/equipment" class="nav-link">
+              <g-icon iconSize="24px" iconName="inventory" /> Equipment
+            </router-link>
+          </el-menu-item>
+
 
           <el-menu-item v-for="(page, rIndex) in rules" :key="rIndex" :index="`1-${rIndex}`">
             <router-link :to="page.link" class="nav-link">{{ page.title }}</router-link>
           </el-menu-item>
         </el-sub-menu>
 
+
         <!-- Lore -->
         <el-sub-menu index="2">
           <template #title>
-            <font-awesome-icon icon="scroll" /> Lore
+            <g-icon iconSize="24px" iconName="openScroll" /> Lore
           </template>
 
           <el-menu-item v-for="(page, lIndex) in lores" :key="lIndex" :index="`2-${lIndex}`">
@@ -85,13 +104,7 @@
         <el-menu-item-group v-if="showAdmin" title="DM Things">
           <el-menu-item index="dmScreen">
             <router-link to="/admin" class="nav-link">
-              <font-awesome-icon icon="map" /> DM Screen
-            </router-link>
-          </el-menu-item>
-
-          <el-menu-item index="beastiary">
-            <router-link to="/beastiary" class="nav-link">
-              <font-awesome-icon icon="dragon" /> Beastiary
+              <g-icon iconSize="24px" iconName="map" /> DM Screen
             </router-link>
           </el-menu-item>
         </el-menu-item-group>
@@ -101,28 +114,29 @@
         <el-menu-item-group v-if="showAdmin" title="Admin">
           <el-menu-item index="users">
             <router-link to="/user/list" class="nav-link">
-              <font-awesome-icon icon="users" /> Users
+              <g-icon iconSize="24px" iconName="userList" /> Users
             </router-link>
           </el-menu-item>
+
         </el-menu-item-group>
 
 
         <!-- Sign In / Out -->
         <el-menu-item v-if="currentUser" index="logout">
           <a class="nav-link" @click.prevent="logOut">
-            <font-awesome-icon icon="sign-out-alt" /> LogOut
+            <g-icon iconSize="24px" iconName="logout" /> LogOut
           </a>
         </el-menu-item>
 
         <el-menu-item v-if="!currentUser" index="login">
           <router-link to="/login" class="nav-link">
-            <font-awesome-icon icon="sign-in-alt" /> Login
+            <g-icon iconSize="24px" iconName="login" /> Login
           </router-link>
         </el-menu-item>
 
         <el-menu-item v-if="!currentUser" index="register">
           <router-link to="/register" class="nav-link">
-            <font-awesome-icon icon="user-plus" /> Sign Up
+            <g-icon iconSize="24px" iconName="userAdd" /> Sign Up
           </router-link>
         </el-menu-item>
 
@@ -130,14 +144,12 @@
     </div>
   </div>
 
-  <div>
-    <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/' }">home</el-breadcrumb-item>
-      <el-breadcrumb-item v-for="(crumb, index) in breadcrumbs" :key="index">
-        <router-link :to="crumb.to">{{ crumb.label }}</router-link>
-      </el-breadcrumb-item>
-    </el-breadcrumb>
-  </div>
+  <el-breadcrumb separator="/">
+    <el-breadcrumb-item :to="{ path: '/' }">Home</el-breadcrumb-item>
+    <el-breadcrumb-item v-for="(crumb, index) in breadcrumbs" :key="index">
+      <router-link :to="crumb.to">{{ crumb.label }}</router-link>
+    </el-breadcrumb-item>
+  </el-breadcrumb>
 
 </template>
 
@@ -236,16 +248,26 @@ export default {
 }
 </script>
 
-<style lang="css" scoped>
+<style>
+#app .el-header {
+  height: 80px;
+}
 .top-bar {
   display: flex;
   border-bottom: 1px solid var(--el-menu-border-color);
 }
-.text-large {
+.site-title {
   font-size: 40px;
+  color: var(--color-primary-100);
 }
 .flex-grow {
   flex-grow: 1;
+}
+
+/* Search & Nav */
+.menu-container {
+  display: flex;
+  align-items: center;
 }
 .menu-container .nav-search {
   float: left;
@@ -254,25 +276,40 @@ export default {
   display: flex;
   align-items: center;
 }
-.menu-container .nav-search>div {
+.menu-container .nav-search>div,
+.el-menu.el-menu--horizontal {
   height: 80%;
 }
+.dark .nav-search input {
+  color: #CCC;
+}
 
+/* Menu Button */
 .el-menu {
+  border-radius: 5px;
   border: none !important;
   max-width: 100px;
+  text-align: center;
 }
-.nav-link svg {
-  vertical-align: middle;
+.dark .el-menu--horizontal > .el-sub-menu .el-sub-menu__title {
+  padding: 20px;
+}
+.dark .el-menu--horizontal > .el-sub-menu .el-sub-menu__title:hover {
+  background-color: var(--color-surface-500);
+  border-radius: 5px;
+}
+.dark .el-menu path {
+  color: var(--color-primary-200);
 }
 
-.el-sub-menu svg.svg-inline--fa, .nav-link svg.svg-inline--fa {
-  width: 20px;
-}
 
-.router-link-active {
-  color: var(--el-color-success);
-}
-/* Desktop Styles */
+/* Menu Items */
 
+
+
+/* Breadcrumbs */
+.dark .el-breadcrumb__inner.is-link,
+.dark .el-breadcrumb__item:last-child .el-breadcrumb__inner a {
+  color: var(--color-primary-200);
+}
 </style>

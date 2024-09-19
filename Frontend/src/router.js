@@ -46,9 +46,12 @@ const routes = [
   },
 
 
-  /*****************************
-  *         User Routes        *
-  *****************************/
+
+  /***************************\
+  *                           *
+  *        USER ROUTES        *
+  *                           *
+  \***************************/
   {
     path: "/user",
     name: "user",
@@ -89,7 +92,7 @@ const routes = [
       {
         path: "edit/:id",
         name: "user-edit",
-        component: temp,
+        component: import("@/components/user/Edit.vue"),
         meta: {
           breadcrumb: "Edit User",
           title: "Edit User",
@@ -110,9 +113,11 @@ const routes = [
   },
 
 
-  /*****************************
-  *     Character Routes       *
-  *****************************/
+  /***************************\
+  *                           *
+  *     CHARACTER ROUTES      *
+  *                           *
+  \***************************/
   {
     path: "/character",
     name: "character",
@@ -163,9 +168,11 @@ const routes = [
   },
 
 
-  /*****************************
-  *         Rule Routes        *
-  *****************************/
+  /***************************\
+  *                           *
+  *        RULE ROUTES        *
+  *                           *
+  \***************************/
   {
     path: "/rules",
     // component: Rules,
@@ -193,9 +200,11 @@ const routes = [
   },
 
 
-  /*****************************
-  *         Lore Routes        *
-  *****************************/
+  /***************************\
+  *                           *
+  *        LORE ROUTES        *
+  *                           *
+  \***************************/
   {
     path: "/lore",
     name: "Lore",
@@ -228,9 +237,11 @@ const routes = [
   },
 
 
-  /*****************************
-  *        Codex Routes        *
-  *****************************/
+  /***************************\
+  *                           *
+  *       CODEX ROUTES        *
+  *                           *
+  \***************************/
   {
     path: "/beastiary",
     name: "Beastiary",
@@ -240,11 +251,22 @@ const routes = [
       title: "Beastiary"
     }
   },
+  {
+    path: "/equipment",
+    name: "Equipment",
+    component: () => import("./components/codex/equipment.vue"),
+    meta: {
+      breadcrumb: "Equipment",
+      title: "Equipment"
+    }
+  },
 
 
-  /*****************************
-  *         404 Route          *
-  *****************************/
+  /***************************\
+  *                           *
+  *         404 ROUTE         *
+  *                           *
+  \***************************/
   {
     path: "/:catchAll(.*)",
     name: "404",

@@ -77,6 +77,9 @@ function initial() {
     email: "giji4454@gmail.com",
     password: bcrypt.hashSync("Klefki719!", 8)
   });
+  /*
+    NOTE - Will need to manually go into the DB and insert "userID 2", "roleID 3" to regain admin access.
+  */
   db.character.create({
     id: 0,
     user_id: 2, // belongsToMany (char through user_characters)

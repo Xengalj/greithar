@@ -1,5 +1,5 @@
-<template class="dark">
-  <div class="common-layout">
+<template>
+  <div :class="`common-layout ${this.userMeta.theme}`">
     <el-container>
       <el-header>
         <Header/>
@@ -7,7 +7,7 @@
       <el-container>
         <el-container class="wrapper">
           <el-main class="main">
-            <h1 class="jumbotron">{{ pageTitle }}</h1>
+            <h1 class="jumbotron center-horz title">{{ pageTitle }}</h1>
             <router-view v-model="pageTitle"/>
 
           </el-main>
@@ -24,38 +24,35 @@
 </template>
 
 <script>
+import '@/styles/index.css';
 import Header from './components/template/Header.vue'
+
 export default {
-  // name: "App",
+  name: "App",
   components: { Header },
-  // props: {
-  //   id: {
-  //     type: Int,
-  //     default: 40
-  //   }
-  // },
-
-  // data() {
-  //   return {
-  //     loading: false,
-  //   };
-  // },
-
   computed: {
     pageTitle() {
       return this.$route.meta.title;
+    },
+    currentUser() {
+      return this.$store.state.auth.user;
     }
-    // currentUser() {
-    //   return this.$store.state.auth.user;
-    // },
+  },
+  data() {
+    return {
+      userMeta: {}
+
+    };
   },
 
-  // created() {
-  //   console.log("created");
-  // },
-  // mounted() {
-  //   console.log("mounted");
-  // },
+  created() {
+    // console.log("created");
+    // console.log(this.currentUser);
+
+    this.userMeta.theme = "dark";
+  },
+
+
 
   // methods: {
   //   logOut() {
@@ -68,33 +65,10 @@ export default {
 /* TODO:
  *
  *  get lore & rules pages from DB
- *  get curr user data (hero, darkmode, etc)
+ *  get curr user meta data
+      hero, darkmode, faveColor
  *
  *
  */
 
-
-
-
 </script>
-
-<style scoped>
-/* Colors */
-:root {
-  --el-color-primary: green;
-}
-
-.main {
-  height: calc(100vh - 120px);
-}
-h1 {
-  text-align: center;
-}
-footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-  background-color: grey;
-}
-</style>
