@@ -41,7 +41,8 @@
       "Cost": 3,
       "Weight": 1,
       "Proficiency": "Light",
-      "Description": "Also called a belly-warmer, a haramaki is a simple silken sash lined with chainmail or articulated metal plates and tied about the stomach to protect it."
+      "Description": "Also called a belly-warmer, a haramaki is a simple silken sash lined with chainmail or articulated metal plates and tied about the stomach to protect it.",
+      "Special": ""
     },
     "Padded": {
       "AC Bonus": 1,
@@ -53,7 +54,8 @@
       "Cost": 5,
       "Weight": 10,
       "Proficiency": "Light",
-      "Description": "More than simple clothing, padded armor combines heavy, quilted cloth and layers of densely packed stuffing to create a cheap and basic protection."
+      "Description": "More than simple clothing, padded armor combines heavy, quilted cloth and layers of densely packed stuffing to create a cheap and basic protection.",
+      "Special": ""
     },
     "Quilted Cloth": {
       "AC Bonus": 1,
@@ -91,7 +93,8 @@
       "Cost": 30,
       "Weight": 4,
       "Proficiency": "Light",
-      "Description": "These robes consist of several layers of cloth and an outer layer of silk intricately woven with gold brocade designs and covered with metal studs."
+      "Description": "These robes consist of several layers of cloth and an outer layer of silk intricately woven with gold brocade designs and covered with metal studs.",
+      "Special": ""
     },
     "Lamellar Cuirass": {
       "AC Bonus": 2,
@@ -103,7 +106,8 @@
       "Cost": 15,
       "Weight": 8,
       "Proficiency": "Light",
-      "Description": "This armor consists of a light breastplate and shoulder guards made from lacquered leather plates bound together and fitted over a silk shirt."
+      "Description": "This armor consists of a light breastplate and shoulder guards made from lacquered leather plates bound together and fitted over a silk shirt.",
+      "Special": ""
     },
     "Leather": {
       "AC Bonus": 2,
@@ -115,7 +119,8 @@
       "Cost": 10,
       "Weight": 15,
       "Proficiency": "Light",
-      "Description": "Leather armor is made up of multiple overlapping pieces of leather, boiled to increase their natural toughness and then deliberately stitched together."
+      "Description": "Leather armor is made up of multiple overlapping pieces of leather, boiled to increase their natural toughness and then deliberately stitched together.",
+      "Special": ""
     },
     "Rosewood Armor": {
       "AC Bonus": 2,
@@ -127,7 +132,8 @@
       "Cost": 50,
       "Weight": 15,
       "Proficiency": "Light",
-      "Description": "This suit of leather armor is wrapped in special rose vines, granting it armor spikes. You must water the vines with a gallon of water each day to maintain the spikes."
+      "Description": "This suit of leather armor is wrapped in special rose vines, granting it armor spikes. You must water the vines with a gallon of water each day to maintain the spikes.",
+      "Special": ""
     },
     "Hell Knight Leather": {
       "AC Bonus": 3,
@@ -139,7 +145,8 @@
       "Cost": 30,
       "Weight": 25,
       "Proficiency": "Light",
-      "Description": "This studded leather armor includes heavy gloves and a helm of sculpted leather designed to look like a skull-either a human’s or that of some aquatic creature."
+      "Description": "This studded leather armor includes heavy gloves and a helm of sculpted leather designed to look like a skull-either a human’s or that of some aquatic creature.",
+      "Special": ""
     },
     "Hide Shirt": {
       "AC Bonus": 3,
@@ -164,7 +171,8 @@
       "Cost": 500,
       "Weight": 20,
       "Proficiency": "Light",
-      "Description": "Alchemically treated leaves have been sticthed together to make jerkins, bracers, and leggings."
+      "Description": "Alchemically treated leaves have been sticthed together to make jerkins, bracers, and leggings.",
+      "Special": ""
     },
     "Parade Armor": {
       "AC Bonus": 3,
@@ -628,271 +636,263 @@
       "Spell Failure": "5%",
       "Speed": [ 1000, 1000 ],
 
-      "damage": [ "0", "0", "0" ],
-      "critRange": 0,
-      "critMultiplier": 0,
+      "Damage": [ "0", "0", "0" ],
+      "Crit Range": 0,
+      "Crit Multiplier": 0,
       "dmgType": [ "none" ],
-      "Range": 0,
-      "Type": "Melee",
       "category": "",
       "group": [ "" ],
 
       "Cost": 5,
       "Weight": 5,
-      "Proficiency": "",
       "Description": "This small metal shield is worn strapped to your forearm to allow you to still wield a weapon with that hand.",
       "Special": "While using a weapon in the hand a buckler is strapped to, you take a -1 on attack rolls."
     },
     "Klar": {
-      "name": "Klar",
-      "Cost": 12,
-      "Weight": 6,
       "AC Bonus": 1,
       "Max Dex": 10,
       "Pentalty": -1,
       "Spell Failure": "5%",
       "Speed": [ 1000, 1000 ],
-        "damage": [ "1d4", "1d6", "1d8" ],
+
+      "Damage": [ "1d4", "1d6", "1d8" ],
       "critRange": 20,
       "critMultiplier": 2,
       "dmgType": [ "slashing" ],
-      "special": "",
       "category": "One-Handed",
-      "Proficiency": "Martial",
       "group": [ "Heavy Blades", "Close" ],
-      "Description": "A small shield with spikes used for both offense and defense."
+
+      "Cost": 12,
+      "Weight": 6,
+      "Description": "A small shield with spikes used for both offense and defense.",
+      "special": ""
     },
     "Madu (Leather)": {
-      "name": "Madu (Leather)",
-      "Cost": 30,
-      "Weight": 5,
       "AC Bonus": 1,
       "Max Dex": 10,
       "Pentalty": -2,
       "Spell Failure": "5%",
       "Speed": [ 1000, 1000 ],
-        "damage": [ "1d3", "1d4", "1d6" ],
+
+      "Damage": [ "1d3", "1d4", "1d6" ],
       "critRange": 20,
       "critMultiplier": 2,
       "dmgType": [ "piercing" ],
-      "special": "",
       "category": "Light",
-      "Proficiency": "Exotic",
       "group": [ "Close" , "Tribal" ],
+
+
+      "Cost": 30,
+      "Weight": 5,
       "Description": "This small shield has two antlers, usually from an antelope extending out either side.",
       "Special": "If you are proficient with the madu, you take only a -2 when fighting defensively instead of the usual -4."
     },
     "Madu (Steel)": {
-      "name": "Madu (Steel)",
-      "Cost": 40,
-      "Weight": 6,
       "AC Bonus": 1,
       "Max Dex": 10,
       "Pentalty": -2,
       "Spell Failure": "5%",
       "Speed": [ 1000, 1000 ],
-        "damage": [ "1d3", "1d4", "1d6" ],
+
+      "Damage": [ "1d3", "1d4", "1d6" ],
       "critRange": 20,
       "critMultiplier": 2,
       "dmgType": [ "piercing" ],
-      "special": "",
       "category": "Light",
-      "Proficiency": "Exotic",
       "group": [ "Close", "Tribal" ],
+
+      "Cost": 40,
+      "Weight": 6,
       "Description": "This small shield has two antlers, usually from an antelope extending out either side.",
       "Special": "If you are proficient with the madu, you take only a -2 when fighting defensively instead of the usual -4."
     },
     "Light Shield (Steel)": {
-      "name": "Light Shield (Steel)",
-      "Cost": 9,
-      "Weight": 6,
       "AC Bonus": 1,
       "Max Dex": 10,
       "Pentalty": -1,
       "Spell Failure": "5%",
       "Speed": [ 1000, 1000 ],
-        "damage": [ "1d2", "1d3", "1d4" ],
+
+      "Damage": [ "1d2", "1d3", "1d4" ],
       "critRange": 20,
       "critMultiplier": 2,
       "dmgType": [ "bludgeoning" ],
-      "special": "",
       "category": "Light",
-      "Proficiency": "Martial",
       "group": [ "Close", "Tribal" ],
-      "Description": "A simple shield made of good steel."
+
+      "Cost": 9,
+      "Weight": 6,
+      "Description": "A simple shield made of good steel.",
+      "Special": ""
     },
     "Light Shield (Steel Quickdraw)": {
-      "name": "Light Shield (Steel Quickdraw)",
-      "Cost": 59,
-      "Weight": 7,
       "AC Bonus": 1,
       "Max Dex": 10,
       "Pentalty": -2,
       "Spell Failure": "5%",
       "Speed": [ 1000, 1000 ],
-        "damage": [ "1d2", "1d3", "1d4" ],
+
+      "Damage": [ "1d2", "1d3", "1d4" ],
       "critRange": 20,
       "critMultiplier": 2,
       "dmgType": [ "bludgeoning" ],
-      "special": "",
       "category": "Light",
-      "Proficiency": "Martial",
       "group": [ "Close", "Tribal" ],
+
+      "Cost": 59,
+      "Weight": 7,
       "Description": "A simple shield made of good steel and designed for quick retrieval.",
       "Special": "If your BAB is at least +1 you may don or remove this shield as a swift action combined with a move action."
     },
     "Light Shield (Wooden)": {
-      "name": "Light Shield (Wooden)",
-      "Cost": 3,
-      "Weight": 5,
       "AC Bonus": 1,
       "Max Dex": 10,
       "Pentalty": -1,
       "Spell Failure": "5%",
       "Speed": [ 1000, 1000 ],
-        "damage": [ "1d2", "1d3", "1d4" ],
+
+      "Damage": [ "1d2", "1d3", "1d4" ],
       "critRange": 20,
       "critMultiplier": 2,
       "dmgType": [ "bludgeoning" ],
-      "special": "",
       "category": "Light",
-      "Proficiency": "Martial",
       "group": [ "Close", "Tribal" ],
-      "Description": "A simple shield made of solid wood."
+
+      "Cost": 3,
+      "Weight": 5,
+      "Description": "A simple shield made of solid wood.",
+      "Special": ""
     },
     "Light Shield (Wooden Quickdraw)": {
-      "name": "Light Shield (Wooden Quickdraw)",
-      "Cost": 53,
-      "Weight": 6,
       "AC Bonus": 1,
       "Max Dex": 10,
       "Pentalty": -2,
       "Spell Failure": "5%",
       "Speed": [ 1000, 1000 ],
-        "damage": [ "1d2", "1d3", "1d4" ],
+
+      "Damage": [ "1d2", "1d3", "1d4" ],
       "critRange": 20,
       "critMultiplier": 2,
       "dmgType": [ "bludgeoning" ],
-      "special": "",
       "category": "Light",
-      "Proficiency": "Martial",
       "group": [ "Close", "Tribal" ],
+
+      "Cost": 53,
+      "Weight": 6,
       "Description": "A simple shield made of solid wood and designed for quick retrieval.",
       "Special": "If your BAB is at least +1 you may don or remove this shield as a swift action combined with a move action."
     },
     "Heavy Shield (Steel)": {
-      "name": "Heavy Shield (Steel)",
+      "AC Bonus": 2,
+      "Max Dex": 10,
+      "Pentalty": -2,
+      "Spell Failure": "15%",
+      "Speed": [ 1000, 1000 ],
+
+      "Damage": [ "1d3", "1d4", "1d6" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "dmgType": [ "blugeoning" ],
+      "category": "One-Handed",
+      "group": [ "Close", "Tribal" ],
+
       "Cost": 20,
       "Weight": 15,
-      "AC Bonus": 2,
-      "Max Dex": 10,
-      "Pentalty": -2,
-      "Spell Failure": "15%",
-      "Speed": [ 1000, 1000 ],
-        "damage": [ "1d3", "1d4", "1d6" ],
-      "critRange": 20,
-      "critMultiplier": 2,
-      "dmgType": [ "blugeoning" ],
-      "special": "",
-      "category": "One-Handed",
-      "Proficiency": "Martial",
-      "group": [ "Close", "Tribal" ],
-      "Description": "A sturdy metal shield reinforced with good steel."
+      "Description": "A sturdy metal shield reinforced with good steel.",
+      "Special": ""
     },
     "Heavy Shield (Wooden)": {
-      "name": "Heavy Shield (Wooden)",
-      "Cost": 7,
-      "Weight": 10,
       "AC Bonus": 2,
       "Max Dex": 10,
       "Pentalty": -2,
       "Spell Failure": "15%",
       "Speed": [ 1000, 1000 ],
-        "damage": [ "1d3", "1d4", "1d6" ],
+
+      "Damage": [ "1d3", "1d4", "1d6" ],
       "critRange": 20,
       "critMultiplier": 2,
       "dmgType": [ "blugeoning" ],
-      "special": "",
       "category": "One-Handed",
-      "Proficiency": "Martial",
       "group": [ "Close", "Tribal" ],
-      "Description": "A sturdy wooden shield reinforced with bands of solid hardwood."
+
+      "Cost": 7,
+      "Weight": 10,
+      "Description": "A sturdy wooden shield reinforced with bands of solid hardwood.",
+      "Special": ""
     },
     "Tower Shield": {
-      "name": "Tower Shield",
-      "Cost": 30,
-      "Weight": 45,
       "AC Bonus": 4,
       "Max Dex": 2,
       "Pentalty": -10,
       "Spell Failure": "50%",
       "Speed": [ 1000, 1000 ],
-        "damage": [ "0", "0", "0" ],
+
+      "Damage": [ "0", "0", "0" ],
       "critRange": 0,
       "critMultiplier": 0,
       "dmgType": [ "none" ],
-      "special": "You cannot make a shield bash with a tower shield",
       "category": "",
-      "Proficiency": "",
       "group": [ "" ],
+
+      "Cost": 30,
+      "Weight": 45,
       "Description": "These massive shields can be used to provide cover to nearly the entire body.",
       "Special": "A tower shield is unweildy and applies a -2 to your attack rolls when equiped. As a standard action, you can use the tower shield to grant yourself total cover until the beggining of your next turn. Choose one edge of your space and that edge is treated as a wall for attacks targeting you."
     },
     "Snarlshield (Steel)": {
-      "name": "Snarlshield (Steel)",
+      "AC Bonus": 2,
+      "Max Dex": 10,
+      "Pentalty": -3,
+      "Spell Failure": "15%",
+      "Speed": [ 1000, 1000 ],
+
+      "Damage": [ "1d3", "1d4", "1d6" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "dmgType": [ "blugeoning" ],
+      "category": "One-Handed",
+      "group": [ "Close", "Tribal" ],
+
       "Cost": 50,
       "Weight": 20,
-      "AC Bonus": 2,
-      "Max Dex": 10,
-      "Pentalty": -3,
-      "Spell Failure": "15%",
-      "Speed": [ 1000, 1000 ],
-        "damage": [ "1d3", "1d4", "1d6" ],
-      "critRange": 20,
-      "critMultiplier": 2,
-      "dmgType": [ "blugeoning" ],
-      "special": "disarm",
-      "category": "One-Handed",
-      "Proficiency": "Martial",
-      "group": [ "Close", "Tribal" ],
-      "Description": "A sturdy metal shield reinforced with good steel and a dozen rods protruding from the surface to grab enemy weapons."
+      "Description": "A sturdy metal shield reinforced with good steel and a dozen rods protruding from the surface to grab enemy weapons.",
+      "Special": ""
     },
     "Snarlshield (Wooden)": {
-      "name": "Snarlshield (Wooden)",
-      "Cost": 37,
-      "Weight": 15,
       "AC Bonus": 2,
       "Max Dex": 10,
       "Pentalty": -3,
       "Spell Failure": "15%",
       "Speed": [ 1000, 1000 ],
-        "damage": [ "1d3", "1d4", "1d6" ],
+
+      "Damage": [ "1d3", "1d4", "1d6" ],
       "critRange": 20,
       "critMultiplier": 2,
       "dmgType": [ "blugeoning" ],
-      "special": "disarm",
       "category": "One-Handed",
-      "Proficiency": "Martial",
       "group": [ "Close", "Tribal" ],
-      "Description": "A sturdy wooden shield reinforced with bands of solid hardwood with a dozen protruding rods to grab enemy weapons."
+
+      "Cost": 37,
+      "Weight": 15,
+      "Description": "A sturdy wooden shield reinforced with bands of solid hardwood with a dozen protruding rods to grab enemy weapons.",
+      "Special": ""
     },
     "Dwarven War-Shield": {
-      "name": "Dwarven War-Shield",
-      "Cost": 50,
-      "Weight": 8,
       "AC Bonus": 1,
       "Max Dex": 10,
       "Pentalty": -1,
       "Spell Failure": "20%",
       "Speed": [ 1000, 1000 ],
-        "damage": [ "1d4", "1d6", "1d8" ],
+
+      "Damage": [ "1d4", "1d6", "1d8" ],
       "critRange": 20,
       "critMultiplier": 2,
       "dmgType": [ "piercing", "slashing" ],
-      "special": "",
       "category": "Light",
-      "Proficiency": "Exotic",
       "group": [ "Close" ],
+
+      "Cost": 50,
+      "Weight": 8,
       "Description": "The shield's sides are cut into jagged angles, honed to razor sharpness.",
       "Special": "If you have Two-Weapon Fighting, you increase the higher shield bonus by 1. You lose this bonus for 1 round when you make an attack with one or both shields."
     }
@@ -909,819 +909,862 @@
 
   "weapons": {
     "Unarmed Strike": {
-      "name": "Unarmed Strike",
-      "Cost": 0,
-      "Weight": 1,
-      "damage": [ "1d2", "1d3", "1d4" ],
+      "Damage": [ "1d2", "1d3", "1d4" ],
       "critRange": 20,
       "critMultiplier": 2,
       "range": 0,
       "dmgType": [ "budgeoning", "nonlethal" ],
-      "special": "",
+
       "type": "Melee",
       "category": "Unarmed",
       "Proficiency": "Simple",
       "group": [ "Close" ],
+
+      "Cost": 0,
+      "Weight": 1,
       "Description": "Just a punch or slap of the hand.",
       "Special": "Unarmed strikes are always considered light attacks and can be used with the weapon finesse feat."
     },
     "Gauntlet": {
-      "name": "Gauntlet",
-      "Cost": 2,
-      "Weight": 1,
-      "damage": [ "1d2", "1d3", "1d4" ],
+      "Damage": [ "1d2", "1d3", "1d4" ],
       "critRange": 20,
       "critMultiplier": 2,
       "range": 0,
       "dmgType": [ "bludgeoning" ],
-      "special": "",
+
       "type": "Melee",
       "category": "Unarmed",
       "Proficiency": "Simple",
       "group": [ "Close" ],
-      "Description": "A metal glove that lets you deal lethal damage with unarmed strikes. Medium and heavy armors (except breastplate) come with gauntlets."
+
+      "Cost": 2,
+      "Weight": 1,
+      "Description": "A metal glove that lets you deal lethal damage with unarmed strikes. Medium and heavy armors (except breastplate) come with gauntlets.",
+      "Special": ""
     },
     "Battle Aspergillum": {
-      "name": "Battle Aspergillum",
-      "Cost": 5,
-      "Weight": 4,
-      "damage": [ "1d4", "1d6", "1d8" ],
+      "Damage": [ "1d4", "1d6", "1d8" ],
       "critRange": 20,
       "critMultiplier": 2,
       "range": 0,
       "dmgType": [ "budgeoning" ],
-      "special": "",
+
       "type": "Melee",
       "category": "Light",
       "Proficiency": "Simple",
       "group": [ "Hammers" ],
+
+      "Cost": 5,
+      "Weight": 4,
       "Description": "Named for the common aspergillum, a mace-like tool used by priests to sprinkle holy water, this light mace has a hollow head and a metal plug to fit the hollow’s neck.",
       "Special": "When the mace hits a creature, holy water sprinkles out; creatures subject to damage from holy water take 1 point of additional damage. You must refill the aspergillum after 5 hits with a standard action that provokes an AoO."
     },
     "Brass Knife": {
-      "name": "Brass Knife",
-      "Cost": 2,
-      "Weight": 1,
-      "damage": [ "1d3", "1d4", "1d6" ],
+      "Damage": [ "1d3", "1d4", "1d6" ],
       "critRange": 19,
       "critMultiplier": 2,
       "range": 10,
       "dmgType": [ "piercing", "slashing" ],
-      "special": "fragile",
+
       "type": "Melee",
       "category": "Light",
       "Proficiency": "Simple",
       "group": [ "Blades", "Thrown" ],
-      "Description": "Though brass doesn’t hold as sharp an edge as steel, it isn’t vulnerable to rust like steel is."
+
+      "Cost": 2,
+      "Weight": 1,
+      "Description": "Though brass doesn’t hold as sharp an edge as steel, it isn’t vulnerable to rust like steel is.",
+      "Special": "fragile"
     },
     "Brass Knuckles": {
-      "name": "Brass Knuckles",
-      "Cost": 1,
-      "Weight": 1,
-      "damage": [ "1d2", "1d3", "1d4" ],
+      "Damage": [ "1d2", "1d3", "1d4" ],
       "critRange": 20,
       "critMultiplier": 2,
       "range": 0,
       "dmgType": [ "bludgeoning", "" ],
-      "special": "monk",
+
       "type": "Melee",
       "category": "Light",
       "Proficiency": "Simple",
       "group": [ "Close", "Monk" ],
+
+      "Cost": 1,
+      "Weight": 1,
       "Description": "These close combat weapons are designed to fit comfortably around the knuckles, narrowing the contact area and therefore magnifying the amount of force delivered by a punch.",
       "Special": "You may hold an object in a hand wearing brass knucles, but you cannot weild a weapon. You may also cast a spell with somantic components with a concentration check (DC 10 + spell level)."
     },
     "Cestus": {
-      "name": "Cestus",
-      "Cost": 5,
-      "Weight": 1,
-      "damage": [ "1d3", "1d4", "1d6" ],
+      "Damage": [ "1d3", "1d4", "1d6" ],
       "critRange": 19,
       "critMultiplier": 2,
       "range": 0,
       "dmgType": [ "bludgeoning", "piercing" ],
-      "special": "monk",
+
       "type": "Melee",
       "category": "Light",
       "Proficiency": "Simple",
       "group": [ "Close", "Monk" ],
+
+      "Cost": 5,
+      "Weight": 1,
       "Description": "The cestus is a glove of leather or thick cloth that covers the wielder from mid-finger to mid-forearm, ofen reinforced with metal plates over the fingers.",
       "Special": "You may wield or carry items while wearing a cestus, howeveer you take a -2 to all precision-based tasks involving that hand (such as opening locks)."
     },
     "Dagger": {
-      "name": "Dagger",
-      "Cost": 2,
-      "Weight": 1,
-      "damage": [ "1d3", "1d4", "1d6" ],
+      "Damage": [ "1d3", "1d4", "1d6" ],
       "critRange": 19,
       "critMultiplier": 2,
       "range": 10,
       "dmgType": [ "piercing", "slashing" ],
-      "special": "",
+
       "type": "Melee",
       "category": "Light",
       "Proficiency": "Simple",
       "group": [ "Blades", "Thrown", "Tribal" ],
+
+      "Cost": 2,
+      "Weight": 1,
       "Description": "A dagger has a blade that is about 1 foot in length.",
       "Special": "You get a +2 bonus on Sleight of Hand skill checks made to conceal a dagger on your body."
     },
     "Punching Dagger": {
-      "name": "Punching Dagger",
-      "Cost": 2,
-      "Weight": 1,
-      "damage": [ "1d3", "1d4", "1d6" ],
+      "Damage": [ "1d3", "1d4", "1d6" ],
       "critRange": 20,
       "critMultiplier": 3,
       "range": 0,
       "dmgType": [ "piercing" ],
-      "special": "",
+
       "type": "Melee",
       "category": "Light",
       "Proficiency": "Simple",
       "group": [ "Close" ],
-      "Description": "A punching dagger’s blade is attached to a horizontal handle that projects out from the fist when held."
+
+      "Cost": 2,
+      "Weight": 1,
+      "Description": "A punching dagger’s blade is attached to a horizontal handle that projects out from the fist when held.",
+      "Special": ""
     },
     "Spiked Gauntlet": {
-      "name": "Spiked Gauntlet",
-      "Cost": 5,
-      "Weight": 1,
-      "damage": [ "1d3", "1d4", "1d6" ],
+      "Damage": [ "1d3", "1d4", "1d6" ],
       "critRange": 20,
       "critMultiplier": 2,
       "range": 0,
       "dmgType": [ "piercing" ],
-      "special": "",
+
       "type": "Melee",
       "category": "Light",
       "Proficiency": "Simple",
       "group": [ "Close" ],
+
+      "Cost": 5,
+      "Weight": 1,
       "Description": "A glove made of metal with jagged spikes for extra damage, and the cost and weight given are for a single gauntlet.",
       "Special": "An attack with a spiked guantlet is considered an armed attack, and it cannot be disarmed."
     },
     "Traveling Kettle": {
-      "name": "Traveling Kettle",
-      "Cost": 5,
-      "Weight": 2,
-      "damage": [ "1d4", "1d6", "" ],
+      "Damage": [ "1d4", "1d6", "" ],
       "critRange": 20,
       "critMultiplier": 2,
       "range": 0,
       "dmgType": [ "bludgeoning" ],
-      "special": "monk",
+
       "type": "Melee",
       "category": "Light",
       "Proficiency": "Simple",
       "group": [ "Monk" ],
+
+      "Cost": 5,
+      "Weight": 2,
       "Description": "These small tea kettles are made with clamping lids and heavily reinforced handles.",
       "Special": "A traveling kettle with boiling water inside deals an additional 1 point of fire damage on a hit. Boiling water cools to a non-damaging temperature after 5 minutes."
     },
     "Hook Hand": {
-      "name": "Hook Hand",
-      "Cost": 10,
-      "Weight": 1,
-      "damage": [ "1d3", "1d4", "" ],
+      "Damage": [ "1d3", "1d4", "" ],
       "critRange": 20,
       "critMultiplier": 2,
       "range": 0,
       "dmgType": [ "slashing" ],
-      "special": "disarm",
+
       "type": "Melee",
       "category": "Light",
       "Proficiency": "Simple",
       "group": [ "Close" ],
-      "Description": "Pirates who lose a hand in the course of their adventures sometimes attach hooks to their wrists."
+
+      "Cost": 10,
+      "Weight": 1,
+      "Description": "Pirates who lose a hand in the course of their adventures sometimes attach hooks to their wrists.",
+      "Special": "disarm"
     },
     "Kunai": {
-      "name": "Kunai",
-      "Cost": 2,
-      "Weight": 2,
-      "damage": [ "1d3", "1d4", "" ],
+      "Damage": [ "1d3", "1d4", "" ],
       "critRange": 20,
       "critMultiplier": 2,
       "range": 10,
       "dmgType": [ "bludgeoning", "piercing" ],
-      "special": "",
+
       "type": "Melee",
       "category": "Light",
       "Proficiency": "Simple",
       "group": [ "Close", "Thrown" ],
-      "Description": "Crafted from a single piece of iron, a kunai has a leaf-shaped blade and a ring for a pommel. Adapted from the common trowel, the kunai has a thick blade that is sharpened only near the tip."
+
+      "Cost": 2,
+      "Weight": 2,
+      "Description": "Crafted from a single piece of iron, a kunai has a leaf-shaped blade and a ring for a pommel. Adapted from the common trowel, the kunai has a thick blade that is sharpened only near the tip.",
+      "Special": ""
     },
     "Light Mace": {
-      "name": "Light Mace",
-      "Cost": 5,
-      "Weight": 4,
-      "damage": [ "1d4", "1d6", "" ],
+      "Damage": [ "1d4", "1d6", "" ],
       "critRange": 20,
       "critMultiplier": 2,
       "range": 0,
       "dmgType": [ "bludgeoning" ],
-      "special": "",
+
       "type": "Melee",
       "category": "Light",
       "Proficiency": "Simple",
       "group": [ "Hammers" ],
-      "Description": "A light mace is made up of an ornate metal head attached to a simple wooden or metal shaft."
+
+      "Cost": 5,
+      "Weight": 4,
+      "Description": "A light mace is made up of an ornate metal head attached to a simple wooden or metal shaft.",
+      "Special": ""
     },
     "Sickle": {
-      "name": "Sickle",
-      "Cost": 6,
-      "Weight": 2,
-      "damage": [ "1d4", "1d6", "" ],
+      "Damage": [ "1d4", "1d6", "" ],
       "critRange": 20,
       "critMultiplier": 2,
       "range": 0,
       "dmgType": [ "slashing" ],
-      "special": "trip",
+
       "type": "Melee",
       "category": "Light",
       "Proficiency": "Simple",
       "group": [ "Blades" ],
-      "Description": "A curved blade extends from the basic wooden handle, though usable in a pinch the sickle is mainly a farming tool."
+
+      "Cost": 6,
+      "Weight": 2,
+      "Description": "A curved blade extends from the basic wooden handle, though usable in a pinch the sickle is mainly a farming tool.",
+      "Special": "trip"
     },
     "Spring Blade": {
-      "name": "Spring Blade",
-      "Cost": 70,
-      "Weight": 1,
-      "damage": [ "1d3", "1d4", "" ],
+      "Damage": [ "1d3", "1d4", "" ],
       "critRange": 20,
       "critMultiplier": 2,
       "range": 10,
       "dmgType": [ "piercing", "slashing" ],
-      "special": "",
+
       "type": "Melee",
       "category": "Light",
       "Proficiency": "Simple",
       "group": [ "Blades", "Thrown" ],
+
+      "Cost": 70,
+      "Weight": 1,
       "Description": "This 4-inch blade is attached via a hinge to a wooden handle with a slot in the center, into which the blade can be folded.",
       "Special": "A spring blade is easy to conceal: an observer must succeed at a DC 20 Perception check to notice the blade hidden within the wooden handle, and you gain a +4 bonus on Sleight of Hand checks to conceal a spring blade on your body."
     },
     "Wodden Stake": {
-      "name": "Wodden Stake",
-      "Cost": 0,
-      "Weight": 1,
-      "damage": [ "1d3", "1d4", "" ],
+      "Damage": [ "1d3", "1d4", "" ],
       "critRange": 20,
       "critMultiplier": 2,
       "range": 10,
       "dmgType": [ "piercing" ],
-      "special": "",
+
       "type": "Melee",
       "category": "Light",
       "Proficiency": "Simple",
       "group": [ "Close", "Thrown" ],
-      "Description": "This close combat weapon is just a sharpened piece of wood. Iron spikes used as weapons deal damage as wooden stakes."
+
+      "Cost": 0,
+      "Weight": 1,
+      "Description": "This close combat weapon is just a sharpened piece of wood. Iron spikes used as weapons deal damage as wooden stakes.",
+      "Special": ""
     },
 
     "Club": {
-      "name": "Club",
-      "Cost": 0,
-      "Weight": 3,
-      "damage": [ "1d4", "1d6", "" ],
+      "Damage": [ "1d4", "1d6", "" ],
       "critRange": 20,
       "critMultiplier": 2,
       "range": 10,
       "dmgType": [ "bludgeoning" ],
-      "special": "",
+
       "type": "Melee",
       "category": "One-Handed",
       "Proficiency": "Simple",
       "group": [ "Hammers", "Tribal" ],
-      "Description": "This weapon is usually just a shaped piece of wood, sometimes with a few nails or studs embedded in it."
+
+      "Cost": 0,
+      "Weight": 3,
+      "Description": "This weapon is usually just a shaped piece of wood, sometimes with a few nails or studs embedded in it.",
+      "Special": ""
     },
     "Mere Club": {
-      "name": "Mere Club",
-      "Cost": 2,
-      "Weight": 2,
-      "damage": [ "1d3", "1d4", "" ],
+      "Damage": [ "1d3", "1d4", "" ],
       "critRange": 20,
       "critMultiplier": 2,
       "range": 0,
       "dmgType": [ "bludgeoning", "piercing" ],
-      "special": "fragile",
+
       "type": "Melee",
       "category": "One-Handed",
       "Proficiency": "Simple",
       "group": [ "Close", "Hammers" ],
-      "Description": "Traditionally made of carved stone, the mere (MEH-reh) is a short, flat-sided, sharp-pointed club."
+
+      "Cost": 2,
+      "Weight": 2,
+      "Description": "Traditionally made of carved stone, the mere (MEH-reh) is a short, flat-sided, sharp-pointed club.",
+      "Special": "fragile"
     },
     "Heavy Mace": {
-      "name": "Heavy Mace",
-      "Cost": 12,
-      "Weight": 8,
-      "damage": [ "1d6", "1d8", "" ],
+      "Damage": [ "1d6", "1d8", "" ],
       "critRange": 20,
       "critMultiplier": 2,
       "range": 0,
       "dmgType": [ "bludgeoning" ],
-      "special": "",
+
       "type": "Melee",
       "category": "One-Handed",
       "Proficiency": "Simple",
       "group": [ "Hammers" ],
-      "Description": "A heavy mace has a larger head and a longer handle than a normal (light) mace."
+
+      "Cost": 12,
+      "Weight": 8,
+      "Description": "A heavy mace has a larger head and a longer handle than a normal (light) mace.",
+      "Special": ""
     },
     "Morningstar": {
-      "name": "Morningstar",
-      "Cost": 8,
-      "Weight": 6,
-      "damage": [ "1d6", "1d8", "" ],
+      "Damage": [ "1d6", "1d8", "" ],
       "critRange": 20,
       "critMultiplier": 2,
       "range": 0,
       "dmgType": [ "bludgeoning", "piercing" ],
-      "special": "",
+
       "type": "Melee",
       "category": "One-Handed",
       "Proficiency": "Simple",
       "group": [ "Maces", "Flails" ],
-      "Description": "A morningstar is a spiked metal ball, affixed to the top of a long handle."
+
+      "Cost": 8,
+      "Weight": 6,
+      "Description": "A morningstar is a spiked metal ball, affixed to the top of a long handle.",
+      "Special": ""
     },
     "Shortspear": {
-      "name": "Shortspear",
-      "Cost": 1,
-      "Weight": 3,
-      "damage": [ "1d4", "1d6", "" ],
+      "Damage": [ "1d4", "1d6", "" ],
       "critRange": 20,
       "critMultiplier": 2,
       "range": 20,
       "dmgType": [ "piercing" ],
-      "special": "",
+
       "type": "Melee",
       "category": "One-Handed",
       "Proficiency": "Simple",
       "group": [ "Spears", "Thrown", "Tribal" ],
-      "Description": "A shortspear is about 3 feet in length, making it a suitable thrown weapon."
+
+      "Cost": 1,
+      "Weight": 3,
+      "Description": "A shortspear is about 3 feet in length, making it a suitable thrown weapon.",
+      "Special": ""
     },
 
     "Bayonet": {
-      "name": "Bayonet",
-      "Cost": 5,
-      "Weight": 1,
-      "damage": [ "1d4", "1d6", "" ],
+      "Damage": [ "1d4", "1d6", "" ],
       "critRange": 20,
       "critMultiplier": 2,
       "range": 0,
       "dmgType": [ "piercing" ],
-      "special": "",
+
       "type": "Melee",
       "category": "Two-Handed",
       "Proficiency": "Simple",
       "group": [ "Blades", "Close" ],
-      "Description": "Bayonets are close combat weapons designed to fit into the grooves or muzzles of crossbows and firearms."
+
+      "Cost": 5,
+      "Weight": 1,
+      "Description": "Bayonets are close combat weapons designed to fit into the grooves or muzzles of crossbows and firearms.",
+      "Special": ""
     },
     "Boarding Pike": {
-      "name": "Boarding Pike",
-      "Cost": 8,
-      "Weight": 9,
-      "damage": [ "1d6", "1d8", "" ],
+      "Damage": [ "1d6", "1d8", "" ],
       "critRange": 20,
       "critMultiplier": 3,
       "range": 0,
       "dmgType": [ "piercing" ],
-      "special": "brace, reach",
+
       "type": "Melee",
       "category": "Two-Handed",
       "Proficiency": "Simple",
       "group": [ "Polearms" ],
-      "Description": "A boarding pike is an 8-foot-long pole topped with a foot-long tapered metal tip."
+
+      "Cost": 8,
+      "Weight": 9,
+      "Description": "A boarding pike is an 8-foot-long pole topped with a foot-long tapered metal tip.",
+      "Special": "brace, reach"
     },
     "Kumade": {
-      "name": "Kumade",
+      "Damage": [ "1d4", "1d6", "" ],
+      "critRange": 20,
+      "critMultiplier": 3,
+      "range": 0,
+      "dmgType": [ "piercing" ],
+
+      "type": "Melee",
+      "category": "Two-Handed",
+      "Proficiency": "Simple",
+      "group": [ "Axes" ],
+
       "Cost": 5,
       "Weight": 4,
-      "damage": [ "1d4", "1d6", "" ],
-      "critRange": 20,
-      "critMultiplier": 3,
-      "range": 0,
-      "dmgType": [ "piercing" ],
-      "special": "grapple",
-      "type": "Melee",
-      "category": "Two-Handed",
-      "Proficiency": "Simple",
-      "group": [ "Axes" ],
-      "Description": "Adapted from a garden rake, the kumade consists of a wood or bamboo pole topped with a metal claw. The rake head doubles as a grappling hook."
+      "Description": "Adapted from a garden rake, the kumade consists of a wood or bamboo pole topped with a metal claw. The rake head doubles as a grappling hook.",
+      "Special": "grapple"
     },
     "Collapsible Kumade": {
-      "name": "Collapsible Kumade",
-      "Cost": 10,
-      "Weight": 4,
-      "damage": [ "1d4", "1d6", "" ],
+      "Damage": [ "1d4", "1d6", "" ],
       "critRange": 20,
       "critMultiplier": 3,
       "range": 0,
       "dmgType": [ "piercing" ],
-      "special": "grapple",
+
       "type": "Melee",
       "category": "Two-Handed",
       "Proficiency": "Simple",
       "group": [ "Axes" ],
-      "Description": "This weapon acts as a kumade, but the handle consists of bamboo sections held together by a taut rope running through the center."
+
+      "Cost": 10,
+      "Weight": 4,
+      "Description": "This weapon acts as a kumade, but the handle consists of bamboo sections held together by a taut rope running through the center.",
+      "Special": "grapple"
     },
     "Lantern Staff": {
-      "name": "Lantern Staff",
-      "Cost": 15,
-      "Weight": 9,
-      "damage": [ "1d4", "1d6", "" ],
+      "Damage": [ "1d4", "1d6", "" ],
       "critRange": 20,
       "critMultiplier": 2,
       "range": 0,
       "dmgType": [ "bludgeoning" ],
-      "special": "",
+
       "type": "Melee",
       "category": "Two-Handed",
       "Proficiency": "Simple",
       "group": [ "Hammers" ],
-      "Description": "This long metal staff has reservoirs for lamp oil, and a lantern-like structure at its head."
+
+      "Cost": 15,
+      "Weight": 9,
+      "Description": "This long metal staff has reservoirs for lamp oil, and a lantern-like structure at its head.",
+      "Special": ""
     },
     "Longspear": {
-      "name": "Longspear",
-      "Cost": 5,
-      "Weight": 9,
-      "damage": [ "1d6", "1d8", "" ],
+      "Damage": [ "1d6", "1d8", "" ],
       "critRange": 20,
       "critMultiplier": 3,
       "range": 0,
       "dmgType": [ "piercing" ],
-      "special": "brace, reach",
+
       "type": "Melee",
       "category": "Two-Handed",
       "Proficiency": "Simple",
       "group": [ "Spears" ],
-      "Description": "A longspear is about 8 feet in length."
+
+      "Cost": 5,
+      "Weight": 9,
+      "Description": "A longspear is about 8 feet in length.",
+      "Special": "brace, reach"
     },
     "Quarterstaff": {
-      "name": "Quarterstaff",
-      "Cost": 0,
-      "Weight": 4,
-      "damage": [ "1d4/1d4", "1d6/1d6", "" ],
+      "Damage": [ "1d4/1d4", "1d6/1d6", "" ],
       "critRange": 20,
       "critMultiplier": 2,
       "range": 0,
       "dmgType": [ "bludgeoning" ],
-      "special": "double, monk",
+
       "type": "Melee",
       "category": "Two-Handed",
       "Proficiency": "Simple",
       "group": [ "Double", "Monk" ],
-      "Description": "A quarterstaff is a simple piece of wood, about 5 feet in length."
+
+      "Cost": 0,
+      "Weight": 4,
+      "Description": "A quarterstaff is a simple piece of wood, about 5 feet in length.",
+      "Special": "double"
     },
     "Spear": {
-      "name": "Spear",
-      "Cost": 2,
-      "Weight": 6,
-      "damage": [ "1d6", "1d8", "" ],
+      "Damage": [ "1d6", "1d8", "" ],
       "critRange": 20,
       "critMultiplier": 3,
       "range": 0,
       "dmgType": [ "piercing" ],
-      "special": "brace",
+
       "type": "Melee",
       "category": "Two-Handed",
       "Proficiency": "Simple",
       "group": [ "Spears", "Thrown", "Tribal" ],
-      "Description": "A spear is 5 feet in length and can be thrown."
+
+      "Cost": 2,
+      "Weight": 6,
+      "Description": "A spear is 5 feet in length and can be thrown.",
+      "Special": "brace"
     },
     "Boar Spear": {
-      "name": "Boar Spear",
-      "Cost": 5,
-      "Weight": 8,
-      "damage": [ "1d6", "1d8", "" ],
+      "Damage": [ "1d6", "1d8", "" ],
       "critRange": 20,
       "critMultiplier": 2,
       "range": 0,
       "dmgType": [ "piercing" ],
-      "special": "brace",
+
       "type": "Melee",
       "category": "Two-Handed",
       "Proficiency": "Simple",
       "group": [ "Spears" ],
-      "Description": "This spear with a spiraling blade has a metal crossbar approximately halfway down its length."
+
+      "Cost": 5,
+      "Weight": 8,
+      "Description": "This spear with a spiraling blade has a metal crossbar approximately halfway down its length.",
+      "Special": "brace"
     },
     "Weighted Spear": {
-      "name": "Weighted Spear",
-      "Cost": 10,
-      "Weight": 8,
-      "damage": [ "1d6/1d4", "1d8/1d6", "" ],
+      "Damage": [ "1d6/1d4", "1d8/1d6", "" ],
       "critRange": 20,
       "critMultiplier": 3,
       "range": 0,
       "dmgType": [ "bludgeoning", "slashing" ],
-      "special": "brace, double",
+
       "type": "Melee",
       "category": "Two-Handed",
       "Proficiency": "Simple",
       "group": [ "Spears", "Double" ],
-      "Description": "This pole has a spear head at one end and a mace head at the other. It can be wielded like a standard spear (though it isn’t balanced for throwing), or it can be used as a double weapon, alternately thrusting and bashing."
+
+      "Cost": 10,
+      "Weight": 8,
+      "Description": "This pole has a spear head at one end and a mace head at the other. It can be wielded like a standard spear (though it isn’t balanced for throwing), or it can be used as a double weapon, alternately thrusting and bashing.",
+      "Special": "brace, double"
     },
 
     "Blowgun": {
-      "name": "Blowgun",
-      "Cost": 2,
-      "Weight": 1,
-      "damage": [ "1", "1d2", "" ],
+      "Damage": [ "1", "1d2", "" ],
       "critRange": 20,
       "critMultiplier": 2,
       "range": 20,
       "dmgType": [ "piercing" ],
-      "special": "",
+
       "type": "Ranged",
       "category": "Ranged",
       "Proficiency": "Simple",
       "group": [ "Thrown" ],
-      "Description": "Blowguns are generally used to deliver debilitating (but rarely fatal) poisons from a distance. They are nearly silent when fired."
+
+      "Cost": 2,
+      "Weight": 1,
+      "Description": "Blowguns are generally used to deliver debilitating (but rarely fatal) poisons from a distance. They are nearly silent when fired.",
+      "Special": ""
     },
     "Heavy Crossbow": {
-      "name": "Heavy Crossbow",
-      "Cost": 50,
-      "Weight": 8,
-      "damage": [ "1d8", "1d10", "" ],
+      "Damage": [ "1d8", "1d10", "" ],
       "critRange": 19,
       "critMultiplier": 2,
       "range": 120,
       "dmgType": [ "piercing" ],
-      "special": "",
+
       "type": "Ranged",
       "category": "Ranged",
       "Proficiency": "Simple",
       "group": [ "Crossbows" ],
-      "Description": "You draw a Heavy Crossbow back by truning a small winch, this takes a full-round action that provkes Attacks of Opportunity"
+
+      "Cost": 50,
+      "Weight": 8,
+      "Description": "You draw a Heavy Crossbow back by truning a small winch, this takes a full-round action that provkes Attacks of Opportunity",
+      "Special": ""
     },
     "Heavy Crossbow (Underwater)": {
-      "name": "Heavy Crossbow (Underwater)",
-      "Cost": 100,
-      "Weight": 8,
-      "damage": [ "1d8", "1d10", "" ],
+      "Damage": [ "1d8", "1d10", "" ],
       "critRange": 19,
       "critMultiplier": 2,
       "range": 20,
       "dmgType": [ "piercing" ],
-      "special": "",
+
       "type": "Ranged",
       "category": "Ranged",
       "Proficiency": "Simple",
       "group": [ "Crossbows" ],
-      "Description": "An Underwater Crossbow functions as a regular crossbow above water."
+
+      "Cost": 100,
+      "Weight": 8,
+      "Description": "An Underwater Crossbow functions as a regular crossbow above water.",
+      "Special": ""
     },
     "Light Crossbow": {
-      "name": "Light Crossbow",
-      "Cost": 35,
-      "Weight": 4,
-      "damage": [ "1d6", "1d8", "" ],
+      "Damage": [ "1d6", "1d8", "" ],
       "critRange": 19,
       "critMultiplier": 2,
       "range": 80,
       "dmgType": [ "piercing" ],
-      "special": "",
+
       "type": "Ranged",
       "category": "Ranged",
       "Proficiency": "Simple",
       "group": [ "Crossbows" ],
-      "Description": "You draw a Light Crossbow back by pulling a lever, this takes a move action that provokes Attacks of Opportunity."
+
+      "Cost": 35,
+      "Weight": 4,
+      "Description": "You draw a Light Crossbow back by pulling a lever, this takes a move action that provokes Attacks of Opportunity.",
+      "Special": ""
     },
     "Light Crossbow (Underwater)": {
-      "name": "Light Crossbow (Underwater)",
-      "Cost": 70,
-      "Weight": 4,
-      "damage": [ "1d6", "1d8", "" ],
+      "Damage": [ "1d6", "1d8", "" ],
       "critRange": 19,
       "critMultiplier": 2,
       "range": 20,
       "dmgType": [ "piercing" ],
-      "special": "",
+
       "type": "Ranged",
       "category": "Ranged",
       "Proficiency": "Simple",
       "group": [ "Crossbows" ],
-      "Description": "An Underwater Crossbow functions as a regular crossbow above water."
+
+      "Cost": 70,
+      "Weight": 4,
+      "Description": "An Underwater Crossbow functions as a regular crossbow above water.",
+      "Special": ""
     },
     "Javelin": {
-      "name": "Javelin",
-      "Cost": 1,
-      "Weight": 2,
-      "damage": [ "1d4", "1d6", "" ],
+      "Damage": [ "1d4", "1d6", "" ],
       "critRange": 20,
       "critMultiplier": 2,
       "range": 30,
       "dmgType": [ "piercing" ],
-      "special": "",
+
       "type": "Ranged",
       "category": "Ranged",
       "Proficiency": "Simple",
       "group": [ "Spears", "Thrown" ],
-      "Description": "A javelin is a thin throwing spear."
+
+      "Cost": 1,
+      "Weight": 2,
+      "Description": "A javelin is a thin throwing spear.",
+      "Special": ""
     },
     "Sling": {
-      "name": "Sling",
-      "Cost": 0,
-      "Weight": 0,
-      "damage": [ "1d3", "1d4", "" ],
+      "Damage": [ "1d3", "1d4", "" ],
       "critRange": 20,
       "critMultiplier": 2,
       "range": 50,
       "dmgType": [ "bludgeoning" ],
-      "special": "",
+
       "type": "Ranged",
       "category": "Ranged",
       "Proficiency": "Simple",
       "group": [ "Thrown" ],
-      "Description": "A sling is little more than a leather cup attached to a pair of strings."
+
+      "Cost": 0,
+      "Weight": 0,
+      "Description": "A sling is little more than a leather cup attached to a pair of strings.",
+      "Special": ""
     },
     "Stingchuck": {
-      "name": "Stingchuck",
-      "Cost": 0,
-      "Weight": 9,
-      "damage": [ "1d3", "1d4", "" ],
+      "Damage": [ "1d3", "1d4", "" ],
       "critRange": 20,
       "critMultiplier": 2,
       "range": 10,
       "dmgType": [ "bludgeoning" ],
-      "special": "",
+
       "type": "Ranged",
       "category": "Ranged",
       "Proficiency": "Simple",
       "group": [ "Thrown" ],
-      "Description": "A stingchuck is a foul bag made of a humanoid’s head with the brain removed and the skull heavily scored so that it bursts open when thrown."
+
+      "Cost": 0,
+      "Weight": 9,
+      "Description": "A stingchuck is a foul bag made of a humanoid’s head with the brain removed and the skull heavily scored so that it bursts open when thrown.",
+      "Special": ""
     },
     "Stonebow": {
-      "name": "Stonebow",
-      "Cost": 35,
-      "Weight": 4,
-      "damage": [ "1d4", "1d6", "" ],
+      "Damage": [ "1d4", "1d6", "" ],
       "critRange": 20,
       "critMultiplier": 2,
       "range": 50,
       "dmgType": [ "bludgeoning" ],
-      "special": "",
+
       "type": "Ranged",
       "category": "Ranged",
       "Proficiency": "Simple",
       "group": [ "Crossbows" ],
-      "Description": "A stonebow, or bullet crossbow, resembles a light crossbow except for the distinct U-shaped bend in the stock."
+
+      "Cost": 35,
+      "Weight": 4,
+      "Description": "A stonebow, or bullet crossbow, resembles a light crossbow except for the distinct U-shaped bend in the stock.",
+      "Special": ""
     },
 
     "Throwing Darts": {
-      "name": "Throwing Darts",
-      "Cost": 5,
-      "Weight": 0.5,
-      "damage": [ "1d3", "1d4", "" ],
+      "Damage": [ "1d3", "1d4", "" ],
       "critRange": 20,
       "critMultiplier": 2,
       "range": 20,
       "dmgType": [ "piercing" ],
-      "special": "",
+
       "type": "Ranged",
       "category": "Ammunition",
       "Proficiency": "Simple",
       "group": [ "Thrown" ],
-      "Description": "Darts are missile weapons, designed to fly such that a sharp, often weighted point will strike first."
+
+      "Cost": 5,
+      "Weight": 0.5,
+      "Description": "Darts are missile weapons, designed to fly such that a sharp, often weighted point will strike first.",
+      "Special": ""
     },
     "Crossbow Bolts": {
-      "name": "Crossbow Bolts",
-      "Cost": 0.1,
-      "Weight": 0.1,
-      "damage": [ "1d3", "1d4", "" ],
+      "Damage": [ "1d3", "1d4", "" ],
       "critRange": 20,
       "critMultiplier": 2,
       "range": 0,
       "dmgType": [ "piercing" ],
-      "special": "",
+
       "type": "Melee",
       "category": "Ammunition",
       "Proficiency": "Simple",
       "group": [ "Crossbows" ],
-      "Description": "These bolts come in a case or quiver that holds 10 bolts. You may stab with the bolt as a Light Improvised Weapon (-4 to hit) using the damage given."
+
+      "Cost": 0.1,
+      "Weight": 0.1,
+      "Description": "These bolts come in a case or quiver that holds 10 bolts. You may stab with the bolt as a Light Improvised Weapon (-4 to hit) using the damage given.",
+      "Special": ""
     },
     "Crossbow Bolts, Acid": {
-      "name": "Crossbow Bolts, Acid",
-      "Cost": 40,
-      "Weight": 0.1,
-      "damage": [ "1d3" ],
+      "Damage": [ "1d3" ],
       "critRange": 0,
       "critMultiplier": 0,
       "range": 0,
       "dmgType": [ "acid" ],
-      "special": "",
+
       "type": "Melee",
       "category": "Ammunition",
       "Proficiency": "Simple",
       "group": [ "Crossbows" ],
-      "Description": "These metal bolts have a glass section in the middle, filled with acid."
+
+      "Cost": 40,
+      "Weight": 0.1,
+      "Description": "These metal bolts have a glass section in the middle, filled with acid.",
+      "Special": ""
     },
     "Crossbow Bolts, Drow Poison": {
-      "name": "Crossbow Bolts, Drow Poison",
-      "Cost": 100,
-      "Weight": 0.1,
-      "damage": [ "0" ],
+      "Damage": [ "0" ],
       "critRange": 0,
       "critMultiplier": 0,
       "range": 0,
       "dmgType": [ "none" ],
-      "special": "drow poison (DC 13 Fort)",
+
       "type": "Melee",
       "category": "Ammunition",
       "Proficiency": "Simple",
       "group": [ "Crossbows" ],
-      "Description": "These bolts have a strange tip that delivers the poison, but also affects accuracy. Double the range penalties for this bolt."
+
+      "Cost": 100,
+      "Weight": 0.1,
+      "Description": "These bolts have a strange tip that delivers the poison, but also affects accuracy. Double the range penalties for this bolt.",
+      "Special": "drow poison (DC 13 Fort)"
     },
     "Crossbow Bolts, Fire": {
-      "name": "Crossbow Bolts, Fire",
-      "Cost": 50,
-      "Weight": 0.1,
-      "damage": [ "1d4" ],
+      "Damage": [ "1d4" ],
       "critRange": 0,
       "critMultiplier": 0,
       "range": 0,
       "dmgType": [ "fire" ],
-      "special": "",
+
       "type": "Melee",
       "category": "Ammunition",
       "Proficiency": "Simple",
       "group": [ "Crossbows" ],
-      "Description": "These metal bolts have a glass section in the middle, filled with a alchemical fire."
+
+      "Cost": 50,
+      "Weight": 0.1,
+      "Description": "These metal bolts have a glass section in the middle, filled with a alchemical fire.",
+      "Special": ""
     },
     "Sling Bullets": {
-      "name": "Sling Bullets",
+      "Damage": [ "0" ],
+      "critRange": 0,
+      "critMultiplier": 0,
+      "range": 0,
+      "dmgType": [ "none" ],
+
+      "type": "Melee",
+      "category": "Ammunition",
+      "Proficiency": "Simple",
+      "group": [ "Crossbows" ],
+
       "Cost": 0.01,
       "Weight": 0.5,
-      "damage": [ "0" ],
-      "critRange": 0,
-      "critMultiplier": 0,
-      "range": 0,
-      "dmgType": [ "none" ],
-      "special": "",
-      "type": "Melee",
-      "category": "Ammunition",
-      "Proficiency": "Simple",
-      "group": [ "Crossbows" ],
-      "Description": "These bullets come in a leather pouch that holds 10 bullets."
+      "Description": "These bullets come in a leather pouch that holds 10 bullets.",
+      "Special": ""
     },
     "Sling Bullets, Groaning": {
-      "name": "Sling Bullets, Groaning",
+      "Damage": [ "0" ],
+      "critRange": 0,
+      "critMultiplier": 0,
+      "range": 0,
+      "dmgType": [ "none" ],
+
+      "type": "Melee",
+      "category": "Ammunition",
+      "Proficiency": "Simple",
+      "group": [ "Crossbows" ],
+
       "Cost": 0.2,
       "Weight": 0.5,
-      "damage": [ "0" ],
-      "critRange": 0,
-      "critMultiplier": 0,
-      "range": 0,
-      "dmgType": [ "none" ],
-      "special": "",
-      "type": "Melee",
-      "category": "Ammunition",
-      "Proficiency": "Simple",
-      "group": [ "Crossbows" ],
-      "Description": "These sling bullets are honeycombed with overlapping perforations that cause them to emit an eerie moan audible within 500 feet of their flight path."
+      "Description": "These sling bullets are honeycombed with overlapping perforations that cause them to emit an eerie moan audible within 500 feet of their flight path.",
+      "Special": ""
     },
     "Sling Bullets, Smoke": {
-      "name": "Sling Bullets, Smoke",
-      "Cost": 10,
-      "Weight": 0.5,
-      "damage": [ "0" ],
+      "Damage": [ "0" ],
       "critRange": 0,
       "critMultiplier": 0,
       "range": 0,
       "dmgType": [ "none" ],
-      "special": "",
+
       "type": "Melee",
       "category": "Ammunition",
       "Proficiency": "Simple",
       "group": [ "Crossbows" ],
-      "Description": "Uses a touch attack to release noxious smoke (DC 13 Fort), nauseating target for 2 rounds."
+
+      "Cost": 10,
+      "Weight": 0.5,
+      "Description": "Uses a touch attack to release noxious smoke (DC 13 Fort), nauseating target for 2 rounds.",
+      "Special": ""
     },
     "Blowgun Darts": {
-      "name": "Blowgun Darts",
-      "Cost": 0.5,
-      "Weight": 0,
-      "damage": [ "", "", "" ],
+      "Damage": [ "", "", "" ],
       "critRange": 0,
       "critMultiplier": 0,
       "range": 0,
       "dmgType": [ "none" ],
-      "special": "poison",
+
       "type": "Ranged",
       "category": "Ammunition",
       "Proficiency": "Simple",
       "group": [ "Misc" ],
-      "Description": "These light darts have tiny grooves behind the tips. A character can apply poison to a blowgun dart without risk of poisoning himself."
+
+      "Cost": 0.5,
+      "Weight": 0,
+      "Description": "These light darts have tiny grooves behind the tips. A character can apply poison to a blowgun dart without risk of poisoning himself.",
+      "Special": "poison"
+
     },
 
 
 
     "Custom": {
-      "name": "",
-      "Cost": 0,
-      "Weight": 0,
-      "damage": [ "", "", "" ],
+      "Damage": [ "", "", "" ],
       "critRange": 0,
       "critMultiplier": 0,
       "range": 0,
       "dmgType": [ "" ],
-      "special": "",
+
       "type": "Ranged",
       "category": "Ammunition",
       "Proficiency": "Simple",
       "group": [ "" ],
-      "Description": ""
+
+      "Cost": 0,
+      "Weight": 0,
+      "Description": "",
+      "Special": ""
     }
   }
 }
