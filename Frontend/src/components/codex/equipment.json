@@ -1801,7 +1801,6 @@
 
 
   "Special Materials": {
-
     "Steel": {
       "Cost": {  "Base Item": "+0 gp"  },
       "Type": "Metal",
@@ -1810,6 +1809,9 @@
     },
 
 
+
+
+    
     
     "Abysium": {
       "Cost": { "Base Item": "+0 gp" },
@@ -1823,8 +1825,8 @@
     },
     "Adamantine": {
       "Cost": {
-        "Weapon":	       "+3,000 gp",
         "Ammunition":    "+60 gp per missile",
+        "Weapon":	       "+3,000 gp",
         "Light armor":   "+5,000 gp",
         "Medium armor":  "+10,000 gp",
         "Heavy armor":	 "+15,000 gp"
@@ -1879,121 +1881,85 @@
       ]
     },
 
-
-
-  
-
-
-
-
-    
-
-    "Basalt, Magic Bridge": {
-      "HP": [ "30 / inch" ],
-      "Hardness": 10,
+    "Blood Crystal": {
       "Cost": {
-        "Value": "5 sp / pound"
+        "Ammunition": "+30 gp per item",
+        "Weapon": "+1,500 gp"
       },
-      "Type": "",
-      "Description": "",
-      "Special": []
-
-      The stones are infused with a unique variant of ancient preservative magic. Scholars suspect that these features have grown in the stones of the bridge over the ages since an even older time, and were not originally intended or even anticipated by the structure’s architects. Bridge stones harvested from underwater rubble or mined from offshore pilings are not only of great value to builders and sculptors, but also of particular interest to those seeking to create stone constructs.
-      Building Constructs: When a construct’s materials consist entirely of the stone, its Craft DC increases by +5 , but the required Caster Level decreases by 1. In addition, stone constructs crafted from Magic Bridge Basalt gain a +2 bonus to Strength and gain twice as many bonus hit points as normal from the construct type.
+      "Type": "Stone",
+      "Description": "Mysterious radiation deep below the surface of the earth warps once-ordinary quartz into bloodcraving stone. Unfed blood crystal has a pale pink hue, darkening toward deep crimson as it becomes saturated with blood.",
+      "Special": [
+        "Piercing or slashing weapons composed entirely or partially of metal can be made from blood crystal.",
+        "If a piercing or slashing blood crystal weapon hits a target suffering from a bleed effect, the creature takes 1 additional point of damage as the blood crystal drains blood from the wound."
+      ]
     },
     "Bone": {
-      "HP": [ "# / inch" ],
-      "Hardness": #,
-      "Cost": {
-        "Value": "1/2 normal weapon or armor"
-      },
-      "Type": "",
-      "Description": "",
-      "Special": []
+      "Cost": { "Base Item": "x0.5 gp" },
+      "Type": "Organic",
+      "Description": "Bone can be used in place of wood and steel in weapons and armor. Other animal-based materials like horn, shell, and ivory also use the rules for bone weapon and armor.",
+      "Special": [
+        "Fragile",
+        "Only magic weapons or armor do not have the fragile quality",
+        "Bone can be made into light or one-handed melee weapons",
+        "Two-handed weapons can only be made of bone if they deal bludgeoning damage only, or are tipped like spears.",
+        "Studded leather, scale mail, breastplates, and wooden shields can all be constructed using bone.",
       
-      Bone can be used in place of wood and steel in weapons and armor. Other animal-based materials like horn, shell, and ivory also use the rules for bone weapon and armor. The cost of a bone weapon or bone armor is half the price of a normal weapon or armor of its type.
-      Weapons Light and one-handed melee weapons, as well as two-handed weapons that deal bludgeoning damage only, can be crafted from bone. Hafted two-handed weapons such as spears can be crafted with bone tips, as can arrowheads. Other two-handed weapons cannot be constructed of bone. Bone weapons have half the hardness of their base weapons and have the fragile weapon quality. Masterwork bone weapons also have the fragile quality, but magic bone weapons do not. Bone weapons take a –2 penalty on damage rolls (minimum 1 damage).
-      Armor Studded leather, scale mail, breastplates, and wooden shields can all be constructed using bone. Bone either replaces the metal components of the armor, or in the case of wooden shields, large pieces of bone or shell replace the wood. Bone armor has a hardness of 5 and has the fragile armor quality. Masterwork bone armor also has the fragile quality, but magic bone armor does not. The armor/shield bonus of bone armor is reduced by 1, but in the case of studded leather, the armor check penalty is also reduced by 1 (to 0).
+        "Bone weapons take a –2 penalty on damage rolls (minimum 1 damage).",
+        "The armor/shield bonus of bone armor is reduced by 1, and bone studded leather also has an armor check penalty of 0."        
+      ]
     },
     "Bronze": {
-      "HP": [ "# / inch" ],
-      "Hardness": 9,
-      "Cost": {
-        "Value": "Same as base item"
-      },
-      "Type": "",
-      "Description": "",
-      "Special": []
-      
-      Before the advent of iron and steel, bronze ruled the world. This easily worked metal can be used in place of steel for both weapons and armor.
-      For simplicity’s sake, similar or component metals such as brass, copper, or even tin can use the following rules, even though in reality bronze is both harder and more reliable than those metals.
-      Weapons Light and one-handed weapons can be crafted from bronze. Likewise, spear points, arrowheads, and axe heads can be crafted from bronze, even those that are parts of two-handed weapons. Bronze is too weak to be used for two-handed weapons made entirely out of metal, and cannot typically be used to craft polearms, with the exception of the rhomphaia, which is provided in the section on Bronze Age equipment. Bronze weapons have the hardness of their base weapons but also have the fragile quality. Bronze weapons do the same damage as steel weapons of the same type, and have the same cost and weight.
-      Armor Bronze can be used to create any medium or light armor made entirely of metal or that has metal components. It protects a creature as well as steel armor does, but it has the fragile quality. Bronze armor has the same cost and weight as normal steel armor of its type. Bronze armor has a hardness of 9.
+      "Cost": { "Base Item": "x0.8 gp" },
+      "Type": "Metal",
+      "Description": "Before the advent of iron and steel, bronze ruled the world. This easily worked metal can be used in place of steel for both weapons and armor.",
+      "Special": [
+        "Fragile",
+        "Light weapons, one-handed weapons, spear points, arrowheads, and axe heads can be crafted from bronze.",
+        "Bronze can be used to create any medium or light armor made entirely of metal or that has metal components."
+      ]
     },
+    
 
     "Cryptstone": {
-      "HP": [ "# / inch" ],
-      "Hardness": #,
       "Cost": {
-        
+        "Ammunition":	"+10 gp per item",
+        "Weapon":	"+500 gp"
       },
-      "Type": "",
-      "Description": "",
-      "Special": []
-Cryptstone is a dense gray stone scavenged from mausoleums that often appears ancient and pitted.
-A weapon made of cryptstone grants a +1 bonus on weapon damage rolls against undead creatures; this damage is multiplied on a critical hit.
-Additionally, any non-magical weapon made of cryptstone affects incorporeal undead as if it were a magic weapon, and weapons made of cryptstone that have the disruption special ability increase the DC of that ability by +1.
-Cryptstone can be used to craft bludgeoning melee weapons and ammunition that deals bludgeoning damage. Weapons made of cryptstone are always considered masterwork, and the masterwork costs are included in the listed prices. Items not primarily made from stone are not meaningfully affected by being partially made from cryptstone.
-Cryptstone has the same hit points and hardness as steel.
-Type of Cryptstone Item	Item Price Modifier
-Ammunition	+10 gp per item
-Weapon	+500 gp
-},
+      "Type": "Stone",
+      "Description": "Cryptstone is a dense gray stone scavenged from mausoleums that often appears ancient and pitted.",
+      "Special": [
+        "Cryptstone can be used to craft bludgeoning melee weapons and ammunition that deals bludgeoning damage.",
+        "A weapon made of cryptstone grants a +1 bonus on weapon damage rolls against undead creatures.",
+        "Weapons made of cryptstone are always masterwork (price included).",
+        "Any non-magical weapon made of cryptstone affects incorporeal undead as if it were a magic weapon.",
+        "Weapons made of cryptstone that have the disruption special ability increase the DC of that ability by +1."
+      ]
+    },
 
-    "Blood Crystal": {
-      "HP": [ "# / inch" ],
-      "Hardness": #,
-      "Cost": {},
-      "Type": "",
-      "Description": "",
-      "Special": []
-HP/inch 10; Hardness 10; Cost see table
-
-  Type of Item	Price Modifier
-Ammunition	+30 gp per item
-Weapon	+1,500 gp
-  
-Mysterious radiation deep below the surface of the earth warps once-ordinary quartz into bloodcraving stone. If an attack with a piercing or slashing blood crystal weapon hits a target suffering from a bleed effect, the creature takes 1 additional point of damage from the attack as the blood crystal drains blood from the wound. This applies even if the creature was taking bleed damage before the attack with the blood crystal weapon. This does not increase the amount of the bleed effect.
-Unfed blood crystal has a pale pink hue, darkening toward deep crimson as it becomes saturated with blood. Piercing or slashing weapons composed entirely or partially of metal can be made from blood crystal. Unworked blood crystal has a value of 500 gp per pound. Weapons made with blood crystal have one-half the normal hit points. Armor and shields cannot be made of blood crystal, as they would feed on the wearer’s own wounds.
-},
 
     "Darkleaf Cloth": {
-      "HP": [ "# / inch" ],
-      "Hardness": #,
-      "Cost": {},
-      "Type": "",
-      "Description": "",
-      "Special": []
-HP/inch 20; Hardness 10; Cost see table
-
-Type of Item	Cost Modifier
-Clothing	+500 gp
-Light armor	+750 gp
-Medium armor	+1,500 gp
-Other items	+375 gp/lb.
-
-  Darkleaf cloth is a special form of flexible material made by weaving together leaves and thin strips of bark from darkwood trees, then treating the resulting fabric with special alchemical processes. The resulting material is tough as cured hide but much lighter, making it an excellent material from which to create armor. Spell failure chances for armors made from darkleaf cloth decrease by 10% (to a minimum of 5%), maximum Dexterity bonuses increase by 2, and armor check penalties decrease by 3 (to a minimum of 0).
-An item made from darkleaf cloth weighs half as much as the same item made from normal cured leather, furs, or hides. Items not primarily constructed of leather, fur, or hide are not meaningfully affected by being partially made of darkleaf cloth. As such padded, leather, studded leather, and hide armor can be made out of darkleaf cloth (although other types of armor made of leather or hide might be possible). Because darkleaf cloth remains flexible, it cannot be used to construct rigid items such as shields or metal armors. Armors fashioned from darkleaf cloth are always masterwork items as well; the masterwork cost is included in the prices given below.
-},
-
+      "Cost": {
+        "Clothing":	"+500 gp",
+        "Light armor":	"+750 gp",
+        "Medium armor":	"+1,500 gp",
+        "Other items":	"+375 gp/lb."
+      },
+      "Type": "Textile",
+      "Description": "Darkleaf cloth is a special form of flexible material made by weaving together leaves and thin strips of bark from darkwood trees, then treating the resulting fabric with special alchemical processes.",
+      "Special": [
+        "Darkleaf may be made into items primarily constructed of leather, fur, or hide.",
+        "Maximum Dex bonuses increase by 2, and armor check penalties decrease by 3.",
+        "Spell failure chances for armors made from darkleaf cloth decrease by 10% (to a minimum of 5%)",    
+        "An item made from darkleaf cloth weighs half as much as the same item made from normal cured leather, furs, or hides.",
+        "Armors made of darkleaf are always masterwork (price included)."
+      ]
+    },
     "Darkwood": {
-      "HP": [ "# / inch" ],
-      "Hardness": #,
       "Cost": {},
       "Type": "",
       "Description": "",
       "Special": []
-HP/inch 10; Hardness 5; Cost To determine the price of a darkwood item, use the original weight but add 10 gp per pound to the price of a masterwork version of that item.
+Cost To determine the price of a darkwood item, use the original weight but add 10 gp per pound to the price of a masterwork version of that item.
 
 This rare magic wood is as hard as normal wood but very light.
 Any wooden or mostly wooden item (such as a bow or spear) made from darkwood is considered a masterwork item and weighs only half as much as a normal wooden item of that type. Items not normally made of wood or only partially of wood (such as a battleaxe or a mace) either cannot be made from darkwood or do not gain any special benefit from being made of darkwood. The armor check penalty of a darkwood shield is lessened by 2 compared to an ordinary shield of its type.
