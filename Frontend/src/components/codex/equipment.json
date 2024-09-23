@@ -1859,7 +1859,7 @@
         "Heavy armor":	"+1,000 gp"
       },
       "Type": "Metal",
-      "Description": "The twin ores of aszite and druchite are found only on the Shadow Plane, and are highly sought after for structural construction, as well as for their use in enhancing armor and weapons.",
+      "Description": "The navy-blue ore known as aszite is often used to reinforce buildings, and is one of the twin ores from the Shadow Plane with the other being druchite."
       "Special": [
         "Adding aszite veins to armor increases the item’s weight by 10%.",
         "The wearer of aszite-veined armor gains a +2 circumstance bonus on Stealth checks when affected by a spell with the darkness descriptor.",
@@ -1955,98 +1955,104 @@
       ]
     },
     "Darkwood": {
-      "Cost": {},
-      "Type": "",
-      "Description": "",
-      "Special": []
-Cost To determine the price of a darkwood item, use the original weight but add 10 gp per pound to the price of a masterwork version of that item.
-
-This rare magic wood is as hard as normal wood but very light.
-Any wooden or mostly wooden item (such as a bow or spear) made from darkwood is considered a masterwork item and weighs only half as much as a normal wooden item of that type. Items not normally made of wood or only partially of wood (such as a battleaxe or a mace) either cannot be made from darkwood or do not gain any special benefit from being made of darkwood. The armor check penalty of a darkwood shield is lessened by 2 compared to an ordinary shield of its type.
-},
+      "Cost": {
+        "Base Item": "+300 gp plus 10 gp per pound of original item"
+      },
+      "Type": "Organic",
+      "Description": "This rare magic wood is as hard as normal wood but very light.",
+      "Special": [
+        "Darkwood can be made into any wooden or mostly wooden item.",
+        "Items made of darkleaf weigh half as much and are always masterwork (price included).",
+        "The armor check penalty of a darkwood shield is lessened by 2 compared to an ordinary shield of its type."
+      ]
+    },
 
     "Druchite": {
-      "HP": [ "# / inch" ],
-      "Hardness": #,
-      "Cost": {},
-      "Description": "",
-      "Special": []
-Type of Druchite-Veined Item	Item Price Modifier
-Ammunition	+12 gp per item
-Light armor	+1,000 gp
-Medium armor	+1,500 gp
-Heavy armor	+2,000 gp
-Weapon	+1,200 gp
-
-  The twin ores of aszite and druchite are found only on the Shadow Plane. These ores are highly sought after for structural construction, as well as for their use in enhancing armor and weapons.
-The black-and-violet ore known as druchite is so dark that even creatures that are adapted to see in lightless conditions can have extreme difficulty perceiving it.
-Druchite ore can be worked into armor and weapons by applying it in delicate veins or inlaid patterns across the equipment.
-Druchite-veined armor grants the wearer additional defenses against creatures with darkvision.
-The wearer always benefits from a 10% miss chance while in an area of dim light or darkness, even if she is perceived by a creature using darkvision. Other sensory abilities, such as blindsense or true seeing, bypass this effect entirely. Druchite-veined weapons grant their wielder a +2 circumstance bonus on attack rolls against creatures perceiving them with darkvision.
-The wielder receives no bonus when attacking creatures using other senses, such as blindsense, or benefiting from true seeing.
-Druchite has hardness 10 and 40 hit points per inch of thickness.
-},
-
+      "Cost": {
+        "Ammunition":	"+12 gp per item",
+        "Weapon":	"+1,200 gp",
+        "Light armor":	"+1,000 gp",
+        "Medium armor":	"+1,500 gp",
+        "Heavy armor":	"+2,000 gp"
+      },
+      "Type": "Metal",
+      "Description": "The black-and-violet ore known as druchite is so dark that even creatures that are adapted to see in lightless conditions can have extreme difficulty perceiving it.",
+      "Special": [
+        "The wearer benefits from a 10% miss chance while in an area of dim light or darkness, even if she is perceived by a creature using darkvision.",
+        "Druchite-veined weapons grant their wielder a +2 circumstance bonus on attack rolls against creatures perceiving them with darkvision."
+      ]
+    },
     "Djezet": {
-      "HP": [ "# / inch" ],
-      "Hardness": #,
-      "Cost": {},
-      "Description": "",
-      "Special": []
-One of the strangest of skymetals, rust-red djezet is liquid at all temperatures. This makes the metal relatively useless for crafting objects, but most who seek out this substance intend to use it instead as an additional component for spellcasting, as it possesses an ability to enhance magic. When used as an additional material component, a dose of djezet increases the effective spell level by 1, which stacks with a heightened spell. To function as an additional material component, the spellcaster must use a number of doses of djezet equal to the spell’s original level—additional djezet doses have no effect. Djezet costs 200 gp per dose.
-},
-
+      "Cost": { "One Dose": "200 gp" },
+      "Type": "Magic",
+      "Description": "One of the strangest of skymetals, rust-red djezet is liquid at all temperatures.",
+      "Special": [
+        "Djezet may be used as an additional material component for spells, using 1 dose per original spell level. When used this way, the spell's level is increased by 1 stacking with heightened spell."
+      ]
+    },
     "Dragonhide": {
-      "HP": [ "# / inch" ],
-      "Hardness": #,
-      "Cost": {},
-      "Description": "",
-      "Special": []
-HP/inch 10 (hide of a dragon is typically between 1/2 inch and 1 inch thick); Hardness 10; Cost Dragonhide armor costs twice as much as masterwork armor of the same type, but it takes no longer to make than ordinary armor of that type (double all Craft results). If the armor or shield is later given the ability to protect the wearer against that energy type, the cost to add such protection is reduced by 25%.
-A classic status symbol for adventurers, dragonhide armor is coveted for its toughness. Armorsmiths can work with the hides of dragons to produce armor or shields of masterwork quality.
-One dragon produces enough hide for a single suit of masterwork hide armor for a creature one size category smaller than the dragon. By selecting only choice scales and bits of hide, an armorsmith can produce one suit of masterwork banded mail for a creature two sizes smaller, one suit of masterwork half-plate for a creature three sizes smaller, or one masterwork breastplate or suit of full plate for a creature four sizes smaller. In each case, enough hide is available to produce a light or heavy masterwork shield in addition to the armor, provided that the dragon is Large or larger. If the dragonhide comes from a dragon that had immunity to an energy type, the armor is also immune to that energy type, although this does not confer any protection to the wearer.
-Because dragonhide armor isn’t made of metal, druids can wear it without penalty.
-Though smiths have been making dragonhide armor for centuries without the benefit of dragoncrafting, those with the Dragoncrafting feat are able to improve upon an already excellent product.
-Normally, if a suit of dragonhide armor has energy immunity, one may enhance such a suit with additional energy protection for the wearer at a 25% reduced cost. However, only effects with the same elemental type as the armor’s immunity are eligible for this discount. An artisan with the Dragoncrafting feat may add 1 additional elemental protection to a suit of dragonhide armor at the same 25% discount, even if this energy resistance is not normally associated with the type of dragonhide being used.
-},
-
+      "Cost": {
+        "Light armor":	"x2 gp",
+        "Medium armor":	"x2 gp",
+        "Heavy armor":	"x2 gp",
+        "Shield": "x2 gp"
+      },
+      "Type": "Organic",
+      "Description": "A classic status symbol for adventurers, dragonhide armor is coveted for its toughness.",
+      "Special": [
+        "If the dragonhide comes from a dragon that had immunity to an energy type, the armor is also immune to that energy type, although this does not confer any protection to the wearer.",
+        "Because dragonhide armor isn’t made of metal, druids can wear it without penalty.",
+        "If a suit of dragonhide armor has energy immunity, one may enhance such a suit with additional energy protection of the same type for the wearer at a 25% reduced cost.",
+        "An artisan with the Dragoncrafting feat may add 1 additional elemental protection to a suit of dragonhide armor at a 25% discount."
+      ]
+    },
     "Dragonskin": {
-      "HP": [ "# / inch" ],
-      "Hardness": #,
-      "Cost": {},
-      "Description": "",
-      "Special": []
-The choicest, most malleable skin from a dragon’s underbelly can be added to any weapon with a hilt or handle. Dragonskin grips may be added to an existing weapon, or incorporated into a new weapon during crafting. The skin provides extra grip, granting the wielder a +2 bonus to CMD against disarm attempts. Producing a dragonskin grip requires the Dragoncrafting feat and a successful DC 15 Craft (bows or weapons) check.
-},
+      "Cost": { "Grip": "250 gp" },
+      "Type": "Textile",
+      "Description": "The choicest, most malleable skin from a dragon’s underbelly can be added to any weapon with a hilt or handle.",
+      "Special": [
+        "The skin provides extra grip, granting the wielder a +2 bonus to CMD against disarm attempts."
+      ]
+    },
 
     "Eel Hide": {
-      "HP": [ "# / inch" ],
-      "Hardness": #,
-      "Cost": {},
-      "Description": "",
-      "Special": []
-HP/inch as leather; Hardness as leather; Cost Armor crafted from eel hide is always considered masterwork, and the masterwork costs are included in the listed prices.
-Type of Item	Price Modifier
-Light armor	+1,200 gp
-Medium armor	+1,800 gp
-This supple material offers as much protection as leather, but is more flexible and resistant to electricity. Leather, hide, or studded leather armor can be produced with eel hide. The armor check penalty of such armor is reduced by 1 (to a minimum of 0) and the maximum Dexterity bonus of the armor is increased by 1. Additionally, wearing eel hide grants the wearer electricity resistance 2.
-},
-
+      "Cost": {
+        "Light armor":	"+1,200 gp",
+        "Medium armor":	"+1,800 gp"
+      },
+      "Type": "Textile",
+      "Description": "This supple material offers as much protection as leather, but is more flexible and resistant to electricity.",
+      "Special": [
+        "Armor made of Eel Hide are always masterwork (price included).",
+        "Leather, hide, or studded leather armor can be produced with eel hide.",
+        "Armor made of eel hide has it's armor check penalty reduced by 1, and the maximum Dex bonus increased by 1.",
+        "Wearing eel hide armor grants the wearer electricity resistance 2."
+      ]
+    },
     "Elysian Bronze": {
-      "HP": [ "# / inch" ],
-      "Hardness": #,
-      "Cost": {},
+      "Cost": {
+        "Ammunition":	"+20 gp per item",
+        "Weapon":	"+1,000 gp",
+        "Light armor":	"+1,000 gp",
+        "Medium armor":	"+2,000 gp",
+        "Heavy armor":	"+3,000 gp"
+      },
+      "Type": "Metal",
       "Description": "",
-      "Special": []
-HP/inch as steel; Hardness as steel; Cost n/a
-Type of Item	Price Modifier
-Ammunition	+20 gp per item
-Light armor	+1,000 gp
-Medium armor	+2,000 gp
-Heavy armor	+3,000 gp
-Weapon	+1,000 gp
-First crafted in the deeps of time by the titans and bestowed as gifts to monster-slaying heroes among the lesser races, Elysian bronze retains the brazen coloration of its namesake but is as hard as steel. A weapon made of Elysian bronze adds a +1 bonus on weapon damage rolls against magical beasts and monstrous humanoids; this damage is multiplied on a critical hit. After a creature uses an Elysian bronze weapon to deal damage to a magical beast or monstrous humanoid, the wielder gains a +1 bonus on attack rolls against that specific creature type (for example, against chimeras, not all magical beasts) for the next 24 hours, or until the weapon deals damage to a different kind of magical beast or monstrous humanoid.
-Armor made of Elysian bronze also protects its wearer against the natural weapons or unarmed strikes of magical beasts and monstrous humanoids, providing damage reduction as if it were adamantine (1/— for light armor, 2/— for medium armor, or 3/— for heavy armor). It does not provide this protection against creatures of other types.
+      "Special": [
+        
+      ]
+
+First crafted in the deeps of time by the titans and bestowed as gifts to monster-slaying heroes among the lesser races,
+      Elysian bronze retains the brazen coloration of its namesake but is as hard as steel.
+A weapon made of Elysian bronze adds a +1 bonus on weapon damage rolls against magical beasts and monstrous humanoids;
+      this damage is multiplied on a critical hit.
+After a creature uses an Elysian bronze weapon to deal damage to a magical beast or monstrous humanoid,
+    the wielder gains a +1 bonus on attack rolls against that specific creature type (for example, against chimeras, not all magical beasts)
+    for the next 24 hours, or until the weapon deals damage to a different kind of magical beast or monstrous humanoid.
+Armor made of Elysian bronze also protects its wearer against the natural weapons or unarmed strikes of magical beasts and monstrous humanoids,
+    providing damage reduction as if it were adamantine (1/— for light armor, 2/— for medium armor, or 3/— for heavy armor).
+It does not provide this protection against creatures of other types.
 },
 
       "Steel, Fire-forged": {
