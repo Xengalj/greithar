@@ -9,11 +9,6 @@
   -->
 
 
-  <g-table
-    :id="tableName"
-    :data="tableData"
-    :filters="tableFilters"
-  />
 
 
 
@@ -54,7 +49,7 @@ import CreatureCard from '@/components/template/CreatureCard.vue'
 const icons = require('@/components/template/svgPaths.json');
 // const miscTables = require('@/components/codex/tables.json');
 // const supplementTables = require('@/components/codex/monsters.json');
-const equipmentTables = require('@/components/codex/equipment.json');
+// const equipmentTables = require('@/components/codex/equipment.json');
 
 export default {
   name: "DM Screen",
@@ -70,7 +65,7 @@ export default {
       monsterVisible: false,
       creatureName: "",
 
-      equipment: equipmentTables,
+      // equipment: equipmentTables,
       tableName: "equipmentTable",
       tableData: {},
       tableFilters: {},
@@ -89,9 +84,9 @@ export default {
     }
   },
   created() {
-    this.tableData = this.equipment.armor;
-    let first = Object.values(this.tableData)[0];
-    this.tableCols = ["Name"].concat(Object.keys(first));
+    // this.tableData = this.equipment.armor;
+    // let first = Object.values(this.tableData)[0];
+    // this.tableCols = ["Name"].concat(Object.keys(first));
 
     this.tableFilters = {
       /*

@@ -38,7 +38,7 @@
     </el-select>
   </div>
 
-  <table :id="id">
+  <table :id="id" class="g-table">
     <tr>
       <th v-for="item in tableCols" @click="sortTable(item)" :key="item" >
         {{ item }}
@@ -67,6 +67,7 @@ export default {
       return this.filters;
     },
     tableCols() {
+      console.log(this.data);
       let first = Object.values(this.data)[0];
       return ["Name"].concat(Object.keys(first));
     }
@@ -203,7 +204,7 @@ export default {
         this.isAdding = false;
       }
     },
-    
+
     // Filters the table
     // Triggered by a change in a filter dropdown
     filterTable() {
@@ -212,7 +213,7 @@ export default {
 
       /*Loop through all table rows (except the
       first, which contains table headers):*/
-      for (i = 1; i < (rows.length - 1); i++) {
+      for (i = 1; i < (rows.length); i++) {
 
         // Loop through the filters
         for (const [filter, choices] of Object.entries(this.filterValue)) {
@@ -229,6 +230,7 @@ export default {
             }
           }
           rows[i].hidden = shouldRemove;
+          shouldRemove = true;
         }
       }
     }
@@ -240,33 +242,53 @@ export default {
 </script>
 
 <style lang="css" scoped>
+/* Layout */
+.filter-row {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+.filter-row input {
+  border-radius: var(--el-border-radius-base);
+  border: 1px solid #DCDFE6;
+  color: #DCDFE6;
+}
 table {
   border-spacing: 0;
   width: 100%;
   border: 1px solid #ddd;
 }
+th { cursor: pointer; }
+th, td { padding: 16px; }
+th:last-child, th:nth-last-child(2) { width: 20%; }
 
-th {
-  cursor: pointer;
-}
-
-th, td {
-  text-align: left;
-  padding: 16px;
-}
-
-tr:nth-child(even) {
-  background-color: #f2f2f2
-}
-
-th:not(:first-child):not(:last-child),
-td:not(:first-child):not(:last-child)
-{
+th:nth-child(n+2):nth-last-child(n+3),
+td:nth-child(n+2):nth-last-child(n+3) {
   text-align: center;
 }
 
-th:last-child,
-th:nth-last-child(2) {
-  width: 20%;
+/* Colors */
+.dark .filter-row :nth-child(n+1):not(span) {
+  background-color: var(--color-surface-300);
+  color: #CCC;
 }
+tr:nth-child(even) {
+  background-color: #f2f2f2
+}
+.g-table tr:nth-child(n+2):hover {
+  border: 2px solid var(--color-secondary-100);
+}
+.dark .g-table tr:nth-child(n+2):hover {
+  border: 2px solid var(--color-primary-100);
+}
+.dark tr:nth-child(odd) {
+  background-color: var(--color-surface-200);
+}
+.dark tr:nth-child(even) {
+  background-color: var(--color-surface-500);
+}
+.dark .g-table {
+  color: #EEE;
+}
+
 </style>

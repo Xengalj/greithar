@@ -10,6 +10,11 @@ const temp = "<template><div class='user'><h2>User </h2><router-view /></div></t
 
 
 const routes = [
+  /***************************\
+  *                           *
+  *       BASIC ROUTES        *
+  *                           *
+  \***************************/
   {
     path: "/",
     alias: "/home",
@@ -28,6 +33,17 @@ const routes = [
     path: "/register",
     component: Register,
   },
+  {
+    path: "/dm-screen",
+    name: "dm-screen",
+    // lazy-loaded
+    component: () => import("./components/dm/dmScreen.vue"),
+    meta: {
+      breadcrumb: "DM Screen",
+      title: "DM Screen",
+    },
+  },
+
   {
     path: "/admin",
     name: "admin",
@@ -147,7 +163,6 @@ const routes = [
       {
         // load hero from $store, after /profile
         path: "view/:id",
-        alias: "/hero/:id",
         name: "character-view",
         component: () => import("./components/character/View.vue"),
         meta: {
@@ -173,6 +188,24 @@ const routes = [
   *        RULE ROUTES        *
   *                           *
   \***************************/
+  {
+    path: "/beastiary",
+    name: "Beastiary",
+    component: () => import("./components/codex/beastiary.vue"),
+    meta: {
+      breadcrumb: "Beastiary",
+      title: "Beastiary"
+    }
+  },
+  {
+    path: "/equipment",
+    name: "Equipment",
+    component: () => import("./components/codex/equipment.vue"),
+    meta: {
+      breadcrumb: "Equipment",
+      title: "Equipment"
+    }
+  },
   {
     path: "/rules",
     // component: Rules,
@@ -234,31 +267,6 @@ const routes = [
         }
       },
     ]
-  },
-
-
-  /***************************\
-  *                           *
-  *       CODEX ROUTES        *
-  *                           *
-  \***************************/
-  {
-    path: "/beastiary",
-    name: "Beastiary",
-    component: () => import("./components/codex/beastiary.vue"),
-    meta: {
-      breadcrumb: "Beastiary",
-      title: "Beastiary"
-    }
-  },
-  {
-    path: "/equipment",
-    name: "Equipment",
-    component: () => import("./components/codex/equipment.vue"),
-    meta: {
-      breadcrumb: "Equipment",
-      title: "Equipment"
-    }
   },
 
 

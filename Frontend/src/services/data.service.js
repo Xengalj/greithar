@@ -52,18 +52,20 @@ class DataService {
       .catch(err => {
         return err;
       });
-    }
 
-    // if no item type is given, get all items
-    return axios.post(API_URL + 'equipment/read',
-    { headers: authHeader() })
-    .then(response => {
-      return response.data;
-    })
-    .catch(err => {
-      return err;
-    });
+    } else {
+      // if no item type is given, get all items
+      return axios.post(API_URL + 'equipment/read',
+      { headers: authHeader() })
+      .then(response => {
+        return response.data;
+      })
+      .catch(err => {
+        return err;
+      });
+    }
   }
+
 
 }
 

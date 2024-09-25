@@ -8,57 +8,47 @@
 
     <div class="flex-grow" />
 
-    <!-- TODO
-      - get current active page and coloring working
-      - get click outside closes menu working
-      https://element-plus.org/en-US/component/menu.html
-    -->
-
     <div class="menu-container">
-
       <!-- Search -->
       <div class="nav-search">
         <el-input v-model="input" placeholder="Search" >
           <template #prefix>
-            <font-awesome-icon icon="search" />
+            <g-icon iconSize="24px" iconName="search" :iconColor="iconColor" />
           </template>
         </el-input>
       </div>
 
-      <el-menu
-      menu-trigger="click"
-      mode="horizontal"
-      class="el-menu"
-      ellipsis
-      >
-        <!-- close-on-click-outside -->
 
+      <el-menu
+        class="el-menu dark"
+        mode="horizontal"
+        ellipsis
+      >
+      <!-- menu-trigger="click" -->
 
         <!-- User Links -->
         <el-sub-menu v-if="currentUser" index="0">
-          <template #title>
-            <g-icon iconSize="24px" iconName="user" /> {{ currentUser.username }}
-          </template>
+          <template #title> <g-icon iconSize="24px" iconName="user" :iconColor="iconColor" /> {{ currentUser.username }} </template>
 
           <el-menu-item index="profile">
+            <!-- /user/view/ <user_id> -->
             <router-link :to="{ name: 'user-view', params: { id: currentUser.id } }" class="nav-link">
-              <g-icon iconSize="24px" iconName="userProfile" /> Your Profile
+              <g-icon iconSize="24px" iconName="userProfile" :iconColor="iconColor" /> Your Profile
             </router-link>
           </el-menu-item>
 
           <el-menu-item index="hero">
+            <!-- /character/view/ <character_id> -->
             <router-link to="/hero" class="nav-link">
-              <!-- <router-link :to="{ name: 'character-view', params: { id: currentUser.hero.id } }" class="nav-link"> -->
-              <!-- /character/view/<character_id> -->
-              <g-icon iconSize="24px" iconName="userHero" /> Your Hero <!-- {{ currentUser.hero.name }} -->
+            <!-- <router-link :to="{ name: 'character-view', params: { id: currentUser.hero.id } }" class="nav-link"> -->
+              <g-icon iconSize="24px" iconName="userHero" :iconColor="iconColor" /> Your Hero <!-- {{ currentUser.hero.name }} -->
             </router-link>
           </el-menu-item>
 
           <el-menu-item index="characters">
-            <router-link to="/user/list" class="nav-link">
-              <!-- <router-link :to="{ name: 'character-list', params: { id: currentUser.id } }" class="nav-link"> -->
-              <!-- /character/list/<user_id> -->
-              <g-icon iconSize="24px" iconName="userList" /> Your Characters
+            <!-- /character/list/ <user_id> -->
+            <router-link :to="{ name: 'character-list', params: { id: currentUser.id } }" class="nav-link">
+              <g-icon iconSize="24px" iconName="userList" :iconColor="iconColor" /> Your Characters
             </router-link>
           </el-menu-item>
         </el-sub-menu>
@@ -67,20 +57,8 @@
         <!-- Rules -->
         <el-sub-menu index="1">
           <template #title>
-            <g-icon iconSize="24px" iconName="openBook" /> Rules
+            <g-icon iconSize="24px" iconName="lockedBook" :iconColor="iconColor" /> Rules
           </template>
-
-          <el-menu-item index="beastiary">
-            <router-link to="/beastiary" class="nav-link">
-              <g-icon iconSize="24px" iconName="dragon" /> Beastiary
-            </router-link>
-          </el-menu-item>
-          <el-menu-item index="equipment">
-            <router-link to="/equipment" class="nav-link">
-              <g-icon iconSize="24px" iconName="inventory" /> Equipment
-            </router-link>
-          </el-menu-item>
-
 
           <el-menu-item v-for="(page, rIndex) in rules" :key="rIndex" :index="`1-${rIndex}`">
             <router-link :to="page.link" class="nav-link">{{ page.title }}</router-link>
@@ -91,7 +69,7 @@
         <!-- Lore -->
         <el-sub-menu index="2">
           <template #title>
-            <g-icon iconSize="24px" iconName="openScroll" /> Lore
+            <g-icon iconSize="24px" iconName="openScroll" :iconColor="iconColor" /> Lore
           </template>
 
           <el-menu-item v-for="(page, lIndex) in lores" :key="lIndex" :index="`2-${lIndex}`">
@@ -100,11 +78,30 @@
         </el-sub-menu>
 
 
+        <!-- Codex -->
+        <el-sub-menu index="3">
+          <template #title>
+            <g-icon iconSize="24px" iconName="openBook" :iconColor="iconColor" /> Codex
+          </template>
+
+          <el-menu-item index="beastiary">
+            <router-link to="/beastiary" class="nav-link">
+              <g-icon iconSize="24px" iconName="dragon" :iconColor="iconColor" /> Beastiary
+            </router-link>
+          </el-menu-item>
+          <el-menu-item index="equipment">
+            <router-link to="/equipment" class="nav-link">
+              <g-icon iconSize="24px" iconName="inventory" :iconColor="iconColor" /> Equipment
+            </router-link>
+          </el-menu-item>
+        </el-sub-menu>
+
+
         <!-- DM Links -->
         <el-menu-item-group v-if="showAdmin" title="DM Things">
           <el-menu-item index="dmScreen">
-            <router-link to="/admin" class="nav-link">
-              <g-icon iconSize="24px" iconName="map" /> DM Screen
+            <router-link to="/dm-screen" class="nav-link">
+              <g-icon iconSize="24px" iconName="map" :iconColor="iconColor" /> DM Screen
             </router-link>
           </el-menu-item>
         </el-menu-item-group>
@@ -114,29 +111,28 @@
         <el-menu-item-group v-if="showAdmin" title="Admin">
           <el-menu-item index="users">
             <router-link to="/user/list" class="nav-link">
-              <g-icon iconSize="24px" iconName="userList" /> Users
+              <g-icon iconSize="24px" iconName="userList" :iconColor="iconColor" /> Users
             </router-link>
           </el-menu-item>
-
         </el-menu-item-group>
 
 
         <!-- Sign In / Out -->
         <el-menu-item v-if="currentUser" index="logout">
           <a class="nav-link" @click.prevent="logOut">
-            <g-icon iconSize="24px" iconName="logout" /> LogOut
+            <g-icon iconSize="24px" iconName="logout" :iconColor="iconColor" /> LogOut
           </a>
         </el-menu-item>
 
         <el-menu-item v-if="!currentUser" index="login">
           <router-link to="/login" class="nav-link">
-            <g-icon iconSize="24px" iconName="login" /> Login
+            <g-icon iconSize="24px" iconName="login" :iconColor="iconColor" /> Login
           </router-link>
         </el-menu-item>
 
         <el-menu-item v-if="!currentUser" index="register">
           <router-link to="/register" class="nav-link">
-            <g-icon iconSize="24px" iconName="userAdd" /> Sign Up
+            <g-icon iconSize="24px" iconName="userAdd" :iconColor="iconColor" /> Sign Up
           </router-link>
         </el-menu-item>
 
@@ -159,14 +155,10 @@ export default {
     return {
       input: "",
       activeIndex:"logout",
+      iconColor: "var(--color-surface-600)",
+      userMeta: {}
     }
   },
-  created() {
-    // this.$router.options.routes.forEach(route => {
-    //   console.log(route);
-    // });
-  },
-
   computed: {
     breadcrumbs() {
       const route = this.$route;
@@ -220,21 +212,22 @@ export default {
         }
       })
       return lore;
-    },
-    npcs() {
-      const npcs = [];
-      return npcs;
     }
   },
-  mounted() {
-    // Called from the header once, not everytime time SFC loads a new 'page'
-    // TODO:
-    /*
-    get lore & rule pages from DB ?
-    get curr user data (hero, darkmode, etc)
-    */
 
+  created() {
+    // this.$router.options.routes.forEach(route => {
+    //   console.log(route);
+    // });
+    this.userMeta = JSON.parse(localStorage.getItem("userMeta"));
   },
+  mounted() {
+    let menu = document.getElementsByClassName("el-popper")[0];
+    menu = menu.parentNode;
+    menu.setAttribute("class", this.userMeta.theme);
+  },
+
+
   methods: {
     getRoutePath(route, routeItem) {
       const matchedSegments = route.matched.slice(0, route.matched.indexOf(routeItem) + 1);
@@ -254,17 +247,14 @@ export default {
 }
 .top-bar {
   display: flex;
-  border-bottom: 1px solid var(--el-menu-border-color);
+  border-bottom: 2px solid var(--el-menu-border-color);
 }
 .site-title {
   font-size: 40px;
   color: var(--color-primary-100);
 }
-.flex-grow {
-  flex-grow: 1;
-}
 
-/* Search & Nav */
+/* Search */
 .menu-container {
   display: flex;
   align-items: center;
@@ -276,12 +266,16 @@ export default {
   display: flex;
   align-items: center;
 }
-.menu-container .nav-search>div,
-.el-menu.el-menu--horizontal {
-  height: 80%;
+.dark .el-input,
+.dark .el-input__wrapper {
+  background-color: var(--color-surface-300);
 }
 .dark .nav-search input {
   color: #CCC;
+}
+.menu-container .nav-search>div,
+.el-menu.el-menu--horizontal {
+  height: 80%;
 }
 
 /* Menu Button */
@@ -295,21 +289,62 @@ export default {
   padding: 20px;
 }
 .dark .el-menu--horizontal > .el-sub-menu .el-sub-menu__title:hover {
+  border-radius: 5px;
+}
+.dark .el-menu {
+  background-color: var(--color-surface-300);
+}
+.dark .el-menu path {
+  color: var(--color-primary-100);
+}
+.dark .el-sub-menu.is-active .el-sub-menu__title.el-tooltip__trigger {
+  border-color: var(--color-primary-100);
+  border-radius: 5px;
+}
+.dark .el-menu--horizontal > .el-sub-menu .el-sub-menu__title:hover {
   background-color: var(--color-surface-500);
   border-radius: 5px;
 }
-.dark .el-menu path {
-  color: var(--color-primary-200);
+
+/* Opened Menu & Items */
+.dark .el-menu--horizontal .el-menu .el-sub-menu__title,
+.dark .el-menu--horizontal .el-menu .el-menu-item {
+  background-color: var(--color-surface-300);
+  border-color: var(--color-surface-300);
+}
+.el-menu .el-sub-menu .el-sub-menu__title.el-tooltip__trigger {
+  color: var(--color-primary-100);
+}
+.el-menu--horizontal .el-menu li.el-menu-item {
+  padding: 0px;
+}
+.el-menu-item .nav-link {
+  display: flex;
+  padding-left: 10px;
+}
+.el-sub-menu svg,
+.el-menu-item svg {
+  margin-right: 5px;
+}
+
+/* Active Menu Item */
+.dark .el-popper .el-menu--horizontal .el-menu .el-sub-menu.is-active > .el-sub-menu__title {
+  color: var(--color-secondary-300);
 }
 
 
-/* Menu Items */
-
-
-
-/* Breadcrumbs */
+/* Breadcrumb Colors */
 .dark .el-breadcrumb__inner.is-link,
-.dark .el-breadcrumb__item:last-child .el-breadcrumb__inner a {
+.dark .el-breadcrumb__item .el-breadcrumb__inner a {
   color: var(--color-primary-200);
 }
+
+.dark .el-breadcrumb__inner.is-link:hover,
+.dark .el-breadcrumb__item .el-breadcrumb__inner a:hover {
+  color: var(--color-secondary-300);
+}
+.dark .el-breadcrumb__item:last-child .el-breadcrumb__inner a {
+  color: var(--color-secondary-500);
+}
+
 </style>

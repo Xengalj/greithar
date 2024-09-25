@@ -15,7 +15,7 @@
 
 <script>
 const icons = require('./svgPaths.json');
-// https://www.svgrepo.com/collection/hearthsim-game-icons/
+// https://www.svgrepo.com/collection/game-skills-vectors/
 // Font Awesome = https://www.svgrepo.com/collection/font-awesome-solid-icons
 
 export default {
@@ -27,7 +27,7 @@ export default {
     },
     iconColor: {
       type: String,
-      default: '#000000'
+      default: '#BBB'
     },
     iconName: {
       type: String,

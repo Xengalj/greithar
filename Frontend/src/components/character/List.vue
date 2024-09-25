@@ -46,6 +46,7 @@ export default {
       return this.$store.state.auth.user;
     }
   },
+
   mounted() {
     if (!this.currentUser) {
       this.$router.push('/login');
@@ -53,11 +54,12 @@ export default {
     this.getUsers();
 
     // test beastiary
-    UserService.getBeastiary().then(response => {
-      console.log(response);
-    })
-    .catch(err => { console.error(err); });
+    // UserService.getBeastiary().then(response => {
+    //   console.log(response);
+    // })
+    // .catch(err => { console.error(err); });
   },
+
   methods: {
     getUsers() {
       // console.log('getting users');

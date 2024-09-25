@@ -49,7 +49,25 @@ export default {
     // console.log("created");
     // console.log(this.currentUser);
 
-    this.userMeta.theme = "dark";
+    /*
+    grab user meta from DB
+    store in local storage
+
+    use below to set favorite primary & secondary colors
+    document.documentElement.style.cssText = "--main-background-color: red";
+    */
+
+    let test = "dark";
+    // test = "";
+    this.userMeta.theme = test;
+
+    let html = document.getElementsByTagName("html")[0];
+    html.setAttribute("class", this.userMeta.theme);
+
+    localStorage.setItem("userMeta", JSON.stringify(this.userMeta));
+
+
+
   },
 
 
@@ -64,11 +82,16 @@ export default {
 
 /* TODO:
  *
- *  get lore & rules pages from DB
- *  get curr user meta data
-      hero, darkmode, faveColor
+ *  App (here):
+ *    get current user meta data (hero, darkmode, faveColor)
+ *    use store for user meta data
  *
+ *  Header:
+ *    get lore & rules pages from DB
  *
+ *  Creature Card:
+ *    Refactor to use a sinlge nice json, can load and send,
+ *    can add to encounter
  */
 
 </script>

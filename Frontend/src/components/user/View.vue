@@ -58,13 +58,15 @@ export default {
       return this.$store.state.auth.user;
     }
   },
+
   mounted() {
     if (!this.currentUser) {
       this.$router.push('/login');
     }
     console.log(this.currentUser);
 
-    UserService.getUser(this.$route.params.id)
+    if (this.currentUser.roles.includes("ROLE_ADMIN")) {
+      UserService.getUser(this.$route.params.id)
       .then(response => {
         for(const [key, value] of Object.entries(response)) {
           this.user[key] = value;
@@ -73,6 +75,19 @@ export default {
       .catch(err => {
         console.error(err);
       });
+
+    } else {
+      UserService.getUser(this.currentUser.id)
+      .then(response => {
+        for(const [key, value] of Object.entries(response)) {
+          this.user[key] = value;
+        }
+      })
+      .catch(err => {
+        console.error(err);
+      });
+    }
+
 
     // UserService.getPublicContent().then(
     //   (response) => {

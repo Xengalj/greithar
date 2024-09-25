@@ -126,11 +126,6 @@
       "dimensions": "64 ft. or more",
       "weight":     "125 tons or more"
     }
-  },
-  "dice steps": {
-    "1d4": {
-      "up": ["", "1d6", "1d8"],
-      "down": ["", "1d3", "1d2"]
-    }
   }
+
 }

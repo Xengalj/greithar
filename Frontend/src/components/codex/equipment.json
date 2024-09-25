@@ -4,7 +4,7 @@
     "heavy vs light blades"
   ],
 
-  "armor": {
+  "Armor": {
     "Armored Kilt" : {
       "AC Bonus": 1,
       "Max Dex": 6,

@@ -3,6 +3,11 @@ const fs = require('fs');
 const Papa = require('papaparse');
 
 const ItemController = require("../controllers/equipment.controller");
+const armor = require('../data/armor.json');
+const shields = require('../data/shields.json');
+const weapons = require('../data/weapons.json');
+// const materials = require('../data/materials.json');
+const goods = require('../data/goods.json');
 
 module.exports = function(app) {
   app.use(function(req, res, next) {
@@ -93,7 +98,7 @@ module.exports = function(app) {
   *         EQUIPMENT         *
   *                           *
   \***************************/
-
+/*
   // return a JSON of items, either all or given type
   app.post("/api/data/equipment/read", ItemController.read);
 
@@ -102,5 +107,15 @@ module.exports = function(app) {
 
   // delete items of a given type
   app.get("/api/data/equipment/delete", ItemController.delete)
+  */
+
+  app.post(
+    "/api/data/equipment/read",
+    (req, res) => {
+      let items = { armor, shields, weapons };
+      res.status(200).send(items);
+    }
+  );
+
 
 };

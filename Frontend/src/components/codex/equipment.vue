@@ -28,12 +28,15 @@
 </template>
 
 <script>
+import DataService from "@/services/data.service";
+
 const equipmentTable = require("@/components/codex/equipment.json");
 
 export default {
   name: "Equipment",
   data() {
     return {
+      loading: false,
       tableName: "equipmentTable",
       tableData: {},
       tableFilters: {},
@@ -50,14 +53,29 @@ export default {
   },
 
   created() {
+    // this.getEquipment;
     this.tableUpdate();
   },
   mounted() {},
   methods: {
+    async getEquipment() {
+      this.loading = true;
+      DataService.getEquipment()
+      .then(response => {
+        console.log("Server:", response);
+        this.tableUpdate();
+      })
+      .catch(err => { console.error(err); })
+
+    },
+
+
+
+
     tableUpdate() {
       switch (this.selectedType.label) {
         case "Armor":
-          this.tableData = equipmentTable.armor;
+          this.tableData = equipmentTable.Armor;
           this.tableFilters = {
             "Proficiency": {
               "Light": { label: "Light", color: "#1EC79D" },
@@ -131,7 +149,6 @@ export default {
               "Locks, Keys, Tools & Kits": { label: "Locks, Keys, Tools & Kits", color: "#71797E" },
               "Religious Items, Toys & Games": { label: "Religious Items, Toys & Games", color: "#F259FF" }
             }
-
           };
           break;
 
@@ -139,7 +156,7 @@ export default {
           this.tableData = {};
           this.tableFilters = {};
       }
-
+      this.loading = false;
     }
   }
 };

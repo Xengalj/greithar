@@ -1,37 +1,19 @@
 <template>
   <div class="container">
 
-    {{ tableSearch }}
-
     <!-- FILTERS -->
     <el-row class="row-bg" justify="space-between">
       <el-col :span="6">
-        <el-input v-model="tableSearch" size="small" placeholder="Type to search" />
+        <el-input v-model="tableSearch" size="small" placeholder="Type to search" v-on:change="nameSearch()" />
       </el-col>
-
-      <el-col :span="6">
-        <el-select v-model="tableColor" multiple placeholder="Select" style="width: 240px">
-          <el-option v-for="item in colors" :key="item.value" :label="item.label" :value="item.value" >
-            <div class="flex items-center">
-              <el-tag :color="item.value" style="margin-right: 8px" size="small" />
-              <span :style="{ color: item.value }">{{ item.label }}</span>
-            </div>
-          </el-option>
-          <template #tag>
-            <el-tag v-for="color in tableColor" :key="color" :color="color" />
-          </template>
-        </el-select>
-      </el-col>
-
-      <el-col :span="6">
-        <el-button @click="filterHandler">Filter</el-button>
+      <el-col :span="16">
         <el-button @click="clearFilter">Reset</el-button>
       </el-col>
     </el-row>
 
-
     <!-- MONSTER TABLE -->
     <el-table
+      ref="filterTable"
       :data="tableData"
       :default-sort="{ prop: 'cr', order: 'ascending' }"
       v-loading="loading"
@@ -39,27 +21,53 @@
       height="500"
       style="width: 100%"
       stripe
+      :lazy="true"
     >
       <el-table-column sortable prop="Name" label="Name" width="180" />
 
-      <el-table-column sortable prop="Type" label="Type">
+      <el-table-column
+        prop="Type"
+        label="Type"
+        :filters="typeFilter"
+        :filter-method="handleFilter"
+        filter-placement="bottom">
         <template #default="scope">
           <el-row class="row-bg" justify="space-between">
             <el-col :span="6">
-              <g-icon iconSize="32px" :iconName="scope.row.Type"/>
+              <g-icon iconSize="32px" :iconName="scope.row.Type" :key="scope.row.Name" />
             </el-col>
-            <el-col :span="17">
+            <el-col :span="15">
               {{ scope.row.Type }}
             </el-col>
           </el-row>
-         </template>
-       </el-table-column>
+        </template>
+      </el-table-column>
 
       <el-table-column sortable prop="CR" label="CR" />
       <el-table-column sortable prop="HP" label="HP" />
       <el-table-column sortable prop="AC" label="AC" />
-      <el-table-column sortable prop="Alignment" label="Align" />
-      <el-table-column sortable prop="Environment" label="Environment" />
+      <el-table-column
+        prop="Alignment"
+        label="Align"
+        :filters="alignmentFilter"
+        :filter-method="handleFilter"
+        filter-placement="bottom">
+        <template #default="scope">
+          {{ scope.row.Alignment }}
+        </template>
+      </el-table-column>
+
+      <el-table-column
+        prop="Environment"
+        label="Environment"
+        :filters="environFilter"
+        :filter-method="handleFilter"
+        filter-placement="bottom">
+        <template #default="scope">
+          {{ scope.row.Environment }}
+        </template>
+      </el-table-column>
+
 
       <el-table-column label="Actions" width="100px;">
         <template #default="scope">
@@ -103,25 +111,56 @@ export default {
   data() {
     return {
       loading: false,
+      allMonsters: [],
       tableData: [],
       tableSearch: "",
       typeFilter: [
-        // { text: 'Aberrations', value: 'aberration' },
-        // { text: 'Animals', value: 'animal' },
-        // { text: 'Constructs', value: 'construct' },
+        { text: 'Aberrations', value: 'aberration' },
+        { text: 'Animals', value: 'animal' },
+        { text: 'Constructs', value: 'construct' },
         { text: 'Dragons', value: 'dragon' },
-        // { text: 'Fey', value: 'fey' },
-        // { text: 'Humanoids', value: 'humanoid' },
-        // { text: 'Magical Beasts', value: 'magical beast' },
-        // { text: 'Monsterous Humanoids', value: 'monstrous humanoid' },
-        // { text: 'Oozes', value: 'ooze' },
-        // { text: 'Outsiders', value: 'outsider' },
-        // { text: 'Plants', value: 'plant' },
-        // { text: 'Undead', value: 'undead' },
-        // { text: 'Vermin', value: 'vermin' },
+        { text: 'Fey', value: 'fey' },
+        { text: 'Humanoids', value: 'humanoid' },
+        { text: 'Magical Beasts', value: 'magical beast' },
+        { text: 'Monsterous Humanoids', value: 'monstrous humanoid' },
+        { text: 'Oozes', value: 'ooze' },
+        { text: 'Outsiders', value: 'outsider' },
+        { text: 'Plants', value: 'plant' },
+        { text: 'Undead', value: 'undead' },
+        { text: 'Vermin', value: 'vermin' },
+      ],
+      alignmentFilter: [
+        { text: 'LG', value: 'lg' },
+        { text: 'NG', value: 'ng' },
+        { text: 'CG', value: 'cg' },
+        { text: 'LN', value: 'ln' },
+        { text: 'N',  value: 'n' },
+        { text: 'CN', value: 'cn' },
+        { text: 'LE', value: 'le' },
+        { text: 'NE', value: 'ne' },
+        { text: 'CE', value: 'ce' },
       ],
       environFilter: [
-        { text: 'Any', value: 'any' },
+        { text: "Any", value: "any" },
+        { text: "Cold", value: "cold" },
+        { text: "Temperate", value: "temperate" },
+        { text: "Warm", value: "warm" },
+        { text: "Aquatic", value: "aquatic" },
+        { text: "Coastline", value: "coastline" },
+        { text: "Desert", value: "desert" },
+        { text: "Forest", value: "forest" },
+        { text: "Hills", value: "hills" },
+        { text: "Jungle", value: "jungle" },
+        { text: "Mountains", value: "mountains" },
+        { text: "Ocean", value: "ocean" },
+        { text: "Sea", value: "sea" },
+        { text: "Plains", value: "plains" },
+        { text: "River", value: "river" },
+        { text: "Lakes", value: "lakes" },
+        { text: "Swamp", value: "swamp" },
+        { text: "Marsh", value: "marsh" },
+        { text: "Urban", value: "urban" },
+        { text: "Underground", value: "underground" }
       ],
 
       tableColor: "",
@@ -142,36 +181,48 @@ export default {
     };
   },
 
-  mounted() {
+  created() {
     this.getBeastiary();
   },
+  mounted() {},
   methods: {
     async getBeastiary() {
       this.loading = true;
       DataService.getBeastiary()
       .then(response => {
-        this.tableData = response;
+        this.allMonsters = response;
+        this.tableData = this.allMonsters;
         this.loading = false;
       })
       .catch(err => { console.error(err); });
     },
-    clearFilter() {
-      // this.$router.go();
-      this.tableColor = {};
-      this.tableSearch = "";
-    },
-    filterHandler( value, row, column ) {
+    handleFilter(value, row, column) {
       const property = column['property'];
-      return row[property] === value;
-      /*
-      const filterTableData = computed(() =>
-        tableData.filter(
-          (data) =>
-            !tableSearch.value ||
-            data.name.toLowerCase().includes(tableSearch.value.toLowerCase())
-        )
-      )
-      */
+      if (row[property]) {
+        return row[property].toLowerCase().includes(value);
+      }
+    },
+    clearFilter() {
+      this.tableSearch = "";
+      this.$refs.filterTable.clearFilter();
+      // this.tableData = this.allMonsters;
+    },
+    nameSearch() {
+      let monName, searchStr, mons = this.allMonsters;
+      searchStr = this.tableSearch.toLowerCase();
+      this.tableData = [];
+      if (searchStr == "") {
+        this.tableData = mons;
+        return;
+      }
+      this.loading = true;
+      for (let i = 0; i < mons.length; i++) {
+        monName = mons[i].Name.toLowerCase();
+        if ( monName.includes( searchStr ) ) {
+          this.tableData.push(mons[i]);
+        }
+      }
+      this.loading = false;
     },
 
     // MONSTER MODAL
@@ -185,3 +236,9 @@ export default {
   }
 };
 </script>
+
+<style media="screen">
+.dark table {
+  background-color: light-dark( var(--white), var(--color-surface-100) );
+}
+</style>

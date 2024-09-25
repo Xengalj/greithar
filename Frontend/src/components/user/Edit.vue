@@ -55,6 +55,10 @@ export default {
   },
   computed: {
     currentUser() {
+
+      // TODO: change user's fave color:
+      // document.documentElement.style.cssText = "--main-background-color: red";
+      
       return this.$store.state.auth.user;
     }
   },
