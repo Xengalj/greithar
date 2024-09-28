@@ -113,32 +113,17 @@
       ]
     },
 
-
-
-
-
-
-
-
-
-
-
-
-
     "Cold Iron": {
-      "Cost": {},
-      "Type": "",
-      "Description": "",
+      "Cost": {
+        "Weapon": "x2 gp",
+        "Magic Enhancement": "+2,000 gp"
+      },
+      "Type": "Metal",
+      "Description": "This iron, mined deep underground and known for its effectiveness against demons and fey creatures, is forged at a lower temperature to preserve its delicate properties.",
       "Special": [
-
-        "Cost Weapons x2 normal. Add magic enhancement +2,000 gp.",
-        "This iron, mined deep underground and known for its effectiveness against demons and fey creatures, is forged at a lower temperature to preserve its delicate properties.",
-        "Weapons made of cold iron cost twice as much to make as their normal counterparts.",
-        "Also, adding any magical enhancements to a cold iron weapon increases its price by 2,000 gp.",
-        "This increase is applied the first time the item is enhanced, not once per ability added.",
+        "The first time a cold iron weapon is enhanced, the increase is 2,000 gp not the standard 1,000 gp.",
         "A double weapon with one cold iron half costs 50% more than normal.",
         "Items without metal parts cannot be made from cold iron.",
-        "An arrow could be made of cold iron, but a quarterstaff could not."
       ]
     },
     "Cryptstone": {
@@ -156,7 +141,6 @@
         "Weapons made of cryptstone that have the disruption special ability increase the DC of that ability by +1."
       ]
     },
-
 
     "Darkleaf Cloth": {
       "Cost": {
@@ -187,14 +171,14 @@
         "The armor check penalty of a darkwood shield is lessened by 2 compared to an ordinary shield of its type."
       ]
     },
-    "Djezet": {
-      "Cost": { "One Dose": "200 gp" },
-      "Type": "Magic",
-      "Description": "One of the strangest of skymetals, rust-red djezet is liquid at all temperatures.",
-      "Special": [
-        "Djezet may be used as an additional material component for spells, using 1 dose per original spell level. When used this way, the spell's level is increased by 1 stacking with heightened spell."
-      ]
-    },
+        "Djezet": {
+          "Cost": { "One Dose": "200 gp" },
+          "Type": "Magic",
+          "Description": "One of the strangest of skymetals, rust-red djezet is liquid at all temperatures.",
+          "Special": [
+            "Djezet may be used as an additional material component for spells, using 1 dose per original spell level. When used this way, the spell's level is increased by 1 stacking with heightened spell."
+          ]
+        },
     "Dragonhide": {
       "Cost": {
         "Light armor":	"x2 gp",
@@ -266,16 +250,6 @@
       ]
     },
 
-
-
-
-
-
-
-
-
-
-
     "Fire-forged Steel": {
       "Cost": {
         "Ammunition": "+15 gp per item",
@@ -285,220 +259,185 @@
         "Heavy armor":	"+3,000 gp"
       },
       "Type": "Metal",
-      "Description": "",
+      "Description": "Dwarves stumbled across the secret of crafting fire-forged steel in an effort to make forge-friendly tools, this steel channels heat in one direction.",
       "Special": [
         "Armor or weapons made from fire-forged steel are always masterwork (price included).",
-
-        "Dwarves stumbled across the secret of crafting fire-forged steel in an effort to make forge-friendly tools.",
-        "It didn’t take them long to adapt its unique properties to arms and armor.",
-        "Fire-forged steel channels heat in one direction to protect its wearer or wielder.",
-        "When it is crafted into armor, heat is channeled away from the wearer, offering some limited protection.",
         "Armor crafted from fire-forged steel grants the wearer fire resistance 2.",
-        "Weapons crafted from fire-forged steel similarly channel heat away from the wearer; this does not grant the wielder energy resistance.",
-        "Instead, the blade absorbs and channels heat to the parts of the weapon that contact enemies.",
-        "If the weapon is exposed to 10 points or more of fire damage (such as from an opponent’s fireball or by holding it in a campfire for 1 full round),",
-        "    the weapon adds +1d4 points of fire damage to its attacks for the next 2 rounds.",
-        "If the wielder is wearing fire-forged armor and using a fire-forged weapon, this bonus damage increases to 1d6 points of fire damage and lasts for 4 rounds.",
-        "This bonus damage does not stack with fire damage from weapon enhancements such as flaming."
+        "If a fire-forged weapon is exposed to 10 points or more of fire damage (such as from an opponent’s fireball or by holding it in a campfire for 1 full round), the weapon adds +1d4 points of fire damage to its attacks for the next 2 rounds.",
+        "If the wielder is wearing fire-forged armor and using a fire-forged weapon, this bonus damage increases to 1d6 points of fire damage and lasts for 4 rounds (does not stack with flaming enhancement)."
       ]
     },
-
     "Frost-Forged Steel": {
-      "Cost": {},
+      "Cost": {
+        "Ammunition": "+15 gp per item",
+        "Weapon":	"+600 gp",
+        "Light armor":	"+1,000 gp",
+        "Medium armor":	"+2,500 gp",
+        "Heavy armor":	"+3,000 gp"
+      },
       "Type": "Metal",
-      "Description": "",
+      "Description": "This material is the same substance as fire-forged steel with a subtle difference in the alignment of the metal during crafting. Instead of channeling heat away from the wearer, it channels heat toward the wearer.",
       "Special": [
-
-        "Armor or weapons made from frost-forged steel are always considered masterwork, and the masterwork costs are included in the listed prices.",
-        "",
-        "This material is the same substance as fire-forged steel with a subtle difference in the alignment of the metal during crafting.",
-        "Instead of channeling heat away from the wearer, it channels heat toward the wearer.",
-        "Frost-forged steel works similarly to fire-forged steel, except its effects apply to cold damage rather than fire damage.",
-        "This means frost-forged steel weapons are less useful than their fire-forged counterparts, as there are few non-magical sources of cold that can quickly imbue it with enough cold energy to deal bonus damage."
-
+        "Armor or weapons made from frost-forged steel are always masterwork (price included).",
+        "Armor crafted from frost-forged steel grants the wearer cold resistance 2.",
+        "If a frost-forged weapon is exposed to 10 points or more of cold damage (such as from an opponent’s snowball), the weapon adds +1d4 points of cold damage to its attacks for the next 2 rounds.",
+        "If the wielder is wearing frost-forged armor and using a frost-forged weapon, this bonus damage increases to 1d6 points of cold damage and lasts for 4 rounds (does not stack with frost enhancement)."
       ]
     },
-
 
     "Gold": {
-      "Cost": {},
-      "Description": "",
+      "Cost": { "Base Item": "x10 gp" },
+      "Description": "Typically only used for ceremonial weapons and armor, metal equipment made from gold is fragile, heavy, and expensive. Often golden armor is gold-plated rather than constructed entirely from gold.",
       "Type": "Metal",
       "Special": [
-
-        "Typically only used for ceremonial weapons and armor, metal equipment made from gold is fragile, heavy, and expensive.",
-        "Often golden armor is gold-plated rather than constructed entirely from gold.",
-
-        "The rules shown are for the rare item constructed entirely of gold rather than being gold-plated.",
-        "Gold-plated items triple the base cost of weapons and armor and have the same properties as the item the gold is plating.",
-        "Items constructed purely of gold cost 10 times the normal cost for items of their type.",
+        "Items that are Gold-plated are triple the base cost and have the same properties as the item the gold is plating (ignore the rest of this section).",
         "Gold items weigh 50% more than typical weapons or armor of their type.",
-
-        "Weapons Gold is often too soft to hold a decent edge, but light weapons that do piercing or slashing damage can be constructed of gold or some nearly gold alloy.",
-        "They take a –2 penalty on damage rolls (minimum 1 damage).",
+        "Light weapons that deal piercing or slashing damage may be made of gold, but take a -2 penalty on damage rolls.",        
         "Gold weapons have a hardness of half their base weapons’ and also have the fragile quality.",
-
-        "Armor Gold can be fashioned into light or medium metal armor.",
+        "Gold can be fashioned into light or medium metal armor.",
         "The softness and the weight of the metal decrease the armor/shield bonus by 2, and increase the armor check penalty by 2.",
         "Gold armor has a hardness 5 and the fragile quality."
-
       ]
     },
-
     "Greenwood": {
-      "Cost": {},
+      "Cost": { "Base Item": "+50 gp / pound" },
       "Type": "Organic",
-      "Description": "",
+      "Description": "Each length is taken, with leaves still attached, from a tree animated by a treant and cut with care to avoid the death of the tree. A dryad then speaks to and shapes the wood, coaxing the living green of the leaves into the grain of the wood itself.",
       "Special": [
-
-        "HP/inch as wood; Hardness as wood; Cost To determine the price of a greenwood item, use the original weight but add 50 gp per pound to the price of a masterwork version of that item.",
-        "Items made from darkwood cannot be made into greenwood.",
-
-        "The secret of greenwood lies in its harvesting.",
-        "Each length is taken, with leaves still attached, from a tree animated by a treant and cut with care to avoid the death of the tree.",
-        "A dryad then speaks to and shapes the wood, coaxing the living green of the leaves into the grain of the wood itself.",
-        "The resulting wood remains alive as long as it is doused with at least one gallon of water (plus 1 gallon for every 10 pounds of the item’s weight) once per week and allowed to rest for an hour in contact with fertile soil.",
-        "Any wooden or mostly wooden item (such as a bow or spear) made from greenwood is considered a masterwork item.",
-        "Items not normally made of wood or only partially of wood (such as a battleaxe or a mace) either cannot be made from greenwood or do not gain any special benefit from being made of greenwood.",
-
+        "Greenwood items must be masterwork (price not included) and cannot be made of darkwood.",
+        "Greenwood items must be doused with 1 gallon (plus 1 gallon / 10 pounds of item) once per week and allowed to rest for an hour in contact with fertile soil.",
         "When damp and in contact with fertile soil, living greenwood heals damage to itself at a rate of 1 hit point per hour, even repairing breaks and regrowing missing pieces.",
-        "If the weapon has the broken condition, it is repaired during the first hour of contact with fertile soil.",
+        "If a greenwood weapon has the broken condition, it is repaired during the first hour of contact with fertile soil.",
         "Greenwood items take only one-quarter damage from fire.",
-
-        "Greenwood can be altered or enhanced with wood-shaping magic such as ironwood, shape wood, and warp wood.",
-        "The duration of any such effect on a greenwood item is doubled."
+        "Greenwood can be altered or enhanced with wood-shaping magic such as ironwood, shape wood, and warp wood, and the duration of any such effect is doubled."
       ]
     },
-
     "Griffon Mane": {
-      "Cost": {},
-      "Type": "",
-      "Description": "",
+      "Cost": {
+        "Light armor":	"+200 gp",
+        "Other items":	"+50 gp/lb."
+      },
+      "Type": "Textile",
+      "Description": "This rough-spun cloth, ranging in color from golden-brown to brown-black, is woven from the mane of leonine magical beasts, primarily griffons but also chimeras and manticores, and is exceptionally strong and light.",
       "Special": [
-
-        "HP/inch as normal cloth x2; Hardness 1; Cost see table",
-        "Type of Item	Price Modifier",
-        "Light armor	+200 gp",
-        "Other items	+50 gp/lb.",
-        "This rough-spun cloth, ranging in color from golden-brown to brown-black, is woven from the mane of leonine magical beasts, primarily griffons but also chimeras and manticores, and is exceptionally strong and light.",
         "Wearing a cloak, robe, clothing outfit, or padded or quilted armor made from griffon mane grants a +2 competence bonus on Fly checks.",
         "If an item made of griffon mane is magically given the ability to fly, the cost to add that specific magical property is reduced by 10%, though this does not reduce the cost of any other abilities the item has."
-
       ]
     },
-
 
     "Horacalcum": {
-      "Cost": {},
-      "Type": "",
-      "Description": "",
+      "Cost": {
+        "Weapon": "+6,000 gp",
+        "Light armor": "+10,000 gp",
+        "Medium armor": "+30,000 gp",
+        "Heavy armor": "+60,000 gp"
+      },
+      "Type": "Metal",
+      "Description": "The rarest of the known skymetals, this dull, coppery substance warps time around it, making things seem to speed up or slow down.",
       "Special": [
-
-        "The rarest of the known skymetals, this dull, coppery substance warps time around it, making things seem to speed up or slow down.",
-        "Almost never found in amounts greater than a pound, horacalcum is the same weight and density as steel, but is much more durable. A weapon made of horacalcum gains a +1 circumstance bonus on attack rolls (ammunition can be made of horacalcum, but doesn’t grant any bonus on attack rolls). An entire suit of armor made from this metal is fantastically expensive, but since a suit of horacalcum armor simultaneously allows its wearer to perceive time at a slower rate (and thus react more", "quickly), some consider the cost justifiable. A suit of light horacalcum armor grants a +1 bonus on Initiative checks, medium horacalcum armor grants a +2 bonus on Initiative checks, and heavy horacalcum armor grants a +3 bonus on Initiative checks. Weapons and armor made of horacalcum are always of masterwork quality—the masterwork cost is included in the prices given below.",
-        "Weapons and armor made of horacalcum have one-quarter more hit points than normal. Horacalcum has 30 hit points per inch of thickness and hardness 15. Horacalcum increases a weapon’s costs by 6,000 gp, light armor by 10,000 gp, medium armor by 30,000 gp, and heavy armor by 60,000 gp."
-
+        "Weapons and Armor made from horacalcum are always masterwork (price included).",
+        "Horacalcum weapons gain a +1 circumstance bonus on attack rolls, though ammunition do not get this bonus.",
+        "A suit of horacalcum armor is fantastically expesive, but allows its wearer to percive time at a slower rate; light armor grants a +1 bonus on Initiative, medium armor grants a +2 bonus, and heavy armor grants a +3 bonus."
       ]
     },
-
 
     "Inubrix": {
-      "Cost": {},
-      "Type": "",
-      "Description": "",
+      "Cost": { "Weapon": "+5,000 gp" },
+      "Type": "Metal",
+      "Description": "Inubrix is the softest of the solid skymetals and its structure allows it to pass through iron and steel without touching them, seeming to shift in and out of phase with reality.",
       "Special": [
-
-        "This metal’s structure allows it to pass through iron and steel without touching them, seeming to shift in and out of phase with reality. Inubrix is the softest of the solid skymetals, being only slightly less malleable than lead. As a result, it doesn’t function well for crafting armor. Though inubrix weapons can penetrate most metal armors with relative ease, the weapons tend to break easily. Inubrix has 10 hit points per inch of thickness and hardness 5.",
-        "An inubrix weapon deals damage as if it were one size category smaller than its actual size, and is always treated as if it had the broken condition. It ignores all armor or shield bonuses granted by iron or steel armor or shields. Inubrix weapons cannot damage these materials at all (and, by extension, cannot harm iron golems or similar creatures). Inubrix increases a weapon’s costs by 5,000 gp."
-
+        "An inubrix weapon deals damage as if it were one size category smaller than its actual size, and is always treated as if it had the broken condition (-2 to attack and damage rolls and crit is set to 20/x2).",
+        "An inubrix weapon also ignores all armor or shield bonuses granted by iron or steel armor or shields.",
+        "Inubrix weapons cannot damage iron or steel at all (and, by extension, cannot harm iron golems or similar creatures)."
       ]
     },
-
 
     "Lead-Lined": {
-      "Cost": {},
-      "Type": "",
+      "Cost": { "Base Item": "+0 gp" },
+      "Type": "Metal",
       "Description": "",
       "Special": [
-
-        "Lead-lined weapons hit with greater impact, gaining a +1 bonus to damage rolls when dealing bludgeoning or slashing damage (this extra damage is multiplied on a critical hit). This bonus to damage is doubled for two-handed weapons. Lead-lined clothing and armor grants its wearer negative energy resistance 1 for light armor and clothing, 3 for medium armor, and 5 for heavy armor. However, the wearer takes a -1 penalty to all Dexterity– and Strength-based skill checks due to the unusual", "weight.",
-        "Lead-lined objects weigh 1.5 times as much as their normal counterparts. Otherwise, lead-lined steel has the same statistics as normal steel."
-
+        "Lead-lined weapons get a +1 bonus to damage rolls when dealing bludgeoning or slashing damage, and two-handed weapons double this damage.",
+        "Lead-lined clothing and armor grants its wearer negative energy resistance 1 for light armor and clothing, 3 for medium armor, and 5 for heavy armor. The wearer also takes a -1 penalty to all Dexterity– and Strength-based skill checks.",
+        "Lead-lined objects weigh 1.5 times as much as their normal counterparts."
       ]
     },
-
-
     "Living Steel": {
-      "Cost": {},
-      "Type": "",
-      "Description": "",
+      "Cost": {
+        "Ammunition":	"+10 gp per item",
+        "Weapon":	"+500 gp",
+        "Shield":	"+100 gp",
+        "Light armor":	"+500 gp",
+        "Medium armor":	"+1,000 gp",
+        "Heavy armor":	"+1,500 gp",
+        "Other items":	"+250 gp/lb."
+      },
+      "Type": "Metal",
+      "Description": "Some trees suck up opotent minerals and when they eventually fall, they leave behind glossy green nuggets known as living steel, which can repair itself.",
       "Special": [
-
-        "Type of Item	Price Modifier",
-        "Ammunition	+10 gp per item",
-        "Light armor	+500 gp",
-        "Medium armor	+1,000 gp",
-        "Heavy armor	+1,500 gp",
-        "Weapon	+500 gp",
-        "Shield	+100 gp",
-        "Other items	+250 gp/lb.",
-
-        "Some trees suck up potent minerals through their roots the same way others draw water from the ground. Though these trees blunt saws and axes used to hew them and shrug off fire, they eventually succumb to time or the elements. When properly harvested, these fallen trees produce nuggets of a metal called living steel. This glossy green metal slowly repairs itself. An item made from living steel repairs damage to itself at a rate of 2 hit points per day, or 1 hit point per day if it has",
-        "the broken condition. Items not primarily of metal are not meaningfully affected by being partially made of living steel.",
-        "Armor and shields made from living steel can damage metal weapons that strike them. Whenever the wielder of a metal weapon rolls a natural 1 on an attack roll against a creature wearing living steel armor or wielding a living steel shield, the item must make a DC 20 Fortitude save or gain the broken condition. If the weapon already has the broken condition, it is instead destroyed. Living steel cannot damage adamantine weapons in this way."
-
+        "An item made from living steel repairs damage to itself at a rate of 2 hit points per day, or 1 hit point per day if it has the broken condition.",
+        "Items not primarily of metal are not meaningfully affected by being partially made of living steel.",
+        "Whenever a metal weapons rolls a natural 1 against a creature wearing living steel armor or wielding a living steel shield, the item must make a DC 20 Fortitude save or become broken. If the item is already broken, it gets destroyed. Adamantine weapons are immune to this effect."
       ]
     },
-
-
+    
     "Mindglass": {
-      "Cost": {},
-      "Type": "",
-      "Description": "",
+      "Cost": { "Base Item": "+13,000 gp" },
+      "Type": "Stone",
+      "Description": "Mindglass is a special material as strong as steel that also provides the bearer with protection against an opponent’s psychic abilities.",
       "Special": [
 
-        "Mindglass is a special material as strong as steel that also provides the bearer with protection against an opponent’s psychic abilities. When a creature wielding a melee weapon made of mindglass succeeds at a saving throw against a psychic or mind-affecting effect from a creature, the weapon stores some of that energy and holds it for a future attack. A mindglass weapon can store this energy for a number of rounds equal to the level of the spell, or half the creature’s CR if the effect" "wasn’t a spell or spell-like ability. If the weapon hits a creature while still holding this energy, it suffuses the target with a disruptive field for 1 round. On a critical hit, the disruptive field effect instead lasts for a number of rounds equal to the weapon’s critical multiplier.",
-        "While affected by this field, a target must succeed at a concentration check (DC = 15 + twice the spell’s level) to cast any spell or spell-like ability (in addition to any other required concentration checks). If the check is failed, the affected creature’s spell or spell-like ability is wasted. A Small or Medium weapon made of mindglass costs an additional 13,000 gp."
+When a creature wielding a melee weapon made of mindglass succeeds at a saving throw against a psychic or mind-affecting effect from a creature,
+  the weapon stores some of that energy and holds it for a future attack.
+A mindglass weapon can store this energy for a number of rounds equal to the level of the spell,
+  or half the creature’s CR if the effect wasn’t a spell or spell-like ability.
+If the weapon hits a creature while still holding this energy, it suffuses the target with a disruptive field for 1 round. On a critical hit,
+  the disruptive field effect instead lasts for a number of rounds equal to the weapon’s critical multiplier.
+While affected by this field, a target must succeed at a concentration check (DC = 15 + twice the spell’s level) to cast any
+  spell or spell-like ability (in addition to any other required concentration checks).
+If the check is failed, the affected creature’s spell or spell-like ability is wasted.
 
       ]
     },
-
     "Mithral": {
-      "Cost": {},
-      "Type": "",
-      "Description": "",
+      "Cost": {
+        "Light armor";	"+1,000 gp",
+        "Medium armor":	"+4,000 gp",
+        "Heavy armor":	"+9,000 gp",
+        "Shield":	"+1,000 gp",
+        "Other items":	"+500 gp/lb."
+      },
+      "Type": "Metal",
+      "Description": "Mithral is a very rare silvery, glistening metal that is lighter than steel but just as hard.",
       "Special": [
-
-        Cost Weapons or armors fashioned from mithral are always masterwork items as well; the masterwork cost is included in the prices given below.; Weight 1/2 normal; Weight (Longer Wording) An item made from mithral weighs half as much as the same item made from other metals. In the case of weapons, this lighter weight does not change a weapon’s size category or the ease with which it can be wielded (whether it is light, one-handed, or two-handed).
-
-        Type of Item	Item Cost Modifier
-        Light armor	+1,000 gp
-        Medium armor	+4,000 gp
-        Heavy armor	+9,000 gp
-        Shield	+1,000 gp
-        Other items	+500 gp/lb.
-
-        Mithral is a very rare silvery, glistening metal that is lighter than steel but just as hard.
-        When worked like steel, it becomes a wonderful material from which to create armor, and is occasionally used for other items as well. Most mithral armors are one category lighter than normal for purposes of movement and other limitations. Heavy armors are treated as medium, and medium armors are treated as light, but light armors are still treated as light. This decrease does not apply to proficiency in wearing the armor. A character wearing mithral full plate must be proficient in wearing heavy armor to avoid adding the armor’s check penalty to all his attack rolls and skill checks that involve moving. Spell failure chances for armors and shields made from mithral are decreased by 10%, maximum Dexterity bonuses are increased by 2, and armor check penalties are decreased by 3 (to a minimum of 0).
-        Items not primarily of metal are not meaningfully affected by being partially made of mithral. (A longsword can be a mithral weapon, while a quarterstaff cannot.) Mithral weapons count as silver for the purpose of overcoming damage reduction.
-
+        "Weapons and Armor made from mithral are always masterwork (price included).",
+        "An item made from mithral weighs half as much as the same item made from other metals (this does not change its category).",
+        "Heavy armors are treated as medium, and medium armors are treated as light, but light armors are still treated as light. This decrease does not apply to proficiency in wearing the armor.",
+        "Spell failure chances for armors and shields made from mithral are decreased by 10%, maximum Dexterity bonuses are increased by 2, and armor check penalties are decreased by 3 (to a minimum of 0).",
+        "Mithral weapons count as silver for the purpose of overcoming damage reduction."
       ]
     },
-
 
     "Noqual": {
-      "Cost": {},
-      "Type": "",
-      "Description": "",
+      "Cost": {
+        "Weapon": "+500 gp",
+        "Shield": "+2,000 gp",
+        "Light armor":  "+4,000 gp",
+        "Medium armor":  "+8,000 gp",
+        "Heavy armor":  "+12,000 gp",
+        "Other": "+500 gp"
+      },
+      "Type": "Metal",
+      "Description": "Noqual looks like a pale green crystal to the untrained eye, but can be worked as iron, while being resistant to magic.",
       "Special": [
-
-        Noqual looks like a pale green crystal to the untrained eye, but can be worked as iron despite its appearance. Noqual is light—half as heavy as iron, yet just as strong. More importantly, noqual is strangely resistant to magic. An object made of noqual gains a +4 bonus on any saving throw made against a magical source.
-        Weapons made of noqual weigh half as much as normal, and gain a +1 enhancement bonus on damage rolls against constructs and undead created by feats or spells. Noqual armor weighs half as much as other armors of its type. For the purposes of movement and other limitations, heavy noqual armor is treated as medium armor, and medium noqual armor is treated as light armor. The armor’s maximum Dexterity bonus increases by 2, and armor check penalties are reduced by 3. The armor’s spell failure chance increases by 20% and applies to all magic cast while wearing the armor, regardless of the magic’s source or the wearer’s class abilities. The wearer of a suit of noqual armor gains a +2 resistance bonus on all saving throws against spells and spell-like abilities.
-        Noqual has 30 hit points per inch of thickness and hardness 10. Noqual ore is worth 50 gp per pound. Noqual increases the cost of light armor by 4,000 gp, medium armor by 8,000 gp, heavy armor by 12,000 gp, a shield by 2,000 gp, and a weapon or other item by 500 gp. Creating a magic item that incorporates any amount of noqual into it increases the price of creation by 5,000 gp, as costly reagents and alchemical supplies must be used to treat the metal during the process.
-
+        "An object made of noqual gains a +4 bonus on any saving throw made against a magical source.",
+        "Weapons made of noqual weigh half as much as normal, and gain a +1 enhancement bonus on damage rolls against constructs and undead created by feats or spells.",
+        "Noqual armor weighs half as much as other armors of its type. Noqual armor treats heavy armor as medium, and medium as light for movement limitation purposes.",
+        "Noqual armor has a number of stat changes to the base armor type, they are as follows: Max Dex increases 2, Armor Penalty decreases by 3, Spell Failure increases by 20% (this applies to all magic regardless of source, type, or class abilities).",
+        "Wearing noqual armor grants a +2 resistance bonus on all saving throws against spells and spell-like abilities.",
+        "Creating a magic item that incorporates any amount of noqual into it increases the creation price by 5,000 gp."
       ]
     },
-
 
     "Obsidian": {
       "Cost": {},
@@ -506,35 +445,57 @@
       "Description": "",
       "Special": [
 
-        Cost 1/2 normal.; Weight 3/4 normal.; Cost/Weight (Longer Wording) “Obsidian weapons cost half of what base items of their type do, and weigh 75% of what base items of their type do.”
-        This black volcanic glass is extremely sharp, and can be shaped into a variety of weapons that do piercing and slashing damage. Bits of obsidian inserted into a length of tempered wood create effective swords called terbutjes.
-        Weapons Obsidian can be used to craft light and one-handed weapons that do piercing or slashing damage, as well as spear tips and arrowheads. Obsidian weapons have half the hardness of their base weapon and have the fragile quality.
-        Armor The fragile glass nature of obsidian is perfect for creating sharp points and blades, but those same qualities make it unsuitable for creating armor. Armor cannot be constructed from obsidian.
+        “Obsidian weapons cost half of what base items of their type do, and weigh 75% of what base items of their type do.”
+        
+        This black volcanic glass is extremely sharp, and can be shaped into a variety of weapons that do piercing and slashing damage.
+      Bits of obsidian inserted into a length of tempered wood create effective swords called terbutjes.
+        Weapons Obsidian can be used to craft light and one-handed weapons that do piercing or slashing damage,
+      as well as spear tips and arrowheads.
+      Obsidian weapons have half the hardness of their base weapon and have the fragile quality.
+        Armor The fragile glass nature of obsidian is perfect for creating sharp points and blades,
+      but those same qualities make it unsuitable for creating armor.
+      Armor cannot be constructed from obsidian.
 
       ]
     },
 
 
     "Siccatite": {
-      "Cost": {},
+      "Cost": {
+        Siccatite increases the cost of a weapon by 1,000 gp and armor by 6,000 gp (regardless of the armor’s type).
+      },
       "Type": "",
       "Description": "",
       "Special": [
 
-        This shining silver metal is either incredibly hot or freezing cold when found. As of yet, scholars have not determined whether siccatite is actually two similarly hued metals or a single type that determines its own temperature via some unknown process. When raw siccatite is found, it has a 50% chance of being hot siccatite; otherwise, it’s cold siccatite. Physical contact with siccatite deals 1 point of fire (for hot siccatite) or cold (for cold siccatite) damage each round. Hot siccatite can eventually ignite objects, and cold siccatite in water quickly surrounds itself with a 1-foot-thick shell of ice. A weapon made of siccatite deals 1 additional point of damage of the appropriate energy type each time it strikes a foe, but also deals 1 point of the same energy damage to the wielder each round it is used in combat.
-        Siccatite armor deals 1 point of energy damage (fire or cold) per round to a creature wearing it, and deals 1 point of the same energy damage each full round a creature is grappled by someone wearing siccatite armor. Cold siccatite armor grants fire resistance 5, while hot siccatite armor grants cold resistance 5. (The type of armor does not alter the amount of resistance granted.) Siccatite increases the cost of a weapon by 1,000 gp and armor by 6,000 gp (regardless of the armor’s type).
-
+        This shining silver metal is either incredibly hot or freezing cold when found.
+        As of yet, scholars have not determined whether siccatite is actually two similarly hued metals or
+      a single type that determines its own temperature via some unknown process.
+      When raw siccatite is found, it has a 50% chance of being hot siccatite; otherwise, it’s cold siccatite.
+      Physical contact with siccatite deals 1 point of fire (for hot siccatite) or cold (for cold siccatite) damage each round.
+      Hot siccatite can eventually ignite objects, and cold siccatite in water quickly surrounds itself with a 1-foot-thick shell of ice.
+      A weapon made of siccatite deals 1 additional point of damage of the appropriate energy type each time it strikes a foe,
+      but also deals 1 point of the same energy damage to the wielder each round it is used in combat.
+        Siccatite armor deals 1 point of energy damage (fire or cold) per round to a creature wearing it
+      , and deals 1 point of the same energy damage each full round a creature is grappled by someone wearing siccatite armor.
+      Cold siccatite armor grants fire resistance 5, while hot siccatite armor grants cold resistance 5.
+      (The type of armor does not alter the amount of resistance granted.)
+      
       ]
     },
     "Silversheen": {
-      "Cost": {},
+      "Cost": {
+        +750 gp.
+      },
       "Type": "",
       "Description": "",
       "Special": [
-
-        HP/inch 10; Hardness 8; Cost +750 gp.
-        Blades made of this special metal count as alchemical silver weapons and are immune to rust, including that of rust monsters, the rusting grasp spell, and so on.
-        Blades made of silversheen are always masterwork items as well; the masterwork cost is included in the price given. A blade made of silversheen has its price increased by 750 gp. Crafting a silversheen blade requires Craft (alchemy) 5 ranks and Craft (weaponsmithing) 5 ranks.
+"Weapons and Armor made from mithral are always masterwork (price included).",
+        Blades made of this special metal count as alchemical silver weapons and are immune to rust, including that of rust monsters,
+      the rusting grasp spell, and so on.
+        Blades made of silversheen are always masterwork items as well; the masterwork cost is included in the price given.
+      A blade made of silversheen has its price increased by 750 gp.
+        Crafting a silversheen blade requires Craft (alchemy) 5 ranks and Craft (weaponsmithing) 5 ranks.
 
       ]
     },
@@ -543,11 +504,18 @@
       "Type": "",
       "Description": "",
       "Special": [
+        "Weapons and Armor made from mithral are always masterwork (price included).",
 
-        This lustrous golden metal emits beautiful bell-like tones when struck. An alloy of gold and mithral, singing steel was originally created by the elves.
-        A weapon made of singing steel counts as alchemical silver for all purposes, including the –1 penalty on damage rolls with singing steel weapons. Most armor made of singing steel is treated as one category lighter (heavy armors are treated as medium, and medium armors are treated as light, but light armors are still treated as light). The armor or shield’s arcane spell failure chance is reduced by 5%, its maximum Dexterity bonus is increased by 1, and its armor check penalty is reduced by 1 (to a minimum of 0).
-        When wielding a singing steel weapon, shield, or item weighing at least 5 pounds, or wearing medium or heavy singing steel armor, the wielder or wearer can strike the singing steel as part of beginning a bardic performance. If the wielder can normally start a bardic performance as a standard action, he can do so as a move action instead. If the wielder can normally start a bardic performance as a move action, he can do so as a swift action instead. This ability does not function in the area of a silence spell or similar effect. After using the singing steel in this fashion, the steel must be carefully brushed to remove any lingering vibrations, a process that takes 10 minutes.
-        Singing steel items are always masterwork; this cost is included in the price. Singing steel has 20 hp per inch of thickness and hardness 10. Although formed partially from mithral, singing steel items weigh as much as their normal counterparts.
+        This lustrous golden metal emits beautiful bell-like tones when struck.
+        An alloy of gold and mithral, singing steel was originally created by the elves.
+A weapon made of singing steel counts as alchemical silver for all purposes, including the –1 penalty on damage rolls with singing steel weapons.
+Most armor made of singing steel is treated as one category lighter (heavy armors are treated as medium, and medium armors are treated as light,
+      but light armors are still treated as light).
+      The armor or shield’s arcane spell failure chance is reduced by 5%, its maximum Dexterity bonus is increased by 1, and its armor check penalty is reduced by 1 (to a minimum of 0).
+When wielding a singing steel weapon, shield, or item weighing at least 5 pounds, or wearing medium or heavy singing steel armor, the wielder or wearer can strike the singing steel as part of beginning a bardic performance. If the wielder can normally start a bardic performance as a standard action, he can do so as a move action instead. If the wielder can normally start a bardic performance as a move action, he can do so as a swift action instead. This ability does not function in the area of a silence spell or similar effect. After using the singing steel in this fashion, the steel must be carefully brushed to remove any lingering vibrations, a process that takes 10 minutes.
+Singing steel items are always masterwork; this cost is included in the price.
+        Singing steel has 20 hp per inch of thickness and hardness 10. 
+        Although formed partially from mithral, singing steel items weigh as much as their normal counterparts.
 
         Type of Item	Price Modifier
         Light armor	+750 gp
@@ -565,17 +533,25 @@
       "Description": "",
       "Special": [
 
-        Both ancient and modern metallurgists have devised numerous alloys that mix skymetals with other materials. Many of these are highly specialized, but one deserves special mention: glaucite. This dull gray metal is an alloy of adamantine and iron. Though it has hardness 15 and 30 hit points per inch of thickness, glaucite is half again as heavy as iron and difficult to work with. The material of choice for ship hulls and robot frames, but is generally sought after only by collectors and eccentrics as a material for new items or other projects.
+        Both ancient and modern metallurgists have devised numerous alloys that mix skymetals with other materials.
+        Many of these are highly specialized, but one deserves special mention: glaucite.
+      This dull gray metal is an alloy of adamantine and iron.
+      Though it has hardness 15 and 30 hit points per inch of thickness, glaucite is half again as heavy as iron and difficult to work with.
+      The material of choice for ship hulls and robot frames, but is generally sought after only by collectors and eccentrics
+      as a material for new items or other projects.
 
       ]
     },
-    "Steel, Stainless": {
+    "Stainless Steel": {
       "Cost": {},
       "Type": "",
       "Description": "",
       "Special": [
 
-        Stainless steel is both rust resistant and splendidly shiny. Steel objects electroplated with chromium are immune to rusting effects, such as the rusting grasp spell or from a rust monster’s touch. To determine the price of a stainless steel item, use the original weight but add 10 gp per pound to the price of that item. Stainless steel has the same statistics as normal steel.
+        Stainless steel is both rust resistant and splendidly shiny.
+        Steel objects electroplated with chromium are immune to rusting effects, such as the rusting grasp spell or from a rust monster’s touch.
+      To determine the price of a stainless steel item, use the original weight but add 10 gp per pound to the price of that item.
+      Stainless steel has the same statistics as normal steel.
 
       ]
     },
@@ -586,10 +562,15 @@
       "Special": [
 
         Cost 1/4 normal.; Weight 3/4 normal.
-        Stone Age weapons almost always utilize stone in some way. From rocks lashed to wooden hafts to create early maces and axes, to flint knives and stone arrowheads, these primitive weapons are still deadly.
-        Weapons Light and one-handed bludgeoning weapons, spears, axes, daggers and arrowheads can all be made of stone. Weapons made of stone have half the hardness of their base weapons, and have the fragile quality.
-        Armor Armor cannot usually be constructed from stone, but advanced, often alchemically enhanced stone armor made by dwarves or other stone-working cultures does exist (see stone coat).
-        Cost/Weight (Longer Wording) “Stone weapons cost a quarter of what base items of their type do, and weigh 75% of what base items of their type do.”
+        Stone Age weapons almost always utilize stone in some way.
+        From rocks lashed to wooden hafts to create early maces and axes, to flint knives and stone arrowheads,
+        these primitive weapons are still deadly.
+        Weapons Light and one-handed bludgeoning weapons, spears, axes, daggers and arrowheads can all be made of stone.
+        Weapons made of stone have half the hardness of their base weapons, and have the fragile quality.
+        Armor Armor cannot usually be constructed from stone, but advanced,
+        often alchemically enhanced stone armor made by dwarves or other stone-working cultures does exist (see stone coat).
+        Cost/Weight (Longer Wording) “Stone weapons cost a quarter of what base items of their type do, and weigh 75% of what base items
+        of their type do.”
 
       ]
     },
@@ -599,7 +580,12 @@
       "Description": "",
       "Special": [
 
-        Sunsilk takes on a golden glitter after it has been left to cure in the sun. Though it is light and flexible, when multiple layers are pressed together, its myriad thin fibers inhibit weapons and can slightly help prevent slashing or piercing weapons from causing harm. Clothing made from sunsilk grants its wearer DR 2/bludgeoning. Sunsilk can be incorporated into any suit of armor without hampering the armor’s other qualities, typically as an inner layer of soft lining. Sunsilk adds 6,000 gp to the cost of the garment or armor.
+        Sunsilk takes on a golden glitter after it has been left to cure in the sun.
+        Though it is light and flexible, when multiple layers are pressed together,
+      its myriad thin fibers inhibit weapons and can slightly help prevent slashing or piercing weapons from causing harm.
+      Clothing made from sunsilk grants its wearer DR 2/bludgeoning.
+      Sunsilk can be incorporated into any suit of armor without hampering the armor’s other qualities,
+      typically as an inner layer of soft lining. Sunsilk adds 6,000 gp to the cost of the garment or armor.
 
       ]
     },
@@ -609,8 +595,16 @@
       "Description": "",
       "Special": [
 
-        A weapon made of sunsilver counts as alchemical silver for all purposes. Items not primarily made of metal are not meaningfully affected by being partially made of sunsilver. (For example, a scimitar or breastplate can be made of sunsilver, while a quarterstaff or hide armor cannot.) In addition, items made of sunsilver are immune to rust effects (such as rusting grasp). While in an area of bright light, a shield or suit of armor made of sunsilver shines brightly, allowing the wearer to reflect light at nearby foes as a move action. When she does so, creatures adjacent to the wearer must succeed at a DC 12 Fortitude save or be dazzled for 1 round.
-        Armor and weapons made of sunsilver are always masterwork. To determine the price of a sunsilver item, add 25 gp per pound to the price of a masterwork version of that item. Sunsilver has 10 hit points per inch of thickness and hardness 8.
+        A weapon made of sunsilver counts as alchemical silver for all purposes.
+        Items not primarily made of metal are not meaningfully affected by being partially made of sunsilver.
+        (For example, a scimitar or breastplate can be made of sunsilver, while a quarterstaff or hide armor cannot.)
+      In addition, items made of sunsilver are immune to rust effects (such as rusting grasp).
+      While in an area of bright light, a shield or suit of armor made of sunsilver shines brightly,
+      allowing the wearer to reflect light at nearby foes as a move action.
+      When she does so, creatures adjacent to the wearer must succeed at a DC 12 Fortitude save or be dazzled for 1 round.
+        Armor and weapons made of sunsilver are always masterwork.
+      To determine the price of a sunsilver item, add 25 gp per pound to the price of a masterwork version of that item.
+      Sunsilver has 10 hit points per inch of thickness and hardness 8.
 
       ]
     },
@@ -620,8 +614,16 @@
       "Description": "",
       "Special": [
 
-        Serpentstone is a strange substance unique to the precursor alchemies of the ancient serpentfolk. Its ancient name is lost to time, but modern explorers have dubbed it “serpentstone” after its ophidian creators.
-        Exceptionally resilient, all serpentstone is magically treated stone. When properly worked and treated through eldritch means known only to ancient serpentfolk wizards and sorcerers, serpentstone can be programmed to emit sound and light in a variety of ways, shifting at predetermined times from color to color and tone to tone, from brightness equal to that of daylight to a dim, shadowy glimmer like that of a candle. In addition, serpentstone can be set to radiate heat or cold, or produce illusory smoke, roiling forth thin streams of scented, incense-like fumes designed to delight, enlighten, or otherwise inform serpentfolk in the vicinity. All of these effects function as major image (caster level 18th).
+        Serpentstone is a strange substance unique to the precursor alchemies of the ancient serpentfolk.
+        Its ancient name is lost to time, but modern explorers have dubbed it “serpentstone” after its ophidian creators.
+        Exceptionally resilient, all serpentstone is magically treated stone.
+      When properly worked and treated through eldritch means known only to ancient serpentfolk wizards and sorcerers,
+      serpentstone can be programmed to emit sound and light in a variety of ways, 
+      shifting at predetermined times from color to color and tone to tone, from brightness equal to that of daylight to a dim,
+      shadowy glimmer like that of a candle.
+      In addition, serpentstone can be set to radiate heat or cold, or produce illusory smoke, roiling forth thin streams of scented,
+      incense-like fumes designed to delight, enlighten, or otherwise inform serpentfolk in the vicinity.
+      All of these effects function as major image (caster level 18th).
 
       ]
     },
@@ -630,10 +632,17 @@
       "Type": "",
       "Description": "",
       "Special": [
+        "Weapons and Armor made from mithral are always masterwork (price included).",
 
-        Philosophers speculate that spiresteel is composed of a condensed form of pure quintessence. This substance, called spiresteel, exhibits an innate attraction for soul energy.
-        Armor crafted from spiresteel protects the wearer’s essence, applying half of its armor bonus to AC against attacks made by incorporeal creatures. Weapons crafted from spiresteel appear hungry for the very substance of the foes they are wielded against. When the wielder confirms a critical hit with a spiresteel weapon, the target must succeed at a Will save (DC = 10 + double the weapon’s enhancement bonus), or be staggered for 1 round as a portion of its soul is carved away.
-        Spiresteel can be used to craft any armor or weapon that is typically made of steel. Items made of spiresteel are always considered masterwork, and the masterwork costs are included in the listed prices.
+        Philosophers speculate that spiresteel is composed of a condensed form of pure quintessence.
+        This substance, called spiresteel, exhibits an innate attraction for soul energy.
+        Armor crafted from spiresteel protects the wearer’s essence,
+      applying half of its armor bonus to AC against attacks made by incorporeal creatures.
+      Weapons crafted from spiresteel appear hungry for the very substance of the foes they are wielded against.
+      When the wielder confirms a critical hit with a spiresteel weapon, the target must succeed at a Will save
+      (DC = 10 + double the weapon’s enhancement bonus), or be staggered for 1 round as a portion of its soul is carved away.
+        Spiresteel can be used to craft any armor or weapon that is typically made of steel.
+      Items made of spiresteel are always considered masterwork, and the masterwork costs are included in the listed prices.
         Spiresteel has the same hit points and hardness as steel.
 
         Type of Spiresteel Item	Item Price Modifier
@@ -657,11 +666,18 @@
         Ammunition	+20 gp per item
         Weapon	+200 gp
 
-        This deep green volcanic glass is similar to obsidian but is formed when molten rock is tainted with anomalous trace minerals from deep beneath the earth whose emanations are toxic to living things. It can be fragmented to razor sharpness, but even a tiny amount of viridium contacting the bloodstream can pass on a wasting sickness.
-        Any successful hit with a viridium weapon causes the target to contract leprosy (Fortitude DC 12 negates). On a successful critical hit, a tiny fragment of viridium breaks off within the target, affecting it as though with greenblood oil (Fortitude DC 13 negates).
-        A creature carrying a viridium weapon must save every 24 hours or contract leprosy unless the weapon is kept inside an extradimensional space (such as an efficient quiver) or a scabbard lined with lead.
+        This deep green volcanic glass is similar to obsidian but is formed when molten rock is tainted with anomalous trace minerals
+        from deep beneath the earth whose emanations are toxic to living things.
+        It can be fragmented to razor sharpness, but even a tiny amount of viridium contacting the bloodstream can pass on a wasting sickness.
+        Any successful hit with a viridium weapon causes the target to contract leprosy (Fortitude DC 12 negates).
+        On a successful critical hit, a tiny fragment of viridium breaks off within the target,
+        affecting it as though with greenblood oil (Fortitude DC 13 negates).
+        A creature carrying a viridium weapon must save every 24 hours or contract leprosy unless the weapon is kept
+        inside an extradimensional space (such as an efficient quiver) or a scabbard lined with lead.
         Oozes, plants, and outsiders are immune to the deadly emanations of viridium.
-        Viridium weapons have half the hardness of their base weapon and have the fragile quality. Viridium can be magically strengthened at an additional cost of +1,000 gp for a weapon or +20 gp for ammunition. This removes the fragile quality from the item but does not otherwise affect its abilities.
+        Viridium weapons have half the hardness of their base weapon and have the fragile quality.
+        Viridium can be magically strengthened at an additional cost of +1,000 gp for a weapon or +20 gp for ammunition.
+        This removes the fragile quality from the item but does not otherwise affect its abilities.
 
       ]
     },
@@ -677,8 +693,17 @@
         Heavy armor	+4,500 gp
         Slashing/piercing weapon	+1,000 gp
 
-        Grioths wield weapons fashioned from a strange sort of transparent material called voidglass. This material is as hard as steel, but made of crystals that voidglass shapers on unknown worlds grow into the desired shapes.
-        Voidglass resonates with a creature’s mind, bolstering thought and mental defenses. Any suit of armor normally made from metal can be made of voidglass. A suit of light voidglass armor grants a +1 resistance bonus on all saving throws against mind-affecting magic. This bonus increases to +2 for medium voidglass armor, and +3 for heavy voidglass armor. Voidglass armor isn’t often worn by grioths, but voidglass weapons are another story. The creatures (and perhaps other strange beings with similar psychic capabilities) can funnel violent bursts of psychic energy through these weapons on a hit. In the hands of any creature, a voidglass piercing or slashing weapon deals 1 additional damage on a hit—bludgeoning weapons gain no benefit.
+        Grioths wield weapons fashioned from a strange sort of transparent material called voidglass.
+        This material is as hard as steel, but made of crystals that voidglass shapers on unknown worlds grow into the desired shapes.
+        Voidglass resonates with a creature’s mind, bolstering thought and mental defenses.
+        Any suit of armor normally made from metal can be made of voidglass.
+        A suit of light voidglass armor grants a +1 resistance bonus on all saving throws against mind-affecting magic.
+        This bonus increases to +2 for medium voidglass armor, and +3 for heavy voidglass armor.
+        Voidglass armor isn’t often worn by grioths, but voidglass weapons are another story.
+        The creatures (and perhaps other strange beings with similar psychic capabilities) can funnel violent bursts of psychic
+        energy through these weapons on a hit.
+        In the hands of any creature, a voidglass piercing or slashing weapon deals 1 additional damage on a hit—bludgeoning
+        weapons gain no benefit.
         Voidglass has 30 hit points per inch of thickness and hardness 10. A pound of raw, unworked voidglass is worth 100 gp.
 
       ]
@@ -692,8 +717,12 @@
       "Special": [
 
         HP/inch 10; Hardness 8; Cost +500 gp.
-        Vanara woodworkers craft this extremely flexible material in a time-consuming process. Whipwood is actually a composite of several bendable wooden fibers woven and fused together to form a flexible but sturdy unit. Only wooden weapons or weapons with wooden hafts (such as axes and spears) can be made out of whipwood.
-        A creature wielding a whipwood weapon treats its CMD as +2 higher for the purpose of avoiding sunder attempts against that weapon. A whipwood weapon’s hit points increase by +5. Whipwood loses its special qualities if under the effect of an ironwood spell.
+        Vanara woodworkers craft this extremely flexible material in a time-consuming process.
+        Whipwood is actually a composite of several bendable wooden fibers woven and fused together to form a flexible but sturdy unit.
+        Only wooden weapons or weapons with wooden hafts (such as axes and spears) can be made out of whipwood.
+        A creature wielding a whipwood weapon treats its CMD as +2 higher for the purpose of avoiding sunder attempts against that weapon.
+        A whipwood weapon’s hit points increase by +5.
+        Whipwood loses its special qualities if under the effect of an ironwood spell.
 
       ]
     },
@@ -703,8 +732,17 @@
       "Description": "",
       "Special": [
 
-        The root of the wyrwood tree has a peculiar quality. When a weapon constructed of wyroot confirms a critical hit, it absorbs some of the life force of the creature hit. The creature hit is unharmed and the wyroot weapon gains 1 life point. As a swift action, a wielder with a ki pool or an arcane pool can absorb 1 life point from the wyrwood weapon and convert it into either 1 ki point or 1 arcane pool point. A wyroot weapon can gain at most 1 life point per day and hold up to 1 life point at a time. More powerful wyroot weapons can gain up to 3 life points per day and hold up to 3 life points at a time. Any unspent life points dissipate at dusk. A creature can convert life points from only one wyroot weapon per day.
-        Wyroot can be used to construct any melee weapon made entirely of wood or with a wooden haft. Constructing a weapon that can hold 1 life point increases the cost by 1,000 gp, constructing one that can hold up to 2 life points increases the cost by 2,000 gp, and constructing one that can hold up to 3 life points increases the cost by 4,000 gp.
+        The root of the wyrwood tree has a peculiar quality. When a weapon constructed of wyroot confirms a critical hit,
+      it absorbs some of the life force of the creature hit.
+      The creature hit is unharmed and the wyroot weapon gains 1 life point.
+      As a swift action, a wielder with a ki pool or an arcane pool can absorb 1 life point from the wyrwood weapon and convert
+      it into either 1 ki point or 1 arcane pool point.
+      A wyroot weapon can gain at most 1 life point per day and hold up to 1 life point at a time.
+      More powerful wyroot weapons can gain up to 3 life points per day and hold up to 3 life points at a time.
+      Any unspent life points dissipate at dusk. A creature can convert life points from only one wyroot weapon per day.
+        Wyroot can be used to construct any melee weapon made entirely of wood or with a wooden haft.
+      Constructing a weapon that can hold 1 life point increases the cost by 1,000 gp, constructing one that can hold
+      up to 2 life points increases the cost by 2,000 gp, and constructing one that can hold up to 3 life points increases the cost by 4,000 gp.
         
       ]
     }
