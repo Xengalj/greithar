@@ -1,852 +1,848 @@
 {
-  "Weapons": {
-    "Unarmed Strike": {
-      "Damage": [ "1d2", "1d3", "1d4" ],
-      "critRange": 20,
-      "critMultiplier": 2,
-      "range": 0,
-      "dmgType": [ "budgeoning", "nonlethal" ],
-
-      "type": "Melee",
-      "category": "Unarmed",
-      "Proficiency": "Simple",
-      "group": [ "Close" ],
-
-      "Cost": 0,
-      "Weight": 1,
-      "Description": "Just a punch or slap of the hand.",
-      "Special": "Unarmed strikes are always considered light attacks and can be used with the weapon finesse feat."
-    },
-    "Gauntlet": {
-      "Damage": [ "1d2", "1d3", "1d4" ],
-      "critRange": 20,
-      "critMultiplier": 2,
-      "range": 0,
-      "dmgType": [ "bludgeoning" ],
-
-      "type": "Melee",
-      "category": "Unarmed",
-      "Proficiency": "Simple",
-      "group": [ "Close" ],
-
-      "Cost": 2,
-      "Weight": 1,
-      "Description": "A metal glove that lets you deal lethal damage with unarmed strikes. Medium and heavy armors (except breastplate) come with gauntlets.",
-      "Special": ""
-    },
-    "Battle Aspergillum": {
-      "Damage": [ "1d4", "1d6", "1d8" ],
-      "critRange": 20,
-      "critMultiplier": 2,
-      "range": 0,
-      "dmgType": [ "budgeoning" ],
-
-      "type": "Melee",
-      "category": "Light",
-      "Proficiency": "Simple",
-      "group": [ "Hammers" ],
-
-      "Cost": 5,
-      "Weight": 4,
-      "Description": "Named for the common aspergillum, a mace-like tool used by priests to sprinkle holy water, this light mace has a hollow head and a metal plug to fit the hollow’s neck.",
-      "Special": "When the mace hits a creature, holy water sprinkles out; creatures subject to damage from holy water take 1 point of additional damage. You must refill the aspergillum after 5 hits with a standard action that provokes an AoO."
-    },
-    "Brass Knife": {
-      "Damage": [ "1d3", "1d4", "1d6" ],
-      "critRange": 19,
-      "critMultiplier": 2,
-      "range": 10,
-      "dmgType": [ "piercing", "slashing" ],
-
-      "type": "Melee",
-      "category": "Light",
-      "Proficiency": "Simple",
-      "group": [ "Blades", "Thrown" ],
-
-      "Cost": 2,
-      "Weight": 1,
-      "Description": "Though brass doesn’t hold as sharp an edge as steel, it isn’t vulnerable to rust like steel is.",
-      "Special": "fragile"
-    },
-    "Brass Knuckles": {
-      "Damage": [ "1d2", "1d3", "1d4" ],
-      "critRange": 20,
-      "critMultiplier": 2,
-      "range": 0,
-      "dmgType": [ "bludgeoning", "" ],
-
-      "type": "Melee",
-      "category": "Light",
-      "Proficiency": "Simple",
-      "group": [ "Close", "Monk" ],
-
-      "Cost": 1,
-      "Weight": 1,
-      "Description": "These close combat weapons are designed to fit comfortably around the knuckles, narrowing the contact area and therefore magnifying the amount of force delivered by a punch.",
-      "Special": "You may hold an object in a hand wearing brass knucles, but you cannot weild a weapon. You may also cast a spell with somantic components with a concentration check (DC 10 + spell level)."
-    },
-    "Cestus": {
-      "Damage": [ "1d3", "1d4", "1d6" ],
-      "critRange": 19,
-      "critMultiplier": 2,
-      "range": 0,
-      "dmgType": [ "bludgeoning", "piercing" ],
-
-      "type": "Melee",
-      "category": "Light",
-      "Proficiency": "Simple",
-      "group": [ "Close", "Monk" ],
-
-      "Cost": 5,
-      "Weight": 1,
-      "Description": "The cestus is a glove of leather or thick cloth that covers the wielder from mid-finger to mid-forearm, ofen reinforced with metal plates over the fingers.",
-      "Special": "You may wield or carry items while wearing a cestus, howeveer you take a -2 to all precision-based tasks involving that hand (such as opening locks)."
-    },
-    "Dagger": {
-      "Damage": [ "1d3", "1d4", "1d6" ],
-      "critRange": 19,
-      "critMultiplier": 2,
-      "range": 10,
-      "dmgType": [ "piercing", "slashing" ],
-
-      "type": "Melee",
-      "category": "Light",
-      "Proficiency": "Simple",
-      "group": [ "Blades", "Thrown", "Tribal" ],
-
-      "Cost": 2,
-      "Weight": 1,
-      "Description": "A dagger has a blade that is about 1 foot in length.",
-      "Special": "You get a +2 bonus on Sleight of Hand skill checks made to conceal a dagger on your body."
-    },
-    "Punching Dagger": {
-      "Damage": [ "1d3", "1d4", "1d6" ],
-      "critRange": 20,
-      "critMultiplier": 3,
-      "range": 0,
-      "dmgType": [ "piercing" ],
-
-      "type": "Melee",
-      "category": "Light",
-      "Proficiency": "Simple",
-      "group": [ "Close" ],
-
-      "Cost": 2,
-      "Weight": 1,
-      "Description": "A punching dagger’s blade is attached to a horizontal handle that projects out from the fist when held.",
-      "Special": ""
-    },
-    "Spiked Gauntlet": {
-      "Damage": [ "1d3", "1d4", "1d6" ],
-      "critRange": 20,
-      "critMultiplier": 2,
-      "range": 0,
-      "dmgType": [ "piercing" ],
-
-      "type": "Melee",
-      "category": "Light",
-      "Proficiency": "Simple",
-      "group": [ "Close" ],
-
-      "Cost": 5,
-      "Weight": 1,
-      "Description": "A glove made of metal with jagged spikes for extra damage, and the cost and weight given are for a single gauntlet.",
-      "Special": "An attack with a spiked guantlet is considered an armed attack, and it cannot be disarmed."
-    },
-    "Traveling Kettle": {
-      "Damage": [ "1d4", "1d6", "" ],
-      "critRange": 20,
-      "critMultiplier": 2,
-      "range": 0,
-      "dmgType": [ "bludgeoning" ],
-
-      "type": "Melee",
-      "category": "Light",
-      "Proficiency": "Simple",
-      "group": [ "Monk" ],
-
-      "Cost": 5,
-      "Weight": 2,
-      "Description": "These small tea kettles are made with clamping lids and heavily reinforced handles.",
-      "Special": "A traveling kettle with boiling water inside deals an additional 1 point of fire damage on a hit. Boiling water cools to a non-damaging temperature after 5 minutes."
-    },
-    "Hook Hand": {
-      "Damage": [ "1d3", "1d4", "" ],
-      "critRange": 20,
-      "critMultiplier": 2,
-      "range": 0,
-      "dmgType": [ "slashing" ],
-
-      "type": "Melee",
-      "category": "Light",
-      "Proficiency": "Simple",
-      "group": [ "Close" ],
-
-      "Cost": 10,
-      "Weight": 1,
-      "Description": "Pirates who lose a hand in the course of their adventures sometimes attach hooks to their wrists.",
-      "Special": "disarm"
-    },
-    "Kunai": {
-      "Damage": [ "1d3", "1d4", "" ],
-      "critRange": 20,
-      "critMultiplier": 2,
-      "range": 10,
-      "dmgType": [ "bludgeoning", "piercing" ],
-
-      "type": "Melee",
-      "category": "Light",
-      "Proficiency": "Simple",
-      "group": [ "Close", "Thrown" ],
-
-      "Cost": 2,
-      "Weight": 2,
-      "Description": "Crafted from a single piece of iron, a kunai has a leaf-shaped blade and a ring for a pommel. Adapted from the common trowel, the kunai has a thick blade that is sharpened only near the tip.",
-      "Special": ""
-    },
-    "Light Mace": {
-      "Damage": [ "1d4", "1d6", "" ],
-      "critRange": 20,
-      "critMultiplier": 2,
-      "range": 0,
-      "dmgType": [ "bludgeoning" ],
-
-      "type": "Melee",
-      "category": "Light",
-      "Proficiency": "Simple",
-      "group": [ "Hammers" ],
-
-      "Cost": 5,
-      "Weight": 4,
-      "Description": "A light mace is made up of an ornate metal head attached to a simple wooden or metal shaft.",
-      "Special": ""
-    },
-    "Sickle": {
-      "Damage": [ "1d4", "1d6", "" ],
-      "critRange": 20,
-      "critMultiplier": 2,
-      "range": 0,
-      "dmgType": [ "slashing" ],
-
-      "type": "Melee",
-      "category": "Light",
-      "Proficiency": "Simple",
-      "group": [ "Blades" ],
-
-      "Cost": 6,
-      "Weight": 2,
-      "Description": "A curved blade extends from the basic wooden handle, though usable in a pinch the sickle is mainly a farming tool.",
-      "Special": "trip"
-    },
-    "Spring Blade": {
-      "Damage": [ "1d3", "1d4", "" ],
-      "critRange": 20,
-      "critMultiplier": 2,
-      "range": 10,
-      "dmgType": [ "piercing", "slashing" ],
-
-      "type": "Melee",
-      "category": "Light",
-      "Proficiency": "Simple",
-      "group": [ "Blades", "Thrown" ],
-
-      "Cost": 70,
-      "Weight": 1,
-      "Description": "This 4-inch blade is attached via a hinge to a wooden handle with a slot in the center, into which the blade can be folded.",
-      "Special": "A spring blade is easy to conceal: an observer must succeed at a DC 20 Perception check to notice the blade hidden within the wooden handle, and you gain a +4 bonus on Sleight of Hand checks to conceal a spring blade on your body."
-    },
-    "Wodden Stake": {
-      "Damage": [ "1d3", "1d4", "" ],
-      "critRange": 20,
-      "critMultiplier": 2,
-      "range": 10,
-      "dmgType": [ "piercing" ],
-
-      "type": "Melee",
-      "category": "Light",
-      "Proficiency": "Simple",
-      "group": [ "Close", "Thrown" ],
-
-      "Cost": 0,
-      "Weight": 1,
-      "Description": "This close combat weapon is just a sharpened piece of wood. Iron spikes used as weapons deal damage as wooden stakes.",
-      "Special": ""
-    },
-
-    "Club": {
-      "Damage": [ "1d4", "1d6", "" ],
-      "critRange": 20,
-      "critMultiplier": 2,
-      "range": 10,
-      "dmgType": [ "bludgeoning" ],
-
-      "type": "Melee",
-      "category": "One-Handed",
-      "Proficiency": "Simple",
-      "group": [ "Hammers", "Tribal" ],
-
-      "Cost": 0,
-      "Weight": 3,
-      "Description": "This weapon is usually just a shaped piece of wood, sometimes with a few nails or studs embedded in it.",
-      "Special": ""
-    },
-    "Mere Club": {
-      "Damage": [ "1d3", "1d4", "" ],
-      "critRange": 20,
-      "critMultiplier": 2,
-      "range": 0,
-      "dmgType": [ "bludgeoning", "piercing" ],
-
-      "type": "Melee",
-      "category": "One-Handed",
-      "Proficiency": "Simple",
-      "group": [ "Close", "Hammers" ],
-
-      "Cost": 2,
-      "Weight": 2,
-      "Description": "Traditionally made of carved stone, the mere (MEH-reh) is a short, flat-sided, sharp-pointed club.",
-      "Special": "fragile"
-    },
-    "Heavy Mace": {
-      "Damage": [ "1d6", "1d8", "" ],
-      "critRange": 20,
-      "critMultiplier": 2,
-      "range": 0,
-      "dmgType": [ "bludgeoning" ],
-
-      "type": "Melee",
-      "category": "One-Handed",
-      "Proficiency": "Simple",
-      "group": [ "Hammers" ],
-
-      "Cost": 12,
-      "Weight": 8,
-      "Description": "A heavy mace has a larger head and a longer handle than a normal (light) mace.",
-      "Special": ""
-    },
-    "Morningstar": {
-      "Damage": [ "1d6", "1d8", "" ],
-      "critRange": 20,
-      "critMultiplier": 2,
-      "range": 0,
-      "dmgType": [ "bludgeoning", "piercing" ],
-
-      "type": "Melee",
-      "category": "One-Handed",
-      "Proficiency": "Simple",
-      "group": [ "Maces", "Flails" ],
-
-      "Cost": 8,
-      "Weight": 6,
-      "Description": "A morningstar is a spiked metal ball, affixed to the top of a long handle.",
-      "Special": ""
-    },
-    "Shortspear": {
-      "Damage": [ "1d4", "1d6", "" ],
-      "critRange": 20,
-      "critMultiplier": 2,
-      "range": 20,
-      "dmgType": [ "piercing" ],
-
-      "type": "Melee",
-      "category": "One-Handed",
-      "Proficiency": "Simple",
-      "group": [ "Spears", "Thrown", "Tribal" ],
-
-      "Cost": 1,
-      "Weight": 3,
-      "Description": "A shortspear is about 3 feet in length, making it a suitable thrown weapon.",
-      "Special": ""
-    },
-
-    "Bayonet": {
-      "Damage": [ "1d4", "1d6", "" ],
-      "critRange": 20,
-      "critMultiplier": 2,
-      "range": 0,
-      "dmgType": [ "piercing" ],
-
-      "type": "Melee",
-      "category": "Two-Handed",
-      "Proficiency": "Simple",
-      "group": [ "Blades", "Close" ],
-
-      "Cost": 5,
-      "Weight": 1,
-      "Description": "Bayonets are close combat weapons designed to fit into the grooves or muzzles of crossbows and firearms.",
-      "Special": ""
-    },
-    "Boarding Pike": {
-      "Damage": [ "1d6", "1d8", "" ],
-      "critRange": 20,
-      "critMultiplier": 3,
-      "range": 0,
-      "dmgType": [ "piercing" ],
-
-      "type": "Melee",
-      "category": "Two-Handed",
-      "Proficiency": "Simple",
-      "group": [ "Polearms" ],
-
-      "Cost": 8,
-      "Weight": 9,
-      "Description": "A boarding pike is an 8-foot-long pole topped with a foot-long tapered metal tip.",
-      "Special": "brace, reach"
-    },
-    "Kumade": {
-      "Damage": [ "1d4", "1d6", "" ],
-      "critRange": 20,
-      "critMultiplier": 3,
-      "range": 0,
-      "dmgType": [ "piercing" ],
-
-      "type": "Melee",
-      "category": "Two-Handed",
-      "Proficiency": "Simple",
-      "group": [ "Axes" ],
-
-      "Cost": 5,
-      "Weight": 4,
-      "Description": "Adapted from a garden rake, the kumade consists of a wood or bamboo pole topped with a metal claw. The rake head doubles as a grappling hook.",
-      "Special": "grapple"
-    },
-    "Collapsible Kumade": {
-      "Damage": [ "1d4", "1d6", "" ],
-      "critRange": 20,
-      "critMultiplier": 3,
-      "range": 0,
-      "dmgType": [ "piercing" ],
-
-      "type": "Melee",
-      "category": "Two-Handed",
-      "Proficiency": "Simple",
-      "group": [ "Axes" ],
-
-      "Cost": 10,
-      "Weight": 4,
-      "Description": "This weapon acts as a kumade, but the handle consists of bamboo sections held together by a taut rope running through the center.",
-      "Special": "grapple"
-    },
-    "Lantern Staff": {
-      "Damage": [ "1d4", "1d6", "" ],
-      "critRange": 20,
-      "critMultiplier": 2,
-      "range": 0,
-      "dmgType": [ "bludgeoning" ],
-
-      "type": "Melee",
-      "category": "Two-Handed",
-      "Proficiency": "Simple",
-      "group": [ "Hammers" ],
-
-      "Cost": 15,
-      "Weight": 9,
-      "Description": "This long metal staff has reservoirs for lamp oil, and a lantern-like structure at its head.",
-      "Special": ""
-    },
-    "Longspear": {
-      "Damage": [ "1d6", "1d8", "" ],
-      "critRange": 20,
-      "critMultiplier": 3,
-      "range": 0,
-      "dmgType": [ "piercing" ],
-
-      "type": "Melee",
-      "category": "Two-Handed",
-      "Proficiency": "Simple",
-      "group": [ "Spears" ],
-
-      "Cost": 5,
-      "Weight": 9,
-      "Description": "A longspear is about 8 feet in length.",
-      "Special": "brace, reach"
-    },
-    "Quarterstaff": {
-      "Damage": [ "1d4/1d4", "1d6/1d6", "" ],
-      "critRange": 20,
-      "critMultiplier": 2,
-      "range": 0,
-      "dmgType": [ "bludgeoning" ],
-
-      "type": "Melee",
-      "category": "Two-Handed",
-      "Proficiency": "Simple",
-      "group": [ "Double", "Monk" ],
-
-      "Cost": 0,
-      "Weight": 4,
-      "Description": "A quarterstaff is a simple piece of wood, about 5 feet in length.",
-      "Special": "double"
-    },
-    "Spear": {
-      "Damage": [ "1d6", "1d8", "" ],
-      "critRange": 20,
-      "critMultiplier": 3,
-      "range": 0,
-      "dmgType": [ "piercing" ],
-
-      "type": "Melee",
-      "category": "Two-Handed",
-      "Proficiency": "Simple",
-      "group": [ "Spears", "Thrown", "Tribal" ],
-
-      "Cost": 2,
-      "Weight": 6,
-      "Description": "A spear is 5 feet in length and can be thrown.",
-      "Special": "brace"
-    },
-    "Boar Spear": {
-      "Damage": [ "1d6", "1d8", "" ],
-      "critRange": 20,
-      "critMultiplier": 2,
-      "range": 0,
-      "dmgType": [ "piercing" ],
-
-      "type": "Melee",
-      "category": "Two-Handed",
-      "Proficiency": "Simple",
-      "group": [ "Spears" ],
-
-      "Cost": 5,
-      "Weight": 8,
-      "Description": "This spear with a spiraling blade has a metal crossbar approximately halfway down its length.",
-      "Special": "brace"
-    },
-    "Weighted Spear": {
-      "Damage": [ "1d6/1d4", "1d8/1d6", "" ],
-      "critRange": 20,
-      "critMultiplier": 3,
-      "range": 0,
-      "dmgType": [ "bludgeoning", "slashing" ],
-
-      "type": "Melee",
-      "category": "Two-Handed",
-      "Proficiency": "Simple",
-      "group": [ "Spears", "Double" ],
-
-      "Cost": 10,
-      "Weight": 8,
-      "Description": "This pole has a spear head at one end and a mace head at the other. It can be wielded like a standard spear (though it isn’t balanced for throwing), or it can be used as a double weapon, alternately thrusting and bashing.",
-      "Special": "brace, double"
-    },
-
-    "Blowgun": {
-      "Damage": [ "1", "1d2", "" ],
-      "critRange": 20,
-      "critMultiplier": 2,
-      "range": 20,
-      "dmgType": [ "piercing" ],
-
-      "type": "Ranged",
-      "category": "Ranged",
-      "Proficiency": "Simple",
-      "group": [ "Thrown" ],
-
-      "Cost": 2,
-      "Weight": 1,
-      "Description": "Blowguns are generally used to deliver debilitating (but rarely fatal) poisons from a distance. They are nearly silent when fired.",
-      "Special": ""
-    },
-    "Heavy Crossbow": {
-      "Damage": [ "1d8", "1d10", "" ],
-      "critRange": 19,
-      "critMultiplier": 2,
-      "range": 120,
-      "dmgType": [ "piercing" ],
-
-      "type": "Ranged",
-      "category": "Ranged",
-      "Proficiency": "Simple",
-      "group": [ "Crossbows" ],
-
-      "Cost": 50,
-      "Weight": 8,
-      "Description": "You draw a Heavy Crossbow back by truning a small winch, this takes a full-round action that provkes Attacks of Opportunity",
-      "Special": ""
-    },
-    "Heavy Crossbow (Underwater)": {
-      "Damage": [ "1d8", "1d10", "" ],
-      "critRange": 19,
-      "critMultiplier": 2,
-      "range": 20,
-      "dmgType": [ "piercing" ],
-
-      "type": "Ranged",
-      "category": "Ranged",
-      "Proficiency": "Simple",
-      "group": [ "Crossbows" ],
-
-      "Cost": 100,
-      "Weight": 8,
-      "Description": "An Underwater Crossbow functions as a regular crossbow above water.",
-      "Special": ""
-    },
-    "Light Crossbow": {
-      "Damage": [ "1d6", "1d8", "" ],
-      "critRange": 19,
-      "critMultiplier": 2,
-      "range": 80,
-      "dmgType": [ "piercing" ],
-
-      "type": "Ranged",
-      "category": "Ranged",
-      "Proficiency": "Simple",
-      "group": [ "Crossbows" ],
-
-      "Cost": 35,
-      "Weight": 4,
-      "Description": "You draw a Light Crossbow back by pulling a lever, this takes a move action that provokes Attacks of Opportunity.",
-      "Special": ""
-    },
-    "Light Crossbow (Underwater)": {
-      "Damage": [ "1d6", "1d8", "" ],
-      "critRange": 19,
-      "critMultiplier": 2,
-      "range": 20,
-      "dmgType": [ "piercing" ],
-
-      "type": "Ranged",
-      "category": "Ranged",
-      "Proficiency": "Simple",
-      "group": [ "Crossbows" ],
-
-      "Cost": 70,
-      "Weight": 4,
-      "Description": "An Underwater Crossbow functions as a regular crossbow above water.",
-      "Special": ""
-    },
-    "Javelin": {
-      "Damage": [ "1d4", "1d6", "" ],
-      "critRange": 20,
-      "critMultiplier": 2,
-      "range": 30,
-      "dmgType": [ "piercing" ],
-
-      "type": "Ranged",
-      "category": "Ranged",
-      "Proficiency": "Simple",
-      "group": [ "Spears", "Thrown" ],
-
-      "Cost": 1,
-      "Weight": 2,
-      "Description": "A javelin is a thin throwing spear.",
-      "Special": ""
-    },
-    "Sling": {
-      "Damage": [ "1d3", "1d4", "" ],
-      "critRange": 20,
-      "critMultiplier": 2,
-      "range": 50,
-      "dmgType": [ "bludgeoning" ],
-
-      "type": "Ranged",
-      "category": "Ranged",
-      "Proficiency": "Simple",
-      "group": [ "Thrown" ],
-
-      "Cost": 0,
-      "Weight": 0,
-      "Description": "A sling is little more than a leather cup attached to a pair of strings.",
-      "Special": ""
-    },
-    "Stingchuck": {
-      "Damage": [ "1d3", "1d4", "" ],
-      "critRange": 20,
-      "critMultiplier": 2,
-      "range": 10,
-      "dmgType": [ "bludgeoning" ],
-
-      "type": "Ranged",
-      "category": "Ranged",
-      "Proficiency": "Simple",
-      "group": [ "Thrown" ],
-
-      "Cost": 0,
-      "Weight": 9,
-      "Description": "A stingchuck is a foul bag made of a humanoid’s head with the brain removed and the skull heavily scored so that it bursts open when thrown.",
-      "Special": ""
-    },
-    "Stonebow": {
-      "Damage": [ "1d4", "1d6", "" ],
-      "critRange": 20,
-      "critMultiplier": 2,
-      "range": 50,
-      "dmgType": [ "bludgeoning" ],
-
-      "type": "Ranged",
-      "category": "Ranged",
-      "Proficiency": "Simple",
-      "group": [ "Crossbows" ],
-
-      "Cost": 35,
-      "Weight": 4,
-      "Description": "A stonebow, or bullet crossbow, resembles a light crossbow except for the distinct U-shaped bend in the stock.",
-      "Special": ""
-    },
-
-    "Throwing Darts": {
-      "Damage": [ "1d3", "1d4", "" ],
-      "critRange": 20,
-      "critMultiplier": 2,
-      "range": 20,
-      "dmgType": [ "piercing" ],
-
-      "type": "Ranged",
-      "category": "Ammunition",
-      "Proficiency": "Simple",
-      "group": [ "Thrown" ],
-
-      "Cost": 5,
-      "Weight": 0.5,
-      "Description": "Darts are missile weapons, designed to fly such that a sharp, often weighted point will strike first.",
-      "Special": ""
-    },
-    "Crossbow Bolts": {
-      "Damage": [ "1d3", "1d4", "" ],
-      "critRange": 20,
-      "critMultiplier": 2,
-      "range": 0,
-      "dmgType": [ "piercing" ],
-
-      "type": "Melee",
-      "category": "Ammunition",
-      "Proficiency": "Simple",
-      "group": [ "Crossbows" ],
-
-      "Cost": 0.1,
-      "Weight": 0.1,
-      "Description": "These bolts come in a case or quiver that holds 10 bolts. You may stab with the bolt as a Light Improvised Weapon (-4 to hit) using the damage given.",
-      "Special": ""
-    },
-    "Crossbow Bolts, Acid": {
-      "Damage": [ "1d3" ],
-      "critRange": 0,
-      "critMultiplier": 0,
-      "range": 0,
-      "dmgType": [ "acid" ],
-
-      "type": "Melee",
-      "category": "Ammunition",
-      "Proficiency": "Simple",
-      "group": [ "Crossbows" ],
-
-      "Cost": 40,
-      "Weight": 0.1,
-      "Description": "These metal bolts have a glass section in the middle, filled with acid.",
-      "Special": ""
-    },
-    "Crossbow Bolts, Drow Poison": {
-      "Damage": [ "0" ],
-      "critRange": 0,
-      "critMultiplier": 0,
-      "range": 0,
-      "dmgType": [ "none" ],
-
-      "type": "Melee",
-      "category": "Ammunition",
-      "Proficiency": "Simple",
-      "group": [ "Crossbows" ],
-
-      "Cost": 100,
-      "Weight": 0.1,
-      "Description": "These bolts have a strange tip that delivers the poison, but also affects accuracy. Double the range penalties for this bolt.",
-      "Special": "drow poison (DC 13 Fort)"
-    },
-    "Crossbow Bolts, Fire": {
-      "Damage": [ "1d4" ],
-      "critRange": 0,
-      "critMultiplier": 0,
-      "range": 0,
-      "dmgType": [ "fire" ],
-
-      "type": "Melee",
-      "category": "Ammunition",
-      "Proficiency": "Simple",
-      "group": [ "Crossbows" ],
-
-      "Cost": 50,
-      "Weight": 0.1,
-      "Description": "These metal bolts have a glass section in the middle, filled with a alchemical fire.",
-      "Special": ""
-    },
-    "Sling Bullets": {
-      "Damage": [ "0" ],
-      "critRange": 0,
-      "critMultiplier": 0,
-      "range": 0,
-      "dmgType": [ "none" ],
-
-      "type": "Melee",
-      "category": "Ammunition",
-      "Proficiency": "Simple",
-      "group": [ "Crossbows" ],
-
-      "Cost": 0.01,
-      "Weight": 0.5,
-      "Description": "These bullets come in a leather pouch that holds 10 bullets.",
-      "Special": ""
-    },
-    "Sling Bullets, Groaning": {
-      "Damage": [ "0" ],
-      "critRange": 0,
-      "critMultiplier": 0,
-      "range": 0,
-      "dmgType": [ "none" ],
-
-      "type": "Melee",
-      "category": "Ammunition",
-      "Proficiency": "Simple",
-      "group": [ "Crossbows" ],
-
-      "Cost": 0.2,
-      "Weight": 0.5,
-      "Description": "These sling bullets are honeycombed with overlapping perforations that cause them to emit an eerie moan audible within 500 feet of their flight path.",
-      "Special": ""
-    },
-    "Sling Bullets, Smoke": {
-      "Damage": [ "0" ],
-      "critRange": 0,
-      "critMultiplier": 0,
-      "range": 0,
-      "dmgType": [ "none" ],
-
-      "type": "Melee",
-      "category": "Ammunition",
-      "Proficiency": "Simple",
-      "group": [ "Crossbows" ],
-
-      "Cost": 10,
-      "Weight": 0.5,
-      "Description": "Uses a touch attack to release noxious smoke (DC 13 Fort), nauseating target for 2 rounds.",
-      "Special": ""
-    },
-    "Blowgun Darts": {
-      "Damage": [ "", "", "" ],
-      "critRange": 0,
-      "critMultiplier": 0,
-      "range": 0,
-      "dmgType": [ "none" ],
-
-      "type": "Ranged",
-      "category": "Ammunition",
-      "Proficiency": "Simple",
-      "group": [ "Misc" ],
-
-      "Cost": 0.5,
-      "Weight": 0,
-      "Description": "These light darts have tiny grooves behind the tips. A character can apply poison to a blowgun dart without risk of poisoning himself.",
-      "Special": "poison"
-    },
-
-
-    "Martial": {
-      
-    },
-
-    "Exotic": {
-
-    }
-
+  "Unarmed Strike": {
+    "Damage": [ "1d2", "1d3", "1d4" ],
+    "critRange": 20,
+    "critMultiplier": 2,
+    "range": 0,
+    "dmgType": [ "budgeoning", "nonlethal" ],
+
+    "type": "Melee",
+    "category": "Unarmed",
+    "Proficiency": "Simple",
+    "group": [ "Close" ],
+
+    "Cost": 0,
+    "Weight": 1,
+    "Description": "Just a punch or slap of the hand.",
+    "Special": "Unarmed strikes are always considered light attacks and can be used with the weapon finesse feat."
+  },
+  "Gauntlet": {
+    "Damage": [ "1d2", "1d3", "1d4" ],
+    "critRange": 20,
+    "critMultiplier": 2,
+    "range": 0,
+    "dmgType": [ "bludgeoning" ],
+
+    "type": "Melee",
+    "category": "Unarmed",
+    "Proficiency": "Simple",
+    "group": [ "Close" ],
+
+    "Cost": 2,
+    "Weight": 1,
+    "Description": "A metal glove that lets you deal lethal damage with unarmed strikes. Medium and heavy armors (except breastplate) come with gauntlets.",
+    "Special": ""
+  },
+  "Battle Aspergillum": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "critRange": 20,
+    "critMultiplier": 2,
+    "range": 0,
+    "dmgType": [ "budgeoning" ],
+
+    "type": "Melee",
+    "category": "Light",
+    "Proficiency": "Simple",
+    "group": [ "Hammers" ],
+
+    "Cost": 5,
+    "Weight": 4,
+    "Description": "Named for the common aspergillum, a mace-like tool used by priests to sprinkle holy water, this light mace has a hollow head and a metal plug to fit the hollow’s neck.",
+    "Special": "When the mace hits a creature, holy water sprinkles out; creatures subject to damage from holy water take 1 point of additional damage. You must refill the aspergillum after 5 hits with a standard action that provokes an AoO."
+  },
+  "Brass Knife": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "critRange": 19,
+    "critMultiplier": 2,
+    "range": 10,
+    "dmgType": [ "piercing", "slashing" ],
+
+    "type": "Melee",
+    "category": "Light",
+    "Proficiency": "Simple",
+    "group": [ "Blades", "Thrown" ],
+
+    "Cost": 2,
+    "Weight": 1,
+    "Description": "Though brass doesn’t hold as sharp an edge as steel, it isn’t vulnerable to rust like steel is.",
+    "Special": "fragile"
+  },
+  "Brass Knuckles": {
+    "Damage": [ "1d2", "1d3", "1d4" ],
+    "critRange": 20,
+    "critMultiplier": 2,
+    "range": 0,
+    "dmgType": [ "bludgeoning", "" ],
+
+    "type": "Melee",
+    "category": "Light",
+    "Proficiency": "Simple",
+    "group": [ "Close", "Monk" ],
+
+    "Cost": 1,
+    "Weight": 1,
+    "Description": "These close combat weapons are designed to fit comfortably around the knuckles, narrowing the contact area and therefore magnifying the amount of force delivered by a punch.",
+    "Special": "You may hold an object in a hand wearing brass knucles, but you cannot weild a weapon. You may also cast a spell with somantic components with a concentration check (DC 10 + spell level)."
+  },
+  "Cestus": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "critRange": 19,
+    "critMultiplier": 2,
+    "range": 0,
+    "dmgType": [ "bludgeoning", "piercing" ],
+
+    "type": "Melee",
+    "category": "Light",
+    "Proficiency": "Simple",
+    "group": [ "Close", "Monk" ],
+
+    "Cost": 5,
+    "Weight": 1,
+    "Description": "The cestus is a glove of leather or thick cloth that covers the wielder from mid-finger to mid-forearm, ofen reinforced with metal plates over the fingers.",
+    "Special": "You may wield or carry items while wearing a cestus, howeveer you take a -2 to all precision-based tasks involving that hand (such as opening locks)."
+  },
+  "Dagger": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "critRange": 19,
+    "critMultiplier": 2,
+    "range": 10,
+    "dmgType": [ "piercing", "slashing" ],
+
+    "type": "Melee",
+    "category": "Light",
+    "Proficiency": "Simple",
+    "group": [ "Blades", "Thrown", "Tribal" ],
+
+    "Cost": 2,
+    "Weight": 1,
+    "Description": "A dagger has a blade that is about 1 foot in length.",
+    "Special": "You get a +2 bonus on Sleight of Hand skill checks made to conceal a dagger on your body."
+  },
+  "Punching Dagger": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "critRange": 20,
+    "critMultiplier": 3,
+    "range": 0,
+    "dmgType": [ "piercing" ],
+
+    "type": "Melee",
+    "category": "Light",
+    "Proficiency": "Simple",
+    "group": [ "Close" ],
+
+    "Cost": 2,
+    "Weight": 1,
+    "Description": "A punching dagger’s blade is attached to a horizontal handle that projects out from the fist when held.",
+    "Special": ""
+  },
+  "Spiked Gauntlet": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "critRange": 20,
+    "critMultiplier": 2,
+    "range": 0,
+    "dmgType": [ "piercing" ],
+
+    "type": "Melee",
+    "category": "Light",
+    "Proficiency": "Simple",
+    "group": [ "Close" ],
+
+    "Cost": 5,
+    "Weight": 1,
+    "Description": "A glove made of metal with jagged spikes for extra damage, and the cost and weight given are for a single gauntlet.",
+    "Special": "An attack with a spiked guantlet is considered an armed attack, and it cannot be disarmed."
+  },
+  "Traveling Kettle": {
+    "Damage": [ "1d4", "1d6", "" ],
+    "critRange": 20,
+    "critMultiplier": 2,
+    "range": 0,
+    "dmgType": [ "bludgeoning" ],
+
+    "type": "Melee",
+    "category": "Light",
+    "Proficiency": "Simple",
+    "group": [ "Monk" ],
+
+    "Cost": 5,
+    "Weight": 2,
+    "Description": "These small tea kettles are made with clamping lids and heavily reinforced handles.",
+    "Special": "A traveling kettle with boiling water inside deals an additional 1 point of fire damage on a hit. Boiling water cools to a non-damaging temperature after 5 minutes."
+  },
+  "Hook Hand": {
+    "Damage": [ "1d3", "1d4", "" ],
+    "critRange": 20,
+    "critMultiplier": 2,
+    "range": 0,
+    "dmgType": [ "slashing" ],
+
+    "type": "Melee",
+    "category": "Light",
+    "Proficiency": "Simple",
+    "group": [ "Close" ],
+
+    "Cost": 10,
+    "Weight": 1,
+    "Description": "Pirates who lose a hand in the course of their adventures sometimes attach hooks to their wrists.",
+    "Special": "disarm"
+  },
+  "Kunai": {
+    "Damage": [ "1d3", "1d4", "" ],
+    "critRange": 20,
+    "critMultiplier": 2,
+    "range": 10,
+    "dmgType": [ "bludgeoning", "piercing" ],
+
+    "type": "Melee",
+    "category": "Light",
+    "Proficiency": "Simple",
+    "group": [ "Close", "Thrown" ],
+
+    "Cost": 2,
+    "Weight": 2,
+    "Description": "Crafted from a single piece of iron, a kunai has a leaf-shaped blade and a ring for a pommel. Adapted from the common trowel, the kunai has a thick blade that is sharpened only near the tip.",
+    "Special": ""
+  },
+  "Light Mace": {
+    "Damage": [ "1d4", "1d6", "" ],
+    "critRange": 20,
+    "critMultiplier": 2,
+    "range": 0,
+    "dmgType": [ "bludgeoning" ],
+
+    "type": "Melee",
+    "category": "Light",
+    "Proficiency": "Simple",
+    "group": [ "Hammers" ],
+
+    "Cost": 5,
+    "Weight": 4,
+    "Description": "A light mace is made up of an ornate metal head attached to a simple wooden or metal shaft.",
+    "Special": ""
+  },
+  "Sickle": {
+    "Damage": [ "1d4", "1d6", "" ],
+    "critRange": 20,
+    "critMultiplier": 2,
+    "range": 0,
+    "dmgType": [ "slashing" ],
+
+    "type": "Melee",
+    "category": "Light",
+    "Proficiency": "Simple",
+    "group": [ "Blades" ],
+
+    "Cost": 6,
+    "Weight": 2,
+    "Description": "A curved blade extends from the basic wooden handle, though usable in a pinch the sickle is mainly a farming tool.",
+    "Special": "trip"
+  },
+  "Spring Blade": {
+    "Damage": [ "1d3", "1d4", "" ],
+    "critRange": 20,
+    "critMultiplier": 2,
+    "range": 10,
+    "dmgType": [ "piercing", "slashing" ],
+
+    "type": "Melee",
+    "category": "Light",
+    "Proficiency": "Simple",
+    "group": [ "Blades", "Thrown" ],
+
+    "Cost": 70,
+    "Weight": 1,
+    "Description": "This 4-inch blade is attached via a hinge to a wooden handle with a slot in the center, into which the blade can be folded.",
+    "Special": "A spring blade is easy to conceal: an observer must succeed at a DC 20 Perception check to notice the blade hidden within the wooden handle, and you gain a +4 bonus on Sleight of Hand checks to conceal a spring blade on your body."
+  },
+  "Wodden Stake": {
+    "Damage": [ "1d3", "1d4", "" ],
+    "critRange": 20,
+    "critMultiplier": 2,
+    "range": 10,
+    "dmgType": [ "piercing" ],
+
+    "type": "Melee",
+    "category": "Light",
+    "Proficiency": "Simple",
+    "group": [ "Close", "Thrown" ],
+
+    "Cost": 0,
+    "Weight": 1,
+    "Description": "This close combat weapon is just a sharpened piece of wood. Iron spikes used as weapons deal damage as wooden stakes.",
+    "Special": ""
+  },
+
+  "Club": {
+    "Damage": [ "1d4", "1d6", "" ],
+    "critRange": 20,
+    "critMultiplier": 2,
+    "range": 10,
+    "dmgType": [ "bludgeoning" ],
+
+    "type": "Melee",
+    "category": "One-Handed",
+    "Proficiency": "Simple",
+    "group": [ "Hammers", "Tribal" ],
+
+    "Cost": 0,
+    "Weight": 3,
+    "Description": "This weapon is usually just a shaped piece of wood, sometimes with a few nails or studs embedded in it.",
+    "Special": ""
+  },
+  "Mere Club": {
+    "Damage": [ "1d3", "1d4", "" ],
+    "critRange": 20,
+    "critMultiplier": 2,
+    "range": 0,
+    "dmgType": [ "bludgeoning", "piercing" ],
+
+    "type": "Melee",
+    "category": "One-Handed",
+    "Proficiency": "Simple",
+    "group": [ "Close", "Hammers" ],
+
+    "Cost": 2,
+    "Weight": 2,
+    "Description": "Traditionally made of carved stone, the mere (MEH-reh) is a short, flat-sided, sharp-pointed club.",
+    "Special": "fragile"
+  },
+  "Heavy Mace": {
+    "Damage": [ "1d6", "1d8", "" ],
+    "critRange": 20,
+    "critMultiplier": 2,
+    "range": 0,
+    "dmgType": [ "bludgeoning" ],
+
+    "type": "Melee",
+    "category": "One-Handed",
+    "Proficiency": "Simple",
+    "group": [ "Hammers" ],
+
+    "Cost": 12,
+    "Weight": 8,
+    "Description": "A heavy mace has a larger head and a longer handle than a normal (light) mace.",
+    "Special": ""
+  },
+  "Morningstar": {
+    "Damage": [ "1d6", "1d8", "" ],
+    "critRange": 20,
+    "critMultiplier": 2,
+    "range": 0,
+    "dmgType": [ "bludgeoning", "piercing" ],
+
+    "type": "Melee",
+    "category": "One-Handed",
+    "Proficiency": "Simple",
+    "group": [ "Maces", "Flails" ],
+
+    "Cost": 8,
+    "Weight": 6,
+    "Description": "A morningstar is a spiked metal ball, affixed to the top of a long handle.",
+    "Special": ""
+  },
+  "Shortspear": {
+    "Damage": [ "1d4", "1d6", "" ],
+    "critRange": 20,
+    "critMultiplier": 2,
+    "range": 20,
+    "dmgType": [ "piercing" ],
+
+    "type": "Melee",
+    "category": "One-Handed",
+    "Proficiency": "Simple",
+    "group": [ "Spears", "Thrown", "Tribal" ],
+
+    "Cost": 1,
+    "Weight": 3,
+    "Description": "A shortspear is about 3 feet in length, making it a suitable thrown weapon.",
+    "Special": ""
+  },
+
+  "Bayonet": {
+    "Damage": [ "1d4", "1d6", "" ],
+    "critRange": 20,
+    "critMultiplier": 2,
+    "range": 0,
+    "dmgType": [ "piercing" ],
+
+    "type": "Melee",
+    "category": "Two-Handed",
+    "Proficiency": "Simple",
+    "group": [ "Blades", "Close" ],
+
+    "Cost": 5,
+    "Weight": 1,
+    "Description": "Bayonets are close combat weapons designed to fit into the grooves or muzzles of crossbows and firearms.",
+    "Special": ""
+  },
+  "Boarding Pike": {
+    "Damage": [ "1d6", "1d8", "" ],
+    "critRange": 20,
+    "critMultiplier": 3,
+    "range": 0,
+    "dmgType": [ "piercing" ],
+
+    "type": "Melee",
+    "category": "Two-Handed",
+    "Proficiency": "Simple",
+    "group": [ "Polearms" ],
+
+    "Cost": 8,
+    "Weight": 9,
+    "Description": "A boarding pike is an 8-foot-long pole topped with a foot-long tapered metal tip.",
+    "Special": "brace, reach"
+  },
+  "Kumade": {
+    "Damage": [ "1d4", "1d6", "" ],
+    "critRange": 20,
+    "critMultiplier": 3,
+    "range": 0,
+    "dmgType": [ "piercing" ],
+
+    "type": "Melee",
+    "category": "Two-Handed",
+    "Proficiency": "Simple",
+    "group": [ "Axes" ],
+
+    "Cost": 5,
+    "Weight": 4,
+    "Description": "Adapted from a garden rake, the kumade consists of a wood or bamboo pole topped with a metal claw. The rake head doubles as a grappling hook.",
+    "Special": "grapple"
+  },
+  "Collapsible Kumade": {
+    "Damage": [ "1d4", "1d6", "" ],
+    "critRange": 20,
+    "critMultiplier": 3,
+    "range": 0,
+    "dmgType": [ "piercing" ],
+
+    "type": "Melee",
+    "category": "Two-Handed",
+    "Proficiency": "Simple",
+    "group": [ "Axes" ],
+
+    "Cost": 10,
+    "Weight": 4,
+    "Description": "This weapon acts as a kumade, but the handle consists of bamboo sections held together by a taut rope running through the center.",
+    "Special": "grapple"
+  },
+  "Lantern Staff": {
+    "Damage": [ "1d4", "1d6", "" ],
+    "critRange": 20,
+    "critMultiplier": 2,
+    "range": 0,
+    "dmgType": [ "bludgeoning" ],
+
+    "type": "Melee",
+    "category": "Two-Handed",
+    "Proficiency": "Simple",
+    "group": [ "Hammers" ],
+
+    "Cost": 15,
+    "Weight": 9,
+    "Description": "This long metal staff has reservoirs for lamp oil, and a lantern-like structure at its head.",
+    "Special": ""
+  },
+  "Longspear": {
+    "Damage": [ "1d6", "1d8", "" ],
+    "critRange": 20,
+    "critMultiplier": 3,
+    "range": 0,
+    "dmgType": [ "piercing" ],
+
+    "type": "Melee",
+    "category": "Two-Handed",
+    "Proficiency": "Simple",
+    "group": [ "Spears" ],
+
+    "Cost": 5,
+    "Weight": 9,
+    "Description": "A longspear is about 8 feet in length.",
+    "Special": "brace, reach"
+  },
+  "Quarterstaff": {
+    "Damage": [ "1d4/1d4", "1d6/1d6", "" ],
+    "critRange": 20,
+    "critMultiplier": 2,
+    "range": 0,
+    "dmgType": [ "bludgeoning" ],
+
+    "type": "Melee",
+    "category": "Two-Handed",
+    "Proficiency": "Simple",
+    "group": [ "Double", "Monk" ],
+
+    "Cost": 0,
+    "Weight": 4,
+    "Description": "A quarterstaff is a simple piece of wood, about 5 feet in length.",
+    "Special": "double"
+  },
+  "Spear": {
+    "Damage": [ "1d6", "1d8", "" ],
+    "critRange": 20,
+    "critMultiplier": 3,
+    "range": 0,
+    "dmgType": [ "piercing" ],
+
+    "type": "Melee",
+    "category": "Two-Handed",
+    "Proficiency": "Simple",
+    "group": [ "Spears", "Thrown", "Tribal" ],
+
+    "Cost": 2,
+    "Weight": 6,
+    "Description": "A spear is 5 feet in length and can be thrown.",
+    "Special": "brace"
+  },
+  "Boar Spear": {
+    "Damage": [ "1d6", "1d8", "" ],
+    "critRange": 20,
+    "critMultiplier": 2,
+    "range": 0,
+    "dmgType": [ "piercing" ],
+
+    "type": "Melee",
+    "category": "Two-Handed",
+    "Proficiency": "Simple",
+    "group": [ "Spears" ],
+
+    "Cost": 5,
+    "Weight": 8,
+    "Description": "This spear with a spiraling blade has a metal crossbar approximately halfway down its length.",
+    "Special": "brace"
+  },
+  "Weighted Spear": {
+    "Damage": [ "1d6/1d4", "1d8/1d6", "" ],
+    "critRange": 20,
+    "critMultiplier": 3,
+    "range": 0,
+    "dmgType": [ "bludgeoning", "slashing" ],
+
+    "type": "Melee",
+    "category": "Two-Handed",
+    "Proficiency": "Simple",
+    "group": [ "Spears", "Double" ],
+
+    "Cost": 10,
+    "Weight": 8,
+    "Description": "This pole has a spear head at one end and a mace head at the other. It can be wielded like a standard spear (though it isn’t balanced for throwing), or it can be used as a double weapon, alternately thrusting and bashing.",
+    "Special": "brace, double"
+  },
+
+  "Blowgun": {
+    "Damage": [ "1", "1d2", "" ],
+    "critRange": 20,
+    "critMultiplier": 2,
+    "range": 20,
+    "dmgType": [ "piercing" ],
+
+    "type": "Ranged",
+    "category": "Ranged",
+    "Proficiency": "Simple",
+    "group": [ "Thrown" ],
+
+    "Cost": 2,
+    "Weight": 1,
+    "Description": "Blowguns are generally used to deliver debilitating (but rarely fatal) poisons from a distance. They are nearly silent when fired.",
+    "Special": ""
+  },
+  "Heavy Crossbow": {
+    "Damage": [ "1d8", "1d10", "" ],
+    "critRange": 19,
+    "critMultiplier": 2,
+    "range": 120,
+    "dmgType": [ "piercing" ],
+
+    "type": "Ranged",
+    "category": "Ranged",
+    "Proficiency": "Simple",
+    "group": [ "Crossbows" ],
+
+    "Cost": 50,
+    "Weight": 8,
+    "Description": "You draw a Heavy Crossbow back by truning a small winch, this takes a full-round action that provkes Attacks of Opportunity",
+    "Special": ""
+  },
+  "Heavy Crossbow (Underwater)": {
+    "Damage": [ "1d8", "1d10", "" ],
+    "critRange": 19,
+    "critMultiplier": 2,
+    "range": 20,
+    "dmgType": [ "piercing" ],
+
+    "type": "Ranged",
+    "category": "Ranged",
+    "Proficiency": "Simple",
+    "group": [ "Crossbows" ],
+
+    "Cost": 100,
+    "Weight": 8,
+    "Description": "An Underwater Crossbow functions as a regular crossbow above water.",
+    "Special": ""
+  },
+  "Light Crossbow": {
+    "Damage": [ "1d6", "1d8", "" ],
+    "critRange": 19,
+    "critMultiplier": 2,
+    "range": 80,
+    "dmgType": [ "piercing" ],
+
+    "type": "Ranged",
+    "category": "Ranged",
+    "Proficiency": "Simple",
+    "group": [ "Crossbows" ],
+
+    "Cost": 35,
+    "Weight": 4,
+    "Description": "You draw a Light Crossbow back by pulling a lever, this takes a move action that provokes Attacks of Opportunity.",
+    "Special": ""
+  },
+  "Light Crossbow (Underwater)": {
+    "Damage": [ "1d6", "1d8", "" ],
+    "critRange": 19,
+    "critMultiplier": 2,
+    "range": 20,
+    "dmgType": [ "piercing" ],
+
+    "type": "Ranged",
+    "category": "Ranged",
+    "Proficiency": "Simple",
+    "group": [ "Crossbows" ],
+
+    "Cost": 70,
+    "Weight": 4,
+    "Description": "An Underwater Crossbow functions as a regular crossbow above water.",
+    "Special": ""
+  },
+  "Javelin": {
+    "Damage": [ "1d4", "1d6", "" ],
+    "critRange": 20,
+    "critMultiplier": 2,
+    "range": 30,
+    "dmgType": [ "piercing" ],
+
+    "type": "Ranged",
+    "category": "Ranged",
+    "Proficiency": "Simple",
+    "group": [ "Spears", "Thrown" ],
+
+    "Cost": 1,
+    "Weight": 2,
+    "Description": "A javelin is a thin throwing spear.",
+    "Special": ""
+  },
+  "Sling": {
+    "Damage": [ "1d3", "1d4", "" ],
+    "critRange": 20,
+    "critMultiplier": 2,
+    "range": 50,
+    "dmgType": [ "bludgeoning" ],
+
+    "type": "Ranged",
+    "category": "Ranged",
+    "Proficiency": "Simple",
+    "group": [ "Thrown" ],
+
+    "Cost": 0,
+    "Weight": 0,
+    "Description": "A sling is little more than a leather cup attached to a pair of strings.",
+    "Special": ""
+  },
+  "Stingchuck": {
+    "Damage": [ "1d3", "1d4", "" ],
+    "critRange": 20,
+    "critMultiplier": 2,
+    "range": 10,
+    "dmgType": [ "bludgeoning" ],
+
+    "type": "Ranged",
+    "category": "Ranged",
+    "Proficiency": "Simple",
+    "group": [ "Thrown" ],
+
+    "Cost": 0,
+    "Weight": 9,
+    "Description": "A stingchuck is a foul bag made of a humanoid’s head with the brain removed and the skull heavily scored so that it bursts open when thrown.",
+    "Special": ""
+  },
+  "Stonebow": {
+    "Damage": [ "1d4", "1d6", "" ],
+    "critRange": 20,
+    "critMultiplier": 2,
+    "range": 50,
+    "dmgType": [ "bludgeoning" ],
+
+    "type": "Ranged",
+    "category": "Ranged",
+    "Proficiency": "Simple",
+    "group": [ "Crossbows" ],
+
+    "Cost": 35,
+    "Weight": 4,
+    "Description": "A stonebow, or bullet crossbow, resembles a light crossbow except for the distinct U-shaped bend in the stock.",
+    "Special": ""
+  },
+
+  "Throwing Darts": {
+    "Damage": [ "1d3", "1d4", "" ],
+    "critRange": 20,
+    "critMultiplier": 2,
+    "range": 20,
+    "dmgType": [ "piercing" ],
+
+    "type": "Ranged",
+    "category": "Ammunition",
+    "Proficiency": "Simple",
+    "group": [ "Thrown" ],
+
+    "Cost": 5,
+    "Weight": 0.5,
+    "Description": "Darts are missile weapons, designed to fly such that a sharp, often weighted point will strike first.",
+    "Special": ""
+  },
+  "Crossbow Bolts": {
+    "Damage": [ "1d3", "1d4", "" ],
+    "critRange": 20,
+    "critMultiplier": 2,
+    "range": 0,
+    "dmgType": [ "piercing" ],
+
+    "type": "Melee",
+    "category": "Ammunition",
+    "Proficiency": "Simple",
+    "group": [ "Crossbows" ],
+
+    "Cost": 0.1,
+    "Weight": 0.1,
+    "Description": "These bolts come in a case or quiver that holds 10 bolts. You may stab with the bolt as a Light Improvised Weapon (-4 to hit) using the damage given.",
+    "Special": ""
+  },
+  "Crossbow Bolts, Acid": {
+    "Damage": [ "1d3" ],
+    "critRange": 0,
+    "critMultiplier": 0,
+    "range": 0,
+    "dmgType": [ "acid" ],
+
+    "type": "Melee",
+    "category": "Ammunition",
+    "Proficiency": "Simple",
+    "group": [ "Crossbows" ],
+
+    "Cost": 40,
+    "Weight": 0.1,
+    "Description": "These metal bolts have a glass section in the middle, filled with acid.",
+    "Special": ""
+  },
+  "Crossbow Bolts, Drow Poison": {
+    "Damage": [ "0" ],
+    "critRange": 0,
+    "critMultiplier": 0,
+    "range": 0,
+    "dmgType": [ "none" ],
+
+    "type": "Melee",
+    "category": "Ammunition",
+    "Proficiency": "Simple",
+    "group": [ "Crossbows" ],
+
+    "Cost": 100,
+    "Weight": 0.1,
+    "Description": "These bolts have a strange tip that delivers the poison, but also affects accuracy. Double the range penalties for this bolt.",
+    "Special": "drow poison (DC 13 Fort)"
+  },
+  "Crossbow Bolts, Fire": {
+    "Damage": [ "1d4" ],
+    "critRange": 0,
+    "critMultiplier": 0,
+    "range": 0,
+    "dmgType": [ "fire" ],
+
+    "type": "Melee",
+    "category": "Ammunition",
+    "Proficiency": "Simple",
+    "group": [ "Crossbows" ],
+
+    "Cost": 50,
+    "Weight": 0.1,
+    "Description": "These metal bolts have a glass section in the middle, filled with a alchemical fire.",
+    "Special": ""
+  },
+  "Sling Bullets": {
+    "Damage": [ "0" ],
+    "critRange": 0,
+    "critMultiplier": 0,
+    "range": 0,
+    "dmgType": [ "none" ],
+
+    "type": "Melee",
+    "category": "Ammunition",
+    "Proficiency": "Simple",
+    "group": [ "Crossbows" ],
+
+    "Cost": 0.01,
+    "Weight": 0.5,
+    "Description": "These bullets come in a leather pouch that holds 10 bullets.",
+    "Special": ""
+  },
+  "Sling Bullets, Groaning": {
+    "Damage": [ "0" ],
+    "critRange": 0,
+    "critMultiplier": 0,
+    "range": 0,
+    "dmgType": [ "none" ],
+
+    "type": "Melee",
+    "category": "Ammunition",
+    "Proficiency": "Simple",
+    "group": [ "Crossbows" ],
+
+    "Cost": 0.2,
+    "Weight": 0.5,
+    "Description": "These sling bullets are honeycombed with overlapping perforations that cause them to emit an eerie moan audible within 500 feet of their flight path.",
+    "Special": ""
+  },
+  "Sling Bullets, Smoke": {
+    "Damage": [ "0" ],
+    "critRange": 0,
+    "critMultiplier": 0,
+    "range": 0,
+    "dmgType": [ "none" ],
+
+    "type": "Melee",
+    "category": "Ammunition",
+    "Proficiency": "Simple",
+    "group": [ "Crossbows" ],
+
+    "Cost": 10,
+    "Weight": 0.5,
+    "Description": "Uses a touch attack to release noxious smoke (DC 13 Fort), nauseating target for 2 rounds.",
+    "Special": ""
+  },
+  "Blowgun Darts": {
+    "Damage": [ "", "", "" ],
+    "critRange": 0,
+    "critMultiplier": 0,
+    "range": 0,
+    "dmgType": [ "none" ],
+
+    "type": "Ranged",
+    "category": "Ammunition",
+    "Proficiency": "Simple",
+    "group": [ "Misc" ],
+
+    "Cost": 0.5,
+    "Weight": 0,
+    "Description": "These light darts have tiny grooves behind the tips. A character can apply poison to a blowgun dart without risk of poisoning himself.",
+    "Special": "poison"
+  },
+
+
+  "Martial": {
+
+  },
+
+  "Exotic": {
 
   }
 }

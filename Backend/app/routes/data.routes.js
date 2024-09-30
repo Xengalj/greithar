@@ -3,11 +3,11 @@ const fs = require('fs');
 const Papa = require('papaparse');
 
 const ItemController = require("../controllers/equipment.controller");
-const armor = require('../data/armor.json');
-const shields = require('../data/shields.json');
-const weapons = require('../data/weapons.json');
-// const materials = require('../data/materials.json');
-const goods = require('../data/goods.json');
+const Armor = require('../data/armor.json');
+const Shields = require('../data/shields.json');
+const Weapons = require('../data/weapons.json');
+// const Materials = require('../data/materials.json');
+const Goods = require('../data/goods.json');
 
 module.exports = function(app) {
   app.use(function(req, res, next) {
@@ -112,7 +112,7 @@ module.exports = function(app) {
   app.post(
     "/api/data/equipment/read",
     (req, res) => {
-      let items = { armor, shields, weapons };
+      let items = { Armor, Shields, Weapons };
       res.status(200).send(items);
     }
   );

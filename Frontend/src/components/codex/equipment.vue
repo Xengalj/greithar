@@ -30,13 +30,14 @@
 <script>
 import DataService from "@/services/data.service";
 
-const equipmentTable = require("@/components/codex/equipment.json");
+// const equipmentTable = require("@/components/codex/equipment.json");
 
 export default {
   name: "Equipment",
   data() {
     return {
-      loading: false,
+      equipment: {}, // equipment JSON from server
+
       tableName: "equipmentTable",
       tableData: {},
       tableFilters: {},
@@ -53,8 +54,7 @@ export default {
   },
 
   created() {
-    // this.getEquipment;
-    this.tableUpdate();
+    this.getEquipment();
   },
   mounted() {},
   methods: {
@@ -62,20 +62,18 @@ export default {
       this.loading = true;
       DataService.getEquipment()
       .then(response => {
-        console.log("Server:", response);
+        // console.log("Server:", response);
+        this.equipment = response;
         this.tableUpdate();
       })
       .catch(err => { console.error(err); })
 
     },
-
-
-
-
     tableUpdate() {
+      this.tableData = this.equipment[this.selectedType.label] ? this.equipment[this.selectedType.label] : this.equipment["Armor"];
+
       switch (this.selectedType.label) {
         case "Armor":
-          this.tableData = equipmentTable.Armor;
           this.tableFilters = {
             "Proficiency": {
               "Light": { label: "Light", color: "#1EC79D" },
@@ -86,7 +84,6 @@ export default {
           break;
 
         case "Shields":
-        this.tableData = equipmentTable.shields;
           this.tableFilters = {
             "Proficiency": {
               "Light": { label: "Light", color: "#1EC79D" },
@@ -97,7 +94,6 @@ export default {
           break;
 
         case "Weapons":
-        this.tableData = equipmentTable.weapons;
           this.tableFilters = {
             "Proficiency": {
               "Light": { label: "Light", color: "#1EC79D" },
@@ -124,7 +120,6 @@ export default {
           break;
 
         case "Special Materials":
-          // this.tableData = equipmentTable.materials;
           this.tableFilters = {
             "Type": {
               "Wood": { label: "Wood", color: "#84240C" },
@@ -136,7 +131,6 @@ export default {
           break;
 
         case "Goods and Services":
-          // this.tableData = equipmentTable.goods;
           this.tableFilters = {
             "Category": {
               "Adventuring Gear": { label: "Adventuring Gear", color: "#E63415" },

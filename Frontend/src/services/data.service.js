@@ -8,6 +8,12 @@ class DataService {
     return axios.get(API_URL + 'admin', { headers: authHeader() });
   }
 
+  /***************************\
+  *                           *
+  *         BEASTIARY         *
+  *                           *
+  \***************************/
+
   // get the beastiary.csv as a json from backend
   getBeastiary() {
     return axios.get(API_URL + 'beastiary/getAll',

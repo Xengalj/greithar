@@ -47,7 +47,7 @@
     <tr v-for="(item, name) in data" :key="name">
       <td name="Name">{{ name }}</td>
       <td v-for="(prop, key) in item" :key="key" :name="key">
-        {{ prop }}
+        {{ Array.isArray(prop) ? displayList(prop) : prop }}
       </td>
     </tr>
   </table>
@@ -67,9 +67,8 @@ export default {
       return this.filters;
     },
     tableCols() {
-      console.log(this.data);
       let first = Object.values(this.data)[0];
-      return ["Name"].concat(Object.keys(first));
+      return first ? ["Name"].concat(Object.keys(first)) : ["Name 2"];
     }
   },
   data() {
@@ -233,6 +232,14 @@ export default {
           shouldRemove = true;
         }
       }
+    },
+
+    displayList(prop) {
+      let list = "";
+      for (const item of prop) {
+        list += "•" + item + "\n";
+      }
+      return list;
     }
 
 

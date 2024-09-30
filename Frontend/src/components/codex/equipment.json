@@ -620,7 +620,7 @@
 
 
 
-  "shields": {
+  "Shields": {
     "Buckler": {
       "AC Bonus": 1,
       "Max Dex": 10,
@@ -907,7 +907,7 @@
 
 
 
-  "weapons": {
+  "Weapons": {
     "Unarmed Strike": {
       "name": "Unarmed Strike",
       "Cost": 0,
