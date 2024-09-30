@@ -1,4 +1,6 @@
 {
+  https://pathfinderwiki.com/wiki/Skymetal
+  
   "Special Materials": {
     "Steel": {
       "Cost": {  "Base Item": "+0 gp"  },
@@ -33,6 +35,20 @@
         "Adamantine armor grants its wearer damage reduction. Light armor grants DR 1/-, Medium is 2/-, and Heavy is 3/-."
       ]
     },
+    "Alchemical Silver": {
+      "Cost": {
+        "Ammunition":	"+2 gp",
+        "Light weapon":	"+20 gp",
+        "One-handed weapon":	"+90 gp",
+        "Two-handed weapon":  "+180 gp"
+      },
+      "Type": "Metal",
+      "Description": "A complex process involving metallurgy and alchemy can bond silver to a weapon made of steel so that it bypasses the damage reduction of creatures such as lycanthropes.",
+      "Special": [
+        "On a successful attack with a silvered slashing or piercing weapon, the wielder takes a –1 penalty on the damage roll.",
+        "The alchemical silvering process can’t be applied to nonmetal items, and it doesn’t work on rare metals such as adamantine, cold iron, and mithral."
+      ]
+    },
     "Angelskin": {
       "Cost": {
         "Light armor": "+1,000 gp",
@@ -58,20 +74,6 @@
         "Adding aszite veins to armor increases the item’s weight by 10%.",
         "The wearer of aszite-veined armor gains a +2 circumstance bonus on Stealth checks when affected by a spell with the darkness descriptor.",
         "Spells with the darkness descriptor that last multiple rounds last 1 round longer when affecting a creature with aszite-veined armor."
-      ]
-    },
-    "Alchemical Silver": {
-      "Cost": {
-        "Ammunition":	"+2 gp",
-        "Light weapon":	"+20 gp",
-        "One-handed weapon":	"+90 gp",
-        "Two-handed weapon":  "+180 gp"
-      },
-      "Type": "Metal",
-      "Description": "A complex process involving metallurgy and alchemy can bond silver to a weapon made of steel so that it bypasses the damage reduction of creatures such as lycanthropes.",
-      "Special": [
-        "On a successful attack with a silvered slashing or piercing weapon, the wielder takes a –1 penalty on the damage roll.",
-        "The alchemical silvering process can’t be applied to nonmetal items, and it doesn’t work on rare metals such as adamantine, cold iron, and mithral."
       ]
     },
 
@@ -285,6 +287,14 @@
       ]
     },
 
+    "Glaucite": {
+      "Cost": { "Base Item": "+2,000 gp" },
+      "Type": "Metal",
+      "Description": "Glaucite is a dull gray skymetal alloy of adamantine and iron.",
+      "Special": [
+        "Glaucite is only half as heavy as iron, but has a hardness of 15 and 30 HP / inch."
+      ]
+    },
     "Gold": {
       "Cost": { "Base Item": "x10 gp" },
       "Description": "Typically only used for ceremonial weapons and armor, metal equipment made from gold is fragile, heavy, and expensive. Often golden armor is gold-plated rather than constructed entirely from gold.",
@@ -440,138 +450,72 @@ If the check is failed, the affected creature’s spell or spell-like ability is
     },
 
     "Obsidian": {
-      "Cost": {},
-      "Type": "",
-      "Description": "",
+      "Cost": { "Weapon": "x0.5 gp" },
+      "Type": "Stone",
+      "Description": "This black volcanic glass is extremely sharp, and can be shaped into a variety of weapons that do piercing and slashing damage.",
       "Special": [
-
-        “Obsidian weapons cost half of what base items of their type do, and weigh 75% of what base items of their type do.”
-        
-        This black volcanic glass is extremely sharp, and can be shaped into a variety of weapons that do piercing and slashing damage.
-      Bits of obsidian inserted into a length of tempered wood create effective swords called terbutjes.
-        Weapons Obsidian can be used to craft light and one-handed weapons that do piercing or slashing damage,
-      as well as spear tips and arrowheads.
-      Obsidian weapons have half the hardness of their base weapon and have the fragile quality.
-        Armor The fragile glass nature of obsidian is perfect for creating sharp points and blades,
-      but those same qualities make it unsuitable for creating armor.
-      Armor cannot be constructed from obsidian.
-
+        "Obsidian weapons weigh 75% of the base item and have the fragile quality.",
+        "Obsidian can be used to craft light and one-handed weapons that do piercing or slashing damage, as well as spear tips and arrowheads."
       ]
     },
-
 
     "Siccatite": {
       "Cost": {
-        Siccatite increases the cost of a weapon by 1,000 gp and armor by 6,000 gp (regardless of the armor’s type).
+        "Weapon": "+1,000 gp",
+        "Armor": "+6,000 gp"
       },
-      "Type": "",
-      "Description": "",
+      "Type": "Metal",
+      "Description": "This shining silver metal is either incredibly hot or freezing cold when found. As of yet, scholars have not determined whether siccatite is actually two similarly hued metals or a single type that determines its own temperature via some unknown process.",
       "Special": [
-
-        This shining silver metal is either incredibly hot or freezing cold when found.
-        As of yet, scholars have not determined whether siccatite is actually two similarly hued metals or
-      a single type that determines its own temperature via some unknown process.
-      When raw siccatite is found, it has a 50% chance of being hot siccatite; otherwise, it’s cold siccatite.
-      Physical contact with siccatite deals 1 point of fire (for hot siccatite) or cold (for cold siccatite) damage each round.
-      Hot siccatite can eventually ignite objects, and cold siccatite in water quickly surrounds itself with a 1-foot-thick shell of ice.
-      A weapon made of siccatite deals 1 additional point of damage of the appropriate energy type each time it strikes a foe,
-      but also deals 1 point of the same energy damage to the wielder each round it is used in combat.
-        Siccatite armor deals 1 point of energy damage (fire or cold) per round to a creature wearing it
-      , and deals 1 point of the same energy damage each full round a creature is grappled by someone wearing siccatite armor.
-      Cold siccatite armor grants fire resistance 5, while hot siccatite armor grants cold resistance 5.
-      (The type of armor does not alter the amount of resistance granted.)
-      
+        "Siccatite has a 50% chance to be hot or cold when found in it's raw form.",
+        "Hot siccatite weapons deal 1 fire damge per round to the weilder and an additional 1 fire damge to struck creatures.",
+        "Hot siccatite armor grants cold resistance 5, deals 1 fire damage per round to the creature wearing it and any creatures grappling the wearer.",
+        "Cold siccatite weapons deal 1 cold damge per round to the weilder and an additional 1 cold damge to struck creatures.",
+        "Cold siccatite armor grants fire resistance 5, deals 1 cold damage per round to the creature wearing it and any creatures grappling the wearer."
       ]
     },
     "Silversheen": {
-      "Cost": {
-        +750 gp.
-      },
-      "Type": "",
-      "Description": "",
+      "Cost": { "Blade": "+750 gp" },
+      "Type": "Metal",
+      "Description": "This silvery metal is great for blades as it is totally immune to rusting.",
       "Special": [
-"Weapons and Armor made from mithral are always masterwork (price included).",
-        Blades made of this special metal count as alchemical silver weapons and are immune to rust, including that of rust monsters,
-      the rusting grasp spell, and so on.
-        Blades made of silversheen are always masterwork items as well; the masterwork cost is included in the price given.
-      A blade made of silversheen has its price increased by 750 gp.
-        Crafting a silversheen blade requires Craft (alchemy) 5 ranks and Craft (weaponsmithing) 5 ranks.
-
+        "Blades made of silversheen count as alchemical silver (without the -1 to damage), are immune to rust, and are always masterwork (price included)."
       ]
     },
     "Singing Steel": {
-      "Cost": {},
-      "Type": "",
-      "Description": "",
+      "Cost": {
+        "Weapon":	"+6,000 gp",
+        "Shield":	"+7,000 gp",
+        "Light armor":	"+750 gp",
+        "Medium armor":	"+9,000 gp",
+        "Heavy armor":	"+12,000 gp",
+        "Other items":	"+600 gp/lb",
+      },
+      "Type": "Metal",
+      "Description": "This lustrous golden metal is an alloy of gold and mithral and emits beautiful bell-like tones when struck.",
       "Special": [
-        "Weapons and Armor made from mithral are always masterwork (price included).",
-
-        This lustrous golden metal emits beautiful bell-like tones when struck.
-        An alloy of gold and mithral, singing steel was originally created by the elves.
-A weapon made of singing steel counts as alchemical silver for all purposes, including the –1 penalty on damage rolls with singing steel weapons.
-Most armor made of singing steel is treated as one category lighter (heavy armors are treated as medium, and medium armors are treated as light,
-      but light armors are still treated as light).
-      The armor or shield’s arcane spell failure chance is reduced by 5%, its maximum Dexterity bonus is increased by 1, and its armor check penalty is reduced by 1 (to a minimum of 0).
-When wielding a singing steel weapon, shield, or item weighing at least 5 pounds, or wearing medium or heavy singing steel armor, the wielder or wearer can strike the singing steel as part of beginning a bardic performance. If the wielder can normally start a bardic performance as a standard action, he can do so as a move action instead. If the wielder can normally start a bardic performance as a move action, he can do so as a swift action instead. This ability does not function in the area of a silence spell or similar effect. After using the singing steel in this fashion, the steel must be carefully brushed to remove any lingering vibrations, a process that takes 10 minutes.
-Singing steel items are always masterwork; this cost is included in the price.
-        Singing steel has 20 hp per inch of thickness and hardness 10. 
-        Although formed partially from mithral, singing steel items weigh as much as their normal counterparts.
-
-        Type of Item	Price Modifier
-        Light armor	+750 gp
-        Medium armor	+9,000 gp
-        Heavy armor	+12,000 gp
-        Shield	+7,000 gp
-        Weapon	+6,000 gp
-        Other items	+600 gp/lb.
-
-      ]
-    },
-    "Skymetal Alloys": {
-      "Cost": {},
-      "Type": "",
-      "Description": "",
-      "Special": [
-
-        Both ancient and modern metallurgists have devised numerous alloys that mix skymetals with other materials.
-        Many of these are highly specialized, but one deserves special mention: glaucite.
-      This dull gray metal is an alloy of adamantine and iron.
-      Though it has hardness 15 and 30 hit points per inch of thickness, glaucite is half again as heavy as iron and difficult to work with.
-      The material of choice for ship hulls and robot frames, but is generally sought after only by collectors and eccentrics
-      as a material for new items or other projects.
-
+        "Weapons and Armor made from singing steel are always masterwork (price included).",
+        "Singing steel weapons count as alchemical silver for all purposes (including the -1 to damage)",
+        "Singing steel retains some properties of mithral, treating heavy armors as medium, and medium armors as light.",
+        "Spell failure chances for armors and shields made from singing steel are decreased by 5%, maximum Dexterity bonuses are increased by 1, and armor check penalties are decreased by 1 (to a minimum of 0).",
+        "Singing steel may be used to start a bardic performance (see wiki).",
       ]
     },
     "Stainless Steel": {
-      "Cost": {},
-      "Type": "",
-      "Description": "",
+      "Cost": { "Base Item": "+10 gp per pound" },
+      "Type": "Metal",
+      "Description": "Stainless steel is both rust resistant and splendidly shiny.",
       "Special": [
-
-        Stainless steel is both rust resistant and splendidly shiny.
-        Steel objects electroplated with chromium are immune to rusting effects, such as the rusting grasp spell or from a rust monster’s touch.
-      To determine the price of a stainless steel item, use the original weight but add 10 gp per pound to the price of that item.
-      Stainless steel has the same statistics as normal steel.
-
+        "Steel objects electroplated with chromium are immune to rusting effects, such as the rusting grasp spell or from a rust monster’s touch."
       ]
     },
     "Stone": {
-      "Cost": {},
-      "Type": "",
+      "Cost": { "Weapon": "x0.25 gp" },
+      "Type": "Stone",
       "Description": "",
       "Special": [
-
-        Cost 1/4 normal.; Weight 3/4 normal.
-        Stone Age weapons almost always utilize stone in some way.
-        From rocks lashed to wooden hafts to create early maces and axes, to flint knives and stone arrowheads,
-        these primitive weapons are still deadly.
-        Weapons Light and one-handed bludgeoning weapons, spears, axes, daggers and arrowheads can all be made of stone.
-        Weapons made of stone have half the hardness of their base weapons, and have the fragile quality.
-        Armor Armor cannot usually be constructed from stone, but advanced,
-        often alchemically enhanced stone armor made by dwarves or other stone-working cultures does exist (see stone coat).
-        Cost/Weight (Longer Wording) “Stone weapons cost a quarter of what base items of their type do, and weigh 75% of what base items
-        of their type do.”
-
+        "Items made of stone only weigh 75% their standard iron or steel counterparts.",
+        "Weapons Light and one-handed bludgeoning weapons, spears, axes, daggers and arrowheads can all be made of stone, and have the fragile quality"
       ]
     },
     "Sunsilk": {
