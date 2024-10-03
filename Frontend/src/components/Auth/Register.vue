@@ -91,7 +91,7 @@ export default {
   },
   mounted() {
     if (this.loggedIn) {
-      this.$router.push("/profile");
+      this.$router.push("/user-view");
     }
   },
   methods: {
@@ -134,7 +134,7 @@ label {
 }
 
 .card {
-  background-color: #f7f7f7;
+  background-color: light-dark( #f7f7f7, var(--color-surface-200) );
   padding: 20px 25px 30px;
   margin: 0 auto 25px;
   margin-top: 50px;

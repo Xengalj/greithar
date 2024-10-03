@@ -8,6 +8,14 @@ module.exports = (sequelize, Sequelize) => {
     },
     password: {
       type: Sequelize.STRING
+    },
+    usermeta: {
+      type: Sequelize.JSON,
+      defaultValue: {
+        "faveColor": "#1a8d8d",
+        "darkmode": true,
+        "hero": {}
+      }
     }
   });
 

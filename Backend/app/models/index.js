@@ -29,31 +29,11 @@ db.character = require("../models/character.model.js")(sequelize, Sequelize);
 // db.class = require("../models/class.model.js")(sequelize, Sequelize);
 db.equipment = require("../models/equipment.model.js")(sequelize, Sequelize);
 
-db.role.belongsToMany(db.user, {
-  through: "user_roles"
-});
-db.user.belongsToMany(db.role, {
-  through: "user_roles"
-});
-db.ROLES = ["user", "admin", "moderator"];
+db.role.belongsToMany(db.user, { through: "user_roles" });
+db.user.belongsToMany(db.role, { through: "user_roles" });
+// db.ROLES = ["user", "admin", "moderator"];
 
-// db.user.hasMany(db.character, {
-//   foreignKey: 'user_id'
-// });
-db.character.belongsToMany(db.user, {
-  through: "user_characters"
-});
-// db.race.hasMany(db.character, {
-//   through: "character_races"
-// });
-// db.character.belongsToMany(db.class, {
-//   through: "character_classes"
-// });
-// db.class.belongsToMany(db.character, {
-//   through: "character_classes"
-// });
-
-
+db.character.belongsToMany(db.user, { through: "user_characters" });
 
 
 module.exports = db;

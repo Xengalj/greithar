@@ -1,12 +1,15 @@
 const express = require("express");
 const cors = require("cors");
-
+const bcrypt = require("bcryptjs");
 const app = express();
 
-var corsOptions = {
-  origin: "http://localhost:8081"
-};
+// database
+const db = require("./app/models");
+const Role = db.role;
+let reSeed = 0
 
+
+let corsOptions = { origin: "http://localhost:8081" };
 app.use(cors(corsOptions));
 
 // parse requests of content-type - application/json
@@ -15,11 +18,7 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-// database
-const db = require("./app/models");
-const Role = db.role;
-
-let reSeed = 0;
+// Database Syncing
 if (reSeed) {
   // force: true will drop the table if it already exists
   db.sequelize.sync({force: true}).then(() => {
@@ -35,7 +34,6 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to Greithar's API." });
 });
 
-var bcrypt = require("bcryptjs");
 // routes
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
@@ -48,22 +46,16 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
 
-// Initialize DB
+
+/***************************\
+*                           *
+*         DB INIT           *
+*                           *
+\***************************/
 function initial() {
-  Role.create({
-    id: 1,
-    name: "user"
-  });
-
-  Role.create({
-    id: 2,
-    name: "moderator"
-  });
-
-  Role.create({
-    id: 3,
-    name: "admin"
-  });
+  Role.create({ id: 1, name: "admin" });
+  Role.create({ id: 2, name: "storyteller" });
+  Role.create({ id: 3, name: "user" });
 
   db.user.create({
     id: 1,
@@ -76,10 +68,12 @@ function initial() {
     username: "Xengalj",
     email: "giji4454@gmail.com",
     password: bcrypt.hashSync("Klefki719!", 8)
-  });
-  /*
-    NOTE - Will need to manually go into the DB and insert "userID 2", "roleID 3" to regain admin access.
-  */
+  })
+    .then(user => {
+      // Set Xen as admin; admin = 1
+      user.setRoles([1]);
+    });
+
   db.character.create({
     id: 0,
     user_id: 2, // belongsToMany (char through user_characters)
@@ -90,23 +84,27 @@ function initial() {
         "class_id": 0,
         "bonus": "+1 HP, Skill, or Galdur per Level"
       },
-      "classes": [
+      "characterAbilites": [ {},
+        { "feat": "ex" }
+      ],
+      "classes": [ {},
         {
           "class_id": 0,
-          "levels": 1
+          // bloodrager?
         }
       ]
     },
-    abilities: [
-      { "label": 'Str', "value": 10 },
-      { "label": 'Dex', "value": 10 },
-      { "label": 'Con', "value": 10 },
-      { "label": 'Int', "value": 10 },
-      { "label": 'Wis', "value": 10 },
-      { "label": 'Cha', "value": 10 }
-    ],
-    feats: {},
-    traits: {},
+    stats: {
+      abilities: [
+        { "label": 'Str', "value": 10 },
+        { "label": 'Dex', "value": 10 },
+        { "label": 'Con', "value": 10 },
+        { "label": 'Int', "value": 10 },
+        { "label": 'Wis', "value": 10 },
+        { "label": 'Cha', "value": 10 }
+      ],
+      traits: {},
+    },
     role_play: {
       "campaign": "",
       "alignment": "NG",
@@ -124,8 +122,6 @@ function initial() {
       "notes": "Your notes here...",
     }
   });
-  db.equipment.create({
-    type: "Currency",
-    items: { "platinum": { "value": 10, "weight": 0.02 }, "gold": { "value": 1, "weight": 0.02 }, "silver": { "value": 0.1, "weight": 0.02 }, "copper": { "value": 0.01, "weight": 0.02 } }
-  });
+
+
 }

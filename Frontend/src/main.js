@@ -4,9 +4,9 @@ import router from "./router";
 import store from "./store";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import 'element-plus/dist/index.css'
-import 'element-plus/theme-chalk/dark/css-vars.css'
-import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css';
+import 'element-plus/theme-chalk/dark/css-vars.css';
+import ElementPlus from 'element-plus';
 import GIcon from './components/template/GIcon.vue'
 import GTable from './components/template/GTable.vue'
 

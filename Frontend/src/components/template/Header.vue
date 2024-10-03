@@ -55,7 +55,7 @@
 
 
         <!-- Rules -->
-        <el-sub-menu index="1">
+        <el-sub-menu v-if="currentUser" index="1">
           <template #title>
             <g-icon iconSize="24px" iconName="lockedBook" :iconColor="iconColor" /> Rules
           </template>
@@ -67,7 +67,7 @@
 
 
         <!-- Lore -->
-        <el-sub-menu index="2">
+        <el-sub-menu v-if="currentUser" index="2">
           <template #title>
             <g-icon iconSize="24px" iconName="openScroll" :iconColor="iconColor" /> Lore
           </template>
@@ -84,7 +84,7 @@
             <g-icon iconSize="24px" iconName="openBook" :iconColor="iconColor" /> Codex
           </template>
 
-          <el-menu-item index="beastiary">
+          <el-menu-item v-if="currentUser" index="beastiary">
             <router-link to="/beastiary" class="nav-link">
               <g-icon iconSize="24px" iconName="dragon" :iconColor="iconColor" /> Beastiary
             </router-link>

@@ -1,7 +1,6 @@
 import axios from 'axios';
 import authHeader from './auth-header';
 
-// const API_URL = 'http://localhost:8080/api/test/';
 const API_URL = 'http://localhost:8080/api/user/';
 
 class UserService {
@@ -22,7 +21,6 @@ class UserService {
   }
 
   getUser(id) {
-    // console.log(user);
     return axios.post(API_URL + 'read',
       { user_id: id },
       { headers: authHeader() })
@@ -44,6 +42,26 @@ class UserService {
     .catch(err => {
       return err;
     });
+  }
+
+  updateUser(user) {
+    return axios.post(API_URL + 'update',
+    {
+      user_id: user.id,
+      username: user.username,
+      email: user.email,
+      password: user.password,
+      roles: user.roles,
+      usermeta: user.usermeta
+    },
+    { headers: authHeader() })
+    .then(response => {
+      return response.data;
+    })
+    .catch(err => {
+      return err;
+    });
+
   }
 
 }

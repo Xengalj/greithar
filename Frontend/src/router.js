@@ -182,10 +182,9 @@ const routes = [
     ],
   },
 
-
   /***************************\
   *                           *
-  *        RULE ROUTES        *
+  *       CODEX ROUTES        *
   *                           *
   \***************************/
   {
@@ -206,6 +205,12 @@ const routes = [
       title: "Equipment"
     }
   },
+
+  /***************************\
+  *                           *
+  *        RULE ROUTES        *
+  *                           *
+  \***************************/
   {
     path: "/rules",
     // component: Rules,
@@ -290,18 +295,19 @@ const router = createRouter({
   routes,
 });
 
-// router.beforeEach((to, from, next) => {
-//   const publicPages = ['/login', '/register', '/home'];
-//   const authRequired = !publicPages.includes(to.path);
-//   const loggedIn = localStorage.getItem('user');
+router.beforeEach((to, from, next) => {
+  const publicPages = ['/login', '/register', '/home', '/equipment'];
+  // console.log(routes, to);
+  const authRequired = !publicPages.includes(to.path);
+  const loggedIn = localStorage.getItem('user');
 
-//   // trying to access a restricted page + not logged in
-//   // redirect to login page
-//   if (authRequired && !loggedIn) {
-//     next('/login');
-//   } else {
-//     next();
-//   }
-// });
+  // trying to access a restricted page + not logged in
+  // redirect to login page
+  if (authRequired && !loggedIn) {
+    next('/login');
+  } else {
+    next();
+  }
+});
 
 export default router;

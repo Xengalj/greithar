@@ -22,7 +22,7 @@ module.exports = function(app) {
   app.post(
     "/api/user/update",
     [authJwt.verifyToken],
-    controller.allAccess
+    controller.update
   );
 
   app.get(

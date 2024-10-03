@@ -76,8 +76,8 @@ export default {
       this.loading = true;
 
       this.$store.dispatch("auth/login", user).then(
-        () => {
-          this.$router.push("/profile");
+        (res) => {
+          this.$router.push({ name: 'user-view', params: { id: res.id } });
         },
         (error) => {
           this.loading = false;
@@ -106,7 +106,7 @@ label {
 }
 
 .card {
-  background-color: #f7f7f7;
+  background-color: light-dark( #f7f7f7, var(--color-surface-200) );
   padding: 20px 25px 30px;
   margin: 0 auto 25px;
   margin-top: 50px;
