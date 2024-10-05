@@ -1,5 +1,36 @@
 {
   "Goods and Services": {
+    "Magic": {
+              "Djezet": {
+          "Cost": { "One Dose": "200 gp" },
+          "Type": "Magic",
+          "Description": "One of the strangest of skymetals, rust-red djezet is liquid at all temperatures.",
+          "Special": [
+            "Djezet may be used as an additional material component for spells, using 1 dose per original spell level. When used this way, the spell's level is increased by 1 stacking with heightened spell."
+          ]
+        },
+          "SerpentStone": {
+      "Cost": {},
+      "Type": "",
+      "Description": "",
+      "Special": [
+
+        Serpentstone is a strange substance unique to the precursor alchemies of the ancient serpentfolk.
+        Its ancient name is lost to time, but modern explorers have dubbed it “serpentstone” after its ophidian creators.
+        Exceptionally resilient, all serpentstone is magically treated stone.
+      
+      When properly worked and treated through eldritch means known only to ancient serpentfolk wizards and sorcerers,
+      serpentstone can be programmed to emit sound and light in a variety of ways, 
+      shifting at predetermined times from color to color and tone to tone, from brightness equal to that of daylight to a dim,
+      shadowy glimmer like that of a candle.
+      
+      In addition, serpentstone can be set to radiate heat or cold, or produce illusory smoke, roiling forth thin streams of scented,
+      incense-like fumes designed to delight, enlighten, or otherwise inform serpentfolk in the vicinity.
+      All of these effects function as major image (caster level 18th).
+
+      ]
+    },
+    }
 
   }
 }
