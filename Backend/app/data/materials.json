@@ -1,6 +1,4 @@
 {
-  https://pathfinderwiki.com/wiki/Skymetal
-  
   "Special Materials": {
     "Steel": {
       "Cost": {  "Base Item": "+0 gp"  },
@@ -12,9 +10,10 @@
     "Abysium": {
       "Cost": { "Base Item": "+0 gp" },
       "Type": "Metal",
-      "Description": "This glowing, blue-green substance can be a source of great energy. It also causes those who spend extended amounts of time near it to grow ill and die unless proper precautions are taken.",
+      "Description": "This glowing, blue-green skymetal can be a source of great energy, and is said to come from between the stars.",
       "Special": [
-        "Weapons and armor mae from abysium glow with an intensity equal to that of a candle.",
+        "One of the skymetals, Abysium is a rare metal said to come from between the stars",
+        "Weapons and armor made from abysium glow with an intensity equal to that of a candle.",
         "Carrying or wear abysium arms or armor become sickened for as long as the gear is carried or worn.",
         "Abysium Powder: Poison—ingested; save Fortitude DC 18; onset 10 minutes; frequency 1/minute for 6 minutes; effect 1d4 Con damage plus nausea; cure 2 saves; cost 900 gp."
       ]
@@ -28,7 +27,7 @@
         "Heavy armor":	 "+15,000 gp"
       },
       "Type": "Metal",
-      "Description": "Adamantine is extremely strong and favored by weapon and armor smiths alike for its ability to cut through solid barriers with ease and endure heavy blows.",
+      "Description": "Adamantine is the most common of the skymetals and is extremely strong and favored by weapon and armor smiths alike for its ability to cut through solid barriers with ease and endure heavy blows.",
       "Special": [
         "Weapons and armor made from adamantien are always masterwork (price included).",
         "Adamantine weapons ignore hardness less than 20 when sundering weapons or atacking objects.",
@@ -173,14 +172,6 @@
         "The armor check penalty of a darkwood shield is lessened by 2 compared to an ordinary shield of its type."
       ]
     },
-        "Djezet": {
-          "Cost": { "One Dose": "200 gp" },
-          "Type": "Magic",
-          "Description": "One of the strangest of skymetals, rust-red djezet is liquid at all temperatures.",
-          "Special": [
-            "Djezet may be used as an additional material component for spells, using 1 dose per original spell level. When used this way, the spell's level is increased by 1 stacking with heightened spell."
-          ]
-        },
     "Dragonhide": {
       "Cost": {
         "Light armor":	"x2 gp",
@@ -335,22 +326,6 @@
       ]
     },
 
-    "Horacalcum": {
-      "Cost": {
-        "Weapon": "+6,000 gp",
-        "Light armor": "+10,000 gp",
-        "Medium armor": "+30,000 gp",
-        "Heavy armor": "+60,000 gp"
-      },
-      "Type": "Metal",
-      "Description": "The rarest of the known skymetals, this dull, coppery substance warps time around it, making things seem to speed up or slow down.",
-      "Special": [
-        "Weapons and Armor made from horacalcum are always masterwork (price included).",
-        "Horacalcum weapons gain a +1 circumstance bonus on attack rolls, though ammunition do not get this bonus.",
-        "A suit of horacalcum armor is fantastically expesive, but allows its wearer to percive time at a slower rate; light armor grants a +1 bonus on Initiative, medium armor grants a +2 bonus, and heavy armor grants a +3 bonus."
-      ]
-    },
-
     "Inubrix": {
       "Cost": { "Weapon": "+5,000 gp" },
       "Type": "Metal",
@@ -390,25 +365,6 @@
         "Whenever a metal weapons rolls a natural 1 against a creature wearing living steel armor or wielding a living steel shield, the item must make a DC 20 Fortitude save or become broken. If the item is already broken, it gets destroyed. Adamantine weapons are immune to this effect."
       ]
     },
-    
-    "Mindglass": {
-      "Cost": { "Base Item": "+13,000 gp" },
-      "Type": "Stone",
-      "Description": "Mindglass is a special material as strong as steel that also provides the bearer with protection against an opponent’s psychic abilities.",
-      "Special": [
-
-When a creature wielding a melee weapon made of mindglass succeeds at a saving throw against a psychic or mind-affecting effect from a creature,
-  the weapon stores some of that energy and holds it for a future attack.
-A mindglass weapon can store this energy for a number of rounds equal to the level of the spell,
-  or half the creature’s CR if the effect wasn’t a spell or spell-like ability.
-If the weapon hits a creature while still holding this energy, it suffuses the target with a disruptive field for 1 round. On a critical hit,
-  the disruptive field effect instead lasts for a number of rounds equal to the weapon’s critical multiplier.
-While affected by this field, a target must succeed at a concentration check (DC = 15 + twice the spell’s level) to cast any
-  spell or spell-like ability (in addition to any other required concentration checks).
-If the check is failed, the affected creature’s spell or spell-like ability is wasted.
-
-      ]
-    },
     "Mithral": {
       "Cost": {
         "Light armor";	"+1,000 gp",
@@ -438,7 +394,7 @@ If the check is failed, the affected creature’s spell or spell-like ability is
         "Other": "+500 gp"
       },
       "Type": "Metal",
-      "Description": "Noqual looks like a pale green crystal to the untrained eye, but can be worked as iron, while being resistant to magic.",
+      "Description": "Noqual is a skymetal that looks like a pale green crystal to the untrained eye, but can be worked as iron, while being resistant to magic.",
       "Special": [
         "An object made of noqual gains a +4 bonus on any saving throw made against a magical source.",
         "Weapons made of noqual weigh half as much as normal, and gain a +1 enhancement bonus on damage rolls against constructs and undead created by feats or spells.",
@@ -458,6 +414,21 @@ If the check is failed, the affected creature’s spell or spell-like ability is
         "Obsidian can be used to craft light and one-handed weapons that do piercing or slashing damage, as well as spear tips and arrowheads."
       ]
     },
+    "Orichalcum": {
+      "Cost": {
+        "Weapon": "+6,000 gp",
+        "Light armor": "+10,000 gp",
+        "Medium armor": "+30,000 gp",
+        "Heavy armor": "+60,000 gp"
+      },
+      "Type": "Metal",
+      "Description": "Orichalcum, sometimes known as horacalcum, the rarest of skymetals, is a coppery, sturdy metal said to bend time around it.",
+      "Special": [
+        "Weapons and Armor made from horacalcum are always masterwork (price included).",
+        "Horacalcum weapons gain a +1 circumstance bonus on attack rolls, though ammunition do not get this bonus.",
+        "A suit of horacalcum armor is fantastically expesive, but allows its wearer to percive time at a slower rate; light armor grants a +1 bonus on Initiative, medium armor grants a +2 bonus, and heavy armor grants a +3 bonus."
+      ]
+    },
 
     "Siccatite": {
       "Cost": {
@@ -465,7 +436,7 @@ If the check is failed, the affected creature’s spell or spell-like ability is
         "Armor": "+6,000 gp"
       },
       "Type": "Metal",
-      "Description": "This shining silver metal is either incredibly hot or freezing cold when found. As of yet, scholars have not determined whether siccatite is actually two similarly hued metals or a single type that determines its own temperature via some unknown process.",
+      "Description": "This shining silver skymetal is either incredibly hot or freezing cold when found. As of yet, scholars have not determined whether siccatite is actually two similarly hued metals or a single type that determines its own temperature via some unknown process.",
       "Special": [
         "Siccatite has a 50% chance to be hot or cold when found in it's raw form.",
         "Hot siccatite weapons deal 1 fire damge per round to the weilder and an additional 1 fire damge to struck creatures.",
@@ -519,175 +490,96 @@ If the check is failed, the affected creature’s spell or spell-like ability is
       ]
     },
     "Sunsilk": {
-      "Cost": {},
-      "Type": "",
-      "Description": "",
+      "Cost": { "Armor": "+6,000 gp" },
+      "Type": "Textile",
+      "Description": "Sunsilk is a light and flexible material that glitters in gold after it has been left to cure in the sun.",
       "Special": [
-
-        Sunsilk takes on a golden glitter after it has been left to cure in the sun.
-        Though it is light and flexible, when multiple layers are pressed together,
-      its myriad thin fibers inhibit weapons and can slightly help prevent slashing or piercing weapons from causing harm.
-      Clothing made from sunsilk grants its wearer DR 2/bludgeoning.
-      Sunsilk can be incorporated into any suit of armor without hampering the armor’s other qualities,
-      typically as an inner layer of soft lining. Sunsilk adds 6,000 gp to the cost of the garment or armor.
-
+        "Clothing made from sunsilk grants its wearer DR 2/bludgeoning.",
+        "Sunsilk can be incorporated into any suit of armor without hampering the armor’s other qualities, typically as an inner layer of soft lining."
       ]
     },
     "Sunsilver": {
-      "Cost": {},
-      "Type": "",
-      "Description": "",
+      "Cost": { "Base Item": "+25 gp / pound" },
+      "Type": "Metal",
+      "Description": "This metal appears as average steel until you see the golden glint in the sunlight.",
       "Special": [
-
-        A weapon made of sunsilver counts as alchemical silver for all purposes.
-        Items not primarily made of metal are not meaningfully affected by being partially made of sunsilver.
-        (For example, a scimitar or breastplate can be made of sunsilver, while a quarterstaff or hide armor cannot.)
-      In addition, items made of sunsilver are immune to rust effects (such as rusting grasp).
-      While in an area of bright light, a shield or suit of armor made of sunsilver shines brightly,
-      allowing the wearer to reflect light at nearby foes as a move action.
-      When she does so, creatures adjacent to the wearer must succeed at a DC 12 Fortitude save or be dazzled for 1 round.
-        Armor and weapons made of sunsilver are always masterwork.
-      To determine the price of a sunsilver item, add 25 gp per pound to the price of a masterwork version of that item.
-      Sunsilver has 10 hit points per inch of thickness and hardness 8.
-
-      ]
-    },
-    "SerpentStone": {
-      "Cost": {},
-      "Type": "",
-      "Description": "",
-      "Special": [
-
-        Serpentstone is a strange substance unique to the precursor alchemies of the ancient serpentfolk.
-        Its ancient name is lost to time, but modern explorers have dubbed it “serpentstone” after its ophidian creators.
-        Exceptionally resilient, all serpentstone is magically treated stone.
-      When properly worked and treated through eldritch means known only to ancient serpentfolk wizards and sorcerers,
-      serpentstone can be programmed to emit sound and light in a variety of ways, 
-      shifting at predetermined times from color to color and tone to tone, from brightness equal to that of daylight to a dim,
-      shadowy glimmer like that of a candle.
-      In addition, serpentstone can be set to radiate heat or cold, or produce illusory smoke, roiling forth thin streams of scented,
-      incense-like fumes designed to delight, enlighten, or otherwise inform serpentfolk in the vicinity.
-      All of these effects function as major image (caster level 18th).
-
+        "Armor and weapons made of sunsilver are always masterwork.",
+        "A weapon made of sunsilver counts as alchemical silver for all purposes (including the -1 to damage).",
+        "In addition, items made of sunsilver are immune to rust effects (such as rusting grasp).",
+        "While in bright light, a weilder of sunsilver may reflect light as a move action, dazzling adjacent creatuers for 1 roudn on a failed DC 12 Fort save."
       ]
     },
     "Spiresteel": {
-      "Cost": {},
-      "Type": "",
-      "Description": "",
+      "Cost": {
+        "Ammunition":	"+10 gp per item",
+        "Weapon":	"+2,000 gp",
+        "Light Armor":	"+1,000 gp",
+        "Medium Armor":	"+2,000 gp",
+        "Heavy Armor":	"+3,000 gp"
+      },
+      "Type": "Metal",
+      "Description": "Also known as Stygian Steel, mortal philosophers speculate that spiritsteel is a condensed form of ectoplasm.",
       "Special": [
-        "Weapons and Armor made from mithral are always masterwork (price included).",
-
-        Philosophers speculate that spiresteel is composed of a condensed form of pure quintessence.
-        This substance, called spiresteel, exhibits an innate attraction for soul energy.
-        Armor crafted from spiresteel protects the wearer’s essence,
-      applying half of its armor bonus to AC against attacks made by incorporeal creatures.
-      Weapons crafted from spiresteel appear hungry for the very substance of the foes they are wielded against.
-      When the wielder confirms a critical hit with a spiresteel weapon, the target must succeed at a Will save
-      (DC = 10 + double the weapon’s enhancement bonus), or be staggered for 1 round as a portion of its soul is carved away.
-        Spiresteel can be used to craft any armor or weapon that is typically made of steel.
-      Items made of spiresteel are always considered masterwork, and the masterwork costs are included in the listed prices.
-        Spiresteel has the same hit points and hardness as steel.
-
-        Type of Spiresteel Item	Item Price Modifier
-        Ammunition	+10 gp per item
-        Light Armor	+1,000 gp
-        Medium Armor	+2,000 gp
-        Heavy Armor	+3,000 gp
-        Weapon	+2,000 gp
-
+        "Weapons and Armor made from spiritsteel are always masterwork (price included).",
+        "Armor crafted from spiresteel protects the wearer’s essence, applying half of its armor bonus to AC against attacks made by incorporeal creatures.",
+        "When a wielder confirms a critical hit with a spiresteel weapon, the target must succeed at a Will save (DC = 10 + double the weapon’s enhancement bonus), or be staggered for 1 round as a portion of its soul is carved away."
       ]
     },
 
-
     "Viridium": {
-      "Cost": {},
-      "Type": "",
-      "Description": "",
+      "Cost": {
+        "Ammunition":	"+20 gp per item",
+        "Weapon":	"+200 gp"
+      },
+      "Type": "Stone",
+      "Description": "This deep green volcanic glass is similar to obsidian but is formed when molten rock is tainted with anomalous trace minerals from deep beneath the earth whose emanations are toxic to living things.",
       "Special": [
-
-        Type of Item	Price Modifier
-        Ammunition	+20 gp per item
-        Weapon	+200 gp
-
-        This deep green volcanic glass is similar to obsidian but is formed when molten rock is tainted with anomalous trace minerals
-        from deep beneath the earth whose emanations are toxic to living things.
-        It can be fragmented to razor sharpness, but even a tiny amount of viridium contacting the bloodstream can pass on a wasting sickness.
-        Any successful hit with a viridium weapon causes the target to contract leprosy (Fortitude DC 12 negates).
-        On a successful critical hit, a tiny fragment of viridium breaks off within the target,
-        affecting it as though with greenblood oil (Fortitude DC 13 negates).
-        A creature carrying a viridium weapon must save every 24 hours or contract leprosy unless the weapon is kept
-        inside an extradimensional space (such as an efficient quiver) or a scabbard lined with lead.
-        Oozes, plants, and outsiders are immune to the deadly emanations of viridium.
-        Viridium weapons have half the hardness of their base weapon and have the fragile quality.
-        Viridium can be magically strengthened at an additional cost of +1,000 gp for a weapon or +20 gp for ammunition.
-        This removes the fragile quality from the item but does not otherwise affect its abilities.
-
+        "Any successful hit with a viridium weapon causes the target to contract leprosy (Fortitude DC 12 negates).",
+        "On a successful critical hit, a tiny fragment of viridium breaks off within the target, affecting it as though with greenblood oil (Fortitude DC 13 negates).",      
+        "A creature carrying a viridium weapon must save every 24 hours or contract leprosy unless the weapon is properly secured (inside an extradimensional space or a scabbard lined with lead).",
+        "Oozes, plants, and outsiders are immune to the deadly emanations of viridium.",
+        "Viridium weapons have the fragile quality, but can be magically strengthened at an additional cost of +1,000 gp for a weapon or +20 gp for ammunition."
       ]
     },
     "Voidglass": {
-      "Cost": {},
-      "Type": "",
-      "Description": "",
+      "Cost": {
+        "Weapon":	"+1,000 gp",
+        "Light armor":	"+1,000 gp",
+        "Medium armor":	"+2,000 gp",
+        "Heavy armor":	"+4,500 gp"
+      },
+      "Type": "Stone",
+      "Description": "This material is as hard as steel, but made of crystals that voidglass shapers on unknown worlds grow into the desired shapes.",
       "Special": [
-
-        Type of Item	Price Modifier
-        Light armor	+1,000 gp
-        Medium armor	+2,000 gp
-        Heavy armor	+4,500 gp
-        Slashing/piercing weapon	+1,000 gp
-
-        Grioths wield weapons fashioned from a strange sort of transparent material called voidglass.
-        This material is as hard as steel, but made of crystals that voidglass shapers on unknown worlds grow into the desired shapes.
-        Voidglass resonates with a creature’s mind, bolstering thought and mental defenses.
-        Any suit of armor normally made from metal can be made of voidglass.
-        A suit of light voidglass armor grants a +1 resistance bonus on all saving throws against mind-affecting magic.
-        This bonus increases to +2 for medium voidglass armor, and +3 for heavy voidglass armor.
-        Voidglass armor isn’t often worn by grioths, but voidglass weapons are another story.
-        The creatures (and perhaps other strange beings with similar psychic capabilities) can funnel violent bursts of psychic
-        energy through these weapons on a hit.
-        In the hands of any creature, a voidglass piercing or slashing weapon deals 1 additional damage on a hit—bludgeoning
-        weapons gain no benefit.
-        Voidglass has 30 hit points per inch of thickness and hardness 10. A pound of raw, unworked voidglass is worth 100 gp.
-
+        "A suit of light voidglass armor grants a +1 resistance bonus, medium aromor is +2, and heavy armor is +3 for all saving throws against mind-affecting magic.",
+        "In the hands of any creature, a voidglass piercing or slashing weapon deals 1 additional damage on a hit—bludgeoning weapons gain no benefit."
       ]
     },
 
-
     "Whipwood": {
-      "Cost": {},
-      "Type": "",
-      "Description": "",
+      "Cost": { "Weapon": "+500 gp" },
+      "Type": "Organic",
+      "Description": "Whipwood is actually a composite of several bendable wooden fibers woven and fused together to form a flexible but sturdy unit.",
       "Special": [
-
-        HP/inch 10; Hardness 8; Cost +500 gp.
-        Vanara woodworkers craft this extremely flexible material in a time-consuming process.
-        Whipwood is actually a composite of several bendable wooden fibers woven and fused together to form a flexible but sturdy unit.
-        Only wooden weapons or weapons with wooden hafts (such as axes and spears) can be made out of whipwood.
-        A creature wielding a whipwood weapon treats its CMD as +2 higher for the purpose of avoiding sunder attempts against that weapon.
-        A whipwood weapon’s hit points increase by +5.
-        Whipwood loses its special qualities if under the effect of an ironwood spell.
-
+        "Only wooden weapons or weapons with wooden hafts (such as axes and spears) can be made out of whipwood.",
+        "A creature wielding a whipwood weapon gets a +2 bonus to CMD vs sunder attempts against that weapon",
+        "Whipwood loses its special qualities if under the effect of an ironwood spell."
       ]
     },
     "Wyroot": {
-      "Cost": {},
-      "Type": "",
+      "Cost": {
+        "Weapon (1LP)":  "+1,000 gp",
+        "Weapon (2LP)":  "+2,000 gp",
+        "Weapon (3LP)":  "+4,000 gp",
+      },
+      "Type": "Organic",
       "Description": "",
       "Special": [
-
-        The root of the wyrwood tree has a peculiar quality. When a weapon constructed of wyroot confirms a critical hit,
-      it absorbs some of the life force of the creature hit.
-      The creature hit is unharmed and the wyroot weapon gains 1 life point.
-      As a swift action, a wielder with a ki pool or an arcane pool can absorb 1 life point from the wyrwood weapon and convert
-      it into either 1 ki point or 1 arcane pool point.
-      A wyroot weapon can gain at most 1 life point per day and hold up to 1 life point at a time.
-      More powerful wyroot weapons can gain up to 3 life points per day and hold up to 3 life points at a time.
-      Any unspent life points dissipate at dusk. A creature can convert life points from only one wyroot weapon per day.
-        Wyroot can be used to construct any melee weapon made entirely of wood or with a wooden haft.
-      Constructing a weapon that can hold 1 life point increases the cost by 1,000 gp, constructing one that can hold
-      up to 2 life points increases the cost by 2,000 gp, and constructing one that can hold up to 3 life points increases the cost by 4,000 gp.
-        
+        "Only wooden weapons or weapons with wooden hafts (such as axes and spears) can be made out of wyroot.",
+        "When a wyroot weapon confirms a critical hit, it deals no damage but istead abosrbs some of the life force of the creature (gaining 1 life point).",
+        "Wyroot can normally only gain 1 life point a day and hold 1 at a time, but stronger wyroot is possilbe.",
+        "A wielder with a ki or arcane pool may abosrob 1 life point from the wyroot as a swift action, converting the life point into 1 arcane or ki point.",
+        "Wyroot losses all sotred life points at dusk, and a creture may only convert life points from one wyroot weapon per day"
       ]
     }
   }
