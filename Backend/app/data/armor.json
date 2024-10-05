@@ -4,14 +4,16 @@
     "Max Dex": 6,
     "Penalty": 0,
     "Spell Failure": "0%",
-    "Speed": [ "Medium: 30 ft", "Small: 20 ft" ],
+    "Speed": "No Penalty",
 
     "Cost": 20,
     "Weight": 10,
     "Proficiency": "Light",
     "Description": "The armored kilt is made of a thick cloth skirt with bars of steel hanging down from the waist and a ring of horizontal steel plates just above the hem.",
     "Special": [
-      "An armored kilt can be worn with other armor, and turns light armor into medium armor, and medium armor into heavy armor."
+      "An armored kilt can be worn with other armors, changing the armor similar to how chainmail is a chain shirt plus leg and arm coverings.",
+      "Light armor becomes medium armor, gaining a +1 to the armor bonus, adding 15 pounds, and lowering the Max Dex by 1 (You also move at 2/3 your base speed).",
+      "Medium armor becomes heavy armor, gaining a +1 to the armor bonus, adding 15 pounds, and lowering the Max Dex by 1 (You also move at 2/3 your base speed and move only x3 your speed when Running)."
     ]
   },
   "Dancing Scarves": {
@@ -19,14 +21,15 @@
     "Max Dex": 10,
     "Penalty": 0,
     "Spell Failure": "0%",
-    "Speed": [ "Medium: 30 ft", "Small: 20 ft" ],
+    "Speed": "No Penalty",
 
     "Cost": 150,
     "Weight": 8,
     "Proficiency": "Light",
     "Description": "This set of colorful scarves is made of heavy silk and reinforced with leather straps.",
     "Special": [
-      "You only get their AC bonus if you move at least 10 feet during your turn, this lasts until your next turn."
+      "If you move at least 10 feet during your turn, you gain a +2 armor bonus to AC until the beginning of your next turn.",
+      "Dancing scarves provide a +2 circumstance bonus on Bluff checks made to feint in combat, as long as you move 10 feet."
     ]
   },
   "Haramaki": {
@@ -34,7 +37,7 @@
     "Max Dex": 10,
     "Penalty": 0,
     "Spell Failure": "0%",
-    "Speed": [ "Medium: 30 ft", "Small: 20 ft" ],
+    "Speed": "No Penalty",
 
 
     "Cost": 3,
@@ -48,7 +51,7 @@
     "Max Dex": 8,
     "Penalty": 0,
     "Spell Failure": "5%",
-    "Speed": [ "Medium: 30 ft", "Small: 20 ft" ],
+    "Speed": "No Penalty",
 
     "Cost": 5,
     "Weight": 10,
@@ -61,7 +64,7 @@
     "Max Dex": 8,
     "Penalty": 0,
     "Spell Failure": "10%",
-    "Speed": [ "Medium: 30 ft", "Small: 20 ft" ],
+    "Speed": "No Penalty",
 
     "Cost": 100,
     "Weight": 15,
@@ -76,7 +79,7 @@
     "Max Dex": 5,
     "Penalty": 0,
     "Spell Failure": "5%",
-    "Speed": [ "Medium: 30 ft", "Small: 20 ft" ],
+    "Speed": "No Penalty",
 
     "Cost": 1,
     "Weight": 5,
@@ -91,7 +94,7 @@
     "Max Dex": 10,
     "Penalty": 0,
     "Spell Failure": "0%",
-    "Speed": [ "Medium: 30 ft", "Small: 20 ft" ],
+    "Speed": "No Penalty",
 
     "Cost": 30,
     "Weight": 4,
@@ -104,7 +107,7 @@
     "Max Dex": 4,
     "Penalty": 0,
     "Spell Failure": "5%",
-    "Speed": [ "Medium: 30 ft", "Small: 20 ft" ],
+    "Speed": "No Penalty",
 
     "Cost": 15,
     "Weight": 8,
@@ -117,7 +120,7 @@
     "Max Dex": 6,
     "Penalty": 0,
     "Spell Failure": "10%",
-    "Speed": [ "Medium: 30 ft", "Small: 20 ft" ],
+    "Speed": "No Penalty",
 
     "Cost": 10,
     "Weight": 15,
@@ -130,20 +133,23 @@
     "Max Dex": 6,
     "Penalty": 0,
     "Spell Failure": "10%",
-    "Speed": [ "Medium: 30 ft", "Small: 20 ft" ],
+    "Speed": "No Penalty",
 
     "Cost": 50,
     "Weight": 15,
     "Proficiency": "Light",
-    "Description": "This suit of leather armor is wrapped in special rose vines, granting it armor spikes. You must water the vines with a gallon of water each day to maintain the spikes.",
-    "Special": []
+    "Description": "This suit of leather armor is wrapped in special rose vines, granting it armor spikes.",
+    "Special": [
+      "Spkies",
+      "You must water the vines with a gallon of water each day, to maintain the spikes, else it becomes regular leather armor."
+    ]
   },
   "Hell Knight Leather": {
     "AC Bonus": 3,
     "Max Dex": 5,
     "Penalty": -1,
     "Spell Failure": "15%",
-    "Speed": [ "Medium: 30 ft", "Small: 20 ft" ],
+    "Speed": "No Penalty",
 
     "Cost": 30,
     "Weight": 25,
@@ -156,7 +162,7 @@
     "Max Dex": 4,
     "Penalty": -1,
     "Spell Failure": "15%",
-    "Speed": [ "Medium: 30 ft", "Small: 20 ft" ],
+    "Speed": "No Penalty",
 
     "Cost": 20,
     "Weight": 18,
@@ -171,7 +177,7 @@
     "Max Dex": 5,
     "Penalty": 0,
     "Spell Failure": "15%",
-    "Speed": [ "Medium: 30 ft", "Small: 20 ft" ],
+    "Speed": "No Penalty",
 
     "Cost": 500,
     "Weight": 20,
@@ -184,7 +190,7 @@
     "Max Dex": 5,
     "Penalty": -1,
     "Spell Failure": "15%",
-    "Speed": [ "Medium: 30 ft", "Small: 20 ft" ],
+    "Speed": "No Penalty",
 
     "Cost": 25,
     "Weight": 20,
@@ -199,7 +205,7 @@
     "Max Dex": 6,
     "Penalty": -1,
     "Spell Failure": "10%",
-    "Speed": [ "Medium: 30 ft", "Small: 20 ft" ],
+    "Speed": "No Penalty",
 
     "Cost": 850,
     "Weight": 4,
@@ -214,7 +220,7 @@
     "Max Dex": 5,
     "Penalty": -1,
     "Spell Failure": "15%",
-    "Speed": [ "Medium: 30 ft", "Small: 20 ft" ],
+    "Speed": "No Penalty",
 
     "Cost": 25,
     "Weight": 20,
@@ -227,7 +233,7 @@
     "Max Dex": 3,
     "Penalty": -1,
     "Spell Failure": "15%",
-    "Speed": [ "Medium: 30 ft", "Small: 20 ft" ],
+    "Speed": "No Penalty",
 
     "Cost": 20,
     "Weight": 25,
@@ -242,7 +248,7 @@
     "Max Dex": 4,
     "Pentalty": -2,
     "Spell Failure": "20%",
-    "Speed": [ "Medium: 30 ft", "Small: 20 ft" ],
+    "Speed": "No Penalty",
 
     "Cost": 100,
     "Weight": 25,
@@ -255,7 +261,7 @@
     "Max Dex": 3,
     "Pentalty": -2,
     "Spell Failure": "20%",
-    "Speed": [ "Medium: 30 ft", "Small: 20 ft" ],
+    "Speed": "No Penalty",
 
     "Cost": 60,
     "Weight": 25,
