@@ -124,7 +124,7 @@
       "Special": [
         "The first time a cold iron weapon is enhanced, the increase is 2,000 gp not the standard 1,000 gp.",
         "A double weapon with one cold iron half costs 50% more than normal.",
-        "Items without metal parts cannot be made from cold iron.",
+        "Items without metal parts cannot be made from cold iron."
       ]
     },
     "Cryptstone": {
@@ -460,7 +460,7 @@
         "Light armor":	"+750 gp",
         "Medium armor":	"+9,000 gp",
         "Heavy armor":	"+12,000 gp",
-        "Other items":	"+600 gp/lb",
+        "Other items":	"+600 gp/lb"
       },
       "Type": "Metal",
       "Description": "This lustrous golden metal is an alloy of gold and mithral and emits beautiful bell-like tones when struck.",
@@ -469,7 +469,7 @@
         "Singing steel weapons count as alchemical silver for all purposes (including the -1 to damage)",
         "Singing steel retains some properties of mithral, treating heavy armors as medium, and medium armors as light.",
         "Spell failure chances for armors and shields made from singing steel are decreased by 5%, maximum Dexterity bonuses are increased by 1, and armor check penalties are decreased by 1 (to a minimum of 0).",
-        "Singing steel may be used to start a bardic performance (see wiki).",
+        "Singing steel may be used to start a bardic performance (see wiki)."
       ]
     },
     "Stainless Steel": {
@@ -570,7 +570,7 @@
       "Cost": {
         "Weapon (1LP)":  "+1,000 gp",
         "Weapon (2LP)":  "+2,000 gp",
-        "Weapon (3LP)":  "+4,000 gp",
+        "Weapon (3LP)":  "+4,000 gp"
       },
       "Type": "Organic",
       "Description": "",
