@@ -367,7 +367,7 @@
     },
     "Mithral": {
       "Cost": {
-        "Light armor";	"+1,000 gp",
+        "Light armor":	"+1,000 gp",
         "Medium armor":	"+4,000 gp",
         "Heavy armor":	"+9,000 gp",
         "Shield":	"+1,000 gp",
