@@ -1,10 +1,13 @@
 {
+      "rules": "You lose your AC bonus from a shield you bash with until your next turn.",
+"you must have martial proficiency to make a shield bash",
+
+  
   "Buckler": {
     "AC Bonus": 1,
     "Max Dex": 10,
     "Pentalty": -1,
     "Spell Failure": "5%",
-    "Speed": [ 1000, 1000 ],
 
     "Damage": [ "0", "0", "0" ],
     "Crit Range": 0,
@@ -16,14 +19,15 @@
     "Cost": 5,
     "Weight": 5,
     "Description": "This small metal shield is worn strapped to your forearm to allow you to still wield a weapon with that hand.",
-    "Special": "While using a weapon in the hand a buckler is strapped to, you take a -1 on attack rolls."
+    "Special": [
+      "While using a weapon in the hand a buckler is strapped to, you take a -1 on attack rolls (except bow / crossbow).",
+      "If you attack or cast a spell with the arm weilding a buckler, you lose it's AC bonus until your next turn."
   },
   "Klar": {
     "AC Bonus": 1,
     "Max Dex": 10,
     "Pentalty": -1,
     "Spell Failure": "5%",
-    "Speed": [ 1000, 1000 ],
 
     "Damage": [ "1d4", "1d6", "1d8" ],
     "critRange": 20,
@@ -42,7 +46,6 @@
     "Max Dex": 10,
     "Pentalty": -2,
     "Spell Failure": "5%",
-    "Speed": [ 1000, 1000 ],
 
     "Damage": [ "1d3", "1d4", "1d6" ],
     "critRange": 20,
@@ -55,14 +58,16 @@
     "Cost": 30,
     "Weight": 5,
     "Description": "This small shield has two antlers, usually from an antelope extending out either side.",
-    "Special": "If you are proficient with the madu, you take only a -2 when fighting defensively instead of the usual -4."
+    "Special": [
+      "If you are proficient with the madu, you take only a -2 when fighting defensively instead of the usual -4, and your Combat Expertise penalty improves by +1 (min -1)",
+      "If you are not proficient with the madu, you treat it as a light spiked shield."
+    ]
   },
   "Madu (Steel)": {
     "AC Bonus": 1,
     "Max Dex": 10,
     "Pentalty": -2,
     "Spell Failure": "5%",
-    "Speed": [ 1000, 1000 ],
 
     "Damage": [ "1d3", "1d4", "1d6" ],
     "critRange": 20,
@@ -74,14 +79,16 @@
     "Cost": 40,
     "Weight": 6,
     "Description": "This small shield has two antlers, usually from an antelope extending out either side.",
-    "Special": "If you are proficient with the madu, you take only a -2 when fighting defensively instead of the usual -4."
+    "Special": [
+      "If you are proficient with the madu, you take only a -2 when fighting defensively instead of the usual -4, and your Combat Expertise penalty improves by +1 (min -1)",
+      "If you are not proficient with the madu, you treat it as a light spiked shield."
+    ]
   },
   "Light Shield (Steel)": {
     "AC Bonus": 1,
     "Max Dex": 10,
     "Pentalty": -1,
     "Spell Failure": "5%",
-    "Speed": [ 1000, 1000 ],
 
     "Damage": [ "1d2", "1d3", "1d4" ],
     "critRange": 20,
@@ -93,14 +100,13 @@
     "Cost": 9,
     "Weight": 6,
     "Description": "A simple shield made of good steel.",
-    "Special": ""
+    "Special": []
   },
   "Light Shield (Steel Quickdraw)": {
     "AC Bonus": 1,
     "Max Dex": 10,
     "Pentalty": -2,
     "Spell Failure": "5%",
-    "Speed": [ 1000, 1000 ],
 
     "Damage": [ "1d2", "1d3", "1d4" ],
     "critRange": 20,
@@ -112,14 +118,17 @@
     "Cost": 59,
     "Weight": 7,
     "Description": "A simple shield made of good steel and designed for quick retrieval.",
-    "Special": "If your BAB is at least +1 you may don or remove this shield as a swift action combined with a move action."
+    "Special": [
+      "If your BAB is at least +1 you may don or remove this shield as a swift action combined with a move action.",
+      "If you have the Two-Weapon Fighting feat, you can draw a light or one-handed weapon with one hand and a quickdraw shield with the other in the time it would normally take you to draw one weapon (a single move action).",
+      "If you have the Quick Draw feat, you may don or put away a quickdraw shield as a free action."
+    ]
   },
   "Light Shield (Wooden)": {
     "AC Bonus": 1,
     "Max Dex": 10,
     "Pentalty": -1,
     "Spell Failure": "5%",
-    "Speed": [ 1000, 1000 ],
 
     "Damage": [ "1d2", "1d3", "1d4" ],
     "critRange": 20,
@@ -131,14 +140,13 @@
     "Cost": 3,
     "Weight": 5,
     "Description": "A simple shield made of solid wood.",
-    "Special": ""
+    "Special": []
   },
   "Light Shield (Wooden Quickdraw)": {
     "AC Bonus": 1,
     "Max Dex": 10,
     "Pentalty": -2,
     "Spell Failure": "5%",
-    "Speed": [ 1000, 1000 ],
 
     "Damage": [ "1d2", "1d3", "1d4" ],
     "critRange": 20,
@@ -150,14 +158,17 @@
     "Cost": 53,
     "Weight": 6,
     "Description": "A simple shield made of solid wood and designed for quick retrieval.",
-    "Special": "If your BAB is at least +1 you may don or remove this shield as a swift action combined with a move action."
+    "Special": [
+      "If your BAB is at least +1 you may don or remove this shield as a swift action combined with a move action.",
+      "If you have the Two-Weapon Fighting feat, you can draw a light or one-handed weapon with one hand and a quickdraw shield with the other in the time it would normally take you to draw one weapon (a single move action).",
+      "If you have the Quick Draw feat, you may don or put away a quickdraw shield as a free action."
+    ]
   },
   "Heavy Shield (Steel)": {
     "AC Bonus": 2,
     "Max Dex": 10,
     "Pentalty": -2,
     "Spell Failure": "15%",
-    "Speed": [ 1000, 1000 ],
 
     "Damage": [ "1d3", "1d4", "1d6" ],
     "critRange": 20,
@@ -169,14 +180,13 @@
     "Cost": 20,
     "Weight": 15,
     "Description": "A sturdy metal shield reinforced with good steel.",
-    "Special": ""
+    "Special": []
   },
   "Heavy Shield (Wooden)": {
     "AC Bonus": 2,
     "Max Dex": 10,
     "Pentalty": -2,
     "Spell Failure": "15%",
-    "Speed": [ 1000, 1000 ],
 
     "Damage": [ "1d3", "1d4", "1d6" ],
     "critRange": 20,
@@ -188,14 +198,13 @@
     "Cost": 7,
     "Weight": 10,
     "Description": "A sturdy wooden shield reinforced with bands of solid hardwood.",
-    "Special": ""
+    "Special": []
   },
   "Tower Shield": {
     "AC Bonus": 4,
     "Max Dex": 2,
     "Pentalty": -10,
     "Spell Failure": "50%",
-    "Speed": [ 1000, 1000 ],
 
     "Damage": [ "0", "0", "0" ],
     "critRange": 0,
@@ -207,14 +216,16 @@
     "Cost": 30,
     "Weight": 45,
     "Description": "These massive shields can be used to provide cover to nearly the entire body.",
-    "Special": "A tower shield is unweildy and applies a -2 to your attack rolls when equiped. As a standard action, you can use the tower shield to grant yourself total cover until the beggining of your next turn. Choose one edge of your space and that edge is treated as a wall for attacks targeting you."
+    "Special": [
+      "A tower shield is unweildy and applies a -2 to your attack rolls when equiped.",
+      "As a standard action, you can use the tower shield to grant yourself total cover until the beggining of your next turn. Choose one edge of your space and that edge is treated as a wall for attacks targeting you."
+    ]
   },
   "Snarlshield (Steel)": {
     "AC Bonus": 2,
     "Max Dex": 10,
     "Pentalty": -3,
     "Spell Failure": "15%",
-    "Speed": [ 1000, 1000 ],
 
     "Damage": [ "1d3", "1d4", "1d6" ],
     "critRange": 20,
@@ -226,14 +237,15 @@
     "Cost": 50,
     "Weight": 20,
     "Description": "A sturdy metal shield reinforced with good steel and a dozen rods protruding from the surface to grab enemy weapons.",
-    "Special": ""
+    "Special": [
+      "Disarm: +2 to CMB when attempting to disarm an enemy"
+    ]
   },
   "Snarlshield (Wooden)": {
     "AC Bonus": 2,
     "Max Dex": 10,
     "Pentalty": -3,
     "Spell Failure": "15%",
-    "Speed": [ 1000, 1000 ],
 
     "Damage": [ "1d3", "1d4", "1d6" ],
     "critRange": 20,
@@ -245,14 +257,15 @@
     "Cost": 37,
     "Weight": 15,
     "Description": "A sturdy wooden shield reinforced with bands of solid hardwood with a dozen protruding rods to grab enemy weapons.",
-    "Special": ""
+    "Special": [
+      "Disarm: +2 to CMB when attempting to disarm an enemy"
+    ]
   },
   "Dwarven War-Shield": {
     "AC Bonus": 1,
     "Max Dex": 10,
     "Pentalty": -1,
     "Spell Failure": "20%",
-    "Speed": [ 1000, 1000 ],
 
     "Damage": [ "1d4", "1d6", "1d8" ],
     "critRange": 20,
@@ -264,6 +277,10 @@
     "Cost": 50,
     "Weight": 8,
     "Description": "The shield's sides are cut into jagged angles, honed to razor sharpness.",
-    "Special": "If you have Two-Weapon Fighting, you increase the higher shield bonus by 1. You lose this bonus for 1 round when you make an attack with one or both shields."
-  }
+    "Special": [
+      "War-Shields require exotic weapon proficiency to use",
+      "If you have Two-Weapon Fighting, you increase the higher shield bonus by 1.",
+      "You lose this bonus for 1 round when you make an attack with one or both shields (unless you have the Improved Shield Bash feat or a similar benefit).",
+    ]
+  },
 }
