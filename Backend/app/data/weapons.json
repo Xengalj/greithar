@@ -844,5 +844,26 @@
 
   "Exotic": {
 
+  },
+
+  "Extras": {
+    "Armor Spikes":  {
+      "Damage": [ "1d4", "1d6", "1d8" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "dmgType": [ "piercing" ],
+      "category": "Light",
+      "group": [ "Close" ],
+
+      "Cost": 50,
+      "Weight": 10,
+      "Description": "",
+      "Special": [
+        "The cost and wieght of armor spikes is added to the base armor",
+        "Adding spikes to your armor or shield allows you to deal extra damage on a successful grapple attack (-4 CMB if you are not proficient with martial weapons).",
+        "You can also make a standard melee attack (or off-hand attack) with the spikes, and they count as a light weapon in this case."
+        ]
+      },
+    
   }
 }
