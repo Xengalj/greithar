@@ -1,36 +1,40 @@
 {
   "Goods and Services": {
-    "Magic": {
-              "Djezet": {
-          "Cost": { "One Dose": "200 gp" },
-          "Type": "Magic",
-          "Description": "One of the strangest of skymetals, rust-red djezet is liquid at all temperatures.",
-          "Special": [
-            "Djezet may be used as an additional material component for spells, using 1 dose per original spell level. When used this way, the spell's level is increased by 1 stacking with heightened spell."
-          ]
-        },
-          "SerpentStone": {
-      "Cost": {},
-      "Type": "",
-      "Description": "",
+    
+    "Magic": "",
+    
+    "Djezet": {
+      "Cost": { "One Dose": "200 gp" },
+      "Type": "Magic", Spell Component
+      "Description": "One of the strangest of skymetals, rust-red djezet is liquid at all temperatures.",
       "Special": [
-
-        Serpentstone is a strange substance unique to the precursor alchemies of the ancient serpentfolk.
-        Its ancient name is lost to time, but modern explorers have dubbed it “serpentstone” after its ophidian creators.
-        Exceptionally resilient, all serpentstone is magically treated stone.
-      
-      When properly worked and treated through eldritch means known only to ancient serpentfolk wizards and sorcerers,
-      serpentstone can be programmed to emit sound and light in a variety of ways, 
-      shifting at predetermined times from color to color and tone to tone, from brightness equal to that of daylight to a dim,
-      shadowy glimmer like that of a candle.
-      
-      In addition, serpentstone can be set to radiate heat or cold, or produce illusory smoke, roiling forth thin streams of scented,
-      incense-like fumes designed to delight, enlighten, or otherwise inform serpentfolk in the vicinity.
-      All of these effects function as major image (caster level 18th).
-
+        "Djezet may be used as an additional material component for spells, using 1 dose per original spell level. When used this way, the spell's level is increased by 1 stacking with heightened spell."
       ]
     },
-    }
 
+    "Alchemist’s Fire Oil": {
+      "Cost": "20 gp",
+      "Weight": "1 lb",
+
+    You can throw a flask of alchemist’s fire as a splash weapon with a range increment of 10 feet.
+    A direct hit deals 1d6 points of fire damage. Every creature within 5 feet of the point where the flask hits takes 1 point of fire damage from the splash. On the round following a direct hit, the target takes an additional 1d6 points of damage. If desired, the target can use a full-round action to attempt to extinguish the flames before taking this additional damage. Extinguishing the flames requires a DC 15 Reflex save. Rolling on the ground provides the target a +2 bonus on the save. Leaping into a lake or magically extinguishing the flames automatically smothers the fire.
+    Craft (alchemy) DC: 20
+Alchemical Power Component
+
+Source PZO9410
+
+This dwarven favorite can make fire spells last longer.
+
+Burning Hands (M): One target that fails its Reflex saving throw (your choice) catches on fire as if it has been struck by alchemist’s fire.
+Fireball (M): One target per caster level that fails its Reflex saving throw (your choice) catches on fire as if it has been struck by alchemist’s fire.
+Flaming Sphere (M): Any creature damaged by a flaming sphere catches on fire as if it has been struck by alchemist’s fire.
+Protection from Energy (M): If cast to ward against cold, increase the amount of cold damage absorbed by 5.
+Resist Energy (M): If cast to ward against cold, increase the cold resistance to 12. At caster level 7th, you may use two flasks of alchemist’s fire as a power component to increase the cold resistance to 24. At caster level 11th, you may use three flasks as a power component to increase the cold resistance to 36.
+Scorching Ray (F): Add a +1 circumstance bonus on your attack roll with all rays from the spell.
+Scorching Ray (M): Any target damaged by a scorching ray catches on fire as if it has been struck by alchemist’s fire.
+
+
+    
+    
   }
 }
