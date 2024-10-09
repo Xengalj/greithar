@@ -27,7 +27,7 @@ exports.read = (req, res) => {
       user.getRoles()
       .then(roles => {
         for (let i = 0; i < roles.length; i++) {
-          authorities.push("ROLE_" + roles[i].name.toUpperCase());
+          authorities.push(roles[i].name);
         }
         res.status(200).send({
           id: user.id,
@@ -43,9 +43,11 @@ exports.read = (req, res) => {
 
     // find all users
   } else {
-    User.findAll()
+    console.log("GET ALL");
+    User.findAll({ include: [{ model: Role }] })
     .then(users => {
       if (!users) { return res.status(404).send({ message: "No users found!" }); }
+
       res.status(200).send({
         data: users
       });
@@ -55,6 +57,8 @@ exports.read = (req, res) => {
 };
 
 exports.update = (req, res) => {
+  let editSelf = (req.userId == req.body.user_id) ? true : false;
+
   User.findOne({ where: { id: req.body.user_id } })
   .then(user => {
     if (!user) { return res.status(404).send({ message: "User not found!" }); }
@@ -63,15 +67,15 @@ exports.update = (req, res) => {
     user.getRoles()
     .then(roles => {
       for (let i = 0; i < roles.length; i++) {
-        authorities.push("ROLE_" + roles[i].name.toUpperCase());
+        authorities.push(roles[i].name);
       }
 
       let newContent = {
         username: req.body.username ? req.body.username : user.username,
-        password: req.body.password ? bcrypt.hashSync(req.body.password, 8) : user.password,
+        password: (editSelf && req.body.password) ? bcrypt.hashSync(req.body.password, 8) : user.password,
         email: req.body.email ? req.body.email : user.email,
         usermeta: req.body.usermeta ? req.body.usermeta : user.usermeta,
-        roles: req.body.roles ? req.body.roles : user.authorities
+        roles: (!editSelf && req.body.roles) ? req.body.roles : authorities
       };
 
       // update user with new info
@@ -83,21 +87,19 @@ exports.update = (req, res) => {
       })
       .then(user => {
         // Update roles
-        if (req.body.roles) {
-          Role.findAll({ where: { name: { [Op.or]: req.body.roles } } })
-          .then(roles => {
-            user.setRoles(roles);
+        Role.findAll({ where: { name: { [Op.or]: newContent.roles } } })
+        .then(roles => {
+          user.setRoles(roles);
 
-            // return new user info
-            res.status(200).send({
-              id: user.id,
-              username: user.username,
-              email: user.email,
-              usermeta: user.usermeta,
-              roles: authorities,
-            });
+          // return new user info
+          res.status(200).send({
+            id: user.id,
+            username: user.username,
+            email: user.email,
+            usermeta: user.usermeta,
+            roles: authorities,
           });
-        }
+        });
       })
       .catch(err => { res.status(500).send({ message: err.message }); });
     })

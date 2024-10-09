@@ -14,7 +14,9 @@
     "Cost": 0,
     "Weight": 1,
     "Description": "Just a punch or slap of the hand.",
-    "Special": "Unarmed strikes are always considered light attacks and can be used with the weapon finesse feat."
+    "Special": [
+      "Unarmed strikes are always considered light attacks and can be used with the weapon finesse feat."
+    ]
   },
   "Gauntlet": {
     "Damage": [ "1d2", "1d3", "1d4" ],
@@ -31,7 +33,7 @@
     "Cost": 2,
     "Weight": 1,
     "Description": "A metal glove that lets you deal lethal damage with unarmed strikes. Medium and heavy armors (except breastplate) come with gauntlets.",
-    "Special": ""
+    "Special": []
   },
   "Battle Aspergillum": {
     "Damage": [ "1d4", "1d6", "1d8" ],
@@ -48,7 +50,9 @@
     "Cost": 5,
     "Weight": 4,
     "Description": "Named for the common aspergillum, a mace-like tool used by priests to sprinkle holy water, this light mace has a hollow head and a metal plug to fit the hollow’s neck.",
-    "Special": "When the mace hits a creature, holy water sprinkles out; creatures subject to damage from holy water take 1 point of additional damage. You must refill the aspergillum after 5 hits with a standard action that provokes an AoO."
+    "Special": [
+      "When the mace hits a creature, holy water sprinkles out; creatures subject to damage from holy water take 1 point of additional damage. You must refill the aspergillum after 5 hits with a standard action that provokes an AoO."
+    ]
   },
   "Brass Knife": {
     "Damage": [ "1d3", "1d4", "1d6" ],
@@ -65,7 +69,9 @@
     "Cost": 2,
     "Weight": 1,
     "Description": "Though brass doesn’t hold as sharp an edge as steel, it isn’t vulnerable to rust like steel is.",
-    "Special": "fragile"
+    "Special": [
+      "fragile"
+    ]
   },
   "Brass Knuckles": {
     "Damage": [ "1d2", "1d3", "1d4" ],
@@ -82,7 +88,9 @@
     "Cost": 1,
     "Weight": 1,
     "Description": "These close combat weapons are designed to fit comfortably around the knuckles, narrowing the contact area and therefore magnifying the amount of force delivered by a punch.",
-    "Special": "You may hold an object in a hand wearing brass knucles, but you cannot weild a weapon. You may also cast a spell with somantic components with a concentration check (DC 10 + spell level)."
+    "Special": [
+      "You may hold an object in a hand wearing brass knucles, but you cannot weild a weapon. You may also cast a spell with somantic components with a concentration check (DC 10 + spell level)."
+    ]
   },
   "Cestus": {
     "Damage": [ "1d3", "1d4", "1d6" ],
@@ -99,7 +107,9 @@
     "Cost": 5,
     "Weight": 1,
     "Description": "The cestus is a glove of leather or thick cloth that covers the wielder from mid-finger to mid-forearm, ofen reinforced with metal plates over the fingers.",
-    "Special": "You may wield or carry items while wearing a cestus, howeveer you take a -2 to all precision-based tasks involving that hand (such as opening locks)."
+    "Special": [
+      "You may wield or carry items while wearing a cestus, howeveer you take a -2 to all precision-based tasks involving that hand (such as opening locks)."
+    ]
   },
   "Dagger": {
     "Damage": [ "1d3", "1d4", "1d6" ],
@@ -116,7 +126,9 @@
     "Cost": 2,
     "Weight": 1,
     "Description": "A dagger has a blade that is about 1 foot in length.",
-    "Special": "You get a +2 bonus on Sleight of Hand skill checks made to conceal a dagger on your body."
+    "Special": [
+      "You get a +2 bonus on Sleight of Hand skill checks made to conceal a dagger on your body."
+    ]
   },
   "Punching Dagger": {
     "Damage": [ "1d3", "1d4", "1d6" ],
@@ -133,7 +145,7 @@
     "Cost": 2,
     "Weight": 1,
     "Description": "A punching dagger’s blade is attached to a horizontal handle that projects out from the fist when held.",
-    "Special": ""
+    "Special": []
   },
   "Spiked Gauntlet": {
     "Damage": [ "1d3", "1d4", "1d6" ],
@@ -150,7 +162,9 @@
     "Cost": 5,
     "Weight": 1,
     "Description": "A glove made of metal with jagged spikes for extra damage, and the cost and weight given are for a single gauntlet.",
-    "Special": "An attack with a spiked guantlet is considered an armed attack, and it cannot be disarmed."
+    "Special": [
+      "An attack with a spiked guantlet is considered an armed attack, and it cannot be disarmed."
+    ]
   },
   "Traveling Kettle": {
     "Damage": [ "1d4", "1d6", "" ],
@@ -167,7 +181,9 @@
     "Cost": 5,
     "Weight": 2,
     "Description": "These small tea kettles are made with clamping lids and heavily reinforced handles.",
-    "Special": "A traveling kettle with boiling water inside deals an additional 1 point of fire damage on a hit. Boiling water cools to a non-damaging temperature after 5 minutes."
+    "Special": [
+      "A traveling kettle with boiling water inside deals an additional 1 point of fire damage on a hit. Boiling water cools to a non-damaging temperature after 5 minutes."
+    ]
   },
   "Hook Hand": {
     "Damage": [ "1d3", "1d4", "" ],
@@ -184,7 +200,9 @@
     "Cost": 10,
     "Weight": 1,
     "Description": "Pirates who lose a hand in the course of their adventures sometimes attach hooks to their wrists.",
-    "Special": "disarm"
+    "Special": [
+      "disarm"
+    ]
   },
   "Kunai": {
     "Damage": [ "1d3", "1d4", "" ],
@@ -201,7 +219,7 @@
     "Cost": 2,
     "Weight": 2,
     "Description": "Crafted from a single piece of iron, a kunai has a leaf-shaped blade and a ring for a pommel. Adapted from the common trowel, the kunai has a thick blade that is sharpened only near the tip.",
-    "Special": ""
+    "Special": []
   },
   "Light Mace": {
     "Damage": [ "1d4", "1d6", "" ],
@@ -218,7 +236,7 @@
     "Cost": 5,
     "Weight": 4,
     "Description": "A light mace is made up of an ornate metal head attached to a simple wooden or metal shaft.",
-    "Special": ""
+    "Special": []
   },
   "Sickle": {
     "Damage": [ "1d4", "1d6", "" ],
@@ -235,7 +253,9 @@
     "Cost": 6,
     "Weight": 2,
     "Description": "A curved blade extends from the basic wooden handle, though usable in a pinch the sickle is mainly a farming tool.",
-    "Special": "trip"
+    "Special": [
+      "trip"
+    ]
   },
   "Spring Blade": {
     "Damage": [ "1d3", "1d4", "" ],
@@ -252,7 +272,9 @@
     "Cost": 70,
     "Weight": 1,
     "Description": "This 4-inch blade is attached via a hinge to a wooden handle with a slot in the center, into which the blade can be folded.",
-    "Special": "A spring blade is easy to conceal: an observer must succeed at a DC 20 Perception check to notice the blade hidden within the wooden handle, and you gain a +4 bonus on Sleight of Hand checks to conceal a spring blade on your body."
+    "Special": [
+      "A spring blade is easy to conceal: an observer must succeed at a DC 20 Perception check to notice the blade hidden within the wooden handle, and you gain a +4 bonus on Sleight of Hand checks to conceal a spring blade on your body."
+    ]
   },
   "Wodden Stake": {
     "Damage": [ "1d3", "1d4", "" ],
@@ -269,7 +291,7 @@
     "Cost": 0,
     "Weight": 1,
     "Description": "This close combat weapon is just a sharpened piece of wood. Iron spikes used as weapons deal damage as wooden stakes.",
-    "Special": ""
+    "Special": []
   },
 
   "Club": {
@@ -287,7 +309,7 @@
     "Cost": 0,
     "Weight": 3,
     "Description": "This weapon is usually just a shaped piece of wood, sometimes with a few nails or studs embedded in it.",
-    "Special": ""
+    "Special": []
   },
   "Mere Club": {
     "Damage": [ "1d3", "1d4", "" ],
@@ -304,7 +326,9 @@
     "Cost": 2,
     "Weight": 2,
     "Description": "Traditionally made of carved stone, the mere (MEH-reh) is a short, flat-sided, sharp-pointed club.",
-    "Special": "fragile"
+    "Special": [
+      "fragile"
+    ]
   },
   "Heavy Mace": {
     "Damage": [ "1d6", "1d8", "" ],
@@ -321,7 +345,7 @@
     "Cost": 12,
     "Weight": 8,
     "Description": "A heavy mace has a larger head and a longer handle than a normal (light) mace.",
-    "Special": ""
+    "Special": []
   },
   "Morningstar": {
     "Damage": [ "1d6", "1d8", "" ],
@@ -338,7 +362,7 @@
     "Cost": 8,
     "Weight": 6,
     "Description": "A morningstar is a spiked metal ball, affixed to the top of a long handle.",
-    "Special": ""
+    "Special": []
   },
   "Shortspear": {
     "Damage": [ "1d4", "1d6", "" ],
@@ -355,7 +379,7 @@
     "Cost": 1,
     "Weight": 3,
     "Description": "A shortspear is about 3 feet in length, making it a suitable thrown weapon.",
-    "Special": ""
+    "Special": []
   },
 
   "Bayonet": {
@@ -373,7 +397,7 @@
     "Cost": 5,
     "Weight": 1,
     "Description": "Bayonets are close combat weapons designed to fit into the grooves or muzzles of crossbows and firearms.",
-    "Special": ""
+    "Special": []
   },
   "Boarding Pike": {
     "Damage": [ "1d6", "1d8", "" ],
@@ -390,7 +414,10 @@
     "Cost": 8,
     "Weight": 9,
     "Description": "A boarding pike is an 8-foot-long pole topped with a foot-long tapered metal tip.",
-    "Special": "brace, reach"
+    "Special": [
+      "brace",
+      "reach"
+    ]
   },
   "Kumade": {
     "Damage": [ "1d4", "1d6", "" ],
@@ -407,7 +434,9 @@
     "Cost": 5,
     "Weight": 4,
     "Description": "Adapted from a garden rake, the kumade consists of a wood or bamboo pole topped with a metal claw. The rake head doubles as a grappling hook.",
-    "Special": "grapple"
+    "Special": [
+      "grapple"
+    ]
   },
   "Collapsible Kumade": {
     "Damage": [ "1d4", "1d6", "" ],
@@ -424,7 +453,9 @@
     "Cost": 10,
     "Weight": 4,
     "Description": "This weapon acts as a kumade, but the handle consists of bamboo sections held together by a taut rope running through the center.",
-    "Special": "grapple"
+    "Special": [
+      "grapple"
+    ]
   },
   "Lantern Staff": {
     "Damage": [ "1d4", "1d6", "" ],
@@ -441,7 +472,7 @@
     "Cost": 15,
     "Weight": 9,
     "Description": "This long metal staff has reservoirs for lamp oil, and a lantern-like structure at its head.",
-    "Special": ""
+    "Special": []
   },
   "Longspear": {
     "Damage": [ "1d6", "1d8", "" ],
@@ -458,7 +489,10 @@
     "Cost": 5,
     "Weight": 9,
     "Description": "A longspear is about 8 feet in length.",
-    "Special": "brace, reach"
+    "Special": [
+      "brace",
+      "reach"
+    ]
   },
   "Quarterstaff": {
     "Damage": [ "1d4/1d4", "1d6/1d6", "" ],
@@ -475,7 +509,9 @@
     "Cost": 0,
     "Weight": 4,
     "Description": "A quarterstaff is a simple piece of wood, about 5 feet in length.",
-    "Special": "double"
+    "Special": [
+      "double"
+    ]
   },
   "Spear": {
     "Damage": [ "1d6", "1d8", "" ],
@@ -492,7 +528,9 @@
     "Cost": 2,
     "Weight": 6,
     "Description": "A spear is 5 feet in length and can be thrown.",
-    "Special": "brace"
+    "Special": [
+      "brace"
+    ]
   },
   "Boar Spear": {
     "Damage": [ "1d6", "1d8", "" ],
@@ -509,7 +547,9 @@
     "Cost": 5,
     "Weight": 8,
     "Description": "This spear with a spiraling blade has a metal crossbar approximately halfway down its length.",
-    "Special": "brace"
+    "Special": [
+      "brace"
+    ]
   },
   "Weighted Spear": {
     "Damage": [ "1d6/1d4", "1d8/1d6", "" ],
@@ -526,7 +566,10 @@
     "Cost": 10,
     "Weight": 8,
     "Description": "This pole has a spear head at one end and a mace head at the other. It can be wielded like a standard spear (though it isn’t balanced for throwing), or it can be used as a double weapon, alternately thrusting and bashing.",
-    "Special": "brace, double"
+    "Special": [
+      "brace",
+      "double"
+    ]
   },
 
   "Blowgun": {
@@ -544,7 +587,7 @@
     "Cost": 2,
     "Weight": 1,
     "Description": "Blowguns are generally used to deliver debilitating (but rarely fatal) poisons from a distance. They are nearly silent when fired.",
-    "Special": ""
+    "Special": []
   },
   "Heavy Crossbow": {
     "Damage": [ "1d8", "1d10", "" ],
@@ -561,7 +604,7 @@
     "Cost": 50,
     "Weight": 8,
     "Description": "You draw a Heavy Crossbow back by truning a small winch, this takes a full-round action that provkes Attacks of Opportunity",
-    "Special": ""
+    "Special": []
   },
   "Heavy Crossbow (Underwater)": {
     "Damage": [ "1d8", "1d10", "" ],
@@ -578,7 +621,7 @@
     "Cost": 100,
     "Weight": 8,
     "Description": "An Underwater Crossbow functions as a regular crossbow above water.",
-    "Special": ""
+    "Special": []
   },
   "Light Crossbow": {
     "Damage": [ "1d6", "1d8", "" ],
@@ -595,7 +638,7 @@
     "Cost": 35,
     "Weight": 4,
     "Description": "You draw a Light Crossbow back by pulling a lever, this takes a move action that provokes Attacks of Opportunity.",
-    "Special": ""
+    "Special": []
   },
   "Light Crossbow (Underwater)": {
     "Damage": [ "1d6", "1d8", "" ],
@@ -612,7 +655,7 @@
     "Cost": 70,
     "Weight": 4,
     "Description": "An Underwater Crossbow functions as a regular crossbow above water.",
-    "Special": ""
+    "Special": []
   },
   "Javelin": {
     "Damage": [ "1d4", "1d6", "" ],
@@ -629,7 +672,7 @@
     "Cost": 1,
     "Weight": 2,
     "Description": "A javelin is a thin throwing spear.",
-    "Special": ""
+    "Special": []
   },
   "Sling": {
     "Damage": [ "1d3", "1d4", "" ],
@@ -646,7 +689,7 @@
     "Cost": 0,
     "Weight": 0,
     "Description": "A sling is little more than a leather cup attached to a pair of strings.",
-    "Special": ""
+    "Special": []
   },
   "Stingchuck": {
     "Damage": [ "1d3", "1d4", "" ],
@@ -663,7 +706,7 @@
     "Cost": 0,
     "Weight": 9,
     "Description": "A stingchuck is a foul bag made of a humanoid’s head with the brain removed and the skull heavily scored so that it bursts open when thrown.",
-    "Special": ""
+    "Special": []
   },
   "Stonebow": {
     "Damage": [ "1d4", "1d6", "" ],
@@ -680,7 +723,7 @@
     "Cost": 35,
     "Weight": 4,
     "Description": "A stonebow, or bullet crossbow, resembles a light crossbow except for the distinct U-shaped bend in the stock.",
-    "Special": ""
+    "Special": []
   },
 
   "Throwing Darts": {
@@ -698,7 +741,7 @@
     "Cost": 5,
     "Weight": 0.5,
     "Description": "Darts are missile weapons, designed to fly such that a sharp, often weighted point will strike first.",
-    "Special": ""
+    "Special": []
   },
   "Crossbow Bolts": {
     "Damage": [ "1d3", "1d4", "" ],
@@ -715,7 +758,7 @@
     "Cost": 0.1,
     "Weight": 0.1,
     "Description": "These bolts come in a case or quiver that holds 10 bolts. You may stab with the bolt as a Light Improvised Weapon (-4 to hit) using the damage given.",
-    "Special": ""
+    "Special": []
   },
   "Crossbow Bolts, Acid": {
     "Damage": [ "1d3" ],
@@ -732,7 +775,7 @@
     "Cost": 40,
     "Weight": 0.1,
     "Description": "These metal bolts have a glass section in the middle, filled with acid.",
-    "Special": ""
+    "Special": []
   },
   "Crossbow Bolts, Drow Poison": {
     "Damage": [ "0" ],
@@ -749,7 +792,9 @@
     "Cost": 100,
     "Weight": 0.1,
     "Description": "These bolts have a strange tip that delivers the poison, but also affects accuracy. Double the range penalties for this bolt.",
-    "Special": "drow poison (DC 13 Fort)"
+    "Special": [
+      "drow poison (DC 13 Fort)"
+    ]
   },
   "Crossbow Bolts, Fire": {
     "Damage": [ "1d4" ],
@@ -766,7 +811,7 @@
     "Cost": 50,
     "Weight": 0.1,
     "Description": "These metal bolts have a glass section in the middle, filled with a alchemical fire.",
-    "Special": ""
+    "Special": []
   },
   "Sling Bullets": {
     "Damage": [ "0" ],
@@ -783,7 +828,7 @@
     "Cost": 0.01,
     "Weight": 0.5,
     "Description": "These bullets come in a leather pouch that holds 10 bullets.",
-    "Special": ""
+    "Special": []
   },
   "Sling Bullets, Groaning": {
     "Damage": [ "0" ],
@@ -800,7 +845,7 @@
     "Cost": 0.2,
     "Weight": 0.5,
     "Description": "These sling bullets are honeycombed with overlapping perforations that cause them to emit an eerie moan audible within 500 feet of their flight path.",
-    "Special": ""
+    "Special": []
   },
   "Sling Bullets, Smoke": {
     "Damage": [ "0" ],
@@ -817,7 +862,7 @@
     "Cost": 10,
     "Weight": 0.5,
     "Description": "Uses a touch attack to release noxious smoke (DC 13 Fort), nauseating target for 2 rounds.",
-    "Special": ""
+    "Special": []
   },
   "Blowgun Darts": {
     "Damage": [ "", "", "" ],
@@ -834,7 +879,9 @@
     "Cost": 0.5,
     "Weight": 0,
     "Description": "These light darts have tiny grooves behind the tips. A character can apply poison to a blowgun dart without risk of poisoning himself.",
-    "Special": "poison"
+    "Special": [
+      "poison"
+    ]
   },
 
 
@@ -863,7 +910,7 @@
         "Adding spikes to your armor or shield allows you to deal extra damage on a successful grapple attack (-4 CMB if you are not proficient with martial weapons).",
         "You can also make a standard melee attack (or off-hand attack) with the spikes, and they count as a light weapon in this case."
         ]
-      },
-    
+      }
+
   }
 }

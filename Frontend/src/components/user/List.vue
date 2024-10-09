@@ -1,43 +1,63 @@
 <template>
   <div class="container">
-    <header class="jumbotron">
-      <h3>
-        <strong>User List</strong>
-      </h3>
-    </header>
 
-    <el-button @click="clearFilter">reset all filters</el-button>
-    <el-button @click="createUser">
-      <font-awesome-icon icon="user-plus" /> &nbsp; Create User
-    </el-button>
+    <!-- FILTERS -->
+    <el-row class="row-bg" justify="space-between">
+      <el-col :span="6">
+        <el-input v-model="tableSearch" size="small" placeholder="Type to search" v-on:change="nameSearch()" />
+      </el-col>
+      <el-col :span="3">
+        <el-button @click="createUser">
+          <g-icon iconSize="24px" iconName="userAdd" /> Create User
+        </el-button>
+      </el-col>
+    </el-row>
 
     <el-table
+      ref="userTable"
       :data="tableData"
-      :default-sort="{ prop: 'cr', order: 'ascending' }"
+      :default-sort="{ prop: 'name', order: 'ascending' }"
       v-loading="loading"
+      table-layout="auto"
       height="500"
       style="width: 100%"
       stripe
+      :lazy="true"
     >
-      <el-table-column sortable prop="id" label="ID" width="75" />
-      <el-table-column sortable prop="username" label="Name" width="180" />
+      <el-table-column sortable prop="id" label="ID" width="65" />
+      <el-table-column sortable prop="username" label="Name" min-width="120" />
       <el-table-column sortable prop="email" label="Email" />
-      <el-table-column sortable prop="roles" label="Roles" :filters="userRole" :filter-method="filterHandler" />
-
-      <el-table-column fixed="right" label="Operations" width="120">
-        <template #default>
-          <el-button type="primary" circle>
-            <g-icon iconName="eye" />
+      <el-table-column prop="roles" label="Roles" :filters="roleFilter" :filter-method="filterRoles" filter-placement="bottom">
+        <template #default="scope">
+          <el-tag v-for="role in scope.row.roles" :key="role.id" type="primary" effect="dark" >
+            {{ role.name }}
+          </el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column fixed="right" label="Operations" width="140" style="display: flex">
+        <template #default="scope">
+          <el-button type="primary" circle @click="viewUser(scope.row.id)">
+            <g-icon iconName="eye" iconSize="28" />
           </el-button>
-          <el-button type="primary" circle>
-            <g-icon iconName="quill" />
+          <el-button type="primary" circle @click="editUser(scope.row.id)">
+            <g-icon iconName="quill" iconSize="24" />
           </el-button>
-          <el-button type="primary" circle>
-            <g-icon iconName="trash" />
+          <el-button type="primary" circle @click="deleteUser(scope.row.id)">
+            <g-icon iconName="trash" iconSize="24" />
           </el-button>
         </template>
       </el-table-column>
     </el-table>
+
+
+    <!-- CREATE MODAL -->
+    <el-dialog
+      width="650"
+      style="margin-top: 75px"
+      v-model="cardVisible"
+      :before-close="closeModal"
+    >
+    </el-dialog>
 
   </div>
 </template>
@@ -50,44 +70,91 @@ export default {
   data() {
     return {
       loading: false,
+      allUsers: [],
       tableData: [],
-      userRole: [
-        {text: "Admins", value: "admins" },
-        {text: "Moderators", value: "moderators" },
-        {text: "Users", value: "users" }, // to filter for non admins, non mod?
-      ]
+      tableSearch: "",
+      roleFilter: [
+        { text: "Admin", value: "admin" },
+        { text: "Story Teller", value: "storyteller" },
+        { text: "User", value: "user" },
+      ],
+
+      // Create User Modal
+      cardVisible: false,
+      newUser: {},
+
     }
   },
   computed: {
     currentUser() {
       return this.$store.state.auth.user;
-    }
+    },
   },
   mounted() {
-    this.getUsers();
+    this.loading = true;
+    UserService.getAllUsers()
+    .then(response => {
+      this.allUsers = response.data
+      this.tableData = this.allUsers;
+      this.loading = false;
+    })
+    .catch(err => { console.error(err); });
   },
+
   methods: {
-    async getUsers() {
+    nameSearch() {
+      let uName, searchStr, users = this.allUsers;
+      searchStr = this.tableSearch.toLowerCase();
+      this.tableData = [];
+      if (searchStr == "") {
+        this.tableData = users;
+        return;
+      }
       this.loading = true;
-      UserService.getAllUsers(this.currentUser)
-      .then(response => {
-        console.log("users", response.data);
-        this.tableData = response.data;
-        this.loading = false;
-      })
-      .catch(err => { console.error(err); });
+      for (let i = 0; i < users.length; i++) {
+        uName = users[i].username.toLowerCase();
+        if ( uName.includes( searchStr ) ) {
+          this.tableData.push(users[i]);
+        }
+      }
+      this.loading = false;
     },
-    clearFilter() {
-      // just reload page...
-      this.$router.go();
-    },
-    filterHandler(value, row, column) {
+    filterRoles(value, row, column) {
       const property = column['property'];
-      return row[property] === value;
+      let hasRole = false;
+      if (row[property]) {
+        for (let role of row[property]) {
+          if (role.name.toLowerCase() == value) {
+            hasRole = true;
+          }
+        }
+        return hasRole
+      }
     },
-    handleClick() {
-      console.log('click');
+
+    viewUser(id) {
+      this.$router.push({ name: 'user-view', params: { id: id } });
+    },
+    editUser(id) {
+      this.$router.push({ name: 'user-edit', params: { id: id } });
+    },
+    deleteUser(id) {
+      console.log('delete', id);
+    },
+
+
+
+    createUser() {
+      console.log("create user, open modal");
+      this.cardVisible = true;
+    },
+    closeModal() {
+      // alert('oops');
     }
+
+
+
+
   }
 };
 </script>

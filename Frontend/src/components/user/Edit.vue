@@ -4,7 +4,7 @@
     <el-card class="user-card">
       <template #header>
         <div class="card-header">
-          <span><strong>{{ user.username }}'s'</strong> Profile</span>
+          <span><strong>{{ user.username }}'s</strong> Profile</span>
         </div>
       </template>
 
@@ -20,66 +20,61 @@
           <el-input v-model="user.username" />
         </el-form-item>
 
-<!-- Password -->
-        <!--
-         <el-form-item label="Username" prop="username">
-          <el-input v-model="user.username" />
-        </el-form-item>
-
-        <el-form-item label="Password" prop="pass">
-          <el-input v-model="ruleForm.pass" type="password" autocomplete="off" />
-        </el-form-item>
-        <el-form-item v-if="pass" label="Confirm" prop="checkPass">
-          <el-input
-            v-model="ruleForm.checkPass"
-            type="password"
-            autocomplete="off"
-          />
-        </el-form-item>
-
-         -->
-
         <el-form-item label="Email" prop="email">
           <el-input v-model="user.email" />
         </el-form-item>
 
+        <div v-if="this.currentUser.id == this.$route.params.id">
+          <el-form-item label="New Password" prop="pass">
+            <el-input v-model="pass" type="password" autocomplete="off" />
+          </el-form-item>
+          <el-form-item v-if="pass" label="Confirm" prop="checkPass">
+            <el-input v-model="checkPass" type="password" autocomplete="off" />
+          </el-form-item>
+        </div>
+
         <el-form-item v-if="isAdmin" label="Roles">
           <el-select v-model="user.roles" prop="roles" multiple >
-            <el-option v-for="role in user.roles" :key="role" :label="role" :value="role" />
+            <el-option v-for="role in roles" :key="role.value" :label="role.label" :value="role.value" />
           </el-select>
         </el-form-item>
 
-        <el-divider> Colors </el-divider>
-        <el-form-item label="Darkmode">
-          <el-switch v-model="user.usermeta.darkmode" >
-            <template #active-action>
-              <span class="custom-active-action">
-                T
-              </span>
-            </template>
-            <template #inactive-action>
-              <span class="custom-inactive-action">
-                F
-              </span>
-            </template>
-          </el-switch>
-        </el-form-item>
 
-        <el-form-item label="Favorite Color">
-          <el-color-picker v-model="user.usermeta.faveColor" />
-        </el-form-item>
+        <el-space v-if="user.usermeta" fill>
+          <el-divider> Colors </el-divider>
+          <el-form-item label="Darkmode">
+            <el-switch v-model="user.usermeta.darkmode" >
+              <template #active-action>
+                <span class="custom-active-action">
+                  <g-icon iconName="moon" iconSize="16" iconColor="black" />
+                </span>
+              </template>
+              <template #inactive-action>
+                <span class="custom-inactive-action">
+                  <g-icon iconName="sun" iconSize="16" iconColor="black" />
+                </span>
+              </template>
+            </el-switch>
+          </el-form-item>
+
+          <el-form-item label="Favorite Color">
+            <el-color-picker v-model="user.usermeta.faveColor" />
+          </el-form-item>
+        </el-space>
 
 
-        <el-divider> Hero </el-divider>
-        <el-form-item label="Character Name" prop="heroName">
-          <el-input v-model="user.usermeta.hero.name" disabled />
-        </el-form-item>
+        <el-space v-if="user.usermeta" fill>
+          <el-divider> Hero </el-divider>
+          <el-form-item label="Character Name" prop="heroName">
+            <el-input v-model="user.usermeta.hero.name" disabled />
+          </el-form-item>
 
-        <el-form-item label="Classes">
-          <el-select v-model="user.usermeta.hero.classes" prop="heroClasses" multiple disabled placeholder="" >
-            <el-option v-for="item in user.usermeta.hero.classes" :key="item" :label="item" :value="item" />
-          </el-select>
-        </el-form-item>
+          <el-form-item label="Classes">
+            <el-select v-model="user.usermeta.hero.classes" prop="heroClasses" multiple disabled placeholder="" >
+              <el-option v-for="item in user.usermeta.hero.classes" :key="item" :label="item" :value="item" />
+            </el-select>
+          </el-form-item>
+        </el-space>
 
       </el-form>
 
@@ -100,63 +95,23 @@
 
 <script>
 import UserService from "@/services/user.service";
-// import { ElMessage } from 'element-plus'
 
 export default {
   name: "View User",
   data() {
-    let validateEmail = (rule, value, callback) => {
-       if (value === '') {
-         callback(new Error('Please enter your email'));
-       } else {
-         let reg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-         if (!reg.test(value)) {
-           return callback(new Error('Please enter a valid emiail'));
-         }
-         callback();
-       }
-     };
-//      const validatePass = (rule: any, value: any, callback: any) => {
-//   if (value === '') {
-//     callback(new Error('Please input the password'))
-//   } else {
-//     if (ruleForm.checkPass !== '') {
-//       if (!ruleFormRef.value) return
-//       ruleFormRef.value.validateField('checkPass', () => null)
-//     }
-//     callback()
-//   }
-// }
-// const validatePass2 = (rule: any, value: any, callback: any) => {
-//   if (value === '') {
-//     callback(new Error('Please input the password again'))
-//   } else if (value !== ruleForm.pass) {
-//     callback(new Error("Two inputs don't match!"))
-//   } else {
-//     callback()
-//   }
-// }
-
     return {
-      orig: {},
-      user: {
-        usermeta: {
-          hero: {
-            classes: []
-          }
-        }
-      },
+      user: {},
       pass: "",
       checkPass: "",
+      roles: [
+        { label: "Admin", value: "admin" },
+        { label: "Story Teller", value: "storyteller" },
+        { label: "User", value: "user" },
+      ],
       rules: {
-        username: [
-          { required: true, message: "Please enter a username", trigger: 'blur' },
-        ],
-        // pass: [{ validator: validatePass, trigger: 'blur' }],
-        // checkPass: [{ validator: validatePass2, trigger: 'blur' }],
-        email: [
-          { required: true, validator: validateEmail, trigger: 'blur' },
-        ]
+        username: [{ required: true, message: "Please enter a username", trigger: 'blur' }],
+        email: [{ required: true, validator: this.validateEmail, trigger: 'blur' }],
+        checkPass: [{ validator: this.validatePass2, trigger: 'blur' }]
       }
 
     };
@@ -182,7 +137,6 @@ export default {
       .then(response => {
         for(const [key, value] of Object.entries(response)) {
           this.user[key] = value;
-          this.orig[key] = value;
         }
         console.log(this.user);
       })
@@ -190,40 +144,54 @@ export default {
         console.error(err);
       });
     }
-
   },
 
   methods: {
     submitForm() {
       this.$refs.user.validate((valid) => {
         if (valid) {
-
-          console.log(this.user);
           UserService.updateUser(this.user)
           .then(response => {
-          console.log(response);
             this.$message({
-              message: 'User Submitted',
-              type: 'success',
-            })
+              message: `${response.username} updated sucessfully`,
+              type: 'success'
+            });
           })
           .catch(err => {
-            console.error(err);
+            this.$message({
+              message: err,
+              type: 'error',
+            });
           });
 
-
-
-
         } else {
-          console.log('error submit!!');
+          console.log('submition error!!');
           return false;
         }
       });
-
     },
     resetForm() {
-      this.user = this.orig;
-      this.$refs.user.validate();
+      this.$router.go()
+    },
+    validateEmail(rule, value, callback) {
+      if (value === '') {
+        callback(new Error('Please enter your email'));
+      } else {
+        let reg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!reg.test(value)) {
+          return callback(new Error('Please enter a valid emiail'));
+        }
+        callback();
+      }
+    },
+    validatePass2(rule, value, callback) {
+      if (value === '') {
+        callback(new Error('Please input the password again'));
+      } else if (value !== this.pass) {
+        callback(new Error("The passwords don't match"));
+      } else {
+        callback();
+      }
     }
   }
 
@@ -242,11 +210,10 @@ export default {
   display: flex;
   justify-content: space-between;
 }
-
-.color-display {
-  width: 30px;
-  height: 30px;
-  background-color: var(--el-color-primary);
-  border-radius: 5px;
+.card-footer {
+  text-align: center;
+}
+.custom-active-action, .custom-inactive-action {
+  display: flex;
 }
 </style>

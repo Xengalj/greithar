@@ -20,6 +20,29 @@ class UserService {
     return axios.get(API_URL + 'admin', { headers: authHeader() });
   }
 
+
+  createUser(user) {
+    console.log(user);
+    /*
+    return axios.post(API_URL + 'update',
+    {
+      user_id: user.id,
+      username: user.username,
+      email: user.email,
+      password: user.password,
+      roles: user.roles,
+      usermeta: user.usermeta
+    },
+    { headers: authHeader() })
+    .then(response => {
+      return response.data;
+    })
+    .catch(err => {
+      return err;
+    });
+    */
+  }
+
   getUser(id) {
     return axios.post(API_URL + 'read',
       { user_id: id },
@@ -61,7 +84,21 @@ class UserService {
     .catch(err => {
       return err;
     });
+  }
 
+  deleteUser(id) {
+    console.log(id);
+    /*
+                return axios.post(API_URL + 'read',
+                { user_id: id },
+                { headers: authHeader() })
+                .then(response => {
+                return response.data;
+              })
+              .catch(err => {
+              return err;
+            });
+    */
   }
 
 }

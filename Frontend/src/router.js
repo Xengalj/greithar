@@ -85,15 +85,15 @@ const routes = [
           title: "User List",
         }
       },
-      {
-        path: "create",
-        name: "user-create",
-        component: () => import("./components/user/Create.vue"),
-        meta: {
-          breadcrumb: "Create User",
-          title: "Create User"
-        }
-      },
+      // {
+      //   path: "create",
+      //   name: "user-create",
+      //   component: () => import("./components/user/Create.vue"),
+      //   meta: {
+      //     breadcrumb: "Create User",
+      //     title: "Create User"
+      //   }
+      // },
       {
         // when /user/view/:id is matched
         path: "view/:id",
@@ -112,17 +112,6 @@ const routes = [
         meta: {
           breadcrumb: "Edit User",
           title: "Edit User",
-        }
-      },
-      {
-        // loads current user from $store,
-        // combine template with view?
-        path: "profile",
-        name: "profile",
-        component: () => import("./components/user/Profile.vue"),
-        meta: {
-          breadcrumb: "Profile",
-          title: "Profile",
         }
       },
     ],
@@ -297,6 +286,8 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const publicPages = ['/login', '/register', '/home', '/equipment'];
+  // const adminPasges = [ '/user/list' ];
+
   // console.log(routes, to);
   const authRequired = !publicPages.includes(to.path);
   const loggedIn = localStorage.getItem('user');

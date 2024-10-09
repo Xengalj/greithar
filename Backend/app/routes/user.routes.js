@@ -13,23 +13,40 @@ module.exports = function(app) {
   // app.get("/api/user/create", controller.create);
   // user.create is handled by auth.signup
 
+  // returns a list of users, or if ID was provided, that user
   app.post(
     "/api/user/read",
-    [authJwt.verifyToken],
+    [
+      authJwt.verifyToken,
+      authJwt.isSelfOrAdmin
+    ],
     controller.read
   );
 
   app.post(
     "/api/user/update",
-    [authJwt.verifyToken],
+    [
+      authJwt.verifyToken,
+      authJwt.isSelfOrAdmin
+    ],
     controller.update
   );
 
   app.get(
     "/api/user/delete",
-    [authJwt.verifyToken],
+    [
+      authJwt.verifyToken,
+      authJwt.isSelfOrAdmin
+    ],
     controller.allAccess
   );
+
+
+  /***************************\
+  *                           *
+  *      Role Restricted      *
+  *                           *
+  \***************************/
 
   app.get("/api/user/all", controller.allAccess);
 

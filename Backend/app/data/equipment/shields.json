@@ -1,8 +1,10 @@
 {
-      "rules": "You lose your AC bonus from a shield you bash with until your next turn.",
-"you must have martial proficiency to make a shield bash",
+  "rules": [
+    "You lose your AC bonus from a shield you bash with until your next turn.",
+    "you must have martial proficiency to make a shield bash"
+  ],
 
-  
+
   "Buckler": {
     "AC Bonus": 1,
     "Max Dex": 10,
@@ -22,6 +24,7 @@
     "Special": [
       "While using a weapon in the hand a buckler is strapped to, you take a -1 on attack rolls (except bow / crossbow).",
       "If you attack or cast a spell with the arm weilding a buckler, you lose it's AC bonus until your next turn."
+    ]
   },
   "Klar": {
     "AC Bonus": 1,
@@ -39,7 +42,7 @@
     "Cost": 12,
     "Weight": 6,
     "Description": "A small shield with spikes used for both offense and defense.",
-    "special": ""
+    "Special": []
   },
   "Madu (Leather)": {
     "AC Bonus": 1,
@@ -280,7 +283,7 @@
     "Special": [
       "War-Shields require exotic weapon proficiency to use",
       "If you have Two-Weapon Fighting, you increase the higher shield bonus by 1.",
-      "You lose this bonus for 1 round when you make an attack with one or both shields (unless you have the Improved Shield Bash feat or a similar benefit).",
+      "You lose this bonus for 1 round when you make an attack with one or both shields (unless you have the Improved Shield Bash feat or a similar benefit)."
     ]
-  },
+  }
 }

@@ -34,6 +34,12 @@
           </div>
         </div>
       </Form>
+
+      <button class="btn btn-primary btn-block" :disabled="loading" :onclick="goRegister">
+        <span>Sign Up</span>
+      </button>
+
+
     </div>
   </div>
 </template>
@@ -90,6 +96,9 @@ export default {
         }
       );
     },
+    goRegister() {
+      this.$router.push('/register');
+    }
   },
 };
 </script>

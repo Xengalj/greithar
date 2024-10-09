@@ -77,9 +77,9 @@ export default {
 
   mounted() {
     // TODO: remove in favor of login checking in router
-    if (!this.currentUser) {
-      this.$router.push('/login');
-    }
+    // if (!this.currentUser) {
+    //   this.$router.push('/login');
+    // }
 
     if (this.currentUser.roles.includes("ROLE_ADMIN")) {
       UserService.getUser(this.$route.params.id)

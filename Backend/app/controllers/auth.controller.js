@@ -16,6 +16,10 @@ exports.signup = (req, res) => {
     password: bcrypt.hashSync(req.body.password, 8)
   })
     .then(user => {
+      // if (req.body.roles !include 'ROLE_USER') {
+      //   req.body.roles.push("ROLE_USER");
+      // }
+
       if (req.body.roles) {
         Role.findAll({
           where: {
@@ -75,7 +79,7 @@ exports.signin = (req, res) => {
       var authorities = [];
       user.getRoles().then(roles => {
         for (let i = 0; i < roles.length; i++) {
-          authorities.push("ROLE_" + roles[i].name.toUpperCase());
+          authorities.push(roles[i].name);
         }
         res.status(200).send({
           id: user.id,

@@ -2,7 +2,7 @@
   "Light Armor Speed": "x1 ft.",
   "Medium Armor Speed": "x0.66 ft.",
   "Heavy Armor Speed": "x0.66 ft & run is x3 not x4",
-  
+
   "Armored Kilt" : {
     "AC Bonus": 1,
     "Max Dex": 6,
@@ -233,7 +233,7 @@
     "Description": "This relatively simple armor consists of heavy chains that wrap around your body and limbs.",
     "Special": [
       "You may affix a spiked chain to one hand, preventing it from being disarmed.",
-      "If you are also proficient with spiked chains, you can treat it as a one-handed weapon while attached rather than a two-handed weapon.",
+      "If you are also proficient with spiked chains, you can treat it as a one-handed weapon while attached rather than a two-handed weapon."
     ]
   },
   "Hide": {
@@ -318,7 +318,7 @@
     ]
   },
 
-  
+
   "Banded Mail": {
     "AC Bonus": 7,
     "Max Dex": 1,
@@ -429,7 +429,7 @@
     "Description": "This metal suit comprises multiple pieces of interconnected and overlaying metal plates, incorporating the benefits of numerous types of lesser armor.",
     "Special": [
       "Full plate, sometimes called platemail, includes gauntlets (weapon), heavy leather boots, a visored helmet, and thick padding worn under the armor.",
-      "Each suit of full plate must be individually fitted to its owner by a master armorsmith, although a captured suit can be resized to fit a new owner at a cost of 200 to 800 (2d4 x 100) gold pieces.",
+      "Each suit of full plate must be individually fitted to its owner by a master armorsmith, although a captured suit can be resized to fit a new owner at a cost of 200 to 800 (2d4 x 100) gold pieces."
     ]
   },
   "Hell Knight Plate": {
@@ -459,7 +459,7 @@
     "Special": []
   },
 
-  
+
   "Haramaki": {
     "AC Bonus": 1,
     "Max Dex": 10,
@@ -639,5 +639,5 @@
     "Proficiency": "Heavy",
     "Description": "Worn almost exclusively by highranking samurai, o-yoroi—or “great armor”—is a heavy combat armor that consists of various supplementary components that include both plate and lamellar elements.",
     "Special": []
-  },
+  }
 }

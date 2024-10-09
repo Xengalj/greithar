@@ -62,7 +62,9 @@ function initial() {
     username: "TrevTest",
     email: "trevor@musson.net",
     password: bcrypt.hashSync("pwd4test", 8)
-  });
+  })
+    // set test user to have user role
+    .then(user => { user.setRoles([3]) });
   db.user.create({
     id: 2,
     username: "Xengalj",
@@ -70,8 +72,8 @@ function initial() {
     password: bcrypt.hashSync("Klefki719!", 8)
   })
     .then(user => {
-      // Set Xen as admin; admin = 1
-      user.setRoles([1]);
+      // Set Xen as all rolls
+      user.setRoles([1, 2, 3]);
     });
 
   db.character.create({
