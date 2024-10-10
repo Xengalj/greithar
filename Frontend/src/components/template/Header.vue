@@ -19,13 +19,7 @@
       </div>
 
 
-      <el-menu
-        class="el-menu dark"
-        mode="horizontal"
-        ellipsis
-      >
-      <!-- menu-trigger="click" -->
-
+      <el-menu class="el-menu dark" mode="horizontal" ellipsis >
         <!-- User Links -->
         <el-sub-menu v-if="currentUser" index="0">
           <template #title> <g-icon iconSize="24px" iconName="user" :iconColor="iconColor" /> {{ currentUser.username }} </template>
@@ -41,13 +35,14 @@
             <!-- /character/view/ <character_id> -->
             <router-link to="/hero" class="nav-link">
             <!-- <router-link :to="{ name: 'character-view', params: { id: currentUser.hero.id } }" class="nav-link"> -->
-              <g-icon iconSize="24px" iconName="userHero" :iconColor="iconColor" /> Your Hero <!-- {{ currentUser.hero.name }} -->
+              <g-icon iconSize="24px" iconName="userHero" :iconColor="iconColor" /> Your Hero <!-- {{ currentUser.usermeta.hero.name }} -->
             </router-link>
           </el-menu-item>
 
           <el-menu-item index="characters">
             <!-- /character/list/ <user_id> -->
-            <router-link :to="{ name: 'character-list', params: { id: currentUser.id } }" class="nav-link">
+            <!-- <router-link :to="{ name: 'character-list', params: { id: currentUser.id } }" class="nav-link"> -->
+            <router-link :to="{ name: 'character-list' }" class="nav-link">
               <g-icon iconSize="24px" iconName="userList" :iconColor="iconColor" /> Your Characters
             </router-link>
           </el-menu-item>
@@ -174,13 +169,13 @@ export default {
     },
     showAdmin() {
       if (this.currentUser && this.currentUser['roles']) {
-        return this.currentUser['roles'].includes('ROLE_ADMIN');
+        return this.currentUser['roles'].includes('admin');
       }
       return false;
     },
-    showModerator() {
+    showStoryteller() {
       if (this.currentUser && this.currentUser['roles']) {
-        return this.currentUser['roles'].includes('ROLE_MODERATOR');
+        return this.currentUser['roles'].includes('storyteller');
       }
       return false;
     },
@@ -219,12 +214,12 @@ export default {
     // this.$router.options.routes.forEach(route => {
     //   console.log(route);
     // });
-    this.userMeta = JSON.parse(localStorage.getItem("userMeta"));
+    // this.userMeta = JSON.parse(localStorage.getItem("userMeta"));
   },
   mounted() {
-    let menu = document.getElementsByClassName("el-popper")[0];
-    menu = menu.parentNode;
-    menu.setAttribute("class", this.userMeta.theme);
+    // let menu = document.getElementsByClassName("el-popper")[0];
+    // menu = menu.parentNode;
+    // menu.setAttribute("class", this.userMeta.theme);
   },
 
 

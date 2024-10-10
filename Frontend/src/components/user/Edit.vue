@@ -122,7 +122,7 @@ export default {
     },
     isAdmin() {
       if (this.currentUser && this.currentUser['roles']) {
-        return this.currentUser['roles'].includes('ROLE_ADMIN');
+        return this.currentUser['roles'].includes('admin');
       }
       return false;
     },
@@ -138,7 +138,6 @@ export default {
         for(const [key, value] of Object.entries(response)) {
           this.user[key] = value;
         }
-        console.log(this.user);
       })
       .catch(err => {
         console.error(err);
@@ -156,6 +155,8 @@ export default {
               message: `${response.username} updated sucessfully`,
               type: 'success'
             });
+
+            this.$router.push({ name: 'user-view', params: { id: this.currentUser.id } });
           })
           .catch(err => {
             this.$message({
