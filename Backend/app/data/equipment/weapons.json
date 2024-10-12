@@ -60,7 +60,7 @@
  
     "Proficiency": "Simple",
     "Category": "Light",
-    "Group": [ "Blades", "Thrown" ],
+    "Group": [ "Light Blades", "Thrown" ],
 
     "Cost": 2,
     "Weight": 1,
@@ -114,7 +114,7 @@
 
     "Proficiency": "Simple",
     "Category": "Light",
-    "Group": [ "Blades", "Thrown", "Tribal" ],
+    "Group": [ "Light Blades", "Thrown", "Tribal" ],
 
     "Cost": 2,
     "Weight": 1,
@@ -152,7 +152,8 @@
     "Weight": 1,
     "Description": "A glove made of metal with jagged spikes for extra damage, and the cost and weight given are for a single gauntlet.",
     "Special": [
-      "An attack with a spiked guantlet is considered an armed attack, and it cannot be disarmed."
+      "An attack with a spiked guantlet is considered an armed attack.",
+      "Attached"
     ]
   },
   "Traveling Kettle": {
@@ -189,6 +190,7 @@
     "Description": "Pirates who lose a hand in the course of their adventures sometimes attach hooks to their wrists.",
     "Special": [
       "It takes 1 minute to attach or detach a hook hnad.",
+      "Attached",
       "Disarm"
     ]
   },
@@ -210,16 +212,14 @@
     ]
   },
   "Light Mace": {
-    "Damage": [ "1d4", "1d6", "" ],
-    "critRange": 20,
-    "critMultiplier": 2,
-    "range": 0,
-    "dmgType": [ "bludgeoning" ],
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type(s)": [ "bludgeoning" ],
 
-    "type": "Melee",
-    "category": "Light",
     "Proficiency": "Simple",
-    "group": [ "Hammers" ],
+    "Category": "Light",
+    "Group": [ "Hammers" ],
 
     "Cost": 5,
     "Weight": 4,
@@ -227,54 +227,49 @@
     "Special": []
   },
   "Sickle": {
-    "Damage": [ "1d4", "1d6", "" ],
-    "critRange": 20,
-    "critMultiplier": 2,
-    "range": 0,
-    "dmgType": [ "slashing" ],
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type(s)": [ "slashing" ],
 
-    "type": "Melee",
-    "category": "Light",
     "Proficiency": "Simple",
-    "group": [ "Blades" ],
+    "Category": "Light",
+    "Group": [ "Light Blades" ],
 
     "Cost": 6,
     "Weight": 2,
     "Description": "A curved blade extends from the basic wooden handle, though usable in a pinch the sickle is mainly a farming tool.",
     "Special": [
-      "trip"
+      "Trip"
     ]
   },
   "Spring Blade": {
-    "Damage": [ "1d3", "1d4", "" ],
-    "critRange": 20,
-    "critMultiplier": 2,
-    "range": 10,
-    "dmgType": [ "piercing", "slashing" ],
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x2",
+    "Range": 10,
+    "Damage Type(s)": [ "piercing", "slashing" ],
 
-    "type": "Melee",
-    "category": "Light",
     "Proficiency": "Simple",
-    "group": [ "Blades", "Thrown" ],
+    "Category": "Light",
+    "Group": [ "Light Blades", "Thrown" ],
 
     "Cost": 70,
     "Weight": 1,
     "Description": "This 4-inch blade is attached via a hinge to a wooden handle with a slot in the center, into which the blade can be folded.",
     "Special": [
-      "A spring blade is easy to conceal: an observer must succeed at a DC 20 Perception check to notice the blade hidden within the wooden handle, and you gain a +4 bonus on Sleight of Hand checks to conceal a spring blade on your body."
+      "You gain a +4 bonus on Sleight of Hand checks to conceal a spring blade on your body, and noticing the hidden blade requiers a DC 20 Perception check.",
+      "Releasing the blade is a free action, and resetting it is a move action."
     ]
   },
   "Wodden Stake": {
-    "Damage": [ "1d3", "1d4", "" ],
-    "critRange": 20,
-    "critMultiplier": 2,
-    "range": 10,
-    "dmgType": [ "piercing" ],
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x2",
+    "Range": 10,
+    "Damage Type(s)": [ "piercing" ],
 
-    "type": "Melee",
-    "category": "Light",
     "Proficiency": "Simple",
-    "group": [ "Close", "Thrown" ],
+    "Category": "Light",
+    "Group": [ "Close", "Thrown" ],
 
     "Cost": 0,
     "Weight": 1,
@@ -282,6 +277,7 @@
     "Special": []
   },
 
+  
   "Club": {
     "Damage": [ "1d4", "1d6", "" ],
     "critRange": 20,
