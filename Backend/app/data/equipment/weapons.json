@@ -3,7 +3,7 @@
     "Damage": [ "1d2", "1d3", "1d4" ],
     "Critical": "20/x2",
     "Range": 0,
-    "Damage Type(s)": [ "bludgeoning", "nonlethal" ],
+    "Damage Type": [ "bludgeoning", "nonlethal" ],
 
     "Proficiency": "Simple",
     "Category": "Unarmed",
@@ -21,7 +21,7 @@
     "Damage": [ "1d2", "1d3", "1d4" ],
     "Critical": "20/x2",
     "Range": 0,
-    "Damage Type(s)": [ "bludgeoning" ],
+    "Damage Type": [ "bludgeoning" ],
 
     "Proficiency": "Simple",
     "Category": "Unarmed",
@@ -38,7 +38,7 @@
     "Damage": [ "1d4", "1d6", "1d8" ],
     "Critical": "20/x2",
     "Range": 0,
-    "Damage Type(s)": [ "budgeoning" ],
+    "Damage Type": [ "budgeoning" ],
 
     "Proficiency": "Simple",
     "Category": "Light",
@@ -56,7 +56,7 @@
     "Damage": [ "1d3", "1d4", "1d6" ],
     "Critical": "19/x2",
     "Range": 10,
-    "Damage Type(s)": [ "piercing", "slashing" ],
+    "Damage Type": [ "piercing", "slashing" ],
  
     "Proficiency": "Simple",
     "Category": "Light",
@@ -73,7 +73,7 @@
     "Damage": [ "1d2", "1d3", "1d4" ],
     "Critical": "20/x2",
     "Range": 0,
-    "Damage Type(s)": [ "bludgeoning", "" ],
+    "Damage Type": [ "bludgeoning", "" ],
 
     "Proficiency": "Simple",
     "category": "Light",
@@ -92,7 +92,7 @@
     "Damage": [ "1d3", "1d4", "1d6" ],
     "Critical": "19/x2",
     "Range": 0,
-    "Damage Type(s)": [ "bludgeoning", "piercing" ],
+    "Damage Type": [ "bludgeoning", "piercing" ],
 
     "Proficiency": "Simple",
     "Category": "Light",
@@ -110,7 +110,7 @@
     "Damage": [ "1d3", "1d4", "1d6" ],
     "Critical": "19/x2",
     "Range": 10,
-    "Damage Type(s)": [ "piercing", "slashing" ],
+    "Damage Type": [ "piercing", "slashing" ],
 
     "Proficiency": "Simple",
     "Category": "Light",
@@ -127,7 +127,7 @@
     "Damage": [ "1d3", "1d4", "1d6" ],
     "Critical": "20/x3",
     "Range": 0,
-    "Damage Type(s)": [ "piercing" ],
+    "Damage Type": [ "piercing" ],
 
     "Proficiency": "Simple",
     "Category": "Light",
@@ -142,7 +142,7 @@
     "Damage": [ "1d3", "1d4", "1d6" ],
     "Critical": "20/x2",
     "Range": 0,
-    "Damage Type(s)": [ "piercing" ],
+    "Damage Type": [ "piercing" ],
 
     "Proficiency": "Simple",
     "Category": "Light",
@@ -160,7 +160,7 @@
     "Damage": [ "1d4", "1d6", "1d8" ],
     "Critical": "20/x2",
     "Range": 0,
-    "Damage Type(s)": [ "bludgeoning" ],
+    "Damage Type": [ "bludgeoning" ],
 
     "Proficiency": "Simple",
     "Category": "Light",
@@ -179,7 +179,7 @@
     "Damage": [ "1d3", "1d4", "1d6" ],
     "Critical": "20/x2",
     "Range": 0,
-    "Damage Type(s)": [ "slashing" ],
+    "Damage Type": [ "slashing" ],
 
     "Proficiency": "Simple",
     "Category": "Light",
@@ -198,7 +198,7 @@
     "Damage": [ "1d3", "1d4", "1d6" ],
     "Critical": "20/x2",
     "Range": 10,
-    "Damage Type(s)": [ "bludgeoning", "piercing" ],
+    "Damage Type": [ "bludgeoning", "piercing" ],
 
     "Proficiency": "Simple",
     "Category": "Light",
@@ -215,7 +215,7 @@
     "Damage": [ "1d4", "1d6", "1d8" ],
     "Critical": "20/x2",
     "Range": 0,
-    "Damage Type(s)": [ "bludgeoning" ],
+    "Damage Type": [ "bludgeoning" ],
 
     "Proficiency": "Simple",
     "Category": "Light",
@@ -230,7 +230,7 @@
     "Damage": [ "1d4", "1d6", "1d8" ],
     "Critical": "20/x2",
     "Range": 0,
-    "Damage Type(s)": [ "slashing" ],
+    "Damage Type": [ "slashing" ],
 
     "Proficiency": "Simple",
     "Category": "Light",
@@ -247,7 +247,7 @@
     "Damage": [ "1d3", "1d4", "1d6" ],
     "Critical": "20/x2",
     "Range": 10,
-    "Damage Type(s)": [ "piercing", "slashing" ],
+    "Damage Type": [ "piercing", "slashing" ],
 
     "Proficiency": "Simple",
     "Category": "Light",
@@ -265,7 +265,7 @@
     "Damage": [ "1d3", "1d4", "1d6" ],
     "Critical": "20/x2",
     "Range": 10,
-    "Damage Type(s)": [ "piercing" ],
+    "Damage Type": [ "piercing" ],
 
     "Proficiency": "Simple",
     "Category": "Light",
@@ -279,16 +279,14 @@
 
   
   "Club": {
-    "Damage": [ "1d4", "1d6", "" ],
-    "critRange": 20,
-    "critMultiplier": 2,
-    "range": 10,
-    "dmgType": [ "bludgeoning" ],
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x2",
+    "Range": 10,
+    "Damage Type": [ "bludgeoning" ],
 
-    "type": "Melee",
-    "category": "One-Handed",
     "Proficiency": "Simple",
-    "group": [ "Hammers", "Tribal" ],
+    "Category": "One-Handed",
+    "Group": [ "Hammers", "Tribal" ],
 
     "Cost": 0,
     "Weight": 3,
@@ -296,35 +294,31 @@
     "Special": []
   },
   "Mere Club": {
-    "Damage": [ "1d3", "1d4", "" ],
-    "critRange": 20,
-    "critMultiplier": 2,
-    "range": 0,
-    "dmgType": [ "bludgeoning", "piercing" ],
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "bludgeoning", "piercing" ],
 
-    "type": "Melee",
-    "category": "One-Handed",
     "Proficiency": "Simple",
+    "category": "One-Handed",
     "group": [ "Close", "Hammers" ],
 
     "Cost": 2,
     "Weight": 2,
     "Description": "Traditionally made of carved stone, the mere (MEH-reh) is a short, flat-sided, sharp-pointed club.",
     "Special": [
-      "fragile"
+      "Fragile"
     ]
   },
   "Heavy Mace": {
-    "Damage": [ "1d6", "1d8", "" ],
-    "critRange": 20,
-    "critMultiplier": 2,
-    "range": 0,
-    "dmgType": [ "bludgeoning" ],
+    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "bludgeoning" ],
 
-    "type": "Melee",
-    "category": "One-Handed",
     "Proficiency": "Simple",
-    "group": [ "Hammers" ],
+    "Category": "One-Handed",
+    "Group": [ "Hammers" ],
 
     "Cost": 12,
     "Weight": 8,
@@ -332,16 +326,14 @@
     "Special": []
   },
   "Morningstar": {
-    "Damage": [ "1d6", "1d8", "" ],
-    "critRange": 20,
-    "critMultiplier": 2,
-    "range": 0,
-    "dmgType": [ "bludgeoning", "piercing" ],
+    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "bludgeoning", "piercing" ],
 
-    "type": "Melee",
-    "category": "One-Handed",
     "Proficiency": "Simple",
-    "group": [ "Maces", "Flails" ],
+    "Category": "One-Handed",
+    "Group": [ "Hammers", "Flails" ],
 
     "Cost": 8,
     "Weight": 6,
@@ -349,15 +341,13 @@
     "Special": []
   },
   "Shortspear": {
-    "Damage": [ "1d4", "1d6", "" ],
-    "critRange": 20,
-    "critMultiplier": 2,
-    "range": 20,
-    "dmgType": [ "piercing" ],
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x2",
+    "Range": 20,
+    "Damage Type": [ "piercing" ],
 
-    "type": "Melee",
-    "category": "One-Handed",
     "Proficiency": "Simple",
+    "category": "One-Handed",
     "group": [ "Spears", "Thrown", "Tribal" ],
 
     "Cost": 1,
@@ -366,196 +356,197 @@
     "Special": []
   },
 
+  
   "Bayonet": {
-    "Damage": [ "1d4", "1d6", "" ],
-    "critRange": 20,
-    "critMultiplier": 2,
-    "range": 0,
-    "dmgType": [ "piercing" ],
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "piercing" ],
 
-    "type": "Melee",
-    "category": "Two-Handed",
     "Proficiency": "Simple",
-    "group": [ "Blades", "Close" ],
+    "Category": "Two-Handed",
+    "Group": [ "Light Blades", "Close" ],
 
     "Cost": 5,
     "Weight": 1,
     "Description": "Bayonets are close combat weapons designed to fit into the grooves or muzzles of crossbows and firearms.",
-    "Special": []
+    "Special": [
+      Bayonets allow you to make melee attacks with these weapons but render them temporarily useless as ranged weapons. Attaching or removing a bayonet is a move action.
+    ]
   },
   "Boarding Pike": {
-    "Damage": [ "1d6", "1d8", "" ],
-    "critRange": 20,
-    "critMultiplier": 3,
-    "range": 0,
-    "dmgType": [ "piercing" ],
+    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "piercing" ],
 
-    "type": "Melee",
-    "category": "Two-Handed",
     "Proficiency": "Simple",
-    "group": [ "Polearms" ],
+    "Category": "Two-Handed",
+    "Group": [ "Polearms" ],
 
     "Cost": 8,
     "Weight": 9,
     "Description": "A boarding pike is an 8-foot-long pole topped with a foot-long tapered metal tip.",
     "Special": [
-      "brace",
-      "reach"
+      "Brace",
+      "Reach"
     ]
   },
   "Kumade": {
-    "Damage": [ "1d4", "1d6", "" ],
-    "critRange": 20,
-    "critMultiplier": 3,
-    "range": 0,
-    "dmgType": [ "piercing" ],
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "piercing" ],
 
-    "type": "Melee",
-    "category": "Two-Handed",
     "Proficiency": "Simple",
-    "group": [ "Axes" ],
+    "Category": "Two-Handed",
+    "Group": [ "Axes" ],
 
     "Cost": 5,
     "Weight": 4,
-    "Description": "Adapted from a garden rake, the kumade consists of a wood or bamboo pole topped with a metal claw. The rake head doubles as a grappling hook.",
+    "Description": "Adapted from a garden rake, the kumade consists of a wood or bamboo pole topped with a metal claw.",
     "Special": [
-      "grapple"
+      "When a kumade is secured to a surface, such as a rafter or window sill, its handle can be climbed as a 5-foot length of rope.",
+      "Grapple"
     ]
   },
   "Collapsible Kumade": {
-    "Damage": [ "1d4", "1d6", "" ],
-    "critRange": 20,
-    "critMultiplier": 3,
-    "range": 0,
-    "dmgType": [ "piercing" ],
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "piercing" ],
 
-    "type": "Melee",
-    "category": "Two-Handed",
     "Proficiency": "Simple",
-    "group": [ "Axes" ],
+    "Category": "Two-Handed",
+    "Group": [ "Axes" ],
 
     "Cost": 10,
     "Weight": 4,
     "Description": "This weapon acts as a kumade, but the handle consists of bamboo sections held together by a taut rope running through the center.",
     "Special": [
-      "grapple"
+      "When a kumade is secured to a surface, such as a rafter or window sill, its handle can be climbed as a 5-foot length of rope.",
+      Releasing the rope is a standard action that provokes attacks of opportunity and causes the weapon to collapse into a bundle that fits into a backpack.
+      Reassembling the collapsible kumade requires a full-round action that provokes attacks of opportunity.
+      "Grapple"
     ]
   },
   "Lantern Staff": {
-    "Damage": [ "1d4", "1d6", "" ],
-    "critRange": 20,
-    "critMultiplier": 2,
-    "range": 0,
-    "dmgType": [ "bludgeoning" ],
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "bludgeoning" ],
 
-    "type": "Melee",
-    "category": "Two-Handed",
     "Proficiency": "Simple",
-    "group": [ "Hammers" ],
+    "Category": "Two-Handed",
+    "Group": [ "Hammers" ],
 
     "Cost": 15,
     "Weight": 9,
     "Description": "This long metal staff has reservoirs for lamp oil, and a lantern-like structure at its head.",
-    "Special": []
+    "Special": [
+      The lantern staff is fuelled as and provides light as a hooded lantern.
+      While lit, attacks with the lantern staff deal 1 point of fire damage in addition to the normal damage.
+    ]
   },
   "Longspear": {
-    "Damage": [ "1d6", "1d8", "" ],
-    "critRange": 20,
-    "critMultiplier": 3,
-    "range": 0,
-    "dmgType": [ "piercing" ],
+    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "piercing" ],
 
-    "type": "Melee",
-    "category": "Two-Handed",
     "Proficiency": "Simple",
-    "group": [ "Spears" ],
+    "Category": "Two-Handed",
+    "Group": [ "Spears" ],
 
     "Cost": 5,
     "Weight": 9,
     "Description": "A longspear is about 8 feet in length.",
     "Special": [
-      "brace",
-      "reach"
+      "Brace",
+      "Reach"
     ]
   },
   "Quarterstaff": {
-    "Damage": [ "1d4/1d4", "1d6/1d6", "" ],
-    "critRange": 20,
-    "critMultiplier": 2,
-    "range": 0,
-    "dmgType": [ "bludgeoning" ],
+    "Damage": [ "1d4/1d4", "1d6/1d6", "1d8/1d8" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "bludgeoning" ],
 
-    "type": "Melee",
-    "category": "Two-Handed",
     "Proficiency": "Simple",
-    "group": [ "Double", "Monk" ],
+    "Category": "Two-Handed",
+    "Group": [ "Double", "Monk" ],
 
     "Cost": 0,
     "Weight": 4,
     "Description": "A quarterstaff is a simple piece of wood, about 5 feet in length.",
     "Special": [
-      "double"
+      "Double",
+      "Monk"
     ]
   },
   "Spear": {
-    "Damage": [ "1d6", "1d8", "" ],
-    "critRange": 20,
-    "critMultiplier": 3,
-    "range": 0,
-    "dmgType": [ "piercing" ],
+    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "piercing" ],
 
-    "type": "Melee",
-    "category": "Two-Handed",
     "Proficiency": "Simple",
-    "group": [ "Spears", "Thrown", "Tribal" ],
+    "Category": "Two-Handed",
+    "Group": [ "Spears", "Thrown", "Tribal" ],
 
     "Cost": 2,
     "Weight": 6,
     "Description": "A spear is 5 feet in length and can be thrown.",
     "Special": [
-      "brace"
+      "Brace"
     ]
   },
   "Boar Spear": {
-    "Damage": [ "1d6", "1d8", "" ],
-    "critRange": 20,
-    "critMultiplier": 2,
-    "range": 0,
-    "dmgType": [ "piercing" ],
+    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "piercing" ],
 
-    "type": "Melee",
-    "category": "Two-Handed",
     "Proficiency": "Simple",
-    "group": [ "Spears" ],
+    "Category": "Two-Handed",
+    "Group": [ "Spears" ],
 
     "Cost": 5,
     "Weight": 8,
     "Description": "This spear with a spiraling blade has a metal crossbar approximately halfway down its length.",
     "Special": [
-      "brace"
+      "Brace",
+      "If you ready a boar spear against a charge and your attack hits, you get a +2 shield bonus to your AC against that creature until your next turn."
     ]
   },
   "Weighted Spear": {
-    "Damage": [ "1d6/1d4", "1d8/1d6", "" ],
-    "critRange": 20,
-    "critMultiplier": 3,
-    "range": 0,
-    "dmgType": [ "bludgeoning", "slashing" ],
+    "Damage": [ "1d6/1d4", "1d8/1d6", "2d6/1d8" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "bludgeoning", "slashing" ],
 
-    "type": "Melee",
-    "category": "Two-Handed",
     "Proficiency": "Simple",
-    "group": [ "Spears", "Double" ],
+    "Category": "Two-Handed",
+    "Group": [ "Spears", "Double" ],
 
     "Cost": 10,
     "Weight": 8,
-    "Description": "This pole has a spear head at one end and a mace head at the other. It can be wielded like a standard spear (though it isn’t balanced for throwing), or it can be used as a double weapon, alternately thrusting and bashing.",
+    "Description": "This pole has a spear head at one end and a mace head at the other."
     "Special": [
-      "brace",
-      "double"
+      "A weighted spear can be used as a regular spear, or as a double weapon, with the mace head dealing bludgeoning damage and only x2 on a crit.",
+      "Brace",
+      "Double"
     ]
   },
 
+
+
+
+
+
+
+
+  
   "Blowgun": {
     "Damage": [ "1", "1d2", "" ],
     "critRange": 20,
