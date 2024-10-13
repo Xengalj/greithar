@@ -539,25 +539,16 @@
     ]
   },
 
-
-
-
-
-
-
-
   
   "Blowgun": {
-    "Damage": [ "1", "1d2", "" ],
-    "critRange": 20,
-    "critMultiplier": 2,
-    "range": 20,
-    "dmgType": [ "piercing" ],
+    "Damage": [ "1", "1d2", "1d3" ],
+    "Critical": "20/x2",
+    "Range": 20,
+    "Damage Type": [ "piercing" ],
 
-    "type": "Ranged",
-    "category": "Ranged",
     "Proficiency": "Simple",
-    "group": [ "Thrown" ],
+    "Category": "Ranged",
+    "Group": [ "Thrown" ],
 
     "Cost": 2,
     "Weight": 1,
@@ -565,240 +556,264 @@
     "Special": []
   },
   "Heavy Crossbow": {
-    "Damage": [ "1d8", "1d10", "" ],
-    "critRange": 19,
-    "critMultiplier": 2,
-    "range": 120,
-    "dmgType": [ "piercing" ],
+    "Damage": [ "1d8", "1d10", "2d8" ],
+    "Critical": "19/x2",
+    "Range": 120,
+    "Damage Type": [ "piercing" ],
 
-    "type": "Ranged",
-    "category": "Ranged",
     "Proficiency": "Simple",
-    "group": [ "Crossbows" ],
+    "Category": "Ranged",
+    "Group": [ "Crossbows" ],
 
     "Cost": 50,
     "Weight": 8,
-    "Description": "You draw a Heavy Crossbow back by truning a small winch, this takes a full-round action that provkes Attacks of Opportunity",
-    "Special": []
+    "Description": "You draw a Heavy Crossbow back by turning a small winch.",
+    "Special": [
+      "Loading a heavy crossbow is a full-round action that provokes attacks of opportunity, using two hands.",
+      "You may shoot a havy crossbow with one hand at a -4 on attack rolls",
+      "You can choost a heavy crossbow with each hand, teating them as one-handed weapons (the -4 is cumulative with the two-weapon fighting penalty)."
+    ]
   },
   "Heavy Crossbow (Underwater)": {
-    "Damage": [ "1d8", "1d10", "" ],
+    "Damage": [ "1d8", "1d10", "2d8" ],
     "critRange": 19,
-    "critMultiplier": 2,
-    "range": 20,
-    "dmgType": [ "piercing" ],
+    "Critical": "19/x2",
+    "Range": 120,
+    "Damage Type": [ "piercing" ],
 
-    "type": "Ranged",
-    "category": "Ranged",
     "Proficiency": "Simple",
-    "group": [ "Crossbows" ],
+    "Category": "Ranged",
+    "Group": [ "Crossbows" ],
 
     "Cost": 100,
     "Weight": 8,
     "Description": "An Underwater Crossbow functions as a regular crossbow above water.",
-    "Special": []
+    "Special": [
+      "When fired underwater, the crossbow has a range increment of 20 feet."
+    ]
   },
   "Light Crossbow": {
-    "Damage": [ "1d6", "1d8", "" ],
-    "critRange": 19,
-    "critMultiplier": 2,
-    "range": 80,
-    "dmgType": [ "piercing" ],
+    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Critical": "19/x2",
+    "Range": 80,
+    "Damage Type": [ "piercing" ],
 
-    "type": "Ranged",
-    "category": "Ranged",
     "Proficiency": "Simple",
-    "group": [ "Crossbows" ],
+    "Category": "Ranged",
+    "Group": [ "Crossbows" ],
 
     "Cost": 35,
     "Weight": 4,
-    "Description": "You draw a Light Crossbow back by pulling a lever, this takes a move action that provokes Attacks of Opportunity.",
-    "Special": []
+    "Description": "You draw a Light Crossbow back by pulling a lever.",
+    "Special": [
+      "Loading a light crossbow is a move action that provokes attacks of opportunity, using two hands.",
+      "You may shoot a light crossbow with one hand at a -2 on attack rolls",
+      "You can choost a light crossbow with each hand, teating them as light weapons (the -2 is cumulative with the two-weapon fighting penalty)."
+    ]
   },
   "Light Crossbow (Underwater)": {
-    "Damage": [ "1d6", "1d8", "" ],
-    "critRange": 19,
-    "critMultiplier": 2,
-    "range": 20,
-    "dmgType": [ "piercing" ],
+    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Critical": "19/x2",
+    "Range": 80,
+    "Damage Type": [ "piercing" ],
 
-    "type": "Ranged",
-    "category": "Ranged",
     "Proficiency": "Simple",
-    "group": [ "Crossbows" ],
+    "Category": "Ranged",
+    "Group": [ "Crossbows" ],
 
     "Cost": 70,
     "Weight": 4,
     "Description": "An Underwater Crossbow functions as a regular crossbow above water.",
-    "Special": []
-  },
-  "Javelin": {
-    "Damage": [ "1d4", "1d6", "" ],
-    "critRange": 20,
-    "critMultiplier": 2,
-    "range": 30,
-    "dmgType": [ "piercing" ],
-
-    "type": "Ranged",
-    "category": "Ranged",
-    "Proficiency": "Simple",
-    "group": [ "Spears", "Thrown" ],
-
-    "Cost": 1,
-    "Weight": 2,
-    "Description": "A javelin is a thin throwing spear.",
-    "Special": []
+    "Special": [
+      "When fired underwater, the crossbow has a range increment of 20 feet."
+    ]
   },
   "Sling": {
-    "Damage": [ "1d3", "1d4", "" ],
-    "critRange": 20,
-    "critMultiplier": 2,
-    "range": 50,
-    "dmgType": [ "bludgeoning" ],
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x2",
+    "Range": 50,
+    "Damage Type": [ "bludgeoning" ],
 
-    "type": "Ranged",
-    "category": "Ranged",
     "Proficiency": "Simple",
-    "group": [ "Thrown" ],
+    "Category": "Ranged",
+    "Group": [ "Thrown" ],
 
     "Cost": 0,
     "Weight": 0,
     "Description": "A sling is little more than a leather cup attached to a pair of strings.",
-    "Special": []
+    "Special": [
+      Your Strength modifier applies to damage rolls when you use a sling, just as it does for thrown weapons.
+    You can fire, but not load, a sling with one hand.
+Loading a sling is a move action that requires two hands and provokes attacks of opportunity.
+You can hurl ordinary stones with a sling, but stones are not as dense or as round as bullets.
+Thus, such an attack deals damage as if the weapon were designed for a creature one size category smaller than you and you take a –1 penalty on attack rolls.
+    ]
   },
   "Stingchuck": {
-    "Damage": [ "1d3", "1d4", "" ],
-    "critRange": 20,
-    "critMultiplier": 2,
-    "range": 10,
-    "dmgType": [ "bludgeoning" ],
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x2",
+    "Range": 10,
+    "Damage Type": [ "bludgeoning" ],
 
-    "type": "Ranged",
-    "category": "Ranged",
     "Proficiency": "Simple",
-    "group": [ "Thrown" ],
+    "Category": "Ranged",
+    "Group": [ "Thrown" ],
 
     "Cost": 0,
     "Weight": 9,
     "Description": "A stingchuck is a foul bag made of a humanoid’s head with the brain removed and the skull heavily scored so that it bursts open when thrown.",
-    "Special": []
+    "Special": [
+      Normally filled with biting vermin, a stingchuck acts as a splash weapon.
+    When it hits, the vermin bite and sting the target, dealing 1d6 points of damage and forcing a DC 
+          11 Fortitude save to avoid being nauseated for 1d3 rounds.
+    Each round a creature remains nauseated by a stingchuck, it takes 1 additional point of damage from the biting vermin.
+    All creatures within the splash effect take 1 point of damage from the vermin but do not risk being nauseated.
+    ]
   },
   "Stonebow": {
-    "Damage": [ "1d4", "1d6", "" ],
-    "critRange": 20,
-    "critMultiplier": 2,
-    "range": 50,
-    "dmgType": [ "bludgeoning" ],
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x2",
+    "Range": 50,
+    "Damage Type": [ "bludgeoning" ],
 
-    "type": "Ranged",
-    "category": "Ranged",
     "Proficiency": "Simple",
-    "group": [ "Crossbows" ],
+    "Category": "Ranged",
+    "Group": [ "Crossbows" ],
 
     "Cost": 35,
     "Weight": 4,
     "Description": "A stonebow, or bullet crossbow, resembles a light crossbow except for the distinct U-shaped bend in the stock.",
-    "Special": []
+    "Special": [
+      Instead of bolts, the stonebow shoots sling bullets.
+    The bow has two strings with a leather pocket between them to hold the bullet.
+
+Loading: Loading a stonebow is a move action (a free action if you have the Rapid Reload feat) that provokes attacks of opportunity.
+
+Firing: You can shoot, but not load, a stonebow with one hand, but doing so imposes a –2 penalty on your attack rolls.
+    You can shoot a stonebow with each hand, but you take a penalty on attack rolls as if attacking with two light weapons.
+    This penalty is cumulative with the penalty for firing one-handed.
+
+You can shoot ordinary stones with a stonebow, but stones aren’t as dense or as round as bullets.
+    When using stones, you take a –1 penalty on attack rolls and deal damage as if the weapon were designed for 
+    a creature one size category smaller than you.
+    ]
   },
 
+
+
+
+    
   "Throwing Darts": {
-    "Damage": [ "1d3", "1d4", "" ],
-    "critRange": 20,
-    "critMultiplier": 2,
-    "range": 20,
-    "dmgType": [ "piercing" ],
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x2",
+    "Range": 20,
+    "Damage Type": [ "piercing" ],
 
-    "type": "Ranged",
-    "category": "Ammunition",
     "Proficiency": "Simple",
-    "group": [ "Thrown" ],
+    "Category": "Ammunition",
+    "Group": [ "Thrown" ],
 
-    "Cost": 5,
+    "Cost": 0.5,
     "Weight": 0.5,
     "Description": "Darts are missile weapons, designed to fly such that a sharp, often weighted point will strike first.",
     "Special": []
   },
   "Crossbow Bolts": {
-    "Damage": [ "1d3", "1d4", "" ],
-    "critRange": 20,
-    "critMultiplier": 2,
-    "range": 0,
-    "dmgType": [ "piercing" ],
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "piercing" ],
 
-    "type": "Melee",
-    "category": "Ammunition",
     "Proficiency": "Simple",
-    "group": [ "Crossbows" ],
+    "Category": "Ammunition",
+    "Group": [ "Crossbows" ],
 
     "Cost": 0.1,
     "Weight": 0.1,
-    "Description": "These bolts come in a case or quiver that holds 10 bolts. You may stab with the bolt as a Light Improvised Weapon (-4 to hit) using the damage given.",
-    "Special": []
+    "Description": "These bolts come in a case or quiver that holds 10 bolts (or 5 for a repeating crossbow).",
+    "Special": [
+      "The given weapon stats are for a single colt, and using it as a melee weapon.",
+      "When using the bolt as a melee weapon, treat it as a light improvised weapon, with a -4 to attack rolls."
+    ]
   },
   "Crossbow Bolts, Acid": {
-    "Damage": [ "1d3" ],
-    "critRange": 0,
-    "critMultiplier": 0,
-    "range": 0,
-    "dmgType": [ "acid" ],
+    "Damage": [ "1d4" ],
+    "Critical": "0/x0",
+    "Range": 0,
+    "Damage Type": [ "acid" ],
 
-    "type": "Melee",
-    "category": "Ammunition",
     "Proficiency": "Simple",
-    "group": [ "Crossbows" ],
+    "Category": "Ammunition",
+    "Group": [ "Crossbows" ],
 
     "Cost": 40,
     "Weight": 0.1,
     "Description": "These metal bolts have a glass section in the middle, filled with acid.",
-    "Special": []
+    "Special": [
+      "These bolts deal their additional acid damage on a sucessful hit."
+    ]
   },
   "Crossbow Bolts, Drow Poison": {
     "Damage": [ "0" ],
-    "critRange": 0,
-    "critMultiplier": 0,
-    "range": 0,
-    "dmgType": [ "none" ],
+    "Critical": "0/x0",
+    "Range": 0,
+    "Damage Type": [ "none" ],
 
-    "type": "Melee",
-    "category": "Ammunition",
     "Proficiency": "Simple",
-    "group": [ "Crossbows" ],
+    "Category": "Ammunition",
+    "Group": [ "Crossbows" ],
 
     "Cost": 100,
     "Weight": 0.1,
-    "Description": "These bolts have a strange tip that delivers the poison, but also affects accuracy. Double the range penalties for this bolt.",
+    "Description": "These bolts have a strange tip that delivers the poison, but also affects accuracy.",
     "Special": [
-      "drow poison (DC 13 Fort)"
+      "Drow poison (DC 13 Fort)",
+      "Range penalties are doubled when using a drow poison bolt"
     ]
   },
   "Crossbow Bolts, Fire": {
     "Damage": [ "1d4" ],
-    "critRange": 0,
-    "critMultiplier": 0,
-    "range": 0,
-    "dmgType": [ "fire" ],
+    "Critical": "0/x0",
+    "Range": 0,
+    "Damage Type": [ "fire" ],
 
-    "type": "Melee",
-    "category": "Ammunition",
     "Proficiency": "Simple",
-    "group": [ "Crossbows" ],
+    "Category": "Ammunition",
+    "Group": [ "Crossbows" ],
 
     "Cost": 50,
     "Weight": 0.1,
     "Description": "These metal bolts have a glass section in the middle, filled with a alchemical fire.",
-    "Special": []
+    "Special": [
+      "These bolts deal their additional fire damage on a sucessful hit."
+    ]
+  },
+    "Javelin": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x2",
+    "Range": 30,
+    "Damage Type": [ "piercing" ],
+
+    "Proficiency": "Simple",
+    "category": "Ranged",
+    "group": [ "Spears", "Thrown" ],
+
+    "Cost": 1,
+    "Weight": 2,
+    "Description": "A javelin is a thin throwing spear.",
+    "Special": [
+      "If used as a melee weapon, you are treated as non-proficient with it and take a –4 penalty on attack rolls."
+    ]
   },
   "Sling Bullets": {
     "Damage": [ "0" ],
-    "critRange": 0,
-    "critMultiplier": 0,
-    "range": 0,
-    "dmgType": [ "none" ],
+    "Critical": 0,
+    "Range": 0,
+    "Damage Type": [ "none" ],
 
-    "type": "Melee",
-    "category": "Ammunition",
     "Proficiency": "Simple",
-    "group": [ "Crossbows" ],
+    "Category": "Ammunition",
+    "Group": [ "Crossbows" ],
 
     "Cost": 0.01,
     "Weight": 0.5,
@@ -807,15 +822,13 @@
   },
   "Sling Bullets, Groaning": {
     "Damage": [ "0" ],
-    "critRange": 0,
-    "critMultiplier": 0,
-    "range": 0,
-    "dmgType": [ "none" ],
+    "Critical": "0/x0",
+    "Range": 0,
+    "Damage Type": [ "none" ],
 
-    "type": "Melee",
-    "category": "Ammunition",
     "Proficiency": "Simple",
-    "group": [ "Crossbows" ],
+    "Category": "Ammunition",
+    "Group": [ "Crossbows" ],
 
     "Cost": 0.2,
     "Weight": 0.5,
@@ -824,38 +837,37 @@
   },
   "Sling Bullets, Smoke": {
     "Damage": [ "0" ],
-    "critRange": 0,
-    "critMultiplier": 0,
-    "range": 0,
-    "dmgType": [ "none" ],
+    "Critical": "0/x0",
+    "Range": 0,
+    "Damage Type": [ "none" ],
 
-    "type": "Melee",
-    "category": "Ammunition",
     "Proficiency": "Simple",
-    "group": [ "Crossbows" ],
+    "Category": "Ammunition",
+    "Group": [ "Crossbows" ],
 
     "Cost": 10,
     "Weight": 0.5,
-    "Description": "Uses a touch attack to release noxious smoke (DC 13 Fort), nauseating target for 2 rounds.",
-    "Special": []
+    "Description": "Smoke bullets burst open when striking a target to release a gas that can nauseate nearby creatures.",
+    "Special": [
+      "Smoke bullets require only a successful touch attack to release the smoke.",
+      "The target is nauseated for 2 rounds unless it passes a DC 13 Fortitude save."
+    ]
   },
   "Blowgun Darts": {
-    "Damage": [ "", "", "" ],
-    "critRange": 0,
-    "critMultiplier": 0,
-    "range": 0,
-    "dmgType": [ "none" ],
+    "Damage": [ "0" ],
+    "Critical": "0/x0",
+    "Range": 0,
+    "Damage Type": [ "none" ],
 
-    "type": "Ranged",
-    "category": "Ammunition",
     "Proficiency": "Simple",
-    "group": [ "Misc" ],
+    "Category": "Ammunition",
+    "Group": [ "Misc" ],
 
-    "Cost": 0.5,
+    "Cost": 0.05,
     "Weight": 0,
-    "Description": "These light darts have tiny grooves behind the tips. A character can apply poison to a blowgun dart without risk of poisoning himself.",
+    "Description": "These light darts have tiny grooves behind the tips.",
     "Special": [
-      "poison"
+      "A character can apply poison to a blowgun dart without risk of poisoning himself."
     ]
   },
 
