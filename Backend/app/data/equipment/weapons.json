@@ -872,10 +872,200 @@ You can shoot ordinary stones with a stonebow, but stones aren’t as dense or a
   },
 
 
-  "Martial": {
+  "Martial": "",
 
+  "Boarding Axe": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "piercing", "slashing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Light",
+    "Group": [ "Axes" ],
+
+    "Cost": 6,
+    "Weight": 3,
+    "Description": "A boarding axe is similar to a handaxe, but features a spike that allows the weapon to do either slashing or piercing damage.",
+    "Special": [
+      "A boarding axe grants a +2 circumstance bonus on Climb checks to scale wooden or other penetrable surfaces, such as ice."
+    ]
+  },
+  "Throwing Axe": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x2",
+    "Range": 10,
+    "Damage Type": [ "slashing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Ranged",
+    "Group": [ "Axes", "Thrown", "Tribal" ],
+
+    "Cost": 8,
+    "Weight": 2,
+    "Description": "This is a small axe balanced for throwing.",
+    "Special": []
+  },
+  "Blade Boot": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Light",
+    "Group": [ "Misc" ],
+
+    "Cost": 25,
+    "Weight": 2,
+    "Description": "Blade boots come with a spring-mounted knife that pops out when triggered with the right combination of toe presses.",
+    "Special": [
+      "You can use the blade boot as an off-hand weapon.",
+      "Releasing the knife is a swift action and rearming it is a full-round action.",
+      "When the blade is extended, you treat normal terrain as difficult and difficult terrain as impassable."
+    ]
+  },
+  "Cat-o’-Nine-Tails": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "slashing", "nonlethal" ],
+
+    "Proficiency": "Martial",
+    "Category": "Light",
+    "Group": [ "Flails" ],
+
+    "Cost": 1,
+    "Weight": 1,
+    "Description": "This short whip is made of nine knotted thongs about 3 feet in length.",
+    "Special": [
+      "Disarm",
+      "This flail deals no damage to any creature with an armor bonus of at least +1, or a natural armor bonus of at least +3."
+    ]
+  },
+  "Claw Blades": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "bludgeoning", "slashing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Light",
+    "Group": [ "Misc" ],
+
+    "Cost": 305,
+    "Weight": 2,
+    "Description": "Bought in a set of five, they fit over the wearer’s claws on one hand.",
+    "Special": [
+      "These subtle blades can only be used by catfolk with the cat’s claws racial trait.",
+      "Caeth are always proficient with claw blades.",
+      "The blades grant a +1 enhancement bonus on claw attack rolls with the equiped hand, changing the weapon type from a natural attack to a light slashing weapon."
+    ]
+  },
+  "Dueling Dagger": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "19/x2",
+    "Range": 10,
+    "Damage Type": [ "piercing", "slashing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Light",
+    "Group": [ "Light Blades", "Thrown" ],
+
+    "Cost": 12,
+    "Weight": 1,
+    "Description": "This dagger is used in the off hand to block attacks.",
+    "Special": [
+    "When you fight defensively or use Combat Expertise while wielding a dueling dagger, your bonus to AC increases by 1.",
+    "If you aren’t proficient with a dueling dagger, you treat it as a dagger and gain no special benefits."
+    ]
+  },
+  "Dogslicer": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "19/x2",
+    "Range": 0,
+    "Damage Type": [ "slashing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Light",
+    "Group": [ "Light Blades" ],
+
+    "Cost": 8,
+    "Weight": 1,
+    "Description": "This short, curved sword is a favorite weapon of goblins, who show unusual cunning by drilling numerous holes in the blade to reduce the weapon’s weight.",
+    "Special": [
+      "Fragile"
+    ]
+  },
+  "Light Hammer": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x2",
+    "Range": 20,
+    "Damage Type": [ "bludgeoning" ],
+
+    "Proficiency": "Martial",
+    "Category": "Light",
+    "Group": [ "Hammers", "Thrown" ],
+
+    "Cost": 1,
+    "Weight": 2,
+    "Description": "A lighter version of a warhammer, this weapon usually has a sleek metal head with one striking surface.",
+    "Special": []
   },
 
+
+
+    
+  Gladius	15 gp	1d4	1d6	19-20/x2	—	3 lbs.	P or S	performance	PZO1118
+  Handaxe	6 gp	1d4	1d6	x3	—	3 lbs.	S	—	PZO1110
+  Katar, tri-bladed	6 gp	1d3	1d4	×4	—	2 lbs.	P	—	PPZO94102
+  Knife, switchblade	5 gp	1d3	1d4	19-20/x2	10 ft.	1 lb.	P	—	PPZO9410
+Kobold tail attachment, long lash	15 gp	1d4	1d6	x2	—	1 lb.	S	reach	PZO1121
+Kobold tail attachment, (pounder)	1 gp	1d6	1d8	x2	—	4 lbs.	B	—	PZO1121
+Kobold tail attachment, (razored)	3 gp	1d6	1d8	19-20/x2	—	2 lbs.	S	—	PZO1121
+Kobold tail attachment, (spiked)	3 gp	1d6	1d8	x3	—	2 lbs.	P	—	PZO1121
+Kobold tail attachment, (sweeper)	7 gp	1d4	1d6	x2	—	3 lbs.	B	trip	PZO1121
+Kukri	8 gp	1d3	1d4	18–20/x2	—	2 lbs.	S	—	PZO1110
+Machete	10 gp	1d4	1d6	19-20/x2	—	2 lbs.	S	—	PZO9468
+Pick, light	4 gp	1d3	1d4	x4	—	3 lbs.	P	—	PZO1110
+Ratfolk tailblade	11 gp	1d2	1d3	x2	—	1/2 lb.	S	—	PZO1121
+  Sap	1 gp	1d4	1d6	x2	—	2 lbs.	B	nonlethal	PZO1110
+  Sea-knife	8 gp	1d3	1d4	19-20/x2	—	1 lb.	S	—	PZO1121
+  Shield, light	3 gp/9 gp	1d2	1d3	x2	—	special	B	—	PZO1110
+  Spiked armor	special	1d4	1d6	x2	—	special	P	—	PZO1110
+  Spiked shield, light	13 gp/19 gp	1d3	1d4	x2	—	special	P	—	PZO1110
+  Starknife	24 gp	1d3	1d4	x3	20 ft.	3 lbs.	P	—	PZO1110
+  Sword, butterfly (2)	20 gp	1d3	1d4	19-20/x2	—	1 lb.	S	Monk	PZO1110
+  Sword, short	10 gp	1d4	1d6	19-20/x2	—	2 lbs.	P	—	PZO1110
+  War razor	8 gp	1d3	1d4	19-20/x2	—	1 lb.	S	—
+    
+    
+  "Blowgun": {
+    "Damage": [  ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "none" ],
+
+    "Proficiency": "Martial",
+    "Category": "Light",
+    "Group": [ "" ],
+
+    "Cost": 0,
+    "Weight": 0,
+    "Description": "",
+    "Special": [
+      ""
+    ]
+  },
+
+
+
+
+
+
+
+
+    
   "Exotic": {
 
   },
