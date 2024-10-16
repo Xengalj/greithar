@@ -10,8 +10,15 @@ module.exports = function(app) {
     next();
   });
 
-  // app.get("/api/user/create", controller.create);
-  // user.create is handled by auth.signup
+  // user.create is handled by auth.signup, when done from login screen
+  app.post(
+    "/api/user/create",
+    [
+      authJwt.verifyToken,
+      authJwt.isSelfOrAdmin
+    ],
+    controller.create
+  );
 
   // returns a list of users, or if ID was provided, that user
   app.post(
@@ -32,13 +39,13 @@ module.exports = function(app) {
     controller.update
   );
 
-  app.get(
+  app.post(
     "/api/user/delete",
     [
       authJwt.verifyToken,
       authJwt.isSelfOrAdmin
     ],
-    controller.allAccess
+    controller.delete
   );
 
 

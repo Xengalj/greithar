@@ -214,7 +214,6 @@ export default {
     // this.$router.options.routes.forEach(route => {
     //   console.log(route);
     // });
-    // this.userMeta = JSON.parse(localStorage.getItem("userMeta"));
   },
   mounted() {
     // let menu = document.getElementsByClassName("el-popper")[0];
@@ -246,7 +245,6 @@ export default {
 }
 .site-title {
   font-size: 40px;
-  color: var(--color-primary-100);
 }
 
 /* Search */
@@ -280,20 +278,20 @@ export default {
   max-width: 100px;
   text-align: center;
 }
-.dark .el-menu--horizontal > .el-sub-menu .el-sub-menu__title {
+body .el-menu--horizontal > .el-sub-menu .el-sub-menu__title {
   padding: 20px;
 }
-.dark .el-menu--horizontal > .el-sub-menu .el-sub-menu__title:hover {
+body .el-menu--horizontal > .el-sub-menu .el-sub-menu__title:hover {
   border-radius: 5px;
 }
 .dark .el-menu {
   background-color: var(--color-surface-300);
 }
 .dark .el-menu path {
-  color: var(--color-primary-100);
+  color: var(--el-color-primary);
 }
 .dark .el-sub-menu.is-active .el-sub-menu__title.el-tooltip__trigger {
-  border-color: var(--color-primary-100);
+  border-color: var(--el-color-primary);
   border-radius: 5px;
 }
 .dark .el-menu--horizontal > .el-sub-menu .el-sub-menu__title:hover {
@@ -308,7 +306,7 @@ export default {
   border-color: var(--color-surface-300);
 }
 .el-menu .el-sub-menu .el-sub-menu__title.el-tooltip__trigger {
-  color: var(--color-primary-100);
+  color: var(--el-color-primary);
 }
 .el-menu--horizontal .el-menu li.el-menu-item {
   padding: 0px;
@@ -324,21 +322,21 @@ export default {
 
 /* Active Menu Item */
 .dark .el-popper .el-menu--horizontal .el-menu .el-sub-menu.is-active > .el-sub-menu__title {
-  color: var(--color-secondary-300);
+  color: var(--color-secondary-100);
 }
 
 
 /* Breadcrumb Colors */
-.dark .el-breadcrumb__inner.is-link,
-.dark .el-breadcrumb__item .el-breadcrumb__inner a {
-  color: var(--color-primary-200);
+body .el-breadcrumb__inner.is-link,
+body .el-breadcrumb__item .el-breadcrumb__inner a {
+  color: var(--el-color-primary);
 }
 
-.dark .el-breadcrumb__inner.is-link:hover,
-.dark .el-breadcrumb__item .el-breadcrumb__inner a:hover {
+body .el-breadcrumb__inner.is-link:hover,
+body .el-breadcrumb__item .el-breadcrumb__inner a:hover {
   color: var(--color-secondary-300);
 }
-.dark .el-breadcrumb__item:last-child .el-breadcrumb__inner a {
+body .el-breadcrumb__item:last-child .el-breadcrumb__inner a {
   color: var(--color-secondary-500);
 }
 

@@ -7,7 +7,11 @@ This is my site for Pathfinder.
 
 
 ### Backend setup
-Start by opening a cmd prompt in `Greithar/Backend`, then run the following commands
+
+1. Open the project and open Greithar/Backend/app/server.js
+2. Change reSeed to 1 on line 9 to have the server seed the DB
+
+3. Then open a cmd prompt in `Greithar/Backend`, then run the following commands
 ```sh
 npm install
 node server.js
@@ -56,11 +60,19 @@ A tutorial can be found [here](https://www.bezkoder.com/vue-js-node-js-express-m
 3. Run `npm run serve` from `Greithar/Frontend` to host frontend
 
 
+
+
 ## ToDo
-- Get icons to update dynamically
-- get table filtering working in bestiary
-- add NPC builder / advancer
-- add player builder / advancer
-- move (some) json tables to DB
-- Get Backend MYSQL running not in Laragon?
-- Deploy built files to backend
+- [ ] Check user timeout, get redirect working
+- [x] Get icons to update dynamically
+- [x] get table filtering working in bestiary
+- [ ] refactor CreatureCard to use a single nice storable JSON
+- [ ] add campaigns & encounters
+
+- [ ] add Player/NPC builder/advancer
+- [ ] use <el-drawer> for equipment and things in builder
+- [ ] implement Rule & Lore pages
+
+- [ ] Get Backend MYSQL running not in Laragon?
+- [ ] Deploy built files to backend
+- [ ] get "greithar.com" on cloudflare

@@ -4,11 +4,16 @@
     <!-- FILTERS -->
     <el-row class="row-bg" justify="space-between">
       <el-col :span="6">
-        <el-input v-model="tableSearch" size="small" placeholder="Type to search" v-on:change="nameSearch()" />
+
+        <el-form-item label="User Search" prop="tableSearch">
+          <el-input v-model="tableSearch" placeholder="Type to search" v-on:change="nameSearch()" />
+        </el-form-item>
+
+
       </el-col>
       <el-col :span="3">
-        <el-button @click="createUser">
-          <g-icon iconSize="24px" iconName="userAdd" /> Create User
+        <el-button @click="openModal">
+          <g-icon iconSize="24px" iconName="userAdd" style="margin-right: 5px;" /> Create User
         </el-button>
       </el-col>
     </el-row>
@@ -27,7 +32,7 @@
       <el-table-column sortable prop="id" label="ID" width="65" />
       <el-table-column sortable prop="username" label="Name" min-width="120" />
       <el-table-column sortable prop="email" label="Email" />
-      <el-table-column prop="roles" label="Roles" :filters="roleFilter" :filter-method="filterRoles" filter-placement="bottom">
+      <el-table-column prop="roles" label="Roles" :filters="roles" :filter-method="filterRoles" filter-placement="bottom">
         <template #default="scope">
           <el-tag v-for="role in scope.row.roles" :key="role.id" type="primary" effect="dark" >
             {{ role.name }}
@@ -52,11 +57,68 @@
 
     <!-- CREATE MODAL -->
     <el-dialog
-      width="650"
-      style="margin-top: 75px"
-      v-model="cardVisible"
+      :model="cardVisible"
       :before-close="closeModal"
+      title="Create User"
+      width="650"
+      style="margin-top: 20vh"
     >
+
+      <el-form :model="newUser" :rules="rules" ref="user" label-width="auto" status-icon >
+        <el-form-item label="Username" prop="username">
+          <el-input v-model="newUser.username" />
+        </el-form-item>
+        <el-form-item label="Email" prop="email">
+          <el-input v-model="newUser.email" />
+        </el-form-item>
+        <el-form-item label="Roles">
+          <el-select v-model="newUser.roles" prop="roles" multiple >
+            <el-option v-for="role in roles" :key="role.value" :label="role.label" :value="role.value" />
+          </el-select>
+        </el-form-item>
+
+        <el-space v-if="newUser.usermeta" fill>
+          <el-divider> Colors </el-divider>
+          <el-form-item label="Darkmode">
+            <el-switch v-model="newUser.usermeta.darkmode" >
+              <template #active-action>
+                <span class="custom-active-action">
+                  <g-icon iconName="moon" iconSize="16" iconColor="black" />
+                </span>
+              </template>
+              <template #inactive-action>
+                <span class="custom-inactive-action">
+                  <g-icon iconName="sun" iconSize="16" iconColor="black" />
+                </span>
+              </template>
+            </el-switch>
+          </el-form-item>
+          <el-form-item label="Favorite Color">
+            <el-color-picker v-model="newUser.usermeta.faveColor" />
+          </el-form-item>
+        </el-space>
+
+        <el-space v-if="newUser.usermeta" fill style="max-width: 300px;">
+          <el-divider> Hero </el-divider>
+          <el-form-item label="Character Name" prop="heroName">
+            <el-input v-model="newUser.usermeta.hero.name" disabled />
+          </el-form-item>
+          <el-form-item label="Classes">
+            <el-select v-model="newUser.usermeta.hero.classes" prop="heroClasses" multiple disabled placeholder="" >
+              <el-option v-for="item in newUser.usermeta.hero.classes" :key="item" :label="item" :value="item" />
+            </el-select>
+          </el-form-item>
+        </el-space>
+      </el-form>
+
+      <div class="center-horz">
+        <el-button type="primary" @click="createUser">
+          <g-icon iconName="quill" iconSize="25" style="margin-right: 5px;" /> Submit
+        </el-button>
+        <el-button type="primary" @click="closeModal">
+          <g-icon iconName="quill" iconSize="25" style="margin-right: 5px;" /> Close
+        </el-button>
+      </div>
     </el-dialog>
 
   </div>
@@ -73,7 +135,7 @@ export default {
       allUsers: [],
       tableData: [],
       tableSearch: "",
-      roleFilter: [
+      roles: [
         { text: "Admin", value: "admin" },
         { text: "Story Teller", value: "storyteller" },
         { text: "User", value: "user" },
@@ -82,7 +144,10 @@ export default {
       // Create User Modal
       cardVisible: false,
       newUser: {},
-
+      rules: {
+        username: [{ required: true, message: "Please enter a username", trigger: 'blur' }],
+        email: [{ required: true, validator: this.validateEmail, trigger: 'blur' }]
+      }
     }
   },
   computed: {
@@ -92,13 +157,7 @@ export default {
   },
   mounted() {
     this.loading = true;
-    UserService.getAllUsers()
-    .then(response => {
-      this.allUsers = response.data
-      this.tableData = this.allUsers;
-      this.loading = false;
-    })
-    .catch(err => { console.error(err); });
+    this.loadUsers();
   },
 
   methods: {
@@ -132,6 +191,38 @@ export default {
       }
     },
 
+    loadUsers() {
+      UserService.getAllUsers()
+      .then(response => {
+        this.allUsers = response.data;
+        this.tableData = response.data;
+        this.loading = false;
+      })
+      .catch(err => {
+        this.$message({ message: err, type: 'error', });
+        console.error(err);
+      });
+    },
+    createUser() {
+      this.$refs.user.validate((valid) => {
+        if (valid) {
+          this.newUser.password = `pwd4${this.newUser.username}`;
+          UserService.createUser(this.newUser)
+          .then(response => {
+            this.$message({ message: response.message, type: 'success' });
+            this.loadUsers();
+          })
+          .catch(err => {
+            this.$message({ message: err, type: 'error', });
+            console.error(err);
+          });
+        } else {
+          console.log('Form not valid!');
+          return false;
+        }
+      });
+      this.cardVisible = false;
+    },
     viewUser(id) {
       this.$router.push({ name: 'user-view', params: { id: id } });
     },
@@ -139,21 +230,32 @@ export default {
       this.$router.push({ name: 'user-edit', params: { id: id } });
     },
     deleteUser(id) {
-      console.log('delete', id);
+      UserService.deleteUser(id)
+      .then(response => {
+        this.$message({ message: response.message, type: 'success' });
+        this.loadUsers();
+      })
+      .catch(err => {
+        this.$message({ message: err, type: 'error', });
+        console.error(err);
+      });
     },
 
-
-
-    createUser() {
-      console.log("create user, open modal");
+    openModal() {
+      this.newUser.usermeta = { hero: {} };
       this.cardVisible = true;
     },
     closeModal() {
-      // alert('oops');
+      this.$confirm('Entered data will be deleted', 'Cloase Modal?', {
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'Cancel',
+        type: 'warning'
+      })
+      .then(() => {
+        this.cardVisible = false;
+        this.newUser = {};
+      });
     }
-
-
-
 
   }
 };

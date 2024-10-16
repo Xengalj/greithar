@@ -57,7 +57,7 @@
     "Critical": "19/x2",
     "Range": 10,
     "Damage Type": [ "piercing", "slashing" ],
- 
+
     "Proficiency": "Simple",
     "Category": "Light",
     "Group": [ "Light Blades", "Thrown" ],
@@ -174,7 +174,7 @@
       "Boiling water cools to a non-damaging temperature after 5 minutes.",
       "Monk"
     ]
-  },  
+  },
   "Hook Hand": {
     "Damage": [ "1d3", "1d4", "1d6" ],
     "Critical": "20/x2",
@@ -277,7 +277,7 @@
     "Special": []
   },
 
-  
+
   "Club": {
     "Damage": [ "1d4", "1d6", "1d8" ],
     "Critical": "20/x2",
@@ -356,7 +356,7 @@
     "Special": []
   },
 
-  
+
   "Bayonet": {
     "Damage": [ "1d4", "1d6", "1d8" ],
     "Critical": "20/x2",
@@ -371,7 +371,8 @@
     "Weight": 1,
     "Description": "Bayonets are close combat weapons designed to fit into the grooves or muzzles of crossbows and firearms.",
     "Special": [
-      Bayonets allow you to make melee attacks with these weapons but render them temporarily useless as ranged weapons. Attaching or removing a bayonet is a move action.
+      "Bayonets allow you to make melee attacks with these weapons but render them temporarily useless as ranged weapons.",
+      "Attaching or removing a bayonet is a move action."
     ]
   },
   "Boarding Pike": {
@@ -425,8 +426,8 @@
     "Description": "This weapon acts as a kumade, but the handle consists of bamboo sections held together by a taut rope running through the center.",
     "Special": [
       "When a kumade is secured to a surface, such as a rafter or window sill, its handle can be climbed as a 5-foot length of rope.",
-      Releasing the rope is a standard action that provokes attacks of opportunity and causes the weapon to collapse into a bundle that fits into a backpack.
-      Reassembling the collapsible kumade requires a full-round action that provokes attacks of opportunity.
+      "Releasing the rope is a standard action that provokes attacks of opportunity and causes the weapon to collapse into a bundle that fits into a backpack.",
+      "Reassembling the collapsible kumade requires a full-round action that provokes attacks of opportunity.",
       "Grapple"
     ]
   },
@@ -444,8 +445,8 @@
     "Weight": 9,
     "Description": "This long metal staff has reservoirs for lamp oil, and a lantern-like structure at its head.",
     "Special": [
-      The lantern staff is fuelled as and provides light as a hooded lantern.
-      While lit, attacks with the lantern staff deal 1 point of fire damage in addition to the normal damage.
+      "The lantern staff is fuelled as and provides light as a hooded lantern.",
+      "While lit, attacks with the lantern staff deal 1 point of fire damage in addition to the normal damage."
     ]
   },
   "Longspear": {
@@ -531,7 +532,7 @@
 
     "Cost": 10,
     "Weight": 8,
-    "Description": "This pole has a spear head at one end and a mace head at the other."
+    "Description": "This pole has a spear head at one end and a mace head at the other.",
     "Special": [
       "A weighted spear can be used as a regular spear, or as a double weapon, with the mace head dealing bludgeoning damage and only x2 on a crit.",
       "Brace",
@@ -539,7 +540,7 @@
     ]
   },
 
-  
+
   "Blowgun": {
     "Damage": [ "1", "1d2", "1d3" ],
     "Critical": "20/x2",
@@ -642,11 +643,10 @@
     "Weight": 0,
     "Description": "A sling is little more than a leather cup attached to a pair of strings.",
     "Special": [
-      Your Strength modifier applies to damage rolls when you use a sling, just as it does for thrown weapons.
-    You can fire, but not load, a sling with one hand.
-Loading a sling is a move action that requires two hands and provokes attacks of opportunity.
-You can hurl ordinary stones with a sling, but stones are not as dense or as round as bullets.
-Thus, such an attack deals damage as if the weapon were designed for a creature one size category smaller than you and you take a –1 penalty on attack rolls.
+      "Your Strength modifier applies to damage rolls when you use a sling, just as it does for thrown weapons.",
+      "Loading a sling is a move action that requires two hands and provokes attacks of opportunity.",
+      "You can fire, but not load, a sling with one hand.",
+      "You may fire ordinary stones with a sling at a -1 to attack rolls and dealing damage as 1 size smaller."
     ]
   },
   "Stingchuck": {
@@ -663,11 +663,9 @@ Thus, such an attack deals damage as if the weapon were designed for a creature 
     "Weight": 9,
     "Description": "A stingchuck is a foul bag made of a humanoid’s head with the brain removed and the skull heavily scored so that it bursts open when thrown.",
     "Special": [
-      Normally filled with biting vermin, a stingchuck acts as a splash weapon.
-    When it hits, the vermin bite and sting the target, dealing 1d6 points of damage and forcing a DC 
-          11 Fortitude save to avoid being nauseated for 1d3 rounds.
-    Each round a creature remains nauseated by a stingchuck, it takes 1 additional point of damage from the biting vermin.
-    All creatures within the splash effect take 1 point of damage from the vermin but do not risk being nauseated.
+      "A sucessful hit releases the contens, dealing 1d6 damage and forcing a DC 11 Fortitude save to avoid being nauseated for 1d3 rounds.",
+      "Each round a creature remains nauseated by a stingchuck, it takes 1 additional point of damage from the biting vermin.",
+      "All creatures within the splash effect take 1 point of damage from the vermin but do not risk being nauseated."
     ]
   },
   "Stonebow": {
@@ -682,27 +680,19 @@ Thus, such an attack deals damage as if the weapon were designed for a creature 
 
     "Cost": 35,
     "Weight": 4,
-    "Description": "A stonebow, or bullet crossbow, resembles a light crossbow except for the distinct U-shaped bend in the stock.",
+    "Description": "A stonebow, or bullet crossbow, resembles a light crossbow except for the distinct U-shaped bend in the stock to fire sling bullets.",
     "Special": [
-      Instead of bolts, the stonebow shoots sling bullets.
-    The bow has two strings with a leather pocket between them to hold the bullet.
-
-Loading: Loading a stonebow is a move action (a free action if you have the Rapid Reload feat) that provokes attacks of opportunity.
-
-Firing: You can shoot, but not load, a stonebow with one hand, but doing so imposes a –2 penalty on your attack rolls.
-    You can shoot a stonebow with each hand, but you take a penalty on attack rolls as if attacking with two light weapons.
-    This penalty is cumulative with the penalty for firing one-handed.
-
-You can shoot ordinary stones with a stonebow, but stones aren’t as dense or as round as bullets.
-    When using stones, you take a –1 penalty on attack rolls and deal damage as if the weapon were designed for 
-    a creature one size category smaller than you.
+      "Loading a stonebow is a move action that provokes attacks of opportunity, requiring two hands.",
+      "You may shoot a stonebow with one hand at a -2 on attack rolls.",
+      "You can choost a stonebow with each hand, teating them as light weapons (the -2 is cumulative with the two-weapon fighting penalty).",
+      "You may fire ordinary stones with a sling at a -1 to attack rolls and dealing damage as 1 size smaller."
     ]
   },
 
 
 
 
-    
+
   "Throwing Darts": {
     "Damage": [ "1d3", "1d4", "1d6" ],
     "Critical": "20/x2",
@@ -1015,32 +1005,32 @@ You can shoot ordinary stones with a stonebow, but stones aren’t as dense or a
 
 
 
-    
-  Gladius	15 gp	1d4	1d6	19-20/x2	—	3 lbs.	P or S	performance	PZO1118
-  Handaxe	6 gp	1d4	1d6	x3	—	3 lbs.	S	—	PZO1110
-  Katar, tri-bladed	6 gp	1d3	1d4	×4	—	2 lbs.	P	—	PPZO94102
-  Knife, switchblade	5 gp	1d3	1d4	19-20/x2	10 ft.	1 lb.	P	—	PPZO9410
-Kobold tail attachment, long lash	15 gp	1d4	1d6	x2	—	1 lb.	S	reach	PZO1121
-Kobold tail attachment, (pounder)	1 gp	1d6	1d8	x2	—	4 lbs.	B	—	PZO1121
-Kobold tail attachment, (razored)	3 gp	1d6	1d8	19-20/x2	—	2 lbs.	S	—	PZO1121
-Kobold tail attachment, (spiked)	3 gp	1d6	1d8	x3	—	2 lbs.	P	—	PZO1121
-Kobold tail attachment, (sweeper)	7 gp	1d4	1d6	x2	—	3 lbs.	B	trip	PZO1121
-Kukri	8 gp	1d3	1d4	18–20/x2	—	2 lbs.	S	—	PZO1110
-Machete	10 gp	1d4	1d6	19-20/x2	—	2 lbs.	S	—	PZO9468
-Pick, light	4 gp	1d3	1d4	x4	—	3 lbs.	P	—	PZO1110
-Ratfolk tailblade	11 gp	1d2	1d3	x2	—	1/2 lb.	S	—	PZO1121
-  Sap	1 gp	1d4	1d6	x2	—	2 lbs.	B	nonlethal	PZO1110
-  Sea-knife	8 gp	1d3	1d4	19-20/x2	—	1 lb.	S	—	PZO1121
-  Shield, light	3 gp/9 gp	1d2	1d3	x2	—	special	B	—	PZO1110
-  Spiked armor	special	1d4	1d6	x2	—	special	P	—	PZO1110
-  Spiked shield, light	13 gp/19 gp	1d3	1d4	x2	—	special	P	—	PZO1110
-  Starknife	24 gp	1d3	1d4	x3	20 ft.	3 lbs.	P	—	PZO1110
-  Sword, butterfly (2)	20 gp	1d3	1d4	19-20/x2	—	1 lb.	S	Monk	PZO1110
-  Sword, short	10 gp	1d4	1d6	19-20/x2	—	2 lbs.	P	—	PZO1110
-  War razor	8 gp	1d3	1d4	19-20/x2	—	1 lb.	S	—
-    
-    
-  "Blowgun": {
+"Gladius":  "15 gp 1d4 1d6 19-20/x2 — 3 lbs. P or S performance PZO1118",
+"Handaxe": "6 gp 1d4 1d6 x3 — 3 lbs. S — PZO1110",
+"Katar, tri-bladed": "6 gp 1d3 1d4 ×4 — 2 lbs. P — PPZO94102",
+"Knife, switchblade": "5 gp 1d3 1d4 19-20/x2 10 ft. 1 lb. P — PPZO9410",
+"Kobold tail attachment, long lash": "15 gp 1d4 1d6 x2 — 1 lb. S reach PZO1121",
+"Kobold tail attachment, (pounder)": "1 gp 1d6 1d8 x2 — 4 lbs. B — PZO1121",
+"Kobold tail attachment, (razored)": "3 gp 1d6 1d8 19-20/x2 — 2 lbs. S — PZO1121",
+"Kobold tail attachment, (spiked)": "3 gp 1d6 1d8 x3 — 2 lbs. P — PZO1121",
+"Kobold tail attachment, (sweeper)": "7 gp 1d4 1d6 x2 — 3 lbs. B trip PZO1121",
+"Kukri": "8 gp 1d3 1d4 18–20/x2 — 2 lbs. S — PZO1110",
+"Machete": "10 gp 1d4 1d6 19-20/x2 — 2 lbs. S — PZO9468",
+"Pick, light": "4 gp 1d3 1d4 x4 — 3 lbs. P — PZO1110",
+"Ratfolk tailblade": "11 gp 1d2 1d3 x2 — 1/2 lb. S — PZO1121",
+"Sap": "1 gp 1d4 1d6 x2 — 2 lbs. B nonlethal PZO1110",
+"Sea-knife": "8 gp 1d3 1d4 19-20/x2 — 1 lb. S — PZO1121",
+"Shield, light": "3 gp/9 gp 1d2 1d3 x2 — special B — PZO1110",
+"Spiked armor": "special 1d4 1d6 x2 — special P — PZO1110",
+"Spiked shield, light": "13 gp/19 gp 1d3 1d4 x2 — special P — PZO1110",
+"Starknife": "24 gp 1d3 1d4 x3 20 ft. 3 lbs. P — PZO1110",
+"Sword, butterfly": "(2) 20 gp 1d3 1d4 19-20/x2 — 1 lb. S Monk PZO1110",
+"Sword, short": "10 gp 1d4 1d6 19-20/x2 — 2 lbs. P — PZO1110",
+"War razor": "8 gp 1d3 1d4 19-20/x2 — 1 lb. S —",
+
+
+
+  "Test": {
     "Damage": [  ],
     "Critical": "20/x2",
     "Range": 0,
@@ -1065,7 +1055,7 @@ Ratfolk tailblade	11 gp	1d2	1d3	x2	—	1/2 lb.	S	—	PZO1121
 
 
 
-    
+
   "Exotic": {
 
   },

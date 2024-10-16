@@ -9,60 +9,101 @@ const Op = db.Sequelize.Op; // operators for where clause
 // var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 
-// user.create is actually handled by auth/signup
-/*
-const jane = await User.create({ name: 'Jane' });
-console.log(jane.toJSON()); // This is good!
-*/
+/***************************\
+*                           *
+*        USER CREATE        *
+*                           *
+\***************************/
+exports.create = (req, res) => {
+  let isAdmin = false;
+  User.findByPk(req.userId).then(user => {
+    user.getRoles().then(roles => {
+      for (let i = 0; i < roles.length; i++) {
+        if (roles[i].name === "admin") {
+          isAdmin = true;
+        }
+      }
+    });
+  });
 
+  User.create({
+    username: req.body.username,
+    email: req.body.email,
+    password: bcrypt.hashSync(req.body.password, 8),
+    usermeta: req.body.usermeta
+  })
+  .then(user => {
+    // only let admins set roles, and default with just 'user' role
+    if (isAdmin && req.body.roles) {
+      Role.findAll({ where: { name: { [Op.or]: req.body.roles } } })
+      .then(roles => {
+        user.setRoles(roles).then(() => {
+          res.status(200).send({ message: `${user.username} registered successfully!` });
+        });
+      });
+    } else {
+      user.setRoles([3]).then(() => {
+        res.status(200).send({ message: `${user.username} registered successfully!` });
+      });
+    }
+  })
+  .catch(err => {
+    res.status(500).send({ message: err.message });
+  });
+}
+
+/***************************\
+*                           *
+*         USER READ         *
+*                           *
+\***************************/
 // returns either a list of users, or if a user_id was given, returns that user
 exports.read = (req, res) => {
   // If user_id is provided, find that user
   if (req.body.user_id) {
-    User.findOne({ where: { id: req.body.user_id } })
+    User.findOne({ where: { id: req.body.user_id }, include: [{ model: Role }] })
     .then(user => {
       if (!user) { return res.status(404).send({ message: "No users found!" }); }
-
-      let authorities = [];
-      user.getRoles()
-      .then(roles => {
-        for (let i = 0; i < roles.length; i++) {
-          authorities.push(roles[i].name);
-        }
-        res.status(200).send({
-          id: user.id,
-          username: user.username,
-          email: user.email,
-          usermeta: user.usermeta,
-          roles: authorities
-        });
-      })
-      .catch(err => { res.status(500).send({ message: err.message }); });
+      res.status(200).send({ data: user });
     })
     .catch(err => { res.status(500).send({ message: err.message }); });
 
     // find all users
   } else {
-    console.log("GET ALL");
     User.findAll({ include: [{ model: Role }] })
     .then(users => {
       if (!users) { return res.status(404).send({ message: "No users found!" }); }
-
-      res.status(200).send({
-        data: users
-      });
+      res.status(200).send({ data: users });
     })
     .catch(err => { res.status(500).send({ message: err.message }); });
   }
 };
 
+/***************************\
+*                           *
+*        USER UPDATE        *
+*                           *
+\***************************/
 exports.update = (req, res) => {
   let editSelf = (req.userId == req.body.user_id) ? true : false;
 
+  let isAdmin = false;
+  User.findByPk(req.userId).then(user => {
+    user.getRoles().then(roles => {
+      for (let i = 0; i < roles.length; i++) {
+        if (roles[i].name === "admin") {
+          isAdmin = true;
+        }
+      }
+    });
+  });
+
+  // Find the given user by user_id
   User.findOne({ where: { id: req.body.user_id } })
   .then(user => {
     if (!user) { return res.status(404).send({ message: "User not found!" }); }
 
+    // get user's current roles
     let authorities = [];
     user.getRoles()
     .then(roles => {
@@ -75,7 +116,7 @@ exports.update = (req, res) => {
         password: (editSelf && req.body.password) ? bcrypt.hashSync(req.body.password, 8) : user.password,
         email: req.body.email ? req.body.email : user.email,
         usermeta: req.body.usermeta ? req.body.usermeta : user.usermeta,
-        roles: (!editSelf && req.body.roles) ? req.body.roles : authorities
+        roles: (isAdmin && req.body.roles) ? req.body.roles : authorities
       };
 
       // update user with new info
@@ -97,13 +138,30 @@ exports.update = (req, res) => {
             username: user.username,
             email: user.email,
             usermeta: user.usermeta,
-            roles: authorities,
+            roles: roles,
           });
         });
       })
       .catch(err => { res.status(500).send({ message: err.message }); });
     })
     .catch(err => { res.status(500).send({ message: err.message }); });
+  })
+  .catch(err => { res.status(500).send({ message: err.message }); });
+};
+
+/***************************\
+*                           *
+*        USER DELETE        *
+*                           *
+\***************************/
+exports.delete = (req, res) => {
+  User.findOne({ where: { id: req.body.user_id } })
+  .then(user => {
+    if (!user) { return res.status(404).send({ message: "User not found!" }); }
+    let name = user.username;
+    user.destroy();
+    res.status(200).send({ message: `${name} registered successfully!` });
+
   })
   .catch(err => { res.status(500).send({ message: err.message }); });
 };
@@ -118,13 +176,12 @@ exports.update = (req, res) => {
 
 
 
-exports.delete = (req, res) => {
-  res.status(200).send("Server DELETE USER.");
-  // const jane = await User.create({ name: 'Jane' });
-  // console.log(jane.name); // "Jane"
-  // console.log(jane.toJSON()); // This is good!
-  // await jane.destroy();
-};
+
+
+
+
+
+
 
 
 exports.allAccess = (req, res) => {

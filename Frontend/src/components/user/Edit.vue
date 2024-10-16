@@ -15,15 +15,12 @@
         label-width="auto"
         status-icon
       >
-
         <el-form-item label="Username" prop="username">
           <el-input v-model="user.username" />
         </el-form-item>
-
         <el-form-item label="Email" prop="email">
           <el-input v-model="user.email" />
         </el-form-item>
-
         <div v-if="this.currentUser.id == this.$route.params.id">
           <el-form-item label="New Password" prop="pass">
             <el-input v-model="pass" type="password" autocomplete="off" />
@@ -32,7 +29,6 @@
             <el-input v-model="checkPass" type="password" autocomplete="off" />
           </el-form-item>
         </div>
-
         <el-form-item v-if="isAdmin" label="Roles">
           <el-select v-model="user.roles" prop="roles" multiple >
             <el-option v-for="role in roles" :key="role.value" :label="role.label" :value="role.value" />
@@ -56,7 +52,6 @@
               </template>
             </el-switch>
           </el-form-item>
-
           <el-form-item label="Favorite Color">
             <el-color-picker v-model="user.usermeta.faveColor" />
           </el-form-item>
@@ -68,14 +63,12 @@
           <el-form-item label="Character Name" prop="heroName">
             <el-input v-model="user.usermeta.hero.name" disabled />
           </el-form-item>
-
           <el-form-item label="Classes">
             <el-select v-model="user.usermeta.hero.classes" prop="heroClasses" multiple disabled placeholder="" >
               <el-option v-for="item in user.usermeta.hero.classes" :key="item" :label="item" :value="item" />
             </el-select>
           </el-form-item>
         </el-space>
-
       </el-form>
 
       <template #footer>
@@ -84,7 +77,7 @@
             <g-icon iconName="quill" iconSize="25" style="margin-right: 5px;" /> Submit
           </el-button>
           <el-button type="primary" :onclick="resetForm">
-            <g-icon iconName="quill" iconSize="25" style="margin-right: 5px;" /> Reset
+            <g-icon iconName="openScroll" iconSize="25" style="margin-right: 5px;" /> Reset
           </el-button>
         </div>
       </template>
@@ -135,11 +128,12 @@ export default {
     if (this.canEdit) {
       UserService.getUser(this.$route.params.id)
       .then(response => {
-        for(const [key, value] of Object.entries(response)) {
+        for(const [key, value] of Object.entries(response.data)) {
           this.user[key] = value;
         }
       })
       .catch(err => {
+        this.$message({ message: err, type: 'error', });
         console.error(err);
       });
     }
@@ -151,22 +145,23 @@ export default {
         if (valid) {
           UserService.updateUser(this.user)
           .then(response => {
-            this.$message({
-              message: `${response.username} updated sucessfully`,
-              type: 'success'
-            });
+            this.$message({ message: `${response.username} updated sucessfully`, type: 'success' });
+            let faveColor = "--el-color-primary: " + response.usermeta.faveColor + " !important";
+            document.documentElement.style.cssText = faveColor;
+
+            let theme = response.usermeta.darkmode ? "dark" : "";
+            let html = document.getElementsByTagName("html")[0];
+            html.setAttribute("class", theme);
 
             this.$router.push({ name: 'user-view', params: { id: this.currentUser.id } });
           })
           .catch(err => {
-            this.$message({
-              message: err,
-              type: 'error',
-            });
+            this.$message({ message: err, type: 'error', });
+            console.error(err);
           });
 
         } else {
-          console.log('submition error!!');
+          console.log('Form not valid!');
           return false;
         }
       });

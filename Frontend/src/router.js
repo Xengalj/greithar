@@ -1,6 +1,7 @@
 import { createWebHistory, createRouter } from "vue-router";
 
 import Home from "./components/Home.vue";
+import About from "./components/About.vue";
 import Login from "./components/auth/Login.vue";
 import Register from "./components/auth/Register.vue";
 import PageNotFound from "./components/404.vue";
@@ -24,6 +25,15 @@ const routes = [
       breadcrumb: "Home", //cutom breadcrumb label
       title: "Home",
     }
+  },
+  {
+    path: "/about",
+    name: "about",
+    component: About,
+    meta: {
+      breadcrumb: "About",
+      title: "About",
+    },
   },
   {
     path: "/login",
@@ -85,15 +95,6 @@ const routes = [
           title: "User List",
         }
       },
-      // {
-      //   path: "create",
-      //   name: "user-create",
-      //   component: () => import("./components/user/Create.vue"),
-      //   meta: {
-      //     breadcrumb: "Create User",
-      //     title: "Create User"
-      //   }
-      // },
       {
         // when /user/view/:id is matched
         path: "view/:id",
@@ -108,7 +109,7 @@ const routes = [
       {
         path: "edit/:id",
         name: "user-edit",
-        component: import("@/components/user/Edit.vue"),
+        component: () => import("@/components/user/Edit.vue"),
         meta: {
           breadcrumb: "Edit User",
           title: "Edit User",
@@ -285,10 +286,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const publicPages = ['/login', '/register', '/home', '/equipment'];
-  // const adminPasges = [ '/user/list' ];
-
-  // console.log(routes, to);
+  const publicPages = ['/login', '/register', '/home', '/equipment', '/about'];
   const authRequired = !publicPages.includes(to.path);
   const loggedIn = localStorage.getItem('user');
 

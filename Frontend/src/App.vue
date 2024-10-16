@@ -1,5 +1,5 @@
 <template>
-  <div :class="`common-layout ${this.userMeta.theme}`">
+  <div class="common-layout">
     <el-container>
       <el-header>
         <Header/>
@@ -9,18 +9,11 @@
           <el-main class="main">
             <h1 class="jumbotron center-horz title">{{ pageTitle }}</h1>
             <router-view v-model="pageTitle"/>
-
           </el-main>
-          <el-footer>
-            Vectors and icons by <a href="https://www.svgrepo.com" target="_blank">SVG Repo</a>
-          </el-footer>
         </el-container>
-        <!-- <el-aside width="200px">Aside</el-aside> -->
       </el-container>
     </el-container>
   </div>
-
-
 </template>
 
 <script>
@@ -40,29 +33,20 @@ export default {
   },
   data() {
     return {
-      userMeta: {}
-
+      usermeta: {
+        faveColor: "",
+        theme: ""
+      }
     };
   },
 
   mounted() {
-    let faveColor = "--el-color-primary: " + this.currentUser.usermeta.faveColor + " !important";
-    document.documentElement.style.cssText = faveColor;
-    this.userMeta.theme = this.currentUser.usermeta.darkmode ? "dark" : "";
+    this.usermeta.faveColor = "--el-color-primary: " + this.currentUser.usermeta.faveColor + " !important";
+    document.documentElement.style.cssText = this.usermeta.faveColor;
 
+    this.usermeta.theme = this.currentUser.usermeta.darkmode ? "dark" : "";
     let html = document.getElementsByTagName("html")[0];
-    html.setAttribute("class", this.userMeta.theme);
+    html.setAttribute("class", this.usermeta.theme);
   }
 };
-
-/* TODO:
- *
- *  Header:
- *    get lore & rules pages from DB
- *
- *  Creature Card:
- *    Refactor to use a sinlge nice json, can load and send,
- *    can add to encounter
- */
-
 </script>

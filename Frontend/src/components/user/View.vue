@@ -8,7 +8,6 @@
           <el-button type="primary" :onclick="editUser">
             <g-icon iconName="quill" iconSize="25" style="margin-right: 5px;" /> Edit
           </el-button>
-
         </div>
       </template>
 
@@ -18,7 +17,7 @@
         </el-form-item>
         <el-form-item label="Roles">
           <el-select v-model="user.roles" prop="roles" multiple disabled >
-            <el-option v-for="role in user.roles" :key="role" :label="role" :value="role" />
+            <el-option v-for="role in user.roles" :key="role.id" :label="role.name" :value="role.name" />
           </el-select>
         </el-form-item>
 
@@ -46,7 +45,6 @@
             <el-option v-for="item in user.usermeta.hero.classes" :key="item" :label="item" :value="item" />
           </el-select>
         </el-form-item>
-
       </el-form>
     </el-card>
 
@@ -76,19 +74,15 @@ export default {
   },
 
   mounted() {
-    // TODO: remove in favor of login checking in router
-    // if (!this.currentUser) {
-    //   this.$router.push('/login');
-    // }
-
-    if (this.currentUser.roles.includes("ROLE_ADMIN")) {
+    if (this.currentUser.roles.includes("admin")) {
       UserService.getUser(this.$route.params.id)
       .then(response => {
-        for(const [key, value] of Object.entries(response)) {
+        for(const [key, value] of Object.entries(response.data)) {
           this.user[key] = value;
         }
       })
       .catch(err => {
+        this.$message({ message: err, type: 'error', });
         console.error(err);
       });
 
@@ -96,11 +90,12 @@ export default {
     } else {
       UserService.getUser(this.currentUser.id)
       .then(response => {
-        for(const [key, value] of Object.entries(response)) {
+        for(const [key, value] of Object.entries(response.data)) {
           this.user[key] = value;
         }
       })
       .catch(err => {
+        this.$message({ message: err, type: 'error', });
         console.error(err);
       });
     }
@@ -109,7 +104,6 @@ export default {
   methods: {
     editUser() {
       this.$router.push({ name: 'user-edit', params: { id: this.user.id } });
-
     }
   }
 }

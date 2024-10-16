@@ -20,51 +20,34 @@ class UserService {
     return axios.get(API_URL + 'admin', { headers: authHeader() });
   }
 
-
   createUser(user) {
-    console.log(user);
-    /*
-    return axios.post(API_URL + 'update',
-    {
-      user_id: user.id,
+    return axios.post(API_URL + 'create',
+     {
       username: user.username,
       email: user.email,
       password: user.password,
-      roles: user.roles,
-      usermeta: user.usermeta
+      usermeta: user.usermeta,
+      roles: user.roles
     },
     { headers: authHeader() })
-    .then(response => {
-      return response.data;
-    })
-    .catch(err => {
-      return err;
-    });
-    */
+    .then(response => { return response.data; })
+    .catch(err => { return err; });
   }
 
   getUser(id) {
     return axios.post(API_URL + 'read',
       { user_id: id },
       { headers: authHeader() })
-    .then(response => {
-      return response.data;
-    })
-    .catch(err => {
-      return err;
-    });
+      .then(response => { return response.data; })
+      .catch(err => { return err; });
   }
 
   getAllUsers() {
     return axios.post(API_URL + 'read',
       { /*post data*/ },
       { headers: authHeader() })
-    .then(response => {
-      return response.data;
-    })
-    .catch(err => {
-      return err;
-    });
+      .then(response => { return response.data; })
+      .catch(err => { return err; });
   }
 
   updateUser(user) {
@@ -78,27 +61,16 @@ class UserService {
       usermeta: user.usermeta
     },
     { headers: authHeader() })
-    .then(response => {
-      return response.data;
-    })
-    .catch(err => {
-      return err;
-    });
+    .then(response => { return response.data; })
+    .catch(err => { return err; });
   }
 
   deleteUser(id) {
-    console.log(id);
-    /*
-                return axios.post(API_URL + 'read',
-                { user_id: id },
-                { headers: authHeader() })
-                .then(response => {
-                return response.data;
-              })
-              .catch(err => {
-              return err;
-            });
-    */
+    return axios.post(API_URL + 'delete',
+    { user_id: id },
+    { headers: authHeader() })
+    .then(response => { return response.data; })
+    .catch(err => { return err; });
   }
 
 }

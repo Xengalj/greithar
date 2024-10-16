@@ -13,35 +13,17 @@ exports.signup = (req, res) => {
   User.create({
     username: req.body.username,
     email: req.body.email,
-    password: bcrypt.hashSync(req.body.password, 8)
+    password: bcrypt.hashSync(req.body.password, 8),
+    usermeta: req.body.usermeta
   })
-    .then(user => {
-      // if (req.body.roles !include 'ROLE_USER') {
-      //   req.body.roles.push("ROLE_USER");
-      // }
-
-      if (req.body.roles) {
-        Role.findAll({
-          where: {
-            name: {
-              [Op.or]: req.body.roles
-            }
-          }
-        }).then(roles => {
-          user.setRoles(roles).then(() => {
-            res.send({ message: "User registered successfully!" });
-          });
-        });
-      } else {
-        // user role = 3
-        user.setRoles([3]).then(() => {
-          res.send({ message: "User registered successfully!" });
-        });
-      }
-    })
-    .catch(err => {
-      res.status(500).send({ message: err.message });
+  .then(user => {
+    user.setRoles([3]).then(() => {
+      res.send({ message: "User registered successfully!" });
     });
+  })
+  .catch(err => {
+    res.status(500).send({ message: err.message });
+  });
 };
 
 exports.signin = (req, res) => {

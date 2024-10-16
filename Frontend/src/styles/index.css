@@ -38,6 +38,7 @@
 /*    https://colorffy.com/dark-theme-generator
 Dark/Mixed - 100: For body background color
 
+
 Dark/Mixed - 200: For cards background color
 
 Dark/Mixed - 300: For chips buttons, dropdowns background color
@@ -54,19 +55,22 @@ Dark/Mixed - 600: For on background texts color */
 *          COLORS           *
 *                           *
 \***************************/
-body #app {
-  color: light-dark( #212529, var(--el-color-info) );
-  background-color: light-dark( var(--white), var(--color-surface-100) );
+.dark body {
+  background-color: var(--el-bg-color-page);
 }
+
 
 body a,
 a.nav-link {
-  color: var(--color-primary-100);
+  color: var(--el-color-primary);
 }
 body a:hover {
   color: var(--color-secondary-300);
 }
 
+.jumbotron {
+  background-color: var(--el-card-bg-color);
+}
 
 
 
@@ -89,7 +93,7 @@ footer {
   bottom: 0;
   width: 100%;
   text-align: center;
-  background-color: var(--color-surface-200);
+  /* background-color: var(--color-surface-200); */
 }
 
 .center-horz {
@@ -97,19 +101,9 @@ footer {
 }
 .center-vert {
   align-content: center;
-  /*
-  display: flex;
-  align-items: center;
-   */
 }
 
-
-
-
-.stat-controls .el-input-number {
-  width: 70px;
-}
 
 .title {
-  color: red;
+  color: var(--el-color-primary);
 }
