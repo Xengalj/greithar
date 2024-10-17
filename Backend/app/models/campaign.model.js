@@ -1,12 +1,12 @@
 module.exports = (sequelize, Sequelize) => {
-  const Equipment = sequelize.define("equipment", {
-    type: {
+  const Campaign = sequelize.define("campaign", {
+    name: {
       type: Sequelize.STRING
     },
-    items: {
+    notes: {
       type: Sequelize.JSON
     }
   });
 
-  return Equipment;
+  return Campaign;
 };

@@ -1,20 +1,10 @@
 module.exports = (sequelize, Sequelize) => {
   const Character = sequelize.define("characters", {
-
-/*
-  // TODO: build similar to refactored creature card json
-*/
-
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true
     },
-    user_id: {
-      type: Sequelize.INTEGER
-    }, // belongsToMany (char through user_characters)
-    // character_id // belongsToMany (db.user through user_characters)
-    // race_id  // belongs to many (char through character_races)
-    // class_id  // belongs to many (char through character_classes)
+
     name: {
       type: Sequelize.STRING
     },
@@ -54,6 +44,7 @@ module.exports = (sequelize, Sequelize) => {
     role_play: {
       type: Sequelize.JSON,
       defaultValue: {
+        "campaign": "",
         "alignment": "NG",
         "diety": "",
         "appearance": {

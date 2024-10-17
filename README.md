@@ -67,6 +67,9 @@ A tutorial can be found [here](https://www.bezkoder.com/vue-js-node-js-express-m
 - [x] Get icons to update dynamically
 - [x] get table filtering working in bestiary
 - [ ] refactor CreatureCard to use a single nice storable JSON
+
+- [ ] creature card will display json of a creature given to it, json building done by parent
+
 - [ ] add campaigns & encounters
 
 - [ ] add Player/NPC builder/advancer

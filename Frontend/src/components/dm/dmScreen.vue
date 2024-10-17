@@ -1,18 +1,5 @@
 <template>
 
-  <!--
-  <div class="container">
-    <header class="jumbotron">
-      <h3>{{ user }}</h3>
-    </header>
-  </div>
-  -->
-
-
-
-
-
-
   <el-button type="primary" circle @click="monsterOpen('Death Worm')">
     <g-icon iconSize="24px" iconName="eye" />
   </el-button>
