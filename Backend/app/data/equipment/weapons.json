@@ -1508,9 +1508,10 @@
     "Weight": 4,
     "Description": "This slender light blade lies within a wooden container that serves as both its scabbard and hiding place.",
     "Special": [
-
-      You can draw the blade from the cane as a swift action (or a free action if you have the Quick Draw feat). An observer must make a DC 20 Perception check to realize an undrawn sword cane is a weapon rather than a walking stick; the DC decreases to 10 if the observer is able to handle the weapon.
-You can use the Weapon Finesse feat to apply your Dexterity modifier instead of your Strength modifier to attack rolls with a sword cane sized for you, even though it isn’t a light weapon. You can’t wield a sword cane in two hands in order to apply 1-1/2 times your Strength modifier to damage.
+      "You can draw the blade from the cane as a swift action (or a free action with the Quick Draw feat).",
+      "An observer must make a DC 20 Perception check to realize an undrawn sword cane is a weapon rather than a walking stick (DC 10 if  observer is able to handle the weapon).",
+      "You can’t wield a sword cane in two hands in order to apply 1-1/2 times your Strength modifier to damage.",
+      "Finesse"
     ]
   },
   "Macuahuitl": {
@@ -1562,29 +1563,390 @@ You can use the Weapon Finesse feat to apply your Dexterity modifier instead of 
     "Special": []
   },
 
-"Bardiche 13 gp 1d8 1d10 19-20/x2 — 14 lbs. S brace, reach, see text",
-"Bec de corbin 15 gp 1d8 1d10 x3 — 12 lbs. B or P brace, reach, see text",
-"Bill 11 gp 1d6 1d8 x3 — 11 lbs. S brace, disarm, reach, see text",
-"Earth breaker 40 gp 1d10 2d6 x3 — 14 lbs. B — ",
-"Falchion 75 gp 1d6 2d4 18–20/x2 — 8 lbs. S — ",
-"Flail, heavy 15 gp 1d8 1d10 19-20/x2 — 10 lbs. B disarm, trip",
-"Glaive 8 gp 1d8 1d10 x3 — 10 lbs. S reach",
-"Glaive-guisarme 12 gp 1d8 1d10 x3 — 10 lbs. S brace, reach, see text",
-"Greataxe 20 gp 1d10 1d12 x3 — 12 lbs. S — ",
-"Greatclub 5 gp 1d8 1d10 x2 — 8 lbs. B — ",
-"Greatsword 50 gp 1d10 2d6 19-20/x2 — 8 lbs. S — ",
-"Guisarme 9 gp 1d6 2d4 x3 — 12 lbs. S reach, trip ",
-"Halberd 10 gp 1d8 1d10 x3 — 12 lbs. P or S brace, trip ",
-"Hammer, lucerne 15 gp 1d10 1d12 x2 — 12 lbs. B or P brace, reach, see text ",
-"Horsechopper 10 gp 1d8 1d10 x3 — 12 lbs. P or S reach, trip ",
-"Lance 10 gp 1d6 1d8 x3 — 10 lbs. P reach ",
-"Ogre hook 24 gp 1d8 1d10 x3 — 10 lbs. P trip ",
-"Pickaxe 14 gp 1d6 1d8 x4 — 12 lbs. P — ",
-"Planson 10 gp 1d8 1d10 x2 — 10 lbs. B or P brace ",
-"Ranseur 10 gp 1d6 2d4 x3 — 12 lbs. P disarm, reach ",
-"Scythe 18 gp 1d6 2d4 x4 — 10 lbs. P or S trip ",
-"Spear, syringe 100 gp 1d6 1d8 x3 20 ft. 6 lbs. P brace, see text",
+  "Bardiche": {
+    "Damage": [ "1d8", "1d10", "2d8" ],
+    "Critical": "19/x2",
+    "Range": 0,
+    "Damage Type": [ "slashing" ],
 
+    "Proficiency": "Martial",
+    "Category": "Two-Handed",
+    "Group": [ "Axes", "Polearms" ],
+
+    "Cost": 13,
+    "Weight": 14,
+    "Description": "The crescent axe-blade of this polearm is attached to the haft at two points and extends past the top.",
+    "Special": [
+      "You gain a +2 bonus to your CMD to resist sunder attempts made against a bardiche.",
+      "Brace",
+      "Reach"
+    ]
+  },
+  "Bec De Corbin": {
+    "Damage": [ "1d8", "1d10", "2d8" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "piercing", "bludgeoning" ],
+
+    "Proficiency": "Martial",
+    "Category": "Two-Handed",
+    "Group": [ "Polearms" ],
+
+    "Cost": 15,
+    "Weight": 12,
+    "Description": "A polearm with both a blunt hammer head and a hooked spike, you primarily attack with the spike.",
+    "Special": [
+      "You gain a +2 bonus on combat maneuver checks to sunder medium or heavy armor with a bec de corbin.",
+      "Brace",
+      "Reach"
+    ]
+  },
+  "Bill": {
+    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "slashing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Two-Handed",
+    "Group": [ "Polearms" ],
+
+    "Cost": 11,
+    "Weight": 11,
+    "Description": "The blade of this polearm is a curved or hooked chopping blade with a spiked projection on the back of the blade.",
+    "Special": [
+      "When fighting defensively or with total defense, this weapon gives you a +1 shield bonus to AC.",
+      "A mounted opponent hit by a bill takes a –1 penalty on his Ride check to stay mounted.",
+      "Brace", "Disarm", "Reach"
+    ]
+  },
+  "Earth Breaker": {
+    "Damage": [ "1d10", "2d6", "3d6" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "bludgeoning" ],
+
+    "Proficiency": "Martial",
+    "Category": "Two-Handed",
+    "Group": [ "Hammers" ],
+
+    "Cost": 40,
+    "Weight": 14,
+    "Description": "This massive hammer’s head ends in multiple blunt spikes that help concentrate the force of a powerful swing",
+    "Special": []
+  },
+  "Falchion": {
+    "Damage": [ "1d6", "2d4", "2d6" ],
+    "Critical": "18/x2",
+    "Range": 0,
+    "Damage Type": [ "slashing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Two-Handed",
+    "Group": [ "Heavy Blades" ],
+
+    "Cost": 75,
+    "Weight": 8,
+    "Description": "This sword has one curved, sharp edge like a scimitar, with the back edge unsharpened and either flat or slightly curved.",
+    "Special": []
+  },
+  "Heavy Flail": {
+    "Damage": [ "1d8", "1d10", "2d8" ],
+    "Critical": "19/x2",
+    "Range": 0,
+    "Damage Type": [ "bludgeoning" ],
+
+    "Proficiency": "Martial",
+    "Category": "Two-Handed",
+    "Group": [ "Flails" ],
+
+    "Cost": 15,
+    "Weight": 10,
+    "Description": "Similar to a light flail, a heavy flail has a larger metal ball and a longer handle.",
+    "Special": [
+      "Disarm", "Trip"
+    ]
+  },
+  "Glaive": {
+    "Damage": [ "1d8", "1d10", "2d8" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "slashing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Two-Handed",
+    "Group": [ "Polearms" ],
+
+    "Cost": 8,
+    "Weight": 10,
+    "Description": "A glaive is composed of a simple blade mounted on the end of a pole about 7 feet in length.",
+    "Special": [
+      "Reach"
+    ]
+  },
+  "Glaive-Guisarme": {
+    "Damage": [ "1d8", "1d10", "2d8" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "slashing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Two-Handed",
+    "Group": [ "Polearms" ],
+
+    "Cost": 12,
+    "Weight": 10,
+    "Description": "This polearm combines the blade of a glaive with a wicked hook.",
+    "Special": [
+      "A mounted opponent hit by a glaive-guisarme takes a –2 penalty on her Ride check to stay mounted.",
+      "Reach", "Reach"
+    ]
+  },
+  "Greataxe": {
+    "Damage": [ "1d10", "1d12", "3d6" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "slashing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Two-Handed",
+    "Group": [ "Axes" ],
+
+    "Cost": 20,
+    "Weight": 12,
+    "Description": "This heavy axe is usually 3 to 4 feet long, and may have one head or two. A greataxe may be 'bearded' to increase cleaving power and help pull down shields.",
+    "Special": []
+  },
+  "Greatclub": {
+    "Damage": [ "1d8", "1d10", "2d8" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "bludgeoning" ],
+
+    "Proficiency": "Martial",
+    "Category": "Two-Handed",
+    "Group": [ "Hammers", "Tribal" ],
+
+    "Cost": 5,
+    "Weight": 8,
+    "Description": "This larger, bulkier version of the common club is heavy enough that you can’t wield it with one hand.",
+    "Special": []
+  },
+  "Greatsword": {
+    "Damage": [ "1d10", "2d6", "3d6" ],
+    "Critical": "19/x2",
+    "Range": 0,
+    "Damage Type": [ "slashing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Two-Handed",
+    "Group": [ "Heavy Blades" ],
+
+    "Cost": 50,
+    "Weight": 8,
+    "Description": "This immense two-handed sword is about 5 feet in length. A greatsword may have a dulled lower blade that can be gripped.",
+    "Special": []
+  }, 
+  "Guisarmee": {
+    "Damage": [ "1d6", "2d4", "2d6" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "none" ],
+
+    "Proficiency": "Martial",
+    "Category": "Two-Handed",
+    "Group": [ "Polearms" ],
+
+    "Cost": 9,
+    "Weight": 12,
+    "Description": "A guisarme is an 8-foot-long shaft with a blade and a hook mounted at the tip.",
+    "Special": [
+      "Reach", "Trip"
+    ]
+  },
+  "Halberd": {
+    "Damage": [ "1d8", "1d10", "2d8" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "piercing", "slashing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Two-Handed",
+    "Group": [ "Polearms" ],
+
+    "Cost": 10,
+    "Weight": 12,
+    "Description": "A halberd is similar to a 5-foot-long spear, but it also has a small, axe-like head mounted near the tip.",
+    "Special": [
+      "Brace", "Trip"
+    ]
+  },
+  "Lucerne Hammer": {
+    "Damage": [ "1d10", "1d12", "3d6" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "bludgeoning", "piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Two-Handed",
+    "Group": [ "Polearms" ],
+
+    "Cost": 15,
+    "Weight": 12,
+    "Description": "This polearm has both a pronged hammer head for crushing blows and a spiked head for piercing and peeling armor.",
+    "Special": [
+      "You gain a +2 bonus on combat maneuver checks to sunder medium or heavy armor with a lucerne hammer.",
+      "Brace", "Reach"
+    ]
+  },
+  "Horsechopper": {
+    "Damage": [ "1d8", "1d10", "2d8" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "piercing", "slashing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Two-Handed",
+    "Group": [ "Polearms" ],
+
+    "Cost": 10,
+    "Weight": 12,
+    "Description": "Crafted by goblins for battling horses, this weapon is essentially a long-handled halberd with an enlarged hook on the blade.",
+    "Special": [
+      "Most horsechoppers are sized for Small creatures.",
+      "Reach", "Trip"
+    ]
+  },
+  "Lance": {
+    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Two-Handed",
+    "Group": [ "Spears" ],
+
+    "Cost": 10,
+    "Weight": 10,
+    "Description": "A long weapon for thrusting, having a wooden shaft and a pointed steel head",
+    "Special": [
+      "A lance deals double damage when used from the back of a charging mount; while mounted, you can wield a lance with one hand.",
+      "Reach"
+    ]
+  },
+  "Ogre Hook": {
+    "Damage": [ "1d8", "1d10", "2d8" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Two-Handed",
+    "Group": [ "Polearms" ],
+
+    "Cost": 24,
+    "Weight": 10,
+    "Description": "This large crook of sharpened metal makes it easy to trip and catch fleeing opponents.",
+    "Special": [
+      "Invented by ogres, most ogre hooks are Large and crudely fashioned—often from metal torn from previous victims’ weapons and armor.",
+      "Trip"
+    ]
+  },
+  "Pickaxe": {
+    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Critical": "20/x4",
+    "Range": 0,
+    "Damage Type": [ "piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Two-Handed",
+    "Group": [ "Axes" ],
+
+    "Cost": 14,
+    "Weight": 12,
+    "Description": "A two-handed version of the heavy pick, the brutal pickaxe is equally effective at breaking up earth and stone as it is at sundering flesh and bone.",
+    "Special": []
+  },
+  "Planson": {
+    "Damage": [ "1d8", "1d10", "2d8" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "bludgeoning", "piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Two-Handed",
+    "Group": [ "Hammers", "Spears" ],
+
+    "Cost": 10,
+    "Weight": 10,
+    "Description": "This 5-foot tapered pole is bound in metal with a narrow metal spike projecting from the top.",
+    "Special": [
+      "Brace"
+    ]
+  },
+  "Ranseur": {
+    "Damage": [ "1d6", "2d4", "2d6" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Two-Handed",
+    "Group": [ "Polearms" ],
+
+    "Cost": 10,
+    "Weight": 12,
+    "Description": "Similar in appearance to a trident, a ranseur has a single spear at its tip, flanked by a pair of short, curving blades.",
+    "Special": [
+      "Disarm", "Reach"
+    ]
+  },
+ "Scythe": {
+    "Damage": [ "1d6", "2d4", "2d6" ],
+    "Critical": "20/x4",
+    "Range": 0,
+    "Damage Type": [ "piercing", "slashing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Two-Handed",
+    "Group": [ "Heavy Blades" ],
+
+    "Cost": 18,
+    "Weight": 10,
+    "Description": "This weapon consists of a long wooden shaft with protruding handles and a sharp curved blade set at a right angle.",
+    "Special": [
+      "Trip"
+    ]
+  },
+  "Syringe Spear": {
+    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Critical": "20/x3",
+    "Range": 20,
+    "Damage Type": [ "piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Two-Handed",
+    "Group": [ "Spears" ],
+
+    "Cost": 100,
+    "Weight": 6,
+    "Description": "This spear has a comparment inside to store injectible liquids (poisons).",
+    "Special": [
+      "A successful hit with the spear injects the liquid contents of the container (typically poison) into the target.",
+      "Refilling a syringe spear takes 1 minute."
+    ]
+  },
+
+
+
+
+  
+  
+  
+  
+
+  
   "Test": {
     "Damage": [ "1d", "1d", "1d" ],
     "Critical": "20/x2",
