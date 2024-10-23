@@ -1,8 +1,4 @@
 {
-	"Light Armor Speed": "x1 ft.",
-	"Medium Armor Speed": "x0.66 ft.",
-	"Heavy Armor Speed": "x0.66 ft & run is x3 not x4",
-
 	"Armored Kilt": {
 		"AC Bonus": 1,
 		"Max Dex": 6,

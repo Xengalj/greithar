@@ -1,0 +1,862 @@
+{
+  "Unarmed Strike": {
+    "Damage": [ "1d2", "1d3", "1d4" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning", "Nonlethal" ],
+
+    "Proficiency": "Simple",
+    "Category": "Unarmed",
+    "Group": [ "Close" ],
+
+    "Cost": 0,
+    "Weight": 0,
+    "Description": "Just a punch or slap of the hand.",
+    "Special": [
+      "Unarmed strikes are always considered light attacks and can be used with the weapon finesse feat.",
+      "Unarmed strikes do not count as natural weapons"
+    ]
+  },
+  "Gauntlet": {
+    "Damage": [ "1d2", "1d3", "1d4" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning" ],
+
+    "Proficiency": "Simple",
+    "Category": "Unarmed",
+    "Group": [ "Close" ],
+
+    "Cost": 2,
+    "Weight": 1,
+    "Description": "A metal glove that lets you deal lethal damage with unarmed strikes. Medium and heavy armors (except breastplate) come with gauntlets.",
+    "Special": [
+      "Your opponent cannot use a disarm action to disarm you of gauntlets."
+    ]
+  },
+  "Battle Aspergillum": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "budgeoning" ],
+
+    "Proficiency": "Simple",
+    "Category": "Light",
+    "Group": [ "Hammers" ],
+
+    "Cost": 5,
+    "Weight": 4,
+    "Description": "Named for the common aspergillum, a mace-like tool used by priests to sprinkle holy water, this light mace has a hollow head and a metal plug to fit the hollow’s neck.",
+    "Special": [
+      "When the mace hits a creature, holy water sprinkles out; creatures subject to damage from holy water take 1 point of additional damage.",
+      "You must refill the aspergillum after 5 hits with a standard action that provokes an AoO."
+    ]
+  },
+  "Brass Knife": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "19/x2",
+    "Range": 10,
+    "Damage Type": [ "Piercing", "Slashing" ],
+
+    "Proficiency": "Simple",
+    "Category": "Light",
+    "Group": [ "Light Blades", "Thrown" ],
+
+    "Cost": 2,
+    "Weight": 1,
+    "Description": "Though brass doesn’t hold as sharp an edge as steel, it isn’t vulnerable to rust like steel is.",
+    "Special": [
+      "Fragile"
+    ]
+  },
+  "Brass Knuckles": {
+    "Damage": [ "1d2", "1d3", "1d4" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning" ],
+
+    "Proficiency": "Simple",
+    "Category": "Light",
+    "Group": [ "Close", "Monk" ],
+
+    "Cost": 1,
+    "Weight": 1,
+    "Description": "These close combat weapons are designed to fit comfortably around the knuckles, narrowing the contact area and therefore magnifying the amount of force delivered by a punch.",
+    "Special": [
+      "You may hold an object in a hand wearing brass knucles, but you cannot weild a weapon.",
+      "You may cast a spell with somantic components with a concentration check (DC 10 + spell level).",
+      "Monk"
+    ]
+  },
+  "Cestus": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "19/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning", "Piercing" ],
+
+    "Proficiency": "Simple",
+    "Category": "Light",
+    "Group": [ "Close", "Monk" ],
+
+    "Cost": 5,
+    "Weight": 1,
+    "Description": "The cestus is a glove of leather or thick cloth that covers the wielder from mid-finger to mid-forearm, ofen reinforced with metal plates over the fingers.",
+    "Special": [
+      "You may wield or carry items while wearing a cestus, howeveer you take a -2 to all precision-based tasks involving that hand (such as opening locks).",
+      "Monk"
+    ]
+  },
+  "Dagger": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "19/x2",
+    "Range": 10,
+    "Damage Type": [ "Piercing", "Slashing" ],
+
+    "Proficiency": "Simple",
+    "Category": "Light",
+    "Group": [ "Light Blades", "Thrown", "Tribal" ],
+
+    "Cost": 2,
+    "Weight": 1,
+    "Description": "A dagger has a blade that is about 1 foot in length.",
+    "Special": [
+      "You get a +2 bonus on Sleight of Hand skill checks made to conceal a dagger on your body."
+    ]
+  },
+  "Punching Dagger": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Simple",
+    "Category": "Light",
+    "Group": [ "Close" ],
+
+    "Cost": 2,
+    "Weight": 1,
+    "Description": "A punching dagger’s blade is attached to a horizontal handle that projects out from the fist when held.",
+    "Special": []
+  },
+  "Spiked Gauntlet": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Simple",
+    "Category": "Light",
+    "Group": [ "Close" ],
+
+    "Cost": 5,
+    "Weight": 1,
+    "Description": "A glove made of metal with jagged spikes for extra damage, and the cost and weight given are for a single gauntlet.",
+    "Special": [
+      "An attack with a spiked guantlet is considered an armed attack.",
+      "Attached"
+    ]
+  },
+  "Traveling Kettle": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning" ],
+
+    "Proficiency": "Simple",
+    "Category": "Light",
+    "Group": [ "Monk" ],
+
+    "Cost": 5,
+    "Weight": 2,
+    "Description": "These small tea kettles are made with clamping lids and heavily reinforced handles.",
+    "Special": [
+      "A traveling kettle with boiling water inside deals an additional 1 point of fire damage on a hit.",
+      "Boiling water cools to a non-damaging temperature after 5 minutes.",
+      "Monk"
+    ]
+  },
+  "Hook Hand": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Slashing" ],
+
+    "Proficiency": "Simple",
+    "Category": "Light",
+    "Group": [ "Close" ],
+
+    "Cost": 10,
+    "Weight": 1,
+    "Description": "Pirates who lose a hand in the course of their adventures sometimes attach hooks to their wrists.",
+    "Special": [
+      "It takes 1 minute to attach or detach a hook hnad.",
+      "Attached",
+      "Disarm"
+    ]
+  },
+  "Kunai": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x2",
+    "Range": 10,
+    "Damage Type": [ "Bludgeoning", "Piercing" ],
+
+    "Proficiency": "Simple",
+    "Category": "Light",
+    "Group": [ "Close", "Thrown" ],
+
+    "Cost": 2,
+    "Weight": 2,
+    "Description": "Crafted from a single piece of iron, a kunai has a leaf-shaped blade and a ring for a pommel.",
+    "Special": [
+      "A kunai can readily substitute for a crowbar or piton without being damaged in the process."
+    ]
+  },
+  "Light Mace": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning" ],
+
+    "Proficiency": "Simple",
+    "Category": "Light",
+    "Group": [ "Hammers" ],
+
+    "Cost": 5,
+    "Weight": 4,
+    "Description": "A light mace is made up of an ornate metal head attached to a simple wooden or metal shaft.",
+    "Special": []
+  },
+  "Sickle": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Slashing" ],
+
+    "Proficiency": "Simple",
+    "Category": "Light",
+    "Group": [ "Light Blades" ],
+
+    "Cost": 6,
+    "Weight": 2,
+    "Description": "A curved blade extends from the basic wooden handle, though usable in a pinch the sickle is mainly a farming tool.",
+    "Special": [
+      "Trip"
+    ]
+  },
+  "Spring Blade": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x2",
+    "Range": 10,
+    "Damage Type": [ "Piercing", "Slashing" ],
+
+    "Proficiency": "Simple",
+    "Category": "Light",
+    "Group": [ "Light Blades", "Thrown" ],
+
+    "Cost": 70,
+    "Weight": 1,
+    "Description": "This 4-inch blade is attached via a hinge to a wooden handle with a slot in the center, into which the blade can be folded.",
+    "Special": [
+      "You gain a +4 bonus on Sleight of Hand checks to conceal a spring blade on your body, and noticing the hidden blade requiers a DC 20 Perception check.",
+      "Releasing the blade is a free action, and resetting it is a move action."
+    ]
+  },
+  "Wodden Stake": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x2",
+    "Range": 10,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Simple",
+    "Category": "Light",
+    "Group": [ "Close", "Thrown" ],
+
+    "Cost": 0,
+    "Weight": 1,
+    "Description": "This close combat weapon is just a sharpened piece of wood. Iron spikes used as weapons deal damage as wooden stakes.",
+    "Special": []
+  },
+
+
+  "Club": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x2",
+    "Range": 10,
+    "Damage Type": [ "Bludgeoning" ],
+
+    "Proficiency": "Simple",
+    "Category": "One-Handed",
+    "Group": [ "Hammers", "Tribal" ],
+
+    "Cost": 0,
+    "Weight": 3,
+    "Description": "This weapon is usually just a shaped piece of wood, sometimes with a few nails or studs embedded in it.",
+    "Special": []
+  },
+  "Mere Club": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning", "Piercing" ],
+
+    "Proficiency": "Simple",
+    "Category": "One-Handed",
+    "Group": [ "Close", "Hammers" ],
+
+    "Cost": 2,
+    "Weight": 2,
+    "Description": "Traditionally made of carved stone, the mere (MEH-reh) is a short, flat-sided, sharp-pointed club.",
+    "Special": [
+      "Fragile"
+    ]
+  },
+  "Heavy Mace": {
+    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning" ],
+
+    "Proficiency": "Simple",
+    "Category": "One-Handed",
+    "Group": [ "Hammers" ],
+
+    "Cost": 12,
+    "Weight": 8,
+    "Description": "A heavy mace has a larger head and a longer handle than a normal (light) mace.",
+    "Special": []
+  },
+  "Morningstar": {
+    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning", "Piercing" ],
+
+    "Proficiency": "Simple",
+    "Category": "One-Handed",
+    "Group": [ "Hammers", "Flails" ],
+
+    "Cost": 8,
+    "Weight": 6,
+    "Description": "A morningstar is a spiked metal ball, affixed to the top of a long handle.",
+    "Special": []
+  },
+  "Shortspear": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x2",
+    "Range": 20,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Simple",
+    "Category": "One-Handed",
+    "Group": [ "Spears", "Thrown", "Tribal" ],
+
+    "Cost": 1,
+    "Weight": 3,
+    "Description": "A shortspear is about 3 feet in length, making it a suitable thrown weapon.",
+    "Special": []
+  },
+
+
+  "Bayonet": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Simple",
+    "Category": "Two-Handed",
+    "Group": [ "Light Blades", "Close" ],
+
+    "Cost": 5,
+    "Weight": 1,
+    "Description": "Bayonets are close combat weapons designed to fit into the grooves or muzzles of crossbows and firearms.",
+    "Special": [
+      "Bayonets allow you to make melee attacks with these weapons but render them temporarily useless as ranged weapons.",
+      "Attaching or removing a bayonet is a move action."
+    ]
+  },
+  "Boarding Pike": {
+    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Simple",
+    "Category": "Two-Handed",
+    "Group": [ "Polearms" ],
+
+    "Cost": 8,
+    "Weight": 9,
+    "Description": "A boarding pike is an 8-foot-long pole topped with a foot-long tapered metal tip.",
+    "Special": [
+      "Brace",
+      "Reach"
+    ]
+  },
+  "Kumade": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Simple",
+    "Category": "Two-Handed",
+    "Group": [ "Axes" ],
+
+    "Cost": 5,
+    "Weight": 4,
+    "Description": "Adapted from a garden rake, the kumade consists of a wood or bamboo pole topped with a metal claw.",
+    "Special": [
+      "When a kumade is secured to a surface, such as a rafter or window sill, its handle can be climbed as a 5-foot length of rope.",
+      "Grapple"
+    ]
+  },
+  "Collapsible Kumade": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Simple",
+    "Category": "Two-Handed",
+    "Group": [ "Axes" ],
+
+    "Cost": 10,
+    "Weight": 4,
+    "Description": "This weapon acts as a kumade, but the handle consists of bamboo sections held together by a taut rope running through the center.",
+    "Special": [
+      "When a kumade is secured to a surface, such as a rafter or window sill, its handle can be climbed as a 5-foot length of rope.",
+      "Releasing the rope is a standard action that provokes attacks of opportunity and causes the weapon to collapse into a bundle that fits into a backpack.",
+      "Reassembling the collapsible kumade requires a full-round action that provokes attacks of opportunity.",
+      "Grapple"
+    ]
+  },
+  "Lantern Staff": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning" ],
+
+    "Proficiency": "Simple",
+    "Category": "Two-Handed",
+    "Group": [ "Hammers" ],
+
+    "Cost": 15,
+    "Weight": 9,
+    "Description": "This long metal staff has reservoirs for lamp oil, and a lantern-like structure at its head.",
+    "Special": [
+      "The lantern staff is fuelled as and provides light as a hooded lantern.",
+      "While lit, attacks with the lantern staff deal 1 point of fire damage in addition to the normal damage."
+    ]
+  },
+  "Longspear": {
+    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Simple",
+    "Category": "Two-Handed",
+    "Group": [ "Spears" ],
+
+    "Cost": 5,
+    "Weight": 9,
+    "Description": "A longspear is about 8 feet in length.",
+    "Special": [
+      "Brace",
+      "Reach"
+    ]
+  },
+  "Quarterstaff": {
+    "Damage": [ "1d4/1d4", "1d6/1d6", "1d8/1d8" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning" ],
+
+    "Proficiency": "Simple",
+    "Category": "Two-Handed",
+    "Group": [ "Double", "Monk" ],
+
+    "Cost": 0,
+    "Weight": 4,
+    "Description": "A quarterstaff is a simple piece of wood, about 5 feet in length.",
+    "Special": [
+      "Double",
+      "Monk"
+    ]
+  },
+  "Spear": {
+    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Simple",
+    "Category": "Two-Handed",
+    "Group": [ "Spears", "Thrown", "Tribal" ],
+
+    "Cost": 2,
+    "Weight": 6,
+    "Description": "A spear is 5 feet in length and can be thrown.",
+    "Special": [
+      "Brace"
+    ]
+  },
+  "Boar Spear": {
+    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Simple",
+    "Category": "Two-Handed",
+    "Group": [ "Spears" ],
+
+    "Cost": 5,
+    "Weight": 8,
+    "Description": "This spear with a spiraling blade has a metal crossbar approximately halfway down its length.",
+    "Special": [
+      "Brace",
+      "If you ready a boar spear against a charge and your attack hits, you get a +2 shield bonus to your AC against that creature until your next turn."
+    ]
+  },
+  "Weighted Spear": {
+    "Damage": [ "1d6/1d4", "1d8/1d6", "2d6/1d8" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning", "Slashing" ],
+
+    "Proficiency": "Simple",
+    "Category": "Two-Handed",
+    "Group": [ "Spears", "Double" ],
+
+    "Cost": 10,
+    "Weight": 8,
+    "Description": "This pole has a spear head at one end and a mace head at the other.",
+    "Special": [
+      "A weighted spear can be used as a regular spear, or as a double weapon, with the mace head dealing bludgeoning damage and only x2 on a crit.",
+      "Brace",
+      "Double"
+    ]
+  },
+
+
+  "Blowgun": {
+    "Damage": [ "1", "1d2", "1d3" ],
+    "Critical": "20/x2",
+    "Range": 20,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Simple",
+    "Category": "Ranged",
+    "Group": [ "Thrown" ],
+
+    "Cost": 2,
+    "Weight": 1,
+    "Description": "Blowguns are generally used to deliver debilitating (but rarely fatal) poisons from a distance. They are nearly silent when fired.",
+    "Special": []
+  },
+  "Heavy Crossbow": {
+    "Damage": [ "1d8", "1d10", "2d8" ],
+    "Critical": "19/x2",
+    "Range": 120,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Simple",
+    "Category": "Ranged",
+    "Group": [ "Crossbows" ],
+
+    "Cost": 50,
+    "Weight": 8,
+    "Description": "You draw a Heavy Crossbow back by turning a small winch.",
+    "Special": [
+      "Loading a heavy crossbow is a full-round action that provokes attacks of opportunity, using two hands.",
+      "You may shoot a havy crossbow with one hand at a -4 on attack rolls",
+      "You can choost a heavy crossbow with each hand, teating them as one-handed weapons (the -4 is cumulative with the two-weapon fighting penalty)."
+    ]
+  },
+  "Heavy Crossbow (Underwater)": {
+    "Damage": [ "1d8", "1d10", "2d8" ],
+    "Critical": "19/x2",
+    "Range": 120,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Simple",
+    "Category": "Ranged",
+    "Group": [ "Crossbows" ],
+
+    "Cost": 100,
+    "Weight": 8,
+    "Description": "An Underwater Crossbow functions as a regular crossbow above water.",
+    "Special": [
+      "When fired underwater, the crossbow has a range increment of 20 feet."
+    ]
+  },
+  "Light Crossbow": {
+    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Critical": "19/x2",
+    "Range": 80,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Simple",
+    "Category": "Ranged",
+    "Group": [ "Crossbows" ],
+
+    "Cost": 35,
+    "Weight": 4,
+    "Description": "You draw a Light Crossbow back by pulling a lever.",
+    "Special": [
+      "Loading a light crossbow is a move action that provokes attacks of opportunity, using two hands.",
+      "You may shoot a light crossbow with one hand at a -2 on attack rolls",
+      "You can choost a light crossbow with each hand, teating them as light weapons (the -2 is cumulative with the two-weapon fighting penalty)."
+    ]
+  },
+  "Light Crossbow (Underwater)": {
+    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Critical": "19/x2",
+    "Range": 80,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Simple",
+    "Category": "Ranged",
+    "Group": [ "Crossbows" ],
+
+    "Cost": 70,
+    "Weight": 4,
+    "Description": "An Underwater Crossbow functions as a regular crossbow above water.",
+    "Special": [
+      "When fired underwater, the crossbow has a range increment of 20 feet."
+    ]
+  },
+  "Sling": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x2",
+    "Range": 50,
+    "Damage Type": [ "Bludgeoning" ],
+
+    "Proficiency": "Simple",
+    "Category": "Ranged",
+    "Group": [ "Thrown" ],
+
+    "Cost": 0,
+    "Weight": 0,
+    "Description": "A sling is little more than a leather cup attached to a pair of strings.",
+    "Special": [
+      "Your Strength modifier applies to damage rolls when you use a sling, just as it does for thrown weapons.",
+      "Loading a sling is a move action that requires two hands and provokes attacks of opportunity.",
+      "You can fire, but not load, a sling with one hand.",
+      "You may fire ordinary stones with a sling at a -1 to attack rolls and dealing damage as 1 size smaller."
+    ]
+  },
+  "Stingchuck": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x2",
+    "Range": 10,
+    "Damage Type": [ "Bludgeoning" ],
+
+    "Proficiency": "Simple",
+    "Category": "Ranged",
+    "Group": [ "Thrown" ],
+
+    "Cost": 0,
+    "Weight": 9,
+    "Description": "A stingchuck is a foul bag made of a humanoid’s head with the brain removed and the skull heavily scored so that it bursts open when thrown.",
+    "Special": [
+      "A sucessful hit releases the contens, dealing 1d6 damage and forcing a DC 11 Fortitude save to avoid being nauseated for 1d3 rounds.",
+      "Each round a creature remains nauseated by a stingchuck, it takes 1 additional point of damage from the biting vermin.",
+      "All creatures within the splash effect take 1 point of damage from the vermin but do not risk being nauseated."
+    ]
+  },
+  "Stonebow": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x2",
+    "Range": 50,
+    "Damage Type": [ "Bludgeoning" ],
+
+    "Proficiency": "Simple",
+    "Category": "Ranged",
+    "Group": [ "Crossbows" ],
+
+    "Cost": 35,
+    "Weight": 4,
+    "Description": "A stonebow, or bullet crossbow, resembles a light crossbow except for the distinct U-shaped bend in the stock to fire sling bullets.",
+    "Special": [
+      "Loading a stonebow is a move action that provokes attacks of opportunity, requiring two hands.",
+      "You may shoot a stonebow with one hand at a -2 on attack rolls.",
+      "You can choost a stonebow with each hand, teating them as light weapons (the -2 is cumulative with the two-weapon fighting penalty).",
+      "You may fire ordinary stones with a sling at a -1 to attack rolls and dealing damage as 1 size smaller."
+    ]
+  },
+
+
+
+
+
+  "Throwing Darts": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x2",
+    "Range": 20,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Simple",
+    "Category": "Ammunition",
+    "Group": [ "Thrown" ],
+
+    "Cost": 0.5,
+    "Weight": 0.5,
+    "Description": "Darts are missile weapons, designed to fly such that a sharp, often weighted point will strike first.",
+    "Special": []
+  },
+  "Crossbow Bolts": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Simple",
+    "Category": "Ammunition",
+    "Group": [ "Crossbows" ],
+
+    "Cost": 0.1,
+    "Weight": 0.1,
+    "Description": "These bolts come in a case or quiver that holds 10 bolts (or 5 for a repeating crossbow).",
+    "Special": [
+      "The given weapon stats are for a single colt, and using it as a melee weapon.",
+      "When using the bolt as a melee weapon, treat it as a light improvised weapon, with a -4 to attack rolls."
+    ]
+  },
+  "Crossbow Bolts, Acid": {
+    "Damage": [ "1d4" ],
+    "Critical": "0/x0",
+    "Range": 0,
+    "Damage Type": [ "acid" ],
+
+    "Proficiency": "Simple",
+    "Category": "Ammunition",
+    "Group": [ "Crossbows" ],
+
+    "Cost": 40,
+    "Weight": 0.1,
+    "Description": "These metal bolts have a glass section in the middle, filled with acid.",
+    "Special": [
+      "These bolts deal their additional acid damage on a sucessful hit."
+    ]
+  },
+  "Crossbow Bolts, Drow Poison": {
+    "Damage": [ "0" ],
+    "Critical": "0/x0",
+    "Range": 0,
+    "Damage Type": [ "none" ],
+
+    "Proficiency": "Simple",
+    "Category": "Ammunition",
+    "Group": [ "Crossbows" ],
+
+    "Cost": 100,
+    "Weight": 0.1,
+    "Description": "These bolts have a strange tip that delivers the poison, but also affects accuracy.",
+    "Special": [
+      "Drow poison (DC 13 Fort)",
+      "Range penalties are doubled when using a drow poison bolt"
+    ]
+  },
+  "Crossbow Bolts, Fire": {
+    "Damage": [ "1d4" ],
+    "Critical": "0/x0",
+    "Range": 0,
+    "Damage Type": [ "fire" ],
+
+    "Proficiency": "Simple",
+    "Category": "Ammunition",
+    "Group": [ "Crossbows" ],
+
+    "Cost": 50,
+    "Weight": 0.1,
+    "Description": "These metal bolts have a glass section in the middle, filled with a alchemical fire.",
+    "Special": [
+      "These bolts deal their additional fire damage on a sucessful hit."
+    ]
+  },
+    "Javelin": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x2",
+    "Range": 30,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Simple",
+    "Category": "Ranged",
+    "Group": [ "Spears", "Thrown" ],
+
+    "Cost": 1,
+    "Weight": 2,
+    "Description": "A javelin is a thin throwing spear.",
+    "Special": [
+      "If used as a melee weapon, you are treated as non-proficient with it and take a –4 penalty on attack rolls."
+    ]
+  },
+  "Sling Bullets": {
+    "Damage": [ "0" ],
+    "Critical": 0,
+    "Range": 0,
+    "Damage Type": [ "none" ],
+
+    "Proficiency": "Simple",
+    "Category": "Ammunition",
+    "Group": [ "Crossbows" ],
+
+    "Cost": 0.01,
+    "Weight": 0.5,
+    "Description": "These bullets come in a leather pouch that holds 10 bullets.",
+    "Special": []
+  },
+  "Sling Bullets, Groaning": {
+    "Damage": [ "0" ],
+    "Critical": "0/x0",
+    "Range": 0,
+    "Damage Type": [ "none" ],
+
+    "Proficiency": "Simple",
+    "Category": "Ammunition",
+    "Group": [ "Crossbows" ],
+
+    "Cost": 0.2,
+    "Weight": 0.5,
+    "Description": "These sling bullets are honeycombed with overlapping perforations that cause them to emit an eerie moan audible within 500 feet of their flight path.",
+    "Special": []
+  },
+  "Sling Bullets, Smoke": {
+    "Damage": [ "0" ],
+    "Critical": "0/x0",
+    "Range": 0,
+    "Damage Type": [ "none" ],
+
+    "Proficiency": "Simple",
+    "Category": "Ammunition",
+    "Group": [ "Crossbows" ],
+
+    "Cost": 10,
+    "Weight": 0.5,
+    "Description": "Smoke bullets burst open when striking a target to release a gas that can nauseate nearby creatures.",
+    "Special": [
+      "Smoke bullets require only a successful touch attack to release the smoke.",
+      "The target is nauseated for 2 rounds unless it passes a DC 13 Fortitude save."
+    ]
+  },
+  "Blowgun Darts": {
+    "Damage": [ "0" ],
+    "Critical": "0/x0",
+    "Range": 0,
+    "Damage Type": [ "none" ],
+
+    "Proficiency": "Simple",
+    "Category": "Ammunition",
+    "Group": [ "Misc" ],
+
+    "Cost": 0.05,
+    "Weight": 0,
+    "Description": "These light darts have tiny grooves behind the tips.",
+    "Special": [
+      "A character can apply poison to a blowgun dart without risk of poisoning himself."
+    ]
+  }
+}

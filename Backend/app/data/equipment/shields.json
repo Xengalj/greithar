@@ -1,10 +1,4 @@
 {
-  "rules": [
-    "You lose your AC bonus from a shield you bash with until your next turn.",
-    "you must have martial proficiency to make a shield bash"
-  ],
-
-
   "Buckler": {
     "AC Bonus": 1,
     "Max Dex": 10,
@@ -12,11 +6,10 @@
     "Spell Failure": "5%",
 
     "Damage": [ "0", "0", "0" ],
-    "Crit Range": 0,
-    "Crit Multiplier": 0,
-    "dmgType": [ "none" ],
-    "category": "",
-    "group": [ "" ],
+    "Critical": "0",
+    "Damage Type": [ "none" ],
+    "Category": "",
+    "Group": [ "" ],
 
     "Cost": 5,
     "Weight": 5,
@@ -33,11 +26,10 @@
     "Spell Failure": "5%",
 
     "Damage": [ "1d4", "1d6", "1d8" ],
-    "critRange": 20,
-    "critMultiplier": 2,
-    "dmgType": [ "slashing" ],
-    "category": "One-Handed",
-    "group": [ "Heavy Blades", "Close" ],
+    "Critical": "20/x2",
+    "Damage Type": [ "Slashing" ],
+    "Category": "One-Handed",
+    "Group": [ "Heavy Blades", "Close" ],
 
     "Cost": 12,
     "Weight": 6,
@@ -51,12 +43,10 @@
     "Spell Failure": "5%",
 
     "Damage": [ "1d3", "1d4", "1d6" ],
-    "critRange": 20,
-    "critMultiplier": 2,
-    "dmgType": [ "piercing" ],
-    "category": "Light",
-    "group": [ "Close" , "Tribal" ],
-
+    "Critical": "20/x2",
+    "Damage Type": [ "Piercing" ],
+    "Category": "Light",
+    "Group": [ "Close" , "Tribal" ],
 
     "Cost": 30,
     "Weight": 5,
@@ -73,11 +63,10 @@
     "Spell Failure": "5%",
 
     "Damage": [ "1d3", "1d4", "1d6" ],
-    "critRange": 20,
-    "critMultiplier": 2,
-    "dmgType": [ "piercing" ],
-    "category": "Light",
-    "group": [ "Close", "Tribal" ],
+    "Critical": "20/x2",
+    "Damage Type": [ "Piercing" ],
+    "Category": "Light",
+    "Group": [ "Close", "Tribal" ],
 
     "Cost": 40,
     "Weight": 6,
@@ -94,11 +83,10 @@
     "Spell Failure": "5%",
 
     "Damage": [ "1d2", "1d3", "1d4" ],
-    "critRange": 20,
-    "critMultiplier": 2,
-    "dmgType": [ "bludgeoning" ],
-    "category": "Light",
-    "group": [ "Close", "Tribal" ],
+    "Critical": "20/x2",
+    "Damage Type": [ "Bludgeoning" ],
+    "Category": "Light",
+    "Group": [ "Close", "Tribal" ],
 
     "Cost": 9,
     "Weight": 6,
@@ -112,11 +100,10 @@
     "Spell Failure": "5%",
 
     "Damage": [ "1d2", "1d3", "1d4" ],
-    "critRange": 20,
-    "critMultiplier": 2,
-    "dmgType": [ "bludgeoning" ],
-    "category": "Light",
-    "group": [ "Close", "Tribal" ],
+    "Critical": "20/x2",
+    "Damage Type": [ "Bludgeoning" ],
+    "Category": "Light",
+    "Group": [ "Close", "Tribal" ],
 
     "Cost": 59,
     "Weight": 7,
@@ -134,11 +121,10 @@
     "Spell Failure": "5%",
 
     "Damage": [ "1d2", "1d3", "1d4" ],
-    "critRange": 20,
-    "critMultiplier": 2,
-    "dmgType": [ "bludgeoning" ],
-    "category": "Light",
-    "group": [ "Close", "Tribal" ],
+    "Critical": "20/x2",
+    "Damage Type": [ "Bludgeoning" ],
+    "Category": "Light",
+    "Group": [ "Close", "Tribal" ],
 
     "Cost": 3,
     "Weight": 5,
@@ -152,11 +138,10 @@
     "Spell Failure": "5%",
 
     "Damage": [ "1d2", "1d3", "1d4" ],
-    "critRange": 20,
-    "critMultiplier": 2,
-    "dmgType": [ "bludgeoning" ],
-    "category": "Light",
-    "group": [ "Close", "Tribal" ],
+    "Critical": "20/x2",
+    "Damage Type": [ "Bludgeoning" ],
+    "Category": "Light",
+    "Group": [ "Close", "Tribal" ],
 
     "Cost": 53,
     "Weight": 6,
@@ -174,11 +159,10 @@
     "Spell Failure": "15%",
 
     "Damage": [ "1d3", "1d4", "1d6" ],
-    "critRange": 20,
-    "critMultiplier": 2,
-    "dmgType": [ "blugeoning" ],
-    "category": "One-Handed",
-    "group": [ "Close", "Tribal" ],
+    "Critical": "20/x2",
+    "Damage Type": [ "blugeoning" ],
+    "Category": "One-Handed",
+    "Group": [ "Close", "Tribal" ],
 
     "Cost": 20,
     "Weight": 15,
@@ -192,11 +176,10 @@
     "Spell Failure": "15%",
 
     "Damage": [ "1d3", "1d4", "1d6" ],
-    "critRange": 20,
-    "critMultiplier": 2,
-    "dmgType": [ "blugeoning" ],
-    "category": "One-Handed",
-    "group": [ "Close", "Tribal" ],
+    "Critical": "20/x2",
+    "Damage Type": [ "blugeoning" ],
+    "Category": "One-Handed",
+    "Group": [ "Close", "Tribal" ],
 
     "Cost": 7,
     "Weight": 10,
@@ -210,11 +193,10 @@
     "Spell Failure": "50%",
 
     "Damage": [ "0", "0", "0" ],
-    "critRange": 0,
-    "critMultiplier": 0,
-    "dmgType": [ "none" ],
-    "category": "",
-    "group": [ "" ],
+    "Critical": "0",
+    "Damage Type": [ "none" ],
+    "Category": "",
+    "Group": [ "" ],
 
     "Cost": 30,
     "Weight": 45,
@@ -231,11 +213,10 @@
     "Spell Failure": "15%",
 
     "Damage": [ "1d3", "1d4", "1d6" ],
-    "critRange": 20,
-    "critMultiplier": 2,
-    "dmgType": [ "blugeoning" ],
-    "category": "One-Handed",
-    "group": [ "Close", "Tribal" ],
+    "Critical": "20/x2",
+    "Damage Type": [ "blugeoning" ],
+    "Category": "One-Handed",
+    "Group": [ "Close", "Tribal" ],
 
     "Cost": 50,
     "Weight": 20,
@@ -251,11 +232,10 @@
     "Spell Failure": "15%",
 
     "Damage": [ "1d3", "1d4", "1d6" ],
-    "critRange": 20,
-    "critMultiplier": 2,
-    "dmgType": [ "blugeoning" ],
-    "category": "One-Handed",
-    "group": [ "Close", "Tribal" ],
+    "Critical": "20/x2",
+    "Damage Type": [ "blugeoning" ],
+    "Category": "One-Handed",
+    "Group": [ "Close", "Tribal" ],
 
     "Cost": 37,
     "Weight": 15,
@@ -271,11 +251,10 @@
     "Spell Failure": "20%",
 
     "Damage": [ "1d4", "1d6", "1d8" ],
-    "critRange": 20,
-    "critMultiplier": 2,
-    "dmgType": [ "piercing", "slashing" ],
-    "category": "Light",
-    "group": [ "Close" ],
+    "Critical": "20/x2",
+    "Damage Type": [ "Piercing", "Slashing" ],
+    "Category": "Light",
+    "Group": [ "Close" ],
 
     "Cost": 50,
     "Weight": 8,

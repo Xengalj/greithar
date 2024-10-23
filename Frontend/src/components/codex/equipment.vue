@@ -1,24 +1,28 @@
 <template>
-  <div class="container">
+  <div style="margin: 25px;">
+    <div class="hero-section">
+      Select Item Type
+      <el-select
+        v-model="selectedType"
+        value-key="label"
+        style="width: 240px"
+        v-on:change="tableUpdate()"
+      >
+        <el-option v-for="item in equipmentTypes" :key="item.label" :label="item.label" :value="item" >
+          <div class="flex items-center">
+            <el-tag :color="item.color" style="margin-right: 8px" size="small" />
+            <span :style="{ color: item.color }">{{ item.label }}</span>
+          </div>
+        </el-option>
+      </el-select>
 
-    Select Item Type
-    <el-select
-      v-model="selectedType"
-      value-key="label"
-      style="width: 240px"
-      v-on:change="tableUpdate()"
-    >
+      <el-row>
+        {{ rules }}
+      </el-row>
 
-      <el-option v-for="item in equipmentTypes" :key="item.label" :label="item.label" :value="item" >
-        <div class="flex items-center">
-          <el-tag :color="item.color" style="margin-right: 8px" size="small" />
-          <span :style="{ color: item.color }">{{ item.label }}</span>
-        </div>
-      </el-option>
-    </el-select>
+    </div>
 
-
-    <g-table
+    <equipment-table
       :id="tableName"
       :data="tableData"
       :filters="tableFilters"
@@ -29,11 +33,11 @@
 
 <script>
 import DataService from "@/services/data.service";
-
-// const equipmentTable = require("@/components/codex/equipment.json");
+import EquipmentTable from "./EquipmentTable.vue";
 
 export default {
   name: "Equipment",
+  components: { EquipmentTable },
   data() {
     return {
       equipment: {}, // equipment JSON from server
@@ -43,13 +47,15 @@ export default {
       tableFilters: {},
 
       equipmentTypes: {
-        "Armor": { label: "Armor", color: "#4167F0" },
-        "Shields": { label: "Shields", color: "#14CCCC" },
-        "Weapons": { label: "Weapons", color: "#FF6600" },
-        "Special Materials": { label: "Special Materials", color: "#6222C9" },
-        "Goods and Services": { label: "Goods and Services", color: "#FFDE0A" }
+        "Armor":              { color: "#4167F0", label: "Armor" },
+        "Shields":            { color: "#14CCCC", label: "Shields" },
+        "Weapons":            { color: "#FF6600", label: "Weapons" },
+        "Materials":          { color: "#71797E", label: "Materials" },
+        "Goods and Services": { color: "#FFDE0A", label: "Goods and Services" }
       },
-      selectedType: { label: "Armor", color: "#4167F0" }
+      selectedType: { label: "Armor", color: "#4167F0" },
+
+      rules: {}
     };
   },
 
@@ -70,78 +76,117 @@ export default {
 
     },
     tableUpdate() {
-      this.tableData = this.equipment[this.selectedType.label] ? this.equipment[this.selectedType.label] : this.equipment["Armor"];
+      this.tableData = this.equipment[this.selectedType.label] ? this.equipment[this.selectedType.label] : {};
 
       switch (this.selectedType.label) {
         case "Armor":
+          this.rules = {
+            "Light Armor Speed": "x1 ft.",
+            "Medium Armor Speed": "x0.66 ft.",
+            "Heavy Armor Speed": "x0.66 ft & run is x3 not x4"
+          };
+
           this.tableFilters = {
             "Proficiency": {
-              "Light": { label: "Light", color: "#1EC79D" },
-              "Medium": { label: "Medium", color: "#FF6600" },
-              "Heavy": { label: "Heavy", color: "#E63415" },
+              "Light":        { color: "#1EC79D", label: "Light" },
+              "Medium":       { color: "#FFDE0A", label: "Medium" },
+              "Heavy":        { color: "#E63415", label: "Heavy" },
             }
           };
           break;
 
         case "Shields":
+          this.rules = {
+            "Shield Bash": "You must have martial proficiency to make a shield bash, and doing so causes you to lose your AC bonus from your shield for a turn."
+          };
           this.tableFilters = {
-            "Proficiency": {
-              "Light": { label: "Light", color: "#1EC79D" },
-              "Martial": { label: "Martial", color: "#FF6600" },
-              "Exotic": { label: "Exotic", color: "#E63415" },
+            "Group": {
+              "Light Blades": { color: '#FF6600', label: 'Light Blades' },
+              "Heavy Blades": { color: '#FFDE0A', label: 'Heavy Blades' },
+              "Close":        { color: '#4167F0', label: 'Close' },
+              "Thrown":       { color: '#aaffc3', label: 'Thrown' },
+              "Tribal":       { color: '#dcbeff', label: 'Tribal' }
             }
           };
           break;
 
         case "Weapons":
+          this.rules = {
+            "Proficiency": "If do not have proficiency with a weapon, you take a -4 on Attack Rolls to hit."
+          };
           this.tableFilters = {
+            "Damage Type": {
+              "Slashing":     { color: "#E63415", label: "Slashing" },
+              "Piercing":     { color: "#FFDE0A", label: "Piercing" },
+              "Bludgeoning":  { color: "#4167F0", label: "Bludgeoning" }
+            },
             "Proficiency": {
-              "Light": { label: "Light", color: "#1EC79D" },
-              "Martial": { label: "Martial", color: "#FF6600" },
-              "Exotic": { label: "Exotic", color: "#E63415" },
+              "Simple":       { color: "#1EC79D", label: "Simple" },
+              "Martial":      { color: "#FFDE0A", label: "Martial" },
+              "Exotic":       { color: "#E63415", label: "Exotic" },
             },
             "Category": {
-              "Unarmed": { label: "Unarmed", color: "#E63415" },
-              "Light": { label: "Light", color: "#FF6600" },
-              "One-Handed": { label: "One-Handed", color: "#FFDE0A" },
-              "Two-Handed": { label: "Two-Handed", color: "#1EC79D" },
-              "Ranged": { label: "Ranged", color: "#4167F0" },
-              "Ammunition": { label: "Ammunition", color: "#6222C9" }
+              "Unarmed":      { color: "#E63415", label: "Unarmed" },
+              "Light":        { color: "#FF6600", label: "Light" },
+              "One-Handed":   { color: "#FFDE0A", label: "One-Handed" },
+              "Two-Handed":   { color: "#1EC79D", label: "Two-Handed" },
+              "Ranged":       { color: "#4167F0", label: "Ranged" },
+              "Ammunition":   { color: "#6222C9", label: "Ammunition" }
             },
             "Group": {
-              "Close": { label: "Close", color: "#E63415" }
-            },
-            "Damage Type": {
-              "Slashing": { label: "Slashing", color: "#E63415" },
-              "Piercing": { label: "Piercing", color: "#FFDE0A" },
-              "Bludgeoning": { label: "Bludgeoning", color: "#4167F0" }
+              "Axes":         { color: '#E63415', label: 'Axes' },
+              "Light Blades": { color: '#FF6600', label: 'Light Blades' },
+              "Heavy Blades": { color: '#FFDE0A', label: 'Heavy Blades' },
+              "Bows":         { color: '#3cb44b', label: 'Bows' },
+              "Close":        { color: '#4167F0', label: 'Close' },
+              "Crossbows":    { color: '#911eb4', label: 'Crossbows' },
+              "Double":       { color: '#800000', label: 'Double' },
+              "Flails":       { color: '#bfef45', label: 'Flails' },
+              "Hammers":      { color: '#1EC79D', label: 'Hammers' },
+              "Monk":         { color: '#42d4f4', label: 'Monk' },
+              "Natural":      { color: '#000075', label: 'Natural' },
+              "Polearms":     { color: '#f032e6', label: 'Polearms' },
+              "Spears":       { color: '#ffd8b1', label: 'Spears' },
+              "Thrown":       { color: '#aaffc3', label: 'Thrown' },
+              "Tribal":       { color: '#dcbeff', label: 'Tribal' }
             }
           };
           break;
 
-        case "Special Materials":
+        case "Materials":
+          this.rules = {};
           this.tableFilters = {
             "Type": {
-              "Wood": { label: "Wood", color: "#84240C" },
-              "Metal": { label: "Metal", color: "#71797E" },
-              "Organic": { label: "Organic", color: "#FFCBC4." },
-              "Other": { label: "Other", color: "#F259FF" },
+              "Metal":        { color: "#71797E", label: "Metal" },
+              "Textile":      { color: "#42d4f4", label: "Textile" },
+              "Stone":        { color: "#dcbeff", label: "Stone" },
+              "Organic":      { color: "#ffd8b1", label: "Organic" }
             }
           };
           break;
 
         case "Goods and Services":
+          this.rules = {};
           this.tableFilters = {
             "Category": {
-              "Adventuring Gear": { label: "Adventuring Gear", color: "#E63415" },
-              "Alchemical Creations": { label: "Alchemical Creations", color: "#FF6600" },
-              "Animals & Animal Gear": { label: "Animals & Animal Gear", color: "#FFDE0A" },
-              "Books & Writing": { label: "Books & Writing", color: "#1EC79D" },
-              "Clothing & Containers": { label: "Clothing & Containers", color: "#14CCCC" },
-              "Furniture, Trade Goods & Vehicles": { label: "Furniture, Trade Goods & Vehicles", color: "#4167F0" },
-              "Hirelings, Servants & Services": { label: "Hirelings, Servants & Services", color: "#6222C9" },
-              "Locks, Keys, Tools & Kits": { label: "Locks, Keys, Tools & Kits", color: "#71797E" },
-              "Religious Items, Toys & Games": { label: "Religious Items, Toys & Games", color: "#F259FF" }
+              "Adventuring Gear":
+                              { color: "#E63415", label: "Adventuring Gear" },
+              "Alchemical Creations":
+                              { color: "#FF6600", label: "Alchemical Creations" },
+              "Animals & Animal Gear":
+                              { color: "#FFDE0A", label: "Animals & Animal Gear" },
+              "Books & Writing":
+                              { color: "#3cb44b", label: "Books & Writing" },
+              "Clothing & Containers":
+                              { color: "#4167F0", label: "Clothing & Containers" },
+              "Furniture, Trade Goods & Vehicles":
+                              { color: "#911eb4", label: "Furniture, Trade Goods & Vehicles" },
+              "Hirelings, Servants & Services":
+                              { color: "#800000", label: "Hirelings, Servants & Services" },
+              "Locks, Keys, Tools & Kits":
+                              { color: "#bfef45", label: "Locks, Keys, Tools & Kits" },
+              "Religious Items, Toys & Games":
+                              { color: "#1EC79D", label: "Religious Items, Toys & Games" }
             }
           };
           break;
@@ -155,3 +200,9 @@ export default {
   }
 };
 </script>
+<style media="screen">
+  .hero-section {
+    color: #CCC;
+    text-align: center;
+  }
+</style>

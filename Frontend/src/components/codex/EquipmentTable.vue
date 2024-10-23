@@ -16,7 +16,6 @@
           {{ item.label }}
         </el-tag>
       </template>
-
       <el-option v-for="item in filter" :key="item.label" :label="item.label" :value="item" >
         <div class="flex items-center">
           <el-tag :color="item.color" style="margin-right: 8px" size="small" />
@@ -34,8 +33,9 @@
           </div>
         </template>
       </template>
-
     </el-select>
+
+    <el-button @click="clearFilter" size="large">Reset</el-button>
   </div>
 
   <table :id="id" class="g-table">
@@ -47,7 +47,28 @@
     <tr v-for="(item, name) in data" :key="name">
       <td name="Name">{{ name }}</td>
       <td v-for="(prop, key) in item" :key="key" :name="key">
-        {{ Array.isArray(prop) ? displayList(prop) : prop }}
+
+        <div v-if="Array.isArray(prop)">
+          <el-collapse v-if="key == 'Special' && prop[0] ">
+            <el-collapse-item title="" name="1">
+              <template #title> <g-icon iconName="star" /> Extras </template>
+              <ul>
+                <li v-for="item in prop" :key="item"> {{ item }} </li>
+              </ul>
+            </el-collapse-item>
+          </el-collapse>
+
+          <ul v-else>
+            <li v-for="item in prop" :key="item"> {{ item }} </li>
+          </ul>
+        </div>
+
+        <div v-else>
+          <div>
+            <span> {{ prop }} </span>
+          </div>
+        </div>
+
       </td>
     </tr>
   </table>
@@ -55,7 +76,7 @@
 
 <script>
 export default {
-  name: "g-table",
+  name: "equipment-table",
   props: {
     id: { type: String, required: true },
     data: { type: Object, required: true },
@@ -64,11 +85,12 @@ export default {
   },
   computed: {
     tableFilters() {
+      // console.log(this.filters);
       return this.filters;
     },
     tableCols() {
       let first = Object.values(this.data)[0];
-      return first ? ["Name"].concat(Object.keys(first)) : ["Name 2"];
+      return first ? ["Name"].concat(Object.keys(first)) : ["No Data"];
     }
   },
   data() {
@@ -77,20 +99,36 @@ export default {
       isAdding: false,  // Adding a new filter option
       newOption: {},    // The new filter option to add
 
-      /*
-      //   { value: '#E63415', label: 'red' },
-      //   { value: '#FF6600', label: 'orange' },
-      //   { value: '#FFDE0A', label: 'yellow' },
-      //   { value: '#1EC79D', label: 'green' },
-      //   { value: '#14CCCC', label: 'cyan' },
-      //   { value: '#4167F0', label: 'blue' },
-      //   { value: '#6222C9', label: 'purple' }
-      */
+      colors: [
+        { value: '#E63415', label: 'Red' },
+        { value: '#FF6600', label: 'Orange' },
+        { value: '#FFDE0A', label: 'Yellow' },
+
+        { value: '#3cb44b', label: 'Green' },
+        { value: '#4167F0', label: 'Blue' },
+        { value: '#911eb4', label: 'Purple' },
+
+        { value: '#800000', label: 'Maroon' },
+        { value: '#bfef45', label: 'Lime' },
+        { value: '#1EC79D', label: 'Teal' },
+
+        { value: '#42d4f4', label: 'Cyan' },
+        { value: '#000075', label: 'Navy' },
+        { value: '#f032e6', label: 'Magenta' },
+
+        { value: '#ffd8b1', label: 'Apricot' },
+        { value: '#aaffc3', label: 'Mint' },
+        { value: '#dcbeff', label: 'Lavender' }
+      ]
 
     }
   },
 
-  mounted() {},
+  // beforeUpdate() {
+  //   // this.filterValue = {};
+  //   // console.log(this.data);
+  // },
+  // mounted() {},
   methods: {
     sortTable(sortStr) {
       let table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
@@ -207,41 +245,46 @@ export default {
     // Filters the table
     // Triggered by a change in a filter dropdown
     filterTable() {
-      let rows, i, rowItem, shouldRemove = true;
+      let rows, i, cell, shouldRemove = true;
       rows = document.getElementById("equipmentTable").rows;
 
-      /*Loop through all table rows (except the
-      first, which contains table headers):*/
+      // Loop through all table rows
+      // (except the first, which contains table headers):
       for (i = 1; i < (rows.length); i++) {
+// console.log(`***** ${rows[i].children[0].innerHTML}`);
 
-        // Loop through the filters
+        // Loop through each filter
         for (const [filter, choices] of Object.entries(this.filterValue)) {
+          cell = rows[i].children[filter] ? rows[i].children[filter].children[0].children[0] : false;
 
-          // If a filter has choices && the item has selected options
-          rowItem = rows[i].children[filter];
-          if (choices.length && rowItem) {
+          // If a filter has choices selected
+          // && the row has selected columns (group, proficiency, cost)
+          if (choices.length && cell) {
 
-            // for each choice, check if the item matches it
+            // Loop through selected choices
+            // And loop through the items in the cell
             for (const choice of choices) {
-              if (choice.label == rowItem.innerHTML) {
-                shouldRemove = false;
+              for (const child of cell.children) {
+
+                if (choice.label == child.innerHTML) {
+                  shouldRemove = false;
+                }
               }
             }
+            rows[i].hidden = shouldRemove;
+            shouldRemove = true;
           }
-          rows[i].hidden = shouldRemove;
-          shouldRemove = true;
-        }
+        } // End loop of filter
       }
     },
 
-    displayList(prop) {
-      let list = "";
-      for (const item of prop) {
-        list += "•" + item + "\n";
+    clearFilter() {
+      this.filterValue = {};
+      let rows = document.getElementById("equipmentTable").rows;
+      for (let i = 1; i < (rows.length); i++) {
+        rows[i].hidden = false;
       }
-      return list;
     }
-
 
     // End Methods
   }
@@ -255,7 +298,8 @@ export default {
   justify-content: center;
   margin: 10px;
 }
-.filter-row input {
+.filter-row > * {
+  margin: 0 5px;
   border-radius: var(--el-border-radius-base);
   border: 1px solid #DCDFE6;
   color: #DCDFE6;

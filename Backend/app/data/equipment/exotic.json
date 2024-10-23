@@ -1,0 +1,97 @@
+{
+ "Scythe": {
+    "Damage": [ "1d6", "2d4", "2d6" ],
+    "Critical": "20/x4",
+    "Range": 0,
+    "Damage Type": [ "piercing", "slashing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Two-Handed",
+    "Group": [ "Heavy Blades" ],
+
+    "Cost": 18,
+    "Weight": 10,
+    "Description": "This weapon consists of a long wooden shaft with protruding handles and a sharp curved blade set at a right angle.",
+    "Special": [
+      "Trip"
+    ]
+  },
+  "Syringe Spear": {
+    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Critical": "20/x3",
+    "Range": 20,
+    "Damage Type": [ "piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Two-Handed",
+    "Group": [ "Spears" ],
+
+    "Cost": 100,
+    "Weight": 6,
+    "Description": "This spear has a comparment inside to store injectible liquids (poisons).",
+    "Special": [
+      "A successful hit with the spear injects the liquid contents of the container (typically poison) into the target.",
+      "Refilling a syringe spear takes 1 minute."
+    ]
+  },
+
+
+
+
+
+
+
+
+
+
+  "Test": {
+    "Damage": [ "1d", "1d", "1d" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "none" ],
+
+    "Proficiency": "Martial",
+    "Category": "Two-Handed",
+    "Group": [ "" ],
+
+    "Cost": 0,
+    "Weight": 0,
+    "Description": "",
+    "Special": [
+      ""
+    ]
+  },
+
+
+
+
+
+
+
+
+
+  "Exotic": {
+
+  },
+
+  "Extras": {
+    "Armor Spikes":  {
+      "Damage": [ "1d4", "1d6", "1d8" ],
+      "critRange": 20,
+      "critMultiplier": 2,
+      "dmgType": [ "Piercing" ],
+      "category": "Light",
+      "group": [ "Close" ],
+
+      "Cost": 50,
+      "Weight": 10,
+      "Description": "",
+      "Special": [
+        "The cost and wieght of armor spikes is added to the base armor",
+        "Adding spikes to your armor or shield allows you to deal extra damage on a successful grapple attack (-4 CMB if you are not proficient with martial weapons).",
+        "You can also make a standard melee attack (or off-hand attack) with the spikes, and they count as a light weapon in this case."
+        ]
+      }
+
+  }
+}

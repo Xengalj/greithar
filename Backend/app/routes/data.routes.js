@@ -2,11 +2,13 @@
 const fs = require('fs');
 const Papa = require('papaparse');
 
-// const ItemController = require("../controllers/equipment.controller");
-const Armor = require('../data/equipment/armor.json');
-const Shields = require('../data/equipment/shields.json');
-const Weapons = require('../data/equipment/weapons.json');
+const Armor =     require('../data/equipment/armor.json');
+const Shields =   require('../data/equipment/shields.json');
+const Simple =    require('../data/equipment/simple.json');
+const Martial =   require('../data/equipment/martial.json');
+// const Exotic =    require('../data/equipment/exotic.json');
 const Materials = require('../data/equipment/materials.json');
+
 // const Alchemy = require('../data/goods/alchemy.json');
 
 module.exports = function(app) {
@@ -98,20 +100,23 @@ module.exports = function(app) {
   *         EQUIPMENT         *
   *                           *
   \***************************/
-/*
-  // return a JSON of items, either all or given type
-  app.post("/api/data/equipment/read", ItemController.read);
-
-  // update list of items in a given type
-  app.post("/api/data/equipment/update", ItemController.update);
-
-  // delete items of a given type
-  app.get("/api/data/equipment/delete", ItemController.delete)
-  */
 
   app.post(
     "/api/data/equipment/read",
     (req, res) => {
+
+      // Build weapons object
+      let Weapons = {};
+      for (const prop in Simple) {
+        Weapons[prop] = Simple[prop];
+      }
+      for (const prop in Martial) {
+        Weapons[prop] = Martial[prop];
+      }
+      // for (const prop in Exotic) {
+      //   Weapons[prop] = Exotic[prop];
+      // }
+
       // let goods = { Alchemy };
       let items = { Armor, Shields, Weapons, Materials }; // , goods };
       res.status(200).send(items);
