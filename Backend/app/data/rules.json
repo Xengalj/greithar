@@ -126,6 +126,132 @@
       "dimensions": "64 ft. or more",
       "weight":     "125 tons or more"
     }
+  },
+
+  "Temp": {
+    "AC": {
+      "Base": 10,
+      "Dex": 0,
+      "Size": 0,
+      "Armor" : 0,
+      "Shield": 0,
+      "Natural": 0,
+      "Dodge": 0,
+      "Deflection": 0,
+      "Competence": 0,
+      "Insight": 0,
+      "Sacred/Profane": 0,
+      "Luck": 0,
+      "Morale": 0,
+      "Circumstance": 0
+    },
+
+    "Death Worm": {
+      "CR": 6,
+      "Race": "",
+      "Class1": "",
+      "Class1_Lvl": "",
+      "Class2": "",
+      "Class2_Lvl": "",
+      "Allignment": "N",
+      "Size": "Large",
+      "Type": "magical beast",
+      "subtype1": "",
+      "subtype2": "",
+      "subtype3": "",
+
+      "AC": 19,
+      "AC_Touch": 10,
+      "AC_Flat-footed": 18,
+
+      "HP": 68,
+      "HD": "8d10+24",
+
+      "Fort": 9,
+      "Ref": 7,
+      "Will": 4,
+
+      "Melee": "bite +11 (2d8+6 plus poison)",
+      "Ranged": "electrical jolt +8 ranged touch (4d6 electricity)",
+
+      "Space": 10,
+      "Reach": 5,
+
+      "Str": 18,
+      "Dex": 13,
+      "Con": 16,
+      "Int": 3,
+      "Wis": 11,
+      "Cha": 5,
+
+      "Feats": "Cleave, Improved Overrun, Iron Will, Power Attack",
+
+      "Skills": "Perception +11, Stealth -3 (+13 in deserts)",
+      "RacialMods": "+16 Stealth in deserts or rocky areas",
+
+      "Languages": "Terran",
+
+      "SQ": "",
+
+      "Environment": "warm deserts, plains, or hills",
+      "Organization": "solitary",
+
+      "Treasure": "none",
+      "Group": "",
+      "Gear": "",
+      "OtherGear": "",
+
+      "CharacterFlag": 0,
+      "CompanionFlag": 0,
+
+      "Speed": "20 ft., burrow 20 ft.",
+      "Base_Speed": 20,
+      "Fly_Speed": "",
+      "Maneuverability": "",
+      "Climb_Speed": "",
+      "Swim_Speed": "",
+      "Burrow_Speed": 20,
+      "Speed_Special": "",
+      "Speed_Land": 1,
+      "Fly": 0,
+      "Climb": 0,
+      "Burrow": 1,
+      "Swim": 0,
+
+      "VariantParent": "",
+      "ClassArchetypes": "",
+      "CompanionFamiliarLink": "NULL",
+      "AlternateNameForm": "",
+      "id": 1152,
+      "UniqueMonster": 0,
+      "MR": 0,
+      "Mythic": 0,
+      "MT": 0,
+      "Sourc": "PFRPG Bestiary 2"
+    },
+    "Death Worm Sup": {
+      "Senses": [ "Darkvision 60 ft.", "Low-light vision", "Tremorsense 60 ft." ],
+      "AC": { "natural": 14, "dodge": 0 },
+      "Saves": { "fort": 6, "ref": 6, "will": 4 },
+      "Immunities": [ "Acid", "Electricity", "Poison" ],
+      "BAB": 8,
+      "Melee": "bite +11 (3d8+6 plus poison)",
+      "Ranged": "electrical jolt +8 ranged touch (4d6 electricity)",
+      "Special": [ "Breath Weapon (30-ft. line, 8d6 acid damage, Reflex DC 17 for half, usable every 1d4 rounds)" ],
+      "Extras": {
+        "Corrosive Blood (Ex)": "A death worm’s blood can corrode metal on contact. If a creature damages a death worm with a piercing or slashing weapon made of metal, the creature’s blood deals 3d6 points of acid damage to the metal weapon (unlike most forms of energy damage, this damage is not halved when applied to a metal object, although it does still have to penetrate the metal’s hardness). The weapon’s wielder can halve the damage the weapon takes by making a successful DC 17 Reflex save. Creatures made of metal that deal slashing or piercing damage to a death worm with a natural attack take 3d6 points of acid damage (a DC 17 Reflex save halves this damage). The corrosive elements of the blood fade 1 round after it leaves the worm’s body or the worm dies. The save DC is Constitution-based.",
+        "Venomous Skin (Ex)": "A death worm’s skin secretes a noxious, waxy substance. This venomous sheen poisons any creature that touches a death worm, either by making a successful attack with an unarmed strike or natural weapon or with a touch attack. A creature that grapples a death worm is also exposed to the creature’s venomous skin.",
+        "Poison (Ex)": "Bite-injury, or skin-contact; save Fort DC 17; frequency 1/round for 6 rounds; effect 1d2 Con damage; cure 2 saves."
+      },
+      "Feats": {
+        "Cleave": "As a standard action, you can make a single attack at your full base attack bonus against a foe within reach. If you hit, you deal damage normally and can make an additional attack (using your full base attack bonus) against a foe that is adjacent to the first and also within reach. You can only make one additional attack per round with this feat. When you use this feat, you take a –2 penalty to your Armor Class until your next turn.",
+        "Improved Overrun": "You do not provoke an attack of opportunity when performing an overrun combat maneuver. In addition, you receive a +2 bonus on checks made to overrun a foe. You also receive a +2 bonus to your Combat Maneuver Defense whenever an opponent tries to overrun you. Targets of your overrun attempt may not chose to avoid you.",
+        "Iron Will": "You get a +2 bonus on all Will saving throws.",
+        "Power Attack": "You may choose to take a -3 on your Attack Roll for a +9 on your Damage Roll."
+      },
+      "Languages": "Terran (cannot speak)"
+    }
+
   }
 
 }

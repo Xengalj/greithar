@@ -31,7 +31,7 @@
 
 <script>
 import UserService from "@/services/user.service";
-// import DataService from "@/services/data.service";
+import DataService from "@/services/data.service";
 import CreatureCard from '@/components/template/CreatureCard.vue'
 const icons = require('@/components/template/svgPaths.json');
 // const miscTables = require('@/components/codex/tables.json');
@@ -137,17 +137,39 @@ export default {
   },
   methods: {
     monsterOpen(name) {
-      this.creatureName = name
 
-      // this.monster.Name = name;
-      // this.getMonster(this.monster);
+
+      DataService.getMonster(name)
+      .then(response => {
+        console.log(response);
+        let AC = {
+          "Base": 10,
+          "Dex": 0,
+          "Size": 0,
+          "Armor" : 0,
+          "Shield": 0,
+          "Natural": 0,
+          "Dodge": 0,
+          "Deflection": 0,
+          "Competence": 0,
+          "Insight": 0,
+          "Sacred/Profane": 0,
+          "Luck": 0,
+          "Morale": 0,
+          "Circumstance": 0
+        }
+        // this.creatureSetup(response);
+      })
+      .catch(err => { console.error(err); });
+
+
+
+      this.creatureName = name
       this.monsterVisible = true;
     },
     monsterClose() {
       this.monsterVisible = false;
     },
-
-
 
 
     // End Methods
