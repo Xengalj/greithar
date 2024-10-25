@@ -1071,5 +1071,60 @@
       "A successful hit with the spear injects the liquid contents of the container (typically poison) into the target.",
       "Refilling a syringe spear takes 1 minute."
     ]
-  }
+  },
+
+      "Test": {
+    "Damage": [ "1d", "1d", "1d" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "none" ],
+
+    "Proficiency": "Martial",
+    "Category": "Two-Handed",
+    "Group": [ "" ],
+
+    "Cost": 0,
+    "Weight": 0,
+    "Description": "",
+    "Special": [
+      ""
+    ]
+  },
+
+"Ammentum — 1d4 1d6 x2 50 ft. 1 lb. P performance",
+"Chakram 1 gp 1d6 1d8 x2 30 ft. 1 lb. S —",
+"Dart, jolting 100 gp 1d3 1d4 x2 20 ft. 1/2 lb. P see text",
+"Hunga munga 4 gp 1d4 1d6 x2 15 ft. 3 lbs. P —",
+"Hurlbat 8 gp 1d4 1d6 x3 10 ft. 2 lbs. P and S —",
+"Longbow 75 gp 1d6 1d8 x3 100 ft. 3 lbs. P —",
+"Longbow, composite (+0) 100 gp 1d6 1d8 x3 110 ft. 3 lbs. P Strength (-)",
+"Longbow, composite (+1) 200 gp 1d6 1d8 x3 110 ft. 3 lbs. P Strength (12)",
+"Longbow, composite (+2) 300 gp 1d6 1d8 x3 110 ft. 3 lbs. P Strength (14)",
+"Longbow, composite (+3) 400 gp 1d6 1d8 x3 110 ft. 3 lbs. P Strength (16)",
+"Longbow, composite (+4) 500 gp 1d6 1d8 x3 110 ft. 3 lbs. P Strength (18)",
+"Longbow, composite (+5) 600 gp 1d6 1d8 x3 110 ft. 3 lbs. P Strength (20)",
+"Pilum 5 gp 1d6 1d8 x2 20 ft. 4 lbs. P see text",
+"Shortbow 30 gp 1d4 1d6 x3 60 ft. 2 lbs. P —",
+"Shortbow, composite 75 gp 1d4 1d6 x3 70 ft. 2 lbs. P —",
+"Spear-sling 50 gp 1d6 1d8 x3 see text 2 lbs. P see text",
+"Throwing arrow cord — 1d3 1d4 x2 60 ft. — P —",
+
+    "Test": {
+    "Damage": [ "1d", "1d", "1d" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "none" ],
+
+    "Proficiency": "Martial",
+    "Category": "Two-Handed",
+    "Group": [ "" ],
+
+    "Cost": 0,
+    "Weight": 0,
+    "Description": "",
+    "Special": [
+      ""
+    ]
+  },
+  
 }
