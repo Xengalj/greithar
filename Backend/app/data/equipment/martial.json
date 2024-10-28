@@ -1072,58 +1072,177 @@
       "Refilling a syringe spear takes 1 minute."
     ]
   },
-
-      "Test": {
-    "Damage": [ "1d", "1d", "1d" ],
+  "Ammentum": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
     "Critical": "20/x2",
-    "Range": 0,
-    "Damage Type": [ "none" ],
+    "Range": 50,
+    "Damage Type": [ "Piercing" ],
 
     "Proficiency": "Martial",
-    "Category": "Two-Handed",
-    "Group": [ "" ],
+    "Category": "Ranged",
+    "Group": [ "Thrown" ],
 
     "Cost": 0,
-    "Weight": 0,
-    "Description": "",
+    "Weight": 1,
+    "Description": "An amentum is a long leather thong that attaches to, and is wound about a standard javelin, this gives it spin when thrown.",
     "Special": [
-      ""
+      "Attaching an amentum to a javelin is a move action, and winding it is a full-round action.",
+      "Javelins can be stored with amenta already wound about them.",
+      "A javelin wound with an amentum is considered a martial weapon.",
+      "Performance"
+    ]
+  },
+  "Charkram": {
+    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Critical": "20/x2",
+    "Range": 30,
+    "Damage Type": [ "Slashing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Ranged",
+    "Group": [ "Light Blades", "Thrown" ],
+
+    "Cost": 1,
+    "Weight": 1,
+    "Description": "The chakram is a flat, open-centered metal discus with a sharpened edge.",
+    "Special": [
+      "You may wield a chakram as a melee weapon taking a -1 penalty on attack rolls.",
+      "If you use a chakram as a melee weapon, you must succeed a DC 15 Reflex save or you cut yourself (1/2 damage, no Str Mod).",
+      "Wearing heavy armor while using a chakram as a melee weapon lets you ignore the save."
+    ]
+  },
+  "Jolting Dart": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x2",
+    "Range": 20,
+    "Damage Type": [ "Piercing", "Electricity" ],
+
+    "Proficiency": "Martial",
+    "Category": "Ranged",
+    "Group": [ "Thrown" ],
+
+    "Cost": 100,
+    "Weight": 0.5,
+    "Description": "This alchemically grown crystal dart builds up an electrical charge when thrown.",
+    "Special": [
+      "A creature struck by the dart takes normal piercing damage and 1d6 points of electricity damage.",
+      "Anyone proficient in darts can use a jolting dart.",
+      "Once thrown, the dart is destroyed."
+    ]
+  },
+  "Mambele": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x2",
+    "Range": 15,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Ranged",
+    "Group": [ "Light Blades", "Thrown" ],
+
+    "Cost": 4,
+    "Weight": 3,
+    "Description": "This three-bladed dagger is intended for throwing but can be used as a melee weapon.",
+    "Special": []
+  },
+  "Hurlbat": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x3",
+    "Range": 10,
+    "Damage Type": [ "Piercing", "Slashing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Ranged",
+    "Group": [ "Thrown" ],
+
+    "Cost": 8,
+    "Weight": 2,
+    "Description": "A hurlbat is a throwing axe made from a single piece of flat metal, with every extremity sharpened, including the point of the handle.",
+    "Special": [
+      "You may wield a chakram as a melee weapon taking a -1 penalty on attack rolls.",
+      "If you use a chakram as a melee weapon, you must succeed a DC 15 Reflex save or you cut yourself (1/2 damage, no Str Mod).",
+      "Wearing heavy armor while using a chakram as a melee weapon lets you ignore the save."
+    ]
+  },
+  "Longbow": {
+    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Critical": "20/x3",
+    "Range": 100,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Ranged",
+    "Group": [ "Bows" ],
+
+    "Cost": 75,
+    "Weight": 3,
+    "Description": "At almost 5 feet in height, a longbow is made up of one solid piece of carefully curved wood.",
+    "Special": [
+      "You need two hands to use a bow, regardless of its size, and a longbow can’t be used while mounted.",
+      "If you have a penalty for low Strength, apply it to damage rolls when you use a longbow."
+    ]
+  },
+  "Composite Longbow": {
+    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Critical": "20/x3",
+    "Range": 110,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Ranged",
+    "Group": [ "Bows" ],
+
+    "Cost": 100,
+    "Weight": 3,
+    "Description": "At almost 5 feet in height, a longbow is made up of one solid piece of carefully curved wood.",
+    "Special": [
+      "You need two hands to use a bow, regardless of its size, and you may use a composite longbow while mounted.",
+      "If you have a penalty for low Strength, apply it to damage rolls when you use a longbow.",
+      "All composite bows are made with a strength rating (default 0), if your Strength Bonus is less than this rating, you take a -2 penalty on attacks with it.",
+      "You add your Strength bonus to damage, up to the maximum bonus indicated for the bow.",
+      "Each point of Strength bonus granted by the bow adds 100 gp to its cost (listed price is for a rating of 0)."
+    ]
+  },  
+  "Pilum": {
+    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Critical": "20/x2",
+    "Range": 20,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Ranged",
+    "Group": [ "Spears", "Thrown" ],
+
+    "Cost": 5,
+    "Weight": 4,
+    "Description": "The tip of this heavy javelin is designed to break off and embed itself into a shield once it hits.",
+    "Special": [
+      "A thrown pilum that hits a target is destroyed, just like ammunition.",
+      "If you hit a shieldbearing opponent with a pilum, he loses the AC bonuses from that shield until he takes a standard action to pry the remnants of the pilum from his shield."
     ]
   },
 
-"Ammentum — 1d4 1d6 x2 50 ft. 1 lb. P performance",
-"Chakram 1 gp 1d6 1d8 x2 30 ft. 1 lb. S —",
-"Dart, jolting 100 gp 1d3 1d4 x2 20 ft. 1/2 lb. P see text",
-"Hunga munga 4 gp 1d4 1d6 x2 15 ft. 3 lbs. P —",
-"Hurlbat 8 gp 1d4 1d6 x3 10 ft. 2 lbs. P and S —",
-"Longbow 75 gp 1d6 1d8 x3 100 ft. 3 lbs. P —",
-"Longbow, composite (+0) 100 gp 1d6 1d8 x3 110 ft. 3 lbs. P Strength (-)",
-"Longbow, composite (+1) 200 gp 1d6 1d8 x3 110 ft. 3 lbs. P Strength (12)",
-"Longbow, composite (+2) 300 gp 1d6 1d8 x3 110 ft. 3 lbs. P Strength (14)",
-"Longbow, composite (+3) 400 gp 1d6 1d8 x3 110 ft. 3 lbs. P Strength (16)",
-"Longbow, composite (+4) 500 gp 1d6 1d8 x3 110 ft. 3 lbs. P Strength (18)",
-"Longbow, composite (+5) 600 gp 1d6 1d8 x3 110 ft. 3 lbs. P Strength (20)",
-"Pilum 5 gp 1d6 1d8 x2 20 ft. 4 lbs. P see text",
-"Shortbow 30 gp 1d4 1d6 x3 60 ft. 2 lbs. P —",
+
+  "Shortbow 30 gp 1d4 1d6 x3 60 ft. 2 lbs. P —",
 "Shortbow, composite 75 gp 1d4 1d6 x3 70 ft. 2 lbs. P —",
 "Spear-sling 50 gp 1d6 1d8 x3 see text 2 lbs. P see text",
 "Throwing arrow cord — 1d3 1d4 x2 60 ft. — P —",
 
-    "Test": {
+  "Test": {
     "Damage": [ "1d", "1d", "1d" ],
     "Critical": "20/x2",
     "Range": 0,
     "Damage Type": [ "none" ],
 
     "Proficiency": "Martial",
-    "Category": "Two-Handed",
+    "Category": "Ranged",
     "Group": [ "" ],
 
     "Cost": 0,
     "Weight": 0,
     "Description": "",
     "Special": [
-      ""
+      
     ]
   },
   
