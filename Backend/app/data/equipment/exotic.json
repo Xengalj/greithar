@@ -1,41 +1,50 @@
 {
- "Scythe": {
-    "Damage": [ "1d6", "2d4", "2d6" ],
-    "Critical": "20/x4",
-    "Range": 0,
-    "Damage Type": [ "piercing", "slashing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Two-Handed",
-    "Group": [ "Heavy Blades" ],
-
-    "Cost": 18,
-    "Weight": 10,
-    "Description": "This weapon consists of a long wooden shaft with protruding handles and a sharp curved blade set at a right angle.",
-    "Special": [
-      "Trip"
-    ]
-  },
-  "Syringe Spear": {
-    "Damage": [ "1d6", "1d8", "2d6" ],
-    "Critical": "20/x3",
+ "Aklys": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x2",
     "Range": 20,
-    "Damage Type": [ "piercing" ],
+    "Damage Type": [ "Bludgeoning" ],
 
-    "Proficiency": "Martial",
-    "Category": "Two-Handed",
-    "Group": [ "Spears" ],
+    "Proficiency": "Exotic",
+    "Category": "Light",
+    "Group": [ "Hammers", "Thrown" ],
 
-    "Cost": 100,
-    "Weight": 6,
-    "Description": "This spear has a comparment inside to store injectible liquids (poisons).",
+    "Cost": 5,
+    "Weight": 2,
+    "Description": "The aklys is a hooked throwing club with a 20-foot-long cord, usually of woven leather.",
     "Special": [
-      "A successful hit with the spear injects the liquid contents of the container (typically poison) into the target.",
-      "Refilling a syringe spear takes 1 minute."
+     "You may retrieve a thrown aklys with the atached cord as a move action.",
+     "Performance", "Trip"
     ]
   },
 
 
+"Axe-Gauntlet, Dwarven Light 16 gp 1d4 1d6 x3 — 5 lbs. S blocking, disarm",
+"Axe, knuckle 9 gp 1d4 1d6 x3 — 2 lbs. S monk, performance",
+"Barbazu beard 25 gp 1d3 1d4 x2 — 5 lbs S see text",
+"Battle poi 5 gp 1d3 (fire) 1d4 (fire) x2 — 2 lbs. fire —",
+"Dagger, swordbreaker 10 gp 1d3 1d4 x2 — 3 lbs. S disarm, sunder",
+"Flying Talon 15 gp 1d3 1d4 x2 10 ft. 5 lbs. P disarm, trip",
+"Gnome pincher 10 gp 1d4 1d6 x2 — 2 lbs. B disarm, see text",
+"Halfling rope-shot 1 gp 1d4 1d6 x2 — 1 lb. B disarm",
+"Helmet, dwarven boulder 20 gp 1d3 1d4 x2 — 10 lbs. B see text",
+"Kama 2 gp 1d4 1d6 x2 — 2 lbs. S monk, trip",
+"Knife, butterfly 5 gp 1d3 1d4 19-20/x2 — 1 lb. P or S —",
+"Knife, deer horn 10 gp 1d3 1d4 x3 20 ft. 3 lbs. P blocking, monk",
+"Maulaxe, dwarven 25 gp 1d4 1d6 x3 10 ft. 5 lbs. B or S —",
+"Nunchaku 2 gp 1d4 1d6 x2 — 2 lbs. B disarm, monk",
+"Quadrens 8 gp 1d4 1d6 19-20/x2 — 2 lbs. P performance",
+"Razor, drow 25 gp 1d3 1d4 18–20/×2 — 2 lbs. S see text",
+"Rope gauntlet 2 sp 1d3 1d4 x2 — 2 lbs. B (or S) —",
+"Sabre, sawtoothAA1 35 gp 1d6 1d8 19-20/x2 — 2 lbs. S —",
+"Sai 1 gp 1d3 1d4 x2 — 1 lb. B disarm, monk",
+"Sanpkhang 60 gp 1d3 1d4 19–20/×2 — 1 lb. P or S monk, see text",
+"Siangham 3 gp 1d4 1d6 x2 — 1 lb. P monk",
+"Sica 10 gp 1d4 1d6 x2 — 2 lbs. S performance",
+"Thorn bracer 30 gp 1d4 1d6 x2 — 3 lbs. P —",
+"War-shield, dwarven 50 gp 1d4 1d6 ×2 — 8 lbs. P or S see text",
+"Waveblade 5 gp 1d4 1d6 18–20/×2 — 2 lbs. P or S monk, see text",
+"Whip, scorpion 5 gp 1d3 1d4 x2 — 3 lbs. S disarm, performance, reach, trip",
 
 
 
@@ -50,8 +59,8 @@
     "Range": 0,
     "Damage Type": [ "none" ],
 
-    "Proficiency": "Martial",
-    "Category": "Two-Handed",
+    "Proficiency": "Exotic",
+    "Category": "Light",
     "Group": [ "" ],
 
     "Cost": 0,
@@ -62,17 +71,6 @@
     ]
   },
 
-
-
-
-
-
-
-
-
-  "Exotic": {
-
-  },
 
   "Extras": {
     "Armor Spikes":  {
