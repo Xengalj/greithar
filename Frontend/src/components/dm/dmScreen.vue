@@ -142,6 +142,37 @@ export default {
       DataService.getMonster(name)
       .then(response => {
         console.log(response);
+        let creature = {
+          "attributes": { "Str": 10 },
+          "abilities": {
+            "name": {
+              "description": "",
+              "type": "",
+              "bonus": "",
+              "stacks": false
+            },
+            "Chainmail": {
+              "desc": "A shirt with metal loops",
+              "type": "armor",
+              "bonuse": 5,
+              "stacks": false
+          },
+          "characteristics": {
+            "age": 10
+          }
+        };
+        creture.ac = { "base": 10 };
+        for item in abilities {
+          let curr = creature.ac[item.type].bonus;
+          let stack = creature.ac[item.type].stacks;
+          if (item.stacks) {
+            stack = stack + item.bonus;
+          } else {
+            curr = Math.max(curr, item.bonus)
+          // if the bonus stacks, add it to the current bonus, otherwise use the higher value
+          curr = (item.stacks) ? curr + item.bonus : Math.max(curr, item.bonus);
+          
+        }
         let AC = {
           "Base": 10,
           "Dex": 0,
@@ -157,7 +188,8 @@ export default {
           "Luck": 0,
           "Morale": 0,
           "Circumstance": 0
-        }
+        };
+        
         // this.creatureSetup(response);
       })
       .catch(err => { console.error(err); });
