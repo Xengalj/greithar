@@ -1221,13 +1221,126 @@
       "If you hit a shieldbearing opponent with a pilum, he loses the AC bonuses from that shield until he takes a standard action to pry the remnants of the pilum from his shield."
     ]
   },
+  "Shortbow": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x3",
+    "Range": 60,
+    "Damage Type": [ "Piercing" ],
 
+    "Proficiency": "Martial",
+    "Category": "Ranged",
+    "Group": [ "Bows" ],
 
-  "Shortbow 30 gp 1d4 1d6 x3 60 ft. 2 lbs. P —",
-"Shortbow, composite 75 gp 1d4 1d6 x3 70 ft. 2 lbs. P —",
-"Spear-sling 50 gp 1d6 1d8 x3 see text 2 lbs. P see text",
-"Throwing arrow cord — 1d3 1d4 x2 60 ft. — P —",
+    "Cost": 30,
+    "Weight": 2,
+    "Description": "A shortbow is made up of one piece of wood, about 3 feet in length.",
+    "Special": [
+      "You need two hands to use a bow, regardsless of its size, but you may use it while mounted.",
+      "If you have a penalty for low Strength, apply it to damage rolls when you use a shortbow."
+    ]
+  },
+  "Composite Shortbow": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x3",
+    "Range": 70,
+    "Damage Type": [ "Piercing" ],
 
+    "Proficiency": "Martial",
+    "Category": "Ranged",
+    "Group": [ "Bows" ],
+
+    "Cost": 75,
+    "Weight": 2,
+    "Description": "A shortbow is made up of one piece of wood, about 3 feet in length.",
+    "Special": [
+      "You need two hands to use a bow, regardless of its size, and you may use a composite shortbow while mounted.",
+      "If you have a penalty for low Strength, apply it to damage rolls when you use a shortbow.",
+      "All composite bows are made with a strength rating (default 0), if your Strength Bonus is less than this rating, you take a -2 penalty on attacks with it.",
+      "You add your Strength bonus to damage, up to the maximum bonus indicated for the bow.",
+      "Each point of Strength bonus granted by the bow adds 75 gp to its cost (listed price is for a rating of 0)."
+    ]
+  },
+  "Spear-Sling": {
+    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Ranged",
+    "Group": [ "Misc" ],
+
+    "Cost": 50,
+    "Weight": 2,
+    "Description": "A spear-sling consists of a hollow tube with a loop of elastic material attached to one end, the wielder draws a spear through it, and can release the loop to launch the spear.",
+    "Special": [
+      "Using a spear-sling requires two hands, but treats harpoons, javalins, spears, and other weapons fired as projectiles not thrown weapons.",
+      "Loading a spear-sling is a standard action that provokes attacks of opportunity.",
+      "If you have a penalty for low Strength, apply it to damage rolls when you use a spear-sling.",
+      "All spear-slings are made with a strength rating (default 0), if your Strength Bonus is less than this rating, you take a -2 penalty on attacks with it.",
+      "You add your Strength bonus to damage, up to the maximum bonus indicated for the spear-sling.",
+      "Each point of Strength bonus granted by the spear-sling adds 50 gp to its cost (listed price is for a rating of 0)."
+    ]
+  },
+  "Throwing Arrow Cord": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x2",
+    "Range": 60,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Ranged",
+    "Group": [ "Misc" ],
+
+    "Cost": 50,
+    "Weight": 2,
+    "Description": "This simple fiber or leather cord has a knot at either end, and using one dramatically increases a throwing arrow’s range.",
+    "Special": [
+      "Attaching the cord to a throwing arrow is a move action that requires two hands and provokes attacks of opportunity."
+    ]
+  },
+
+  "Common Arrow": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Ranged",
+    "Group": [ "Light Blades" ],
+
+    "Cost": 0.05,
+    "Weight": 0.15,
+    "Description": "",
+    "Special": [
+      "You may use a standard arrow as a melee weapon, taking a -4 on attack rolls.",
+      "Arrows usually come in a leather quiver that holds 20 (price & weight listed for 1 arrow)."
+    ]
+  },
+  
+"Arrows/bolts, barbed (20) 2 gp see text see text see text see text 3 lbs. P grapple",
+"Arrow, bleeding (1) 360 gp see text see text see text see text see text see text see text",
+"Arrows, blunt (20) 2 gp — — — — 3 lbs. B see text",
+"Arrow, distance (iron-tipped) (20) 1 gp — — — — 4 lbs. — —",
+"Arrow, durable (1) 1 gp see text see text see text see text see text see text see text",
+"Arrow, dye (1) 1 gp see text see text see text see text 4 lbs. — see text",
+"Arrows, flight (20) 2 gp — — — see text 3 lbs. P see text",
+"Arrows/bolts, incendiary (20) 10 gp see text see text see text see text 3 lbs. see text see text",
+"Arrow, lodestone (1) 10 gp see text see text see text see text see text see text see text",
+"Arrow, pheromone (1) 15 gp see text see text see text see text see text see text see text",
+"Arrows/bolts, pronged (20) 2 gp see text see text see text see text 3 lbs. see text see text",
+"Arrow, raining (1) 30 gp see text see text see text see text see text see text see text",
+"Arrow, slow burn (1) 150 gp see text see text see text see text see text see text see text",
+"Arrow, smoke (1) 10 gp — — — — — P see text",
+"Arrow, splintercloud (1) 25 gp see text see text see text see text see text see text see text",
+"Arrow, tanglefoot (1) 20 gp see text see text see text see text see text see text see text",
+"Arrow, thistle (1) 1 gp — — — — 0.15 lbs P see text",
+"Arrow, throwing (1) 5 sp see text see text see text see text 1/2 lb. see text see text",
+"Arrow, trip (1) 25 gp see text see text see text see text see text see text see text",
+"Arrows, whistling (20) 2 gp — — — — 3 lbs. — —",
+
+  
   "Test": {
     "Damage": [ "1d", "1d", "1d" ],
     "Critical": "20/x2",
