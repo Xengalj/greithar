@@ -1307,56 +1307,418 @@
     "Damage Type": [ "Piercing" ],
 
     "Proficiency": "Martial",
-    "Category": "Ranged",
+    "Category": "Ammunition",
     "Group": [ "Light Blades" ],
 
     "Cost": 0.05,
     "Weight": 0.15,
-    "Description": "",
+    "Description": "A typical arrow consists of a long straight wooden shaft with a sharp arrowhead attached to the front end and multiple fins called fletching at the end."
     "Special": [
       "You may use a standard arrow as a melee weapon, taking a -4 on attack rolls.",
       "Arrows usually come in a leather quiver that holds 20 (price & weight listed for 1 arrow)."
     ]
   },
-  
-"Arrows/bolts, barbed (20) 2 gp see text see text see text see text 3 lbs. P grapple",
-"Arrow, bleeding (1) 360 gp see text see text see text see text see text see text see text",
-"Arrows, blunt (20) 2 gp — — — — 3 lbs. B see text",
-"Arrow, distance (iron-tipped) (20) 1 gp — — — — 4 lbs. — —",
-"Arrow, durable (1) 1 gp see text see text see text see text see text see text see text",
-"Arrow, dye (1) 1 gp see text see text see text see text 4 lbs. — see text",
-"Arrows, flight (20) 2 gp — — — see text 3 lbs. P see text",
-"Arrows/bolts, incendiary (20) 10 gp see text see text see text see text 3 lbs. see text see text",
-"Arrow, lodestone (1) 10 gp see text see text see text see text see text see text see text",
-"Arrow, pheromone (1) 15 gp see text see text see text see text see text see text see text",
-"Arrows/bolts, pronged (20) 2 gp see text see text see text see text 3 lbs. see text see text",
-"Arrow, raining (1) 30 gp see text see text see text see text see text see text see text",
-"Arrow, slow burn (1) 150 gp see text see text see text see text see text see text see text",
-"Arrow, smoke (1) 10 gp — — — — — P see text",
-"Arrow, splintercloud (1) 25 gp see text see text see text see text see text see text see text",
-"Arrow, tanglefoot (1) 20 gp see text see text see text see text see text see text see text",
-"Arrow, thistle (1) 1 gp — — — — 0.15 lbs P see text",
-"Arrow, throwing (1) 5 sp see text see text see text see text 1/2 lb. see text see text",
-"Arrow, trip (1) 25 gp see text see text see text see text see text see text see text",
-"Arrows, whistling (20) 2 gp — — — — 3 lbs. — —",
-
-  
-  "Test": {
-    "Damage": [ "1d", "1d", "1d" ],
-    "Critical": "20/x2",
+  "Barbed Arrows": {
+    "Damage": [ "0", "0", "0" ],
+    "Critical": "0",
     "Range": 0,
-    "Damage Type": [ "none" ],
+    "Damage Type": [ "Piercing" ],
 
     "Proficiency": "Martial",
-    "Category": "Ranged",
-    "Group": [ "" ],
+    "Category": "Ammunition",
+    "Group": [ "Misc" ],
 
-    "Cost": 0,
-    "Weight": 0,
-    "Description": "",
+    "Cost": 0.1,
+    "Weight": 0.15,
+    "Description": "The head of a barbed arrow resembles that of a harpoon.",
     "Special": [
-      
+      "When a barbed arrow is attached to a length of silk rope and fired from a bow, the arrow’s range increment is reduced to 30 feet, but it gains the grapple special weapon quality.",
+      "Barbed arrows come in a leather quiver that holds 20 (price & weight listed for 1 arrow).",
+      "Barbed bolts exist for crossbows."
     ]
   },
-  
+  "Barbed Arrows": {
+    "Damage": [ "0", "0", "0" ],
+    "Critical": "0",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Ammunition",
+    "Group": [ "Misc" ],
+
+    "Cost": 0.1,
+    "Weight": 0.15,
+    "Description": "The head of a barbed arrow resembles that of a harpoon.",
+    "Special": [
+      "When a barbed arrow is attached to a length of silk rope and fired from a bow, the arrow’s range increment is reduced to 30 feet, but it gains the grapple special weapon quality.",
+      "Barbed arrows come in a leather quiver that holds 20 (price & weight listed for 1 arrow).",
+      "Barbed bolts exist for crossbows."
+    ]
+  },
+  "Bleeding Arrows": {
+    "Damage": [ "0", "0", "0" ],
+    "Critical": "0",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Ammunition",
+    "Group": [ "Misc" ],
+
+    "Cost": 360,
+    "Weight": 0.15,
+    "Description": "The head of a bleeding arrow is specially designed to rip open flesh to cause the target to bleed after impact.",
+    "Special": [
+      "A bleeding arrow deals normal damage when it hits a creture, and then causes it to take continuing bleed damage (crits do not multiply the bleed).",
+      "This bleeding causes 1 bleed damage per round, but a DC 10 Heal check or a cure spell will fix it."
+    ]
+  },
+  "Blunt Arrows": {
+    "Damage": [ "0", "0", "0" ],
+    "Critical": "0",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning" ],
+
+    "Proficiency": "Martial",
+    "Category": "Ammunition",
+    "Group": [ "Misc" ],
+
+    "Cost": 0.1,
+    "Weight": 0.15,
+    "Description": "Hard leather is wound around the head of a blunt arrow chagind it to batter an enemy rather than pierce them."
+    "Special": [
+      "An archer can use a blunt arrow to deal nonlethal damage, at a -4 to attack rolls to convert the damage type.",
+      "Blunt arrows come in a leather quiver that holds 20 (price & weight listed for 1 arrow).",
+    ]
+  },
+  "Distance Arrows": {
+    "Damage": [ "0", "0", "0" ],
+    "Critical": "0",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Ammunition",
+    "Group": [ "Misc" ],
+
+    "Cost": 0.05,
+    "Weight": 0.2,
+    "Description": "Used tactically for long-range attacks on troops, these arrows are fitted with heavy iron heads.",
+    "Special": [
+      "These arrows increase their bow's range increment by 10 feet, but take a -1 on damage dealth per range increment.",
+      "Distance arrows come in a leather quiver that holds 20 (price & weight listed for 1 arrow)."
+    ]
+  },  
+  "Durable Arrows": {
+    "Damage": [ "0", "0", "0" ],
+    "Critical": "0",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Ammunition",
+    "Group": [ "Misc" ],
+
+    "Cost": 1,
+    "Weight": 0.15,
+    "Description": "Made of stronder wood than the average arrow, these can be fired again and again.",
+    "Special": [
+      "Whether or not a durable arrow hit's its target, you may retrieve and reuse it."
+    ]
+  },  
+  "Durable Arrows": {
+    "Damage": [ "0", "0", "0" ],
+    "Critical": "0",
+    "Range": 0,
+    "Damage Type": [ "None" ],
+
+    "Proficiency": "Martial",
+    "Category": "Ammunition",
+    "Group": [ "Misc" ],
+
+    "Cost": 1,
+    "Weight": 4,
+    "Description": "A bursting sack of pigment is afixed to the end of this arrow.",
+    "Special": [
+      "Firing a dye arrow is a ranged touch attack.",
+      "A creature struck by a dye arrow takes no damage but is splashed with black, blue, green, or red marker dye."
+    ]
+  },
+  "Flight Arrows": {
+    "Damage": [ "0", "0", "0" ],
+    "Critical": "0",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Ammunition",
+    "Group": [ "Misc" ],
+
+    "Cost": 0.1,
+    "Weight": 0.15,
+    "Description": "The head of a barbed arrow resembles that of a harpoon.",
+    "Special": [
+      "A flight arrows range increment is 20 feet greater with longbows, 10 feet greater with shortbows.",
+      "Flight arrows deal damage as if one size category smaller.",
+      "Flight arrows come in a leather quiver that holds 20 (price & weight listed for 1 arrow)."
+    ]
+  },
+  "Incendiary Arrows": {
+    "Damage": [ "0", "0", "0" ],
+    "Critical": "0",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Ammunition",
+    "Group": [ "Misc" ],
+
+    "Cost": 2,
+    "Weight": 0.15,
+    "Description": "A metal cage behind this arrow’s point contains flammable material.",
+    "Special": [
+      "You may light up to six incendiary arrows at a time, provoking attacks of opportunity (full-round action with flint and steel) (standard action with a tindertwig).",
+      "A lit arrow deals burns for 2 rounds and deals an additional 1 fire damage, but you suffer a -1 to attack rolls.",
+      "On a critical hit, the target must succeed at a DC 15 Reflex save or catch fire.",
+      "incendiary arrows come in a leather quiver that holds 20 (price & weight listed for 1 arrow).",
+      "Incendiary bolts exist for crossbows."
+    ]
+  },
+  "Incendiary Arrows": {
+    "Damage": [ "0", "0", "0" ],
+    "Critical": "0",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Ammunition",
+    "Group": [ "Misc" ],
+
+    "Cost": 2,
+    "Weight": 0.15,
+    "Description": "A metal cage behind this arrow’s point contains flammable material.",
+    "Special": [
+      "You may light up to six incendiary arrows at a time, provoking attacks of opportunity (full-round action with flint and steel) (standard action with a tindertwig).",
+      "A lit arrow deals burns for 2 rounds and deals an additional 1 fire damage, but you suffer a -1 to attack rolls.",
+      "On a critical hit, the target must succeed at a DC 15 Reflex save or catch fire.",
+      "Incendiary arrows come in a leather quiver that holds 20 (price & weight listed for 1 arrow).",
+      "Incendiary bolts exist for crossbows."
+    ]
+  },
+  "Lodestone Arrows": {
+    "Damage": [ "0", "0", "0" ],
+    "Critical": "0",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Ammunition",
+    "Group": [ "Misc" ],
+
+    "Cost": 10,
+    "Weight": 0.15,
+    "Description": "The head of this arrow is made of an enchanted metal that can become magnetized.",
+    "Special": [
+      "You may pull the string to activate the magnet as a move action",
+      "When active, you gain a +4 bonus on attack rolls when firing this arrow at a target with a significant amount of metal.",
+      "This magnetism lasts for 1 round and deals half damage while active."
+    ]
+  },
+  "Pheromone Arrows": {
+    "Damage": [ "0", "0", "0" ],
+    "Critical": "0",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Ammunition",
+    "Group": [ "Misc" ],
+
+    "Cost": 15,
+    "Weight": 0.15,
+    "Description": "The head of this arrow is coated in a smelly oil that rubs off on the target.",
+    "Special": [
+      "Any creature with the scent ability gains a +2 bonus on attack and damage rolls made against a target marked with a pheromone arrow.",
+      "This effect lasts for 1 hour or until the target spends 1 minute washing."
+    ]
+  },
+  "Pronged Arrows": {
+    "Damage": [ "0", "0", "0" ],
+    "Critical": "0",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Ammunition",
+    "Group": [ "Misc" ],
+
+    "Cost": 0.1,
+    "Weight": 0.15,
+    "Description": "Rather than narrowing to a single point, a pronged arrow has a wide face with two points resembling a crescent or V-shape.",
+    "Special": [
+      "A pronged arrow deals damage as if it was one size category smaller, and grants a +1 bonus on attack rolls against targets at least one size cateogry smaller than you.",
+      "Pronged arrows come in a leather quiver that holds 20 (price & weight listed for 1 arrow)."
+    ]
+  },
+  "Raining Arrows": {
+    "Damage": [ "0", "0", "0" ],
+    "Critical": "0",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Ammunition",
+    "Group": [ "Misc" ],
+
+    "Cost": 30,
+    "Weight": 0.5,
+    "Description": "This arrow has a reservoir instead of a normal steel arrowhead.",
+    "Special": [
+      "The reservoir will burst on impact, splashing the target and nearby creatures as if you had thrown a vial.",
+      "A raining arrow has a -2 to attack rolls due to its shape and weight."
+    ]
+  },
+  "Slow Burn Arrows": {
+    "Damage": [ "0", "0", "0" ],
+    "Critical": "0",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Ammunition",
+    "Group": [ "Misc" ],
+
+    "Cost": 150,
+    "Weight": 0.5,
+    "Description": "This arrow has a reservoir instead of a normal steel arrowhead.",
+    "Special": [
+      "The reservoir will burst and ignite on impact; 1 round later, on your turn, the flames deal 1d6 fire damage to the target.",
+      "A slow burn arrow has a -1 to attack rolls due to its shape and weight."
+    ]
+  },
+  "Smoke Arrows": {
+    "Damage": [ "0", "0", "0" ],
+    "Critical": "0",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Ammunition",
+    "Group": [ "Misc" ],
+
+    "Cost": 10,
+    "Weight": 0.2,
+    "Description": "This arrow has a perforated sack just behind the arrowhead.",
+    "Special": [
+      "A smoke arrow trails smoke as it flies and creates a 5-foot cube of smoke where it strikes."
+    ]
+  },
+  "Splintercloud Arrows": {
+    "Damage": [ "0", "0", "0" ],
+    "Critical": "0",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Ammunition",
+    "Group": [ "Misc" ],
+
+    "Cost": 25,
+    "Weight": 0.15,
+    "Description": "This arrow has bone splinters laid into grooves on the arrow shaft.",
+    "Special": [
+      "When fired, the numerous bone fragments tear themselves apart, forming a 5-foot burst of razor-sharp bones that deals 1d3 points of piercing damage (Reflex DC 18 negates)."
+    ]
+  },
+  "Tangleshot Arrows": {
+    "Damage": [ "0", "0", "0" ],
+    "Critical": "0",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Ammunition",
+    "Group": [ "Misc" ],
+
+    "Cost": 20,
+    "Weight": 0.5,
+    "Description": "This arrow has a reservoir instead of a normal steel arrowhead.",
+    "Special": [
+      "You fire a tangleshot arrow as a ranged touch attack that deals no damage, but splashes an adhesive on the target.",
+      "This glue acts like a weak version of a tanglefoot bad (DC 10 Reflex save, DC 12 Strength check to break, 10 points of slashing damage to cut through, DC 10 Concentration check).",
+      "A tangleshot arrow reduces the range increment to half normal due to its shape and weight."
+    ]
+  },
+  "Thistle Arrows": {
+    "Damage": [ "0", "0", "0" ],
+    "Critical": "0",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Ammunition",
+    "Group": [ "Misc" ],
+
+    "Cost": 1,
+    "Weight": 0.15,
+    "Description": "Crafted from the thistles of a poisonous plant, these barbed arrows deal damage for 1d6 rounds after a hit.",
+    "Special": [
+      "On a hit, the arrow embeds itself into the target dealing an addition 1 poison damage every round for 1d6 rounds.",
+      "You may remove the embeded arrow as a move action that deals 1d3 damage as the barbs are pulled free.",
+      "A DC 12 Heal check (made as a standard action) can pull the thistle arrow's head free without the additional damage."
+    ]
+  },
+  "Throwing Arrows": {
+    "Damage": [ "0", "0", "0" ],
+    "Critical": "0",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Ammunition",
+    "Group": [ "Misc" ],
+
+    "Cost": 0.5,
+    "Weight": 0.5,
+    "Description": "Too long to use in a bow, the throwing arrow has no nock at the tail.",
+    "Special": [
+      "If thrown without the use of a cord, treat a throwing arrow as a dart."
+    ]
+  },
+  "Trip Arrows": {
+    "Damage": [ "0", "0", "0" ],
+    "Critical": "0",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Ammunition",
+    "Group": [ "Misc" ],
+
+    "Cost": 25,
+    "Weight": 0.2,
+    "Description": "This arrow has netting afixed to the head, to trip up the limbs of the target.",
+    "Special": [
+      "On a hit, it makes a trip attack against the target with a CMB of +5, the target falls prone on a fail and nothing happens if it passes."
+    ]
+  },
+  "Whistling Arrows": {
+    "Damage": [ "0", "0", "0" ],
+    "Critical": "0",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Martial",
+    "Category": "Ammunition",
+    "Group": [ "Misc" ],
+
+    "Cost": 0.1,
+    "Weight": 0.15,
+    "Description": "These arrows come with specially designed grooves and fletching that cause them to emit a loud keening sound.",
+    "Special": [
+      "These arrows make a saound that is audible within 500 feet of the flight path.",
+      "Whistling arrows come in a leather quiver that holds 20 (price & weight listed for 1 arrow)."
+    ]
+  }  
 }
