@@ -146,34 +146,74 @@ export default {
           "attributes": { "Str": 10 },
           "abilities": {
             "name": {
-              "description": "",
               "type": "",
               "bonus": "",
+              "description": "",
               "stacks": false
             },
             "Chainmail": {
-              "desc": "A shirt with metal loops",
               "type": "armor",
-              "bonuse": 5,
+              "bonus": 5,
+              "desc": "A shirt with metal loops",
               "stacks": false
           },
           "characteristics": {
             "age": 10
           }
         };
-        creture.ac = { "base": 10 };
-        for item in abilities {
-          let curr = creature.ac[item.type].bonus;
-          let stack = creature.ac[item.type].stacks;
-          if (item.stacks) {
-            stack = stack + item.bonus;
-          } else {
-            curr = Math.max(curr, item.bonus)
-          // if the bonus stacks, add it to the current bonus, otherwise use the higher value
-          curr = (item.stacks) ? curr + item.bonus : Math.max(curr, item.bonus);
-          
+
+        // Get Monster's Equipment
+        let items = orig.treasure.split(',');
+        for (const shield of Object.keys(equipment.shields)) {
+          if (items.includes(shield)) {
+            abilities[shield].type = "shield";
+            abilities[shield].bonus = equipement.shields[shield]["AC Bonus"];
+            abilities[shield].description = equipement.shields[shield]["Description"];
+            abilities[shield].stacks = false;
+
+            monster.equipment[shield] = equipment.shields[shield];
+          }
         }
-        let AC = {
+        for (const armor of Object.keys(equipment.armors)) {
+          if (items.includes(armor)) {
+            abilities[armor].type = "armor";
+            abilities[armor].bonus = equipment.armors[armor]["AC Bonus"];
+            abilities[armor].description = equipment.armors[armor]["Description"];
+            abilities[armor].stacks = false;
+
+            monster.equipment[armor] = equipment.armors[armor];
+          }
+        }
+        for (const weapon of Object.keys(equipment.weapons)) {
+          monster.equipment[weapon] = equipment.weapons[weapon];
+        }
+
+        
+        creture.ac = { "base": 10 };
+        // orig.ac
+        for item in abilities {
+          let ac = orig.ac;
+          ac = ac - dexMod - 10;
+          ac = ac - size.AC;
+          let acBonuses = [ "armor", "shield", "dodge", "deflection" ];
+          if ( acBonuses.inlcudes(item.type)) {
+            let curr = creature.ac[item.type].bonus;
+            let stack = creature.ac[item.type].stacks;
+            if (item.stacks) {
+              stack = stack + item.bonus;
+            } else {
+              curr = Math.max(curr, item.bonus);
+                  // TODO:  Move to ac computaion section
+              // // if the bonus stacks, add it to the current bonus, otherwise use the higher value
+              // curr = (item.stacks) ? curr + item.bonus : Math.max(curr, item.bonus);
+            }
+            // subtract armor, shields, dodge bouses
+            ac = ac - curr;
+            ac = ac - stacks;
+          }
+        }
+        let natural = ac; // - dodge?
+        let AC_TYPES = {
           "Base": 10,
           "Dex": 0,
           "Size": 0,
