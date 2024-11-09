@@ -17,9 +17,26 @@
      "Performance", "Trip"
     ]
   },
+  "Dwarven Light Axe-Gauntlet": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "Slashing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Light",
+    "Group": [ "Axes", "Close" ],
+
+    "Cost": 16,
+    "Weight": 5,
+    "Description": "An axe-gauntlet is a locked gauntlet covering the hand and forearm up to and over the elbow, with an axe blade built around the gauntlet’s permanently closed fist.",
+    "Special": [
+     "Donning an axe-gauntlet is a full-round action, and you get a +10 bonus to CMD vs disarm attempts.",
+     "Blocking", "Disarm"
+    ]
+  },
 
 
-"Axe-Gauntlet, Dwarven Light 16 gp 1d4 1d6 x3 — 5 lbs. S blocking, disarm",
 "Axe, knuckle 9 gp 1d4 1d6 x3 — 2 lbs. S monk, performance",
 "Barbazu beard 25 gp 1d3 1d4 x2 — 5 lbs S see text",
 "Battle poi 5 gp 1d3 (fire) 1d4 (fire) x2 — 2 lbs. fire —",
