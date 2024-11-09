@@ -36,7 +36,7 @@
     "Description": "A small shield with spikes used for both offense and defense.",
     "Special": []
   },
-  "Madu (Leather)": {
+  "Leather Madu": {
     "AC Bonus": 1,
     "Max Dex": 10,
     "Pentalty": -2,
@@ -56,7 +56,7 @@
       "If you are not proficient with the madu, you treat it as a light spiked shield."
     ]
   },
-  "Madu (Steel)": {
+  "Steel Madu": {
     "AC Bonus": 1,
     "Max Dex": 10,
     "Pentalty": -2,
@@ -76,7 +76,7 @@
       "If you are not proficient with the madu, you treat it as a light spiked shield."
     ]
   },
-  "Light Shield (Steel)": {
+  "Light Steel Shield": {
     "AC Bonus": 1,
     "Max Dex": 10,
     "Pentalty": -1,
@@ -93,7 +93,7 @@
     "Description": "A simple shield made of good steel.",
     "Special": []
   },
-  "Light Shield (Steel Quickdraw)": {
+  "Light Steel Shield (Quickdraw)": {
     "AC Bonus": 1,
     "Max Dex": 10,
     "Pentalty": -2,
@@ -114,7 +114,7 @@
       "If you have the Quick Draw feat, you may don or put away a quickdraw shield as a free action."
     ]
   },
-  "Light Shield (Wooden)": {
+  "Light Wooden Shield": {
     "AC Bonus": 1,
     "Max Dex": 10,
     "Pentalty": -1,
@@ -131,7 +131,7 @@
     "Description": "A simple shield made of solid wood.",
     "Special": []
   },
-  "Light Shield (Wooden Quickdraw)": {
+  "Light Wooden Shield (Quickdraw)": {
     "AC Bonus": 1,
     "Max Dex": 10,
     "Pentalty": -2,
@@ -152,7 +152,7 @@
       "If you have the Quick Draw feat, you may don or put away a quickdraw shield as a free action."
     ]
   },
-  "Heavy Shield (Steel)": {
+  "Heavy Steel Shield": {
     "AC Bonus": 2,
     "Max Dex": 10,
     "Pentalty": -2,
@@ -169,7 +169,7 @@
     "Description": "A sturdy metal shield reinforced with good steel.",
     "Special": []
   },
-  "Heavy Shield (Wooden)": {
+  "Heavy Wooden Shield": {
     "AC Bonus": 2,
     "Max Dex": 10,
     "Pentalty": -2,
@@ -206,7 +206,7 @@
       "As a standard action, you can use the tower shield to grant yourself total cover until the beggining of your next turn. Choose one edge of your space and that edge is treated as a wall for attacks targeting you."
     ]
   },
-  "Snarlshield (Steel)": {
+  "Steel Snarlshield": {
     "AC Bonus": 2,
     "Max Dex": 10,
     "Pentalty": -3,
@@ -225,7 +225,7 @@
       "Disarm: +2 to CMB when attempting to disarm an enemy"
     ]
   },
-  "Snarlshield (Wooden)": {
+  "Wooden Snarlshield": {
     "AC Bonus": 2,
     "Max Dex": 10,
     "Pentalty": -3,
