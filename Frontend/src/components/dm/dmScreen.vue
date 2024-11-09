@@ -165,6 +165,7 @@ export default {
         // Get Monster's Equipment
         let items = orig.treasure.split(',');
         for (const shield of Object.keys(equipment.shields)) {
+          // handle masterwork and magic items
           if (items.includes(shield)) {
             abilities[shield].type = "shield";
             abilities[shield].bonus = equipement.shields[shield]["AC Bonus"];
