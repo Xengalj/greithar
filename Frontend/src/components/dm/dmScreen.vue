@@ -165,28 +165,36 @@ export default {
         // Get Monster's Equipment
         let items = orig.treasure.split(',');
         for (const shield of Object.keys(equipment.shields)) {
-          // handle masterwork and magic items
-          if (items.includes(shield)) {
-            abilities[shield].type = "shield";
-            abilities[shield].bonus = equipement.shields[shield]["AC Bonus"];
-            abilities[shield].description = equipement.shields[shield]["Description"];
-            abilities[shield].stacks = false;
+          for (const item of items) {
+            // if item's name / string contains the name of the shield
+            if (item.includes(shield)) {
+              abilities[shield].type = "shield";
+              abilities[shield].bonus = equipement.shields[shield]["AC Bonus"];
+              abilities[shield].description = equipement.shields[shield]["Description"];
+              abilities[shield].stacks = false;
 
-            monster.equipment[shield] = equipment.shields[shield];
+              monster.equipment[shield] = equipment.shields[shield];
+            }
           }
         }
         for (const armor of Object.keys(equipment.armors)) {
-          if (items.includes(armor)) {
-            abilities[armor].type = "armor";
-            abilities[armor].bonus = equipment.armors[armor]["AC Bonus"];
-            abilities[armor].description = equipment.armors[armor]["Description"];
-            abilities[armor].stacks = false;
+          for (const item of items) {
+            if (item.includes(armor)) {
+              abilities[armor].type = "armor";
+              abilities[armor].bonus = equipment.armors[armor]["AC Bonus"];
+              abilities[armor].description = equipment.armors[armor]["Description"];
+              abilities[armor].stacks = false;
 
-            monster.equipment[armor] = equipment.armors[armor];
+              monster.equipment[armor] = equipment.armors[armor];
+            }
           }
         }
         for (const weapon of Object.keys(equipment.weapons)) {
-          monster.equipment[weapon] = equipment.weapons[weapon];
+          for (const item of items) {
+            if (item.includes(weapon)) {
+              monster.equipment[weapon] = equipment.weapons[weapon];
+            }
+          }
         }
 
         
@@ -194,8 +202,7 @@ export default {
         // orig.ac
         for item in abilities {
           let ac = orig.ac;
-          ac = ac - dexMod - 10;
-          ac = ac - size.AC;
+          ac = ac - dexMod - 10 - size.AC;
           let acBonuses = [ "armor", "shield", "dodge", "deflection" ];
           if ( acBonuses.inlcudes(item.type)) {
             let curr = creature.ac[item.type].bonus;
@@ -213,7 +220,7 @@ export default {
             ac = ac - stacks;
           }
         }
-        let natural = ac; // - dodge?
+        let natural = ac;
         let AC_TYPES = {
           "Base": 10,
           "Dex": 0,
