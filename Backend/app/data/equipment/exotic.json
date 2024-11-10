@@ -35,20 +35,210 @@
      "Blocking", "Disarm"
     ]
   },
+  "Knuckle Axe": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "Slashing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Light",
+    "Group": [ "Axes" ],
+
+    "Cost": 9,
+    "Weight": 2,
+    "Description": "Knuckle axes, usually used in pairs, resemble axe blades mounted on brass knuckles.",
+    "Special": [
+      "You may hold, but not wield, a weapon or other object in a hand wearing a knuckle axe.",
+      "Unlike when wearing brass knuckles, you cannot use a hand wearing a knuckle axe for spellcasting.",
+      "Monk", "Performance"
+    ]
+  },
+  "Barbazu Beard": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Slashing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Light",
+    "Group": [ "Misc" ],
+
+    "Cost": 25,
+    "Weight": 5,
+    "Description": "A barbazu beard is a helm with a full facemask and razor-sharp blade extending from the chin.",
+    "Special": [
+     "A barbazu beard can be used as an off-hand weapon that requires no hands to use.",
+     "Atacking with a barbazu beard provokes attacks of opportunity."
+    ]
+  },
+ "Battle Poi": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Fire" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Light",
+    "Group": [ "Flails" ],
+
+    "Cost": 5,
+    "Weight": 2,
+    "Description": "",
+    "Special": [
+     "Poi are too light to deal physical weapon damage, but they instead deal fire damage when lit.",
+     "Poi can be extinguished by spending a full round action smothering them in sand or submerging them in water.",
+     "If you are proficient with battle poi, you are treated as if you have the Two-Weapon Fighting feat when using poi."
+    ]
+  },
+  "Swordbreker Dagger": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Slashing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Light",
+    "Group": [ "Light Blades" ],
+
+    "Cost": 10,
+    "Weight": 3,
+    "Description": "A swordbreaker dagger has large, deep serrations along one side of the blade, resembling the barbed teeth of a comb.",
+    "Special": [
+      "If you are proficient with this weapon, add +4 on your disarm or sunder attempts against bladed weapons.",
+      "Disarm", "Sunder"
+    ]
+  },
+  "Flying Talon": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x2",
+    "Range": 10,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Light",
+    "Group": [ "Flails" ],
+
+    "Cost": 15,
+    "Weight": 5,
+    "Description": "This weapon consists of a three-pronged, barbed hook attached to a length of chain.",
+    "Special": [
+      "Due to the weapon’s unwieldiness, you cannot make attacks of opportunity with a flying talon and do not threaten any squares with it.",
+      "Disarm", "Trip"
+    ]
+  },
+  "Gnome Pincher": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Light",
+    "Group": [ "Flails" ],
+
+    "Cost": 10,
+    "Weight": 2,
+    "Description": "This odd weapon is a 2-foot rod topped with four blunt claws. Squeezing the handle causes the claws to close.",
+    "Special": [
+      "You can use the gnome pincher to attempt a disarm or steal combat maneuver with a +2 bonus.",
+      "You can transfer an object from the pincher to your free hand as a free action.",
+      "Gnomes treat gnome pinchers as martial weapons."
+    ]
+  },
+  "Halfling Rope-Shot": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Light",
+    "Group": [ "Flails" ],
+
+    "Cost": 1,
+    "Weight": 1,
+    "Description": "One end of this short rope has a sling bullet wrapped in a monkey’s fist knot, and the other end is tied in a small loop.",
+    "Special": [
+     "Wrapping or removing the loop from your wrist is a full-round action.",
+     "If attached and you drop the rope-shot (or are disarmed), you can recover it as a swift action.",
+     "You get a +2 bonus on Sleight of Hand chacks to conceal a rope-shot and Halflings treat rope-shots as martial weapons.",
+      "Disarm"
+    ]
+  },
+  "Dwarven Boulder Helmet": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Light",
+    "Group": [ "Misc" ],
+
+    "Cost": 20,
+    "Weight": 10,
+    "Description": "This heavy, reinforced metal helmet can be used to make melee attacks.",
+    "Special": [
+      "You get a +2 circumstance bonus on bull rush maneuvers, but you become staggered until the end of your next turn.",
+      "You also get a +2 circumstance bonus to AC against critical hit confirmation rolls.",
+      "A dwarven boulder helmet adds 20% to the wearer's arcane spell failure chance."
+    ]
+  },
+  "Kama": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Slashing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Light",
+    "Group": [ "Light Blades", "Monk" ],
+
+    "Cost": 2,
+    "Weight": 2,
+    "Description": "A kama is a short, curved blade attached to a simple handle, usually made of wood.",
+    "Special": []
+  },
+  "Butterfly Knife": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "19/x2",
+    "Range": 0,
+    "Damage Type": [ "Piercing", "Slaashing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Light",
+    "Group": [ "Light Blades" ],
+
+    "Cost": 5,
+    "Weight": 1,
+    "Description": "A butterfly knife has a blade concealed between two halves of the handle that can be brought to bear quickly.",
+    "Special": [
+      "You may open a butterfly knife as a move action, or as a free action if you have proficincy (or the Quick Draw feat).",
+     "When closed, you gain a +2 bonus on Sleight of Hand checks made to conceal it on your body."
+    ]
+  },
+   "Deer Horn Knife": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x3",
+    "Range": 20,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Light",
+    "Group": [ "Light Blades", "Thrown", "Monk" ],
+
+    "Cost": 10,
+    "Weight": 3,
+    "Description": "This flat, metal weapon consists of two joined crescent-shaped blades overlapping to form a hollow center with four projecting points.",
+    "Special": [
+      "Blocking"
+    ]
+  },
+ 
 
 
-"Axe, knuckle 9 gp 1d4 1d6 x3 — 2 lbs. S monk, performance",
-"Barbazu beard 25 gp 1d3 1d4 x2 — 5 lbs S see text",
-"Battle poi 5 gp 1d3 (fire) 1d4 (fire) x2 — 2 lbs. fire —",
-"Dagger, swordbreaker 10 gp 1d3 1d4 x2 — 3 lbs. S disarm, sunder",
-"Flying Talon 15 gp 1d3 1d4 x2 10 ft. 5 lbs. P disarm, trip",
-"Gnome pincher 10 gp 1d4 1d6 x2 — 2 lbs. B disarm, see text",
-"Halfling rope-shot 1 gp 1d4 1d6 x2 — 1 lb. B disarm",
-"Helmet, dwarven boulder 20 gp 1d3 1d4 x2 — 10 lbs. B see text",
-"Kama 2 gp 1d4 1d6 x2 — 2 lbs. S monk, trip",
-"Knife, butterfly 5 gp 1d3 1d4 19-20/x2 — 1 lb. P or S —",
-"Knife, deer horn 10 gp 1d3 1d4 x3 20 ft. 3 lbs. P blocking, monk",
-"Maulaxe, dwarven 25 gp 1d4 1d6 x3 10 ft. 5 lbs. B or S —",
+ "Maulaxe, dwarven 25 gp 1d4 1d6 x3 10 ft. 5 lbs. B or S —",
 "Nunchaku 2 gp 1d4 1d6 x2 — 2 lbs. B disarm, monk",
 "Quadrens 8 gp 1d4 1d6 19-20/x2 — 2 lbs. P performance",
 "Razor, drow 25 gp 1d3 1d4 18–20/×2 — 2 lbs. S see text",
@@ -62,12 +252,6 @@
 "War-shield, dwarven 50 gp 1d4 1d6 ×2 — 8 lbs. P or S see text",
 "Waveblade 5 gp 1d4 1d6 18–20/×2 — 2 lbs. P or S monk, see text",
 "Whip, scorpion 5 gp 1d3 1d4 x2 — 3 lbs. S disarm, performance, reach, trip",
-
-
-
-
-
-
 
 
   "Test": {
