@@ -1,1724 +1,1666 @@
 {
-  "Boarding Axe": {
-    "Damage": [ "1d4", "1d6", "1d8" ],
-    "Critical": "20/x3",
-    "Range": 0,
-    "Damage Type": [ "Piercing", "Slashing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Light",
-    "Group": [ "Axes" ],
-
-    "Cost": 6,
-    "Weight": 3,
-    "Description": "A boarding axe is similar to a handaxe, but features a spike that allows the weapon to do either slashing or piercing damage.",
-    "Special": [
-      "A boarding axe grants a +2 circumstance bonus on Climb checks to scale wooden or other penetrable surfaces, such as ice."
-    ]
-  },
-  "Throwing Axe": {
-    "Damage": [ "1d4", "1d6", "1d8" ],
-    "Critical": "20/x2",
-    "Range": 10,
-    "Damage Type": [ "Slashing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ranged",
-    "Group": [ "Axes", "Thrown", "Tribal" ],
-
-    "Cost": 8,
-    "Weight": 2,
-    "Description": "This is a small axe balanced for throwing.",
-    "Special": []
-  },
-  "Blade Boot": {
-    "Damage": [ "1d3", "1d4", "1d6" ],
-    "Critical": "20/x2",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Light",
-    "Group": [ "Misc" ],
-
-    "Cost": 25,
-    "Weight": 2,
-    "Description": "Blade boots come with a spring-mounted knife that pops out when triggered with the right combination of toe presses.",
-    "Special": [
-      "You can use the blade boot as an off-hand weapon.",
-      "Releasing the knife is a swift action and rearming it is a full-round action.",
-      "When the blade is extended, you treat normal terrain as difficult and difficult terrain as impassable."
-    ]
-  },
-  "Cat-o’-Nine-Tails": {
-    "Damage": [ "1d3", "1d4", "1d6" ],
-    "Critical": "20/x2",
-    "Range": 0,
-    "Damage Type": [ "Slashing", "Nonlethal" ],
-
-    "Proficiency": "Martial",
-    "Category": "Light",
-    "Group": [ "Flails" ],
-
-    "Cost": 1,
-    "Weight": 1,
-    "Description": "This short whip is made of nine knotted thongs about 3 feet in length.",
-    "Special": [
-      "Disarm",
-      "This flail deals no damage to any creature with an armor bonus of at least +1, or a natural armor bonus of at least +3."
-    ]
-  },
-  "Claw Blades": {
-    "Damage": [ "1d3", "1d4", "1d6" ],
-    "Critical": "20/x2",
-    "Range": 0,
-    "Damage Type": [ "Bludgeoning", "Slashing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Light",
-    "Group": [ "Misc" ],
-
-    "Cost": 305,
-    "Weight": 2,
-    "Description": "Bought in a set of five, they fit over the wearer’s claws on one hand.",
-    "Special": [
-      "These subtle blades can only be used by catfolk with the cat’s claws racial trait.",
-      "Caeth are always proficient with claw blades.",
-      "The blades grant a +1 enhancement bonus on claw attack rolls with the equiped hand, changing the weapon type from a natural attack to a light slashing weapon."
-    ]
-  },
-  "Dueling Dagger": {
-    "Damage": [ "1d3", "1d4", "1d6" ],
-    "Critical": "19/x2",
-    "Range": 10,
-    "Damage Type": [ "Piercing", "Slashing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Light",
-    "Group": [ "Light Blades", "Thrown" ],
-
-    "Cost": 12,
-    "Weight": 1,
-    "Description": "This dagger is used in the off hand to block attacks.",
-    "Special": [
-    "When you fight defensively or use Combat Expertise while wielding a dueling dagger, your bonus to AC increases by 1.",
-    "If you aren’t proficient with a dueling dagger, you treat it as a dagger and gain no special benefits."
-    ]
-  },
-  "Dogslicer": {
-    "Damage": [ "1d4", "1d6", "1d8" ],
-    "Critical": "19/x2",
-    "Range": 0,
-    "Damage Type": [ "Slashing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Light",
-    "Group": [ "Light Blades" ],
-
-    "Cost": 8,
-    "Weight": 1,
-    "Description": "This short, curved sword is a favorite weapon of goblins, who show unusual cunning by drilling numerous holes in the blade to reduce the weapon’s weight.",
-    "Special": [
-      "Fragile"
-    ]
-  },
-  "Light Hammer": {
-    "Damage": [ "1d3", "1d4", "1d6" ],
-    "Critical": "20/x2",
-    "Range": 20,
-    "Damage Type": [ "Bludgeoning" ],
-
-    "Proficiency": "Martial",
-    "Category": "Light",
-    "Group": [ "Hammers", "Thrown" ],
-
-    "Cost": 1,
-    "Weight": 2,
-    "Description": "A lighter version of a warhammer, this weapon usually has a sleek metal head with one striking surface.",
-    "Special": []
-  },
-  "Gladius": {
-    "Damage": [ "1d4", "1d6", "1d8" ],
-    "Critical": "19/x2",
-    "Range": 0,
-    "Damage Type": [ "Piercing", "Slashing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Light",
-    "Group": [ "Light Blades" ],
-
-    "Cost": 15,
-    "Weight": 3,
-    "Description": "The gladius is the favorite short sword of gladiators, with a heavier blade than the standard short sword.",
-    "Special": [
-      "Feats and abilities that affect short swords apply to the gladius.",
-      "Performance"
-    ]
-  },
-  "Handaxe": {
-    "Damage": [ "1d4", "1d6", "1d8" ],
-    "Critical": "20/x3",
-    "Range": 0,
-    "Damage Type": [ "Slashing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Light",
-    "Group": [ "Axes", "Tribal" ],
-
-    "Cost": 6,
-    "Weight": 3,
-    "Description": "This one-handed axe is short (roughly 1 foot long) and designed for use with one hand.",
-    "Special": []
-  },
-  "Tri-Bladed Katar": {
-    "Damage": [ "1d3", "1d4", "1d6" ],
-    "Critical": "20/x4",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Light",
-    "Group": [ "Light Blades", "Close" ],
-
-    "Cost": 6,
-    "Weight": 2,
-    "Description": "Where most punching daggers boast a single thick blade, the tri-bladed katar features a fan of three splayed razor edges.",
-    "Special": [
-      "Any effects that apply to a punching dagger also apply to a tri-bladed katar."
-    ]
-  },
-  "witchblade Knife": {
-    "Damage": [ "1d3", "1d4", "1d6" ],
-    "Critical": "19/x2",
-    "Range": 10,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Light",
-    "Group": [ "Light Blades", "Thrown" ],
-
-    "Cost": 5,
-    "Weight": 1,
-    "Description": "",
-    "Special": [
-      "This knife can be designed to loke like another type of object (a DC 15 Perception check reveals the deception).",
-      "A switchblade is treated as a dagger, and can be activated as a free action if held."
-    ]
-  },
-  "Kobold Tail Attachment (Long Lash)": {
-    "Damage": [ "1d4", "1d6", "1d8" ],
-    "Critical": "20/x2",
-    "Range": 0,
-    "Damage Type": [ "Slashing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Light",
-    "Group": [ "Kobold Tail Attachment" ],
-
-    "Cost": 15,
-    "Weight": 1,
-    "Description": "This slender cord has tiny bits of glass and stone embedded in its length.",
-    "Special": [
-      "Donning a kobold tail attachment requires a full-round action.",
-      "Kobolds gain a +4 bonus to CMD vs disarm attempts to remove their tail attachment.",
-      "Reach"
-    ]
-  },
-  "Kobold Tail Attachment (Pounder)": {
-    "Damage": [ "1d6", "1d8", "2d6" ],
-    "Critical": "20/x2",
-    "Range": 0,
-    "Damage Type": [ "Bludgeoning" ],
-
-    "Proficiency": "Martial",
-    "Category": "Light",
-    "Group": [ "Kobold Tail Attachment" ],
-
-    "Cost": 1,
-    "Weight": 4,
-    "Description": "This squat ball is made from some sort of dull metal.",
-    "Special": [
-      "Donning a kobold tail attachment requires a full-round action.",
-      "Kobolds gain a +4 bonus to CMD vs disarm attempts to remove their tail attachment."
-    ]
-  },
-  "Kobold Tail Attachment (Razored)": {
-    "Damage": [ "1d6", "1d8", "2d6" ],
-    "Critical": "19/x2",
-    "Range": 0,
-    "Damage Type": [ "Slashing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Light",
-    "Group": [ "Kobold Tail Attachment" ],
-
-    "Cost": 3,
-    "Weight": 2,
-    "Description": "This metal wedge has a prickly edge on one of its sides.",
-    "Special": [
-      "Donning a kobold tail attachment requires a full-round action.",
-      "Kobolds gain a +4 bonus to CMD vs disarm attempts to remove their tail attachment."
-    ]
-  },
-  "Kobold Tail Attachment (Spiked)": {
-    "Damage": [ "1d6", "1d8", "2d6" ],
-    "Critical": "20/x3",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Light",
-    "Group": [ "Kobold Tail Attachment" ],
-
-    "Cost": 3,
-    "Weight": 2,
-    "Description": "This narrow spike tapers to a sharp point.",
-    "Special": [
-      "Donning a kobold tail attachment requires a full-round action.",
-      "Kobolds gain a +4 bonus to CMD vs disarm attempts to remove their tail attachment."
-    ]
-  },
-  "Kobold Tail Attachment (Sweeper)": {
-    "Damage": [ "1d4", "1d6", "1d8" ],
-    "Critical": "20/x2",
-    "Range": 0,
-    "Damage Type": [ "Bludgeoning" ],
-
-    "Proficiency": "Martial",
-    "Category": "Light",
-    "Group": [ "Kobold Tail Attachment" ],
-
-    "Cost": 7,
-    "Weight": 3,
-    "Description": "When properly used, this sharply curved piece of metal can knock opponents off their feet.",
-    "Special": [
-      "Donning a kobold tail attachment requires a full-round action.",
-      "Kobolds gain a +4 bonus to CMD vs disarm attempts to remove their tail attachment.",
-      "Unlike most trip weapons, you cannot drop it if you are tripped during your own trip attempt.",
-      "Trip"
-    ]
-  },
-  "Kukri": {
-    "Damage": [ "1d3", "1d4", "1d6" ],
-    "Critical": "18/x2",
-    "Range": 0,
-    "Damage Type": [ "Slashing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Light",
-    "Group": [ "Light Blades" ],
-
-    "Cost": 8,
-    "Weight": 2,
-    "Description": "A kukri is a curved blade, about 1 foot in length.",
-    "Special": []
-  },
-  "Machete": {
-    "Damage": [ "1d4", "1d6", "1d8" ],
-    "Critical": "19/x2",
-    "Range": 0,
-    "Damage Type": [ "Slashing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Light",
-    "Group": [ "Light Blades" ],
-
-    "Cost": 10,
-    "Weight": 2,
-    "Description": "This tool is a wide, single-edged blade about 2 feet in length. Most often used to hack through dense vegetation, it works equally well as a weapon.",
-    "Special": [
-      "A character proficient with a machete gains a +1 circumstance bonus on Survival checks to get along in the wild."
-    ]
-  },
-  "Light Pick": {
-    "Damage": [ "1d3", "1d4", "1d6" ],
-    "Critical": "20/x4",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Light",
-    "Group": [ "Axes" ],
-
-    "Cost": 4,
-    "Weight": 3,
-    "Description": "This weapon, adapted from the pickaxe tool, has a head with a slightly curved, armor piercing spike and a hammerlike counterweight.",
-    "Special": []
-  },
-  "Sap": {
-    "Damage": [ "1d4", "1d6", "1d8" ],
-    "Critical": "20/x2",
-    "Range": 0,
-    "Damage Type": [ "Bludgeoning", "Nonlethal" ],
-
-    "Proficiency": "Martial",
-    "Category": "Light",
-    "Group": [ "Close" ],
-
-    "Cost": 1,
-    "Weight": 2,
-    "Description": "This weapon consists of a soft wrapping around a hard, dense core, typically a leather sheath around a lead rod. The head is wider than the handle and designed to spread out the force of the blow, making it less likely to draw blood or break bones.",
-    "Special": []
-  },
-  "Starknife": {
-    "Damage": [ "1d3", "1d4", "1d6" ],
-    "Critical": "20/x3",
-    "Range": 20,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Light",
-    "Group": [ "Light Blades", "Thrown" ],
-
-    "Cost": 24,
-    "Weight": 3,
-    "Description": "From a central metal ring, four tapering metal blades extend from this weapon like points on a compass rose.",
-    "Special": []
-  },
-  "Butterfly Sword": {
-    "Damage": [ "1d3", "1d4", "1d6" ],
-    "Critical": "19/x2",
-    "Range": 0,
-    "Damage Type": [ "Slashing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Light",
-    "Group": [ "Light Blades", "Monk" ],
-
-    "Cost": 20,
-    "Weight": 1,
-    "Description": "These short matching swords come in pairs, cleverly nested together to appear as a single blade.",
-    "Special": [
-      "You may draw both swords at the same time, and separate them as a free action",
-      "The listed price and weight is for a pair of butterfly swords and masterwrok versions cost 320 gp for the pair.",
-      "Magical enhancements must be added seperately, so a +1 to one of the two blades would cost an addition 4,000 gp.",
-      "Monk"
-    ]
-  },
-  "Shortsword": {
-    "Damage": [ "1d4", "1d6", "1d8" ],
-    "Critical": "19/x2",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Light",
-    "Group": [ "Light Blades" ],
-
-    "Cost": 10,
-    "Weight": 2,
-    "Description": "Short swords are some of the most common weapons found in any martial society, and thus designs are extremely varied, depending on the region and creator.",
-    "Special": []
-  },
-  "War Razor": {
-    "Damage": [ "1d3", "1d4", "1d6" ],
-    "Critical": "19/x2",
-    "Range": 0,
-    "Damage Type": [ "Slashing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Light",
-    "Group": [ "Light Blades" ],
-
-    "Cost": 8,
-    "Weight": 1,
-    "Description": "The war razor is nothing but an oversized flip knife or shaving razor.",
-    "Special": [
-      "You gain a +2 bonus on Sleight of Hand checks made to conceal the weapon on your body."
-    ]
-  },
-  "Ankus": {
-    "Damage": [ "1d6", "1d8", "2d6" ],
-    "Critical": "20/x2",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "One-Handed",
-    "Group": [ "Heavy Blades" ],
-
-    "Cost": 8,
-    "Weight": 5,
-    "Description": "Also known as an elephant goad, this tool consists of a 2- to 3-foot rod ending in a spearhead and a backward-facing hook.",
-    "Special": [
-      "Disarm",
-      "Trip"
-    ]
-  },
-  "Battleaxe": {
-    "Damage": [ "1d6", "1d8", "2d6" ],
-    "Critical": "20/x3",
-    "Range": 0,
-    "Damage Type": [ "Slashing" ],
-
-    "Proficiency": "Martial",
-    "Category": "One-Handed",
-    "Group": [ "Axes" ],
-
-    "Cost": 10,
-    "Weight": 6,
-    "Description": "The head of this axe may have one blade or two, and the handle is long enough that you can wield it one-handed or two-handed.",
-    "Special": []
-  },
-  "Combat Scabbard": {
-    "Damage": [ "1d4", "1d6", "1d8" ],
-    "Critical": "20/x2",
-    "Range": 0,
-    "Damage Type": [ "Slashing" ],
-
-    "Proficiency": "Martial",
-    "Category": "One-Handed",
-    "Group": [ "Misc" ],
-
-    "Cost": 10,
-    "Weight": 1,
-    "Description": "This combat scabbard has a sharp blade on the outer edge, allowing you to use it as a weapon.",
-    "Special": [
-      "Improvised"
-    ]
-  },
-  "Cutlass": {
-    "Damage": [ "1d4", "1d6", "1d8" ],
-    "Critical": "18/x2",
-    "Range": 0,
-    "Damage Type": [ "Slashing" ],
-
-    "Proficiency": "Martial",
-    "Category": "One-Handed",
-    "Group": [ "Heavy Blades" ],
-
-    "Cost": 15,
-    "Weight": 4,
-    "Description": "This short, curved sword is favored by seafarers for close-quarters combat.",
-    "Special": [
-      "The cutlass is treated as a scimitar for any effects that apply to scimitars."
-    ]
-  },
-   "Light Flail": {
-    "Damage": [ "1d6", "1d8", "2d6" ],
-    "Critical": "20/x2",
-    "Range": 0,
-    "Damage Type": [ "Bludgeoning" ],
-
-    "Proficiency": "Martial",
-    "Category": "One-Handed",
-    "Group": [ "Flails" ],
-
-    "Cost": 8,
-    "Weight": 5,
-    "Description": "A light flail consists of a weighted striking end connected to a handle by a sturdy chain.",
-    "Special": [
-      "Disarm",
-      "Trip"
-    ]
-  },
-  "Gandasa": {
-    "Damage": [ "1d6", "2d4", "2d6" ],
-    "Critical": "20/x3",
-    "Range": 0,
-    "Damage Type": [ "Slashing" ],
-
-    "Proficiency": "Martial",
-    "Category": "One-Handed",
-    "Group": [ "Axes" ],
-
-    "Cost": 15,
-    "Weight": 4,
-    "Description": "A gandasa is a wide, single-edged dagger on a 2-foot handle and is wielded in combat like an axe.",
-    "Special": []
-  },
-  "Longsword": {
-    "Damage": [ "1d6", "1d8", "2d6" ],
-    "Critical": "19/x2",
-    "Range": 0,
-    "Damage Type": [ "Slashing" ],
-
-    "Proficiency": "Martial",
-    "Category": "One-Handed",
-    "Group": [ "Heavy Blades" ],
-
-    "Cost": 15,
-    "Weight": 4,
-    "Description": "This sword is about 3½ feet in length.",
-    "Special": []
-  },
-  "Manopole": {
-    "Damage": [ "1d6", "1d8", "2d6" ],
-    "Critical": "20/x2",
-    "Range": 0,
-    "Damage Type": [ "Piercing", "Slashing" ],
-
-    "Proficiency": "Martial",
-    "Category": "One-Handed",
-    "Group": [ "Light Blades" ],
-
-    "Cost": 17,
-    "Weight": 4,
-    "Description": "This rigid, fingerless gauntlet has three blades projecting from the gauntlet’s hand.",
-    "Special": [
-      "A manople takes a full-round action to don, and gives you a +10 bonus to your CMD against disarm attempts.",
-      "Blocking",
-      "Disarm"
-    ]
-  },
-  "Heavy Pick": {
-    "Damage": [ "1d4", "1d6", "1d8" ],
-    "Critical": "20/x2",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "One-Handed",
-    "Group": [ "Aees" ],
-
-    "Cost": 8,
-    "Weight": 6,
-    "Description": "This variant of the pick has a longer handle and can be used with one or two hands, making it a common weapon for mounted soldiers.",
-    "Special": []
-  },
-  "Rapier": {
-    "Damage": [ "1d4", "1d6", "1d8" ],
-    "Critical": "18/x2",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "One-Handed",
-    "Group": [ "Light Blades" ],
-
-    "Cost": 20,
-    "Weight": 2,
-    "Description": "",
-    "Special": [
-      "You can’t wield a rapier in two hands in order to apply 1-1/2 times your Strength bonus to damage.",
-      "Finesse"
-    ]
-  },
-  "Scimitar": {
-    "Damage": [ "1d4", "1d6", "1d8" ],
-    "Critical": "18/x2",
-    "Range": 0,
-    "Damage Type": [ "Slashing" ],
-
-    "Proficiency": "Martial",
-    "Category": "One-Handed",
-    "Group": [ "Heavy Blades" ],
-
-    "Cost": 15,
-    "Weight": 4,
-    "Description": "This curved sword is only sharp on the outer edge, and the back is flat, giving the blade a triangular cross-section.",
-    "Special": []
-  },
-  "Scizore": {
-    "Damage": [ "1d8", "1d10", "2d8" ],
-    "Critical": "20/x2",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "One-Handed",
-    "Group": [ "Light Blades", "Close" ],
-
-    "Cost": 20,
-    "Weight": 3,
-    "Description": "The scizore is a hardened tube that fits over the forearm, ending in a semicircular blade.",
-    "Special": [
-      "The scizore grants a +1 shield bonus to AC, but you lose that bonus if you attack with it.",
-      "You take a -1 to attack rolls made with a scizore.",
-      "A scizore provides a +10 bonus to your CMD against being disarmed of your scizore.",
-      "You may don a scizore with a full-round action, and you may not use a hand wearing one for anything else."
-    ]
-  },
-  "Sword Cane": {
-    "Damage": [ "1d4", "1d6", "1d8" ],
-    "Critical": "20/x2",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "One-Handed",
-    "Group": [ "Light Blades" ],
-
-    "Cost": 45,
-    "Weight": 4,
-    "Description": "This slender light blade lies within a wooden container that serves as both its scabbard and hiding place.",
-    "Special": [
-      "You can draw the blade from the cane as a swift action (or a free action with the Quick Draw feat).",
-      "An observer must make a DC 20 Perception check to realize an undrawn sword cane is a weapon rather than a walking stick (DC 10 if  observer is able to handle the weapon).",
-      "You can’t wield a sword cane in two hands in order to apply 1-1/2 times your Strength modifier to damage.",
-      "Finesse"
-    ]
-  },
-  "Macuahuitl": {
-    "Damage": [ "1d6", "1d8", "2d6" ],
-    "Critical": "19/x2",
-    "Range": 0,
-    "Damage Type": [ "Slashing" ],
-
-    "Proficiency": "Martial",
-    "Category": "One-Handed",
-    "Group": [ "Heavy Blades" ],
-
-    "Cost": 5,
-    "Weight": 2,
-    "Description": "This Stone Age weapon, also called a terbutje, is made from a length of tempered wood with bits of shark teeth, obsidian, glass, or similar materials studded all along its length.",
-    "Special": [
-    "Fragile",
-    "A machuahuitl may also be made of steel, this removes the fragile quality and increases the price to 20 gp and the weight to 4 lbs."
-    ]
-  },
-  "Trident": {
-    "Damage": [ "1d6", "1d8", "2d6" ],
-    "Critical": "20/x2",
-    "Range": 10,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "One-Handed",
-    "Group": [ "Spears", "Thrown" ],
-
-    "Cost": 15,
-    "Weight": 4,
-    "Description": "A trident has three metal prongs at the end of a 4-foot-long shaft.",
-    "Special": []
-  },
-  "Warhammer": {
-    "Damage": [ "1d6", "1d8", "2d6" ],
-    "Critical": "20/x3",
-    "Range": 0,
-    "Damage Type": [ "Bludgeoning" ],
-
-    "Proficiency": "Martial",
-    "Category": "One-Handed",
-    "Group": [ "Hammers" ],
-
-    "Cost": 12,
-    "Weight": 5,
-    "Description": "This weapon consists of a wooden haft and a heavy, metal head with a haft long enough to wield it one- or two-handed.",
-    "Special": []
-  },
-
-  "Bardiche": {
-    "Damage": [ "1d8", "1d10", "2d8" ],
-    "Critical": "19/x2",
-    "Range": 0,
-    "Damage Type": [ "Slashing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Two-Handed",
-    "Group": [ "Axes", "Polearms" ],
-
-    "Cost": 13,
-    "Weight": 14,
-    "Description": "The crescent axe-blade of this polearm is attached to the haft at two points and extends past the top.",
-    "Special": [
-      "You gain a +2 bonus to your CMD to resist sunder attempts made against a bardiche.",
-      "Brace",
-      "Reach"
-    ]
-  },
-  "Bec De Corbin": {
-    "Damage": [ "1d8", "1d10", "2d8" ],
-    "Critical": "20/x3",
-    "Range": 0,
-    "Damage Type": [ "Piercing", "Bludgeoning" ],
-
-    "Proficiency": "Martial",
-    "Category": "Two-Handed",
-    "Group": [ "Polearms" ],
-
-    "Cost": 15,
-    "Weight": 12,
-    "Description": "A polearm with both a blunt hammer head and a hooked spike, you primarily attack with the spike.",
-    "Special": [
-      "You gain a +2 bonus on combat maneuver checks to sunder medium or heavy armor with a bec de corbin.",
-      "Brace",
-      "Reach"
-    ]
-  },
-  "Bill": {
-    "Damage": [ "1d6", "1d8", "2d6" ],
-    "Critical": "20/x3",
-    "Range": 0,
-    "Damage Type": [ "Slashing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Two-Handed",
-    "Group": [ "Polearms" ],
-
-    "Cost": 11,
-    "Weight": 11,
-    "Description": "The blade of this polearm is a curved or hooked chopping blade with a spiked projection on the back of the blade.",
-    "Special": [
-      "When fighting defensively or with total defense, this weapon gives you a +1 shield bonus to AC.",
-      "A mounted opponent hit by a bill takes a –1 penalty on his Ride check to stay mounted.",
-      "Brace", "Disarm", "Reach"
-    ]
-  },
-  "Earth Breaker": {
-    "Damage": [ "1d10", "2d6", "3d6" ],
-    "Critical": "20/x3",
-    "Range": 0,
-    "Damage Type": [ "Bludgeoning" ],
-
-    "Proficiency": "Martial",
-    "Category": "Two-Handed",
-    "Group": [ "Hammers" ],
-
-    "Cost": 40,
-    "Weight": 14,
-    "Description": "This massive hammer’s head ends in multiple blunt spikes that help concentrate the force of a powerful swing",
-    "Special": []
-  },
-  "Falchion": {
-    "Damage": [ "1d6", "2d4", "2d6" ],
-    "Critical": "18/x2",
-    "Range": 0,
-    "Damage Type": [ "Slashing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Two-Handed",
-    "Group": [ "Heavy Blades" ],
-
-    "Cost": 75,
-    "Weight": 8,
-    "Description": "This sword has one curved, sharp edge like a scimitar, with the back edge unsharpened and either flat or slightly curved.",
-    "Special": []
-  },
-  "Heavy Flail": {
-    "Damage": [ "1d8", "1d10", "2d8" ],
-    "Critical": "19/x2",
-    "Range": 0,
-    "Damage Type": [ "Bludgeoning" ],
-
-    "Proficiency": "Martial",
-    "Category": "Two-Handed",
-    "Group": [ "Flails" ],
-
-    "Cost": 15,
-    "Weight": 10,
-    "Description": "Similar to a light flail, a heavy flail has a larger metal ball and a longer handle.",
-    "Special": [
-      "Disarm", "Trip"
-    ]
-  },
-  "Glaive": {
-    "Damage": [ "1d8", "1d10", "2d8" ],
-    "Critical": "20/x3",
-    "Range": 0,
-    "Damage Type": [ "Slashing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Two-Handed",
-    "Group": [ "Polearms" ],
-
-    "Cost": 8,
-    "Weight": 10,
-    "Description": "A glaive is composed of a simple blade mounted on the end of a pole about 7 feet in length.",
-    "Special": [
-      "Reach"
-    ]
-  },
-  "Glaive-Guisarme": {
-    "Damage": [ "1d8", "1d10", "2d8" ],
-    "Critical": "20/x3",
-    "Range": 0,
-    "Damage Type": [ "Slashing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Two-Handed",
-    "Group": [ "Polearms" ],
-
-    "Cost": 12,
-    "Weight": 10,
-    "Description": "This polearm combines the blade of a glaive with a wicked hook.",
-    "Special": [
-      "A mounted opponent hit by a glaive-guisarme takes a –2 penalty on her Ride check to stay mounted.",
-      "Reach", "Reach"
-    ]
-  },
-  "Greataxe": {
-    "Damage": [ "1d10", "1d12", "3d6" ],
-    "Critical": "20/x3",
-    "Range": 0,
-    "Damage Type": [ "Slashing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Two-Handed",
-    "Group": [ "Axes" ],
-
-    "Cost": 20,
-    "Weight": 12,
-    "Description": "This heavy axe is usually 3 to 4 feet long, and may have one head or two. A greataxe may be 'bearded' to increase cleaving power and help pull down shields.",
-    "Special": []
-  },
-  "Greatclub": {
-    "Damage": [ "1d8", "1d10", "2d8" ],
-    "Critical": "20/x2",
-    "Range": 0,
-    "Damage Type": [ "Bludgeoning" ],
-
-    "Proficiency": "Martial",
-    "Category": "Two-Handed",
-    "Group": [ "Hammers", "Tribal" ],
-
-    "Cost": 5,
-    "Weight": 8,
-    "Description": "This larger, bulkier version of the common club is heavy enough that you can’t wield it with one hand.",
-    "Special": []
-  },
-  "Greatsword": {
-    "Damage": [ "1d10", "2d6", "3d6" ],
-    "Critical": "19/x2",
-    "Range": 0,
-    "Damage Type": [ "Slashing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Two-Handed",
-    "Group": [ "Heavy Blades" ],
-
-    "Cost": 50,
-    "Weight": 8,
-    "Description": "This immense two-handed sword is about 5 feet in length. A greatsword may have a dulled lower blade that can be gripped.",
-    "Special": []
-  },
-  "Guisarmee": {
-    "Damage": [ "1d6", "2d4", "2d6" ],
-    "Critical": "20/x3",
-    "Range": 0,
-    "Damage Type": [ "none" ],
-
-    "Proficiency": "Martial",
-    "Category": "Two-Handed",
-    "Group": [ "Polearms" ],
-
-    "Cost": 9,
-    "Weight": 12,
-    "Description": "A guisarme is an 8-foot-long shaft with a blade and a hook mounted at the tip.",
-    "Special": [
-      "Reach", "Trip"
-    ]
-  },
-  "Halberd": {
-    "Damage": [ "1d8", "1d10", "2d8" ],
-    "Critical": "20/x3",
-    "Range": 0,
-    "Damage Type": [ "Piercing", "Slashing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Two-Handed",
-    "Group": [ "Polearms" ],
-
-    "Cost": 10,
-    "Weight": 12,
-    "Description": "A halberd is similar to a 5-foot-long spear, but it also has a small, axe-like head mounted near the tip.",
-    "Special": [
-      "Brace", "Trip"
-    ]
-  },
-  "Lucerne Hammer": {
-    "Damage": [ "1d10", "1d12", "3d6" ],
-    "Critical": "20/x2",
-    "Range": 0,
-    "Damage Type": [ "Bludgeoning", "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Two-Handed",
-    "Group": [ "Polearms" ],
-
-    "Cost": 15,
-    "Weight": 12,
-    "Description": "This polearm has both a pronged hammer head for crushing blows and a spiked head for piercing and peeling armor.",
-    "Special": [
-      "You gain a +2 bonus on combat maneuver checks to sunder medium or heavy armor with a lucerne hammer.",
-      "Brace", "Reach"
-    ]
-  },
-  "Horsechopper": {
-    "Damage": [ "1d8", "1d10", "2d8" ],
-    "Critical": "20/x3",
-    "Range": 0,
-    "Damage Type": [ "Piercing", "Slashing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Two-Handed",
-    "Group": [ "Polearms" ],
-
-    "Cost": 10,
-    "Weight": 12,
-    "Description": "Crafted by goblins for battling horses, this weapon is essentially a long-handled halberd with an enlarged hook on the blade.",
-    "Special": [
-      "Most horsechoppers are sized for Small creatures.",
-      "Reach", "Trip"
-    ]
-  },
-  "Lance": {
-    "Damage": [ "1d6", "1d8", "2d6" ],
-    "Critical": "20/x3",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Two-Handed",
-    "Group": [ "Spears" ],
-
-    "Cost": 10,
-    "Weight": 10,
-    "Description": "A long weapon for thrusting, having a wooden shaft and a pointed steel head",
-    "Special": [
-      "A lance deals double damage when used from the back of a charging mount; while mounted, you can wield a lance with one hand.",
-      "Reach"
-    ]
-  },
-  "Ogre Hook": {
-    "Damage": [ "1d8", "1d10", "2d8" ],
-    "Critical": "20/x3",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Two-Handed",
-    "Group": [ "Polearms" ],
-
-    "Cost": 24,
-    "Weight": 10,
-    "Description": "This large crook of sharpened metal makes it easy to trip and catch fleeing opponents.",
-    "Special": [
-      "Invented by ogres, most ogre hooks are Large and crudely fashioned—often from metal torn from previous victims’ weapons and armor.",
-      "Trip"
-    ]
-  },
-  "Pickaxe": {
-    "Damage": [ "1d6", "1d8", "2d6" ],
-    "Critical": "20/x4",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Two-Handed",
-    "Group": [ "Axes" ],
-
-    "Cost": 14,
-    "Weight": 12,
-    "Description": "A two-handed version of the heavy pick, the brutal pickaxe is equally effective at breaking up earth and stone as it is at sundering flesh and bone.",
-    "Special": []
-  },
-  "Planson": {
-    "Damage": [ "1d8", "1d10", "2d8" ],
-    "Critical": "20/x2",
-    "Range": 0,
-    "Damage Type": [ "Bludgeoning", "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Two-Handed",
-    "Group": [ "Hammers", "Spears" ],
-
-    "Cost": 10,
-    "Weight": 10,
-    "Description": "This 5-foot tapered pole is bound in metal with a narrow metal spike projecting from the top.",
-    "Special": [
-      "Brace"
-    ]
-  },
-  "Ranseur": {
-    "Damage": [ "1d6", "2d4", "2d6" ],
-    "Critical": "20/x3",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Two-Handed",
-    "Group": [ "Polearms" ],
-
-    "Cost": 10,
-    "Weight": 12,
-    "Description": "Similar in appearance to a trident, a ranseur has a single spear at its tip, flanked by a pair of short, curving blades.",
-    "Special": [
-      "Disarm", "Reach"
-    ]
-  },
- "Scythe": {
-    "Damage": [ "1d6", "2d4", "2d6" ],
-    "Critical": "20/x4",
-    "Range": 0,
-    "Damage Type": [ "Piercing", "Slashing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Two-Handed",
-    "Group": [ "Heavy Blades" ],
-
-    "Cost": 18,
-    "Weight": 10,
-    "Description": "This weapon consists of a long wooden shaft with protruding handles and a sharp curved blade set at a right angle.",
-    "Special": [
-      "Trip"
-    ]
-  },
-  "Syringe Spear": {
-    "Damage": [ "1d6", "1d8", "2d6" ],
-    "Critical": "20/x3",
-    "Range": 20,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Two-Handed",
-    "Group": [ "Spears" ],
-
-    "Cost": 100,
-    "Weight": 6,
-    "Description": "This spear has a comparment inside to store injectible liquids (poisons).",
-    "Special": [
-      "A successful hit with the spear injects the liquid contents of the container (typically poison) into the target.",
-      "Refilling a syringe spear takes 1 minute."
-    ]
-  },
-  "Ammentum": {
-    "Damage": [ "1d4", "1d6", "1d8" ],
-    "Critical": "20/x2",
-    "Range": 50,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ranged",
-    "Group": [ "Thrown" ],
-
-    "Cost": 0,
-    "Weight": 1,
-    "Description": "An amentum is a long leather thong that attaches to, and is wound about a standard javelin, this gives it spin when thrown.",
-    "Special": [
-      "Attaching an amentum to a javelin is a move action, and winding it is a full-round action.",
-      "Javelins can be stored with amenta already wound about them.",
-      "A javelin wound with an amentum is considered a martial weapon.",
-      "Performance"
-    ]
-  },
-  "Charkram": {
-    "Damage": [ "1d6", "1d8", "2d6" ],
-    "Critical": "20/x2",
-    "Range": 30,
-    "Damage Type": [ "Slashing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ranged",
-    "Group": [ "Light Blades", "Thrown" ],
-
-    "Cost": 1,
-    "Weight": 1,
-    "Description": "The chakram is a flat, open-centered metal discus with a sharpened edge.",
-    "Special": [
-      "You may wield a chakram as a melee weapon taking a -1 penalty on attack rolls.",
-      "If you use a chakram as a melee weapon, you must succeed a DC 15 Reflex save or you cut yourself (1/2 damage, no Str Mod).",
-      "Wearing heavy armor while using a chakram as a melee weapon lets you ignore the save."
-    ]
-  },
-  "Jolting Dart": {
-    "Damage": [ "1d3", "1d4", "1d6" ],
-    "Critical": "20/x2",
-    "Range": 20,
-    "Damage Type": [ "Piercing", "Electricity" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ranged",
-    "Group": [ "Thrown" ],
-
-    "Cost": 100,
-    "Weight": 0.5,
-    "Description": "This alchemically grown crystal dart builds up an electrical charge when thrown.",
-    "Special": [
-      "A creature struck by the dart takes normal piercing damage and 1d6 points of electricity damage.",
-      "Anyone proficient in darts can use a jolting dart.",
-      "Once thrown, the dart is destroyed."
-    ]
-  },
-  "Mambele": {
-    "Damage": [ "1d4", "1d6", "1d8" ],
-    "Critical": "20/x2",
-    "Range": 15,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ranged",
-    "Group": [ "Light Blades", "Thrown" ],
-
-    "Cost": 4,
-    "Weight": 3,
-    "Description": "This three-bladed dagger is intended for throwing but can be used as a melee weapon.",
-    "Special": []
-  },
-  "Hurlbat": {
-    "Damage": [ "1d4", "1d6", "1d8" ],
-    "Critical": "20/x3",
-    "Range": 10,
-    "Damage Type": [ "Piercing", "Slashing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ranged",
-    "Group": [ "Thrown" ],
-
-    "Cost": 8,
-    "Weight": 2,
-    "Description": "A hurlbat is a throwing axe made from a single piece of flat metal, with every extremity sharpened, including the point of the handle.",
-    "Special": [
-      "You may wield a chakram as a melee weapon taking a -1 penalty on attack rolls.",
-      "If you use a chakram as a melee weapon, you must succeed a DC 15 Reflex save or you cut yourself (1/2 damage, no Str Mod).",
-      "Wearing heavy armor while using a chakram as a melee weapon lets you ignore the save."
-    ]
-  },
-  "Longbow": {
-    "Damage": [ "1d6", "1d8", "2d6" ],
-    "Critical": "20/x3",
-    "Range": 100,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ranged",
-    "Group": [ "Bows" ],
-
-    "Cost": 75,
-    "Weight": 3,
-    "Description": "At almost 5 feet in height, a longbow is made up of one solid piece of carefully curved wood.",
-    "Special": [
-      "You need two hands to use a bow, regardless of its size, and a longbow can’t be used while mounted.",
-      "If you have a penalty for low Strength, apply it to damage rolls when you use a longbow."
-    ]
-  },
-  "Composite Longbow": {
-    "Damage": [ "1d6", "1d8", "2d6" ],
-    "Critical": "20/x3",
-    "Range": 110,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ranged",
-    "Group": [ "Bows" ],
-
-    "Cost": 100,
-    "Weight": 3,
-    "Description": "At almost 5 feet in height, a longbow is made up of one solid piece of carefully curved wood.",
-    "Special": [
-      "You need two hands to use a bow, regardless of its size, and you may use a composite longbow while mounted.",
-      "If you have a penalty for low Strength, apply it to damage rolls when you use a longbow.",
-      "All composite bows are made with a strength rating (default 0), if your Strength Bonus is less than this rating, you take a -2 penalty on attacks with it.",
-      "You add your Strength bonus to damage, up to the maximum bonus indicated for the bow.",
-      "Each point of Strength bonus granted by the bow adds 100 gp to its cost (listed price is for a rating of 0)."
-    ]
-  },  
-  "Pilum": {
-    "Damage": [ "1d6", "1d8", "2d6" ],
-    "Critical": "20/x2",
-    "Range": 20,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ranged",
-    "Group": [ "Spears", "Thrown" ],
-
-    "Cost": 5,
-    "Weight": 4,
-    "Description": "The tip of this heavy javelin is designed to break off and embed itself into a shield once it hits.",
-    "Special": [
-      "A thrown pilum that hits a target is destroyed, just like ammunition.",
-      "If you hit a shieldbearing opponent with a pilum, he loses the AC bonuses from that shield until he takes a standard action to pry the remnants of the pilum from his shield."
-    ]
-  },
-  "Shortbow": {
-    "Damage": [ "1d4", "1d6", "1d8" ],
-    "Critical": "20/x3",
-    "Range": 60,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ranged",
-    "Group": [ "Bows" ],
-
-    "Cost": 30,
-    "Weight": 2,
-    "Description": "A shortbow is made up of one piece of wood, about 3 feet in length.",
-    "Special": [
-      "You need two hands to use a bow, regardsless of its size, but you may use it while mounted.",
-      "If you have a penalty for low Strength, apply it to damage rolls when you use a shortbow."
-    ]
-  },
-  "Composite Shortbow": {
-    "Damage": [ "1d4", "1d6", "1d8" ],
-    "Critical": "20/x3",
-    "Range": 70,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ranged",
-    "Group": [ "Bows" ],
-
-    "Cost": 75,
-    "Weight": 2,
-    "Description": "A shortbow is made up of one piece of wood, about 3 feet in length.",
-    "Special": [
-      "You need two hands to use a bow, regardless of its size, and you may use a composite shortbow while mounted.",
-      "If you have a penalty for low Strength, apply it to damage rolls when you use a shortbow.",
-      "All composite bows are made with a strength rating (default 0), if your Strength Bonus is less than this rating, you take a -2 penalty on attacks with it.",
-      "You add your Strength bonus to damage, up to the maximum bonus indicated for the bow.",
-      "Each point of Strength bonus granted by the bow adds 75 gp to its cost (listed price is for a rating of 0)."
-    ]
-  },
-  "Spear-Sling": {
-    "Damage": [ "1d6", "1d8", "2d6" ],
-    "Critical": "20/x3",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ranged",
-    "Group": [ "Misc" ],
-
-    "Cost": 50,
-    "Weight": 2,
-    "Description": "A spear-sling consists of a hollow tube with a loop of elastic material attached to one end, the wielder draws a spear through it, and can release the loop to launch the spear.",
-    "Special": [
-      "Using a spear-sling requires two hands, but treats harpoons, javalins, spears, and other weapons fired as projectiles not thrown weapons.",
-      "Loading a spear-sling is a standard action that provokes attacks of opportunity.",
-      "If you have a penalty for low Strength, apply it to damage rolls when you use a spear-sling.",
-      "All spear-slings are made with a strength rating (default 0), if your Strength Bonus is less than this rating, you take a -2 penalty on attacks with it.",
-      "You add your Strength bonus to damage, up to the maximum bonus indicated for the spear-sling.",
-      "Each point of Strength bonus granted by the spear-sling adds 50 gp to its cost (listed price is for a rating of 0)."
-    ]
-  },
-  "Throwing Arrow Cord": {
-    "Damage": [ "1d3", "1d4", "1d6" ],
-    "Critical": "20/x2",
-    "Range": 60,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ranged",
-    "Group": [ "Misc" ],
-
-    "Cost": 50,
-    "Weight": 2,
-    "Description": "This simple fiber or leather cord has a knot at either end, and using one dramatically increases a throwing arrow’s range.",
-    "Special": [
-      "Attaching the cord to a throwing arrow is a move action that requires two hands and provokes attacks of opportunity."
-    ]
-  },
-
-  "Common Arrow": {
-    "Damage": [ "1d3", "1d4", "1d6" ],
-    "Critical": "20/x2",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ammunition",
-    "Group": [ "Light Blades" ],
-
-    "Cost": 0.05,
-    "Weight": 0.15,
-    "Description": "A typical arrow consists of a long straight wooden shaft with a sharp arrowhead attached to the front end and multiple fins called fletching at the end."
-    "Special": [
-      "You may use a standard arrow as a melee weapon, taking a -4 on attack rolls.",
-      "Arrows usually come in a leather quiver that holds 20 (price & weight listed for 1 arrow)."
-    ]
-  },
-  "Barbed Arrows": {
-    "Damage": [ "0", "0", "0" ],
-    "Critical": "0",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ammunition",
-    "Group": [ "Misc" ],
-
-    "Cost": 0.1,
-    "Weight": 0.15,
-    "Description": "The head of a barbed arrow resembles that of a harpoon.",
-    "Special": [
-      "When a barbed arrow is attached to a length of silk rope and fired from a bow, the arrow’s range increment is reduced to 30 feet, but it gains the grapple special weapon quality.",
-      "Barbed arrows come in a leather quiver that holds 20 (price & weight listed for 1 arrow).",
-      "Barbed bolts exist for crossbows."
-    ]
-  },
-  "Barbed Arrows": {
-    "Damage": [ "0", "0", "0" ],
-    "Critical": "0",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ammunition",
-    "Group": [ "Misc" ],
-
-    "Cost": 0.1,
-    "Weight": 0.15,
-    "Description": "The head of a barbed arrow resembles that of a harpoon.",
-    "Special": [
-      "When a barbed arrow is attached to a length of silk rope and fired from a bow, the arrow’s range increment is reduced to 30 feet, but it gains the grapple special weapon quality.",
-      "Barbed arrows come in a leather quiver that holds 20 (price & weight listed for 1 arrow).",
-      "Barbed bolts exist for crossbows."
-    ]
-  },
-  "Bleeding Arrows": {
-    "Damage": [ "0", "0", "0" ],
-    "Critical": "0",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ammunition",
-    "Group": [ "Misc" ],
-
-    "Cost": 360,
-    "Weight": 0.15,
-    "Description": "The head of a bleeding arrow is specially designed to rip open flesh to cause the target to bleed after impact.",
-    "Special": [
-      "A bleeding arrow deals normal damage when it hits a creture, and then causes it to take continuing bleed damage (crits do not multiply the bleed).",
-      "This bleeding causes 1 bleed damage per round, but a DC 10 Heal check or a cure spell will fix it."
-    ]
-  },
-  "Blunt Arrows": {
-    "Damage": [ "0", "0", "0" ],
-    "Critical": "0",
-    "Range": 0,
-    "Damage Type": [ "Bludgeoning" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ammunition",
-    "Group": [ "Misc" ],
-
-    "Cost": 0.1,
-    "Weight": 0.15,
-    "Description": "Hard leather is wound around the head of a blunt arrow chagind it to batter an enemy rather than pierce them."
-    "Special": [
-      "An archer can use a blunt arrow to deal nonlethal damage, at a -4 to attack rolls to convert the damage type.",
-      "Blunt arrows come in a leather quiver that holds 20 (price & weight listed for 1 arrow).",
-    ]
-  },
-  "Distance Arrows": {
-    "Damage": [ "0", "0", "0" ],
-    "Critical": "0",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ammunition",
-    "Group": [ "Misc" ],
-
-    "Cost": 0.05,
-    "Weight": 0.2,
-    "Description": "Used tactically for long-range attacks on troops, these arrows are fitted with heavy iron heads.",
-    "Special": [
-      "These arrows increase their bow's range increment by 10 feet, but take a -1 on damage dealth per range increment.",
-      "Distance arrows come in a leather quiver that holds 20 (price & weight listed for 1 arrow)."
-    ]
-  },  
-  "Durable Arrows": {
-    "Damage": [ "0", "0", "0" ],
-    "Critical": "0",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ammunition",
-    "Group": [ "Misc" ],
-
-    "Cost": 1,
-    "Weight": 0.15,
-    "Description": "Made of stronder wood than the average arrow, these can be fired again and again.",
-    "Special": [
-      "Whether or not a durable arrow hit's its target, you may retrieve and reuse it."
-    ]
-  },  
-  "Durable Arrows": {
-    "Damage": [ "0", "0", "0" ],
-    "Critical": "0",
-    "Range": 0,
-    "Damage Type": [ "None" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ammunition",
-    "Group": [ "Misc" ],
-
-    "Cost": 1,
-    "Weight": 4,
-    "Description": "A bursting sack of pigment is afixed to the end of this arrow.",
-    "Special": [
-      "Firing a dye arrow is a ranged touch attack.",
-      "A creature struck by a dye arrow takes no damage but is splashed with black, blue, green, or red marker dye."
-    ]
-  },
-  "Flight Arrows": {
-    "Damage": [ "0", "0", "0" ],
-    "Critical": "0",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ammunition",
-    "Group": [ "Misc" ],
-
-    "Cost": 0.1,
-    "Weight": 0.15,
-    "Description": "The head of a barbed arrow resembles that of a harpoon.",
-    "Special": [
-      "A flight arrows range increment is 20 feet greater with longbows, 10 feet greater with shortbows.",
-      "Flight arrows deal damage as if one size category smaller.",
-      "Flight arrows come in a leather quiver that holds 20 (price & weight listed for 1 arrow)."
-    ]
-  },
-  "Incendiary Arrows": {
-    "Damage": [ "0", "0", "0" ],
-    "Critical": "0",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ammunition",
-    "Group": [ "Misc" ],
-
-    "Cost": 2,
-    "Weight": 0.15,
-    "Description": "A metal cage behind this arrow’s point contains flammable material.",
-    "Special": [
-      "You may light up to six incendiary arrows at a time, provoking attacks of opportunity (full-round action with flint and steel) (standard action with a tindertwig).",
-      "A lit arrow deals burns for 2 rounds and deals an additional 1 fire damage, but you suffer a -1 to attack rolls.",
-      "On a critical hit, the target must succeed at a DC 15 Reflex save or catch fire.",
-      "incendiary arrows come in a leather quiver that holds 20 (price & weight listed for 1 arrow).",
-      "Incendiary bolts exist for crossbows."
-    ]
-  },
-  "Incendiary Arrows": {
-    "Damage": [ "0", "0", "0" ],
-    "Critical": "0",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ammunition",
-    "Group": [ "Misc" ],
-
-    "Cost": 2,
-    "Weight": 0.15,
-    "Description": "A metal cage behind this arrow’s point contains flammable material.",
-    "Special": [
-      "You may light up to six incendiary arrows at a time, provoking attacks of opportunity (full-round action with flint and steel) (standard action with a tindertwig).",
-      "A lit arrow deals burns for 2 rounds and deals an additional 1 fire damage, but you suffer a -1 to attack rolls.",
-      "On a critical hit, the target must succeed at a DC 15 Reflex save or catch fire.",
-      "Incendiary arrows come in a leather quiver that holds 20 (price & weight listed for 1 arrow).",
-      "Incendiary bolts exist for crossbows."
-    ]
-  },
-  "Lodestone Arrows": {
-    "Damage": [ "0", "0", "0" ],
-    "Critical": "0",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ammunition",
-    "Group": [ "Misc" ],
-
-    "Cost": 10,
-    "Weight": 0.15,
-    "Description": "The head of this arrow is made of an enchanted metal that can become magnetized.",
-    "Special": [
-      "You may pull the string to activate the magnet as a move action",
-      "When active, you gain a +4 bonus on attack rolls when firing this arrow at a target with a significant amount of metal.",
-      "This magnetism lasts for 1 round and deals half damage while active."
-    ]
-  },
-  "Pheromone Arrows": {
-    "Damage": [ "0", "0", "0" ],
-    "Critical": "0",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ammunition",
-    "Group": [ "Misc" ],
-
-    "Cost": 15,
-    "Weight": 0.15,
-    "Description": "The head of this arrow is coated in a smelly oil that rubs off on the target.",
-    "Special": [
-      "Any creature with the scent ability gains a +2 bonus on attack and damage rolls made against a target marked with a pheromone arrow.",
-      "This effect lasts for 1 hour or until the target spends 1 minute washing."
-    ]
-  },
-  "Pronged Arrows": {
-    "Damage": [ "0", "0", "0" ],
-    "Critical": "0",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ammunition",
-    "Group": [ "Misc" ],
-
-    "Cost": 0.1,
-    "Weight": 0.15,
-    "Description": "Rather than narrowing to a single point, a pronged arrow has a wide face with two points resembling a crescent or V-shape.",
-    "Special": [
-      "A pronged arrow deals damage as if it was one size category smaller, and grants a +1 bonus on attack rolls against targets at least one size cateogry smaller than you.",
-      "Pronged arrows come in a leather quiver that holds 20 (price & weight listed for 1 arrow)."
-    ]
-  },
-  "Raining Arrows": {
-    "Damage": [ "0", "0", "0" ],
-    "Critical": "0",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ammunition",
-    "Group": [ "Misc" ],
-
-    "Cost": 30,
-    "Weight": 0.5,
-    "Description": "This arrow has a reservoir instead of a normal steel arrowhead.",
-    "Special": [
-      "The reservoir will burst on impact, splashing the target and nearby creatures as if you had thrown a vial.",
-      "A raining arrow has a -2 to attack rolls due to its shape and weight."
-    ]
-  },
-  "Slow Burn Arrows": {
-    "Damage": [ "0", "0", "0" ],
-    "Critical": "0",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ammunition",
-    "Group": [ "Misc" ],
-
-    "Cost": 150,
-    "Weight": 0.5,
-    "Description": "This arrow has a reservoir instead of a normal steel arrowhead.",
-    "Special": [
-      "The reservoir will burst and ignite on impact; 1 round later, on your turn, the flames deal 1d6 fire damage to the target.",
-      "A slow burn arrow has a -1 to attack rolls due to its shape and weight."
-    ]
-  },
-  "Smoke Arrows": {
-    "Damage": [ "0", "0", "0" ],
-    "Critical": "0",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ammunition",
-    "Group": [ "Misc" ],
-
-    "Cost": 10,
-    "Weight": 0.2,
-    "Description": "This arrow has a perforated sack just behind the arrowhead.",
-    "Special": [
-      "A smoke arrow trails smoke as it flies and creates a 5-foot cube of smoke where it strikes."
-    ]
-  },
-  "Splintercloud Arrows": {
-    "Damage": [ "0", "0", "0" ],
-    "Critical": "0",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ammunition",
-    "Group": [ "Misc" ],
-
-    "Cost": 25,
-    "Weight": 0.15,
-    "Description": "This arrow has bone splinters laid into grooves on the arrow shaft.",
-    "Special": [
-      "When fired, the numerous bone fragments tear themselves apart, forming a 5-foot burst of razor-sharp bones that deals 1d3 points of piercing damage (Reflex DC 18 negates)."
-    ]
-  },
-  "Tangleshot Arrows": {
-    "Damage": [ "0", "0", "0" ],
-    "Critical": "0",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ammunition",
-    "Group": [ "Misc" ],
-
-    "Cost": 20,
-    "Weight": 0.5,
-    "Description": "This arrow has a reservoir instead of a normal steel arrowhead.",
-    "Special": [
-      "You fire a tangleshot arrow as a ranged touch attack that deals no damage, but splashes an adhesive on the target.",
-      "This glue acts like a weak version of a tanglefoot bad (DC 10 Reflex save, DC 12 Strength check to break, 10 points of slashing damage to cut through, DC 10 Concentration check).",
-      "A tangleshot arrow reduces the range increment to half normal due to its shape and weight."
-    ]
-  },
-  "Thistle Arrows": {
-    "Damage": [ "0", "0", "0" ],
-    "Critical": "0",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ammunition",
-    "Group": [ "Misc" ],
-
-    "Cost": 1,
-    "Weight": 0.15,
-    "Description": "Crafted from the thistles of a poisonous plant, these barbed arrows deal damage for 1d6 rounds after a hit.",
-    "Special": [
-      "On a hit, the arrow embeds itself into the target dealing an addition 1 poison damage every round for 1d6 rounds.",
-      "You may remove the embeded arrow as a move action that deals 1d3 damage as the barbs are pulled free.",
-      "A DC 12 Heal check (made as a standard action) can pull the thistle arrow's head free without the additional damage."
-    ]
-  },
-  "Throwing Arrows": {
-    "Damage": [ "0", "0", "0" ],
-    "Critical": "0",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ammunition",
-    "Group": [ "Misc" ],
-
-    "Cost": 0.5,
-    "Weight": 0.5,
-    "Description": "Too long to use in a bow, the throwing arrow has no nock at the tail.",
-    "Special": [
-      "If thrown without the use of a cord, treat a throwing arrow as a dart."
-    ]
-  },
-  "Trip Arrows": {
-    "Damage": [ "0", "0", "0" ],
-    "Critical": "0",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ammunition",
-    "Group": [ "Misc" ],
-
-    "Cost": 25,
-    "Weight": 0.2,
-    "Description": "This arrow has netting afixed to the head, to trip up the limbs of the target.",
-    "Special": [
-      "On a hit, it makes a trip attack against the target with a CMB of +5, the target falls prone on a fail and nothing happens if it passes."
-    ]
-  },
-  "Whistling Arrows": {
-    "Damage": [ "0", "0", "0" ],
-    "Critical": "0",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ammunition",
-    "Group": [ "Misc" ],
-
-    "Cost": 0.1,
-    "Weight": 0.15,
-    "Description": "These arrows come with specially designed grooves and fletching that cause them to emit a loud keening sound.",
-    "Special": [
-      "These arrows make a saound that is audible within 500 feet of the flight path.",
-      "Whistling arrows come in a leather quiver that holds 20 (price & weight listed for 1 arrow)."
-    ]
-  }  
+	"Boarding Axe": {
+		"Damage": ["1d4", "1d6", "1d8"],
+		"Critical": "20/x3",
+		"Range": 0,
+		"Damage Type": ["Piercing", "Slashing"],
+
+		"Proficiency": "Martial",
+		"Category": "Light",
+		"Group": ["Axes"],
+
+		"Cost": 6,
+		"Weight": 3,
+		"Description": "A boarding axe is similar to a handaxe, but features a spike that allows the weapon to do either slashing or piercing damage.",
+		"Special": [
+			"A boarding axe grants a +2 circumstance bonus on Climb checks to scale wooden or other penetrable surfaces, such as ice."
+		]
+	},
+	"Throwing Axe": {
+		"Damage": ["1d4", "1d6", "1d8"],
+		"Critical": "20/x2",
+		"Range": 10,
+		"Damage Type": ["Slashing"],
+
+		"Proficiency": "Martial",
+		"Category": "Ranged",
+		"Group": ["Axes", "Thrown", "Tribal"],
+
+		"Cost": 8,
+		"Weight": 2,
+		"Description": "This is a small axe balanced for throwing.",
+		"Special": []
+	},
+	"Blade Boot": {
+		"Damage": ["1d3", "1d4", "1d6"],
+		"Critical": "20/x2",
+		"Range": 0,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Light",
+		"Group": ["Misc"],
+
+		"Cost": 25,
+		"Weight": 2,
+		"Description": "Blade boots come with a spring-mounted knife that pops out when triggered with the right combination of toe presses.",
+		"Special": [
+			"You can use the blade boot as an off-hand weapon.",
+			"Releasing the knife is a swift action and rearming it is a full-round action.",
+			"When the blade is extended, you treat normal terrain as difficult and difficult terrain as impassable."
+		]
+	},
+	"Cat-o’-Nine-Tails": {
+		"Damage": ["1d3", "1d4", "1d6"],
+		"Critical": "20/x2",
+		"Range": 0,
+		"Damage Type": ["Slashing", "Nonlethal"],
+
+		"Proficiency": "Martial",
+		"Category": "Light",
+		"Group": ["Flails"],
+
+		"Cost": 1,
+		"Weight": 1,
+		"Description": "This short whip is made of nine knotted thongs about 3 feet in length.",
+		"Special": [
+			"Disarm",
+			"This flail deals no damage to any creature with an armor bonus of at least +1, or a natural armor bonus of at least +3."
+		]
+	},
+	"Claw Blades": {
+		"Damage": ["1d3", "1d4", "1d6"],
+		"Critical": "20/x2",
+		"Range": 0,
+		"Damage Type": ["Bludgeoning", "Slashing"],
+
+		"Proficiency": "Martial",
+		"Category": "Light",
+		"Group": ["Misc"],
+
+		"Cost": 305,
+		"Weight": 2,
+		"Description": "Bought in a set of five, they fit over the wearer’s claws on one hand.",
+		"Special": [
+			"These subtle blades can only be used by catfolk with the cat’s claws racial trait.",
+			"Caeth are always proficient with claw blades.",
+			"The blades grant a +1 enhancement bonus on claw attack rolls with the equiped hand, changing the weapon type from a natural attack to a light slashing weapon."
+		]
+	},
+	"Dueling Dagger": {
+		"Damage": ["1d3", "1d4", "1d6"],
+		"Critical": "19/x2",
+		"Range": 10,
+		"Damage Type": ["Piercing", "Slashing"],
+
+		"Proficiency": "Martial",
+		"Category": "Light",
+		"Group": ["Light Blades", "Thrown"],
+
+		"Cost": 12,
+		"Weight": 1,
+		"Description": "This dagger is used in the off hand to block attacks.",
+		"Special": [
+			"When you fight defensively or use Combat Expertise while wielding a dueling dagger, your bonus to AC increases by 1.",
+			"If you aren’t proficient with a dueling dagger, you treat it as a dagger and gain no special benefits."
+		]
+	},
+	"Dogslicer": {
+		"Damage": ["1d4", "1d6", "1d8"],
+		"Critical": "19/x2",
+		"Range": 0,
+		"Damage Type": ["Slashing"],
+
+		"Proficiency": "Martial",
+		"Category": "Light",
+		"Group": ["Light Blades"],
+
+		"Cost": 8,
+		"Weight": 1,
+		"Description": "This short, curved sword is a favorite weapon of goblins, who show unusual cunning by drilling numerous holes in the blade to reduce the weapon’s weight.",
+		"Special": [
+			"Fragile"
+		]
+	},
+	"Light Hammer": {
+		"Damage": ["1d3", "1d4", "1d6"],
+		"Critical": "20/x2",
+		"Range": 20,
+		"Damage Type": ["Bludgeoning"],
+
+		"Proficiency": "Martial",
+		"Category": "Light",
+		"Group": ["Hammers", "Thrown"],
+
+		"Cost": 1,
+		"Weight": 2,
+		"Description": "A lighter version of a warhammer, this weapon usually has a sleek metal head with one striking surface.",
+		"Special": []
+	},
+	"Gladius": {
+		"Damage": ["1d4", "1d6", "1d8"],
+		"Critical": "19/x2",
+		"Range": 0,
+		"Damage Type": ["Piercing", "Slashing"],
+
+		"Proficiency": "Martial",
+		"Category": "Light",
+		"Group": ["Light Blades"],
+
+		"Cost": 15,
+		"Weight": 3,
+		"Description": "The gladius is the favorite short sword of gladiators, with a heavier blade than the standard short sword.",
+		"Special": [
+			"Feats and abilities that affect short swords apply to the gladius.",
+			"Performance"
+		]
+	},
+	"Handaxe": {
+		"Damage": ["1d4", "1d6", "1d8"],
+		"Critical": "20/x3",
+		"Range": 0,
+		"Damage Type": ["Slashing"],
+
+		"Proficiency": "Martial",
+		"Category": "Light",
+		"Group": ["Axes", "Tribal"],
+
+		"Cost": 6,
+		"Weight": 3,
+		"Description": "This one-handed axe is short (roughly 1 foot long) and designed for use with one hand.",
+		"Special": []
+	},
+	"Tri-Bladed Katar": {
+		"Damage": ["1d3", "1d4", "1d6"],
+		"Critical": "20/x4",
+		"Range": 0,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Light",
+		"Group": ["Light Blades", "Close"],
+
+		"Cost": 6,
+		"Weight": 2,
+		"Description": "Where most punching daggers boast a single thick blade, the tri-bladed katar features a fan of three splayed razor edges.",
+		"Special": [
+			"Any effects that apply to a punching dagger also apply to a tri-bladed katar."
+		]
+	},
+	"witchblade Knife": {
+		"Damage": ["1d3", "1d4", "1d6"],
+		"Critical": "19/x2",
+		"Range": 10,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Light",
+		"Group": ["Light Blades", "Thrown"],
+
+		"Cost": 5,
+		"Weight": 1,
+		"Description": "",
+		"Special": [
+			"This knife can be designed to loke like another type of object (a DC 15 Perception check reveals the deception).",
+			"A switchblade is treated as a dagger, and can be activated as a free action if held."
+		]
+	},
+	"Kobold Tail Attachment (Long Lash)": {
+		"Damage": ["1d4", "1d6", "1d8"],
+		"Critical": "20/x2",
+		"Range": 0,
+		"Damage Type": ["Slashing"],
+
+		"Proficiency": "Martial",
+		"Category": "Light",
+		"Group": ["Kobold Tail Attachment"],
+
+		"Cost": 15,
+		"Weight": 1,
+		"Description": "This slender cord has tiny bits of glass and stone embedded in its length.",
+		"Special": [
+			"Donning a kobold tail attachment requires a full-round action.",
+			"Kobolds gain a +4 bonus to CMD vs disarm attempts to remove their tail attachment.",
+			"Reach"
+		]
+	},
+	"Kobold Tail Attachment (Pounder)": {
+		"Damage": ["1d6", "1d8", "2d6"],
+		"Critical": "20/x2",
+		"Range": 0,
+		"Damage Type": ["Bludgeoning"],
+
+		"Proficiency": "Martial",
+		"Category": "Light",
+		"Group": ["Kobold Tail Attachment"],
+
+		"Cost": 1,
+		"Weight": 4,
+		"Description": "This squat ball is made from some sort of dull metal.",
+		"Special": [
+			"Donning a kobold tail attachment requires a full-round action.",
+			"Kobolds gain a +4 bonus to CMD vs disarm attempts to remove their tail attachment."
+		]
+	},
+	"Kobold Tail Attachment (Razored)": {
+		"Damage": ["1d6", "1d8", "2d6"],
+		"Critical": "19/x2",
+		"Range": 0,
+		"Damage Type": ["Slashing"],
+
+		"Proficiency": "Martial",
+		"Category": "Light",
+		"Group": ["Kobold Tail Attachment"],
+
+		"Cost": 3,
+		"Weight": 2,
+		"Description": "This metal wedge has a prickly edge on one of its sides.",
+		"Special": [
+			"Donning a kobold tail attachment requires a full-round action.",
+			"Kobolds gain a +4 bonus to CMD vs disarm attempts to remove their tail attachment."
+		]
+	},
+	"Kobold Tail Attachment (Spiked)": {
+		"Damage": ["1d6", "1d8", "2d6"],
+		"Critical": "20/x3",
+		"Range": 0,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Light",
+		"Group": ["Kobold Tail Attachment"],
+
+		"Cost": 3,
+		"Weight": 2,
+		"Description": "This narrow spike tapers to a sharp point.",
+		"Special": [
+			"Donning a kobold tail attachment requires a full-round action.",
+			"Kobolds gain a +4 bonus to CMD vs disarm attempts to remove their tail attachment."
+		]
+	},
+	"Kobold Tail Attachment (Sweeper)": {
+		"Damage": ["1d4", "1d6", "1d8"],
+		"Critical": "20/x2",
+		"Range": 0,
+		"Damage Type": ["Bludgeoning"],
+
+		"Proficiency": "Martial",
+		"Category": "Light",
+		"Group": ["Kobold Tail Attachment"],
+
+		"Cost": 7,
+		"Weight": 3,
+		"Description": "When properly used, this sharply curved piece of metal can knock opponents off their feet.",
+		"Special": [
+			"Donning a kobold tail attachment requires a full-round action.",
+			"Kobolds gain a +4 bonus to CMD vs disarm attempts to remove their tail attachment.",
+			"Unlike most trip weapons, you cannot drop it if you are tripped during your own trip attempt.",
+			"Trip"
+		]
+	},
+	"Kukri": {
+		"Damage": ["1d3", "1d4", "1d6"],
+		"Critical": "18/x2",
+		"Range": 0,
+		"Damage Type": ["Slashing"],
+
+		"Proficiency": "Martial",
+		"Category": "Light",
+		"Group": ["Light Blades"],
+
+		"Cost": 8,
+		"Weight": 2,
+		"Description": "A kukri is a curved blade, about 1 foot in length.",
+		"Special": []
+	},
+	"Machete": {
+		"Damage": ["1d4", "1d6", "1d8"],
+		"Critical": "19/x2",
+		"Range": 0,
+		"Damage Type": ["Slashing"],
+
+		"Proficiency": "Martial",
+		"Category": "Light",
+		"Group": ["Light Blades"],
+
+		"Cost": 10,
+		"Weight": 2,
+		"Description": "This tool is a wide, single-edged blade about 2 feet in length. Most often used to hack through dense vegetation, it works equally well as a weapon.",
+		"Special": [
+			"A character proficient with a machete gains a +1 circumstance bonus on Survival checks to get along in the wild."
+		]
+	},
+	"Light Pick": {
+		"Damage": ["1d3", "1d4", "1d6"],
+		"Critical": "20/x4",
+		"Range": 0,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Light",
+		"Group": ["Axes"],
+
+		"Cost": 4,
+		"Weight": 3,
+		"Description": "This weapon, adapted from the pickaxe tool, has a head with a slightly curved, armor piercing spike and a hammerlike counterweight.",
+		"Special": []
+	},
+	"Sap": {
+		"Damage": ["1d4", "1d6", "1d8"],
+		"Critical": "20/x2",
+		"Range": 0,
+		"Damage Type": ["Bludgeoning", "Nonlethal"],
+
+		"Proficiency": "Martial",
+		"Category": "Light",
+		"Group": ["Close"],
+
+		"Cost": 1,
+		"Weight": 2,
+		"Description": "This weapon consists of a soft wrapping around a hard, dense core, typically a leather sheath around a lead rod. The head is wider than the handle and designed to spread out the force of the blow, making it less likely to draw blood or break bones.",
+		"Special": []
+	},
+	"Starknife": {
+		"Damage": ["1d3", "1d4", "1d6"],
+		"Critical": "20/x3",
+		"Range": 20,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Light",
+		"Group": ["Light Blades", "Thrown"],
+
+		"Cost": 24,
+		"Weight": 3,
+		"Description": "From a central metal ring, four tapering metal blades extend from this weapon like points on a compass rose.",
+		"Special": []
+	},
+	"Butterfly Sword": {
+		"Damage": ["1d3", "1d4", "1d6"],
+		"Critical": "19/x2",
+		"Range": 0,
+		"Damage Type": ["Slashing"],
+
+		"Proficiency": "Martial",
+		"Category": "Light",
+		"Group": ["Light Blades", "Monk"],
+
+		"Cost": 20,
+		"Weight": 1,
+		"Description": "These short matching swords come in pairs, cleverly nested together to appear as a single blade.",
+		"Special": [
+			"You may draw both swords at the same time, and separate them as a free action",
+			"The listed price and weight is for a pair of butterfly swords and masterwrok versions cost 320 gp for the pair.",
+			"Magical enhancements must be added seperately, so a +1 to one of the two blades would cost an addition 4,000 gp.",
+			"Monk"
+		]
+	},
+	"Shortsword": {
+		"Damage": ["1d4", "1d6", "1d8"],
+		"Critical": "19/x2",
+		"Range": 0,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Light",
+		"Group": ["Light Blades"],
+
+		"Cost": 10,
+		"Weight": 2,
+		"Description": "Short swords are some of the most common weapons found in any martial society, and thus designs are extremely varied, depending on the region and creator.",
+		"Special": []
+	},
+	"War Razor": {
+		"Damage": ["1d3", "1d4", "1d6"],
+		"Critical": "19/x2",
+		"Range": 0,
+		"Damage Type": ["Slashing"],
+
+		"Proficiency": "Martial",
+		"Category": "Light",
+		"Group": ["Light Blades"],
+
+		"Cost": 8,
+		"Weight": 1,
+		"Description": "The war razor is nothing but an oversized flip knife or shaving razor.",
+		"Special": [
+			"You gain a +2 bonus on Sleight of Hand checks made to conceal the weapon on your body."
+		]
+	},
+	"Ankus": {
+		"Damage": ["1d6", "1d8", "2d6"],
+		"Critical": "20/x2",
+		"Range": 0,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "One-Handed",
+		"Group": ["Heavy Blades"],
+
+		"Cost": 8,
+		"Weight": 5,
+		"Description": "Also known as an elephant goad, this tool consists of a 2- to 3-foot rod ending in a spearhead and a backward-facing hook.",
+		"Special": [
+			"Disarm",
+			"Trip"
+		]
+	},
+	"Battleaxe": {
+		"Damage": ["1d6", "1d8", "2d6"],
+		"Critical": "20/x3",
+		"Range": 0,
+		"Damage Type": ["Slashing"],
+
+		"Proficiency": "Martial",
+		"Category": "One-Handed",
+		"Group": ["Axes"],
+
+		"Cost": 10,
+		"Weight": 6,
+		"Description": "The head of this axe may have one blade or two, and the handle is long enough that you can wield it one-handed or two-handed.",
+		"Special": []
+	},
+	"Combat Scabbard": {
+		"Damage": ["1d4", "1d6", "1d8"],
+		"Critical": "20/x2",
+		"Range": 0,
+		"Damage Type": ["Slashing"],
+
+		"Proficiency": "Martial",
+		"Category": "One-Handed",
+		"Group": ["Misc"],
+
+		"Cost": 10,
+		"Weight": 1,
+		"Description": "This combat scabbard has a sharp blade on the outer edge, allowing you to use it as a weapon.",
+		"Special": [
+			"Improvised"
+		]
+	},
+	"Cutlass": {
+		"Damage": ["1d4", "1d6", "1d8"],
+		"Critical": "18/x2",
+		"Range": 0,
+		"Damage Type": ["Slashing"],
+
+		"Proficiency": "Martial",
+		"Category": "One-Handed",
+		"Group": ["Heavy Blades"],
+
+		"Cost": 15,
+		"Weight": 4,
+		"Description": "This short, curved sword is favored by seafarers for close-quarters combat.",
+		"Special": [
+			"The cutlass is treated as a scimitar for any effects that apply to scimitars."
+		]
+	},
+	"Light Flail": {
+		"Damage": ["1d6", "1d8", "2d6"],
+		"Critical": "20/x2",
+		"Range": 0,
+		"Damage Type": ["Bludgeoning"],
+
+		"Proficiency": "Martial",
+		"Category": "One-Handed",
+		"Group": ["Flails"],
+
+		"Cost": 8,
+		"Weight": 5,
+		"Description": "A light flail consists of a weighted striking end connected to a handle by a sturdy chain.",
+		"Special": [
+			"Disarm",
+			"Trip"
+		]
+	},
+	"Gandasa": {
+		"Damage": ["1d6", "2d4", "2d6"],
+		"Critical": "20/x3",
+		"Range": 0,
+		"Damage Type": ["Slashing"],
+
+		"Proficiency": "Martial",
+		"Category": "One-Handed",
+		"Group": ["Axes"],
+
+		"Cost": 15,
+		"Weight": 4,
+		"Description": "A gandasa is a wide, single-edged dagger on a 2-foot handle and is wielded in combat like an axe.",
+		"Special": []
+	},
+	"Longsword": {
+		"Damage": ["1d6", "1d8", "2d6"],
+		"Critical": "19/x2",
+		"Range": 0,
+		"Damage Type": ["Slashing"],
+
+		"Proficiency": "Martial",
+		"Category": "One-Handed",
+		"Group": ["Heavy Blades"],
+
+		"Cost": 15,
+		"Weight": 4,
+		"Description": "This sword is about 3½ feet in length.",
+		"Special": []
+	},
+	"Manopole": {
+		"Damage": ["1d6", "1d8", "2d6"],
+		"Critical": "20/x2",
+		"Range": 0,
+		"Damage Type": ["Piercing", "Slashing"],
+
+		"Proficiency": "Martial",
+		"Category": "One-Handed",
+		"Group": ["Light Blades"],
+
+		"Cost": 17,
+		"Weight": 4,
+		"Description": "This rigid, fingerless gauntlet has three blades projecting from the gauntlet’s hand.",
+		"Special": [
+			"A manople takes a full-round action to don, and gives you a +10 bonus to your CMD against disarm attempts.",
+			"Blocking",
+			"Disarm"
+		]
+	},
+	"Heavy Pick": {
+		"Damage": ["1d4", "1d6", "1d8"],
+		"Critical": "20/x2",
+		"Range": 0,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "One-Handed",
+		"Group": ["Aees"],
+
+		"Cost": 8,
+		"Weight": 6,
+		"Description": "This variant of the pick has a longer handle and can be used with one or two hands, making it a common weapon for mounted soldiers.",
+		"Special": []
+	},
+	"Rapier": {
+		"Damage": ["1d4", "1d6", "1d8"],
+		"Critical": "18/x2",
+		"Range": 0,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "One-Handed",
+		"Group": ["Light Blades"],
+
+		"Cost": 20,
+		"Weight": 2,
+		"Description": "",
+		"Special": [
+			"You can’t wield a rapier in two hands in order to apply 1-1/2 times your Strength bonus to damage.",
+			"Finesse"
+		]
+	},
+	"Scimitar": {
+		"Damage": ["1d4", "1d6", "1d8"],
+		"Critical": "18/x2",
+		"Range": 0,
+		"Damage Type": ["Slashing"],
+
+		"Proficiency": "Martial",
+		"Category": "One-Handed",
+		"Group": ["Heavy Blades"],
+
+		"Cost": 15,
+		"Weight": 4,
+		"Description": "This curved sword is only sharp on the outer edge, and the back is flat, giving the blade a triangular cross-section.",
+		"Special": []
+	},
+	"Scizore": {
+		"Damage": ["1d8", "1d10", "2d8"],
+		"Critical": "20/x2",
+		"Range": 0,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "One-Handed",
+		"Group": ["Light Blades", "Close"],
+
+		"Cost": 20,
+		"Weight": 3,
+		"Description": "The scizore is a hardened tube that fits over the forearm, ending in a semicircular blade.",
+		"Special": [
+			"The scizore grants a +1 shield bonus to AC, but you lose that bonus if you attack with it.",
+			"You take a -1 to attack rolls made with a scizore.",
+			"A scizore provides a +10 bonus to your CMD against being disarmed of your scizore.",
+			"You may don a scizore with a full-round action, and you may not use a hand wearing one for anything else."
+		]
+	},
+	"Sword Cane": {
+		"Damage": ["1d4", "1d6", "1d8"],
+		"Critical": "20/x2",
+		"Range": 0,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "One-Handed",
+		"Group": ["Light Blades"],
+
+		"Cost": 45,
+		"Weight": 4,
+		"Description": "This slender light blade lies within a wooden container that serves as both its scabbard and hiding place.",
+		"Special": [
+			"You can draw the blade from the cane as a swift action (or a free action with the Quick Draw feat).",
+			"An observer must make a DC 20 Perception check to realize an undrawn sword cane is a weapon rather than a walking stick (DC 10 if  observer is able to handle the weapon).",
+			"You can’t wield a sword cane in two hands in order to apply 1-1/2 times your Strength modifier to damage.",
+			"Finesse"
+		]
+	},
+	"Macuahuitl": {
+		"Damage": ["1d6", "1d8", "2d6"],
+		"Critical": "19/x2",
+		"Range": 0,
+		"Damage Type": ["Slashing"],
+
+		"Proficiency": "Martial",
+		"Category": "One-Handed",
+		"Group": ["Heavy Blades"],
+
+		"Cost": 5,
+		"Weight": 2,
+		"Description": "This Stone Age weapon, also called a terbutje, is made from a length of tempered wood with bits of shark teeth, obsidian, glass, or similar materials studded all along its length.",
+		"Special": [
+			"Fragile",
+			"A machuahuitl may also be made of steel, this removes the fragile quality and increases the price to 20 gp and the weight to 4 lbs."
+		]
+	},
+	"Trident": {
+		"Damage": ["1d6", "1d8", "2d6"],
+		"Critical": "20/x2",
+		"Range": 10,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "One-Handed",
+		"Group": ["Spears", "Thrown"],
+
+		"Cost": 15,
+		"Weight": 4,
+		"Description": "A trident has three metal prongs at the end of a 4-foot-long shaft.",
+		"Special": []
+	},
+	"Warhammer": {
+		"Damage": ["1d6", "1d8", "2d6"],
+		"Critical": "20/x3",
+		"Range": 0,
+		"Damage Type": ["Bludgeoning"],
+
+		"Proficiency": "Martial",
+		"Category": "One-Handed",
+		"Group": ["Hammers"],
+
+		"Cost": 12,
+		"Weight": 5,
+		"Description": "This weapon consists of a wooden haft and a heavy, metal head with a haft long enough to wield it one- or two-handed.",
+		"Special": []
+	},
+
+	"Bardiche": {
+		"Damage": ["1d8", "1d10", "2d8"],
+		"Critical": "19/x2",
+		"Range": 0,
+		"Damage Type": ["Slashing"],
+
+		"Proficiency": "Martial",
+		"Category": "Two-Handed",
+		"Group": ["Axes", "Polearms"],
+
+		"Cost": 13,
+		"Weight": 14,
+		"Description": "The crescent axe-blade of this polearm is attached to the haft at two points and extends past the top.",
+		"Special": [
+			"You gain a +2 bonus to your CMD to resist sunder attempts made against a bardiche.",
+			"Brace",
+			"Reach"
+		]
+	},
+	"Bec De Corbin": {
+		"Damage": ["1d8", "1d10", "2d8"],
+		"Critical": "20/x3",
+		"Range": 0,
+		"Damage Type": ["Piercing", "Bludgeoning"],
+
+		"Proficiency": "Martial",
+		"Category": "Two-Handed",
+		"Group": ["Polearms"],
+
+		"Cost": 15,
+		"Weight": 12,
+		"Description": "A polearm with both a blunt hammer head and a hooked spike, you primarily attack with the spike.",
+		"Special": [
+			"You gain a +2 bonus on combat maneuver checks to sunder medium or heavy armor with a bec de corbin.",
+			"Brace",
+			"Reach"
+		]
+	},
+	"Bill": {
+		"Damage": ["1d6", "1d8", "2d6"],
+		"Critical": "20/x3",
+		"Range": 0,
+		"Damage Type": ["Slashing"],
+
+		"Proficiency": "Martial",
+		"Category": "Two-Handed",
+		"Group": ["Polearms"],
+
+		"Cost": 11,
+		"Weight": 11,
+		"Description": "The blade of this polearm is a curved or hooked chopping blade with a spiked projection on the back of the blade.",
+		"Special": [
+			"When fighting defensively or with total defense, this weapon gives you a +1 shield bonus to AC.",
+			"A mounted opponent hit by a bill takes a –1 penalty on his Ride check to stay mounted.",
+			"Brace", "Disarm", "Reach"
+		]
+	},
+	"Earth Breaker": {
+		"Damage": ["1d10", "2d6", "3d6"],
+		"Critical": "20/x3",
+		"Range": 0,
+		"Damage Type": ["Bludgeoning"],
+
+		"Proficiency": "Martial",
+		"Category": "Two-Handed",
+		"Group": ["Hammers"],
+
+		"Cost": 40,
+		"Weight": 14,
+		"Description": "This massive hammer’s head ends in multiple blunt spikes that help concentrate the force of a powerful swing",
+		"Special": []
+	},
+	"Falchion": {
+		"Damage": ["1d6", "2d4", "2d6"],
+		"Critical": "18/x2",
+		"Range": 0,
+		"Damage Type": ["Slashing"],
+
+		"Proficiency": "Martial",
+		"Category": "Two-Handed",
+		"Group": ["Heavy Blades"],
+
+		"Cost": 75,
+		"Weight": 8,
+		"Description": "This sword has one curved, sharp edge like a scimitar, with the back edge unsharpened and either flat or slightly curved.",
+		"Special": []
+	},
+	"Heavy Flail": {
+		"Damage": ["1d8", "1d10", "2d8"],
+		"Critical": "19/x2",
+		"Range": 0,
+		"Damage Type": ["Bludgeoning"],
+
+		"Proficiency": "Martial",
+		"Category": "Two-Handed",
+		"Group": ["Flails"],
+
+		"Cost": 15,
+		"Weight": 10,
+		"Description": "Similar to a light flail, a heavy flail has a larger metal ball and a longer handle.",
+		"Special": [
+			"Disarm", "Trip"
+		]
+	},
+	"Glaive": {
+		"Damage": ["1d8", "1d10", "2d8"],
+		"Critical": "20/x3",
+		"Range": 0,
+		"Damage Type": ["Slashing"],
+
+		"Proficiency": "Martial",
+		"Category": "Two-Handed",
+		"Group": ["Polearms"],
+
+		"Cost": 8,
+		"Weight": 10,
+		"Description": "A glaive is composed of a simple blade mounted on the end of a pole about 7 feet in length.",
+		"Special": [
+			"Reach"
+		]
+	},
+	"Glaive-Guisarme": {
+		"Damage": ["1d8", "1d10", "2d8"],
+		"Critical": "20/x3",
+		"Range": 0,
+		"Damage Type": ["Slashing"],
+
+		"Proficiency": "Martial",
+		"Category": "Two-Handed",
+		"Group": ["Polearms"],
+
+		"Cost": 12,
+		"Weight": 10,
+		"Description": "This polearm combines the blade of a glaive with a wicked hook.",
+		"Special": [
+			"A mounted opponent hit by a glaive-guisarme takes a –2 penalty on her Ride check to stay mounted.",
+			"Reach", "Reach"
+		]
+	},
+	"Greataxe": {
+		"Damage": ["1d10", "1d12", "3d6"],
+		"Critical": "20/x3",
+		"Range": 0,
+		"Damage Type": ["Slashing"],
+
+		"Proficiency": "Martial",
+		"Category": "Two-Handed",
+		"Group": ["Axes"],
+
+		"Cost": 20,
+		"Weight": 12,
+		"Description": "This heavy axe is usually 3 to 4 feet long, and may have one head or two. A greataxe may be 'bearded' to increase cleaving power and help pull down shields.",
+		"Special": []
+	},
+	"Greatclub": {
+		"Damage": ["1d8", "1d10", "2d8"],
+		"Critical": "20/x2",
+		"Range": 0,
+		"Damage Type": ["Bludgeoning"],
+
+		"Proficiency": "Martial",
+		"Category": "Two-Handed",
+		"Group": ["Hammers", "Tribal"],
+
+		"Cost": 5,
+		"Weight": 8,
+		"Description": "This larger, bulkier version of the common club is heavy enough that you can’t wield it with one hand.",
+		"Special": []
+	},
+	"Greatsword": {
+		"Damage": ["1d10", "2d6", "3d6"],
+		"Critical": "19/x2",
+		"Range": 0,
+		"Damage Type": ["Slashing"],
+
+		"Proficiency": "Martial",
+		"Category": "Two-Handed",
+		"Group": ["Heavy Blades"],
+
+		"Cost": 50,
+		"Weight": 8,
+		"Description": "This immense two-handed sword is about 5 feet in length. A greatsword may have a dulled lower blade that can be gripped.",
+		"Special": []
+	},
+	"Guisarmee": {
+		"Damage": ["1d6", "2d4", "2d6"],
+		"Critical": "20/x3",
+		"Range": 0,
+		"Damage Type": ["none"],
+
+		"Proficiency": "Martial",
+		"Category": "Two-Handed",
+		"Group": ["Polearms"],
+
+		"Cost": 9,
+		"Weight": 12,
+		"Description": "A guisarme is an 8-foot-long shaft with a blade and a hook mounted at the tip.",
+		"Special": [
+			"Reach", "Trip"
+		]
+	},
+	"Halberd": {
+		"Damage": ["1d8", "1d10", "2d8"],
+		"Critical": "20/x3",
+		"Range": 0,
+		"Damage Type": ["Piercing", "Slashing"],
+
+		"Proficiency": "Martial",
+		"Category": "Two-Handed",
+		"Group": ["Polearms"],
+
+		"Cost": 10,
+		"Weight": 12,
+		"Description": "A halberd is similar to a 5-foot-long spear, but it also has a small, axe-like head mounted near the tip.",
+		"Special": [
+			"Brace", "Trip"
+		]
+	},
+	"Lucerne Hammer": {
+		"Damage": ["1d10", "1d12", "3d6"],
+		"Critical": "20/x2",
+		"Range": 0,
+		"Damage Type": ["Bludgeoning", "Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Two-Handed",
+		"Group": ["Polearms"],
+
+		"Cost": 15,
+		"Weight": 12,
+		"Description": "This polearm has both a pronged hammer head for crushing blows and a spiked head for piercing and peeling armor.",
+		"Special": [
+			"You gain a +2 bonus on combat maneuver checks to sunder medium or heavy armor with a lucerne hammer.",
+			"Brace", "Reach"
+		]
+	},
+	"Horsechopper": {
+		"Damage": ["1d8", "1d10", "2d8"],
+		"Critical": "20/x3",
+		"Range": 0,
+		"Damage Type": ["Piercing", "Slashing"],
+
+		"Proficiency": "Martial",
+		"Category": "Two-Handed",
+		"Group": ["Polearms"],
+
+		"Cost": 10,
+		"Weight": 12,
+		"Description": "Crafted by goblins for battling horses, this weapon is essentially a long-handled halberd with an enlarged hook on the blade.",
+		"Special": [
+			"Most horsechoppers are sized for Small creatures.",
+			"Reach", "Trip"
+		]
+	},
+	"Lance": {
+		"Damage": ["1d6", "1d8", "2d6"],
+		"Critical": "20/x3",
+		"Range": 0,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Two-Handed",
+		"Group": ["Spears"],
+
+		"Cost": 10,
+		"Weight": 10,
+		"Description": "A long weapon for thrusting, having a wooden shaft and a pointed steel head",
+		"Special": [
+			"A lance deals double damage when used from the back of a charging mount; while mounted, you can wield a lance with one hand.",
+			"Reach"
+		]
+	},
+	"Ogre Hook": {
+		"Damage": ["1d8", "1d10", "2d8"],
+		"Critical": "20/x3",
+		"Range": 0,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Two-Handed",
+		"Group": ["Polearms"],
+
+		"Cost": 24,
+		"Weight": 10,
+		"Description": "This large crook of sharpened metal makes it easy to trip and catch fleeing opponents.",
+		"Special": [
+			"Invented by ogres, most ogre hooks are Large and crudely fashioned—often from metal torn from previous victims’ weapons and armor.",
+			"Trip"
+		]
+	},
+	"Pickaxe": {
+		"Damage": ["1d6", "1d8", "2d6"],
+		"Critical": "20/x4",
+		"Range": 0,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Two-Handed",
+		"Group": ["Axes"],
+
+		"Cost": 14,
+		"Weight": 12,
+		"Description": "A two-handed version of the heavy pick, the brutal pickaxe is equally effective at breaking up earth and stone as it is at sundering flesh and bone.",
+		"Special": []
+	},
+	"Planson": {
+		"Damage": ["1d8", "1d10", "2d8"],
+		"Critical": "20/x2",
+		"Range": 0,
+		"Damage Type": ["Bludgeoning", "Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Two-Handed",
+		"Group": ["Hammers", "Spears"],
+
+		"Cost": 10,
+		"Weight": 10,
+		"Description": "This 5-foot tapered pole is bound in metal with a narrow metal spike projecting from the top.",
+		"Special": [
+			"Brace"
+		]
+	},
+	"Ranseur": {
+		"Damage": ["1d6", "2d4", "2d6"],
+		"Critical": "20/x3",
+		"Range": 0,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Two-Handed",
+		"Group": ["Polearms"],
+
+		"Cost": 10,
+		"Weight": 12,
+		"Description": "Similar in appearance to a trident, a ranseur has a single spear at its tip, flanked by a pair of short, curving blades.",
+		"Special": [
+			"Disarm", "Reach"
+		]
+	},
+	"Scythe": {
+		"Damage": ["1d6", "2d4", "2d6"],
+		"Critical": "20/x4",
+		"Range": 0,
+		"Damage Type": ["Piercing", "Slashing"],
+
+		"Proficiency": "Martial",
+		"Category": "Two-Handed",
+		"Group": ["Heavy Blades"],
+
+		"Cost": 18,
+		"Weight": 10,
+		"Description": "This weapon consists of a long wooden shaft with protruding handles and a sharp curved blade set at a right angle.",
+		"Special": [
+			"Trip"
+		]
+	},
+	"Syringe Spear": {
+		"Damage": ["1d6", "1d8", "2d6"],
+		"Critical": "20/x3",
+		"Range": 20,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Two-Handed",
+		"Group": ["Spears"],
+
+		"Cost": 100,
+		"Weight": 6,
+		"Description": "This spear has a comparment inside to store injectible liquids (poisons).",
+		"Special": [
+			"A successful hit with the spear injects the liquid contents of the container (typically poison) into the target.",
+			"Refilling a syringe spear takes 1 minute."
+		]
+	},
+	"Ammentum": {
+		"Damage": ["1d4", "1d6", "1d8"],
+		"Critical": "20/x2",
+		"Range": 50,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Ranged",
+		"Group": ["Thrown"],
+
+		"Cost": 0,
+		"Weight": 1,
+		"Description": "An amentum is a long leather thong that attaches to, and is wound about a standard javelin, this gives it spin when thrown.",
+		"Special": [
+			"Attaching an amentum to a javelin is a move action, and winding it is a full-round action.",
+			"Javelins can be stored with amenta already wound about them.",
+			"A javelin wound with an amentum is considered a martial weapon.",
+			"Performance"
+		]
+	},
+	"Charkram": {
+		"Damage": ["1d6", "1d8", "2d6"],
+		"Critical": "20/x2",
+		"Range": 30,
+		"Damage Type": ["Slashing"],
+
+		"Proficiency": "Martial",
+		"Category": "Ranged",
+		"Group": ["Light Blades", "Thrown"],
+
+		"Cost": 1,
+		"Weight": 1,
+		"Description": "The chakram is a flat, open-centered metal discus with a sharpened edge.",
+		"Special": [
+			"You may wield a chakram as a melee weapon taking a -1 penalty on attack rolls.",
+			"If you use a chakram as a melee weapon, you must succeed a DC 15 Reflex save or you cut yourself (1/2 damage, no Str Mod).",
+			"Wearing heavy armor while using a chakram as a melee weapon lets you ignore the save."
+		]
+	},
+	"Jolting Dart": {
+		"Damage": ["1d3", "1d4", "1d6"],
+		"Critical": "20/x2",
+		"Range": 20,
+		"Damage Type": ["Piercing", "Electricity"],
+
+		"Proficiency": "Martial",
+		"Category": "Ranged",
+		"Group": ["Thrown"],
+
+		"Cost": 100,
+		"Weight": 0.5,
+		"Description": "This alchemically grown crystal dart builds up an electrical charge when thrown.",
+		"Special": [
+			"A creature struck by the dart takes normal piercing damage and 1d6 points of electricity damage.",
+			"Anyone proficient in darts can use a jolting dart.",
+			"Once thrown, the dart is destroyed."
+		]
+	},
+	"Mambele": {
+		"Damage": ["1d4", "1d6", "1d8"],
+		"Critical": "20/x2",
+		"Range": 15,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Ranged",
+		"Group": ["Light Blades", "Thrown"],
+
+		"Cost": 4,
+		"Weight": 3,
+		"Description": "This three-bladed dagger is intended for throwing but can be used as a melee weapon.",
+		"Special": []
+	},
+	"Hurlbat": {
+		"Damage": ["1d4", "1d6", "1d8"],
+		"Critical": "20/x3",
+		"Range": 10,
+		"Damage Type": ["Piercing", "Slashing"],
+
+		"Proficiency": "Martial",
+		"Category": "Ranged",
+		"Group": ["Thrown"],
+
+		"Cost": 8,
+		"Weight": 2,
+		"Description": "A hurlbat is a throwing axe made from a single piece of flat metal, with every extremity sharpened, including the point of the handle.",
+		"Special": [
+			"You may wield a chakram as a melee weapon taking a -1 penalty on attack rolls.",
+			"If you use a chakram as a melee weapon, you must succeed a DC 15 Reflex save or you cut yourself (1/2 damage, no Str Mod).",
+			"Wearing heavy armor while using a chakram as a melee weapon lets you ignore the save."
+		]
+	},
+	"Longbow": {
+		"Damage": ["1d6", "1d8", "2d6"],
+		"Critical": "20/x3",
+		"Range": 100,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Ranged",
+		"Group": ["Bows"],
+
+		"Cost": 75,
+		"Weight": 3,
+		"Description": "At almost 5 feet in height, a longbow is made up of one solid piece of carefully curved wood.",
+		"Special": [
+			"You need two hands to use a bow, regardless of its size, and a longbow can’t be used while mounted.",
+			"If you have a penalty for low Strength, apply it to damage rolls when you use a longbow."
+		]
+	},
+	"Composite Longbow": {
+		"Damage": ["1d6", "1d8", "2d6"],
+		"Critical": "20/x3",
+		"Range": 110,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Ranged",
+		"Group": ["Bows"],
+
+		"Cost": 100,
+		"Weight": 3,
+		"Description": "At almost 5 feet in height, a longbow is made up of one solid piece of carefully curved wood.",
+		"Special": [
+			"You need two hands to use a bow, regardless of its size, and you may use a composite longbow while mounted.",
+			"If you have a penalty for low Strength, apply it to damage rolls when you use a longbow.",
+			"All composite bows are made with a strength rating (default 0), if your Strength Bonus is less than this rating, you take a -2 penalty on attacks with it.",
+			"You add your Strength bonus to damage, up to the maximum bonus indicated for the bow.",
+			"Each point of Strength bonus granted by the bow adds 100 gp to its cost (listed price is for a rating of 0)."
+		]
+	},
+	"Pilum": {
+		"Damage": ["1d6", "1d8", "2d6"],
+		"Critical": "20/x2",
+		"Range": 20,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Ranged",
+		"Group": ["Spears", "Thrown"],
+
+		"Cost": 5,
+		"Weight": 4,
+		"Description": "The tip of this heavy javelin is designed to break off and embed itself into a shield once it hits.",
+		"Special": [
+			"A thrown pilum that hits a target is destroyed, just like ammunition.",
+			"If you hit a shieldbearing opponent with a pilum, he loses the AC bonuses from that shield until he takes a standard action to pry the remnants of the pilum from his shield."
+		]
+	},
+	"Shortbow": {
+		"Damage": ["1d4", "1d6", "1d8"],
+		"Critical": "20/x3",
+		"Range": 60,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Ranged",
+		"Group": ["Bows"],
+
+		"Cost": 30,
+		"Weight": 2,
+		"Description": "A shortbow is made up of one piece of wood, about 3 feet in length.",
+		"Special": [
+			"You need two hands to use a bow, regardsless of its size, but you may use it while mounted.",
+			"If you have a penalty for low Strength, apply it to damage rolls when you use a shortbow."
+		]
+	},
+	"Composite Shortbow": {
+		"Damage": ["1d4", "1d6", "1d8"],
+		"Critical": "20/x3",
+		"Range": 70,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Ranged",
+		"Group": ["Bows"],
+
+		"Cost": 75,
+		"Weight": 2,
+		"Description": "A shortbow is made up of one piece of wood, about 3 feet in length.",
+		"Special": [
+			"You need two hands to use a bow, regardless of its size, and you may use a composite shortbow while mounted.",
+			"If you have a penalty for low Strength, apply it to damage rolls when you use a shortbow.",
+			"All composite bows are made with a strength rating (default 0), if your Strength Bonus is less than this rating, you take a -2 penalty on attacks with it.",
+			"You add your Strength bonus to damage, up to the maximum bonus indicated for the bow.",
+			"Each point of Strength bonus granted by the bow adds 75 gp to its cost (listed price is for a rating of 0)."
+		]
+	},
+	"Spear-Sling": {
+		"Damage": ["1d6", "1d8", "2d6"],
+		"Critical": "20/x3",
+		"Range": 0,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Ranged",
+		"Group": ["Misc"],
+
+		"Cost": 50,
+		"Weight": 2,
+		"Description": "A spear-sling consists of a hollow tube with a loop of elastic material attached to one end, the wielder draws a spear through it, and can release the loop to launch the spear.",
+		"Special": [
+			"Using a spear-sling requires two hands, but treats harpoons, javalins, spears, and other weapons fired as projectiles not thrown weapons.",
+			"Loading a spear-sling is a standard action that provokes attacks of opportunity.",
+			"If you have a penalty for low Strength, apply it to damage rolls when you use a spear-sling.",
+			"All spear-slings are made with a strength rating (default 0), if your Strength Bonus is less than this rating, you take a -2 penalty on attacks with it.",
+			"You add your Strength bonus to damage, up to the maximum bonus indicated for the spear-sling.",
+			"Each point of Strength bonus granted by the spear-sling adds 50 gp to its cost (listed price is for a rating of 0)."
+		]
+	},
+	"Throwing Arrow Cord": {
+		"Damage": ["1d3", "1d4", "1d6"],
+		"Critical": "20/x2",
+		"Range": 60,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Ranged",
+		"Group": ["Misc"],
+
+		"Cost": 50,
+		"Weight": 2,
+		"Description": "This simple fiber or leather cord has a knot at either end, and using one dramatically increases a throwing arrow’s range.",
+		"Special": [
+			"Attaching the cord to a throwing arrow is a move action that requires two hands and provokes attacks of opportunity."
+		]
+	},
+
+	"Common Arrow": {
+		"Damage": ["1d3", "1d4", "1d6"],
+		"Critical": "20/x2",
+		"Range": 0,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Ammunition",
+		"Group": ["Light Blades"],
+
+		"Cost": 0.05,
+		"Weight": 0.15,
+		"Description": "A typical arrow consists of a long straight wooden shaft with a sharp arrowhead attached to the front end and multiple fins called fletching at the end.",
+		"Special": [
+			"You may use a standard arrow as a melee weapon, taking a -4 on attack rolls.",
+			"Arrows usually come in a leather quiver that holds 20 (price & weight listed for 1 arrow)."
+		]
+	},
+	"Barbed Arrows": {
+		"Damage": ["0", "0", "0"],
+		"Critical": "0",
+		"Range": 0,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Ammunition",
+		"Group": ["Misc"],
+
+		"Cost": 0.1,
+		"Weight": 0.15,
+		"Description": "The head of a barbed arrow resembles that of a harpoon.",
+		"Special": [
+			"When a barbed arrow is attached to a length of silk rope and fired from a bow, the arrow’s range increment is reduced to 30 feet, but it gains the grapple special weapon quality.",
+			"Barbed arrows come in a leather quiver that holds 20 (price & weight listed for 1 arrow).",
+			"Barbed bolts exist for crossbows."
+		]
+	},
+	"Bleeding Arrows": {
+		"Damage": ["0", "0", "0"],
+		"Critical": "0",
+		"Range": 0,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Ammunition",
+		"Group": ["Misc"],
+
+		"Cost": 360,
+		"Weight": 0.15,
+		"Description": "The head of a bleeding arrow is specially designed to rip open flesh to cause the target to bleed after impact.",
+		"Special": [
+			"A bleeding arrow deals normal damage when it hits a creture, and then causes it to take continuing bleed damage (crits do not multiply the bleed).",
+			"This bleeding causes 1 bleed damage per round, but a DC 10 Heal check or a cure spell will fix it."
+		]
+	},
+	"Blunt Arrows": {
+		"Damage": ["0", "0", "0"],
+		"Critical": "0",
+		"Range": 0,
+		"Damage Type": ["Bludgeoning"],
+
+		"Proficiency": "Martial",
+		"Category": "Ammunition",
+		"Group": ["Misc"],
+
+		"Cost": 0.1,
+		"Weight": 0.15,
+		"Description": "Hard leather is wound around the head of a blunt arrow chagind it to batter an enemy rather than pierce them.",
+		"Special": [
+			"An archer can use a blunt arrow to deal nonlethal damage, at a -4 to attack rolls to convert the damage type.",
+			"Blunt arrows come in a leather quiver that holds 20 (price & weight listed for 1 arrow)."
+		]
+	},
+	"Distance Arrows": {
+		"Damage": ["0", "0", "0"],
+		"Critical": "0",
+		"Range": 0,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Ammunition",
+		"Group": ["Misc"],
+
+		"Cost": 0.05,
+		"Weight": 0.2,
+		"Description": "Used tactically for long-range attacks on troops, these arrows are fitted with heavy iron heads.",
+		"Special": [
+			"These arrows increase their bow's range increment by 10 feet, but take a -1 on damage dealth per range increment.",
+			"Distance arrows come in a leather quiver that holds 20 (price & weight listed for 1 arrow)."
+		]
+	},
+	"Durable Arrows": {
+		"Damage": ["0", "0", "0"],
+		"Critical": "0",
+		"Range": 0,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Ammunition",
+		"Group": ["Misc"],
+
+		"Cost": 1,
+		"Weight": 0.15,
+		"Description": "Made of stronder wood than the average arrow, these can be fired again and again.",
+		"Special": [
+			"Whether or not a durable arrow hit's its target, you may retrieve and reuse it."
+		]
+	},
+	"Flight Arrows": {
+		"Damage": ["0", "0", "0"],
+		"Critical": "0",
+		"Range": 0,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Ammunition",
+		"Group": ["Misc"],
+
+		"Cost": 0.1,
+		"Weight": 0.15,
+		"Description": "The head of a barbed arrow resembles that of a harpoon.",
+		"Special": [
+			"A flight arrows range increment is 20 feet greater with longbows, 10 feet greater with shortbows.",
+			"Flight arrows deal damage as if one size category smaller.",
+			"Flight arrows come in a leather quiver that holds 20 (price & weight listed for 1 arrow)."
+		]
+	},
+	"Incendiary Arrows": {
+		"Damage": ["0", "0", "0"],
+		"Critical": "0",
+		"Range": 0,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Ammunition",
+		"Group": ["Misc"],
+
+		"Cost": 2,
+		"Weight": 0.15,
+		"Description": "A metal cage behind this arrow’s point contains flammable material.",
+		"Special": [
+			"You may light up to six incendiary arrows at a time, provoking attacks of opportunity (full-round action with flint and steel) (standard action with a tindertwig).",
+			"A lit arrow deals burns for 2 rounds and deals an additional 1 fire damage, but you suffer a -1 to attack rolls.",
+			"On a critical hit, the target must succeed at a DC 15 Reflex save or catch fire.",
+			"incendiary arrows come in a leather quiver that holds 20 (price & weight listed for 1 arrow).",
+			"Incendiary bolts exist for crossbows."
+		]
+	},
+	"Lodestone Arrows": {
+		"Damage": ["0", "0", "0"],
+		"Critical": "0",
+		"Range": 0,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Ammunition",
+		"Group": ["Misc"],
+
+		"Cost": 10,
+		"Weight": 0.15,
+		"Description": "The head of this arrow is made of an enchanted metal that can become magnetized.",
+		"Special": [
+			"You may pull the string to activate the magnet as a move action",
+			"When active, you gain a +4 bonus on attack rolls when firing this arrow at a target with a significant amount of metal.",
+			"This magnetism lasts for 1 round and deals half damage while active."
+		]
+	},
+	"Pheromone Arrows": {
+		"Damage": ["0", "0", "0"],
+		"Critical": "0",
+		"Range": 0,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Ammunition",
+		"Group": ["Misc"],
+
+		"Cost": 15,
+		"Weight": 0.15,
+		"Description": "The head of this arrow is coated in a smelly oil that rubs off on the target.",
+		"Special": [
+			"Any creature with the scent ability gains a +2 bonus on attack and damage rolls made against a target marked with a pheromone arrow.",
+			"This effect lasts for 1 hour or until the target spends 1 minute washing."
+		]
+	},
+	"Pronged Arrows": {
+		"Damage": ["0", "0", "0"],
+		"Critical": "0",
+		"Range": 0,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Ammunition",
+		"Group": ["Misc"],
+
+		"Cost": 0.1,
+		"Weight": 0.15,
+		"Description": "Rather than narrowing to a single point, a pronged arrow has a wide face with two points resembling a crescent or V-shape.",
+		"Special": [
+			"A pronged arrow deals damage as if it was one size category smaller, and grants a +1 bonus on attack rolls against targets at least one size cateogry smaller than you.",
+			"Pronged arrows come in a leather quiver that holds 20 (price & weight listed for 1 arrow)."
+		]
+	},
+	"Raining Arrows": {
+		"Damage": ["0", "0", "0"],
+		"Critical": "0",
+		"Range": 0,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Ammunition",
+		"Group": ["Misc"],
+
+		"Cost": 30,
+		"Weight": 0.5,
+		"Description": "This arrow has a reservoir instead of a normal steel arrowhead.",
+		"Special": [
+			"The reservoir will burst on impact, splashing the target and nearby creatures as if you had thrown a vial.",
+			"A raining arrow has a -2 to attack rolls due to its shape and weight."
+		]
+	},
+	"Slow Burn Arrows": {
+		"Damage": ["0", "0", "0"],
+		"Critical": "0",
+		"Range": 0,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Ammunition",
+		"Group": ["Misc"],
+
+		"Cost": 150,
+		"Weight": 0.5,
+		"Description": "This arrow has a reservoir instead of a normal steel arrowhead.",
+		"Special": [
+			"The reservoir will burst and ignite on impact; 1 round later, on your turn, the flames deal 1d6 fire damage to the target.",
+			"A slow burn arrow has a -1 to attack rolls due to its shape and weight."
+		]
+	},
+	"Smoke Arrows": {
+		"Damage": ["0", "0", "0"],
+		"Critical": "0",
+		"Range": 0,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Ammunition",
+		"Group": ["Misc"],
+
+		"Cost": 10,
+		"Weight": 0.2,
+		"Description": "This arrow has a perforated sack just behind the arrowhead.",
+		"Special": [
+			"A smoke arrow trails smoke as it flies and creates a 5-foot cube of smoke where it strikes."
+		]
+	},
+	"Splintercloud Arrows": {
+		"Damage": ["0", "0", "0"],
+		"Critical": "0",
+		"Range": 0,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Ammunition",
+		"Group": ["Misc"],
+
+		"Cost": 25,
+		"Weight": 0.15,
+		"Description": "This arrow has bone splinters laid into grooves on the arrow shaft.",
+		"Special": [
+			"When fired, the numerous bone fragments tear themselves apart, forming a 5-foot burst of razor-sharp bones that deals 1d3 points of piercing damage (Reflex DC 18 negates)."
+		]
+	},
+	"Tangleshot Arrows": {
+		"Damage": ["0", "0", "0"],
+		"Critical": "0",
+		"Range": 0,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Ammunition",
+		"Group": ["Misc"],
+
+		"Cost": 20,
+		"Weight": 0.5,
+		"Description": "This arrow has a reservoir instead of a normal steel arrowhead.",
+		"Special": [
+			"You fire a tangleshot arrow as a ranged touch attack that deals no damage, but splashes an adhesive on the target.",
+			"This glue acts like a weak version of a tanglefoot bad (DC 10 Reflex save, DC 12 Strength check to break, 10 points of slashing damage to cut through, DC 10 Concentration check).",
+			"A tangleshot arrow reduces the range increment to half normal due to its shape and weight."
+		]
+	},
+	"Thistle Arrows": {
+		"Damage": ["0", "0", "0"],
+		"Critical": "0",
+		"Range": 0,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Ammunition",
+		"Group": ["Misc"],
+
+		"Cost": 1,
+		"Weight": 0.15,
+		"Description": "Crafted from the thistles of a poisonous plant, these barbed arrows deal damage for 1d6 rounds after a hit.",
+		"Special": [
+			"On a hit, the arrow embeds itself into the target dealing an addition 1 poison damage every round for 1d6 rounds.",
+			"You may remove the embeded arrow as a move action that deals 1d3 damage as the barbs are pulled free.",
+			"A DC 12 Heal check (made as a standard action) can pull the thistle arrow's head free without the additional damage."
+		]
+	},
+	"Throwing Arrows": {
+		"Damage": ["0", "0", "0"],
+		"Critical": "0",
+		"Range": 0,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Ammunition",
+		"Group": ["Misc"],
+
+		"Cost": 0.5,
+		"Weight": 0.5,
+		"Description": "Too long to use in a bow, the throwing arrow has no nock at the tail.",
+		"Special": [
+			"If thrown without the use of a cord, treat a throwing arrow as a dart."
+		]
+	},
+	"Trip Arrows": {
+		"Damage": ["0", "0", "0"],
+		"Critical": "0",
+		"Range": 0,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Ammunition",
+		"Group": ["Misc"],
+
+		"Cost": 25,
+		"Weight": 0.2,
+		"Description": "This arrow has netting afixed to the head, to trip up the limbs of the target.",
+		"Special": [
+			"On a hit, it makes a trip attack against the target with a CMB of +5, the target falls prone on a fail and nothing happens if it passes."
+		]
+	},
+	"Whistling Arrows": {
+		"Damage": ["0", "0", "0"],
+		"Critical": "0",
+		"Range": 0,
+		"Damage Type": ["Piercing"],
+
+		"Proficiency": "Martial",
+		"Category": "Ammunition",
+		"Group": ["Misc"],
+
+		"Cost": 0.1,
+		"Weight": 0.15,
+		"Description": "These arrows come with specially designed grooves and fletching that cause them to emit a loud keening sound.",
+		"Special": [
+			"These arrows make a saound that is audible within 500 feet of the flight path.",
+			"Whistling arrows come in a leather quiver that holds 20 (price & weight listed for 1 arrow)."
+		]
+	}
 }

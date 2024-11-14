@@ -35,7 +35,10 @@
       </template>
     </el-select>
 
-    <el-button @click="clearFilter" size="large">Reset</el-button>
+    <el-button @click="clearFilter">Reset</el-button>
+    <el-tag v-if="displayedRows" size="large" effect="dark" type="primary">
+      {{ displayedRows }} Results
+    </el-tag>
   </div>
 
   <table :id="id" class="g-table">
@@ -98,6 +101,7 @@ export default {
       filterValue: {},
       isAdding: false,  // Adding a new filter option
       newOption: {},    // The new filter option to add
+      displayedRows: 0,
 
       colors: [
         { value: '#E63415', label: 'Red' },
@@ -245,6 +249,7 @@ export default {
     // Filters the table
     // Triggered by a change in a filter dropdown
     filterTable() {
+      this.displayedRows = 0;
       let rows, i, cell, shouldRemove = true;
       rows = document.getElementById("equipmentTable").rows;
 
@@ -268,6 +273,7 @@ export default {
 
                 if (choice.label == child.innerHTML) {
                   shouldRemove = false;
+                  this.displayedRows = this.displayedRows + 1;
                 }
               }
             }
@@ -296,6 +302,7 @@ export default {
 .filter-row {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin: 10px;
 }
 .filter-row > * {

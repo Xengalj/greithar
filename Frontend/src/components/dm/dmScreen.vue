@@ -6,6 +6,9 @@
   <el-button type="primary" circle @click="monsterOpen('Adult Red Dragon')">
     <g-icon iconSize="24px" iconName="firebolt" />
   </el-button>
+  <el-button type="primary" circle @click="monsterOpen('Skeletal Champion')">
+    <g-icon iconSize="24px" iconName="undead" />
+  </el-button>
 
   <el-dialog
     width="650"
@@ -56,6 +59,8 @@ export default {
       tableName: "equipmentTable",
       tableData: {},
       tableFilters: {},
+
+      equipment: {},
 
 
     }
@@ -111,18 +116,13 @@ export default {
   },
   mounted() {
 
-    // DataService.getEquipment().then(
-    //   (response) => {
-    //     this.equipment = response.data;
-    //     console.log(response.data);
-    //   }
-    // );
-    // console.log(this.equipment.armor);
+    DataService.getEquipment().then(
+      (response) => {
+        console.log(response);
+        this.equipment = response;
+      }
+    );
 
-
-    // console.log(this.tableCols);
-
-    // console.log(Object.keys(this.equipment.armor[0]));
 
     UserService.getAdminBoard().then(
       (response) => {
@@ -139,105 +139,120 @@ export default {
     monsterOpen(name) {
 
 
-      DataService.getMonster(name)
+      DataService.getMonster({"Name": name})
       .then(response => {
         console.log(response);
         let creature = {
-          "attributes": { "Str": 10 },
-          "abilities": {
-            "name": {
-              "type": "",
-              "bonus": "",
-              "description": "",
-              "stacks": false
-            },
-            "Chainmail": {
-              "type": "armor",
-              "bonus": 5,
-              "desc": "A shirt with metal loops",
-              "stacks": false
-          },
           "characteristics": {
             "age": 10
-          }
+          },
+          "attributes": { "Str": 10 },
+          "abilities": {
+            // "name": {
+            //   "type": "",
+            //   "bonus": "",
+            //   "description": "",
+            //   "stacks": false
+            // }
+          },
+          "equipment": {}
         };
+
 
         // Get Monster's Equipment
-        let items = orig.treasure.split(',');
-        for (const shield of Object.keys(equipment.shields)) {
+        let items = response.Treasure.split('(').pop().split(')')[0];
+        items = items.split(',');
+
+
+        // TODO:
+
+        /*
+
+        1. loop on items,
+        2. item = item. cap first, remove leading " "
+        3. then equips.includes(item)
+        */
+
+        for (const shield of Object.keys(this.equipment.Shields)) {
           for (const item of items) {
+
+
             // if item's name / string contains the name of the shield
-            if (item.includes(shield)) {
-              abilities[shield].type = "shield";
-              abilities[shield].bonus = equipement.shields[shield]["AC Bonus"];
-              abilities[shield].description = equipement.shields[shield]["Description"];
-              abilities[shield].stacks = false;
+            if (item.includes(shield.toLowerCase())) {
+              creature.abilities[shield] = {};
+              creature.abilities[shield].type = "shield";
+              creature.abilities[shield].bonus = this.equipment.Shields[shield]["AC Bonus"];
+              creature.abilities[shield].description = this.equipment.Shields[shield]["Description"];
+              creature.abilities[shield].stacks = false;
 
-              monster.equipment[shield] = equipment.shields[shield];
+              creature.equipment[shield] = this.equipment.Shields[shield];
             }
           }
         }
-        for (const armor of Object.keys(equipment.armors)) {
+
+        for (const armor of Object.keys(this.equipment.Armor)) {
           for (const item of items) {
-            if (item.includes(armor)) {
-              abilities[armor].type = "armor";
-              abilities[armor].bonus = equipment.armors[armor]["AC Bonus"];
-              abilities[armor].description = equipment.armors[armor]["Description"];
-              abilities[armor].stacks = false;
+            if (item.includes(armor.toLowerCase())) {
+              creature.abilities[armor] = {};
+              creature.abilities[armor].type = "armor";
+              creature.abilities[armor].bonus = this.equipment.Armor[armor]["AC Bonus"];
+              creature.abilities[armor].description = this.equipment.Armor[armor]["Description"];
+              creature.abilities[armor].stacks = false;
 
-              monster.equipment[armor] = equipment.armors[armor];
+              creature.equipment[armor] = this.equipment.Armor[armor];
             }
           }
         }
-        for (const weapon of Object.keys(equipment.weapons)) {
+        for (const weapon of Object.keys(this.equipment.Weapons)) {
           for (const item of items) {
-            if (item.includes(weapon)) {
-              monster.equipment[weapon] = equipment.weapons[weapon];
+            if (item.includes(weapon.toLowerCase())) {
+              creature.equipment[item] = this.equipment.Weapons[weapon];
             }
           }
         }
+        console.log(creature);
 
-        
-        creture.ac = { "base": 10 };
+
+        // creture.ac = { "base": 10 };
         // orig.ac
-        for item in abilities {
-          let ac = orig.ac;
-          ac = ac - dexMod - 10 - size.AC;
-          let acBonuses = [ "armor", "shield", "dodge", "deflection" ];
-          if ( acBonuses.inlcudes(item.type)) {
-            let curr = creature.ac[item.type].bonus;
-            let stack = creature.ac[item.type].stacks;
-            if (item.stacks) {
-              stack = stack + item.bonus;
-            } else {
-              curr = Math.max(curr, item.bonus);
-                  // TODO:  Move to ac computaion section
-              // // if the bonus stacks, add it to the current bonus, otherwise use the higher value
-              // curr = (item.stacks) ? curr + item.bonus : Math.max(curr, item.bonus);
-            }
-            // subtract armor, shields, dodge bouses
-            ac = ac - curr;
-            ac = ac - stacks;
-          }
-        }
-        let natural = ac;
-        let AC_TYPES = {
-          "Base": 10,
-          "Dex": 0,
-          "Size": 0,
-          "Armor" : 0,
-          "Shield": 0,
-          "Natural": 0,
-          "Dodge": 0,
-          "Deflection": 0,
-          "Competence": 0,
-          "Insight": 0,
-          "Sacred/Profane": 0,
-          "Luck": 0,
-          "Morale": 0,
-          "Circumstance": 0
-        };
-        
+        // for (item in abilities) {
+        //   let ac = orig.ac;
+        //   ac = ac - dexMod - 10 - size.AC;
+        //   let acBonuses = [ "armor", "shield", "dodge", "deflection" ];
+        //   if ( acBonuses.inlcudes(item.type)) {
+        //     let curr = creature.ac[item.type].bonus;
+        //     let stack = creature.ac[item.type].stacks;
+        //     if (item.stacks) {
+        //       stack = stack + item.bonus;
+        //     } else {
+        //       curr = Math.max(curr, item.bonus);
+        //           // TODO:  Move to ac computaion section
+        //       // // if the bonus stacks, add it to the current bonus, otherwise use the higher value
+        //       // curr = (item.stacks) ? curr + item.bonus : Math.max(curr, item.bonus);
+        //     }
+        //     // subtract armor, shields, dodge bouses
+        //     ac = ac - curr;
+        //     ac = ac - stacks;
+        //   }
+        // }
+        // let natural = ac;
+        // let AC_TYPES = {
+        //   "Base": 10,
+        //   "Dex": 0,
+        //   "Size": 0,
+        //   "Armor" : 0,
+        //   "Shield": 0,
+        //   "Natural": 0,
+        //   "Dodge": 0,
+        //   "Deflection": 0,
+        //   "Competence": 0,
+        //   "Insight": 0,
+        //   "Sacred/Profane": 0,
+        //   "Luck": 0,
+        //   "Morale": 0,
+        //   "Circumstance": 0
+        // };
+
         // this.creatureSetup(response);
       })
       .catch(err => { console.error(err); });
