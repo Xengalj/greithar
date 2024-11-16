@@ -137,8 +137,7 @@ export default {
   },
   methods: {
     monsterOpen(name) {
-
-
+	    
       DataService.getMonster({"Name": name})
       .then(response => {
         console.log(response);
@@ -148,61 +147,73 @@ export default {
           },
           "attributes": { "Str": 10 },
           "abilities": {
-            // "name": {
-            //   "type": "",
-            //   "bonus": "",
-            //   "description": "",
-            //   "stacks": false
-            // }
+            // "name": {  "type": "",  "bonus": "",  "description": "",  "stacks": false  }
           },
           "equipment": {}
         };
 
-
         // Get Monster's Equipment
-        let items = response.Treasure.split('(').pop().split(')')[0];
-        items = items.split(',');
+//TODO: in beastiary, log monster.Treasure and monster.Gear, check for multiple () in Treasure or anything other than comma seperated list in Gear
+	      
+	let monsters = [
+	  { "Name": "Aasimar", "Treasure": "NPC gear (scale mail, heavy mace, light crossbow with 10 bolts, other treasure)", "Gear": "" },
+ 	  { "Name": "Abasheen Genie", "Treasure": "standard", "Gear": "masterwork falchion" },
+	  { "Name": "Aeshma Demon", "Treasure": "standard", "Gear": "+1 wounding spear" },
+	  { "Name": "Ahlinni", "Treasure": "no coins; standard goods (gems only); no items", "Gear": "" },
+	  { "Name": "Alastor", "Treasure": "double standard", "Gear": "Grimfang" },
+	  { "Name": "Baaphel", "Treasure": "double standard", "Gear": "Hell's Gleaning, +3 chainmail" },
+	  { "Name": "Skeletal Champion", "Treasure": "standard (breastplate, heavy steel shield, masterwork longsword, other treasure)", "Gear": "" }
+	];
 
-        for (let item of items) {
-          item = item[0] === " " ? item.slice(1) : item;
-          item = item.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
-          console.log(item);
-        }
+	// Get Monster's Equipment
 
+	      // just using above obj for response data
+//	let items = [];
+//	for (const response of monsters) {
+// 	  if (response.Treasure.includes("(")) {
+//  	    let equip = response.Treasure.split('(').pop().split(')')[0];
+//    	    items = items.concat(equip.split(','));
+//  	  }
+//  	  if (response.Gear != "") {
+//  	    items = items.concat(response.Gear.split(','));
+//  	  }
+//	}
+//	console.log(items);
 
+	for (let item of items) {
+	  /*
+ 	   Remove "with" items then,
+	   Remove "+#" from magic items then,
+    	   Remove "Masterwrk" then,
+	   Remove leading " " then, Capitalize first letter of words
+ 	  */
+	  let extras = item.indexOf('with');
+	  item = extras>-1 ? item.slice(0, extras) : item;
+	  extras = item.indexOf('+');
+  	item = extras>-1 ? item.slice(extras+2) : item;
+  	extras = item.indexOf('masterwork');
+	  item = extras>-1 ? item.slice(extras+10) : item;
+	  item = item[0] === " " ? item.slice(1) : item;
+	  item = item.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
+	  console.log(item);
 
-Name,CR,XP,Race,Class1,Class1_Lvl,Class2,Class2_Lvl,Alignment,Size,Type,subtype1,subtype2,subtype3,subtype4,subtype5,subtype6,AC,AC_Touch,AC_Flat-footed,HP,HD,Fort,Ref,Will,Melee,Ranged,Space,Reach,Str,Dex,Con,Int,Wis,Cha,Feats,Skills,RacialMods,Languages,SQ,Environment,Organization,Treasure,Group,Gear,OtherGear,CharacterFlag,CompanionFlag,Speed,Base_Speed,Fly_Speed,Maneuverability,Climb_Speed,Swim_Speed,Burrow_Speed,Speed_Special,Speed_Land,Fly,Climb,Burrow,Swim,VariantParent,ClassArchetypes,CompanionFamiliarLink,AlternateNameForm,id,UniqueMonster,MR,Mythic,MT,Source
+	  // Begin looping on equipment (shields, armor, weapons)
+	  if (  Object.keys(this.equipement.Shields).includes(item)  ) {
+		  creature.abilities[shield] = {};
+      creature.abilities[shield].type = "shield";
+      creature.abilities[shield].bonus = this.equipment.Shields[shield]["AC Bonus"];
+      creature.abilities[shield].description = this.equipment.Shields[shield]["Description"];
+      creature.abilities[shield].stacks = false;
+				// will be added to encounter.creature
+      creature.equipment[shield] = this.equipment.Shields[shield];
+	  }
+	
 
-Skeletal Champion,2,600,Human skeletal champion,warrior,1,,,NE,Medium,undead,,,,,,,21,12,19,17,3 HD; 2d8+1d10+3,3,1,3,mwk longsword +7 (1d8+3/19-20),,5,5,17,13,-,9,10,12,"Cleave, Improved InitiativeB, Power Attack, Weapon Focus (longsword)","Intimidate +7, Perception +6, Stealth -1",,,,any,"solitary, pair, or platoon (3-12)","standard (breastplate, heavy steel shield, masterwork longsword, other treasure)",,,,0,0,30 ft.,30,,,,,,,1,0,0,0,0,,,NULL,,322,0,0,0,0,PFRPG Bestiary
+}	      
 
-let response = {
-	"Name": "Skeletal Champion",
-  "Treasure": "standard (breastplate, heavy steel shield, masterwork longsword, other treasure)"
-};
-
-Baaphel,21,"409,600",,,,,,LE,Medium,outsider,devil,evil,extraplanar,lawful,,,38,19,37,270,20d10+160,14,19,22,+3 axiomatic keen scythe +35/+30/+25/+20 (2d4+19/19-20/x4) or fear touch +31 (fear),,5,5,33,25,27,26,26,25,"Alertness, Blind-Fight, Cleave, Great Cleave, Improved Initiative, Improved Sunder, Iron Will, Power Attack, Weapon Focus (scythe), Vital Strike","Appraise +28, Bluff +30, Diplomacy +30, Disguise +27, Escape Artist +30, Fly +34, Intimidate +30, Knowledge (arcana) +31, Knowledge (planes) +31, Knowledge (religion) +28, Perception +35, Sense Motive +35, Stealth +30, Survival +28",,"Abyssal, Celestial, Common, Draconic, Giant, Infernal, Terran; telepathy 100 ft.",,any (Hell),"solitary or troupe (Baaphel plus 2-5 bearded devils, 1-2 barbed devils, or 1 pit fiend)",
-double standard,
-Devil,"Hell's Gleaning, +3 chainmail",,0,0,"30 ft., fly 50 ft. (good) (40 ft., fly 60 ft. base)",30,good (40,,,,,,1,1,0,0,0,,,NULL,,2508,0,0,0,0,Tome of Horrors Complete
-
-
-let items = response.Treasure.split('(').pop().split(')')[0];
-items = items.split(',');
-
-for (let item of items) {
-  item = item[0] === " " ? item.slice(1) : item;
-  item = item.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
-
-
-	console.log(item);
-}
-
-        
-
-        
 
         for (const shield of Object.keys(this.equipment.Shields)) {
           for (const item of items) {
-
 
             // if item's name / string contains the name of the shield
             if (item.includes(shield.toLowerCase())) {
