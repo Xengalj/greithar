@@ -73,6 +73,36 @@ class DataService {
   }
 
 
+  /***************************\
+  *                           *
+  *           RULES           *
+  *                           *
+  \***************************/
+  // return the rules.json (size, bonus types, damage types)
+  getRules() {
+    return axios.get(API_URL + 'rules',
+    { headers: authHeader() })
+    .then(response => {
+      return response.data;
+    })
+    .catch(err => {
+      return err;
+    });
+  }
+
+  // return the list of classes
+  getClasses() {
+    return axios.post(API_URL + 'classes',
+    { headers: authHeader() })
+    .then(response => {
+      return response.data;
+    })
+    .catch(err => {
+      return err;
+    });
+  }
+
+
 }
 
 export default new DataService();

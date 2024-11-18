@@ -37,9 +37,6 @@ import UserService from "@/services/user.service";
 import DataService from "@/services/data.service";
 import CreatureCard from '@/components/template/CreatureCard.vue'
 const icons = require('@/components/template/svgPaths.json');
-// const miscTables = require('@/components/codex/tables.json');
-// const supplementTables = require('@/components/codex/monsters.json');
-// const equipmentTables = require('@/components/codex/equipment.json');
 
 export default {
   name: "DM Screen",
@@ -55,11 +52,11 @@ export default {
       monsterVisible: false,
       creatureName: "",
 
-      // equipment: equipmentTables,
       tableName: "equipmentTable",
       tableData: {},
       tableFilters: {},
 
+      rules: {},
       equipment: {},
 
 
@@ -116,12 +113,11 @@ export default {
   },
   mounted() {
 
-    DataService.getEquipment().then(
-      (response) => {
-        console.log(response);
-        this.equipment = response;
-      }
-    );
+    DataService.getRules().then( (response) => { this.rules = response;
+      console.log(this.rules);
+
+     } );
+    DataService.getEquipment().then( (response) => { this.equipment = response; } );
 
 
     UserService.getAdminBoard().then(
@@ -137,160 +133,142 @@ export default {
   },
   methods: {
     monsterOpen(name) {
-	    
+
       DataService.getMonster({"Name": name})
       .then(response => {
-        console.log(response);
+        console.log("Orig", response);
+        let tempNum = 0;
         let creature = {
-          "characteristics": {
-            "age": 10
-          },
-          "attributes": { "Str": 10 },
+          "name": response.Name,
+          "cr": response.CR,
+          "type": response.type,
+          "size": response.Size.toLowerCase(),
+          "alignment": response.Alignment,
+          "environment": response.environment,
+          "treasure": response.Treasure,
+
+          "health": { bonus: 0, HDString: "d".concat(response.HDType, "+") },
+          "senses": [],
+          "speed": response.Speed,
+
+          "bab": 0,
+          "melee": [],
+          "ranged": [],
+          "special": [],
+          "magic": [],
+
+          "attributes": { "Str": response.Str, "Dex": response.Dex, "Con": response.Con, "Int": response.Int, "Wis": response.Wis, "Cha": response.Cha },
           "abilities": {
-            // "name": {  "type": "",  "bonus": "",  "description": "",  "stacks": false  }
+            "fort": {  "type": "save",  "bonus": response.Fort,  "description": "",  "stacks": false  },
+            "ref": {  "type": "save",  "bonus": response.Ref,  "description": "",  "stacks": false  },
+            "will": {  "type": "save",  "bonus": response.Will,  "description": "",  "stacks": false  }
           },
           "equipment": {}
+          // "temp": {}
         };
 
-        // Get Monster's Equipment
-//TODO: in beastiary, log monster.Treasure and monster.Gear, check for multiple () in Treasure or anything other than comma seperated list in Gear
-	      
-	let monsters = [
-	  { "Name": "Aasimar", "Treasure": "NPC gear (scale mail, heavy mace, light crossbow with 10 bolts, other treasure)", "Gear": "" },
- 	  { "Name": "Abasheen Genie", "Treasure": "standard", "Gear": "masterwork falchion" },
-	  { "Name": "Aeshma Demon", "Treasure": "standard", "Gear": "+1 wounding spear" },
-	  { "Name": "Ahlinni", "Treasure": "no coins; standard goods (gems only); no items", "Gear": "" },
-	  { "Name": "Alastor", "Treasure": "double standard", "Gear": "Grimfang" },
-	  { "Name": "Baaphel", "Treasure": "double standard", "Gear": "Hell's Gleaning, +3 chainmail" },
-	  { "Name": "Skeletal Champion", "Treasure": "standard (breastplate, heavy steel shield, masterwork longsword, other treasure)", "Gear": "" }
-	];
+        /***************************\
+        *                           *
+        *         EQUIPMENT         *
+        *                           *
+        \***************************/
+        let items = [];
+        if (response.Treasure.includes("(")) {
+          let equip = response.Treasure.split('(').pop().split(')')[0];
+          items = items.concat(equip.split(','));
+        }
+        if (response.Gear) { items = items.concat(response.Gear.split(',')); }
 
-	// Get Monster's Equipment
+        for (let item of items) {
+          /*
+            1. Remove "with" items then,
+            2. Remove "+#" from magic items then,
+            3. Remove "Masterwrk" then,
+            4. Remove leading " " then, Capitalize first letter of words
+          */
+          let extras = item.indexOf('with');
+          item = extras>-1 ? item.slice(0, extras) : item;
+          extras = item.indexOf('+');
+          item = extras>-1 ? item.slice(extras+2) : item;
+          extras = item.indexOf('masterwork');
+          item = extras>-1 ? item.slice(extras+10) : item;
+          item = item[0] === " " ? item.slice(1) : item;
+          item = item.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
 
-	      // just using above obj for response data
-//	let items = [];
-//	for (const response of monsters) {
-// 	  if (response.Treasure.includes("(")) {
-//  	    let equip = response.Treasure.split('(').pop().split(')')[0];
-//    	    items = items.concat(equip.split(','));
-//  	  }
-//  	  if (response.Gear != "") {
-//  	    items = items.concat(response.Gear.split(','));
-//  	  }
-//	}
-//	console.log(items);
+          // Add items to abilities and equipment
+          if (  Object.keys(this.equipment.Shields).includes(item)  ) {
+            creature.abilities[item] = {};
+            creature.abilities[item].type = "Shield";
+            creature.abilities[item].bonus = this.equipment.Shields[item]["AC Bonus"];
+            creature.abilities[item].description = this.equipment.Shields[item]["Description"];
+            creature.abilities[item].stacks = false;
 
-	for (let item of items) {
-	  /*
- 	   Remove "with" items then,
-	   Remove "+#" from magic items then,
-    	   Remove "Masterwrk" then,
-	   Remove leading " " then, Capitalize first letter of words
- 	  */
-	  let extras = item.indexOf('with');
-	  item = extras>-1 ? item.slice(0, extras) : item;
-	  extras = item.indexOf('+');
-  	item = extras>-1 ? item.slice(extras+2) : item;
-  	extras = item.indexOf('masterwork');
-	  item = extras>-1 ? item.slice(extras+10) : item;
-	  item = item[0] === " " ? item.slice(1) : item;
-	  item = item.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
-	  console.log(item);
-
-	  // Begin looping on equipment (shields, armor, weapons)
-	  if (  Object.keys(this.equipement.Shields).includes(item)  ) {
-		  creature.abilities[shield] = {};
-      creature.abilities[shield].type = "shield";
-      creature.abilities[shield].bonus = this.equipment.Shields[shield]["AC Bonus"];
-      creature.abilities[shield].description = this.equipment.Shields[shield]["Description"];
-      creature.abilities[shield].stacks = false;
-				// will be added to encounter.creature
-      creature.equipment[shield] = this.equipment.Shields[shield];
-	  }
-	
-
-}	      
-
-
-        for (const shield of Object.keys(this.equipment.Shields)) {
-          for (const item of items) {
-
-            // if item's name / string contains the name of the shield
-            if (item.includes(shield.toLowerCase())) {
-              creature.abilities[shield] = {};
-              creature.abilities[shield].type = "shield";
-              creature.abilities[shield].bonus = this.equipment.Shields[shield]["AC Bonus"];
-              creature.abilities[shield].description = this.equipment.Shields[shield]["Description"];
-              creature.abilities[shield].stacks = false;
-
-              creature.equipment[shield] = this.equipment.Shields[shield];
-            }
+            creature.equipment[item] = this.equipment.Shields[item];
           }
+          if (  Object.keys(this.equipment.Armor).includes(item)  ) {
+            creature.abilities[item] = {};
+            creature.abilities[item].type = "Armor";
+            creature.abilities[item].bonus = this.equipment.Armor[item]["AC Bonus"];
+            creature.abilities[item].description = this.equipment.Armor[item]["Description"];
+            creature.abilities[item].stacks = false;
+
+            creature.equipment[item] = this.equipment.Armor[item];
+          }
+          if (  Object.keys(this.equipment.Weapons).includes(item)  ) {
+            creature.equipment[item] = this.equipment.Weapons[item];
+          }
+        } // End items loop
+
+        /***************************\
+        *                           *
+        *         ABILITIES         *
+        *                           *
+        \***************************/
+        // FEATS
+        for (let feat of response.Feats.split(',')) {
+          feat = feat[0] === " " ? feat.slice(1) : feat;
+          // TODO: feat table? in rules?
+          // console.log(feat);
+          // add ability ( type: dodge, bonus: # )
+          // dodge: type = dodge, bonus = 1, descrip = ..., stacks = true;
         }
 
-        for (const armor of Object.keys(this.equipment.Armor)) {
-          for (const item of items) {
-            if (item.includes(armor.toLowerCase())) {
-              creature.abilities[armor] = {};
-              creature.abilities[armor].type = "armor";
-              creature.abilities[armor].bonus = this.equipment.Armor[armor]["AC Bonus"];
-              creature.abilities[armor].description = this.equipment.Armor[armor]["Description"];
-              creature.abilities[armor].stacks = false;
+        // NATURAL ARMOR
+        tempNum = response.AC - 10;
+        tempNum -= Math.floor((response.Dex - 10) / 2);
+        tempNum -= this.rules.size[creature.size]["ac / atk"];
 
-              creature.equipment[armor] = this.equipment.Armor[armor];
-            }
+        for (const ability in creature.abilities) {
+          if ( this.rules["ac types"].includes(creature.abilities[ability].type) ) {
+            tempNum -= creature.abilities[ability].bonus;
           }
         }
-        for (const weapon of Object.keys(this.equipment.Weapons)) {
-          for (const item of items) {
-            if (item.includes(weapon.toLowerCase())) {
-              creature.equipment[item] = this.equipment.Weapons[weapon];
-            }
-          }
-        }
-        console.log(creature);
+        creature.abilities["Natural Armor"] = {};
+        creature.abilities["Natural Armor"].type = "Natural";
+        creature.abilities["Natural Armor"].bonus = tempNum;
+        creature.abilities["Natural Armor"].description = "";
+        creature.abilities["Natural Armor"].stacks = false;
+
+        // MELEE
+        // TODO:
+        /*
+        Melee: "mwk longsword +7 (1d8+3/19-20)"
+
+        grab the +2 from above for BAB
+        */
+
+        // RANGED
+
+        // SPECIAL
+
+        // MAGIC
 
 
-        // creture.ac = { "base": 10 };
-        // orig.ac
-        // for (item in abilities) {
-        //   let ac = orig.ac;
-        //   ac = ac - dexMod - 10 - size.AC;
-        //   let acBonuses = [ "armor", "shield", "dodge", "deflection" ];
-        //   if ( acBonuses.inlcudes(item.type)) {
-        //     let curr = creature.ac[item.type].bonus;
-        //     let stack = creature.ac[item.type].stacks;
-        //     if (item.stacks) {
-        //       stack = stack + item.bonus;
-        //     } else {
-        //       curr = Math.max(curr, item.bonus);
-        //           // TODO:  Move to ac computaion section
-        //       // // if the bonus stacks, add it to the current bonus, otherwise use the higher value
-        //       // curr = (item.stacks) ? curr + item.bonus : Math.max(curr, item.bonus);
-        //     }
-        //     // subtract armor, shields, dodge bouses
-        //     ac = ac - curr;
-        //     ac = ac - stacks;
-        //   }
-        // }
-        // let natural = ac;
-        // let AC_TYPES = {
-        //   "Base": 10,
-        //   "Dex": 0,
-        //   "Size": 0,
-        //   "Armor" : 0,
-        //   "Shield": 0,
-        //   "Natural": 0,
-        //   "Dodge": 0,
-        //   "Deflection": 0,
-        //   "Competence": 0,
-        //   "Insight": 0,
-        //   "Sacred/Profane": 0,
-        //   "Luck": 0,
-        //   "Morale": 0,
-        //   "Circumstance": 0
-        // };
 
+
+
+
+        console.log("new", creature);
         // this.creatureSetup(response);
       })
       .catch(err => { console.error(err); });

@@ -193,6 +193,11 @@ export default {
         this.allMonsters = response;
         this.tableData = this.allMonsters;
         this.loading = false;
+
+        for ( const mon of response ) {
+          console.log(mon.Treasure, mon.Gear);
+        }
+
       })
       .catch(err => { console.error(err); });
     },

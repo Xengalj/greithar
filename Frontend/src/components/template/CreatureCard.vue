@@ -274,9 +274,10 @@
 <script>
 import DataService from "@/services/data.service";
 import HexGraph from '@/components/template/HexGraph.vue'
-const miscTables = require('@/components/codex/tables.json');
-const supplementTables = require('@/components/codex/monsters.json');
-const equipmentTables = require('@/components/codex/equipment.json');
+// const miscTables = require('@/components/codex/tables.json');
+const supplementTables = {};
+// const supplementTables = require('@/components/codex/monsters.json');
+// const equipmentTables = require('@/components/codex/equipment.json');
 
 export default {
   name: "CreatureCard",
@@ -286,8 +287,10 @@ export default {
   },
   data() {
     return {
-      tables: miscTables, // size & dmg types
-      equipment: equipmentTables,
+      tables: {}, // size & dmg types
+      rules: {},
+      equipment: {},
+
       supplement: supplementTables,
       openSections: [ "defense", "offense" ],
       sizeSelect: [
@@ -333,7 +336,7 @@ export default {
       // Ability Mods can only be accesed affter initialization
 
       // SET SIZE
-      creature.size = this.tables.size[creature.sizeLabel.toLowerCase()];
+      creature.size = this.rules.size ? this.rules.size[creature.sizeLabel.toLowerCase()] : 0;
 
       // SET DEFENSE
       creature.health.total = Math.floor( (Math.floor(this.original.HDType/2)+0.5) * this.original.HDNum ) + ( creature.abilities.ConMod * this.original.HDNum );
@@ -488,6 +491,10 @@ export default {
       // console.log(creature);
       return creature;
     }
+  },
+  created() {
+    DataService.getRules().then ( (response) => { this.rules = response; });
+    DataService.getEquipment().then ( (response) => { this.equipment = response; });
   },
   mounted() {
     this.getCreature({Name: this.creatureName});

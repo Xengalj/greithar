@@ -246,8 +246,10 @@ export default {
       }
     },
 
-    // Filters the table
-    // Triggered by a change in a filter dropdown
+    /*
+      Called by : filter dropdown updating
+      loops through all rows and hides the row if it doesn't match a filter option selected
+    */
     filterTable() {
       this.displayedRows = 0;
       let rows, i, cell, shouldRemove = true;
@@ -256,7 +258,6 @@ export default {
       // Loop through all table rows
       // (except the first, which contains table headers):
       for (i = 1; i < (rows.length); i++) {
-// console.log(`***** ${rows[i].children[0].innerHTML}`);
 
         // Loop through each filter
         for (const [filter, choices] of Object.entries(this.filterValue)) {
@@ -287,6 +288,7 @@ export default {
     clearFilter() {
       this.filterValue = {};
       let rows = document.getElementById("equipmentTable").rows;
+      this.displayedRows = rows.length;
       for (let i = 1; i < (rows.length); i++) {
         rows[i].hidden = false;
       }

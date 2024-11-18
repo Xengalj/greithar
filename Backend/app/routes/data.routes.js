@@ -9,7 +9,13 @@ const Martial =   require('../data/equipment/martial.json');
 // const Exotic =    require('../data/equipment/exotic.json');
 const Materials = require('../data/equipment/materials.json');
 
-// const Alchemy = require('../data/goods/alchemy.json');
+// const Alchemy =   require('../data/goods/alchemy.json');
+// const Animals =   require('../data/goods/animals.json');
+// const Containers = require('../data/goods/containers.json');
+// const Gear =      require('../data/goods/gear.json');
+// const Services =  require('../data/goods/services.json');
+
+const Rules =   require('../data/rules.json');
 
 module.exports = function(app) {
   app.use(function(req, res, next) {
@@ -70,31 +76,6 @@ module.exports = function(app) {
   );
 
 
-
-
-  // return the classes json in /data
-  app.get(
-    "/api/data/classes",
-    (req, res) => {
-      Papa.parse(fs.createReadStream("app/data/d20pfsrd-beastiary.csv"), {
-        header: true,
-        complete: function(results, file) {
-          res.status(200).send(results["data"]);
-        },
-        errors: function(errors, file) {
-          res.status(200).send(errors);
-        }
-      });
-    }
-  );
-
-  // app.post(
-  //   "/api/character/read",
-  //   [authJwt.verifyToken],
-  //   controller.read
-  // );
-
-
   /***************************\
   *                           *
   *         EQUIPMENT         *
@@ -123,5 +104,36 @@ module.exports = function(app) {
     }
   );
 
+
+  /***************************\
+  *                           *
+  *           RULES           *
+  *                           *
+  \***************************/
+
+  // return the rules json (size, bonus types, damage types)
+  app.get(
+    "/api/data/rules",
+    (req, res) => {
+      res.status(200).send(Rules);
+    }
+  );
+
+
+  // return the classes json in /data
+  app.get(
+    "/api/data/classes",
+    (req, res) => {
+      Papa.parse(fs.createReadStream("app/data/d20pfsrd-beastiary.csv"), {
+        header: true,
+        complete: function(results, file) {
+          res.status(200).send(results["data"]);
+        },
+        errors: function(errors, file) {
+          res.status(200).send(errors);
+        }
+      });
+    }
+  );
 
 };
