@@ -195,14 +195,17 @@ export default {
           item = item[0] === " " ? item.slice(1) : item;
           item = item.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
 
+          let ability = {};
+          ability.name = item;
+          ability.stacks = false;
+
+
           // Add items to abilities and equipment
           if (  Object.keys(this.equipment.Shields).includes(item)  ) {
-            creature.abilities[item] = {};
-            creature.abilities[item].type = "Shield";
-            creature.abilities[item].bonus = this.equipment.Shields[item]["AC Bonus"];
-            creature.abilities[item].description = this.equipment.Shields[item]["Description"];
-            creature.abilities[item].stacks = false;
-
+            ability.type         = "Shield";
+            ability.targets      = [ "AC" ];
+            ability.bonus        = this.equipment.Shields[item]["AC Bonus"];
+            ability.description  = this.equipment.Shields[item]["Description"];
             creature.equipment[item] = this.equipment.Shields[item];
           }
           if (  Object.keys(this.equipment.Armor).includes(item)  ) {
@@ -217,6 +220,8 @@ export default {
           if (  Object.keys(this.equipment.Weapons).includes(item)  ) {
             creature.equipment[item] = this.equipment.Weapons[item];
           }
+
+          creature.abilities[] = ability;
         } // End items loop
 
         /***************************\
