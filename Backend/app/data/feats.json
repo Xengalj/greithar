@@ -1,0 +1,88 @@
+{
+
+
+  "Improved Initiative": {
+    "type": "Combat",
+    "prerequisites": [],
+    "description": "Your quick reflexes allow you to react to react rapidly to danger.",
+    "benefit": "You get a +4 bonus on initiative checks.",
+    "abilities": [
+      {
+        "name": "Improved Initiative",
+        "stacks": true,
+        "type": "Feat",
+        "targets": [ "Initiative" ],
+        "bonus": 4
+      }
+    ]
+  },
+
+
+
+
+    {
+      "name": "Power Attack",
+      "type": "Combat",
+      "prerequisites": [ "Str:13", "BAB:1" ],
+      "description": "You can make exceptionally deadly melee attacks by sacrificing accuracy for strength.",
+      "benefit": "You can choose to take a –1 penalty on all melee attack rolls and combat maneuver checks to gain a +2 bonus on all melee damage rolls.",
+      "abilities": [
+        {
+          "name": "Power Attack Bonus",
+          "stacks": true,
+          "type": "Feat",
+          "targets": [ "Melee Damage" ],
+          "bonus": +2,
+          "description": ""
+        },
+        {
+          "name": "Power Attack Malus",
+          "stacks": true,
+          "type": "Feat",
+          "targets": [ "Melee Attack", "CMB" ],
+          "bonus": -1,
+          "description": ""
+        },
+      ]
+    }
+  ]
+
+  "Dodge": {
+    "type": "Combat",
+    "prerequisites": [ "Dex:13" ],
+    "description": "Your training and reflexes allow you to react swiftly to avoid an opponent's attacks.",
+    "benefit": "You gain a +1 dodge bonus to your AC. A condition that makes you lose your Dex bonus to AC also makes you lose the benefits of this feat.",
+    "abilities": [
+      {
+        "name": "Dodge",
+        "stacks": false,
+        "type": "Dodge",
+        "targets": [ "AC" ],
+        "bonus": 1,
+        "description": ""
+      }
+    ]
+  },
+
+  "Precise Shot": {
+    "type": "Combat",
+    "prerequisites": [ "Point-Blank Shot" ],
+    "description": "You are adept at firing ranged attacks into melee.",
+    "benefit": "You don't take the -4 for firing into melee",
+    "abilities": []
+  }
+  far shot
+
+  death or glory
+  great Cleave
+  cleave
+  bloody assault
+
+  point-blank Shot
+  natural Spell
+  lunge
+  hammer the gap
+  distance thorw
+  combat casting
+
+}
