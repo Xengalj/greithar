@@ -6,29 +6,59 @@
     "benefit": "You can create a scroll of any spell that you know. See magic item creation rules for more information."
     "abilities": []
   },
-  
   "Brew Potion": {
-    Caster level 3rd Create magic potions
-        "type": "General",
-    "prerequisites": [],
-    "description": "You are swift of foot.",
-    "benefit": "When running, you move five times your normal speed (if wearing medium, light, or no armor and carrying no more than a medium load) or four times your speed (if wearing heavy armor or carrying a heavy load). If you make a jump after a running start (see Acrobatics), you gain a +4 bonus on your Acrobatics check. While running, you retain your Dexterity bonus to your Armor Class."
+    "type": "Creation",
+    "prerequisites": [ "Caster Level:3" ],
+    "description": "You can create magic potions.",
+    "benefit": "You can create a potion of any 3rd-level or lower spell that you know. See magic item creation rules for more information."
+    "abilities": []
+  },
+  "Craft Wand": {
+    "type": "Creation",
+    "prerequisites": [ "Caster Level:5" ],
+    "description": "You can create magic wands.",
+    "benefit": "You can create a wand of any 4th-level or lower spell that you know, and a new wand has 50 charges. See magic item creation rules for more information."
+    "abilities": []
+  },
+  "Craft Staff": {
+    "type": "Creation",
+    "prerequisites": [ "Caster Level:11" ],
+    "description": "You can create magic staves.",
+    "benefit": "You can create a staff that stores several spells with 10 charges. See magic item creation rules for more information."
+    "abilities": []
+  },
+  "Craft Wondrous Item": {
+    "type": "Creation",
+    "prerequisites": [ "Caster Level:3" ],
+    "description": "You can create wondrous items, a type of magic item.",
+    "benefit": "You can create a wide variety of magic wondrous items. See magic item creation rules for more information."
+    "abilities": []
+  },
+  "Craft Magic Arms and Armor": {
+    "type": "Creation",
+    "prerequisites": [ "Caster Level:5" ],
+    "description": "You can create magic armor, shields, and weapons.",
+    "benefit": "You can create magic weapons, armor, or shields. See magic item creation rules for more information."
+    "abilities": []
+  },
+  "Forge Ring": {
+    "type": "Creation",
+    "prerequisites": [ "Caster Level:7" ],
+    "description": "You can create magic rings.",
+    "benefit": "You can create magic rings. See magic item creation rules for more information."
+    "abilities": []
+  },
+  "Craft Rod": {
+    "type": "Creation",
+    "prerequisites": [ "Caster Level:9" ],
+    "description": "You can create magic rods.",
+    "benefit": "Rods are scepter-like devices that have unique magical powers. See magic item creation rules for more information."
     "abilities": []
   },
 
-  "Craft Magic Arms and Armor": {
-    Caster level 5th Create magic armors, shields, and weapons
-  },
-  "Create Reliquary Arms and Shields": {
-    Craft Magic Arms and Armor, ability to cast hallow or unhallow Make your shield or weapon a holy symbol
-  },
-  "Craft Rod" Caster level 9th Create magic rods
-  "Craft Staff" Caster level 11th Create magic staves
-  "Craft Wand" Caster level 5th Create magic wands
-  "Craft Wondrous Item" Caster level 3rd Create magic wondrous items
-  "Forge Ring" Caster level 7th Create magic rings
 
-  
+
+
   "Run": {
     "type": "General",
     "prerequisites": [],
@@ -43,7 +73,6 @@
     "benefit": "You gain +3 hit points, and an additional hit point for every Hit Die beyond 3.",
     "abilities": []
   },
-  
   "Improved Initiative": {
     "type": "Combat",
     "prerequisites": [],
@@ -72,22 +101,26 @@
   },
   "Quick Draw": {
     "type": "Combat",
-    "prerequisites": "BAB:1",
+    "prerequisites": [ "BAB:1" ],
     "description": "You can draw weapons faster than most.",
     "benefit": "You can draw a weapon as a free action instead of as a move action. You can draw a hidden weapon as a move action instead of a standard action.",
     "abilities": []
   },
-  Weapon Focus (Combat)
-Choose one type of weapon. You can also choose unarmed strike or grapple (or ray, if you are a spellcaster) as your weapon for the purposes of this feat.
+  "Weapon Focus": {
+    "type": "Combat",
+    "prerequisites": [ "BAB:1", "Proficiency with selected weapon" ],
+    "description": "Choose one type of weapon (or unarmed strike, grapple or ray), you may select this feat multiple times, choosing a new weapon each time.",
+    "benefit": "You gain a +1 bonus on all attack rolls you make using the selected weapon.",
+    "abilities": []
+  },
+  "Mounted Combat": {
+    "type": "Combat",
+    "prerequisite": [ "Ride:1" ],
+    "description": "You are adept at guiding your mount through combat.",
+    "benefit": "Once per round when your mount is hit in combat, you may attempt a Ride check to negate the hit (DC is equal to the attack roll).",
+    "abilities": []
+  },
 
-Prerequisites: Proficiency with selected weapon, base attack bonus +1.
-
-Benefit: You gain a +1 bonus on all attack rolls you make using the selected weapon.
-
-Special: You can gain this feat multiple times. Its effects do not stack. Each time you take the feat, it applies to a new type of weapon.
-
-
-  
   "Power Attack": {
     "type": "Combat",
     "prerequisites": [ "Str:13", "BAB:1" ],
@@ -129,13 +162,12 @@ Special: You can gain this feat multiple times. Its effects do not stack. Each t
     "abilities": []
   },
   "Weapon Finesse": {
-    You are trained in using your agility in melee combat, as opposed to brute strength.
-
-Benefit: With a light weapon, elven curve blade, rapier, whip, or spiked chain made for a creature of your size category, you may use your Dexterity modifier instead of your Strength modifier on attack rolls. If you carry a shield, its armor check penalty applies to your attack rolls.
-
-Special: Natural weapons are considered light weapons.
+    "type": "Combat",
+    "prerequisites": [],
+    "description": "You are trained in using your agility in melee combat, as opposed to brute strength.",
+    "benefit": "With a light weapon, elven curve blade, rapier, whip, or spiked chain made for a creature of your size category, you may use your Dexterity modifier instead of your Strength modifier on attack rolls.",
+    "abilities": []
   },
-
   
   "Point-Blank Shot": {
     "type": "Combat",
@@ -164,59 +196,87 @@ Special: Natural weapons are considered light weapons.
     "benefit": "You only suffer a –1 penalty per full range increment between you and your target when using a ranged weapon.",
     "abilities": []
   },
-Distance Thrower (Combat)
-You are accurate with thrown weapons at longer ranges than normal.
+  "Distance Thrower": {
+    "type": "Combat",
+    "prerequisites": [ "Str:13" ],
+    "description": "You are accurate with thrown weapons at longer ranges than normal.",
+    "benefit": "With a thrown weapon, you reduce your penalty on ranged attack rolls due to range by 2.",
+    "abilities": [
+      {
+        "stacks": true, "type": "Feat",
+        "targets": [ "Toggled", "Ranged Attack" ],
+        "bonus": 2
+      }
+    ]
+  },
 
-Prerequisite: Str 13.
-
-Benefit: With a thrown weapon, you reduce your penalty on ranged attack rolls due to range by 2.
-
-
-
+  "Combat Casting": {
+    "type": "General",
+    "prerequisites": [],
+    "description": "You are adept at spellcasting when threatened or distracted.",
+    "benefit": "You get a +4 bonus on concentration checks made to cast a spell or use a spell-like ability when casting on the defensive or while grappled.",
+    "abilities": [
+      {
+        "stacks": true, "type": "Feat",
+        "targets": [ "Toggled", "Concentration" ],
+        "bonus": 4
+      }
+    ]
+  },
+  "Spell Penetration": {
+    "type": "General",
+    "prerequisites": [],
+    "description": "Your spells break through spell resistance more easily than most.",
+    "benefit": "You get a +2 bonus on caster level checks (1d20 + caster level) made to overcome a creature’s spell resistance.",
+    "abilities": [
+      {
+        "stacks": true, "type": "Feat",
+        "targets": [ "Toggled", "Penetration" ],
+        "bonus": 2
+      }
+    ]
+  },
+  
 
   "BAB: +6": "NEW SECTION",
-  "Vital Strike": { roll weapon damage twice, additional dice are not multiplied on crit and are added before Str and weapon abiliites },
-  "Bloody Assault": { (Combat)
-    Prerequisites: Str 13, Power Attack, base attack bonus +6.
-    Sacrificing accuracy, you can inflict bloody wounds that are slow to heal.
-    Benefit: You can choose to take a –5 penalty on all melee attack rolls and combat maneuver checks to inflict 1d4 points of bleed damage with your weapon melee attacks, in addition to the normal damage dealt by the weapon. A creature continues to take bleed damage every round at the start of its turn. Bleed damage can be stopped by a DC 15 Heal check or through any magical healing. Bleed damage from this feat does not stack with itself. You must choose to use this feat before making the attack roll, and its effects last until your next turn (although the bleeding lasts until healed, as normal).
+  "Vital Strike": {
+    "type": "Combat",
+    "prerequisites": [ "BAB:6" ],
+    "description": "You make a single attack that deals significantly more damage than normal.",
+    "benefit": "When you use the attack action, you can make one attack at your highest base attack bonus that deals additional damage (roll weapon damage an additional time, not affected by crit).",
+    "abilities": []
+  },
+  "Bloody Assault": {
+    "type": "Combat",
+    "prerequisites": [ "BAB:6", "Str:13", "Power Attack" ],
+    "description": "Sacrificing accuracy, you can inflict bloody wounds that are slow to heal.",
+    "benefit": "You can choose to take a –5 penalty on all melee attack rolls and CMB to inflict an additional 1d4 bleed damage.",
+    "abilities": [
+      {
+        "stacks": true, "type": "Feat",
+        "targets": [ "Toggled", "Melee Attack", "CMB" ],
+        "bonus": -5
+      }
+    ]
   },
   "Death or Glory": {
-    Prerequisites: Str 13, Power Attack, base attack bonus +6.
-    Even when facing a larger foe, you aren’t afraid to take great risks in order to finish the fight.
-    Benefit: Against a creature of size Large or larger, you can make a single melee attack as a full-round action, gaining a +4 bonus on the attack roll, damage roll, and critical confirmation roll. You gain an additional +1 on this bonus at base attack bonus +11, +16, and +20 (for a maximum of +7 at base attack +20). After you resolve your attack, the opponent you attack can spend an immediate action to make a single melee attack against you with the same bonuses.
+    "type": "Combat",
+    "prerequisites": [ "BAB:6", "Str:13", "Power Attack" ],
+    "description": "Even when facing a larger foe, you aren’t afraid to take great risks in order to finish the fight.",
+    "benefit": "Against a creature of size Large or larger, you can make a single melee attack as a full-round action, gaining a bonus on the attack roll, damage roll, and critical confirmation roll. After you resolve your attack, the opponent you attack can spend an immediate action to make a single melee attack against you with the same bonuses.",
+    "abilities": []
   },
-Hammer the Gap (Combat)
-You repeatedly strike the same location, causing increasing amounts of damage.
-
-Prerequisite: Base attack bonus +6.
-
-Benefit: When you take a full-attack action, each consecutive hit against the same opponent deals extra damage equal to the number of previous consecutive hits you have made against that opponent this turn. This damage is multiplied on a critical hit.
-
-
-
+  "Hammer the Gap": {
+    "type": "Combat",
+    "prerequisites": [ "BAB:6" ],
+    "description": "You repeatedly strike the same location, causing increasing amounts of damage.",
+    "benefit": "When you take a full-attack action, each consecutive hit against the same opponent deals extra damage equal to the number of previous consecutive hits you have made against that opponent this turn. This damage is multiplied on a critical hit.",
+    "abilities": []
+  },
 
 
-
-Mounted Combat (Combat)
-You are adept at guiding your mount through combat.
-Prerequisite: Ride 1 rank.
-Benefit: Once per round when your mount is hit in combat, you may attempt a Ride check (as an immediate action) to negate the hit. The hit is negated if your Ride check result is greater than the opponent’s attack roll.
-
-
-
-Combat Casting
-You are adept at spellcasting when threatened or distracted.
-
-Benefit: You get a +4 bonus on concentration checks made to cast a spell or use a spell-like ability when casting on the defensive or while grappled.
-
-Spell Penetration
-Your spells break through spell resistance more easily than most.
-
-Benefit: You get a +2 bonus on caster level checks (1d20 + caster level) made to overcome a creature’s spell resistance.
-
-
-class
+  "CLASS": "NEW SECTION",
+  "Natural Spell": "Druid
 
 natural spell - cast spells in wildshape (druid)
 selective channel - choose who is effected (cleric / paladin)
