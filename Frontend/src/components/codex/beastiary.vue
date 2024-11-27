@@ -195,7 +195,10 @@ export default {
         this.loading = false;
 
         for ( const mon of response ) {
-          console.log(mon.Treasure, mon.Gear);
+          if (mon.HD.split(';')[1]) {
+            console.log('true');
+            console.log(mon.HD, mon.Name);
+          }
         }
 
       })

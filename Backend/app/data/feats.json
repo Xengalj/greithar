@@ -3,56 +3,56 @@
     "type": "Creation",
     "prerequisites": [ "Caster Level:1" ],
     "description": "You can create magic scrolls.",
-    "benefit": "You can create a scroll of any spell that you know. See magic item creation rules for more information."
+    "benefit": "You can create a scroll of any spell that you know. See magic item creation rules for more information.",
     "abilities": []
   },
   "Brew Potion": {
     "type": "Creation",
     "prerequisites": [ "Caster Level:3" ],
     "description": "You can create magic potions.",
-    "benefit": "You can create a potion of any 3rd-level or lower spell that you know. See magic item creation rules for more information."
+    "benefit": "You can create a potion of any 3rd-level or lower spell that you know. See magic item creation rules for more information.",
     "abilities": []
   },
   "Craft Wand": {
     "type": "Creation",
     "prerequisites": [ "Caster Level:5" ],
     "description": "You can create magic wands.",
-    "benefit": "You can create a wand of any 4th-level or lower spell that you know, and a new wand has 50 charges. See magic item creation rules for more information."
+    "benefit": "You can create a wand of any 4th-level or lower spell that you know, and a new wand has 50 charges. See magic item creation rules for more information.",
     "abilities": []
   },
   "Craft Staff": {
     "type": "Creation",
     "prerequisites": [ "Caster Level:11" ],
     "description": "You can create magic staves.",
-    "benefit": "You can create a staff that stores several spells with 10 charges. See magic item creation rules for more information."
+    "benefit": "You can create a staff that stores several spells with 10 charges. See magic item creation rules for more information.",
     "abilities": []
   },
   "Craft Wondrous Item": {
     "type": "Creation",
     "prerequisites": [ "Caster Level:3" ],
     "description": "You can create wondrous items, a type of magic item.",
-    "benefit": "You can create a wide variety of magic wondrous items. See magic item creation rules for more information."
+    "benefit": "You can create a wide variety of magic wondrous items. See magic item creation rules for more information.",
     "abilities": []
   },
   "Craft Magic Arms and Armor": {
     "type": "Creation",
     "prerequisites": [ "Caster Level:5" ],
     "description": "You can create magic armor, shields, and weapons.",
-    "benefit": "You can create magic weapons, armor, or shields. See magic item creation rules for more information."
+    "benefit": "You can create magic weapons, armor, or shields. See magic item creation rules for more information.",
     "abilities": []
   },
   "Forge Ring": {
     "type": "Creation",
     "prerequisites": [ "Caster Level:7" ],
     "description": "You can create magic rings.",
-    "benefit": "You can create magic rings. See magic item creation rules for more information."
+    "benefit": "You can create magic rings. See magic item creation rules for more information.",
     "abilities": []
   },
   "Craft Rod": {
     "type": "Creation",
     "prerequisites": [ "Caster Level:9" ],
     "description": "You can create magic rods.",
-    "benefit": "Rods are scepter-like devices that have unique magical powers. See magic item creation rules for more information."
+    "benefit": "Rods are scepter-like devices that have unique magical powers. See magic item creation rules for more information.",
     "abilities": []
   },
 
@@ -63,7 +63,7 @@
     "type": "General",
     "prerequisites": [],
     "description": "You are swift of foot.",
-    "benefit": "When running, you move five times your normal speed (if wearing medium, light, or no armor and carrying no more than a medium load) or four times your speed (if wearing heavy armor or carrying a heavy load). If you make a jump after a running start (see Acrobatics), you gain a +4 bonus on your Acrobatics check. While running, you retain your Dexterity bonus to your Armor Class."
+    "benefit": "When running, you move five times your normal speed (if wearing medium, light, or no armor and carrying no more than a medium load) or four times your speed (if wearing heavy armor or carrying a heavy load). If you make a jump after a running start (see Acrobatics), you gain a +4 bonus on your Acrobatics check. While running, you retain your Dexterity bonus to your Armor Class.",
     "abilities": []
   },
   "Toughness": {
@@ -144,16 +144,16 @@
   "Cleave": {
     "type": "Combat",
     "prerequisites": [ "Str:13", "BAB:1", "Power Attack" ],
-    "description": "You can strike two adjacent foes with a single swing."
+    "description": "You can strike two adjacent foes with a single swing.",
     "benefit": "As a standard action, you can make a single attack at your full base attack bonus against a foe within reach. If you hit, you deal damage normally and can make an additional attack (using your full base attack bonus) against a foe that is adjacent to the first and also within reach. You can only make one additional attack per round with this feat. When you use this feat, you take a –2 penalty to your Armor Class until your next turn.",
     "abilites": [
       {
         "stacks": true, "type": "Feat",
-        "targets": [ "Toggled", "AC" ]
+        "targets": [ "Toggled", "AC" ],
         "bonus": -2
       }
     ]
-  }
+  },
   "Two-Weapon Fighting": {
     "type": "Combat",
     "prerequisites": [ "Dex:15" ],
@@ -168,7 +168,7 @@
     "benefit": "With a light weapon, elven curve blade, rapier, whip, or spiked chain made for a creature of your size category, you may use your Dexterity modifier instead of your Strength modifier on attack rolls.",
     "abilities": []
   },
-  
+
   "Point-Blank Shot": {
     "type": "Combat",
     "prerequisites": [],
@@ -188,7 +188,7 @@
     "description": "You are adept at firing ranged attacks into melee.",
     "benefit": "You don't take the -4 for firing into melee",
     "abilities": []
-  }
+  },
   "Far Shot": {
     "type": "Combat",
     "prerequisites": [ "Point-Blank Shot" ],
@@ -236,7 +236,7 @@
       }
     ]
   },
-  
+
 
   "BAB: +6": "NEW SECTION",
   "Vital Strike": {

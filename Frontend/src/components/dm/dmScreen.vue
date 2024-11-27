@@ -114,22 +114,22 @@ export default {
   mounted() {
 
     DataService.getRules().then( (response) => { this.rules = response;
-      console.log(this.rules);
-
+      // console.log(this.rules);
      } );
     DataService.getEquipment().then( (response) => { this.equipment = response; } );
 
 
     UserService.getAdminBoard().then(
-      (response) => {
-        this.content = response.data;
-      },
+      (response) => { this.content = response.data; },
       (error) => {
         this.content =
           (error.response && error.response.data && error.response.data.message)
           || error.message || error.toString();
       }
     );
+
+
+    this.monsterOpen("Skeletal Champion");
   },
   methods: {
     monsterOpen(name) {
@@ -140,32 +140,170 @@ export default {
         let tempNum = 0;
         let creature = {
           "name": response.Name,
-          "cr": response.CR,
-          "type": response.type,
-          "size": response.Size.toLowerCase(),
-          "alignment": response.Alignment,
-          "environment": response.environment,
-          "treasure": response.Treasure,
+          "attributes": { "Str": response.Str, "Dex": response.Dex, "Con": response.Con, "Int": response.Int, "Wis": response.Wis, "Cha": response.Cha },
+          "characteristics": {
+            "cr": response.CR,
+            "size": response.Size.toLowerCase(),
+            "alignment": response.Alignment,
+            "environment": response.environment,
+            "treasure": response.Treasure,
+          },
+          "health": { total: 0, bonus: 0 },
 
-          "health": { bonus: 0, HDString: "d".concat(response.HDType, "+") },
-          "senses": [],
-          "speed": response.Speed,
 
-          "bab": 0,
+
+          "bab": 0,   // TODO: Remove
           "melee": [],
           "ranged": [],
           "special": [],
           "magic": [],
 
-          "attributes": { "Str": response.Str, "Dex": response.Dex, "Con": response.Con, "Int": response.Int, "Wis": response.Wis, "Cha": response.Cha },
-          "abilities": {
-            "fort": {  "type": "save",  "bonus": response.Fort,  "description": "",  "stacks": false  },
-            "ref": {  "type": "save",  "bonus": response.Ref,  "description": "",  "stacks": false  },
-            "will": {  "type": "save",  "bonus": response.Will,  "description": "",  "stacks": false  }
-          },
+          "abilities": {},
           "equipment": {}
           // "temp": {}
         };
+
+        let classes = {
+          "warrior": {
+            "hd": 10,
+            "ranks": 2,
+            "skills": [ "Climb (Str)", "Craft (Int)", "Handle Animal (Cha)", "Intimidate (Cha)", "Profession (Wis)", "Ride (Dex)", "Swim (Str)" ],
+            "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "heavy armor", "shields" ],
+            "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
+            "bab": 1, // Fast BAB: HD*1
+            "fort": { "mult": 0.5, "bonus": 2 }, // Good Save: HD/2 +2
+            "ref": { "mult": 0.33, "bonus": 0 }, // Poor Save: HD/3
+            "will": { "mult": 0.33, "bonus": 0 }
+          }
+        };
+
+        let types = {
+          "undead": {
+            "hd": 8,
+            "ranks": 2,
+            "bab": 0.75, // Med BAB: HD*0.75
+            "fort": { "mult": 0.33, "bonus": 0 }, // Poor Save: HD/3
+            "ref": { "mult": 0.33, "bonus": 0 },
+            "will": { "mult": 0.5, "bonus": 2 } // Good Save: HD/2 +2
+          }
+        };
+
+
+        /***************************\
+        *                           *
+        *          BASICS           *
+        *                           *
+        \***************************/
+
+        // creature.subtype = [];  // TODO: loop check
+        let racialHD = 0;
+        creature.attributes.StrMod = Math.floor((creature.attributes.Str - 10) / 2);
+        creature.attributes.DexMod = Math.floor((creature.attributes.Dex - 10) / 2);
+        creature.attributes.ConMod = Math.floor(( (isNaN(creature.attributes.Con) ? creature.attributes.Cha : creature.attributes.Con) - 10) / 2);
+        creature.attributes.IntMod = Math.floor((creature.attributes.Int - 10) / 2);
+        creature.attributes.WisMod = Math.floor((creature.attributes.Wis - 10) / 2);
+        creature.attributes.ChaMod = Math.floor((creature.attributes.Cha - 10) / 2);
+
+
+        // "17d12+102"
+        // Get total HD
+        let strings = response.HD.split(";");
+        strings = strings[1] ? strings[1] : strings[0];
+        strings = strings.split("+");
+        for (var str of strings) {
+          str = str.trimStart();
+          if (str.includes('d')) {
+            str = str.split("d");
+            racialHD += parseInt(str[0]);
+          }
+        }
+
+        // Class 1
+        racialHD -= response.Class1_Lvl;
+        let Class = classes[response.Class1];
+        creature.class1 = {
+          name: response.Class1,
+          levels: response.Class1_Lvl,
+          hd: Class.hd
+        }
+
+        let bab   = response.Class1_Lvl * Class.bab;
+        let fort  = (response.Class1_Lvl * Class.fort.mult) + Class.fort.bonus;
+        let ref   = (response.Class1_Lvl * Class.ref.mult) + Class.ref.bonus;
+        let will  = (response.Class1_Lvl * Class.will.mult) + Class.will.bonus;
+
+        let hp    = response.Class1_Lvl * (Class.hd/2 + 0.5 + creature.attributes.ConMod);
+        let hpBonus = response.Class1_Lvl * creature.attributes.ConMod;
+
+        // Class 2
+        if (response.Class2_Lvl) {
+          console.log("MULTICLASS!!");
+          racialHD -= response.Class2_Lvl;
+          Class   = classes[response.Class2];
+          creature.class2 = {
+            name: response.Class2,
+            levels: response.Class2_Lvl,
+            hd: Class.hd
+          }
+
+          bab     += response.Class2_Lvl * Class.bab;
+          fort    += (response.Class2_Lvl * Class.fort.mult) + Class.fort.bonus;
+          ref     += (response.Class2_Lvl * Class.ref.mult) + Class.ref.bonus;
+          will    += (response.Class2_Lvl * Class.will.mult) + Class.will.bonus;
+
+          hp      += response.Class2_Lvl * (Class.hd/2 + 0.5 + creature.attributes.ConMod);
+          hpBonus += response.Class2_Lvl * creature.attributes.ConMod;
+        }
+
+        // Racial
+        let type  = types[response.Type];
+        creature.type = {
+          name: response.Type,
+          levels: racialHD,
+          hd: type.hd
+        }
+
+        bab       += racialHD * type.bab;
+        fort      += (racialHD * type.fort.mult) + type.fort.bonus;
+        ref       += (racialHD * type.ref.mult) + type.ref.bonus;
+        will      += (racialHD * type.will.mult) + type.will.bonus;
+
+        hp        += racialHD * (type.hd/2 + 0.5 + creature.attributes.ConMod);
+        hpBonus   += racialHD * creature.attributes.ConMod;
+
+
+
+        creature.bab = Math.floor(bab);
+        creature.defense = {
+          "fort": Math.floor(fort + creature.attributes.ConMod),
+          "ref": Math.floor(ref + creature.attributes.DexMod),
+          "will": Math.floor(will + creature.attributes.WisMod),
+
+          "senses": [],
+          "speed": response.Speed,
+
+        }
+        creature.health.max = Math.floor(hp);
+        creature.health.bonus = Math.floor(hpBonus);
+
+
+        // total HD
+        //   hd types <- class & type
+        //   hd num <- lvls & creature
+        //
+
+
+
+
+
+
+
+        // hd.undead.num = 2
+        // hd.undead.type = d8
+
+
+
+        // creature.health = health;
 
         /***************************\
         *                           *
@@ -221,7 +359,7 @@ export default {
             creature.equipment[item] = this.equipment.Weapons[item];
           }
 
-          creature.abilities[] = ability;
+          // creature.abilities.push(ability);
         } // End items loop
 
         /***************************\
@@ -241,7 +379,7 @@ export default {
         // NATURAL ARMOR
         tempNum = response.AC - 10;
         tempNum -= Math.floor((response.Dex - 10) / 2);
-        tempNum -= this.rules.size[creature.size]["ac / atk"];
+        tempNum -= this.rules.size[creature.characteristics.size]["ac / atk"];
 
         for (const ability in creature.abilities) {
           if ( this.rules["ac types"].includes(creature.abilities[ability].type) ) {
@@ -253,6 +391,8 @@ export default {
         creature.abilities["Natural Armor"].bonus = tempNum;
         creature.abilities["Natural Armor"].description = "";
         creature.abilities["Natural Armor"].stacks = false;
+
+
 
         // MELEE
         // TODO:
