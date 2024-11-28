@@ -1,9 +1,29 @@
 {
+  "Harvest Parts": {
+    "type": "Creation",
+    "prerequisites": [ "Craft (any):1 OR Heal:1" ],
+    "description": "You can extract the choicest parts from a monster’s carcass to use as resources when crafting items.",
+    "benefit": "You may harvest parts (Craft or Heal check, DC 15+CR) for use as raw materials for crafting items, and provide a value equal to the creature’s CR squared × 10 gp."
+  },
+  "Grisly Ornament": {
+    "type": "Creation",
+    "prerequisites": [ "Harvest Parts" ],
+    "description": "You adorn your gear with mementos from your foes.",
+    "benefit": "You may use harvested parts of recently felled foes to grant a bonus of your choice to AC, Attack Rolls, CMB, CMD, Saves, or Skills. This bonus only works on the type of enemy the momento came from and lasts until it is no longer fresh",
+    "abilities": []
+  },
   "Scribe Scroll": {
     "type": "Creation",
     "prerequisites": [ "Caster Level:1" ],
     "description": "You can create magic scrolls.",
     "benefit": "You can create a scroll of any spell that you know. See magic item creation rules for more information.",
+    "abilities": []
+  },
+  "Craft Poppet" {
+    "type": "Creation",
+    "prerequisites": [ "Caster Level:1" ],
+    "description": "Some construct builders learn their art by creating poppets.",
+    "benefit": "You can craft poppets and add augmentations to existing poppets that you control. You are also treated as having both Craft Magic Arms and Armor and Craft Wondrous Item for the purpose of fulfilling the prerequisites for Craft Construct.",
     "abilities": []
   },
   "Brew Potion": {
@@ -13,20 +33,6 @@
     "benefit": "You can create a potion of any 3rd-level or lower spell that you know. See magic item creation rules for more information.",
     "abilities": []
   },
-  "Craft Wand": {
-    "type": "Creation",
-    "prerequisites": [ "Caster Level:5" ],
-    "description": "You can create magic wands.",
-    "benefit": "You can create a wand of any 4th-level or lower spell that you know, and a new wand has 50 charges. See magic item creation rules for more information.",
-    "abilities": []
-  },
-  "Craft Staff": {
-    "type": "Creation",
-    "prerequisites": [ "Caster Level:11" ],
-    "description": "You can create magic staves.",
-    "benefit": "You can create a staff that stores several spells with 10 charges. See magic item creation rules for more information.",
-    "abilities": []
-  },
   "Craft Wondrous Item": {
     "type": "Creation",
     "prerequisites": [ "Caster Level:3" ],
@@ -34,11 +40,25 @@
     "benefit": "You can create a wide variety of magic wondrous items. See magic item creation rules for more information.",
     "abilities": []
   },
+  "Craft Wand": {
+    "type": "Creation",
+    "prerequisites": [ "Caster Level:5" ],
+    "description": "You can create magic wands.",
+    "benefit": "You can create a wand of any 4th-level or lower spell that you know, and a new wand has 50 charges. See magic item creation rules for more information.",
+    "abilities": []
+  },
   "Craft Magic Arms and Armor": {
     "type": "Creation",
     "prerequisites": [ "Caster Level:5" ],
     "description": "You can create magic armor, shields, and weapons.",
     "benefit": "You can create magic weapons, armor, or shields. See magic item creation rules for more information.",
+    "abilities": []
+  },
+  "Craft Construct": {
+    "type": "Creation",
+    "prerequisites": [ "Caster Level:5", "Craft Magic Arms and Armor", "Craft Wondrous Item" ],
+    "description": "You can create construct creatures like golems.",
+    "benefit": "You can create any construct whose prerequisites you meet. See construct creation rules for more information.",
     "abilities": []
   },
   "Forge Ring": {
@@ -55,6 +75,19 @@
     "benefit": "Rods are scepter-like devices that have unique magical powers. See magic item creation rules for more information.",
     "abilities": []
   },
+  "Craft Staff": {
+    "type": "Creation",
+    "prerequisites": [ "Caster Level:11" ],
+    "description": "You can create magic staves.",
+    "benefit": "You can create a staff that stores several spells with 10 charges. See magic item creation rules for more information.",
+    "abilities": []
+  },
+
+  
+
+
+  
+  
 
 
 
