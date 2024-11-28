@@ -128,29 +128,133 @@
     }
   },
 
-  "ac types": [
-    "Base",
-    "Dex",
-    "Size",
-    "Armor" ,
-    "Shield",
-    "Natural",
-    "Dodge",
-    "Deflection",
-    "Competence",
-    "Insight",
-    "Sacred/Profane",
-    "Luck",
-    "Morale",
-    "Circumstance"
-  ],
-
   "damage types": {
     "weapon":     [ "budgeoning", "piercing", "slashing" ],
     "energy":     [ "acid", "cold", "electricity", "fire", "force", "negative", "positive", "sonic" ],
     "aligned":    [ "chaoic", "evil", "good", "lawful" ],
     "substance":  [ "adamantine", "cold Iron", "epic", "magic", "silver" ],
     "misc":       [ "bleed", "nonlethal", "precision", "spell", "untyped" ]
+  },
+
+  "creature_types": {
+    "aberration": {
+      "hd": 8,
+      "ranks": 4,
+      "bab": 0.75,
+      "fort": { "mult": 0.33, "bonus": 0 },
+      "ref": { "mult": 0.33, "bonus": 0 },
+      "will": { "mult": 0.5, "bonus": 2 },
+      "skills": [ "Acrobatics", "Climb", "Escape Artist", "Fly", "Intimidate", "Perception", "Spellcraft", "Stealth", "Survival", "Swim" ]
+    },
+    "animal": {
+      "hd": 8,
+      "ranks": 2,
+      "bab": 0.75,
+      "fort": { "mult": 0.5, "bonus": 2 },
+      "ref": { "mult": 0.5, "bonus": 2 },
+      "will": { "mult": 0.33, "bonus": 0 },
+      "skills": [ "Acrobatics", "Climb", "Fly", "Perception", "Stealth", "Swim" ]
+    },
+    "construct": {
+      "hd": 10,
+      "ranks": 2,
+      "bab": 1,
+      "fort": { "mult": 0.33, "bonus": 0 },
+      "ref": { "mult": 0.33, "bonus": 0 },
+      "will": { "mult": 0.33, "bonus": 0 },
+      "skills": []
+    },
+    "dragon": {
+      "hd": 12,
+      "ranks": 6
+      "bab": 1
+      "fort": { "mult": 0.5, "bonus": 2 },
+      "ref": { "mult": 0.5, "bonus": 2 },
+      "will": { "mult": 0.5, "bonus": 2 },
+      "skills": [ "Appraise", "Bluff", "Climb", "Craft", "Diplomacy", "Fly", "Heal", "Intimidate", "Knowledge (all)", "Linguistics", "Perception", "Sense Motive", "Spellcraft", "Stealth", "Survival", "Swim", "Use Magic Device" ]
+    },
+    "fey": {
+      "hd": 6,
+      "ranks": 6,
+      "bab": 0.5,
+      "fort": { "mult": 0.33, "bonus": 2 },
+      "ref": { "mult": 0.5, "bonus": 2 },
+      "will": { "mult": 0.5, "bonus": 2 },
+      "skills": [ "Acrobatics", "Bluff", "Climb", "Craft", "Diplomacy", "Disguise", "Escape Artist", "Fly", "Knowledge (geography)", "Knowledge (local)", "Knowledge (nature)", "Perception", "Perform", "Sense Motive", "Sleight of Hand", "Stealth", "Swim", "Use Magic Device" ]
+    },
+    "humanoid": {
+      "hd": 8,
+      "ranks": 2,
+      "bab": 0.75,
+      "fort": { "mult": 0.33, "bonus": 0 },
+      "ref": { "mult": 0.33, "bonus": 0 },
+      "will": { "mult": 0.33, "bonus": 0 },
+      "skills": [ "Climb", "Craft", "Handle Animal", "Heal", "Profession", "Ride", "Survival" ]
+    },
+    "magical beast": {
+      "hd": 10,
+      "ranks": 2,
+      "bab": 1,
+      "fort": { "mult": 0.5, "bonus": 2 },
+      "ref": { "mult": 0.5, "bonus": 2 },
+      "will": { "mult": 0.33, "bonus": 0 },
+      "skills": [ "Acrobatics", "Climb", "Fly", "Perception", "Stealth", "Swim" ]
+    },
+    "monstrous humanoid": {
+      "hd": 10,
+      "ranks": 4,
+      "bab": 1,
+      "fort": { "mult": 0.33, "bonus": 0 },
+      "ref": { "mult": 0.5, "bonus": 2 },
+      "will": { "mult": 0.5, "bonus": 2 },
+      "skills": [ "Climb", "Craft", "Fly", "Intimidate", "Perception", "Ride", "Stealth", "Survival", "Swim" ]
+    },
+    "ooze": {
+      "hd": 8,
+      "ranks": 2,
+      "bab": 0.75,
+      "fort": { "mult": 0.33, "bonus": 0 },
+      "ref": { "mult": 0.33, "bonus": 0 },
+      "will": { "mult": 0.33, "bonus": 0 },
+      "skills": []
+    },
+    "outsider": {
+      "hd": 10,
+      "ranks": 6,
+      "bab": 1,
+      "fort": { "mult": 0.33, "bonus": 0 },
+      "ref": { "mult": 0.33, "bonus": 0 },
+      "will": { "mult": 0.33, "bonus": 0 },
+      "skills": [ "Bluff", "Craft", "Knowledge (planes)", "Perception", "Sense Motive", "Stealth" ]
+    },
+    "plant": {
+      "hd": 8,
+      "ranks": 2,
+      "bab": 0.75,
+      "fort": { "mult": 0.5, "bonus": 2 },
+      "ref": { "mult": 0.33, "bonus": 0 },
+      "will": { "mult": 0.33, "bonus": 0 },
+      "skills": [ "Perception", "Stealth" ]
+    },
+    "undead": {
+      "hd": 8,
+      "ranks": 4,
+      "bab": 0.75,
+      "fort": { "mult": 0.33, "bonus": 0 },
+      "ref": { "mult": 0.33, "bonus": 0 },
+      "will": { "mult": 0.5, "bonus": 2 },
+      "skills": [ "Climb", "Disguise", "Fly", "Intimidate", "Knowledge (arcana)", "Knowledge (religion)", "Perception", "Sense Motive", "Spellcraft", "Stealth" ]
+    },
+    "vermin": {
+      "hd": 8,
+      "ranks": 2,
+      "bab": 0.75,
+      "fort": { "mult": 0.5, "bonus": 2 },
+      "ref": { "mult": 0.33, "bonus": 0 },
+      "will": { "mult": 0.33, "bonus": 0 },
+      "skills": []
+    }
   }
 
+  
 }
