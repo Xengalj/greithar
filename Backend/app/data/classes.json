@@ -3,12 +3,12 @@
     "Restrictions": [ "Cleric", "Druid", "Shifter" ],
     "galdur Spontaneous Cast": ["Cleric", "Druid" ],
     "starting spells": ["Alchemist", "Wizard" ],
-    "calc galdur": [ "Bloodrager", ],
-    "add / finish": [ "Brawler", "cavalier", "hunter", "inquisitor", "investigator" ]
+    "calc galdur": [ "Bloodrager" ],
+    "add / finish": [ "Brawler", "cavalier", "hunter", "inquisitor", "investigator", "Shaman", "skald", "slayer", "warpriest", "witch" ]
   },
 
 
-  "Alchemist": {
+  "alchemist": {
     "hd": 8,
     "ranks": 4,
     "skills": [ "Appraise (Int)", "Craft (any) (Int)", "Disable Device (Dex)", "Fly (Dex)", "Heal (Wis)", "Knowledge (arcana) (Int)", "Knowledge (nature) (Int)", "Perception (Wis)", "Profession (Wis)", "Sleight of Hand (Dex)", "Spellcraft (Int)", "Survival (Wis)", "Use Magic Device (Cha)" ],
@@ -42,7 +42,7 @@
   },
 
 
-  "Arcanist": {
+  "arcanist": {
     "Parent Classes": [ "Sorcerer", "Wizard" ],
     "hd": 6,
     "ranks": 2,
@@ -84,7 +84,7 @@
   },
 
 
-  "Barbarian": {
+  "barbarian": {
     "hd": 12,
     "ranks": 4,
     "skills": [ "Acrobatics (Dex)", "Climb (Str)", "Craft (Int)", "Handle Animal (Cha)", "Intimidate (Cha)", "Knowledge (nature) (Int)", "Perception (Wis)", "Ride (Dex)", "Survival (Wis)", "Swim (Str)" ],
@@ -104,7 +104,7 @@
   },
 
 
-  "Bard": {
+  "bard": {
     "hd": 8,
     "ranks": 6,
     "skills": [ "Acrobatics (Dex)", "Appraise (Int)", "Bluff (Cha)", "Climb (Str)", "Craft (Int)", "Diplomacy (Cha)", "Disguise (Cha)", "Escape Artist (Dex)", "Intimidate (Cha)", "Knowledge (all) (Int)", "Linguistics (Int)", "Perception (Wis)", "Perform (Cha)", "Profession (Wis)", "Sense Motive (Wis)", "Sleight of Hand (Dex)", "Spellcraft (Int)", "Stealth (Dex)", "Use Magic Device (Cha)" ],
@@ -143,7 +143,7 @@
   },
 
 
-  "Bloodrager": {
+  "bloodrager": {
     "Parent Classes": [ "Barbarian", "Sorcerer" ],
     "hd": 10,
     "ranks": 4,
@@ -184,12 +184,12 @@
   },
 
 
-  "Brawler": {
+  "brawler": {
     "Parent Classes": [ "Fighter", "Monk" ]
   },
 
 
-  "Cavalier": {
+  "cavalier": {
     "hd": 10,
     "ranks": 4,
     "skills": [ "Appraise (Int)", "Craft (Int)", "Diplomacy (Cha)", "Heal (Wis)", "Knowledge (arcana) (Int)", "Knowledge (history) (Int)", "Knowledge (nobility) (Int)", "Knowledge (planes) (Int)", "Knowledge (religion) (Int)", "Linguistics (Int)", "Profession (Wis)", "Sense Motive (Wis)", "Spellcraft (Int)" ],
@@ -211,7 +211,7 @@
   },
 
 
-  "Cleric": {
+  "cleric": {
     "hd": 8,
     "ranks": 2,
     "skills": [ "Appraise (Int)", "Craft (Int)", "Diplomacy (Cha)", "Heal (Wis)", "Knowledge (arcana) (Int)", "Knowledge (history) (Int)", "Knowledge (nobility) (Int)", "Knowledge (planes) (Int)", "Knowledge (religion) (Int)", "Linguistics (Int)", "Profession (Wis)", "Sense Motive (Wis)", "Spellcraft (Int)" ],
@@ -248,7 +248,7 @@
   },
 
 
-  "Druid": {
+  "druid": {
     "hd": 8,
     "ranks": 4,
     "skills": [ "Climb (Str)", "Craft (Int)", "Fly (Dex)", "Handle Animal (Cha)", "Heal (Wis)", "Knowledge (geography) (Int)", "Knowledge (nature) (Int)", "Perception (Wis)", "Profession (Wis)", "Ride (Dex)", "Spellcraft (Int)", "Survival (Wis)", "Swim (Str)" ],
@@ -281,7 +281,7 @@
   },
 
 
-  "Fighter": {
+  "fighter": {
     "hd": 10,
     "ranks": 2,
     "skills": [ "Climb (Str)", "Craft (Int)", "Handle Animal (Cha)", "Intimidate (Cha)", "Knowledge (dungeoneering) (Int)", "Knowledge (engineering) (Int)", "Profession (Wis)", "Ride (Dex)", "Survival (Wis)", "Swim (Str)" ],
@@ -301,20 +301,20 @@
   },
 
 
-  "Hunter": {
+  "hunter": {
     "Parent Classes": [ "Druid", "Ranger" ]
   },
 
 
-  "Inquisitor": {},
+  "inquisitor": {},
 
 
-  "Investigator": {
+  "investigator": {
     "Parent Classes": [ "Alchemist", "Rogue" ]
   },
 
 
-  "Magus": {
+  "magus": {
     "hd": 8,
     "ranks": 2,
     "skills": [ "Climb (Str)", "Craft (Int)", "Fly (Dex)", "Intimidate (Cha)", "Knowledge (arcana) (Int)", "Knowledge (dungeoneering) (Int)", "Knowledge (planes) (Int)", "Profession (Wis)", "Ride (Dex)", "Spellcraft (Int)", "Swim (Str)", "Use Magic Device (Cha)" ],
@@ -326,23 +326,18 @@
     "will": { "mult": 0.5, "bonus": 2 },
 
     "special": [ [],
-      [ "Cantrips", "Arcane Pool (Su)", "Spell Combat (Ex)" ],
-      [ "Spellstrike (Su)" ],
-      [ "Magus Arcana (REPLACE)" ],
-      [ "Spell Recall (Su)" ],
-      [ "Bonus Feat (REPLACE)" ],
-      
-      [ "Magus Arcana (REPLACE)" ], [	"Knowledge Pool (Su)", "Medium Armor" ], [], [ "Magus Arcana (REPLACE)" ], [ "Fighter Training" ],
-      [ "Bonus Feat (REPALCE)" ], [ "Magus Arcana (REPLACE)" ], [ "Heavy Armor" ], [], [ "Magus Arcana (REPLACE)" ],
-      [ "Counterstrike" ],  [ "Bonus Feat (REPLACE)" ], [ "Magus Arcana (REPLACE)" ], [ "Greater Spell Access" ], [ "True Magus" ]
+      [ "Cantrips", "Arcane Pool (Su)", "Spell Combat (Ex)" ], [ "Spellstrike (Su)" ], [ "Magus Arcana (REPLACE)" ], [ "Spell Recall (Su)" ], [ "Bonus Feat (REPLACE)" ],
+      [ "Magus Arcana (REPLACE)" ], [	"Knowledge Pool (Su)", "Medium Armor (Ex)" ], [ "Improved Spell Combat (Ex)" ], [ "Magus Arcana (REPLACE)" ], [ "Fighter Training (Ex)" ],
+      [ "Improved Spell Recall (Su)", "Bonus Feat (REPALCE)" ], [ "Magus Arcana (REPLACE)" ], [ "Heavy Armor (Ex)" ], [ "Greater Spell Combat (Ex)" ], [ "Magus Arcana (REPLACE)" ],
+      [ "Counterstrike (Ex)" ],  [ "Bonus Feat (REPLACE)" ], [ "Magus Arcana (REPLACE)" ], [ "Greater Spell Access (Su)" ], [ "True Magus (Su)" ]
     ],
 
     "magic": {
       "style": "Prepared Arcane",
       "castingAtr": "Charisma",
       "spellsPerLevel": 2,
-      "galdur":              [ 0, 6, 9, 12, 15, 18,     22, 26, 30, 35, 40,     47, 55, 64, 74, 85,         97, 110, 124, 139, 155 ],
-      "galdurPerLevel":      [ 0, 6, 3,  3,  3,  3,      4,  4,  4,  5,  5,      7,  8,  9, 10, 11,         12,  13,  14,  15,  16 ],
+      "galdur":       [ 0, 6, 3,  3,  3,  3,      4,  4,  4,  5,  5,      7,  8,  9, 10, 11,         12,  13,  14,  15,  16 ],
+      "galdurTotal":  [ 0, 6, 9, 12, 15, 18,     22, 26, 30, 35, 40,     47, 55, 64, 74, 85,         97, 110, 124, 139, 155 ],
       "spellsPerDay": [ [],
         [3, 1], [4, 2], [4, 3], [4, 3, 1], [4, 4, 2],
         [5, 4, 3], [5, 4, 3, 1], [5, 4, 4, 2], [5, 5, 4, 3], [5, 5, 4, 3, 1],
@@ -353,24 +348,19 @@
   },
 
 
-  "Monk": {
-    "hd": "d8",
+  "monk": {
+    "hd": 8,
     "ranks": 4,
     "skills": [ "Acrobatics (Dex)", "Climb (Str)", "Craft (Int)", "Escape Artist (Dex)", "Intimidate (Cha)", "Knowledge (history) (Int)", "Knowledge (religion) (Int)", "Perception (Wis)", "Perform (Cha)", "Profession (Wis)", "Ride (Dex)", "Sense Motive (Wis)", "Stealth (Dex)", "Swim (Str)" ],
     "proficiency": [ "brass knuckles, cestus, club, crossbow (light or heavy), dagger, handaxe, javelin, kama, nunchaku, quarterstaff, sai, shortspear, short sword, shuriken, siangham, sling, spear and temple sword" ],
     "alignment": [ "LG", "LN", "LE" ],
-
     "bab":  0.75,
     "fort": { "mult": 0.5, "bonus": 2 },
     "ref":  { "mult": 0.5, "bonus": 2 },
     "will": { "mult": 0.5, "bonus": 2 },
 
     "special": [ [],
-      [ "AC Bonus (Ex)", "Flurry of Blows (Ex)", "Unarmed Strike", "Stunning Fist (Ex)", "Bonus Feat (REPLACE)" ],
-      [ "Evasion (Ex)", "Bonus Feat (REPLACE)" ],
-      [ "Fast Movement (Ex)", "Maneuver Training (Ex)", "Still Mind (Ex)" ],
-      [ "Ki Pool (Su)", "Slow Fall (Ex)" ],
-      [ "High Jump (Ex)", "Purity of Body (Ex)" ],
+      [ "AC Bonus (Ex)", "Flurry of Blows (Ex)", "Unarmed Strike", "Stunning Fist (Ex)", "Bonus Feat (REPLACE)" ], [ "Evasion (Ex)", "Bonus Feat (REPLACE)" ], [ "Fast Movement (Ex)", "Maneuver Training (Ex)", "Still Mind (Ex)" ], [ "Ki Pool (Su)", "Slow Fall (Ex)" ], [ "High Jump (Ex)", "Purity of Body (Ex)" ],
       [ "Bonus Feat (REPLACE)" ], [ "Wholeness of Body (Su)" ], [], [ "Improved Evasion (Ex)" ], [ "Bonus Feat (REPLACE)" ],
       [ "Diamond Body (Su)" ], [ "Abundant Step (Su)" ], [ "Diamond Soul (Ex)" ], [ "Bonus Feat (REPLACE)" ], [ "Quivering Palm (Su)" ],
       [], [ "Timeless Body (Ex)", "Tongue of the Sun and Moon (Ex)" ], [ "Bonus Feat (REPLACE)" ], [ "Empty Body (Su)" ], [ "Perfect Self" ]
@@ -378,24 +368,19 @@
   },
 
 
-  "Oracle": {
-    "hd": "d8",
+  "oracle": {
+    "hd": 8,
     "ranks": 4,
     "skills": [ "Craft (Int)", "Diplomacy (Cha)", "Heal (Wis)", "Knowledge (history) (Int)", "Knowledge (planes) (Int)", "Knowledge (religion) (Int)", "Profession (Wis)", "Sense Motive (Wis)", "Spellcraft (Int)" ],
     "proficiency": [ "simple weapons", "light armor", "medium armor", "shields" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
-
     "bab":  0.75
     "fort": { "mult": 0.33, "bonus": 0 },
     "ref":  { "mult": 0.33, "bonus": 0 },
     "will": { "mult": 0.5, "bonus": 2 },
 
     "special": [ [],
-      [ "Mystery", "Oracle's Curse (Ex)",  "Revelation" ],
-      [ "Mystery Spell (REPLACE)" ],
-      [ "Revelation (REPLACE)" ],
-      [ "Mystery Spell (REPLACE)" ],
-      [],
+      [ "Mystery", "Oracle's Curse (Ex)",  "Revelation" ], [ "Mystery Spell (REPLACE)" ], [ "Revelation (REPLACE)" ], [ "Mystery Spell (REPLACE)" ], [],
       [ "Mystery Spell (REPLACE)" ], [ "Revelation (REPLACE)" ], [ "Mystery Spell (REPLACE)" ], [], [ "Mystery Spell (REPLACE)" ],
       [ "Revelation (REPLACE)" ], [ "Mystery Spell (REPLACE)" ], [], [ "Mystery Spell (REPLACE)" ], [ "Revelation (REPLACE)" ],
       [ "Mystery Spell (REPLACE)" ], [], [ "Mystery Spell (REPLACE)" ], [ "Revelation (REPLACE)" ], [ "Final Revelation" ]
@@ -410,8 +395,8 @@
         [9, 5, 5, 4, 3, 2], [9, 5, 5, 4, 3, 2, 1], [9, 5, 5, 4, 4, 3, 2], [9, 5, 5, 4, 4, 3, 2, 1], [9, 5, 5, 4, 4, 4, 3, 2],
         [9, 5, 5, 4, 4, 4, 3, 2, 1], [9, 5, 5, 4, 4, 4, 3, 3, 2], [9, 5, 5, 4, 4, 4, 3, 3, 2, 1], [9, 5, 5, 4, 4, 4, 3, 3, 3, 2], [9, 5, 5, 4, 4, 4, 3, 3, 3, 3]
       ],
-      "galdur":              [ 0, 6, 9, 12, 17, 20,     30, 40, 50, 62, 75,     90, 110, 125, 145, 160,     170, 195, 225, 240, 260 ],
-      "galdurPerLevel":      [ 0, 6, 3,  3,  5,  3,     10, 10, 10, 12, 13,     15,  20,  15,  20,  15,      20,  15,  20,  15,  30 ],
+      "galdur":       [ 0, 6, 3,  3,  5,  3,     10, 10, 10, 12, 13,     15,  20,  15,  20,  15,      20,  15,  20,  15,  30 ],
+      "galdurTotal":  [ 0, 6, 9, 12, 17, 20,     30, 40, 50, 62, 75,     90, 110, 125, 145, 160,     170, 195, 225, 240, 260 ],
       "spellsPerDay": [ [],
         ["∞", 3], ["∞", 4], ["∞", 5], ["∞", 6, 3], ["∞", 6, 4],
         ["∞", 6, 5, 3], ["∞", 6, 6, 4], ["∞", 6, 6, 5, 3], ["∞", 6, 6, 6, 4], ["∞", 6, 6, 6, 5, 3],
@@ -422,24 +407,19 @@
   },
 
 
-  "Paladin": {
-    "hd": "d10",
+  "paladin": {
+    "hd": 10,
     "ranks": 2,
     "skills": [ "Craft (Int)", "Diplomacy (Cha)", "Handle Animal (Cha)", "Heal (Wis)", "Knowledge (nobility) (Int)", "Knowledge (religion) (Int)", "Profession (Wis)", "Ride (Dex)", "Sense Motive (Wis)", "Spellcraft (Int)" ],
     "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "heavy armor", "shields" ],
     "alignment": [ "LG" ],
-
     "bab":  1,
     "fort": { "mult": 0.5, "bonus": 2 },
     "ref":  { "mult": 0.33, "bonus": 0 },
     "will": { "mult": 0.5, "bonus": 2 },
 
     "special": [ [],
-      [ "Aura of Good (Ex)", "Detect Evil (Sp)", "Smite Evil (Su)" ],
-      [ "Divine Grace (Su)", "Lay on Hands (Su)" ],
-      [ "Aura of Courage (Su)", "Divine Health (Ex)", "Mercy (Su) (REPLACE)" ],
-      [ "Channel Positive Energy (Su)" ],
-      [ "Divine Bond (Sp)" ],
+      [ "Aura of Good (Ex)", "Detect Evil (Sp)", "Smite Evil (Su)" ], [ "Divine Grace (Su)", "Lay on Hands (Su)" ], [ "Aura of Courage (Su)", "Divine Health (Ex)", "Mercy (Su) (REPLACE)" ], [ "Channel Positive Energy (Su)" ], [ "Divine Bond (Sp)" ],
       [ "Mercy (Su) (REPLACE)" ], [], [ "Aura of Resolve (Su)" ], [ "Mercy (Su) (REPLACE)" ], [],
       [ "Aura of Justice (Su)" ], [ "Mercy (Su) (REPLACE)" ], [], [ "Aura of Faith (Su)" ], [ "Mercy (Su) (REPLACE)" ],
       [], [ "Aura of Righteousness (Su)" ], [ "Mercy (Su) (REPLACE)" ], [], [ "Holy Champion (Su)" ]
@@ -448,8 +428,8 @@
     "magic": {
       "style": "Prepared Divine",
       "castingAtr": "Charisma",
-      "galdur":             [ 0, 0, 0, 0, 1, 2,          3, 4, 5, 6, 8,         10, 12, 14, 17, 20,         23, 26, 29, 32, 35 ],
-      "galdurPerLevel":     [ 0, 0, 0, 0, 1, 1,          1, 1, 1, 1, 2,          2,  2,  2,  3,  3,          3,  3,  3,  3,  3 ],
+      "galdur":       [ 0, 0, 0, 0, 1, 1,          1, 1, 1, 1, 2,          2,  2,  2,  3,  3,          3,  3,  3,  3,  3 ],
+      "galdurTotal":  [ 0, 0, 0, 0, 1, 2,          3, 4, 5, 6, 8,         10, 12, 14, 17, 20,         23, 26, 29, 32, 35 ],
       "spellsPerDay": [ [],
         [], [], [], [0, 0], [0, 1],
         [0, 1], [0, 1, 0], [0, 1, 1], [0, 2, 1], [0, 2, 1, 0],
@@ -460,24 +440,19 @@
   },
 
 
-  "Ranger": {
-    "hd": "d10",
+  "ranger": {
+    "hd": 10,
     "ranks": 6,
     "skills": [ "Climb (Str)", "Craft (Int)", "Handle Animal (Cha)", "Heal (Wis)", "Intimidate (Cha)", "Knowledge (dungeoneering) (Int)", "Knowledge (geography) (Int)", "Knowledge (nature) (Int)", "Perception (Wis)", "Profession (Wis)", "Ride (Dex)", "Spellcraft (Int)", "Stealth (Dex)", "Survival (Wis)", "Swim (Str)" ],
     "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "shields" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
-
     "bab":  1,
     "fort": { "mult": 0.5, "bonus": 2 },
     "ref":  { "mult": 0.5, "bonus": 2 },
     "will": { "mult": 0.33, "bonus": 0 },
 
     "special": [ [],
-      [ "Favored Enemy (Ex) (REPLACE)", "Track (Ex)", "Wild Empathy (Ex)" ],
-      [ "Combat Style Feat (Ex) (REPLACE)" ],
-      [ "Endurance", "Favored Terrain (Ex) (REPLACE)" ],
-      [ "Hunter's Bond (Ex)" ],
-      [ "Favored Enemy (Ex) (REPLACE)" ],
+      [ "Favored Enemy (Ex) (REPLACE)", "Track (Ex)", "Wild Empathy (Ex)" ], [ "Combat Style Feat (Ex) (REPLACE)" ], [ "Endurance", "Favored Terrain (Ex) (REPLACE)" ], [ "Hunter's Bond (Ex)" ], [ "Favored Enemy (Ex) (REPLACE)" ],
       [ "Combat Style Feat (Ex) (REPLACE)" ], [ "Woodland Stride (Ex)" ], [ "Swift Tracker (Ex)", "Favored Terain (Ex) (REPLACE)" ], [ "Evasion (Ex)" ], [ "Favored Enemy (Ex) (REPLACE)", "Combat Style Feat (Ex) (REPLACE)" ],
       [ "Quarry (Ex)" ], [ "Camouflage (Ex)" ], [ "Favored Terrain (Ex) (REPLACE)" ], [ "Combat Style Feat (Ex) (REPLACE)" ], [ "Favored Enemy (Ex) (REPLACE)" ],
       [ "Imroved Evasion (Ex)" ], [ "Hide in Plain Sight (Ex)" ], [ "Favored Terrain (Ex) (REPLACE)", "Combat Style Feat (Ex) (REPLACE)" ], [ "Improved Quarry (Ex)" ], [ "Favored Enemy (Ex) (REPLACE)", "Master Hunter (Ex)" ]
@@ -486,8 +461,8 @@
     "magic": {
       "style": "Prepared Divine",
       "castingAtr": "Wis",
-      "galdur":             [ 0, 0, 0, 0, 1, 2,          3, 4, 5, 6, 8,         10, 12, 14, 17, 20,         23, 26, 29, 32, 35 ],
-      "galdurPerLevel":     [ 0, 0, 0, 0, 1, 1,          1, 1, 1, 1, 2,          2,  2,  2,  3,  3,          3,  3,  3,  3,  3 ],
+      "galdur":       [ 0, 0, 0, 0, 1, 1,          1, 1, 1, 1, 2,          2,  2,  2,  3,  3,          3,  3,  3,  3,  3 ],
+      "galdurTotal":  [ 0, 0, 0, 0, 1, 2,          3, 4, 5, 6, 8,         10, 12, 14, 17, 20,         23, 26, 29, 32, 35 ],
       "spellsPerDay": [ [],
         [], [], [], [0, 0], [0, 1],
         [0, 1], [0, 1, 0], [0, 1, 1], [0, 2, 1], [0, 2, 1, 0],
@@ -498,24 +473,19 @@
   },
 
 
-  "Rogue": {
-    "hd": "d8",
+  "rogue": {
+    "hd": 8,
     "ranks": 8,
     "skills": [ "Acrobatics (Dex)", "Appraise (Int)", "Bluff (Cha)", "Climb (Str)", "Craft (Int)", "Diplomacy (Cha)", "Disable Device (Dex)", "Disguise (Cha)", "Escape Artist (Dex)", "Intimidate (Cha)", "Knowledge (dungeoneering) (Int)", "Knowledge (local) (Int)", "Linguistics (Int)", "Perception (Wis)", "Perform (Cha)", "Profession (Wis)", "Sense Motive (Wis)", "Sleight of Hand (Dex)", "Stealth (Dex)", "Swim (Str)", "Use Magic Device (Cha)" ],
     "proficiency": [ "simple weapons", "hand crossbow", "rapier", "sap", "shortbow", "short sword", "light armor" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
-
     "bab":  0.75,
     "fort": { "mult": 0.33, "bonus": 0 },
     "ref":  { "mult": 0.5, "bonus": 2 },
     "will": { "mult": 0.33, "bonus": 0 },
 
     "special": [ [],
-      [ "Sneak Attack", "Trapfinding" ],
-      [ "Evasion (Ex)", "Rougue Talent (REPLACE)" ],
-      [ "Trapsense (Ex)" ],
-      [ "Rougue Talent (REPLACE)", "Uncanny Dodge (Ex)" ],
-      [],
+      [ "Sneak Attack", "Trapfinding" ], [ "Evasion (Ex)", "Rougue Talent (REPLACE)" ], [ "Trapsense (Ex)" ], [ "Rougue Talent (REPLACE)", "Uncanny Dodge (Ex)" ], [],
       [ "Rougue Talent (REPLACE)" ], [], [ "Improved Uncanny Dodge (Ex)", "Rougue Talent (REPLACE)" ], [], [ "Advanced Talents", "Rougue Talent (REPLACE)" ],
       [], [ "Rougue Talent (REPLACE)" ], [], [ "Rougue Talent (REPLACE)" ], [],
       [ "Rougue Talent (REPLACE)" ], [], [ "Rougue Talent (REPLACE)" ], [], [ "Master Strike (Ex)", "Rougue Talent (REPLACE)" ]
@@ -523,64 +493,54 @@
   },
 
 
-  "Shaman": {
+  "shaman": {
     "Parent Classes": [ "Oracle", "Witch" ]
   },
 
 
-  "Shifter": {
-    "hd": "d10",
+  "shifter": {
+    "hd": 10,
     "ranks": 4,
     "skills": [ " Acrobatics (Dex)", "Climb (Str)", "Craft (Int)", "Fly (Dex)", "Handle Animal (Cha)", "Knowledge (nature) (Int)", "Perception (Wis)", "Profession (Wis)", "Ride (Dex)", "Stealth (Dex)", "Survival (Wis)", "Swim (Str)" ],
     "proficiency": [ "club", "dagger", "dart", "quarterstaff", "scimitar", "scythe", "sickle", "shortspear", "sling", "spear", "natural attacks", "light armor", "medium armor", "shields" ],
     "alignment": [ "NG", "LN", "N", "CN", "NE" ],
-
     "bab":  1,
     "fort": { "mult": 0.5, "bonus": 2 },
     "ref":  { "mult": 0.5, "bonus": 2 },
     "will": { "mult": 0.33, "bonus": 0 },
 
     "special": [ [],
-      [ "Shifter Aspect (Su)", "Shifter Claws (Su)", "Wild Empahy (Ex)", "Bonus Languages" ],
-      [ "Defensive Instinct (Ex)", "Track (Ex)" ],
-      [ "Woodland Stride (Ex)" ],
-      [ "Wild Shape (Su)" ],
-      [ "Trackless Step (Ex)" ],
-      [], [], [], [], [],
-      [], [], [], [], [],
-      [], [], [], [], []
+      [ "Shifter Aspect (Su)", "Shifter Claws (Su)", "Wild Empahy (Ex)", "Bonus Languages" ], [ "Defensive Instinct (Ex)", "Track (Ex)" ], [ "Woodland Stride (Ex)" ], [ "Wild Shape (Su)" ], [ "Trackless Step (Ex)" ],
+      [ "Shifter’s Fury (Ex)" ], [], [], [ "Chimeric Aspect (Su)" ], [],
+      [], [], [], [ "Greater Chimeric Aspect (Su)" ], [],
+      [], [], [ "A Thousand Faces (Ex)", "Timeless Body (Ex)" ], [], [ "Final Aspect (Su)" ]
     ],
   },
 
 
-  "Skald": {
+  "skald": {
     "Parent Classes": [ "Barbarian", "Bard" ]
   },
 
 
-  "Slayer": {
+  "slayer": {
     "Parent Classes": [ "Ranger", "Rogue" ]
   },
 
 
-  "Sorcerer": {
-    "hd": "d6",
+  "sorcerer": {
+    "hd": 6,
     "ranks": 2,
     "skills": [ "Appraise (Int)", "Bluff (Cha)", "Craft (Int)", "Fly (Dex)", "Intimidate (Cha)", "Knowledge (arcana) (Int)", "Profession (Wis)", "Spellcraft (Int)", "Use Magic Device (Cha)" ],
     "proficiency": [ "simple weapons" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
-
     "bab":  0.5,
     "fort": { "mult": 0.33, "bonus": 0 },
     "ref":  { "mult": 0.33, "bonus": 0 },
     "will": { "mult": 0.5, "bonus": 2 },
 
     "special": [ [],
-      [ "Eschew Materials", "Bloodline (REPLACE)", "Bloodline Power (REPLACE)" ],
-      [],
-      [ "Bloodline Power (REPLACE)", "Bloodline Spell (REPLACE)" ],
-      [],
-      [ "Bloodline Spell (REPLACE)" ],
+      [ "Eschew Materials", "Bloodline (REPLACE)", "Bloodline Power (REPLACE)" ], [], [ "Bloodline Power (REPLACE)", "Bloodline Spell (REPLACE)" ], [], [ "Bloodline Spell (REPLACE)" ],
       [], [ "Bloodline Feat (REPLACE)", "Bloodline Spell (REPLACE)" ], [], [ "Bloodline Power (REPLACE)", "Bloodline Spell (REPLACE)" ], [],
       [ "Bloodline Spell (REPLACE)" ], [], [ "Bloodline Feat (REPLACE)", "Bloodline Spell (REPLACE)" ], [], [ "Bloodline Power (REPLACE)", "Bloodline Spell (REPLACE)" ],
       [], [ "Bloodline Spell (REPLACE)" ], [], [ "Bloodline Feat (REPLACE)", "Bloodline Spell (REPLACE)" ], [ "Bloodline Power (REPLACE)" ]
@@ -595,8 +555,8 @@
        [9, 5, 5, 4, 3, 2], [9, 5, 5, 4, 3, 2, 1], [9, 5, 5, 4, 4, 3, 2], [9, 5, 5, 4, 4, 3, 2, 1], [9, 5, 5, 4, 4, 4, 3, 2],
        [9, 5, 5, 4, 4, 4, 3, 2, 1], [9, 5, 5, 4, 4, 4, 3, 3, 2], [9, 5, 5, 4, 4, 4, 3, 3, 3, 1], [9, 5, 5, 4, 4, 4, 3, 3, 3, 2], [9, 5, 5, 4, 4, 4, 3, 3, 3, 3]
      ],
-     "galdur":              [ 0, 6, 9, 12, 17, 20,     30, 40, 50, 62, 75,     90, 110, 125, 145, 160,     170, 195, 225, 240, 260 ],
-     "galdurPerLevel":      [ 0, 6, 3,  3,  5,  3,     10, 10, 10, 12, 13,     15,  20,  15,  20,  15,      20,  15,  20,  15,  30 ],
+     "galdur":       [ 0, 6, 3,  3,  5,  3,     10, 10, 10, 12, 13,     15,  20,  15,  20,  15,      20,  15,  20,  15,  30 ],
+     "galdurTotal":  [ 0, 6, 9, 12, 17, 20,     30, 40, 50, 62, 75,     90, 110, 125, 145, 160,     170, 195, 225, 240, 260 ],
      "spellsPerDay": [ [],
        ["∞", 3], ["∞", 4], ["∞", 5], ["∞", 6, 3], ["∞", 6, 4],
        ["∞", 6, 5, 3], ["∞", 6, 6, 4], ["∞", 6, 6, 5, 3], ["∞", 6, 6, 6, 4], ["∞", 6, 6, 6, 5, 3],
@@ -607,24 +567,19 @@
   },
 
 
-  "Summoner": {
-    "hd": "d8",
+  "summoner": {
+    "hd": 8,
     "ranks": 2,
     "skills": [ "Craft (Int)", "Fly (Dex)", "Handle Animal (Cha)", "Knowledge (all) (Int)", "Linguistics (Int)", "Profession (Wis)", "Ride (Dex)", "Spellcraft (Int)", "Use Magic Device (Cha)" ],
     "proficiency": [ "simple weapons", "light armor" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
-
     "bab":  0.75,
     "fort": { "mult": 0.33, "bonus": 0 },
     "ref":  { "mult": 0.33, "bonus": 0 },
     "will": { "mult": 0.5, "bonus": 2 },
 
     "special": [ [],
-      [ "Eidolon", "Life Link (Su)", "Summon Monster (Sp)" ],
-      [ "Bond Senses (Su)" ],
-      [  ],
-      [ "Shield Ally (Ex)" ],
-      [],
+      [ "Eidolon", "Life Link (Su)", "Summon Monster (Sp)" ], [ "Bond Senses (Su)" ], [], [ "Shield Ally (Ex)" ], [],
       [ "Maker's Call (Su)" ], [], [ "Transposition (Su)" ], [], [ "Aspect (Su)" ],
       [], [ "Grater Shield Ally (Su)" ], [], [ "Life Bond(Su)" ], [],
       [ "Merge Forms (Su)" ], [], [ "Greater Aspect (Su)" ], [], [ "Twin Eidolon (Su)" ]
@@ -639,8 +594,8 @@
         [6, 6, 5, 4, 3], [6, 6, 5, 4, 4], [6, 6, 5, 5, 4, 2], [6, 6, 6, 5, 4, 3], [6, 6, 6, 5, 4, 4],
         [6, 6, 6, 5, 5, 4, 2], [6, 6, 6, 6, 5, 4, 3], [6, 6, 6, 6, 5, 4, 4], [6, 6, 6, 6, 5, 5, 4], [6, 6, 6, 6, 6, 5, 5]
       ],
-      "galdur":              [ 0, 6, 9, 12, 15, 18,     22, 26, 30, 35, 40,     47, 55, 64, 74, 85,         97, 110, 124, 139, 155 ],
-      "galdurPerLevel":      [ 0, 6, 3,  3,  3,  3,      4,  4,  4,  5,  5,      7,  8,  9, 10, 11,         12,  13,  14,  15,  16 ],
+      "galdur":       [ 0, 6, 3,  3,  3,  3,      4,  4,  4,  5,  5,      7,  8,  9, 10, 11,         12,  13,  14,  15,  16 ],
+      "galdurTotal":  [ 0, 6, 9, 12, 15, 18,     22, 26, 30, 35, 40,     47, 55, 64, 74, 85,         97, 110, 124, 139, 155 ],
       "spellsPerDay": [ [],
         ["∞", 1], ["∞", 2], ["∞", 3], ["∞", 3, 1], ["∞", 4, 2],
         ["∞", 4, 3], ["∞", 4, 3, 1], ["∞", 4, 4, 2], ["∞", 5, 4, 3], ["∞", 5, 4, 3, 1],
@@ -651,32 +606,27 @@
   },
 
 
-  "Warpriest": {
+  "warpriest": {
     "Parent Classes": [ "Cleric", "Fighter" ]
   },
 
 
-  "Witch": {},
+  "witch": {},
 
 
-  "Wizard": {
-    "hd": "d6",
+  "wizard": {
+    "hd": 6,
     "ranks": 2,
     "skills": [ "Appraise (Int)", "Craft (Int)", "Fly (Dex)", "Knowledge (all) (Int)", "Linguistics (Int)", "Profession (Wis)", "Spellcraft (Int)" ],
     "proficiency": [ "club", "dagger", "heavy crossbow", "quarterstaff" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
-
     "bab":  0.5,
     "fort": { "mult": 0.33, "bonus": 0 },
     "ref":  { "mult": 0.33, "bonus": 0 },
     "will": { "mult": 0.5, "bonus": 2 },
 
     "special": [ [],
-      [ "Arcane Bond (Ex od Sp)", "Arcane School", "Scribe Scroll", "Bonus Languages" ],
-      [],
-      [],
-      [],
-      [ "Bonus Feat (REPLACE)" ],
+      [ "Arcane Bond (Ex od Sp)", "Arcane School", "Scribe Scroll", "Bonus Languages" ], [], [], [], [ "Bonus Feat (REPLACE)" ],
       [], [], [], [], [ "Bonus Feat (REPLACE)" ],
       [], [], [], [], [ "Bonus Feat (REPLACE)" ],
       [], [], [], [], [ "Bonus Feat (REPLACE)" ]
@@ -687,6 +637,8 @@
       "castingAtr": "Int",
       "startingSpells": "All 0, and 3 lvl-1, +IntMod lvl-1s",
       "spellsPerLevel": 2,
+      "galdur":       [ 0, 5, 3,  3,  3,  3,      4,  4,  5,  5, 7,       9, 11, 12, 13,  14,         15,  16,  17,  18,  19 ],
+      "galdurTotal":  [ 0, 5, 8, 11, 14, 17,     21, 25, 30, 35, 42,     51, 62, 74, 87, 101,        116, 132, 149, 167, 186 ],
       "spellsPerDay": [ [],
         [3, 1], [4, 2], [4, 2, 1], [4, 3, 2], [4, 3, 2, 1],
         [4, 3, 3, 2], [4, 4, 3, 2, 1], [4, 4, 3, 3, 2], [4, 4, 4, 3, 2, 1], [4, 4, 4, 3, 3, 2],
@@ -696,62 +648,97 @@
     }
   },
 
-
-
-
+  
   "Galdur": {
     "Sorc / Oracle": {
-      "galdur":              [ 0, 6, 9, 12, 17, 20,     30, 40, 50, 62, 75,     90, 110, 125, 145, 160,     170, 195, 225, 240, 260 ],
-      "galdurPerLevel":      [ 0, 6, 3,  3,  5,  3,     10, 10, 10, 12, 13,     15,  20,  15,  20,  15,      20,  15,  20,  15,  30 ]
+      "galdurTotal": [ 0, 6, 9, 12, 17, 20,     30, 40, 50, 62, 75,     90, 110, 125, 145, 160,     170, 195, 225, 240, 260 ],
+      "galdur":      [ 0, 6, 3,  3,  5,  3,     10, 10, 10, 12, 13,     15,  20,  15,  20,  15,      20,  15,  20,  15,  30 ]
     },
     "Cleric / Druid / Witch / Wizard": {
-      "galdur":              [ 0, 5, 8, 11, 14, 17,     21, 25, 30, 35, 42,     51, 62, 74, 87, 101,        116, 132, 149, 167, 186 ],
-      "galdurPerLevel":      [ 0, 5, 3,  3,  3,  3,      4,  4,  5,  5, 7,       9, 11, 12, 13,  14,         15,  16,  17,  18,  19 ]
+      "galdurTotal": [ 0, 5, 8, 11, 14, 17,     21, 25, 30, 35, 42,     51, 62, 74, 87, 101,        116, 132, 149, 167, 186 ],
+      "galdur":      [ 0, 5, 3,  3,  3,  3,      4,  4,  5,  5, 7,       9, 11, 12, 13,  14,         15,  16,  17,  18,  19 ]
     },
     "Bard / Inquisitor / Magus / Summoner / Warpriest": {
-      "galdur":              [ 0, 6, 9, 12, 15, 18,     22, 26, 30, 35, 40,     47, 55, 64, 74, 85,         97, 110, 124, 139, 155 ],
-      "galdurPerLevel":      [ 0, 6, 3,  3,  3,  3,      4,  4,  4,  5,  5,      7,  8,  9, 10, 11,         12,  13,  14,  15,  16 ]
+      "galdurTotal": [ 0, 6, 9, 12, 15, 18,     22, 26, 30, 35, 40,     47, 55, 64, 74, 85,         97, 110, 124, 139, 155 ],
+      "galdur":      [ 0, 6, 3,  3,  3,  3,      4,  4,  4,  5,  5,      7,  8,  9, 10, 11,         12,  13,  14,  15,  16 ]
     },
     "Alchemist": {
-      "galdur":             [ 0, 2, 4, 6, 8, 11,        14, 17, 22, 27, 32,     38, 44, 50, 58, 64,         72, 80, 89, 98, 108 ],
-      "galdurPerLevel":     [ 0, 2, 2, 2, 2,  3,         3,  3,  5,  5,  5,      6,  6,  6,  8,  6,          8,  8,  9,  9,  10 ]
+      "galdurTotal": [ 0, 2, 4, 6, 8, 11,        14, 17, 22, 27, 32,     38, 44, 50, 58, 64,         72, 80, 89, 98, 108 ],
+      "galdur":      [ 0, 2, 2, 2, 2,  3,         3,  3,  5,  5,  5,      6,  6,  6,  8,  6,          8,  8,  9,  9,  10 ]
     },
     "Paladin / Ranger": {
-      "galdur":             [ 0, 0, 0, 0, 1, 2,          3, 4, 5, 6, 8,         10, 12, 14, 17, 20,         23, 26, 29, 32, 35 ],
-      "galdurPerLevel":     [ 0, 0, 0, 0, 1, 1,          1, 1, 1, 1, 2,          2,  2,  2,  3,  3,          3,  3,  3,  3,  3 ]
+      "galdurTotal": [ 0, 0, 0, 0, 1, 2,          3, 4, 5, 6, 8,         10, 12, 14, 17, 20,         23, 26, 29, 32, 35 ],
+      "galdur":      [ 0, 0, 0, 0, 1, 1,          1, 1, 1, 1, 2,          2,  2,  2,  3,  3,          3,  3,  3,  3,  3 ]
     }
   },
 
-
-  "name": {
-    "hd": "d",
-    "ranks": ,
-    "skills": [  ],
-    "proficiency": [  ],
+  
+  "adept": {
+    "hd": 6,
+    "ranks": 2,
+    "skills": [ "Craft (Int)", "Handle Animal (Cha)", "Heal (Wis)", "Knowledge (all) (Int)", "Profession (Wis)", "Spellcraft (Int)", "Survival (Wis)" ],
+    "proficiency": [ "simple weapons" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
-
-    "bab":  0.5,
+    "bab": 0.5,
     "fort": { "mult": 0.33, "bonus": 0 },
-    "ref":  { "mult": 0.33, "bonus": 0 },
-    "will": { "mult": 0.33, "bonus": 0 },
-
-    "special": [ [],
-      [ "", "", "" ],
-      [],
-      [],
-      [],
-      [],
-      [], [], [], [], [],
-      [], [], [], [], [],
-      [], [], [], [], [ ""]
-    ],
+    "ref": { "mult": 0.33, "bonus": 0 },
+    "will": { "mult": 0.5, "bonus": 2 },
+    "special": [ [], [ "Spells" ], [ "Summon Familiar"] ],
 
     "magic": {
-      "style": "",
-      "castingAtr": "",
-
+      "style": "Prepared Divine",
+      "castingAtr": "Wisdom",
       "spellsPerDay": [ [],
+        [3, 1], [3, 1], [3, 2], [3, 2, 0], [3, 2, 1],
+        [3, 2, 1], [3, 3, 2], [3, 3, 2, 0], [3, 3, 2, 1], [3, 3, 2, 1],
+        [3, 3, 3, 2], [3, 3, 3, 2, 0], [3, 3, 3, 2, 1], [3, 3, 3, 2, 1], [3, 3, 3, 3, 2],
+        [3, 3, 3, 3, 2, 0], [3, 3, 3, 3, 2, 1], [3, 3, 3, 3, 2, 1], [3, 3, 3, 3, 3, 2], [3, 3, 3, 3, 3, 2]
       ]
     }
+  },
+  "aristocrat": {
+    "hd": 8,
+    "ranks": 4,
+    "skills": [ "Appraise (Int)", "Bluff (Cha)", "Craft (Int)", "Diplomacy (Cha)", "Disguise (Cha)", "Handle Animal (Cha)", "Intimidate (Cha)", "Knowledge (all) (Int)", "Linguistics (Int)", "Perception (Wis)", "Perform (Cha)", "Profession (Wis)", "Ride (Dex)", "Sense Motive (Wis)", "Swim (Str)", "Survival (Wis)" ],
+    "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "heavy armor", "shields" ],
+    "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
+    "bab": 0.75,
+    "fort": { "mult": 0.33, "bonus": 0 },
+    "ref": { "mult": 0.33, "bonus": 0 },
+    "will": { "mult": 0.5, "bonus": 2 }
+  },
+  "commoner": {
+    "hd": 6,
+    "ranks": 2,
+    "skills": [ "Climb (Str)", "Craft (Int)", "Handle Animal (Cha)", "Perception (Wis)", "Profession (Wis)", "Ride (Dex)", "Swim (Str)" ],
+    "proficiency": [ "one simple weapon" ],
+    "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
+    "bab": 0.5,
+    "fort": { "mult": 0.33, "bonus": 0 },
+    "ref": { "mult": 0.33, "bonus": 0 },
+    "will": { "mult": 0.33, "bonus": 0 }
+  },
+  "expert": {
+    "hd": 8,
+    "ranks": 6,
+    "skills": [],
+    "proficiency": [ "simple weapons", "light armor" ],
+    "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
+    "bab": 0.75,
+    "fort": { "mult": 0.33, "bonus": 0 },
+    "ref": { "mult": 0.33, "bonus": 0 },
+    "will": { "mult": 0.5, "bonus": 2 }
+  },
+  "warrior": {
+    "hd": 10,
+    "ranks": 2,
+    "skills": [ "Climb (Str)", "Craft (Int)", "Handle Animal (Cha)", "Intimidate (Cha)", "Profession (Wis)", "Ride (Dex)", "Swim (Str)" ],
+    "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "heavy armor", "shields" ],
+    "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
+    "bab": 1,
+    "fort": { "mult": 0.5, "bonus": 2 },
+    "ref": { "mult": 0.33, "bonus": 0 },
+    "will": { "mult": 0.33, "bonus": 0 }
   }
+  
 }
