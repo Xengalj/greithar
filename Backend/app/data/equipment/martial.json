@@ -1159,9 +1159,10 @@
 		"Weight": 2,
 		"Description": "A hurlbat is a throwing axe made from a single piece of flat metal, with every extremity sharpened, including the point of the handle.",
 		"Special": [
-			"You may wield a chakram as a melee weapon taking a -1 penalty on attack rolls.",
-			"If you use a chakram as a melee weapon, you must succeed a DC 15 Reflex save or you cut yourself (1/2 damage, no Str Mod).",
-			"Wearing heavy armor while using a chakram as a melee weapon lets you ignore the save."
+			"A hurlbat deals both Piercing and Slashing damage at once.",
+			"You may wield a hurlbat as a melee weapon taking a -1 penalty on attack rolls.",
+			"If you use a hurlbat as a melee weapon, you must succeed a DC 15 Reflex save or you cut yourself (1/2 damage, no Str Mod).",
+			"Wearing heavy armor while using a hurlbat as a melee weapon lets you ignore the save."
 		]
 	},
 	"Longbow": {
