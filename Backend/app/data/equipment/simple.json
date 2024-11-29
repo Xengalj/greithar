@@ -338,7 +338,9 @@
     "Cost": 8,
     "Weight": 6,
     "Description": "A morningstar is a spiked metal ball, affixed to the top of a long handle.",
-    "Special": []
+    "Special": [
+      "A morning star deals both Bludgeoning and Slashing damage at once."
+    ]
   },
   "Shortspear": {
     "Damage": [ "1d4", "1d6", "1d8" ],
