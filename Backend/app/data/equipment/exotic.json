@@ -218,7 +218,7 @@
      "When closed, you gain a +2 bonus on Sleight of Hand checks made to conceal it on your body."
     ]
   },
-   "Deer Horn Knife": {
+  "Deer Horn Knife": {
     "Damage": [ "1d3", "1d4", "1d6" ],
     "Critical": "20/x3",
     "Range": 20,
@@ -235,24 +235,272 @@
       "Blocking"
     ]
   },
+  "Dwarven Maulaxe": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x3",
+    "Range": 10,
+    "Damage Type": [ "Bludgeoning", "Slashing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Light",
+    "Group": [ "Axes", "Hammers", "Thrown" ],
+
+    "Cost": 25,
+    "Weight": 5,
+    "Description": "This versatile weapon appears like a heavy-headed axe, but a skilled wielder can strike equally well with its chopping edge as with the forged sledge that backs the blade.",
+    "Special": []
+  },
+   "Nunchaku": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Light",
+    "Group": [ "Flails", "Monk" ],
+
+    "Cost": 2,
+    "Weight": 2,
+    "Description": "A nunchaku is made up of two wooden or metal bars connected by a small length of rope or chain."
+    "Special": [
+      "Disarm", "Monk",
+     
+    ]
+  },
+  "Quadrens": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "19/x2",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Light",
+    "Group": [ "Light Blades" ],
+
+    "Cost": 8,
+    "Weight": 2,
+    "Description": "A quadrens looks similar to a sturdy dagger, but with four spikes mounted in a square pattern in place of a blade.",
+    "Special": [
+      "On a critical hit, you leave a gaping wound causing 1 point of bleed damage.",
+      "Performance", "Disarm"
+    ]
+  },
+  "Drow Razor": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "18/x2",
+    "Range": 0,
+    "Damage Type": [ "Slashing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Light",
+    "Group": [ "Light Blades" ],
+
+    "Cost": 25,
+    "Weight": 2,
+    "Description": "Meant for quick strikes and slashes, this long, slender knife is incredibly sharp along one edge.",
+    "Special": [
+      "A critical hit deals an addition 2 precision damage (this is not multiplied by the critical)."
+    ]
+  },
+  "Rope Gauntlet": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoing", "Slashing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Light",
+    "Group": [ "Close" ],
+
+    "Cost": 0.2,
+    "Weight": 2,
+    "Description": "By wrapping your hands and forearms in thin but tough hemp ropes and then soaking the makeshift gloves in water for weight and expansion, you can transform your fists into rockhard weapons easily capable of killing in a fistfight.",
+    "Special": [
+      "Each rope gauntlet takes a full minute to wrap and another minute to soak, but once applied can be worn for a day; removing a rope gauntlet takes 1 full round.",
+      "You may wield or carry items in your hands while wearing rope gauntlets, but you take a -2 penalty on all precision based tasks (like lockpicking)."
+    ]
+  },
+  "Sawtoothed Sabre": {
+    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Critical": "19/x2",
+    "Range": 0,
+    "Damage Type": [ "Slashing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Light",
+    "Group": [ "Light Blades" ],
+
+    "Cost": 35,
+    "Weight": 2,
+    "Description": "The sawtooth sabre's blade is curved like a normal sabre, but instead of a straight edge, the cutting edge is serrated, allowing deeper wounds.",
+    "Special": [
+      "A sawtooth sabre may be used as a Martial Weapon (in which case it functions identically to a longsword)."
+    ]
+  },
+  "Sai": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Light",
+    "Group": [ "Monk" ],
+
+    "Cost": 1,
+    "Weight": 1,
+    "Description": "A sai is a metal spike flanked by a pair of prongs used to trap an enemy’s weapon. Though pointed, a sai is not usually used for stabbing. Instead, it is used primarily to bludgeon foes, punching with the hilt, or else to catch and disarm weapons between its tines. Sais are often wielded in pairs.",
+    "Special": [
+      "Disarm", "Monk",
+      "When wielding a sai, you get a +2 bonus on combat maneuver checks to sunder an enemy’s weapon."
+    ]
+  },
+   "Sanpkhang": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "19/x2",
+    "Range": 0,
+    "Damage Type": [ "Piercing", "Slashing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Light",
+    "Group": [ "Light Blades", "Monk" ],
+
+    "Cost": 60,
+    "Weight": 1,
+    "Description": "This elaborate knife is carved with special barbs and grooves, meant to channel toxins into the bloodstream.",
+    "Special": [
+      "Any injury poison delivered with a sanpkhang has its DC increased by 1, or by 2 if delivered as part of a critical hit or sneak attack."
+    ]
+  },
+  "Siangham": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Light",
+    "Group": [ "Monk" ],
+
+    "Cost": 3,
+    "Weight": 1,
+    "Description": "This weapon is a handheld shaft fitted with a pointed tip for stabbing foes. It resembles a (much sturdier) arrow with a grip designed for melee combat.",
+    "Special": [ "Monk" ]
+  },
+  "Sica": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Slashing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Light",
+    "Group": [ "Light Blades" ],
+
+    "Cost": 10,
+    "Weight": 2,
+    "Description": "This blade is a smaller, lighter version of the shotel.",
+    "Special": [
+      "You gain a +1 bonus on attack rolls with a sica against opponents using bucklers, light shields, or heavy shields."
+    ]
+  },
+  "Thorn Bracer": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Light",
+    "Group": [ "" ],
+
+    "Cost": 30,
+    "Weight": 3,
+    "Description": "These sturdy leather bracers are studded with lacquered rose thorns that can be used to pierce foes.",
+    "Special": [
+      "A thorn bracer can be used to make an offhand attack if you aren’t wielding a weapon or shield in that hand.",
+      "You can attack with these bracers even while holding objects in your hands."
+    ]
+  },
+   "Dwarven War-Shield": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Piercing", "Slahsing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Light",
+    "Group": [ "Close" ],
+
+    "Cost": 50,
+    "Weight": 8,
+    "Description": "This shield’s sides are cut into jagged angles and honed to razor sharpness; they are often wielded in paris.",
+    "Special": [
+      "With the Two-Weapon Fighting feat (and 2 war-shields), you increase the higher of the two shield bonuses by 1.",
+      "You lose this benefit for 1 round if you attack with either shield (unless you have Improved Shield Bash ro a similar benefit).",
+      "A dwarven war-shield gains no benefit from shield spikes."
+    ]
+  },
+  "Waveblade": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "18/x2",
+    "Range": 0,
+    "Damage Type": [ "Piercing", "Slashing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Light",
+    "Group": [ "Close", "Monk" ],
+
+    "Cost": 5,
+    "Weight": 2,
+    "Description": "Also known as a “scorpion’s tail” due to its unique, stinger-like shape, this short, double-curved blade has no hilt but features a knuckle guard.",
+    "Special": [
+     "You gain a +2 bonus to your CMD against disarm attempts made to disarm you of a waveblade."
+    ]
+  },
+  "Scorpion Whip": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Slashing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Light",
+    "Group": [ "Flails" ],
+
+    "Cost": 5,
+    "Weight": 3,
+    "Description": "This whip has a series of razor-sharp blades and fangs inset along its tip.",
+    "Special": [
+      "Disarm", "Performance", "Reach", "Trip"
+    ]
+  },
  
 
+"Axe-Gauntlet, Dwarven Heavy 21 gp 1d6 1d8 x3 — 5 lbs. S blocking, disarm",
+"Axe, hooked 20 gp 1d6 1d8 x3 — 7 lbs. S disarm, performance, trip",
+"Broken-back seax 40 gp 1d8 1d10 19–20/×2 — 4 lbs. P & S see text",
+"Estoc 50 gp 2d3 2d4 18–20/x2 — 4 lbs. P —",
+"Falcata 18 gp 1d6 1d8 19-20/x3 — 4 lbs. S —",
+"Flickmace 20 gp 1d6 1d8 x2 — 10 lb B reach, trip",
+"Flindbar 9 gp 1d6 1d8 x2 — 6 lbs. B and P disarm, trip",
+"Khopesh 20 gp 1d6 1d8 19-20/x2 — 8 lbs. S trip",
+"Knobkerrie 5 gp 1d4 1d6 x2 20 ft. 4 lbs. B see text",
+"Ram Hammer, Dwarven 25 gp 1d6 1d8 x3 10 ft. 5 lbs. B —",
+"Rapier, spiral 80 gp 1d4 1d6 18–20/×2 — 3 lbs. P blocking, disarm, see text",
+"Rhoka 5 gp 1d6 1d8 18-20/x2 — 6 lbs. S —",
+"Shotel 30 gp 1d6 1d8 x3 — 3 lbs. P performance",
+"Sickle-sword 20 gp 1d6 1d8 19–20/×2 — 4 lbs. S distracting, see text",
+"Split-blade sword 200 gp 1d10 2d6 ×2 — 8 lbs. S disarm, trip, see text",
+"Sword, dueling 20 gp 1d6 1d8 19-20/x2 — 3 lbs S —",
+"Sword, bastard 35 gp 1d8 1d10 19-20/x2 — 6 lbs. S —",
+"Tongi 18 gp 1d4 1d6 19-20/x3 — 4 lbs. P —",
+"Waraxe, dwarven 30 gp 1d8 1d10 x3 — 8 lbs. S —",
+"Waraxe, dwarven double 60 gp 1d8 1d10 x3 — 12 lbs. S see text",
+"Whip 1 gp 1d2 1d3 x2 — 2 lbs. S disarm, nonlethal, reach, trip",
 
- "Maulaxe, dwarven 25 gp 1d4 1d6 x3 10 ft. 5 lbs. B or S —",
-"Nunchaku 2 gp 1d4 1d6 x2 — 2 lbs. B disarm, monk",
-"Quadrens 8 gp 1d4 1d6 19-20/x2 — 2 lbs. P performance",
-"Razor, drow 25 gp 1d3 1d4 18–20/×2 — 2 lbs. S see text",
-"Rope gauntlet 2 sp 1d3 1d4 x2 — 2 lbs. B (or S) —",
-"Sabre, sawtoothAA1 35 gp 1d6 1d8 19-20/x2 — 2 lbs. S —",
-"Sai 1 gp 1d3 1d4 x2 — 1 lb. B disarm, monk",
-"Sanpkhang 60 gp 1d3 1d4 19–20/×2 — 1 lb. P or S monk, see text",
-"Siangham 3 gp 1d4 1d6 x2 — 1 lb. P monk",
-"Sica 10 gp 1d4 1d6 x2 — 2 lbs. S performance",
-"Thorn bracer 30 gp 1d4 1d6 x2 — 3 lbs. P —",
-"War-shield, dwarven 50 gp 1d4 1d6 ×2 — 8 lbs. P or S see text",
-"Waveblade 5 gp 1d4 1d6 18–20/×2 — 2 lbs. P or S monk, see text",
-"Whip, scorpion 5 gp 1d3 1d4 x2 — 3 lbs. S disarm, performance, reach, trip",
-
+ 
 
   "Test": {
     "Damage": [ "1d", "1d", "1d" ],
