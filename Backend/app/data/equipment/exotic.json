@@ -484,7 +484,7 @@
     "Damage Type": [ "Slashing" ],
 
     "Proficiency": "Exotic",
-    "Category": "Light",
+    "Category": "One-Handed",
     "Group": [ "Axes", "Close" ],
 
     "Cost": 21,
@@ -503,7 +503,7 @@
     "Damage Type": [ "Slashing" ],
 
     "Proficiency": "Exotic",
-    "Category": "Light",
+    "Category": "One-Handed",
     "Group": [ "Axes" ],
 
     "Cost": 20,
@@ -520,7 +520,7 @@
     "Damage Type": [ "Piercing", "Slashing" ],
 
     "Proficiency": "Exotic",
-    "Category": "Light",
+    "Category": "One-Handed",
     "Group": [ "Light Blades" ],
 
     "Cost": 40,
@@ -538,7 +538,7 @@
     "Damage Type": [ "Piercing" ],
 
     "Proficiency": "Exotic",
-    "Category": "Light",
+    "Category": "One-Handed",
     "Group": [ "Heavy Blades" ],
 
     "Cost": 50,
@@ -556,7 +556,7 @@
     "Damage Type": [ "Slashing" ],
 
     "Proficiency": "Exotic",
-    "Category": "Light",
+    "Category": "One-Handed",
     "Group": [ "Heavy Blades" ],
 
     "Cost": 18,
@@ -571,7 +571,7 @@
     "Damage Type": [ "Bludgeoning" ],
 
     "Proficiency": "Exotic",
-    "Category": "Light",
+    "Category": "One-Handed",
     "Group": [ "Hammers" ],
 
     "Cost": 20,
@@ -588,7 +588,7 @@
     "Damage Type": [ "Bludgeoning", "Piercing" ],
 
     "Proficiency": "Exotic",
-    "Category": "Light",
+    "Category": "One-Handed",
     "Group": [ "Flails" ],
 
     "Cost": 9,
@@ -606,7 +606,7 @@
     "Damage Type": [ "Slashing" ],
 
     "Proficiency": "Exotic",
-    "Category": "Light",
+    "Category": "One-Handed",
     "Group": [ "Heavy Blades" ],
 
     "Cost": 20,
@@ -623,7 +623,7 @@
     "Damage Type": [ "Bludgeoning" ],
 
     "Proficiency": "Exotic",
-    "Category": "Light",
+    "Category": "One-Handed",
     "Group": [ "Hammers", "Thrown" ],
 
     "Cost": 5,
@@ -640,7 +640,7 @@
     "Damage Type": [ "Bludgeoning" ],
 
     "Proficiency": "Exotic",
-    "Category": "Light",
+    "Category": "One-Handed",
     "Group": [ "Hammers", "Thrown" ],
 
     "Cost": 25,
@@ -655,7 +655,7 @@
     "Damage Type": [ "Piercing" ],
 
     "Proficiency": "Exotic",
-    "Category": "Light",
+    "Category": "One-Handed",
     "Group": [ "Light Blades" ],
 
     "Cost": 80,
@@ -674,7 +674,7 @@
     "Damage Type": [ "Slashing" ],
 
     "Proficiency": "Exotic",
-    "Category": "Light",
+    "Category": "One-Handed",
     "Group": [ "Heavy Blades" ],
 
     "Cost": 5,
@@ -689,7 +689,7 @@
     "Damage Type": [ "Piercing" ],
 
     "Proficiency": "Exotic",
-    "Category": "Light",
+    "Category": "One-Handed",
     "Group": [ "Heavy Blades" ],
 
     "Cost": 30,
@@ -707,7 +707,7 @@
     "Damage Type": [ "Slashing" ],
 
     "Proficiency": "Exotic",
-    "Category": "Light",
+    "Category": "One-Handed",
     "Group": [ "Heavy Blades" ],
 
     "Cost": 20,
@@ -725,7 +725,7 @@
     "Damage Type": [ "Slashing" ],
 
     "Proficiency": "Exotic",
-    "Category": "Light",
+    "Category": "One-Handed",
     "Group": [ "Heavy Blades" ],
 
     "Cost": 200,
@@ -742,7 +742,7 @@
     "Damage Type": [ "Slashing" ],
 
     "Proficiency": "Exotic",
-    "Category": "Light",
+    "Category": "One-Handed",
     "Group": [ "Heavy Blades" ],
 
     "Cost": 20,
@@ -761,7 +761,7 @@
     "Damage Type": [ "Slashing" ],
 
     "Proficiency": "Exotic",
-    "Category": "Light",
+    "Category": "One-Handed",
     "Group": [ "Heavy Blades" ],
 
     "Cost": 35,
@@ -778,7 +778,7 @@
     "Damage Type": [ "Piercing" ],
 
     "Proficiency": "Exotic",
-    "Category": "Light",
+    "Category": "One-Handed",
     "Group": [ "Axes" ],
 
     "Cost": 18,
@@ -793,7 +793,7 @@
     "Damage Type": [ "Slashing" ],
 
     "Proficiency": "Exotic",
-    "Category": "Light",
+    "Category": "One-Handed",
     "Group": [ "Axes" ],
 
     "Cost": 30,
@@ -810,7 +810,7 @@
     "Damage Type": [ "Slashing" ],
 
     "Proficiency": "Exotic",
-    "Category": "Light",
+    "Category": "One-Handed",
     "Group": [ "Axes" ],
 
     "Cost": 60,
@@ -827,7 +827,7 @@
     "Damage Type": [ "Slashing", "Nonlethal" ],
 
     "Proficiency": "Exotic",
-    "Category": "Light",
+    "Category": "One-Handed",
     "Group": [ "Flails" ],
 
     "Cost": 1,
@@ -842,41 +842,622 @@
      "Wielding a whip with two hands does not add 1.5 times your Strength modifier to your damage rolls."
     ]
   },
+   "Orc Double Axe": {
+    "Damage": [ "1d6/1d6", "1d8/1d8", "2d6/2d6" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "Slashing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Two-Handed",
+    "Group": [ "Axes", "Double" ],
+
+    "Cost": 60,
+    "Weight": 15,
+    "Description": "A cruel weapon with blades placed at opposite ends of a long haft, an orc double axe is a double weapon.",
+    "Special": [
+      "Double"
+    ]
+  },
+  "Butchering Axe": {
+    "Damage": [ "1d12", "3d6", "4d6" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "Slashing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Two-Handed",
+    "Group": [ "Axes" ],
+
+    "Cost": 65,
+    "Weight": 25,
+    "Description": "A creation of orc smiths, this axe has an oversized head bristling with spikes and a long, thick haft that only barely counterbalances its weight.",
+    "Special": [
+      "If your Strength is less than 19 (or 17 for a Small or smaller butchering axe), you take a –2 penalty on attacks with it, as you’re unable to maneuver its daunting size and weight."
+    ]
+  },
+  "Gnome Battle Ladder": {
+    "Damage": [ "1d4/1d4", "1d6/1d6", "1d8/1d8" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Two-Handed",
+    "Group": [ "Double" ],
+
+    "Cost": 20,
+    "Weight": 8,
+    "Description": "Fighting with a battle ladder is like fighting with a quarterstaff, except that the spaces in the ladder can be used to entangle limbs.",
+    "Special": [
+      "Trip"
+    ]
+  },
+  "Boarding Gaff": {
+    "Damage": [ "1d4/1d4", "1d6/1d6", "1d8/1d8" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Slashing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Two-Handed",
+    "Group": [ "Ploearms", "Double" ],
+
+    "Cost": 8,
+    "Weight": 8,
+    "Description": "A gaff hook is a long pole with a hook on one end for spearing fish, and often used by pirates to prevent ships from drifting apart during boarding.",
+    "Special": [
+      "Double", "Reach", "Trip"
+    ]
+  },
+   "Chain-Hammer": {
+    "Damage": [ "1d4/1d4", "1d6/1d6", "1d8/1d8" ],
+    "Critical": "20/x2",
+    "Range": 20,
+    "Damage Type": [ "Bludgeoning" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Two-Handed",
+    "Group": [ "Hammers", "Double", "Thrown" ],
+
+    "Cost": 35,
+    "Weight": 8,
+    "Description": "This pair of hammers is linked by a loose chain and are balanced to wield in melee together or thrown.",
+    "Special": [
+      "Double",
+      "The chain is long enough that you can throw one hammer a max of 10 feet and use a move action to pull the thrown hammer back by the chain."
+    ]
+  },
+  "Spiked Chain": {
+    "Damage": [ "1d6", "2d4", "2d6" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Two-Handed",
+    "Group": [ "Flails" ],
+
+    "Cost": 25,
+    "Weight": 10,
+    "Description": "A spiked chain is about 4 feet in length, covered in wicked barbs.",
+    "Special": [
+      "Disarm", "Trip",
+      "You may use Weapon Finesse with a spiked chain, even though it isn't a light weapon."
+    ]
+  },
+   "Crook": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Two-Handed",
+    "Group": [ "Polearms" ],
+
+    "Cost": 1,
+    "Weight": 5,
+    "Description": "This common herder’s tool is a wooden pole with a hooked end.",
+    "Special": [
+      "Reach", "Trip",
+      "You can ignore the -4 for not having two hands free when attempting a grapple with a crook."
+    ]
+  },
+   "Elven Curve Blade": {
+    "Damage": [ "1d8", "1d10", "2d8" ],
+    "Critical": "18/x2",
+    "Range": 0,
+    "Damage Type": [ "Slashing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Two-Handed",
+    "Group": [ "Heavy Blades" ],
+
+    "Cost": 80,
+    "Weight": 7,
+    "Description": "Essentially a longer version of a scimitar, but with a thinner blade, the elven curve blade is exceptionally rare.",
+    "Special": [
+     "You receive a +2 circumstance bonus to your Combat Maneuver Defense whenever a foe attempts to sunder your elven curve blade.",
+      "You may use Weapon Finesse with an elven curve blade, even though it isn't a light weapon."
+    ]
+  },
+  "Dwarven Dorn-Dergar": {
+    "Damage": [ "1d8", "1d10", "2d8" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Two-Handed",
+    "Group": [ "Flails" ],
+
+    "Cost": 50,
+    "Weight": 15,
+    "Description": "This 10-foot-long chain is weighted at the end by a ball of solid iron the size of a large fist, giving it its common name the chain flail.",
+    "Special": [
+      "Reach",
+     "You may adjust the slack of the chain, using it either with or without reach, as a move action."
+    ]
+  },
+  "Double Spear": {
+    "Damage": [ "1d6/1d6", "1d8/1d8", "2d6/2d6" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Two-Handed",
+    "Group": [ "Spears", "Double" ],
+
+    "Cost": 25,
+    "Weight": 12,
+    "Description": "This long, heavy spear has a point at each end, allowing it to be used as a double weapon.",
+    "Special": [
+      "Double"
+    ]
+  },
+  "Elven Branched Spear": {
+    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Two-Handed",
+    "Group": [ "Spears" ],
+
+    "Cost": 20,
+    "Weight": 10,
+    "Description": "Behind this long pole weapon’s spearhead, several short branches project from the shaft at irregular intervals, each angled forward and tipped with a smaller leaf-like blade.",
+    "Special": [
+      "Brace", "Reach",
+     "When you make attacks of opportunity provoked by movement, you gain a +2 bonus on attack rolls.",
+     "You may use Weapon Finesse with an elven branched spear, even though it isn't a light weapon."
+    ]
+  },
+  "Fauchard": {
+    "Damage": [ "1d8", "1d10", "2d8" ],
+    "Critical": "18/x2",
+    "Range": 0,
+    "Damage Type": [ "Slashing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Two-Handed",
+    "Group": [ "Polearms" ],
+
+    "Cost": 14,
+    "Weight": 10,
+    "Description": "",
+    "Special": [
+      "Reach", "Trip",
+      "Like a glaive, the fauchard is a curved blade at the end of a pole, except the cutting edge is along the concave side."
+    ]
+  },
+  "Dire Flail": {
+    "Damage": [ "1d6/1d6", "1d8/1d8", "2d6/2d6" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Two-Handed",
+    "Group": [ "Flails", "Double" ],
+
+    "Cost": 90,
+    "Weight": 10,
+    "Description": "A dire flail consists of two spheres of spiked iron dangling from chains at opposite ends of a long haft.",
+    "Special": [
+      "Disarm", "Double", "Trip"
+    ]
+  },
+  "Flailpole": {
+    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Two-Handed",
+    "Group": [ "Flails", "Polearms" ],
+
+    "Cost": 15,
+    "Weight": 10,
+    "Description": "This is simply a heavy flail mounted on the end of a long polearm.",
+    "Special": [
+      "Disarm", "Reach", "Trip"
+    ]
+  },
+  "Flambard": {
+    "Damage": [ "1d8", "1d10", "2d8" ],
+    "Critical": "19/x2",
+    "Range": 0,
+    "Damage Type": [ "Slashing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Two-Handed",
+    "Group": [ "Heavy Blades" ],
+
+    "Cost": 50,
+    "Weight": 6,
+    "Description": "This two-handed sword has a wavy blade that is especially useful for cutting through wooden weapons.",
+    "Special": [
+      "Sunder",
+     "You get a +4 bonus on any sunder attempts against weapons with a wooden haft."
+    ]
+  },
+  "Flying Blade": {
+    "Damage": [ "1d10", "1d12", "3d6" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "Slashing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Two-Handed",
+    "Group": [ "Flails" ],
+
+    "Cost": 40,
+    "Weight": 12,
+    "Description": "A flying blade is a large, crescent-shaped blade anchored to a 10-foot chain.",
+    "Special": [
+      "Performance", "Reach",
+     "This weapon is clumsy and you get a -2 penalty on attack rolls.",
+     "If you are making an AoO provoked by movement, you get a +2 bonus on attack rolls instead of the -2.",
+     "You may also adjust the slack of the chain, using it either with or without reach, as a move action."
+    ]
+  },
+  "Garrote": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Slashing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Two-Handed",
+    "Group": [ "" ],
+
+    "Cost": 3,
+    "Weight": 1,
+    "Description": "",
+    "Special": [
+      "Grapple",
+     "In order to use a garrote, your opponent must be helpless or unaware of you.",
+     "You must make a grapple check (without the –4 penalty for not having two hands free) to garrot your opponent.",
+     "While garroted, your opponent must make a concentration check (DC 20 + your CMB + spell level) to cast a spell with a verbal component, use a command word item, or use any magic requiring speech.",
+     "You may also cut off your target's air supply with a swift action, forcing them to hold their breath. Any roud you do not maintain the choke, your opponent can take a breath and resart the Constitution checks."
+    ]
+  },
+ "Dwarven Giant-Sticker": {
+    "Damage": [ "1d8", "2d6", "3d6" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "Piercing", "Slashing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Two-Handed",
+    "Group": [ "Polearms" ],
+
+    "Cost": 25,
+    "Weight": 12,
+    "Description": "This heavy bladed spear is specifically designed for use against giants, who have long reach and the ability to soak up large amounts of damage.",
+    "Special": [
+      "Brace", "Reach"
+    ]
+  },
+  "Gnome Hooked Hammer": {
+    "Damage": [ "1d6/1d4", "1d8/1d6", "2d6/1d8" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning", "Piercing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Two-Handed",
+    "Group": [ "Double" ],
+
+    "Cost": 20,
+    "Weight": 6,
+    "Description": "A gnome hooked hammer is a double weapon — an ingenious tool with a hammer head at one end of its haft and a long, curved pick at the other.",
+    "Special": [
+      "Double", "Trip",
+     "The hammer’s blunt head is a bludgeoning weapon that deals 1d6 points of damage (crit ×3).",
+     "The hammer's hook is a piercing weapon that deals 1d4 points of damage (crit ×4)."
+    ]
+  },
+  "Harpoon": {
+    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Critical": "20/x3",
+    "Range": 10,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Two-Handed",
+    "Group": [ "Spears", "Thrown" ],
+
+    "Cost": 5,
+    "Weight": 16,
+    "Description": "A harpoon is a barbed spear with an attached rope 50 feet or less in length.",
+    "Special": [
+      "Grapple",
+      "If you are proficient in the harpoon, it is a grappling weapon, otherwise treat it as a spear.",
+      "A harpoon’s weight includes 10 pounds for the weight of 50 feet of hemp rope (this can be reduced by using shorter or lighter rope)."
+    ]
+  },
+   "Dwarven Longaxe": {
+    "Damage": [ "1d10", "1d12", "3d6" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "Slashing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Two-Handed",
+    "Group": [ "Axes", "Polearms" ],
+
+    "Cost": 0,
+    "Weight": 0,
+    "Description": "These ornate and heavy blades are mounted atop a long, steel-shod haft for greater reach.",
+    "Special": [
+      "Reach"
+    ]
+  },
+  "Dwarven Longhammer": {
+    "Damage": [ "1d10", "2d6", "3d6" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Two-Handed",
+    "Group": [ "Hammers", "Polearms" ],
+
+    "Cost": 70,
+    "Weight": 20,
+    "Description": "These heavy-headed bludgeons are often carved or cast with monstrous faces or drilled with tiny holes to create a menacing whistling as they are swung through the air.",
+    "Special": [
+      "Reach"
+    ]
+  },
+  "Mancatcher": {
+    "Damage": [ "1", "1d2", "1d3" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Two-Handed",
+    "Group": [ "Polearms" ],
+
+    "Cost": 15,
+    "Weight": 10,
+    "Description": "This polearm consists of two curved metal bands that close around a target when you attack, allowing you to bind an opponent.",
+    "Special": [
+      "Grapple", "Reach",
+      "A mancatcher is built to capture a creature of a particular size category and doesn’t work on creatures of the wrong size.",
+      "Make a touch attack to hit an opponent and a combat maneuver check to grapple him (without the –4 penalty for not having two hands free)."
+    ]
+  },
+  "Orc Skull Ram": {
+    "Damage": [ "1d8", "1d10", "2d8" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Two-Handed",
+    "Group": [ "Spears" ],
+
+    "Cost": 15,
+    "Weight": 20,
+    "Description": "This weapon consists of a wooden log with a shoulder strap to carry some of the weight.",
+    "Special": [
+      "On a successful critical hit with a skull ram, you can attempt a combat maneuver check to bull rush your opponent as a free action."
+    ]
+  },
+  "Gnome Piston Maul": {
+    "Damage": [ "1d8", "1d10", "2d8" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Two-Handed",
+    "Group": [ "Hammers" ],
+
+    "Cost": 70,
+    "Weight": 15,
+    "Description": "An alchemically fired piston in the head of this two-handed hammer strikes targets with astounding force.",
+    "Special": [
+      "Successful sunder attacks made with a piston maul deal an additional 4 points of damage.",
+      "A piston maul requires a thunderstone to function; otherwise, it functions as a greatclub.",
+      "Inserting a thunderstone into the weapon’s compartment is a standard action, and powers the weapon for 24 hours, after which the thunderstone is consumed."
+    ]
+  },
+  "Gnome Ripsaw Glaive": {
+    "Damage": [ "1d8", "1d10", "2d8" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "Slashing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Two-Handed",
+    "Group": [ "Polearms" ],
+
+    "Cost": 30,
+    "Weight": 12,
+    "Description": "The blade of this glaive is serrated and mounted on an axle, around which a heavy cord is wrapped.",
+    "Special": [
+      "Reach",
+      "You may pull the cord as a move action, spinning the blade for a number of rouds equal to your Strength bonus and granting a +2 bonus on damage rolls.",
+    ]
+  },
+   "Bladed Scarf": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Slashing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Two-Handed",
+    "Group": [ "Flails" ],
+
+    "Cost": 12,
+    "Weight": 2,
+    "Description": "One side of the scarf looks like a normal, brightly colored performance scarf, while the other side has a number of blades woven into it.",
+    "Special": [
+      "Disarm", "Trip",
+     "If you are proficient and wielding the scarf, you deal 1d4 slashing damage to any creatures that succeed a grapple check against you.",
+     "You may use Weapon Finesse with a bladed scarf, even though it isn't a light weapon."
+    ]
+  },
+   "Totem Spear": {
+    "Damage": [ "1d8", "1d10", "2d8" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "Piercing", "Slashing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Two-Handed",
+    "Group": [ "Spears" ],
+
+    "Cost": 25,
+    "Weight": 6,
+    "Description": "The shovel-like heads of these broad spears are decorated with variously oriented hollows allowing for musical performances.",
+    "Special": [
+      "A totem spear may be used by bards to create bardic music effects using Perform (Wind Instrument).",
+      "This spear also grants a +2 circumstance bonus on Acrobatics checks."
+    ]
+  },
+  "Dwarven Sphinx Hammer": {
+    "Damage": [ "1d8", "1d10", "2d8" ],
+    "Critical": "20/x3",
+    "Range": 20,
+    "Damage Type": [ "Bludgeoning" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Two-Handed",
+    "Group": [ "Hammers", "Thrown" ],
+
+    "Cost": 45,
+    "Weight": 8,
+    "Description": "The dwarven sphinx hammer is a long-handled hammer with a striking head that is artfully designed to look like a ram-headed criosphinx.",
+    "Special": []
+  },
+   "Switchscythe": {
+    "Damage": [ "1d6", "2d4", "2d6" ],
+    "Critical": "20/x4",
+    "Range": 0,
+    "Damage Type": [ "Piercing", "Slashing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Two-Handed",
+    "Group": [ "Heavy Blades" ],
+
+    "Cost": 18,
+    "Weight": 10,
+    "Description": "This scythe has a spring-loaded blade that folds down into the weapon’s handle.",
+    "Special": [
+      "Trip",
+      "Opening the scythe is a swift action, and closing it again is a standard action.",
+     "You can use Bluff or Sleight of Hand to treat a closed switchscythe as a hidden weapon; the apparatus can be disguised with 1 minute of work, which grants a +5 bonus on such checks."
+    ]
+  },
+   "Two-Bladed Sword": {
+    "Damage": [ "1d6/1d6", "1d8/1d8", "2d6/2d6" ],
+    "Critical": "19/x2",
+    "Range": 0,
+    "Damage Type": [ "Slashing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Two-Handed",
+    "Group": [ "Double", "Heavy Blades" ],
+
+    "Cost": 100,
+    "Weight": 10,
+    "Description": "Twin blades extend from either side of a central, short haft, allowing the wielder to attack with graceful but deadly flourishes.",
+    "Special": [
+      "Double"
+    ]
+  },
+   "Dwarven Urgrosh": {
+    "Damage": [ "1d6/1d4", "1d8/1d6", "2d6/1d8" ],
+    "Critical": "20/x3",
+    "Range": 0,
+    "Damage Type": [ "Piercing", "Slashing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Two-Handed",
+    "Group": [ "Double" ],
+
+    "Cost": 50,
+    "Weight": 12,
+    "Description": "A dwarven urgrosh is a double weapon — an axe head and a spear point on opposite ends of a long haft.",
+    "Special": [
+      "Brace", "Double",
+      "The axe head deals 1d8 slashing while the spear head deals 1d6 piercing."
+    ]
+  },
  
 
+"Darts, featherweight (10) 1 gp — — — — — — —",
+"Bola 5 gp 1d3 1d4 x2 10 ft. 2 lbs. B nonlethal, trip",
+"Bola, Brutal 15 gp 1d3 1d4 x2 10 ft. 2 lbs. B and P trip",
+"Boomerang 3 gp 1d4 1d6 x2 30 ft. 3 lbs. B —",
+"Bow, thorn 50 gp 1d4 1d6 x3 40 ft. 2 lbs. P —",
+"Crossbow, crank (heavy) 400 gp 1d8 1d10 19-20/x2 120 ft. 12 lbs. P —",
+"Crossbow, crank (light) 250 gp 1d6 1d8 19-20/x2 80 ft. 6 lbs. P —",
+"Crossbow, double 300 gp 1d6 1d8 19-20/x2 80 ft. 18 lbs. P —",
+"Crossbow, hand 100 gp 1d3 1d4 19-20/x2 30 ft. 2 lbs. P —",
+"Crossbow, launching 75 gp — — — 30 ft. 8 lbs. — see text",
+"Crossbow, repeating heavy 400 gp 1d8 1d10 19-20/x2 120 ft. 12 lbs. P —",
+"Crossbow, repeating light 250 gp 1d6 1d8 19-20/x2 80 ft. 6 lbs. P —",
+"Flask Thrower 25 gp — — — 20 ft. 4 lbs. — see text",
+"Grappling hook 6 gp 1d4 1d6 x2 10 ft. 14 lbs. P grapple",
+"Hornbow, orc 130 gp 1d8 2d6 ×3 80 ft. 7 lbs. P —",
+"Javelin, stormshaft 35 gp 1d4 1d6 ×2 30 ft. 3 lbs. P see text",
+"Lasso 1 sp — — — — 5 lbs. — see text",
+"Net 20 gp — — — 10 ft. 6 lbs. — —",
+"Net, snag 30 gp see text see text — 10 ft. 10 lbs. P trip, see text",
+"Pelletbow, Dwarven Heavy 75 gp 1d4 1d6 19-20/x3 60 ft. 8 lbs. B —",
+"Pelletbow, Dwarven Light 50 gp 1d3 1d4 19-20/x3 40 ft. 4 lbs. B —",
+"Shield, throwing +50 gp 1d4 1d6 x2 20 ft. — B performance, trip",
+"Shrillshaft javelin 35 gp 1d4 1d6 x2 30 ft. 3 lbs. P see text",
+"Shuriken (5) 1 gp 1 1d2 x2 10 ft. 1/2 lbs. P monk",
+"Sling, double 10 gp 1d3 1d4 x2 50 ft. 1 lb. B double, see text",
+"Sling glove 5 gp 1d3 1d4 x2 50 ft. 2 lbs. B —",
+"Sling staff, halfling 20 gp 1d6 1d8 x3 80 ft. 3 lbs. B —",
+"Sling, stitched — 1d4 1d6 x2 — 1 lb. B disarm, trip",
+"Wrist launcher 200 gp — — — 20 ft. 1 lb. P — PZO1134",
+"Wrist launcher, heavy 250 gp 1d3 1d4 19–20/x2 30 ft. 2 lbs. P —",
 
-"Axe, Orc Double 60 gp 1d6/1d6 1d8/1d8 x3 — 15 lbs. S double",
-"Axe, Butchering 65 gp 1d12 3d6 ×3 — 25 lbs. S see text",
-"Battle Ladder, gnome 20 gp 1d4/1d4 1d6/1d6 x2 — 8 lbs. B trip",
-"Boarding gaff 8 gp 1d4/1d4 1d6/1d6 x2 — 8 lbs. S double, reach, trip",
-"Chain-hammer 35 gp 1d4/1d4 1d6/1d6 ×2 20 ft. 8 lbs. B double, see text",
-"Chain, spiked 25 gp 1d6 2d4 x2 — 10 lbs. P disarm, trip",
-"Crook 1 gp 1d4 1d6 x2 — 5 lbs. B reach, trip",
-"Curve blade, elven 80 gp 1d8 1d10 18–20/x2 — 7 lbs. S —",
-"Dorn-Dergar, dwarven 50 gp 1d8 1d10 x2 — 15 lbs. B reach, see text",
-"Double spear 25 gp 1d6/1d6 1d8/1d8 ×3 — 12 lbs. P double",
-"Elven branched spear 20 gp 1d6 1d8 x3 — 10 lbs. P brace, reach",
-"Fauchard 14 gp 1d8 1d10 18-20/x2 — 10 lbs. S reach, trip",
-"Flail, dire 90 gp 1d6/1d6 1d8/1d8 x2 — 10 lbs. B disarm, double, trip",
-"Flailpole 15 gp 1d6 1d8 x2 — 10 lbs. B disarm, reach, trip",
-"Flambard 50 gp 1d8 1d10 19-20/x2 — 6 lbs. S sunder",
-"Flying blade 40 gp 1d10 1d12 x3 — 12 lbs. S performance, reach",
-"Garrote 3 gp 1d4 1d6 x2 — 1 lb. S grapple, see text",
-"Giant-Sticker, Dwarven 25 gp 1d8 2d6 x3 — 12 lbs. P or S brace, reach",
-"Hammer, Gnome hooked 20 gp 1d6/1d4 1d8/1d6 x3/x4 — 6 lbs. B or P double, trip",
-"Harpoon 5 gp 1d6 1d8 x3 10 ft. 16 lbs. P grapple",
-"Longaxe, dwarven 50 gp 1d10 1d12 x3 — 14 lbs. S reach",
-"Longhammer, dwarven 70 gp 1d10 2d6 x3 — 20 lbs. B reach",
-"Mancatcher 15 gp 1 1d2 x2 — 10 lbs. P grapple, reach, see text",
-"Orc skull ram 15 gp 1d8 1d10 x3 — 20 lbs. B reach",
-"Piston maul, gnome 70 gp 1d8 1d10 x2 — 15 lbs. B see text",
-"Ripsaw glaive, gnome 30 gp 1d8 1d10 x3 — 12 lbs. S reach, see text",
-"Scarf, bladed 12 gp 1d4 1d6 x2 — 2 lbs. S disarm, trip",
-"Spear, totem 25 gp 1d8 1d10 x3 10 ft. 6 lbs. P or S see text",
-"Sphinx Hammer, Dwarven 45 gp 1d8 1d10 x3 20 ft. 8 lbs. B —",
-"Switchscythe 18 gp 1d6 2d4 ×4 — 10 lbs. P or S trip",
-"Sword, two-bladed 100 gp 1d6/1d6 1d8/1d8 19-20/x2 — 10 lbs. S double",
-"Urgrosh, dwarven 50 gp 1d6/1d4 1d8/1d6 x3 — 12 lbs. P or S brace, double",
+"Ammunition": "",
+
+"Crossbow bolt(s), heavy/light/hand (10) 1 gp — — — — 1 lb. — —",
+"Crossbow bolt(s), repeating, heavy/light (5) 1 gp — — — — 1 lb. — —",
+"Little starstones (10) 5 cp 1 1 — — 2 lbs. B nonlethal",
+"Sharpstones (10) 1 gp 1d3 1d4 — — 5 lbs. P or S —",
+"Softstones (10) 1 sp — — — — 4 lbs. B nonlethal",
+"Spongestones (10) 10 gp — — — — 2 lbs. P —",
+"Thorn (20) 1 gp — — — — 1 lb. — —",
+
  
  
 
@@ -887,7 +1468,7 @@
     "Damage Type": [ "none" ],
 
     "Proficiency": "Exotic",
-    "Category": "Light",
+    "Category": "Ranged",
     "Group": [ "" ],
 
     "Cost": 0,
@@ -898,6 +1479,7 @@
     ]
   },
 
+"Weapon Finesse": "You may use Weapon Finesse with a   , even though it isn't a light weapon.",
 
   "Extras": {
     "Armor Spikes":  {
@@ -905,7 +1487,7 @@
       "critRange": 20,
       "critMultiplier": 2,
       "dmgType": [ "Piercing" ],
-      "category": "Light",
+      "category": "Extras",
       "group": [ "Close" ],
 
       "Cost": 50,
