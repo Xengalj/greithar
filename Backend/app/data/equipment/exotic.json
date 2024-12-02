@@ -1655,19 +1655,181 @@
       "Grapple"
     ]
   },
+  "Orc Hornbow": {
+    "Damage": [ "1d8", "2d6", "3d6" ],
+    "Critical": "20/x3",
+    "Range": 80,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Ranged",
+    "Group": [ "Bows" ],
+
+    "Cost": 130,
+    "Weight": 7,
+    "Description": "Larger even than a longbow, these bows are often made from the horns of great beasts.",
+    "Special": [
+     "Hornbows are composite bows that behave like other composite longbows with strength scores."
+    ]
+  },
+   "Stormshaft Javelin": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x2",
+    "Range": 30,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Ranged",
+    "Group": [ "Spears", "Thrown" ],
+
+    "Cost": 0,
+    "Weight": 0,
+    "Description": "This single-use javelin bears a thunderstone just behind the head.",
+    "Special": [
+      "On a hit, the creature takes damage as normal and is the center of the thunderstone's effect.",
+     "On a miss, roll to see where the javelin lands (as per splash weapons) and that is the center."
+    ]
+  },
+  "Lasso": {
+    "Damage": [ "0", "0", "0" ],
+    "Critical": "0",
+    "Range": 0,
+    "Damage Type": [ "none" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Ranged",
+    "Group": [ "Thrown" ],
+
+    "Cost": 0.1,
+    "Weight": 5,
+    "Description": "This thrown weapon is a length of rope with a simple open knot on one end that allows you to entangle a foe like you would using a net.",
+    "Special": [
+     "On a successful hit, the lasso tightens; to use it again you must spend a standard action sliding the knot to enlarge the loop.",
+     "An entangled creature can slip free with a successful DC 15 Escape Artist check as a full-round action.",
+     "Casting a spell while entangled with a lasso requires a concentration check DC 10 + Spell Level."
+    ]
+  },
+  "Net": {
+    "Damage": [ "0", "0", "0" ],
+    "Critical": "0",
+    "Range": 10,
+    "Damage Type": [ "none" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Ranged",
+    "Group": [ "Thrown" ],
+
+    "Cost": 20,
+    "Weight": 6,
+    "Description": "A net comprises threads or yarns knotted and twisted into a grid-like structure which blocks the passage of large items, while letting small items and fluids pass.",
+    "Special": [
+     "Using a net is a ranged touch attack with a maximum range of 10 feet, and the target is entangled on a successful hit.",
+     "You may restrict an entangled creature's movement with a successful opposed Strength check.",
+     "An entangled creature can slip free with a successful DC 20 Escape Artist check as a full-round action.",
+     "Casting a spell while entangled with a net requires a concentration check DC 15 + Spell Level.",
+     "A net must be folded to be thrown effectively, otherwise you take a -4 on attack rolls.",
+     "It takes 2 rounds to fold a net if you are proficient, or twice that if not."
+    ]
+  },
+  "Snag Net": {
+    "Damage": [ "1d", "1d", "1d" ],
+    "Critical": "0",
+    "Range": 10,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Ranged",
+    "Group": [ "Thrown" ],
+
+    "Cost": 30,
+    "Weight": 10,
+    "Description": "This short, wide net is covered in barbed loops and slipknots.",
+    "Special": [
+      "Trip",
+      "A snag net works the same as a typical net, but the concentration and Escape Artist DCs are 2 higher.",
+      "If you entangle an opponent and hold the trailing rope, instead of an attack you may make a trip maneuver, tripping or dealing 1 piercing damage to the opponent."
+    ]
+  },
+  "Dwarven Light Pelletbow": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "19/x3",
+    "Range": 40,
+    "Damage Type": [ "Bludgeoning" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Ranged",
+    "Group": [ "Crossbows" ],
+
+    "Cost": 50,
+    "Weight": 4,
+    "Description": "The dwarven pelletbow is a crossbowlike weapon that is loaded with and fires sling bullets rather than bolts.",
+    "Special": [
+      "A dwarven light pelletbow can be reloaded as a free action (allowing characters to attack with it multiple times in a round).",
+      "You may shoot (but not load) a pellet bow with one hand a -2 to hit."
+    ]
+  },
+   "Dwarven Heavy Pelletbow": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "19/x3",
+    "Range": 60,
+    "Damage Type": [ "Bludgeoning" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Ranged",
+    "Group": [ "Crossbows" ],
+
+    "Cost": 75,
+    "Weight": 8,
+    "Description": "The dwarven pelletbow is a crossbowlike weapon that is loaded with and fires sling bullets rather than bolts.",
+    "Special": [
+      "A dwarven light pelletbow can be reloaded as a free action (allowing characters to attack with it multiple times in a round).",
+      "You may shoot (but not load) a pellet bow with one hand a -2 to hit.",
+      "You may wield two heavy pellet bows as one-handed weapons (for Two-Weapon Fighting)."
+    ]
+  },
+   "Throwing Shield": {
+    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Critical": "20/x2",
+    "Range": 20,
+    "Damage Type": [ "Bludgeoning" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Ranged",
+    "Group": [ "" ],
+
+    "Cost": 50,
+    "Weight": 0,
+    "Description": "This shield is designed for throwing and has specially designed straps allowing you to unclasp and throw it as a free action.",
+    "Special": [
+      "Performance", "Trip",
+      "The stats given are for enhancing a shield into a throwing shield (cost is an additional 50 gp).",
+      "Neither a shield’s enhancement bonus to AC nor its shield spikes apply on your attack or damage rolls.",
+      "A throwing shield can’t be disarmed."
+    ]
+  },
+  "Double Sling": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "20/x2",
+    "Range": 50,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Ranged",
+    "Group": [ "Thrown" ],
+
+    "Cost": 10,
+    "Weight": 1,
+    "Description": "At first glance this weapon resembles a baton-like stick with a sling dangling from each end.",
+    "Special": [
+     "You can use a double sling as a normal sling, or use the second end for Two-Weapon Fighting (as if it had Double).",
+     "Reloading one end of a double sling is a move action that provokes Attacks of Opportunity.",
+     "You may hurl ordinary stones instead of bullets, dealing damage as one size category smaller and taking a -1 to hit."
+    ]
+  },
+ 
 
 
- "Hornbow, orc 130 gp 1d8 2d6 ×3 80 ft. 7 lbs. P —",
-"Javelin, stormshaft 35 gp 1d4 1d6 ×2 30 ft. 3 lbs. P see text",
-"Lasso 1 sp — — — — 5 lbs. — see text",
-"Net 20 gp — — — 10 ft. 6 lbs. — —",
-"Net, snag 30 gp see text see text — 10 ft. 10 lbs. P trip, see text",
-"Pelletbow, Dwarven Heavy 75 gp 1d4 1d6 19-20/x3 60 ft. 8 lbs. B —",
-"Pelletbow, Dwarven Light 50 gp 1d3 1d4 19-20/x3 40 ft. 4 lbs. B —",
-"Shield, throwing +50 gp 1d4 1d6 x2 20 ft. — B performance, trip",
-"Shrillshaft javelin 35 gp 1d4 1d6 x2 30 ft. 3 lbs. P see text",
-"Shuriken (5) 1 gp 1 1d2 x2 10 ft. 1/2 lbs. P monk",
-"Sling, double 10 gp 1d3 1d4 x2 50 ft. 1 lb. B double, see text",
+
 "Sling glove 5 gp 1d3 1d4 x2 50 ft. 2 lbs. B —",
 "Sling staff, halfling 20 gp 1d6 1d8 x3 80 ft. 3 lbs. B —",
 "Sling, stitched — 1d4 1d6 x2 — 1 lb. B disarm, trip",
@@ -1709,11 +1871,20 @@
     "Weight": 0,
     "Description": "These extremely small and lightweight darts function like blowgun darts, except they are used to deliver poisons surreptitiously instead of dealing damage.",
     "Special": [
+     pack of 10
       "Any amount of damage reduction, hardness or similar prevents the dart from delivering its poison.",
      "Finding the puncture wound requires a DC 20 Percetion check, and finding the dart on the ground after a shot requires a DC 15 Percetion check.",
      "This ammunition can be used in both blowguns and wrist launchers."
     ]
   },
+ "Shuriken (5) 1 gp 1 1d2 x2 10 ft. 1/2 lbs. P monk",
+ Weapon Groups monk, thrown
+Special monk
+A shuriken is a small piece of metal with sharpened edges, designed for throwing.
+
+A shuriken can’t be used as a melee weapon.
+Although they are thrown weapons, shuriken are treated as ammunition for the purposes of drawing them and crafting masterwork or otherwise special versions of them, and of what happens to them after they are thrown.
+
 "Crossbow bolt(s), heavy/light/hand (10) 1 gp — — — — 1 lb. — —",
 "Crossbow bolt(s), repeating, heavy/light (5) 1 gp — — — — 1 lb. — —",
 "Little starstones (10) 5 cp 1 1 — — 2 lbs. B nonlethal",
