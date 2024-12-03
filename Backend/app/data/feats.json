@@ -19,7 +19,7 @@
     "benefit": "You can create a scroll of any spell that you know. See magic item creation rules for more information.",
     "abilities": []
   },
-  "Craft Poppet" {
+  "Craft Poppet": {
     "type": "Creation",
     "prerequisites": [ "Caster Level:1" ],
     "description": "Some construct builders learn their art by creating poppets.",
@@ -153,7 +153,6 @@
     "benefit": "Once per round when your mount is hit in combat, you may attempt a Ride check to negate the hit (DC is equal to the attack roll).",
     "abilities": []
   },
-
   "Power Attack": {
     "type": "Combat",
     "prerequisites": [ "Str:13", "BAB:1" ],
@@ -201,7 +200,6 @@
     "benefit": "With a light weapon, elven curve blade, rapier, whip, or spiked chain made for a creature of your size category, you may use your Dexterity modifier instead of your Strength modifier on attack rolls.",
     "abilities": []
   },
-
   "Point-Blank Shot": {
     "type": "Combat",
     "prerequisites": [],
@@ -242,7 +240,6 @@
       }
     ]
   },
-
   "Combat Casting": {
     "type": "General",
     "prerequisites": [],
@@ -270,8 +267,9 @@
     ]
   },
 
+  
 
-  "BAB: +6": "NEW SECTION",
+  
   "Vital Strike": {
     "type": "Combat",
     "prerequisites": [ "BAB:6" ],
@@ -308,12 +306,70 @@
   },
 
 
-  "CLASS": "NEW SECTION",
-  "Natural Spell": "Druid
 
-natural spell - cast spells in wildshape (druid)
-selective channel - choose who is effected (cleric / paladin)
-  Versatile Channeler - You can choose to channel positive and negative energy. (-2 efective CL)
-Sorcerous Bloodstrike - reduce enemy to 0, regain a bloodline power use (sorcerer)
 
+
+  "Raging Vitality": {
+    "type": "General",
+    "prerequisites": [ "Con:15", "Rage Class Feature" ],
+    "description": "While raging, you are full of vigor and health.",
+    "benefit": "Whenever you are raging, the morale bonus to your Constitution increases by +2. Your rage does not end if you become unconscious. While unconscious you must still expend rounds of rage per day each round.",
+    "abilities": []
+  },
+  "Lingering Performance": {
+    "type": "General",
+    "prerequisites": [ "Bardic Performance Class Feature" ],
+    "description": "The effects of your bardic performance carry on, even after you have stopped performing.",
+    "benefit": "The bonuses and penalties from your bardic performance continue for 2 rounds after you cease performing, as long as all other requirements are still met.",
+    "abilities": []
+  },
+  "Selective Channeling": {
+    "type": "General",
+    "prerequisites": [ "Cha:13", "Channel Energy Class Feature" ],
+    "description": "You can choose whom to affect when you channel energy.",
+    "benefit": "When you channel energy, you can choose a number of targets in the area up to your Charisma modifier. These targets are not affected by your channeled energy.",
+    "abilities": []
+  },
+  "Natural Spell": {
+    "type": "General",
+    "prerequisites": [ "Wis:13", "Wild Shape Class Feature" ],
+    "description": "You can cast spells even while in a form that cannot normally cast spells.",
+    "benefit": "You can complete the verbal and somatic components of spells while using wild shape. You substitute various noises and gestures for the normal verbal and somatic components of a spell. You can also use any material components or focuses you possess, even if such items are melded within your current form.",
+    "abilities": []
+  },
+  "Bleeding Attack": {
+    "type": "Combat",
+    "prerequisites": [ "Improved Unarmed Strike" ],
+    "description": "Your unarmed strikes cause your opponent to bleed.",
+    "benefit": "When you damage an opponent with an unarmed strike, you deal an extra 1d4 bleed damage.",
+    "abilities": []
+  },
+  "Word of Healing": {
+    "type": "General",
+    "prerequisites": [ "Lay on Hands Class Feature." ],
+    "description": "Using the same divine energy as your lay on hands ability, you can heal others at a distance.",
+    "benefit": "You may use your lay on hands to heal another creature at a range of 30 feet as a standard action that does not provoke an attack of opportunity. You must be able to speak and have a free hand to use this ability. The target heals half the amount they would have healed if you had touched them, but gains the benefits of your mercies as normal.",
+    "abilities": []
+  },
+  "Diehard": {
+    "type": "General",
+    "prerequisites": [ "Endurance" ],
+    "description": "Not only do your wounds automatically stabilize when grievously injured, but you can remain conscious and continue to act even at death’s door.",
+    "benefit": "When your hit point total is below 0, but you are not dead, you automatically stabilize, and you do not need to make a Constitution check each round to avoid losing additional hit points.",
+    "abilities": []
+  },
+  "Sorcerous Bloodstrike": {
+    "type": "General",
+    "prerequisites": [ "Cha:13", "Sorcerer Bloodline Class Feature" ],
+    "description": "You can regain power when you kill a creature.",
+    "benefit": "Once per day, as an immediate action upon reducing a creature to 0 or fewer hit points with one of your sorcerer spells, you can regain one usage of a sorcerer bloodline power that has a limited number of uses per day. The slain creature must have at least half as many Hit Dice as your sorcerer level.",
+    "abilities": []
+  },
+  "Improved Familiar": {
+    "type": "General",
+    "prerequisites": [ "Ability to aquire a new familiar" ],
+    "description": "This feat allows you to acquire a powerful familiar, but only when you could normally acquire a new familiar.",
+    "benefit": "When choosing a familiar, you may choose from the listed creatures (on the wiki).",
+    "abilities": []
+  }
 }
