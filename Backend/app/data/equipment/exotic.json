@@ -1826,37 +1826,78 @@
      "You may hurl ordinary stones instead of bullets, dealing damage as one size category smaller and taking a -1 to hit."
     ]
   },
- 
-
-
-
-"Sling glove 5 gp 1d3 1d4 x2 50 ft. 2 lbs. B —",
-"Sling staff, halfling 20 gp 1d6 1d8 x3 80 ft. 3 lbs. B —",
-"Sling, stitched — 1d4 1d6 x2 — 1 lb. B disarm, trip",
-"Wrist launcher 200 gp — — — 20 ft. 1 lb. P — PZO1134",
-"Wrist launcher, heavy 250 gp 1d3 1d4 19–20/x2 30 ft. 2 lbs. P —",
-
-
-  "Test": {
-    "Damage": [ "1d", "1d", "1d" ],
+   "Sling Glove": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
     "Critical": "20/x2",
-    "Range": 0,
-    "Damage Type": [ "none" ],
+    "Range": 50,
+    "Damage Type": [ "Bludgeoning" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Ranged",
+    "Group": [ "Thrown" ],
+
+    "Cost": 5,
+    "Weight": 2,
+    "Description": "This curved, scooped-shaped, 2-foot-long wicker basket attaches to your wrist, allowing you to throw fist-sized stones at great speed merely by whipping your arm forward.",
+    "Special": [
+      "You may load a sling glove as a free action as long as you have a free hand.",
+      "You take a -4 when throwing a stone at an adjacent target."
+    ]
+  },
+   "Halfling Sling Staff": {
+    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Critical": "20/x3",
+    "Range": 80,
+    "Damage Type": [ "Bludgeoning" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Ranged",
+    "Group": [ "Thrown" ],
+
+    "Cost": 20,
+    "Weight": 3,
+    "Description": "Made from a specially designed sling attached to a short club, a halfling sling staff can be used by a proficient wielder to devastating effect.",
+    "Special": [
+      "You can fire, but not load, a halfling sling staff with one hand.",
+     "Loading a halfling sling staff is a move action that requires two hands and provokes attacks of opportunity.",
+      "You can hurl ordinary stones with a halfling sling staff, but they deal damage as one size category smaller and you take a -1 to hit."
+    ]
+  },
+  "Wrist Launcger": {
+    "Damage": [ "0", "0", "0" ],
+    "Critical": "0",
+    "Range": 20,
+    "Damage Type": [ "Piercing" ],
 
     "Proficiency": "Exotic",
     "Category": "Ranged",
     "Group": [ "" ],
 
-    "Cost": 0,
-    "Weight": 0,
-    "Description": "",
+    "Cost": 200,
+    "Weight": 1,
+    "Description": "This slender tube is strapped to one forearm and designed to be concealed beneath the sleeve, where the wielder can fire a featherweight dart with a twist of the wrist.",
     "Special": [
-      ""
+      "Reloading and re-cocking (with a separate ramrod) the wrist launcher is a full-round action.",
+      "After firing, the wearer can attempt a Sleight of Hand check opposed by opponents’ Perception checks to keep the wrist launcher concealed."
     ]
+  },
+  "Heavy Wrist Launcger": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "19/x2",
+    "Range": 30,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Ranged",
+    "Group": [ "" ],
+
+    "Cost": 250,
+    "Weight": 2,
+    "Description": "This slender tube is strapped to one forearm and designed to be concealed beneath the sleeve, where the wielder can fire a crossbow bolt with a twist of the wrist.",
+    "Special": []
   },
 
  
-"Ammunition": "",
 "Featherweight Darts": {
     "Damage": [ "0", "0", "0" ],
     "Critical": "0",
@@ -1868,72 +1909,122 @@
     "Group": [ "Misc" ],
 
     "Cost": 0.1,
-    "Weight": 0,
+    "Weight": 0.01,
     "Description": "These extremely small and lightweight darts function like blowgun darts, except they are used to deliver poisons surreptitiously instead of dealing damage.",
     "Special": [
-     pack of 10
       "Any amount of damage reduction, hardness or similar prevents the dart from delivering its poison.",
      "Finding the puncture wound requires a DC 20 Percetion check, and finding the dart on the ground after a shot requires a DC 15 Percetion check.",
-     "This ammunition can be used in both blowguns and wrist launchers."
+     "This ammunition can be used in both blowguns and wrist launchers.",
+     "Featherweight darts come in a pack of 10, with the listed price and weight given for a single dart."
     ]
   },
- "Shuriken (5) 1 gp 1 1d2 x2 10 ft. 1/2 lbs. P monk",
- Weapon Groups monk, thrown
-Special monk
-A shuriken is a small piece of metal with sharpened edges, designed for throwing.
-
-A shuriken can’t be used as a melee weapon.
-Although they are thrown weapons, shuriken are treated as ammunition for the purposes of drawing them and crafting masterwork or otherwise special versions of them, and of what happens to them after they are thrown.
-
-"Crossbow bolt(s), heavy/light/hand (10) 1 gp — — — — 1 lb. — —",
-"Crossbow bolt(s), repeating, heavy/light (5) 1 gp — — — — 1 lb. — —",
-"Little starstones (10) 5 cp 1 1 — — 2 lbs. B nonlethal",
-"Sharpstones (10) 1 gp 1d3 1d4 — — 5 lbs. P or S —",
-"Softstones (10) 1 sp — — — — 4 lbs. B nonlethal",
-"Spongestones (10) 10 gp — — — — 2 lbs. P —",
-"Thorn (20) 1 gp — — — — 1 lb. — —",
-
-
-  "Test": {
-    "Damage": [ "1d", "1d", "1d" ],
+   "Shuriken": {
+    "Damage": [ "1", "1d2", "1d3" ],
     "Critical": "20/x2",
+    "Range": 10,
+    "Damage Type": [ "Piercing" ],
+
+    "Proficiency": "Exotic",
+    "Category": "Ammunition",
+    "Group": [ "Thrown", "Monk" ],
+
+    "Cost": 1,
+    "Weight": 0.05,
+    "Description": "A shuriken is a small piece of metal with sharpened edges, designed for throwing.",
+    "Special": [
+      "Monk"
+    ]
+  },
+  "Crossbow Bolts": {
+ 		"Damage": ["1d3", "1d4", "1d6"],
+	 	"Critical": "20/x2",
+	 	"Range": 0,
+	 	"Damage Type": [ "Piercing" ],
+
+		"Proficiency": "Martial",
+		"Category": "Ammunition",
+		"Group": [ "" ],
+
+		"Cost": 0.1,
+		"Weight": 0.1,
+		"Description": "Typically shorter than an arrow, a crossbow bolt is a dart-like projectile.",
+		"Special": [
+			"You may use a crossbow bolt as a melee weapon, taking a -4 on attack rolls.",
+			"Bolts usually come in a case or quiver that holds 10 (price & weight listed for 1 bolt).",
+   "Bolts for a repeating crossbow come in a case of 5 (each bolt costs and weighs 0.2)."
+		]
+	},
+  "Little Starstones": {
+ 		"Damage": ["1", "1", "1"],
+	 	"Critical": "0",
+	 	"Range": 0,
+	 	"Damage Type": [ "Bludgeoning", "Nonlethal" ],
+
+		"Proficiency": "Martial",
+		"Category": "Ammunition",
+		"Group": [ "" ],
+
+		"Cost": 0.005,
+		"Weight": 0.2,
+		"Description": "Though they are technically sling ammunition, these thread- or cloth-wrapped pebbles are mainly used for signaling or celebration rather than battle, as they barely hit hard enough to sting.",
+		"Special": [
+			"When soaked in oil or strong alcohol, they burn brightly for 1 round, illuminating an area like a candle and creating brief streaks of light as they fly through the air.",
+   "Starstones come in a pack of 10 (price & weight listed for 1 stone)."
+		]
+	},
+  "Sharpstones": {
+    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Critical": "0",
     "Range": 0,
-    "Damage Type": [ "none" ],
+    "Damage Type": [ "Piercing", "Slashing" ],
 
     "Proficiency": "Exotic",
     "Category": "Ammunition",
     "Group": [ "" ],
 
-    "Cost": 0,
-    "Weight": 0,
-    "Description": "",
+    "Cost": 0.1,
+    "Weight": 0.5,
+    "Description": "A thin layer of baked clay covers the spikes and jagged ridges covering this specially designed bullet.",
     "Special": [
-      ""
+      "A proficient user knows how to crack the clay (a free action) so that it peels off from either the spikes or ridges when fired, dealing either piercing or slashing damage.",
+      "Sharpstones come in a pack of 10 (price & weight listed for 1 stone)."
     ]
   },
- 
+  "Softstones": {
+    "Damage": [ "0", "0", "0" ],
+    "Critical": "0",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning", "Nonlethal" ],
 
-"Weapon Finesse": "You may use Weapon Finesse with a   , even though it isn't a light weapon.",
+    "Proficiency": "Exotic",
+    "Category": "Ammunition",
+    "Group": [ "" ],
 
- 
-  "Extras": {
-    "Armor Spikes":  {
-      "Damage": [ "1d4", "1d6", "1d8" ],
-      "critRange": 20,
-      "critMultiplier": 2,
-      "dmgType": [ "Piercing" ],
-      "category": "Extras",
-      "group": [ "Close" ],
+    "Cost": 0.01,
+    "Weight": 0.4,
+    "Description": "These tight bundles of elastic fibers deal nonlethal damage when fired from a sling.",
+    "Special": [
+      "Softstones come in a pack of 10 (price & weight listed for 1 stone)."
+    ]
+  },
+   "Spongestones": {
+    "Damage": [ "0", "0", "0" ],
+    "Critical": "0",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
 
-      "Cost": 50,
-      "Weight": 10,
-      "Description": "",
-      "Special": [
-        "The cost and wieght of armor spikes is added to the base armor",
-        "Adding spikes to your armor or shield allows you to deal extra damage on a successful grapple attack (-4 CMB if you are not proficient with martial weapons).",
-        "You can also make a standard melee attack (or off-hand attack) with the spikes, and they count as a light weapon in this case."
-        ]
-      }
+    "Proficiency": "Exotic",
+    "Category": "Ammunition",
+    "Group": [ "" ],
 
+    "Cost": 1,
+    "Weight": 0.2,
+    "Description": "These bullets are actually made from a porous stone or heavy wood that absorbs liquids and shatters on impact.",
+    "Special": [
+     "Soakstones are often used to deliver poison or burning oil, with a single flask of oil completely saturating 10 soakstones.",
+     "When ignited (a free action if fire is available), a burning, oil-soaked soakstone deals +1d2 fire damage and can ignite combustible materials (such as a thatched roof ).",
+     "Allowing a soakstone to burn in a sling’s cup for more than 1d3 rounds gives the sling the broken condition.",
+      "Spongestones come in a pack of 10 (price & weight listed for 1 stone)."
+    ]
   }
 }
