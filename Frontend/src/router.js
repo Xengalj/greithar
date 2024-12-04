@@ -64,12 +64,6 @@ const routes = [
       title: "Admin",
     },
   },
-  {
-    path: "/mod",
-    name: "moderator",
-    // lazy-loaded
-    component: () => import("./components/auth/BoardModerator.vue"),
-  },
 
 
 

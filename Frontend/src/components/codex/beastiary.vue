@@ -193,14 +193,6 @@ export default {
         this.allMonsters = response;
         this.tableData = this.allMonsters;
         this.loading = false;
-
-        for ( const mon of response ) {
-          if (mon.HD.split(';')[1]) {
-            console.log('true');
-            console.log(mon.HD, mon.Name);
-          }
-        }
-
       })
       .catch(err => { console.error(err); });
     },
