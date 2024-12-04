@@ -1,8 +1,11 @@
 <template>
   <div class="container">
-
-    Vectors and icons by <a href="https://www.svgrepo.com" target="_blank">SVG Repo</a>
-    Built by Xengalj
+    <div>
+      Vectors and icons by <a href="https://www.svgrepo.com" target="_blank">SVG Repo</a>
+    </div>
+    <div>
+      Site built by Xengalj, rules provided by d20pfsrd.com
+    </div>
 
   </div>
 </template>

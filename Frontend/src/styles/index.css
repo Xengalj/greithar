@@ -55,8 +55,10 @@ Dark/Mixed - 600: For on background texts color */
 *          COLORS           *
 *                           *
 \***************************/
+
 .dark body {
   background-color: var(--el-bg-color-page);
+  color: var(--el-text-color-primary);
 }
 
 

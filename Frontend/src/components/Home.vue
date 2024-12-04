@@ -1,8 +1,72 @@
 <template>
   <div class="container">
-    <header class="jumbotron">
-      <h3>{{ content }}</h3>
-    </header>
+
+    <h3>Welcome to Greiðar!</h3>
+
+    <div>
+      This site was built by Xengalj to help facilitate games run with Pathfinder First Edition. This site is meant to be used for quick refrences and to help sort through the huge amounts of data with sortable tables. That being said, not all rules have been included here to help streamline the site.
+      Your DM is still the final arbiter of all rules.
+    </div>
+
+    <el-divider>
+      <g-icon iconSize="24px" iconName="rolledScroll" />
+    </el-divider>
+
+    <el-row class="center-horz" justify="space-between">
+      <el-col :span="6">
+        Rules
+      </el-col>
+      <el-col :span="6">
+        Lore
+      </el-col>
+      <el-col :span="6">
+        Tables
+      </el-col>
+      <el-col :span="6">
+        Site Info
+      </el-col>
+    </el-row>
+
+
+    <el-row class="center-horz" justify="space-between">
+      <el-col :span="6">
+        <router-link to="/equipment" class="nav-link">
+          <el-button type="primary">
+            <g-icon iconSize="24px" iconName="lockedBook" /> Rules (WIP)
+          </el-button>
+        </router-link>
+      </el-col>
+
+      <el-col :span="6">
+        <router-link to="/equipment" class="nav-link">
+          <el-button type="primary">
+            <g-icon iconSize="24px" iconName="openScroll" /> Lore (WIP)
+          </el-button>
+        </router-link>
+      </el-col>
+
+      <el-col :span="6">
+        <router-link to="/equipment" class="nav-link">
+          <el-button type="primary">
+            <g-icon iconSize="24px" iconName="inventory" /> Equipment
+          </el-button>
+        </router-link>
+        <router-link to="/beastiary" class="nav-link">
+          <el-button type="primary">
+            <g-icon iconSize="24px" iconName="dragon" /> Beastiary
+          </el-button>
+        </router-link>
+      </el-col>
+
+      <el-col :span="6">
+        <router-link to="/about" class="nav-link">
+          <el-button type="primary">
+            <g-icon iconSize="24px" iconName="openBook" /> About
+          </el-button>
+        </router-link>
+      </el-col>
+    </el-row>
+
   </div>
 </template>
 
@@ -36,3 +100,9 @@ export default {
   },
 };
 </script>
+
+<style media="screen">
+svg {
+  margin: 5px;
+}
+</style>
