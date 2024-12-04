@@ -17,7 +17,7 @@
         </el-form-item>
         <el-form-item label="Roles">
           <el-select v-model="user.roles" prop="roles" multiple disabled >
-            <el-option v-for="role in user.roles" :key="role.id" :label="role.name" :value="role.name" />
+            <el-option v-for="role in user.roles" :key="role" :label="role" :value="role" />
           </el-select>
         </el-form-item>
 
@@ -78,7 +78,13 @@ export default {
       UserService.getUser(this.$route.params.id)
       .then(response => {
         for(const [key, value] of Object.entries(response.data)) {
-          this.user[key] = value;
+          if (key == "roles") {
+            for (let role of value) {
+              this.user['roles'].push(role.name);
+            }
+          } else {
+            this.user[key] = value;
+          }
         }
       })
       .catch(err => {
@@ -91,7 +97,13 @@ export default {
       UserService.getUser(this.currentUser.id)
       .then(response => {
         for(const [key, value] of Object.entries(response.data)) {
-          this.user[key] = value;
+          if (key == "roles") {
+            for (let role of value) {
+              this.user['roles'].push(role.name);
+            }
+          } else {
+            this.user[key] = value;
+          }
         }
       })
       .catch(err => {

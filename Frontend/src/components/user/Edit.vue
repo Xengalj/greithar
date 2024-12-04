@@ -129,7 +129,13 @@ export default {
       UserService.getUser(this.$route.params.id)
       .then(response => {
         for(const [key, value] of Object.entries(response.data)) {
-          this.user[key] = value;
+          if (key == "roles") {
+            for (let role of value) {
+              this.user['roles'].push(role.name);
+            }
+          } else {
+            this.user[key] = value;
+          }
         }
       })
       .catch(err => {
@@ -145,6 +151,7 @@ export default {
         if (valid) {
           UserService.updateUser(this.user)
           .then(response => {
+            console.log(response);
             this.$message({ message: `${response.username} updated sucessfully`, type: 'success' });
             let faveColor = "--el-color-primary: " + response.usermeta.faveColor + " !important";
             document.documentElement.style.cssText = faveColor;
