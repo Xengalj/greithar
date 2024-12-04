@@ -1,7 +1,5 @@
 {
-
- 
- "Aklys": {
+  "Aklys": {
     "Damage": [ "1d4", "1d6", "1d8" ],
     "Critical": "20/x2",
     "Range": 20,
@@ -15,8 +13,8 @@
     "Weight": 2,
     "Description": "The aklys is a hooked throwing club with a 20-foot-long cord, usually of woven leather.",
     "Special": [
-     "You may retrieve a thrown aklys with the atached cord as a move action.",
-     "Performance", "Trip"
+      "You may retrieve a thrown aklys with the atached cord as a move action.",
+      "Performance", "Trip"
     ]
   },
   "Dwarven Light Axe-Gauntlet": {
@@ -33,8 +31,8 @@
     "Weight": 5,
     "Description": "An axe-gauntlet is a locked gauntlet covering the hand and forearm up to and over the elbow, with an axe blade built around the gauntlet’s permanently closed fist.",
     "Special": [
-     "Donning an axe-gauntlet is a full-round action, and you get a +10 bonus to CMD vs disarm attempts.",
-     "Blocking", "Disarm"
+      "Donning an axe-gauntlet is a full-round action, and you get a +10 bonus to CMD vs disarm attempts.",
+      "Blocking", "Disarm"
     ]
   },
   "Knuckle Axe": {
@@ -70,11 +68,11 @@
     "Weight": 5,
     "Description": "A barbazu beard is a helm with a full facemask and razor-sharp blade extending from the chin.",
     "Special": [
-     "A barbazu beard can be used as an off-hand weapon that requires no hands to use.",
-     "Atacking with a barbazu beard provokes attacks of opportunity."
+      "A barbazu beard can be used as an off-hand weapon that requires no hands to use.",
+      "Atacking with a barbazu beard provokes attacks of opportunity."
     ]
   },
- "Battle Poi": {
+  "Battle Poi": {
     "Damage": [ "1d3", "1d4", "1d6" ],
     "Critical": "20/x2",
     "Range": 0,
@@ -88,9 +86,9 @@
     "Weight": 2,
     "Description": "",
     "Special": [
-     "Poi are too light to deal physical weapon damage, but they instead deal fire damage when lit.",
-     "Poi can be extinguished by spending a full round action smothering them in sand or submerging them in water.",
-     "If you are proficient with battle poi, you are treated as if you have the Two-Weapon Fighting feat when using poi."
+      "Poi are too light to deal physical weapon damage, but they instead deal fire damage when lit.",
+      "Poi can be extinguished by spending a full round action smothering them in sand or submerging them in water.",
+      "If you are proficient with battle poi, you are treated as if you have the Two-Weapon Fighting feat when using poi."
     ]
   },
   "Swordbreker Dagger": {
@@ -162,9 +160,9 @@
     "Weight": 1,
     "Description": "One end of this short rope has a sling bullet wrapped in a monkey’s fist knot, and the other end is tied in a small loop.",
     "Special": [
-     "Wrapping or removing the loop from your wrist is a full-round action.",
-     "If attached and you drop the rope-shot (or are disarmed), you can recover it as a swift action.",
-     "You get a +2 bonus on Sleight of Hand chacks to conceal a rope-shot and Halflings treat rope-shots as martial weapons.",
+      "Wrapping or removing the loop from your wrist is a full-round action.",
+      "If attached and you drop the rope-shot (or are disarmed), you can recover it as a swift action.",
+      "You get a +2 bonus on Sleight of Hand chacks to conceal a rope-shot and Halflings treat rope-shots as martial weapons.",
       "Disarm"
     ]
   },
@@ -217,7 +215,7 @@
     "Description": "A butterfly knife has a blade concealed between two halves of the handle that can be brought to bear quickly.",
     "Special": [
       "You may open a butterfly knife as a move action, or as a free action if you have proficincy (or the Quick Draw feat).",
-     "When closed, you gain a +2 bonus on Sleight of Hand checks made to conceal it on your body."
+      "When closed, you gain a +2 bonus on Sleight of Hand checks made to conceal it on your body."
     ]
   },
   "Deer Horn Knife": {
@@ -252,7 +250,7 @@
     "Description": "This versatile weapon appears like a heavy-headed axe, but a skilled wielder can strike equally well with its chopping edge as with the forged sledge that backs the blade.",
     "Special": []
   },
-   "Nunchaku": {
+  "Nunchaku": {
     "Damage": [ "1d4", "1d6", "1d8" ],
     "Critical": "20/x2",
     "Range": 0,
@@ -264,10 +262,9 @@
 
     "Cost": 2,
     "Weight": 2,
-    "Description": "A nunchaku is made up of two wooden or metal bars connected by a small length of rope or chain."
+    "Description": "A nunchaku is made up of two wooden or metal bars connected by a small length of rope or chain.",
     "Special": [
-      "Disarm", "Monk",
-     
+      "Disarm", "Monk"
     ]
   },
   "Quadrens": {
@@ -331,7 +328,7 @@
 
     "Proficiency": "Exotic",
     "Category": "Light",
-    "Group": [ "Light Blades" ],
+    "Group": [ "Light Blades", "Heavy Blades" ],
 
     "Cost": 35,
     "Weight": 2,
@@ -358,7 +355,7 @@
       "When wielding a sai, you get a +2 bonus on combat maneuver checks to sunder an enemy’s weapon."
     ]
   },
-   "Sanpkhang": {
+  "Sanpkhang": {
     "Damage": [ "1d3", "1d4", "1d6" ],
     "Critical": "19/x2",
     "Range": 0,
@@ -425,7 +422,7 @@
       "You can attack with these bracers even while holding objects in your hands."
     ]
   },
-   "Dwarven War-Shield": {
+  "Dwarven War-Shield": {
     "Damage": [ "1d4", "1d6", "1d8" ],
     "Critical": "20/x2",
     "Range": 0,
@@ -458,7 +455,7 @@
     "Weight": 2,
     "Description": "Also known as a “scorpion’s tail” due to its unique, stinger-like shape, this short, double-curved blade has no hilt but features a knuckle guard.",
     "Special": [
-     "You gain a +2 bonus to your CMD against disarm attempts made to disarm you of a waveblade."
+      "You gain a +2 bonus to your CMD against disarm attempts made to disarm you of a waveblade."
     ]
   },
   "Scorpion Whip": {
@@ -478,8 +475,7 @@
       "Disarm", "Performance", "Reach", "Trip"
     ]
   },
-
-   "Dwarven Heavy Axe-Gauntlet": {
+  "Dwarven Heavy Axe-Gauntlet": {
     "Damage": [ "1d6", "1d8", "2d6" ],
     "Critical": "20/x3",
     "Range": 0,
@@ -495,7 +491,7 @@
     "Special": [
       "Blocking", "Disarm",
       "An axe-gauntlet takes a full-round action to don, and it gives you a +10 bonus to your CMD against disarm attempts.",
-     "You can’t use the hand on which an axe-gauntlet is worn for anything else."
+      "You can’t use the hand on which an axe-gauntlet is worn for anything else."
     ]
   },
   "Hooked Axe": {
@@ -515,7 +511,7 @@
       "Disarm", "Performance", "Trip"
     ]
   },
-   "Broken-Back Seax": {
+  "Broken-Back Seax": {
     "Damage": [ "1d8", "1d10", "2d8" ],
     "Critical": "19/x2",
     "Range": 0,
@@ -635,7 +631,7 @@
       "You gain a +1 on ranged attack rolls with a knobkerrie against opponents using shields (except tower shields)."
     ]
   },
-   "Dwarven Ram Hammer": {
+  "Dwarven Ram Hammer": {
     "Damage": [ "1d6", "1d8", "2d6" ],
     "Critical": "20/x3",
     "Range": 10,
@@ -650,7 +646,7 @@
     "Description": "The dwarven ram hammer is designed to be thrown or used in melee, with a long leather strap that is wrapped around the wrist when used to deliver blows in close combat but unfurled to aid in swinging the weapon when the hammer is thrown.",
     "Special": []
   },
-   "Spiral Rapier": {
+  "Spiral Rapier": {
     "Damage": [ "1d4", "1d6", "1d8" ],
     "Critical": "18/x2",
     "Range": 0,
@@ -665,11 +661,11 @@
     "Description": "This rapier like weapon has a thicker blade than normal, which is shaped into a corkscrewing spiral of sharpened edges.",
     "Special": [
       "Blocking", "Disarm",
-     "You may use Weapon Finesse with a Spiral Rapier even though it isn't a light weapon.",
-     "You cannot wield a spiral rapier in two hands to apply 1.5 times your strength modifier to its damage."
+      "You may use Weapon Finesse with a Spiral Rapier even though it isn't a light weapon.",
+      "You cannot wield a spiral rapier in two hands to apply 1.5 times your strength modifier to its damage."
     ]
   },
-   "Rhoka": {
+  "Rhoka": {
     "Damage": [ "1d6", "1d8", "2d6" ],
     "Critical": "18/x2",
     "Range": 0,
@@ -684,7 +680,7 @@
     "Description": "This sword consists of two serrated blades placed side by side, each ending in a cruel hook.",
     "Special": []
   },
-   "Shotel": {
+  "Shotel": {
     "Damage": [ "1d6", "1d8", "2d6" ],
     "Critical": "20/x3",
     "Range": 0,
@@ -699,10 +695,10 @@
     "Description": "The shotel is a downward-curving sword designed to reach over or around an opponent’s shield.",
     "Special": [
       "Performance",
-     "You gain a +1 bonus on attack rolls with a shotel against opponents using bucklers, light shields, or heavy shields."
+      "You gain a +1 bonus on attack rolls with a shotel against opponents using bucklers, light shields, or heavy shields."
     ]
   },
-   "Sickle-Sword": {
+  "Sickle-Sword": {
     "Damage": [ "1d6", "1d8", "2d6" ],
     "Critical": "19/x2",
     "Range": 0,
@@ -717,7 +713,7 @@
     "Description": "Favored by those with no talent for witchcraft, this exotic blade curves multiple times along its 3-1/2 feet.",
     "Special": [
       "Distracting",
-     "When wielding a sickle-sword in one hand and nothing in the other, you can spend a swift action to gain a +2 bonus on your next attack roll before the end of your turn."
+      "When wielding a sickle-sword in one hand and nothing in the other, you can spend a swift action to gain a +2 bonus on your next attack roll before the end of your turn."
     ]
   },
   "Split-Blade Sword": {
@@ -737,7 +733,7 @@
       "If your Dex is less than 15, you take a -2 penalty on attack rolls with a split-blade sword."
     ]
   },
-   "Dueling Sword": {
+  "Dueling Sword": {
     "Damage": [ "1d6", "1d8", "2d6" ],
     "Critical": "19/x2",
     "Range": 0,
@@ -752,11 +748,11 @@
     "Description": "These slightly curved swords measure just over 3 feet in length.",
     "Special": [
       "A dueling sword can be used as a martial weapon (in which case it functions as a longsword).",
-     "You may use Weapon Finesse with a dueling sword, even though it isn't a light weapon.",
-     "You can also wield a dueling sword in two hands to apply 1-1/2 times your Strength bonus to damage rolls."
+      "You may use Weapon Finesse with a dueling sword, even though it isn't a light weapon.",
+      "You can also wield a dueling sword in two hands to apply 1-1/2 times your Strength bonus to damage rolls."
     ]
   },
- "Bastard Sword": {
+  "Bastard Sword": {
     "Damage": [ "1d8", "1d10", "2d8" ],
     "Critical": "19/x2",
     "Range": 0,
@@ -805,7 +801,7 @@
       "A character can wield a correctly sized dwarven waraxe as a two-handed martial weapon, or smaller waraxe (1 size smaller) as a one-handed martial weapon."
     ]
   },
-   "Dwarven Double Waraxe": {
+  "Dwarven Double Waraxe": {
     "Damage": [ "1d8", "1d10", "2d8" ],
     "Critical": "20/x3",
     "Range": 0,
@@ -837,14 +833,14 @@
     "Description": "A whip is a long leather cord or strand that can be wielded as a non-lethal, if painful, one-handed weapon.",
     "Special": [
       "Disarm", "Reach", "Trip", "Nonlethal",
-     "A whip deals no damage to any creature with an armor bonus of +1 or higher or a natural armor bonus of +3 or higher.",
-     "A whip's reach allows you to make attacks anwhere within 15feet, though you do not threaten further than your natural reach.",
-     "Using a whip provokes an attack of opportunity, just as if you had used a ranged weapon.",
-     "You may use Weapon Finesse with a whip, even though it isn't a light weapon.",
-     "Wielding a whip with two hands does not add 1.5 times your Strength modifier to your damage rolls."
+      "A whip deals no damage to any creature with an armor bonus of +1 or higher or a natural armor bonus of +3 or higher.",
+      "A whip's reach allows you to make attacks anwhere within 15feet, though you do not threaten further than your natural reach.",
+      "Using a whip provokes an attack of opportunity, just as if you had used a ranged weapon.",
+      "You may use Weapon Finesse with a whip, even though it isn't a light weapon.",
+      "Wielding a whip with two hands does not add 1.5 times your Strength modifier to your damage rolls."
     ]
   },
-   "Orc Double Axe": {
+  "Orc Double Axe": {
     "Damage": [ "1d6/1d6", "1d8/1d8", "2d6/2d6" ],
     "Critical": "20/x3",
     "Range": 0,
@@ -903,7 +899,7 @@
 
     "Proficiency": "Exotic",
     "Category": "Two-Handed",
-    "Group": [ "Ploearms", "Double" ],
+    "Group": [ "Polearms", "Double" ],
 
     "Cost": 8,
     "Weight": 8,
@@ -912,7 +908,7 @@
       "Double", "Reach", "Trip"
     ]
   },
-   "Chain-Hammer": {
+  "Chain-Hammer": {
     "Damage": [ "1d4/1d4", "1d6/1d6", "1d8/1d8" ],
     "Critical": "20/x2",
     "Range": 20,
@@ -948,7 +944,7 @@
       "You may use Weapon Finesse with a spiked chain, even though it isn't a light weapon."
     ]
   },
-   "Crook": {
+  "Crook": {
     "Damage": [ "1d4", "1d6", "1d8" ],
     "Critical": "20/x2",
     "Range": 0,
@@ -966,7 +962,7 @@
       "You can ignore the -4 for not having two hands free when attempting a grapple with a crook."
     ]
   },
-   "Elven Curve Blade": {
+  "Elven Curve Blade": {
     "Damage": [ "1d8", "1d10", "2d8" ],
     "Critical": "18/x2",
     "Range": 0,
@@ -980,7 +976,7 @@
     "Weight": 7,
     "Description": "Essentially a longer version of a scimitar, but with a thinner blade, the elven curve blade is exceptionally rare.",
     "Special": [
-     "You receive a +2 circumstance bonus to your Combat Maneuver Defense whenever a foe attempts to sunder your elven curve blade.",
+      "You receive a +2 circumstance bonus to your Combat Maneuver Defense whenever a foe attempts to sunder your elven curve blade.",
       "You may use Weapon Finesse with an elven curve blade, even though it isn't a light weapon."
     ]
   },
@@ -999,7 +995,7 @@
     "Description": "This 10-foot-long chain is weighted at the end by a ball of solid iron the size of a large fist, giving it its common name the chain flail.",
     "Special": [
       "Reach",
-     "You may adjust the slack of the chain, using it either with or without reach, as a move action."
+      "You may adjust the slack of the chain, using it either with or without reach, as a move action."
     ]
   },
   "Double Spear": {
@@ -1034,8 +1030,8 @@
     "Description": "Behind this long pole weapon’s spearhead, several short branches project from the shaft at irregular intervals, each angled forward and tipped with a smaller leaf-like blade.",
     "Special": [
       "Brace", "Reach",
-     "When you make attacks of opportunity provoked by movement, you gain a +2 bonus on attack rolls.",
-     "You may use Weapon Finesse with an elven branched spear, even though it isn't a light weapon."
+      "When you make attacks of opportunity provoked by movement, you gain a +2 bonus on attack rolls.",
+      "You may use Weapon Finesse with an elven branched spear, even though it isn't a light weapon."
     ]
   },
   "Fauchard": {
@@ -1105,7 +1101,7 @@
     "Description": "This two-handed sword has a wavy blade that is especially useful for cutting through wooden weapons.",
     "Special": [
       "Sunder",
-     "You get a +4 bonus on any sunder attempts against weapons with a wooden haft."
+      "You get a +4 bonus on any sunder attempts against weapons with a wooden haft."
     ]
   },
   "Flying Blade": {
@@ -1123,9 +1119,9 @@
     "Description": "A flying blade is a large, crescent-shaped blade anchored to a 10-foot chain.",
     "Special": [
       "Performance", "Reach",
-     "This weapon is clumsy and you get a -2 penalty on attack rolls.",
-     "If you are making an AoO provoked by movement, you get a +2 bonus on attack rolls instead of the -2.",
-     "You may also adjust the slack of the chain, using it either with or without reach, as a move action."
+      "This weapon is clumsy and you get a -2 penalty on attack rolls.",
+      "If you are making an AoO provoked by movement, you get a +2 bonus on attack rolls instead of the -2.",
+      "You may also adjust the slack of the chain, using it either with or without reach, as a move action."
     ]
   },
   "Garrote": {
@@ -1143,13 +1139,13 @@
     "Description": "",
     "Special": [
       "Grapple",
-     "In order to use a garrote, your opponent must be helpless or unaware of you.",
-     "You must make a grapple check (without the –4 penalty for not having two hands free) to garrot your opponent.",
-     "While garroted, your opponent must make a concentration check (DC 20 + your CMB + spell level) to cast a spell with a verbal component, use a command word item, or use any magic requiring speech.",
-     "You may also cut off your target's air supply with a swift action, forcing them to hold their breath. Any roud you do not maintain the choke, your opponent can take a breath and resart the Constitution checks."
+      "In order to use a garrote, your opponent must be helpless or unaware of you.",
+      "You must make a grapple check (without the –4 penalty for not having two hands free) to garrot your opponent.",
+      "While garroted, your opponent must make a concentration check (DC 20 + your CMB + spell level) to cast a spell with a verbal component, use a command word item, or use any magic requiring speech.",
+      "You may also cut off your target's air supply with a swift action, forcing them to hold their breath. Any roud you do not maintain the choke, your opponent can take a breath and resart the Constitution checks."
     ]
   },
- "Dwarven Giant-Sticker": {
+  "Dwarven Giant-Sticker": {
     "Damage": [ "1d8", "2d6", "3d6" ],
     "Critical": "20/x3",
     "Range": 0,
@@ -1181,8 +1177,8 @@
     "Description": "A gnome hooked hammer is a double weapon — an ingenious tool with a hammer head at one end of its haft and a long, curved pick at the other.",
     "Special": [
       "Double", "Trip",
-     "The hammer’s blunt head is a bludgeoning weapon that deals 1d6 points of damage (crit ×3).",
-     "The hammer's hook is a piercing weapon that deals 1d4 points of damage (crit ×4)."
+      "The hammer’s blunt head is a bludgeoning weapon that deals 1d6 points of damage (crit ×3).",
+      "The hammer's hook is a piercing weapon that deals 1d4 points of damage (crit ×4)."
     ]
   },
   "Harpoon": {
@@ -1204,7 +1200,7 @@
       "A harpoon’s weight includes 10 pounds for the weight of 50 feet of hemp rope (this can be reduced by using shorter or lighter rope)."
     ]
   },
-   "Dwarven Longaxe": {
+  "Dwarven Longaxe": {
     "Damage": [ "1d10", "1d12", "3d6" ],
     "Critical": "20/x3",
     "Range": 0,
@@ -1308,10 +1304,10 @@
     "Description": "The blade of this glaive is serrated and mounted on an axle, around which a heavy cord is wrapped.",
     "Special": [
       "Reach",
-      "You may pull the cord as a move action, spinning the blade for a number of rouds equal to your Strength bonus and granting a +2 bonus on damage rolls.",
+      "You may pull the cord as a move action, spinning the blade for a number of rouds equal to your Strength bonus and granting a +2 bonus on damage rolls."
     ]
   },
-   "Bladed Scarf": {
+  "Bladed Scarf": {
     "Damage": [ "1d4", "1d6", "1d8" ],
     "Critical": "20/x2",
     "Range": 0,
@@ -1326,11 +1322,11 @@
     "Description": "One side of the scarf looks like a normal, brightly colored performance scarf, while the other side has a number of blades woven into it.",
     "Special": [
       "Disarm", "Trip",
-     "If you are proficient and wielding the scarf, you deal 1d4 slashing damage to any creatures that succeed a grapple check against you.",
-     "You may use Weapon Finesse with a bladed scarf, even though it isn't a light weapon."
+      "If you are proficient and wielding the scarf, you deal 1d4 slashing damage to any creatures that succeed a grapple check against you.",
+      "You may use Weapon Finesse with a bladed scarf, even though it isn't a light weapon."
     ]
   },
-   "Totem Spear": {
+  "Totem Spear": {
     "Damage": [ "1d8", "1d10", "2d8" ],
     "Critical": "20/x3",
     "Range": 0,
@@ -1363,7 +1359,7 @@
     "Description": "The dwarven sphinx hammer is a long-handled hammer with a striking head that is artfully designed to look like a ram-headed criosphinx.",
     "Special": []
   },
-   "Switchscythe": {
+  "Switchscythe": {
     "Damage": [ "1d6", "2d4", "2d6" ],
     "Critical": "20/x4",
     "Range": 0,
@@ -1379,10 +1375,10 @@
     "Special": [
       "Trip",
       "Opening the scythe is a swift action, and closing it again is a standard action.",
-     "You can use Bluff or Sleight of Hand to treat a closed switchscythe as a hidden weapon; the apparatus can be disguised with 1 minute of work, which grants a +5 bonus on such checks."
+      "You can use Bluff or Sleight of Hand to treat a closed switchscythe as a hidden weapon; the apparatus can be disguised with 1 minute of work, which grants a +5 bonus on such checks."
     ]
   },
-   "Two-Bladed Sword": {
+  "Two-Bladed Sword": {
     "Damage": [ "1d6/1d6", "1d8/1d8", "2d6/2d6" ],
     "Critical": "19/x2",
     "Range": 0,
@@ -1399,7 +1395,7 @@
       "Double"
     ]
   },
-   "Dwarven Urgrosh": {
+  "Dwarven Urgrosh": {
     "Damage": [ "1d6/1d4", "1d8/1d6", "2d6/1d8" ],
     "Critical": "20/x3",
     "Range": 0,
@@ -1417,8 +1413,6 @@
       "The axe head deals 1d8 slashing while the spear head deals 1d6 piercing."
     ]
   },
-
- 
   "Bolas": {
     "Damage": [ "1d3", "1d4", "1d6" ],
     "Critical": "20/x2",
@@ -1504,9 +1498,9 @@
     "Description": "This light crossbow has a winch mounted below the stock.",
     "Special": [
       "You may wind up to 50 feet of silk rope onto the winch as a full-round action that provokes AoOs.",
-     "You may attach rope wound on the winch to a Barbed Bolt or a Grappling Bolt as part of a loading action (usually a move action).",
-     "When used with a barbed bolt, the winch provides a +1 bonus on grapple combat maneuver checks to pull the target toward you.",
-     "When used with a grappling bolt, the winch provides a +1 bonus on Climb checks"
+      "You may attach rope wound on the winch to a Barbed Bolt or a Grappling Bolt as part of a loading action (usually a move action).",
+      "When used with a barbed bolt, the winch provides a +1 bonus on grapple combat maneuver checks to pull the target toward you.",
+      "When used with a grappling bolt, the winch provides a +1 bonus on Climb checks"
     ]
   },
   "Heavy Crank Crossbow": {
@@ -1524,12 +1518,12 @@
     "Description": "This heavy crossbow has a winch mounted below the stock.",
     "Special": [
       "You may wind up to 50 feet of silk rope onto the winch as a full-round action that provokes AoOs.",
-     "You may attach rope wound on the winch to a Barbed Bolt or a Grappling Bolt as part of a loading action (usually a move action).",
-     "When used with a barbed bolt, the winch provides a +2 bonus on grapple combat maneuver checks to pull the target toward you.",
-     "When used with a grappling bolt, the winch provides a +2 bonus on Climb checks"
+      "You may attach rope wound on the winch to a Barbed Bolt or a Grappling Bolt as part of a loading action (usually a move action).",
+      "When used with a barbed bolt, the winch provides a +2 bonus on grapple combat maneuver checks to pull the target toward you.",
+      "When used with a grappling bolt, the winch provides a +2 bonus on Climb checks"
     ]
   },
-   "Double Crossbow": {
+  "Double Crossbow": {
     "Damage": [ "1d6", "1d8", "2d6" ],
     "Critical": "19/x2",
     "Range": 80,
@@ -1543,12 +1537,12 @@
     "Weight": 18,
     "Description": "This heavy weapon fires a pair of iron-tipped bolts with a single squeeze of the trigger.",
     "Special": [
-     "Due to its size and weight, you take a -4 on attack rolls with proficiency or a -8 without it.",
-     "A successful hit deals damage from both bolts, but only the first bolt can crit, have sneak attack or have precision damage.",
-     "Reloading one bolt is a standard action, and Rapid Reload reduces this to a move action; Crossbow Mastery lets you load both bolts with a single move action."
+      "Due to its size and weight, you take a -4 on attack rolls with proficiency or a -8 without it.",
+      "A successful hit deals damage from both bolts, but only the first bolt can crit, have sneak attack or have precision damage.",
+      "Reloading one bolt is a standard action, and Rapid Reload reduces this to a move action; Crossbow Mastery lets you load both bolts with a single move action."
     ]
   },
-   "Hand Crossbow": {
+  "Hand Crossbow": {
     "Damage": [ "1d3", "1d4", "1d6" ],
     "Critical": "19/x2",
     "Range": 30,
@@ -1562,8 +1556,8 @@
     "Weight": 2,
     "Description": "Sometimes referred to as an alley bow by rogues or ruffians, this small crossbow fires small bolts that are sometimes used to deliver poison to the target.",
     "Special": [
-     "Loading a hand crossbow is a move action that provokes Attacks of Opportunity.",
-     "You can shoot, but not load a hand crossbow with one hand, and may use two-weapon fighting as if they are both light weapons."
+      "Loading a hand crossbow is a move action that provokes Attacks of Opportunity.",
+      "You can shoot, but not load a hand crossbow with one hand, and may use two-weapon fighting as if they are both light weapons."
     ]
   },
   "Launching Crossbow": {
@@ -1669,10 +1663,10 @@
     "Weight": 7,
     "Description": "Larger even than a longbow, these bows are often made from the horns of great beasts.",
     "Special": [
-     "Hornbows are composite bows that behave like other composite longbows with strength scores."
+      "Hornbows are composite bows that behave like other composite longbows with strength scores."
     ]
   },
-   "Stormshaft Javelin": {
+  "Stormshaft Javelin": {
     "Damage": [ "1d4", "1d6", "1d8" ],
     "Critical": "20/x2",
     "Range": 30,
@@ -1687,7 +1681,7 @@
     "Description": "This single-use javelin bears a thunderstone just behind the head.",
     "Special": [
       "On a hit, the creature takes damage as normal and is the center of the thunderstone's effect.",
-     "On a miss, roll to see where the javelin lands (as per splash weapons) and that is the center."
+      "On a miss, roll to see where the javelin lands (as per splash weapons) and that is the center."
     ]
   },
   "Lasso": {
@@ -1704,9 +1698,9 @@
     "Weight": 5,
     "Description": "This thrown weapon is a length of rope with a simple open knot on one end that allows you to entangle a foe like you would using a net.",
     "Special": [
-     "On a successful hit, the lasso tightens; to use it again you must spend a standard action sliding the knot to enlarge the loop.",
-     "An entangled creature can slip free with a successful DC 15 Escape Artist check as a full-round action.",
-     "Casting a spell while entangled with a lasso requires a concentration check DC 10 + Spell Level."
+      "On a successful hit, the lasso tightens; to use it again you must spend a standard action sliding the knot to enlarge the loop.",
+      "An entangled creature can slip free with a successful DC 15 Escape Artist check as a full-round action.",
+      "Casting a spell while entangled with a lasso requires a concentration check DC 10 + Spell Level."
     ]
   },
   "Net": {
@@ -1723,12 +1717,12 @@
     "Weight": 6,
     "Description": "A net comprises threads or yarns knotted and twisted into a grid-like structure which blocks the passage of large items, while letting small items and fluids pass.",
     "Special": [
-     "Using a net is a ranged touch attack with a maximum range of 10 feet, and the target is entangled on a successful hit.",
-     "You may restrict an entangled creature's movement with a successful opposed Strength check.",
-     "An entangled creature can slip free with a successful DC 20 Escape Artist check as a full-round action.",
-     "Casting a spell while entangled with a net requires a concentration check DC 15 + Spell Level.",
-     "A net must be folded to be thrown effectively, otherwise you take a -4 on attack rolls.",
-     "It takes 2 rounds to fold a net if you are proficient, or twice that if not."
+      "Using a net is a ranged touch attack with a maximum range of 10 feet, and the target is entangled on a successful hit.",
+      "You may restrict an entangled creature's movement with a successful opposed Strength check.",
+      "An entangled creature can slip free with a successful DC 20 Escape Artist check as a full-round action.",
+      "Casting a spell while entangled with a net requires a concentration check DC 15 + Spell Level.",
+      "A net must be folded to be thrown effectively, otherwise you take a -4 on attack rolls.",
+      "It takes 2 rounds to fold a net if you are proficient, or twice that if not."
     ]
   },
   "Snag Net": {
@@ -1768,7 +1762,7 @@
       "You may shoot (but not load) a pellet bow with one hand a -2 to hit."
     ]
   },
-   "Dwarven Heavy Pelletbow": {
+  "Dwarven Heavy Pelletbow": {
     "Damage": [ "1d4", "1d6", "1d8" ],
     "Critical": "19/x3",
     "Range": 60,
@@ -1787,7 +1781,7 @@
       "You may wield two heavy pellet bows as one-handed weapons (for Two-Weapon Fighting)."
     ]
   },
-   "Throwing Shield": {
+  "Throwing Shield": {
     "Damage": [ "1d4", "1d6", "1d8" ],
     "Critical": "20/x2",
     "Range": 20,
@@ -1821,12 +1815,12 @@
     "Weight": 1,
     "Description": "At first glance this weapon resembles a baton-like stick with a sling dangling from each end.",
     "Special": [
-     "You can use a double sling as a normal sling, or use the second end for Two-Weapon Fighting (as if it had Double).",
-     "Reloading one end of a double sling is a move action that provokes Attacks of Opportunity.",
-     "You may hurl ordinary stones instead of bullets, dealing damage as one size category smaller and taking a -1 to hit."
+      "You can use a double sling as a normal sling, or use the second end for Two-Weapon Fighting (as if it had Double).",
+      "Reloading one end of a double sling is a move action that provokes Attacks of Opportunity.",
+      "You may hurl ordinary stones instead of bullets, dealing damage as one size category smaller and taking a -1 to hit."
     ]
   },
-   "Sling Glove": {
+  "Sling Glove": {
     "Damage": [ "1d3", "1d4", "1d6" ],
     "Critical": "20/x2",
     "Range": 50,
@@ -1844,7 +1838,7 @@
       "You take a -4 when throwing a stone at an adjacent target."
     ]
   },
-   "Halfling Sling Staff": {
+  "Halfling Sling Staff": {
     "Damage": [ "1d6", "1d8", "2d6" ],
     "Critical": "20/x3",
     "Range": 80,
@@ -1859,7 +1853,7 @@
     "Description": "Made from a specially designed sling attached to a short club, a halfling sling staff can be used by a proficient wielder to devastating effect.",
     "Special": [
       "You can fire, but not load, a halfling sling staff with one hand.",
-     "Loading a halfling sling staff is a move action that requires two hands and provokes attacks of opportunity.",
+      "Loading a halfling sling staff is a move action that requires two hands and provokes attacks of opportunity.",
       "You can hurl ordinary stones with a halfling sling staff, but they deal damage as one size category smaller and you take a -1 to hit."
     ]
   },
@@ -1896,9 +1890,7 @@
     "Description": "This slender tube is strapped to one forearm and designed to be concealed beneath the sleeve, where the wielder can fire a crossbow bolt with a twist of the wrist.",
     "Special": []
   },
-
- 
-"Featherweight Darts": {
+  "Featherweight Darts": {
     "Damage": [ "0", "0", "0" ],
     "Critical": "0",
     "Range": 0,
@@ -1913,12 +1905,12 @@
     "Description": "These extremely small and lightweight darts function like blowgun darts, except they are used to deliver poisons surreptitiously instead of dealing damage.",
     "Special": [
       "Any amount of damage reduction, hardness or similar prevents the dart from delivering its poison.",
-     "Finding the puncture wound requires a DC 20 Percetion check, and finding the dart on the ground after a shot requires a DC 15 Percetion check.",
-     "This ammunition can be used in both blowguns and wrist launchers.",
-     "Featherweight darts come in a pack of 10, with the listed price and weight given for a single dart."
+      "Finding the puncture wound requires a DC 20 Percetion check, and finding the dart on the ground after a shot requires a DC 15 Percetion check.",
+      "This ammunition can be used in both blowguns and wrist launchers.",
+      "Featherweight darts come in a pack of 10, with the listed price and weight given for a single dart."
     ]
   },
-   "Shuriken": {
+  "Shuriken": {
     "Damage": [ "1", "1d2", "1d3" ],
     "Critical": "20/x2",
     "Range": 10,
@@ -1936,42 +1928,42 @@
     ]
   },
   "Crossbow Bolts": {
- 		"Damage": ["1d3", "1d4", "1d6"],
-	 	"Critical": "20/x2",
-	 	"Range": 0,
-	 	"Damage Type": [ "Piercing" ],
+    "Damage": ["1d3", "1d4", "1d6"],
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
 
-		"Proficiency": "Martial",
-		"Category": "Ammunition",
-		"Group": [ "" ],
+    "Proficiency": "Martial",
+    "Category": "Ammunition",
+    "Group": [ "" ],
 
-		"Cost": 0.1,
-		"Weight": 0.1,
-		"Description": "Typically shorter than an arrow, a crossbow bolt is a dart-like projectile.",
-		"Special": [
-			"You may use a crossbow bolt as a melee weapon, taking a -4 on attack rolls.",
-			"Bolts usually come in a case or quiver that holds 10 (price & weight listed for 1 bolt).",
-   "Bolts for a repeating crossbow come in a case of 5 (each bolt costs and weighs 0.2)."
-		]
-	},
+    "Cost": 0.1,
+    "Weight": 0.1,
+    "Description": "Typically shorter than an arrow, a crossbow bolt is a dart-like projectile.",
+    "Special": [
+      "You may use a crossbow bolt as a melee weapon, taking a -4 on attack rolls.",
+      "Bolts usually come in a case or quiver that holds 10 (price & weight listed for 1 bolt).",
+      "Bolts for a repeating crossbow come in a case of 5 (each bolt costs and weighs 0.2)."
+    ]
+  },
   "Little Starstones": {
- 		"Damage": ["1", "1", "1"],
-	 	"Critical": "0",
-	 	"Range": 0,
-	 	"Damage Type": [ "Bludgeoning", "Nonlethal" ],
+    "Damage": ["1", "1", "1"],
+    "Critical": "0",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning", "Nonlethal" ],
 
-		"Proficiency": "Martial",
-		"Category": "Ammunition",
-		"Group": [ "" ],
+    "Proficiency": "Martial",
+    "Category": "Ammunition",
+    "Group": [ "" ],
 
-		"Cost": 0.005,
-		"Weight": 0.2,
-		"Description": "Though they are technically sling ammunition, these thread- or cloth-wrapped pebbles are mainly used for signaling or celebration rather than battle, as they barely hit hard enough to sting.",
-		"Special": [
-			"When soaked in oil or strong alcohol, they burn brightly for 1 round, illuminating an area like a candle and creating brief streaks of light as they fly through the air.",
-   "Starstones come in a pack of 10 (price & weight listed for 1 stone)."
-		]
-	},
+    "Cost": 0.005,
+    "Weight": 0.2,
+    "Description": "Though they are technically sling ammunition, these thread- or cloth-wrapped pebbles are mainly used for signaling or celebration rather than battle, as they barely hit hard enough to sting.",
+    "Special": [
+      "When soaked in oil or strong alcohol, they burn brightly for 1 round, illuminating an area like a candle and creating brief streaks of light as they fly through the air.",
+      "Starstones come in a pack of 10 (price & weight listed for 1 stone)."
+    ]
+  },
   "Sharpstones": {
     "Damage": [ "1d3", "1d4", "1d6" ],
     "Critical": "0",
@@ -2007,7 +1999,7 @@
       "Softstones come in a pack of 10 (price & weight listed for 1 stone)."
     ]
   },
-   "Spongestones": {
+  "Spongestones": {
     "Damage": [ "0", "0", "0" ],
     "Critical": "0",
     "Range": 0,
@@ -2021,9 +2013,9 @@
     "Weight": 0.2,
     "Description": "These bullets are actually made from a porous stone or heavy wood that absorbs liquids and shatters on impact.",
     "Special": [
-     "Soakstones are often used to deliver poison or burning oil, with a single flask of oil completely saturating 10 soakstones.",
-     "When ignited (a free action if fire is available), a burning, oil-soaked soakstone deals +1d2 fire damage and can ignite combustible materials (such as a thatched roof ).",
-     "Allowing a soakstone to burn in a sling’s cup for more than 1d3 rounds gives the sling the broken condition.",
+      "Soakstones are often used to deliver poison or burning oil, with a single flask of oil completely saturating 10 soakstones.",
+      "When ignited (a free action if fire is available), a burning, oil-soaked soakstone deals +1d2 fire damage and can ignite combustible materials (such as a thatched roof ).",
+      "Allowing a soakstone to burn in a sling’s cup for more than 1d3 rounds gives the sling the broken condition.",
       "Spongestones come in a pack of 10 (price & weight listed for 1 stone)."
     ]
   }

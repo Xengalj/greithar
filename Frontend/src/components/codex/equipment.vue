@@ -144,7 +144,6 @@ export default {
               "Flails":       { color: '#bfef45', label: 'Flails' },
               "Hammers":      { color: '#1EC79D', label: 'Hammers' },
               "Monk":         { color: '#42d4f4', label: 'Monk' },
-              "Natural":      { color: '#000075', label: 'Natural' },
               "Polearms":     { color: '#f032e6', label: 'Polearms' },
               "Spears":       { color: '#ffd8b1', label: 'Spears' },
               "Thrown":       { color: '#aaffc3', label: 'Thrown' },

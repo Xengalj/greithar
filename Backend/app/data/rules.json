@@ -166,8 +166,8 @@
     },
     "dragon": {
       "hd": 12,
-      "ranks": 6
-      "bab": 1
+      "ranks": 6,
+      "bab": 1,
       "fort": { "mult": 0.5, "bonus": 2 },
       "ref": { "mult": 0.5, "bonus": 2 },
       "will": { "mult": 0.5, "bonus": 2 },
@@ -256,5 +256,5 @@
     }
   }
 
-  
+
 }

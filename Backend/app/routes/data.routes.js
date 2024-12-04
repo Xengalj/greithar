@@ -6,7 +6,7 @@ const Armor =     require('../data/equipment/armor.json');
 const Shields =   require('../data/equipment/shields.json');
 const Simple =    require('../data/equipment/simple.json');
 const Martial =   require('../data/equipment/martial.json');
-// const Exotic =    require('../data/equipment/exotic.json');
+const Exotic =    require('../data/equipment/exotic.json');
 const Materials = require('../data/equipment/materials.json');
 
 // const Alchemy =   require('../data/goods/alchemy.json');
@@ -94,9 +94,9 @@ module.exports = function(app) {
       for (const prop in Martial) {
         Weapons[prop] = Martial[prop];
       }
-      // for (const prop in Exotic) {
-      //   Weapons[prop] = Exotic[prop];
-      // }
+      for (const prop in Exotic) {
+        Weapons[prop] = Exotic[prop];
+      }
 
       // let goods = { Alchemy };
       let items = { Armor, Shields, Weapons, Materials }; // , goods };

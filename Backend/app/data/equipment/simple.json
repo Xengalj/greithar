@@ -7,7 +7,7 @@
 
     "Proficiency": "Simple",
     "Category": "Unarmed",
-    "Group": [ "Close" ],
+    "Group": [ "Close", "Monk", "Tribal" ],
 
     "Cost": 0,
     "Weight": 0,

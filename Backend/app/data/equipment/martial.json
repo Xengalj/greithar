@@ -187,7 +187,7 @@
 			"Any effects that apply to a punching dagger also apply to a tri-bladed katar."
 		]
 	},
-	"witchblade Knife": {
+	"Switchblade Knife": {
 		"Damage": ["1d3", "1d4", "1d6"],
 		"Critical": "19/x2",
 		"Range": 10,
@@ -199,7 +199,7 @@
 
 		"Cost": 5,
 		"Weight": 1,
-		"Description": "",
+		"Description": "A switchblade knife's edge can be brought to bear with a quick flick of the wrist.",
 		"Special": [
 			"This knife can be designed to loke like another type of object (a DC 15 Perception check reveals the deception).",
 			"A switchblade is treated as a dagger, and can be activated as a free action if held."
@@ -569,7 +569,7 @@
 
 		"Proficiency": "Martial",
 		"Category": "One-Handed",
-		"Group": ["Aees"],
+		"Group": ["Axes"],
 
 		"Cost": 8,
 		"Weight": 6,
@@ -1072,7 +1072,7 @@
 			"Refilling a syringe spear takes 1 minute."
 		]
 	},
-	"Ammentum": {
+	"Amentum": {
 		"Damage": ["1d4", "1d6", "1d8"],
 		"Critical": "20/x2",
 		"Range": 50,
@@ -1080,7 +1080,7 @@
 
 		"Proficiency": "Martial",
 		"Category": "Ranged",
-		"Group": ["Thrown"],
+		"Group": ["Thrown", "Spears"],
 
 		"Cost": 0,
 		"Weight": 1,
@@ -1100,7 +1100,7 @@
 
 		"Proficiency": "Martial",
 		"Category": "Ranged",
-		"Group": ["Light Blades", "Thrown"],
+		"Group": [ "Light Blades", "Heavy Blades", "Thrown"],
 
 		"Cost": 1,
 		"Weight": 1,
@@ -1309,7 +1309,7 @@
 
 		"Proficiency": "Martial",
 		"Category": "Ammunition",
-		"Group": ["Light Blades"],
+		"Group": [],
 
 		"Cost": 0.05,
 		"Weight": 0.15,

@@ -1,12 +1,12 @@
 {
   "Steel": {
-    "Cost": {  "Base Item": "+0 gp"  },
+    "Cost": [ "Base Item : +0 gp" ],
     "Type": "Metal",
     "Description": "Steel is often the first choice for weapons and armor, offering a good combination of availability and stability.",
     "Special": []
   },
   "Abysium": {
-    "Cost": { "Base Item": "+0 gp" },
+    "Cost": [ "Base Item : +0 gp" ],
     "Type": "Metal",
     "Description": "This glowing, blue-green skymetal can be a source of great energy, and is said to come from between the stars.",
     "Special": [
@@ -17,13 +17,13 @@
     ]
   },
   "Adamantine": {
-    "Cost": {
-      "Ammunition":    "+60 gp per missile",
-      "Weapon":	       "+3,000 gp",
-      "Light armor":   "+5,000 gp",
-      "Medium armor":  "+10,000 gp",
-      "Heavy armor":	 "+15,000 gp"
-    },
+    "Cost": [
+      "Ammunition : +60 gp per missile",
+      "Weapon : +3,000 gp",
+      "Light armor : +5,000 gp",
+      "Medium armor : +10,000 gp",
+      "Heavy armor : +15,000 gp"
+    ],
     "Type": "Metal",
     "Description": "Adamantine is the most common of the skymetals and is extremely strong and favored by weapon and armor smiths alike for its ability to cut through solid barriers with ease and endure heavy blows.",
     "Special": [
@@ -33,12 +33,12 @@
     ]
   },
   "Alchemical Silver": {
-    "Cost": {
-      "Ammunition":	"+2 gp",
-      "Light weapon":	"+20 gp",
-      "One-handed weapon":	"+90 gp",
-      "Two-handed weapon":  "+180 gp"
-    },
+    "Cost": [
+      "Ammunition : +2 gp",
+      "Light weapon : +20 gp",
+      "One-handed weapon : +90 gp",
+      "Two-handed weapon : +180 gp"
+    ],
     "Type": "Metal",
     "Description": "A complex process involving metallurgy and alchemy can bond silver to a weapon made of steel so that it bypasses the damage reduction of creatures such as lycanthropes.",
     "Special": [
@@ -47,10 +47,10 @@
     ]
   },
   "Angelskin": {
-    "Cost": {
-      "Light armor": "+1,000 gp",
-      "Medium armor":	"+2,000 gp"
-    },
+    "Cost": [
+      "Light armor : +1,000 gp",
+      "Medium armor : +2,000 gp"
+    ],
     "Type": "Textile",
     "Description": "The preserved skin of an angel retains a portion of celestial grace and can be crafted into leather, hide, or studded leather armor.",
     "Special": [
@@ -60,11 +60,11 @@
     ]
   },
   "Aszite": {
-    "Cost": {
-      "Light armor":	"+750 gp",
-      "Medium armor":	"+750 gp",
-      "Heavy armor":	"+1,000 gp"
-    },
+    "Cost": [
+      "Light armor : +750 gp",
+      "Medium armor : +750 gp",
+      "Heavy armor : +1,000 gp"
+    ],
     "Type": "Metal",
     "Description": "The navy-blue ore known as aszite is often used to reinforce buildings, and is one of the twin ores from the Shadow Plane with the other being druchite.",
     "Special": [
@@ -75,10 +75,10 @@
   },
 
   "Blood Crystal": {
-    "Cost": {
-      "Ammunition": "+30 gp per item",
-      "Weapon": "+1,500 gp"
-    },
+    "Cost": [
+      "Ammunition : +30 gp per item",
+      "Weapon : +1,500 gp"
+    ],
     "Type": "Stone",
     "Description": "Mysterious radiation deep below the surface of the earth warps once-ordinary quartz into bloodcraving stone. Unfed blood crystal has a pale pink hue, darkening toward deep crimson as it becomes saturated with blood.",
     "Special": [
@@ -87,7 +87,7 @@
     ]
   },
   "Bone": {
-    "Cost": { "Base Item": "x0.5 gp" },
+    "Cost": [ "Base Item : x0.5 gp" ],
     "Type": "Organic",
     "Description": "Bone can be used in place of wood and steel in weapons and armor. Other animal-based materials like horn, shell, and ivory also use the rules for bone weapon and armor.",
     "Special": [
@@ -102,7 +102,7 @@
     ]
   },
   "Bronze": {
-    "Cost": { "Base Item": "x0.8 gp" },
+    "Cost": [ "Base Item : x0.8 gp" ],
     "Type": "Metal",
     "Description": "Before the advent of iron and steel, bronze ruled the world. This easily worked metal can be used in place of steel for both weapons and armor.",
     "Special": [
@@ -113,10 +113,10 @@
   },
 
   "Cold Iron": {
-    "Cost": {
-      "Weapon": "x2 gp",
-      "Magic Enhancement": "+2,000 gp"
-    },
+    "Cost": [
+      "Weapon : x2 gp",
+      "Magic Enhancement : +2,000 gp"
+    ],
     "Type": "Metal",
     "Description": "This iron, mined deep underground and known for its effectiveness against demons and fey creatures, is forged at a lower temperature to preserve its delicate properties.",
     "Special": [
@@ -126,10 +126,10 @@
     ]
   },
   "Cryptstone": {
-    "Cost": {
-      "Ammunition":	"+10 gp per item",
-      "Weapon":	"+500 gp"
-    },
+    "Cost": [
+      "Ammunition : +10 gp per item",
+      "Weapon : +500 gp"
+    ],
     "Type": "Stone",
     "Description": "Cryptstone is a dense gray stone scavenged from mausoleums that often appears ancient and pitted.",
     "Special": [
@@ -142,12 +142,12 @@
   },
 
   "Darkleaf Cloth": {
-    "Cost": {
-      "Clothing":	"+500 gp",
-      "Light armor":	"+750 gp",
-      "Medium armor":	"+1,500 gp",
-      "Other items":	"+375 gp/lb."
-    },
+    "Cost": [
+      "Clothing : +500 gp",
+      "Light armor : +750 gp",
+      "Medium armor : +1,500 gp",
+      "Other items : +375 gp/lb."
+    ],
     "Type": "Textile",
     "Description": "Darkleaf cloth is a special form of flexible material made by weaving together leaves and thin strips of bark from darkwood trees, then treating the resulting fabric with special alchemical processes.",
     "Special": [
@@ -159,9 +159,9 @@
     ]
   },
   "Darkwood": {
-    "Cost": {
-      "Base Item": "+300 gp plus 10 gp per pound of original item"
-    },
+    "Cost": [
+      "Base Item : +300 gp plus 10 gp per pound of original item"
+    ],
     "Type": "Organic",
     "Description": "This rare magic wood is as hard as normal wood but very light.",
     "Special": [
@@ -171,12 +171,12 @@
     ]
   },
   "Dragonhide": {
-    "Cost": {
-      "Light armor":	"x2 gp",
-      "Medium armor":	"x2 gp",
-      "Heavy armor":	"x2 gp",
-      "Shield": "x2 gp"
-    },
+    "Cost": [
+      "Light armor : x2 gp",
+      "Medium armor : x2 gp",
+      "Heavy armor : x2 gp",
+      "Shield : x2 gp"
+    ],
     "Type": "Organic",
     "Description": "A classic status symbol for adventurers, dragonhide armor is coveted for its toughness.",
     "Special": [
@@ -187,7 +187,7 @@
     ]
   },
   "Dragonskin": {
-    "Cost": { "Grip": "250 gp" },
+    "Cost": [ "Grip : 250 gp" ],
     "Type": "Textile",
     "Description": "The choicest, most malleable skin from a dragon’s underbelly can be added to any weapon with a hilt or handle.",
     "Special": [
@@ -195,13 +195,13 @@
     ]
   },
   "Druchite": {
-    "Cost": {
-      "Ammunition":	"+12 gp per item",
-      "Weapon":	"+1,200 gp",
-      "Light armor":	"+1,000 gp",
-      "Medium armor":	"+1,500 gp",
-      "Heavy armor":	"+2,000 gp"
-    },
+    "Cost": [
+      "Ammunition : +12 gp per item",
+      "Weapon : +1,200 gp",
+      "Light armor : +1,000 gp",
+      "Medium armor : +1,500 gp",
+      "Heavy armor : +2,000 gp"
+    ],
     "Type": "Metal",
     "Description": "The black-and-violet ore known as druchite is so dark that even creatures that are adapted to see in lightless conditions can have extreme difficulty perceiving it.",
     "Special": [
@@ -211,10 +211,10 @@
   },
 
   "Eel Hide": {
-    "Cost": {
-      "Light armor":	"+1,200 gp",
-      "Medium armor":	"+1,800 gp"
-    },
+    "Cost": [
+      "Light armor : +1,200 gp",
+      "Medium armor : +1,800 gp"
+    ],
     "Type": "Textile",
     "Description": "This supple material offers as much protection as leather, but is more flexible and resistant to electricity.",
     "Special": [
@@ -225,13 +225,13 @@
     ]
   },
   "Elysian Bronze": {
-    "Cost": {
-      "Ammunition":	"+20 gp per item",
-      "Weapon":	"+1,000 gp",
-      "Light armor":	"+1,000 gp",
-      "Medium armor":	"+2,000 gp",
-      "Heavy armor":	"+3,000 gp"
-    },
+    "Cost": [
+      "Ammunition : +20 gp per item",
+      "Weapon : +1,000 gp",
+      "Light armor : +1,000 gp",
+      "Medium armor : +2,000 gp",
+      "Heavy armor : +3,000 gp"
+    ],
     "Type": "Metal",
     "Description": "First crafted in the deeps of time by the titans and bestowed as gifts to monster-slaying heroes among the lesser races, Elysian bronze retains the brazen coloration of its namesake but is as hard as steel.",
     "Special": [
@@ -242,13 +242,13 @@
   },
 
   "Fire-forged Steel": {
-    "Cost": {
-      "Ammunition": "+15 gp per item",
-      "Weapon":	"+600 gp",
-      "Light armor":	"+1,000 gp",
-      "Medium armor":	"+2,500 gp",
-      "Heavy armor":	"+3,000 gp"
-    },
+    "Cost": [
+      "Ammunition : +15 gp per item",
+      "Weapon : +600 gp",
+      "Light armor : +1,000 gp",
+      "Medium armor : +2,500 gp",
+      "Heavy armor : +3,000 gp"
+    ],
     "Type": "Metal",
     "Description": "Dwarves stumbled across the secret of crafting fire-forged steel in an effort to make forge-friendly tools, this steel channels heat in one direction.",
     "Special": [
@@ -259,13 +259,13 @@
     ]
   },
   "Frost-Forged Steel": {
-    "Cost": {
-      "Ammunition": "+15 gp per item",
-      "Weapon":	"+600 gp",
-      "Light armor":	"+1,000 gp",
-      "Medium armor":	"+2,500 gp",
-      "Heavy armor":	"+3,000 gp"
-    },
+    "Cost": [
+      "Ammunition : +15 gp per item",
+      "Weapon : +600 gp",
+      "Light armor : +1,000 gp",
+      "Medium armor : +2,500 gp",
+      "Heavy armor : +3,000 gp"
+    ],
     "Type": "Metal",
     "Description": "This material is the same substance as fire-forged steel with a subtle difference in the alignment of the metal during crafting. Instead of channeling heat away from the wearer, it channels heat toward the wearer.",
     "Special": [
@@ -277,7 +277,7 @@
   },
 
   "Glaucite": {
-    "Cost": { "Base Item": "+2,000 gp" },
+    "Cost": [ "Base Item : +2,000 gp" ],
     "Type": "Metal",
     "Description": "Glaucite is a dull gray skymetal alloy of adamantine and iron.",
     "Special": [
@@ -285,7 +285,7 @@
     ]
   },
   "Gold": {
-    "Cost": { "Base Item": "x10 gp" },
+    "Cost": [ "Base Item : x10 gp" ],
     "Type": "Metal",
     "Description": "Typically only used for ceremonial weapons and armor, metal equipment made from gold is fragile, heavy, and expensive. Often golden armor is gold-plated rather than constructed entirely from gold.",
     "Special": [
@@ -299,7 +299,7 @@
     ]
   },
   "Greenwood": {
-    "Cost": { "Base Item": "+50 gp / pound" },
+    "Cost": [ "Base Item : +50 gp / pound" ],
     "Type": "Organic",
     "Description": "Each length is taken, with leaves still attached, from a tree animated by a treant and cut with care to avoid the death of the tree. A dryad then speaks to and shapes the wood, coaxing the living green of the leaves into the grain of the wood itself.",
     "Special": [
@@ -312,10 +312,10 @@
     ]
   },
   "Griffon Mane": {
-    "Cost": {
-      "Light armor":	"+200 gp",
-      "Other items":	"+50 gp/lb."
-    },
+    "Cost": [
+      "Light armor : +200 gp",
+      "Other items : +50 gp/lb."
+    ],
     "Type": "Textile",
     "Description": "This rough-spun cloth, ranging in color from golden-brown to brown-black, is woven from the mane of leonine magical beasts, primarily griffons but also chimeras and manticores, and is exceptionally strong and light.",
     "Special": [
@@ -325,7 +325,7 @@
   },
 
   "Inubrix": {
-    "Cost": { "Weapon": "+5,000 gp" },
+    "Cost": [ "Weapon : +5,000 gp" ],
     "Type": "Metal",
     "Description": "Inubrix is the softest of the solid skymetals and its structure allows it to pass through iron and steel without touching them, seeming to shift in and out of phase with reality.",
     "Special": [
@@ -336,7 +336,7 @@
   },
 
   "Lead-Lined": {
-    "Cost": { "Base Item": "+0 gp" },
+    "Cost": [ "Base Item : +0 gp" ],
     "Type": "Metal",
     "Description": "",
     "Special": [
@@ -346,15 +346,15 @@
     ]
   },
   "Living Steel": {
-    "Cost": {
-      "Ammunition":	"+10 gp per item",
-      "Weapon":	"+500 gp",
-      "Shield":	"+100 gp",
-      "Light armor":	"+500 gp",
-      "Medium armor":	"+1,000 gp",
-      "Heavy armor":	"+1,500 gp",
-      "Other items":	"+250 gp/lb."
-    },
+    "Cost": [
+      "Ammunition : +10 gp per item",
+      "Weapon : +500 gp",
+      "Shield : +100 gp",
+      "Light armor : +500 gp",
+      "Medium armor : +1,000 gp",
+      "Heavy armor : +1,500 gp",
+      "Other items : +250 gp/lb."
+    ],
     "Type": "Metal",
     "Description": "Some trees suck up opotent minerals and when they eventually fall, they leave behind glossy green nuggets known as living steel, which can repair itself.",
     "Special": [
@@ -364,13 +364,13 @@
     ]
   },
   "Mithral": {
-    "Cost": {
-      "Light armor":	"+1,000 gp",
-      "Medium armor":	"+4,000 gp",
-      "Heavy armor":	"+9,000 gp",
-      "Shield":	"+1,000 gp",
-      "Other items":	"+500 gp/lb."
-    },
+    "Cost": [
+      "Light armor : +1,000 gp",
+      "Medium armor : +4,000 gp",
+      "Heavy armor : +9,000 gp",
+      "Shield : +1,000 gp",
+      "Other items : +500 gp/lb."
+    ],
     "Type": "Metal",
     "Description": "Mithral is a very rare silvery, glistening metal that is lighter than steel but just as hard.",
     "Special": [
@@ -383,14 +383,14 @@
   },
 
   "Noqual": {
-    "Cost": {
-      "Weapon": "+500 gp",
-      "Shield": "+2,000 gp",
-      "Light armor":  "+4,000 gp",
-      "Medium armor":  "+8,000 gp",
-      "Heavy armor":  "+12,000 gp",
-      "Other": "+500 gp"
-    },
+    "Cost": [
+      "Weapon : +500 gp",
+      "Shield : +2,000 gp",
+      "Light armor : +4,000 gp",
+      "Medium armor : +8,000 gp",
+      "Heavy armor : +12,000 gp",
+      "Other : +500 gp"
+    ],
     "Type": "Metal",
     "Description": "Noqual is a skymetal that looks like a pale green crystal to the untrained eye, but can be worked as iron, while being resistant to magic.",
     "Special": [
@@ -404,7 +404,7 @@
   },
 
   "Obsidian": {
-    "Cost": { "Weapon": "x0.5 gp" },
+    "Cost": [ "Weapon : x0.5 gp" ],
     "Type": "Stone",
     "Description": "This black volcanic glass is extremely sharp, and can be shaped into a variety of weapons that do piercing and slashing damage.",
     "Special": [
@@ -413,12 +413,12 @@
     ]
   },
   "Orichalcum": {
-    "Cost": {
-      "Weapon": "+6,000 gp",
-      "Light armor": "+10,000 gp",
-      "Medium armor": "+30,000 gp",
-      "Heavy armor": "+60,000 gp"
-    },
+    "Cost": [
+      "Weapon : +6,000 gp",
+      "Light armor : +10,000 gp",
+      "Medium armor : +30,000 gp",
+      "Heavy armor : +60,000 gp"
+    ],
     "Type": "Metal",
     "Description": "Orichalcum, sometimes known as horacalcum, the rarest of skymetals, is a coppery, sturdy metal said to bend time around it.",
     "Special": [
@@ -429,10 +429,10 @@
   },
 
   "Siccatite": {
-    "Cost": {
-      "Weapon": "+1,000 gp",
-      "Armor": "+6,000 gp"
-    },
+    "Cost": [
+      "Weapon : +1,000 gp",
+      "Armor : +6,000 gp"
+    ],
     "Type": "Metal",
     "Description": "This shining silver skymetal is either incredibly hot or freezing cold when found. As of yet, scholars have not determined whether siccatite is actually two similarly hued metals or a single type that determines its own temperature via some unknown process.",
     "Special": [
@@ -444,7 +444,7 @@
     ]
   },
   "Silversheen": {
-    "Cost": { "Blade": "+750 gp" },
+    "Cost": [ "Blade : +750 gp" ],
     "Type": "Metal",
     "Description": "This silvery metal is great for blades as it is totally immune to rusting.",
     "Special": [
@@ -452,14 +452,14 @@
     ]
   },
   "Singing Steel": {
-    "Cost": {
-      "Weapon":	"+6,000 gp",
-      "Shield":	"+7,000 gp",
-      "Light armor":	"+750 gp",
-      "Medium armor":	"+9,000 gp",
-      "Heavy armor":	"+12,000 gp",
-      "Other items":	"+600 gp/lb"
-    },
+    "Cost": [
+      "Weapon : +6,000 gp",
+      "Shield : +7,000 gp",
+      "Light armor : +750 gp",
+      "Medium armor : +9,000 gp",
+      "Heavy armor : +12,000 gp",
+      "Other items : +600 gp/lb"
+    ],
     "Type": "Metal",
     "Description": "This lustrous golden metal is an alloy of gold and mithral and emits beautiful bell-like tones when struck.",
     "Special": [
@@ -471,7 +471,7 @@
     ]
   },
   "Stainless Steel": {
-    "Cost": { "Base Item": "+10 gp per pound" },
+    "Cost": [ "Base Item : +10 gp per pound" ],
     "Type": "Metal",
     "Description": "Stainless steel is both rust resistant and splendidly shiny.",
     "Special": [
@@ -479,7 +479,7 @@
     ]
   },
   "Stone": {
-    "Cost": { "Weapon": "x0.25 gp" },
+    "Cost": [ "Weapon : x0.25 gp" ],
     "Type": "Stone",
     "Description": "",
     "Special": [
@@ -488,7 +488,7 @@
     ]
   },
   "Sunsilk": {
-    "Cost": { "Armor": "+6,000 gp" },
+    "Cost": [ "Armor : +6,000 gp" ],
     "Type": "Textile",
     "Description": "Sunsilk is a light and flexible material that glitters in gold after it has been left to cure in the sun.",
     "Special": [
@@ -497,7 +497,7 @@
     ]
   },
   "Sunsilver": {
-    "Cost": { "Base Item": "+25 gp / pound" },
+    "Cost": [ "Base Item : +25 gp / pound" ],
     "Type": "Metal",
     "Description": "This metal appears as average steel until you see the golden glint in the sunlight.",
     "Special": [
@@ -508,13 +508,13 @@
     ]
   },
   "Spiresteel": {
-    "Cost": {
-      "Ammunition":	"+10 gp per item",
-      "Weapon":	"+2,000 gp",
-      "Light Armor":	"+1,000 gp",
-      "Medium Armor":	"+2,000 gp",
-      "Heavy Armor":	"+3,000 gp"
-    },
+    "Cost": [
+      "Ammunition : +10 gp per item",
+      "Weapon : +2,000 gp",
+      "Light Armor : +1,000 gp",
+      "Medium Armor : +2,000 gp",
+      "Heavy Armor : +3,000 gp"
+    ],
     "Type": "Metal",
     "Description": "Also known as Stygian Steel, mortal philosophers speculate that spiritsteel is a condensed form of ectoplasm.",
     "Special": [
@@ -525,10 +525,10 @@
   },
 
   "Viridium": {
-    "Cost": {
-      "Ammunition":	"+20 gp per item",
-      "Weapon":	"+200 gp"
-    },
+    "Cost": [
+      "Ammunition : +20 gp per item",
+      "Weapon : +200 gp"
+    ],
     "Type": "Stone",
     "Description": "This deep green volcanic glass is similar to obsidian but is formed when molten rock is tainted with anomalous trace minerals from deep beneath the earth whose emanations are toxic to living things.",
     "Special": [
@@ -540,12 +540,12 @@
     ]
   },
   "Voidglass": {
-    "Cost": {
-      "Weapon":	"+1,000 gp",
-      "Light armor":	"+1,000 gp",
-      "Medium armor":	"+2,000 gp",
-      "Heavy armor":	"+4,500 gp"
-    },
+    "Cost": [
+      "Weapon : +1,000 gp",
+      "Light armor : +1,000 gp",
+      "Medium armor : +2,000 gp",
+      "Heavy armor : +4,500 gp"
+    ],
     "Type": "Stone",
     "Description": "This material is as hard as steel, but made of crystals that voidglass shapers on unknown worlds grow into the desired shapes.",
     "Special": [
@@ -555,7 +555,7 @@
   },
 
   "Whipwood": {
-    "Cost": { "Weapon": "+500 gp" },
+    "Cost": [ "Weapon : +500 gp" ],
     "Type": "Organic",
     "Description": "Whipwood is actually a composite of several bendable wooden fibers woven and fused together to form a flexible but sturdy unit.",
     "Special": [
@@ -565,11 +565,11 @@
     ]
   },
   "Wyroot": {
-    "Cost": {
-      "Weapon (1LP)":  "+1,000 gp",
-      "Weapon (2LP)":  "+2,000 gp",
-      "Weapon (3LP)":  "+4,000 gp"
-    },
+    "Cost": [
+      "Weapon (1LP) : +1,000 gp",
+      "Weapon (2LP) : +2,000 gp",
+      "Weapon (3LP) : +4,000 gp"
+    ],
     "Type": "Organic",
     "Description": "",
     "Special": [

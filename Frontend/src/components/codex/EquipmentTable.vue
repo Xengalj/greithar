@@ -43,13 +43,19 @@
 
   <table :id="id" class="g-table">
     <tr>
-      <th v-for="item in tableCols" @click="sortTable(item)" :key="item" >
+      <th
+      v-for="item in tableCols"
+      @click="sortTable(item)"
+      :key="item"
+      >
         {{ item }}
       </th>
     </tr>
     <tr v-for="(item, name) in data" :key="name">
       <td name="Name">{{ name }}</td>
-      <td v-for="(prop, key) in item" :key="key" :name="key">
+      <td v-for="(prop, key) in item" :key="key" :name="key"
+      :style=" key == 'Cost' ? 'width:20%' : '' "
+      >
 
         <div v-if="Array.isArray(prop)">
           <el-collapse v-if="key == 'Special' && prop[0] ">
@@ -130,7 +136,7 @@ export default {
 
   // beforeUpdate() {
   //   // this.filterValue = {};
-  //   // console.log(this.data);
+  //   console.log(this.id);
   // },
   // mounted() {},
   methods: {
@@ -320,7 +326,7 @@ table {
 }
 th { cursor: pointer; }
 th, td { padding: 16px; }
-th:last-child, th:nth-last-child(2) { width: 20%; }
+th:last-child, th:nth-last-child(2) { min-width: 20%; }
 
 th:nth-child(n+2):nth-last-child(n+3),
 td:nth-child(n+2):nth-last-child(n+3) {
