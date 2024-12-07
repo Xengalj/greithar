@@ -2,19 +2,16 @@
   "Todo": {
     "Restrictions": [ "Cleric", "Druid", "Shifter" ],
     "galdur Spontaneous Cast": ["Cleric", "Druid" ],
-    "starting spells": ["Alchemist", "Wizard" ],
     "calc galdur": [ "Bloodrager" ],
     "add / finish": [ "Brawler", "cavalier", "hunter", "inquisitor", "investigator", "Shaman", "skald", "slayer", "warpriest", "witch" ]
   },
 
 
   "alchemist": {
-    "hd": 8,
-    "ranks": 4,
     "skills": [ "Appraise (Int)", "Craft (any) (Int)", "Disable Device (Dex)", "Fly (Dex)", "Heal (Wis)", "Knowledge (arcana) (Int)", "Knowledge (nature) (Int)", "Perception (Wis)", "Profession (Wis)", "Sleight of Hand (Dex)", "Spellcraft (Int)", "Survival (Wis)", "Use Magic Device (Cha)" ],
     "proficiency": [ "simple weapons", "bombs", "light armor" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
-    "bab":  0.75,
+    "hd": 8, "ranks": 4, "bab":  0.75,
     "fort": { "mult": 0.5, "bonus": 2 },
     "ref":  { "mult": 0.33, "bonus": 0 },
     "will": { "mult": 0.33, "bonus": 0 },
@@ -29,9 +26,13 @@
     "magic": {
       "style": "Prepared Arcane",
       "castingAtr": "Intelligence",
-      "spellsPerLevel": 2,
+      "spellsKnown": {
+        "starting": "2 + Intelligence Modifier first level spells",
+        "perLevel": "1 new spell of any level castable",
+      },
+      
       "galdur":       [ 0, 2, 2, 2, 2,  3,         3,  3,  5,  5,  5,      6,  6,  6,  8,  6,          8,  8,  9,  9,  10 ],
-      "galdurTotal":  [ 0, 2, 4, 6, 8, 11,        14, 17, 22, 27, 32,     38, 44, 50, 58, 64,         72, 80, 89, 98, 108 ],
+      "galdurTotal":  [ 0, 2, 4, 6, 8, 11,        14, 17, 22, 27, 32,     38, 44, 50, 58, 64,         72, 80, 89, 98, 108 ],      
       "spellsPerDay": [ [],
         [0, 1], [0, 2], [0, 3], [0, 3, 1], [0, 4, 2],
         [0, 4, 3], [0, 4, 3, 1], [0, 4, 4, 2], [0, 5, 4, 3], [0, 5, 4, 3, 1],
@@ -615,12 +616,10 @@
 
 
   "wizard": {
-    "hd": 6,
-    "ranks": 2,
     "skills": [ "Appraise (Int)", "Craft (Int)", "Fly (Dex)", "Knowledge (all) (Int)", "Linguistics (Int)", "Profession (Wis)", "Spellcraft (Int)" ],
     "proficiency": [ "club", "dagger", "heavy crossbow", "quarterstaff" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
-    "bab":  0.5,
+    "hd": 6, "ranks": 2, "bab":  0.5,
     "fort": { "mult": 0.33, "bonus": 0 },
     "ref":  { "mult": 0.33, "bonus": 0 },
     "will": { "mult": 0.5, "bonus": 2 },
@@ -634,9 +633,11 @@
 
     "magic": {
       "style": "Prepared Arcane",
-      "castingAtr": "Int",
-      "startingSpells": "All 0, and 3 lvl-1, +IntMod lvl-1s",
-      "spellsPerLevel": 2,
+      "castingAtr": "Intelligence",
+      "spellsKnown": {
+        "starting": "All cantrips and 3 + Intelligence Modifier first level spells",
+        "perLevel": "2 new spells of any level castable",
+      },
       "galdur":       [ 0, 5, 3,  3,  3,  3,      4,  4,  5,  5, 7,       9, 11, 12, 13,  14,         15,  16,  17,  18,  19 ],
       "galdurTotal":  [ 0, 5, 8, 11, 14, 17,     21, 25, 30, 35, 42,     51, 62, 74, 87, 101,        116, 132, 149, 167, 186 ],
       "spellsPerDay": [ [],
