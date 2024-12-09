@@ -12,14 +12,12 @@
     "fort": { "mult": 0.5, "bonus": 2 },
     "ref":  { "mult": 0.33, "bonus": 0 },
     "will": { "mult": 0.33, "bonus": 0 },
-    
     "special": [ [],
       [ "Alchemy (Su)", "Bomb (Su)", "Brew Potion (Ex)", "Mutagen (Su)", "Throw Anything (Ex)" ], [ "Poison Resistance (Ex)", "Poison Use (Ex)", "Discovery (Su) (REPLACE)" ], [ "Swift Alchemy (Ex)" ], [ "Discovery (Su) (REPLACE)" ], [],
       [ "Swift Poisoning (Ex)", "Discovery (Su) (REPLACE)" ], [], [ "Discovery (Su) (REPLACE)" ], [], [ "Poison Immunity (Ex)", "Discovery (Su) (REPLACE)" ],
       [], [ "Discovery (Su) (REPLACE)" ], [], [ "Persistent Mutagen (Su)", "Discovery (Su) (REPLACE)" ], [],
       [ "Discovery (Su) (REPLACE)" ], [], [ "Instant Alchemy (Ex)", "Discovery (Su) (REPLACE)" ], [], [ "Grand Discovery (Su)" ]
     ],
-
     "magic": {
       "style": "Prepared Arcane",
       "castingAtr": "Intelligence",
@@ -48,14 +46,12 @@
     "fort": { "mult": 0.33, "bonus": 0 },
     "ref":  { "mult": 0.33, "bonus": 0 },
     "will": { "mult": 0.5, "bonus": 2 },
-
     "special": [ [],
       [ "Cantrips", "Arcane Reservoir (Su)", "Consume Spells (Su)", "Arcanist Exploit (REPLACE)" ], [], [ "Arcanist Exploit (REPLACE)" ], [], [ "Arcanist Exploit (REPLACE)" ],
       [], [ "Arcanist Exploit (REPLACE)" ], [], [ "Arcanist Exploit (REPLACE)" ], [],
       [ "Arcanist Exploit (REPLACE)", "Greater Exploits" ], [], [], [ "Arcanist Exploit (REPLACE)" ], [],
       [ "Arcanist Exploit (REPLACE)" ], [], [ "Arcanist Exploit (REPLACE)" ], [], [ "Magical Supremacy (Su)" ]
     ],
-
     "magic": {
       "style": "Prepared Arcane",
       "castingAtr": "Intelligence",
@@ -90,7 +86,6 @@
     "fort": { "mult": 0.5, "bonus": 2 },
     "ref":  { "mult": 0.33, "bonus": 0 },
     "will": { "mult": 0.33, "bonus": 0 },
-
     "special": [ [],
       [ "Fast Movement (Ex)", "Rage (Ex)" ], [ "Rage Power (Ex) (REPLACE)", "Uncanny Dodge (Ex)" ], [ "Trap Sense (Ex)" ], [ "Rage Power (Ex) (REPLACE)" ], [ "Improved Uncanny Dodge (Ex)" ],
       [ "Rage Power (Ex) (REPLACE)" ], [ "Damage Reduction (Ex)" ], [ "Rage Power (Ex) (REPLACE)" ], [], [ "Rage Power (Ex) (REPLACE)" ],
@@ -108,14 +103,12 @@
     "fort": { "mult": 0.33, "bonus": 0 },
     "ref":  { "mult": 0.5, "bonus": 2 },
     "will": { "mult": 0.5, "bonus": 2 },
-
     "special": [ [],
       [ "Bardic Knowledge (Ex)", "Bardic Performance", "Countersong (Su)", "Distraction (Su)", "Fascinate (Su)", "Inspire Courage (Su)" ], [ "Versatile Performance (Ex) (REPLACE)", "Well-Versed (Ex)" ], [ "Inspire Competence (Su)" ], [], [ "Lore Master (Ex)" ],
       [ "Suggestion (Sp)", "Versatile Performance (Ex) (REPLACE)" ], [], [ "Dirge of Doom (Su)" ], [ "Inspire Greatness (Su)" ], [ "Jack-of-all-Trades (Ex)", "Versatile Performance (Ex) (REPLACE)" ],
       [], [ "Soothing Performance (Su)" ], [], [ "Frightening Tune (Sp)", "Versatile Performance" ], [ "Inspire Heroics (Su)" ]
       [], [], [ "Mass Suggestion (Sp)", "Versatile Performance (Ex) (REPLACE)" ], [], [ "Deadly Performance (Su)" ]
     ],
-
     "magic": {
       "style": "Spontaneous Arcane",
       "castingAtr": "Charisma",
@@ -148,15 +141,13 @@
     "fort": { "mult": 0.5, "bonus": 2 },
     "ref":  { "mult": 0.33, "bonus": 0 },
     "will": { "mult": 0.33, "bonus": 0 },
-
     "special": [ [],
       [ "Fast Movement (Ex)", "Bloodrage (Su)", "Bloodline (REPLACE)", "Bloodline Power (REPLACE)" ], [ "Uncanny Dodge" ], [ "Blood Sanctuary (Su)" ], [ "Blood Casting (Su)", "Eschew Materials", "Bloodline Power (REPLACE)" ], [ "Improved Uncanny Dodge (Ex)" ],
       [ "Bloodline Feat (REPLACE)" ], [ "Damage Reduction (Ex)", "Bloodline Spell (REPLACE)" ], [ "Bloodline Power (REPLACE)" ], [ "Bloodline Feat (REPLACE)" ], [ "Bloodline Spell (REPLACE)" ],
       [ "Greater Bloodrage (Su)" ], [ "Bloodline Feat (REPLACE)", "Bloodline Power (REPLACE)" ], [ "Bloodline Spell (REPLACE)" ], [ "Indomitable Will (Ex)" ], [ "Bloodline Feat (REPLACE)" ],
       [ "Bloodline Spell (REPLACE)", "Bloodline Power (REPLACE)" ], [ "Tireless Bloodrage (Su)" ], [ "Bloodline Feat (REPLACE)" ], [], [ "Mighty Bloodrage (Su)", "Bloodline Power (REPLACE)" ]
     ],
-    "unique": "may cast bloodrager spells in light / medium armor with no failure."
-
+    "unique": "Bloodragers may cast bloodrager spells in light / medium armor with no spell failure chance."
     "magic": {
       "style": "Spontaneous Arcane",
       "castingAtr": "Charisma",
@@ -181,26 +172,36 @@
 
 
   "brawler": {
-    "Parent Classes": [ "Fighter", "Monk" ]
-    
+    "Parent Classes": [ "Fighter", "Monk" ],
+    "skills": [ "Acrobatics (Dex)", "Climb (Str)", "Craft (Int)", "Escape Artist (Dex)", "Handle Animal (Cha)", "Intimidate (Cha)", "Knowledge (dungeoneering) (Int)", "Knowledge (local) (Int)", "Perception (Wis)", "Profession (Wis)", "Ride (Dex)", "Sense Motive (Wis)", "Swim (Str)" ],
+    "proficiency": [ "simple weapons", "handaxe", "short sword", "close weapon group", "light armor", "snields" ],
+    "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
+    "hd": 10, "ranks": 4, "bab":  1,
+    "fort": { "mult": 0.5, "bonus": 2 },
+    "ref":  { "mult": 0.5, "bonus": 2 },
+    "will": { "mult": 0.33, "bonus": 0 },
+    "special": [ [],
+      [ "Brawler’s Cunning (Ex)", "Martial Flexibility (Ex)", "Martial Training (Ex)", "Unarmed Strike" ], [ "Bonus Combat Feat (REPLACE)", "Brawler’s Flurry (Ex)" ], [ "Maneuver Training (Ex)" ], [	"AC Bonus (Ex)", "Knockout (Ex)" ], [  "Bonus Combat Feat (REPLACE)", "Brawler’s Strike (Ex)", "Close Weapon Mastery (Ex)" ],
+      [], [], [ "Bonus Combat Feat (REPLACE)" ], [], [],
+      [ "Bonus Combat Feat (REPLACE)" ], [], [], [ "Bonus Combat Feat (REPLACE)" ], [],
+      [ "Awesome Blow (Ex)" ], [ "Bonus Combat Feat (REPLACE)" ], [], [], [ "Improved Awesome Blow (Ex)", "Bonus Combat Feat (REPLACE)" ]
+    ]
   },
 
 
   "cavalier": {
-    "skills": [ "Appraise (Int)", "Craft (Int)", "Diplomacy (Cha)", "Heal (Wis)", "Knowledge (arcana) (Int)", "Knowledge (history) (Int)", "Knowledge (nobility) (Int)", "Knowledge (planes) (Int)", "Knowledge (religion) (Int)", "Linguistics (Int)", "Profession (Wis)", "Sense Motive (Wis)", "Spellcraft (Int)" ],
-    "proficiency": [ "simple weapons", "light armor", "medium armor", "shields" ],
+    "skills": [ "Bluff (Cha)", "Climb (Str)", "Craft (Int)", "Diplomacy (Cha)", "Handle Animal (Cha)", "Intimidate (Cha)", "Profession (Wis)", "Ride (Dex)", "Sense Motive (Wis)", "Swim (Str)" ],
+    "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "heavy armor", "shields" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
-    "bab":  0.75, "hd": 10, "ranks": 4,
+    "bab":  1, "hd": 10, "ranks": 4,
     "fort": { "mult": 0.5, "bonus": 2 },
     "ref":  { "mult": 0.33, "bonus": 0 },
-    "will": { "mult": 0.5, "bonus": 2 },
-
+    "will": { "mult": 0.33, "bonus": 0 },
     "special": [ [],
-      [ "Aura (Ex)", "Channel Energy (Su)", "Domains (REPLACE)", "Spontaneous Casting", "Bonus Languages" ],
-      [], [], [], [],
-      [], [], [], [], [],
-      [], [], [], [], [],
-      [], [], [], [], []
+      [ "Challenge (Ex)", "Mount (Ex)", "Order (Ex)", "Tactician (Ex)" ], [ "Order Ability (REPLACE)" ], [ "Cavalier’s Charge (Ex)" ], [ "Expert Trainer (Ex)" ], [ "Banner (Ex)" ],
+      [ "Bonus Combat Feat (REPLACE)" ], [], [ "Order Ability (REPLACE)" ], [ "Greater Tactician (Ex)" ], [],
+      [ "Mighty Charge (Ex)" ], [ "Demanding Challenge (Ex)", "Bonus Combat Feat (REPLACE)" ], [], [ "Greater Banner (Ex)" ], [ "Order Ability (REPLACE)" ],
+      [], [ "Master Tactician (Ex)" ], [ "Bonus Combat Feat (REPLACE)" ], [], [ "Supreme Charge (Ex)" ]
     ]
   },
 
@@ -208,12 +209,11 @@
   "cleric": {
     "skills": [ "Appraise (Int)", "Craft (Int)", "Diplomacy (Cha)", "Heal (Wis)", "Knowledge (arcana) (Int)", "Knowledge (history) (Int)", "Knowledge (nobility) (Int)", "Knowledge (planes) (Int)", "Knowledge (religion) (Int)", "Linguistics (Int)", "Profession (Wis)", "Sense Motive (Wis)", "Spellcraft (Int)" ],
     "proficiency": [ "simple weapons", "light armor", "medium armor", "shields" ],
-    "alignment": "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
+    "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "bab":  0.75, "hd": 8, "ranks": 2,
     "fort": { "mult": 0.5, "bonus": 2 },
     "ref":  { "mult": 0.33, "bonus": 0 },
     "will": { "mult": 0.5, "bonus": 2 },
-
     "special": [ [],
       [ "Aura (Ex)", "Channel Energy (Su)", "Domain (REPLACE)", "Domain (REPLACE)", "Spontaneous Casting", "Bonus Languages" ], [], [], [], [],
       [], [], [], [], [],
@@ -221,7 +221,6 @@
       [], [], [], [], []
     ],
     "unique": "Must be within one step of their diety's.",
-
     "magic": {
       "style": "Prepared Divine",
       "castingAtr": "Wisdom",
@@ -250,7 +249,6 @@
     "fort": { "mult": 0.5, "bonus": 2 },
     "ref":  { "mult": 0.33, "bonus": 0 },
     "will": { "mult": 0.5, "bonus": 2 },
-    
     "special": [ [],
       [ "Nature Bond (Ex)", "Nature Sense (Ex)", "Wild Empathy (Ex)", "Spontaneous Casting", "Bonus Languages" ], [ "Woodland Stride (Ex)" ], [ "Trackless Step (Ex)" ], [ "Resist Nature's Lure (Ex)", "Wild Shape (Su)" ], [],
       [], [], [], [ "Venom Imunity (Ex)" ], [],
@@ -258,7 +256,6 @@
       [], [], [], [], []
     ],
     "unique": "Druids may not wear metal armor or weild metal shields.",
-
     "magic": {
       "style": "Prepared Divine",
       "castingAtr": "Wisdom",
@@ -286,26 +283,117 @@
     "fort": { "mult": 0.5, "bonus": 2 },
     "ref":  { "mult": 0.33, "bonus": 0 },
     "will": { "mult": 0.33, "bonus": 0 },
-
     "special": [ [],
-      [ "Bonus Feat (REPLACE)" ], [ "Bonus Feat (REPLACE)", "Bravery (Ex)" ], [ "Armor Training (Ex)" ], [ "Bonus Feat (REPLACE)" ], [ "Weapon Training (Ex) (REPLACE)" ],
-      [ "Bonus Feat (REPLACE)" ], [ "Armor Training (Ex) (REPLACE)" ], [ "Bonus Feat (REPLACE)" ], [ "Weapon Training (Ex) (REPLACE)" ], [ "Bonus Feat (REPLACE)" ],
-      [ "Armor Training (Ex) (REPLACE)" ], [ "Bonus Feat (REPLACE)" ], [ "Weapon Training (Ex) (REPLACE)" ], [ "Bonus Feat (REPLACE)" ], [ "Armor Training (Ex) (REPLACE)" ],
-      [ "Bonus Feat (REPLACE)" ], [ "Weapon Training (Ex) (REPLACE)" ], [ "Bonus Feat (REPLACE)" ], [ "Armor Mastery (Ex)" ], [ "Bonus Feat (REPLACE)", "Weapon Mastery (Ex)" ]
+      [ "Bonus Combat Feat (REPLACE)" ], [ "Bonus Combat Feat (REPLACE)", "Bravery (Ex)" ], [ "Armor Training (Ex)" ], [ "Bonus Combat Feat (REPLACE)" ], [ "Weapon Training (Ex) (REPLACE)" ],
+      [ "Bonus Combat Feat (REPLACE)" ], [ "Armor Training (Ex) (REPLACE)" ], [ "Bonus Combat Feat (REPLACE)" ], [ "Weapon Training (Ex) (REPLACE)" ], [ "Bonus Combat Feat (REPLACE)" ],
+      [ "Armor Training (Ex) (REPLACE)" ], [ "Bonus Combat Feat (REPLACE)" ], [ "Weapon Training (Ex) (REPLACE)" ], [ "Bonus Combat Feat (REPLACE)" ], [ "Armor Training (Ex) (REPLACE)" ],
+      [ "Bonus Combat Feat (REPLACE)" ], [ "Weapon Training (Ex) (REPLACE)" ], [ "Bonus Combat Feat (REPLACE)" ], [ "Armor Mastery (Ex)" ], [ "Bonus Combat Feat (REPLACE)", "Weapon Mastery (Ex)" ]
     ]
   },
 
 
   "hunter": {
-    "Parent Classes": [ "Druid", "Ranger" ]
+    "Parent Classes": [ "Druid", "Ranger" ],
+    "skills": [ "Climb (Str)", "Craft (Int)", "Handle Animal (Cha)", "Heal (Wis)", "Intimidate (Cha)", "Knowledge (dungeoneering) (Int)", "Knowledge (geography) (Int)", "Knowledge (nature) (Int)", "Perception (Wis)", "Profession (Wis)", "Ride (Dex)", "Spellcraft (Int)", "Stealth (Dex)", "Survival (Wis)", "Swim (Str)" ],
+    "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "shields" ],
+    "alignment": [ "NG", "LN", "N", "CN", "NE" ],
+    "hd": 8, "ranks": 6, "bab":  0.75,
+    "fort": { "mult": 0.5, "bonus": 2 },
+    "ref":  { "mult": 0.5, "bonus": 2 },
+    "will": { "mult": 0.33, "bonus":  },
+    "special": [ [],
+      [ "Animal Companion (Ex)", "Animal Focus (Su)", "Nature Training (Ex)", "Wild Empathy (Ex)" ], [ "Precise Companion (Ex)", "Track (Ex)" ], [ "Hunter Tactics (Ex)", "Bonus Teamwork Feat (REPALCE)" ], [ "Improved Empathic Link (Su)" ], [ "Woodland Stride (Ex)" ],
+      [ "Bonus Teamwork Feat (REPALCE)" ], [ "Bonus Tricks (Ex)" ], [ "Second Animal Focus (Su)", "Swift Tracker (Ex)" ], [ "Bonus Teamwork Feat (REPALCE)" ], [ "Raise Animal Companion (Sp)" ],
+      [ "Speak with Master (Ex)" ], [ "Bonus Teamwork Feat (REPALCE)" ], [], [ "Greater Empathic Link (Su)" ], [ "Bonus Teamwork Feat (REPALCE)" ],
+      [], [ "One with the Wild (Ex)" ], [ "Bonus Teamwork Feat (REPALCE)" ], [], [ "Master Hunter (Ex)" ]
+    ],
+    "magic": {
+      "style": "Spontaneous Divine",
+      "castingAtr": "Wisdom",
+      "spellsKnown": {
+        "total": "A druid may prepare any spell, of appropriate level, on the druid spell list.",
+        "spontaneousSpells": "Summon Nature’s Ally spells",
+        "byLevel":  [ [],
+          [4, 2], [5, 3], [6, 4], [6, 4, 2], [6, 4, 3],
+          [6, 4, 4], [6, 5, 4, 2], [6, 5, 4, 3], [6, 5, 4, 4], [6, 5, 5, 4, 2],
+          [6, 6, 5, 4, 3], [6, 6, 5, 4, 4], [6, 6, 5, 5, 4, 2], [6, 6, 6, 5, 4, 3], [6, 6, 6, 5, 4, 4],
+          [6, 6, 6, 5, 5, 4, 2], [6, 6, 6, 6, 5, 4, 3], [6, 6, 6, 6, 5, 4, 4], [6, 6, 6, 6, 5, 5, 4], [6, 6, 6, 6, 6, 5, 5]
+        ]
+      },
+      "galdur":      [ 0, 6, 3,  3,  3,  3,      4,  4,  4,  5,  5,      7,  8,  9, 10, 11,         12,  13,  14,  15,  16 ],
+      "galdurTotal": [ 0, 6, 9, 12, 15, 18,     22, 26, 30, 35, 40,     47, 55, 64, 74, 85,         97, 110, 124, 139, 155 ],
+      "spellsPerDay": [ [],
+        ["∞", 1], ["∞", 2], ["∞", 3], ["∞", 3, 1], ["∞", 4, 2],
+        ["∞", 4, 3], ["∞", 4, 3, 1], ["∞", 4, 4, 2], ["∞", 5, 4, 3], ["∞", 5, 4, 3, 1],
+        ["∞", 5, 4, 4, 2], ["∞", 5, 5, 4, 3], ["∞", 5, 5, 4, 3, 1], ["∞", 5, 5, 4, 4, 2], ["∞", 5, 5, 5, 4, 3],
+        ["∞", 5, 5, 5, 4, 3, 1], ["∞", 5, 5, 5, 4, 4, 2], ["∞", 5, 5, 5, 5, 4, 3], ["∞", 5, 5, 5, 5, 5, 4], ["∞", 5, 5, 5, 5, 5, 5]
+      ]
+    }
   },
 
 
-  "inquisitor": {},
+  "inquisitor": {
+    "skills": [ "Bluff (Cha)", "Climb (Str)", "Craft (Int)", "Diplomacy (Cha)", "Disguise (Cha)", "Heal (Wis)", "Intimidate (Cha)", "Knowledge (arcana) (Int)", "Knowledge (dungeoneering) (Int)", "Knowledge (nature) (Int)", "Knowledge (planes) (Int)", "Knowledge (religion) (Int)", "Perception (Wis)", "Profession (Wis)", "Ride (Dex)", "Sense Motive (Wis)", "Spellcraft (Int)", "Stealth (Dex)", "Survival (Wis)", "Swim (Str)" ],
+    "proficiency": [ "simple weapons", "hand crossbow", "longbow", "repeating crossbow", "shortbow", "favored weapon", "light armor", "medium armor", "shields"],
+    "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
+    "hd": 8, "ranks": 6, "bab":  0.75,
+    "fort": { "mult": 0.5, "bonus": 2 },
+    "ref":  { "mult": 0.33, "bonus": 0 },
+    "will": { "mult": 0.5, "bonus": 2 },
+
+    "special": [ [],
+      [ "Arcane Bond (Ex od Sp)"  ], [], [], [], [],
+      [], [], [], [], [],
+      [], [], [], [], [],
+      [], [], [], [], []
+    ],
+    "unique": "Must be within one step of their diety's.",
+
+        "magic": {
+      "style": "Spontaneous Divine",
+      "castingAtr": "Wisdom",
+      "spellsKnown": {
+        "total": "A druid may prepare any spell, of appropriate level, on the druid spell list.",
+        "spontaneousSpells": "Summon Nature’s Ally spells",
+        "byLevel":  [ [],
+          [4, 2], [5, 3], [6, 4], [6, 4, 2], [6, 4, 3],
+          [6, 4, 4], [6, 5, 4, 2], [6, 5, 4, 3], [6, 5, 4, 4], [6, 5, 5, 4, 2],
+          [6, 6, 5, 4, 3], [6, 6, 5, 4, 4], [6, 6, 5, 5, 4, 2], [6, 6, 6, 5, 4, 3], [6, 6, 6, 5, 4, 4],
+          [6, 6, 6, 5, 5, 4, 2], [6, 6, 6, 6, 5, 4, 3], [6, 6, 6, 6, 5, 4, 4], [6, 6, 6, 6, 5, 5, 4], [6, 6, 6, 6, 6, 5, 5]
+        ]
+      },
+      "galdur":      [ 0, 6, 3,  3,  3,  3,      4,  4,  4,  5,  5,      7,  8,  9, 10, 11,         12,  13,  14,  15,  16 ],
+      "galdurTotal": [ 0, 6, 9, 12, 15, 18,     22, 26, 30, 35, 40,     47, 55, 64, 74, 85,         97, 110, 124, 139, 155 ],
+      "spellsPerDay": [ [],
+        ["∞", 1], ["∞", 2], ["∞", 3], ["∞", 3, 1], ["∞", 4, 2],
+        ["∞", 4, 3], ["∞", 4, 3, 1], ["∞", 4, 4, 2], ["∞", 5, 4, 3], ["∞", 5, 4, 3, 1],
+        ["∞", 5, 4, 4, 2], ["∞", 5, 5, 4, 3], ["∞", 5, 5, 4, 3, 1], ["∞", 5, 5, 4, 4, 2], ["∞", 5, 5, 5, 4, 3],
+        ["∞", 5, 5, 5, 4, 3, 1], ["∞", 5, 5, 5, 4, 4, 2], ["∞", 5, 5, 5, 5, 4, 3], ["∞", 5, 5, 5, 5, 5, 4], ["∞", 5, 5, 5, 5, 5, 5]
+      ]
+    }
+
+    
+  },
 
 
   "investigator": {
     "Parent Classes": [ "Alchemist", "Rogue" ]
+    
+        "skills": [ "Appraise (Int)", "Craft (Int)", "Fly (Dex)", "Knowledge (all) (Int)", "Linguistics (Int)", "Profession (Wis)", "Spellcraft (Int)" ],
+    "proficiency": [ "club", "dagger", "heavy crossbow", "quarterstaff" ],
+    "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
+    "hd": 6, "ranks": 2, "bab":  0.5,
+    "fort": { "mult": 0.33, "bonus": 0 },
+    "ref":  { "mult": 0.33, "bonus": 0 },
+    "will": { "mult": 0.5, "bonus": 2 },
+
+    "special": [ [],
+      [ "Arcane Bond (Ex od Sp)", "Arcane School", "Scribe Scroll", "Bonus Languages" ], [], [], [], [ "Bonus Feat (REPLACE)" ],
+      [], [], [], [], [ "Bonus Feat (REPLACE)" ],
+      [], [], [], [], [ "Bonus Feat (REPLACE)" ],
+      [], [], [], [], [ "Bonus Feat (REPLACE)" ]
+    ],
+    
   },
 
 
@@ -489,6 +577,22 @@
 
   "shaman": {
     "Parent Classes": [ "Oracle", "Witch" ]
+    
+        "skills": [ "Appraise (Int)", "Craft (Int)", "Fly (Dex)", "Knowledge (all) (Int)", "Linguistics (Int)", "Profession (Wis)", "Spellcraft (Int)" ],
+    "proficiency": [ "club", "dagger", "heavy crossbow", "quarterstaff" ],
+    "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
+    "hd": 6, "ranks": 2, "bab":  0.5,
+    "fort": { "mult": 0.33, "bonus": 0 },
+    "ref":  { "mult": 0.33, "bonus": 0 },
+    "will": { "mult": 0.5, "bonus": 2 },
+
+    "special": [ [],
+      [ "Arcane Bond (Ex od Sp)", "Arcane School", "Scribe Scroll", "Bonus Languages" ], [], [], [], [ "Bonus Feat (REPLACE)" ],
+      [], [], [], [], [ "Bonus Feat (REPLACE)" ],
+      [], [], [], [], [ "Bonus Feat (REPLACE)" ],
+      [], [], [], [], [ "Bonus Feat (REPLACE)" ]
+    ],
+    
   },
 
 
@@ -513,11 +617,43 @@
 
   "skald": {
     "Parent Classes": [ "Barbarian", "Bard" ]
+    
+        "skills": [ "Appraise (Int)", "Craft (Int)", "Fly (Dex)", "Knowledge (all) (Int)", "Linguistics (Int)", "Profession (Wis)", "Spellcraft (Int)" ],
+    "proficiency": [ "club", "dagger", "heavy crossbow", "quarterstaff" ],
+    "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
+    "hd": 6, "ranks": 2, "bab":  0.5,
+    "fort": { "mult": 0.33, "bonus": 0 },
+    "ref":  { "mult": 0.33, "bonus": 0 },
+    "will": { "mult": 0.5, "bonus": 2 },
+
+    "special": [ [],
+      [ "Arcane Bond (Ex od Sp)", "Arcane School", "Scribe Scroll", "Bonus Languages" ], [], [], [], [ "Bonus Feat (REPLACE)" ],
+      [], [], [], [], [ "Bonus Feat (REPLACE)" ],
+      [], [], [], [], [ "Bonus Feat (REPLACE)" ],
+      [], [], [], [], [ "Bonus Feat (REPLACE)" ]
+    ],
+    
   },
 
 
   "slayer": {
     "Parent Classes": [ "Ranger", "Rogue" ]
+    
+        "skills": [ "Appraise (Int)", "Craft (Int)", "Fly (Dex)", "Knowledge (all) (Int)", "Linguistics (Int)", "Profession (Wis)", "Spellcraft (Int)" ],
+    "proficiency": [ "club", "dagger", "heavy crossbow", "quarterstaff" ],
+    "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
+    "hd": 6, "ranks": 2, "bab":  0.5,
+    "fort": { "mult": 0.33, "bonus": 0 },
+    "ref":  { "mult": 0.33, "bonus": 0 },
+    "will": { "mult": 0.5, "bonus": 2 },
+
+    "special": [ [],
+      [ "Arcane Bond (Ex od Sp)", "Arcane School", "Scribe Scroll", "Bonus Languages" ], [], [], [], [ "Bonus Feat (REPLACE)" ],
+      [], [], [], [], [ "Bonus Feat (REPLACE)" ],
+      [], [], [], [], [ "Bonus Feat (REPLACE)" ],
+      [], [], [], [], [ "Bonus Feat (REPLACE)" ]
+    ],
+    
   },
 
 
@@ -601,14 +737,8 @@
 
   "warpriest": {
     "Parent Classes": [ "Cleric", "Fighter" ]
-  },
-
-
-  "witch": {},
-
-
-  "wizard": {
-    "skills": [ "Appraise (Int)", "Craft (Int)", "Fly (Dex)", "Knowledge (all) (Int)", "Linguistics (Int)", "Profession (Wis)", "Spellcraft (Int)" ],
+    
+        "skills": [ "Appraise (Int)", "Craft (Int)", "Fly (Dex)", "Knowledge (all) (Int)", "Linguistics (Int)", "Profession (Wis)", "Spellcraft (Int)" ],
     "proficiency": [ "club", "dagger", "heavy crossbow", "quarterstaff" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "hd": 6, "ranks": 2, "bab":  0.5,
@@ -621,6 +751,45 @@
       [], [], [], [], [ "Bonus Feat (REPLACE)" ],
       [], [], [], [], [ "Bonus Feat (REPLACE)" ],
       [], [], [], [], [ "Bonus Feat (REPLACE)" ]
+    ],
+    
+  },
+
+
+  "witch": {
+    
+        "skills": [ "Appraise (Int)", "Craft (Int)", "Fly (Dex)", "Knowledge (all) (Int)", "Linguistics (Int)", "Profession (Wis)", "Spellcraft (Int)" ],
+    "proficiency": [ "club", "dagger", "heavy crossbow", "quarterstaff" ],
+    "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
+    "hd": 6, "ranks": 2, "bab":  0.5,
+    "fort": { "mult": 0.33, "bonus": 0 },
+    "ref":  { "mult": 0.33, "bonus": 0 },
+    "will": { "mult": 0.5, "bonus": 2 },
+
+    "special": [ [],
+      [ "Arcane Bond (Ex od Sp)", "Arcane School", "Scribe Scroll", "Bonus Languages" ], [], [], [], [ "Bonus Feat (REPLACE)" ],
+      [], [], [], [], [ "Bonus Feat (REPLACE)" ],
+      [], [], [], [], [ "Bonus Feat (REPLACE)" ],
+      [], [], [], [], [ "Bonus Feat (REPLACE)" ]
+    ],
+    
+  },
+
+
+  "wizard": {
+    "skills": [ "Appraise (Int)", "Craft (Int)", "Fly (Dex)", "Knowledge (all) (Int)", "Linguistics (Int)", "Profession (Wis)", "Spellcraft (Int)" ],
+    "proficiency": [ "club", "dagger", "heavy crossbow", "quarterstaff" ],
+    "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
+    "hd": 6, "ranks": 2, "bab":  0.5,
+    "fort": { "mult": 0.33, "bonus": 0 },
+    "ref":  { "mult": 0.33, "bonus": 0 },
+    "will": { "mult": 0.5, "bonus": 2 },
+
+    "special": [ [],
+      [ "Arcane Bond (Ex od Sp)", "Arcane School", "Scribe Scroll", "Bonus Languages" ], [], [], [], [ "Bonus Metamagic Feat (REPLACE)" ],
+      [], [], [], [], [ "Bonus Metamagic Feat (REPLACE)" ],
+      [], [], [], [], [ "Bonus Metamagic Feat (REPLACE)" ],
+      [], [], [], [], [ "Bonus Metamagic Feat (REPLACE)" ]
     ],
 
     "magic": {
@@ -656,7 +825,7 @@
       "galdurTotal": [ 0, 5, 8, 11, 14, 17,     21, 25, 30, 35, 42,     51, 62, 74, 87, 101,        116, 132, 149, 167, 186 ],
       "galdur":      [ 0, 5, 3,  3,  3,  3,      4,  4,  5,  5, 7,       9, 11, 12, 13,  14,         15,  16,  17,  18,  19 ]
     },
-    "Bard / Inquisitor / Magus / Summoner / Warpriest": {
+    "Bard / Hunter / Inquisitor / Magus / Summoner / Warpriest": {
       "galdurTotal": [ 0, 6, 9, 12, 15, 18,     22, 26, 30, 35, 40,     47, 55, 64, 74, 85,         97, 110, 124, 139, 155 ],
       "galdur":      [ 0, 6, 3,  3,  3,  3,      4,  4,  4,  5,  5,      7,  8,  9, 10, 11,         12,  13,  14,  15,  16 ]
     },
