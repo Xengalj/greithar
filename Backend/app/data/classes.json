@@ -1,6 +1,6 @@
 {
   "Todo": {
-    "add / finish": [ "Brawler", "cavalier", "hunter", "inquisitor", "investigator", "Shaman", "skald", "slayer", "warpriest", "witch" ]
+    "add / finish": [ "Shaman", "skald", "slayer", "warpriest", "witch" ]
   },
 
 
@@ -311,7 +311,6 @@
       "style": "Spontaneous Divine",
       "castingAtr": "Wisdom",
       "spellsKnown": {
-        "total": "A druid may prepare any spell, of appropriate level, on the druid spell list.",
         "spontaneousSpells": "Summon Nature’s Ally spells",
         "byLevel":  [ [],
           [4, 2], [5, 3], [6, 4], [6, 4, 2], [6, 4, 3],
@@ -334,27 +333,23 @@
 
   "inquisitor": {
     "skills": [ "Bluff (Cha)", "Climb (Str)", "Craft (Int)", "Diplomacy (Cha)", "Disguise (Cha)", "Heal (Wis)", "Intimidate (Cha)", "Knowledge (arcana) (Int)", "Knowledge (dungeoneering) (Int)", "Knowledge (nature) (Int)", "Knowledge (planes) (Int)", "Knowledge (religion) (Int)", "Perception (Wis)", "Profession (Wis)", "Ride (Dex)", "Sense Motive (Wis)", "Spellcraft (Int)", "Stealth (Dex)", "Survival (Wis)", "Swim (Str)" ],
-    "proficiency": [ "simple weapons", "hand crossbow", "longbow", "repeating crossbow", "shortbow", "favored weapon", "light armor", "medium armor", "shields"],
+    "proficiency": [ "simple weapons", "hand crossbow", "longbow", "repeating crossbow", "shortbow", "favored weapon", "light armor", "medium armor", "shields" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "hd": 8, "ranks": 6, "bab":  0.75,
     "fort": { "mult": 0.5, "bonus": 2 },
     "ref":  { "mult": 0.33, "bonus": 0 },
     "will": { "mult": 0.5, "bonus": 2 },
-
     "special": [ [],
-      [ "Arcane Bond (Ex od Sp)"  ], [], [], [], [],
-      [], [], [], [], [],
-      [], [], [], [], [],
-      [], [], [], [], []
+      [ "Domain", "Judgment (Su)", "Monster Lore (Ex)", "Stern Gaze (Ex)" ], [ "Cunning Initiative (Ex)", "Detect Alignment (Sp)", "Track (Ex)" ], [ "Solo Tactics (Ex)", "Bonus Teamwork Feat (REPLACE)" ], [], [ "Bane (Su)", "Discern Lies (Sp)" ],
+      [ "Bonus Teamwork Feat (REPLACE)" ], [], [ "Second Judgment (Ex)" ], [ "Bonus Teamwork Feat (REPLACE)" ], [],
+      [ "Stalwart (Ex)" ], [ "Greater Bane (Su)", "Bonus Teamwork Feat (REPLACE)" ], [], [ "Exploit Weakness (Ex)" ], [ "Bonus Teamwork Feat (REPLACE)" ],
+      [ "Third Judgment (Ex)" ], [ "Slayer (Ex)" ], [ "Bonus Teamwork Feat (REPLACE)" ], [], [ "True Judgment (Su)" ]
     ],
     "unique": "Must be within one step of their diety's.",
-
-        "magic": {
+    "magic": {
       "style": "Spontaneous Divine",
       "castingAtr": "Wisdom",
       "spellsKnown": {
-        "total": "A druid may prepare any spell, of appropriate level, on the druid spell list.",
-        "spontaneousSpells": "Summon Nature’s Ally spells",
         "byLevel":  [ [],
           [4, 2], [5, 3], [6, 4], [6, 4, 2], [6, 4, 3],
           [6, 4, 4], [6, 5, 4, 2], [6, 5, 4, 3], [6, 5, 4, 4], [6, 5, 5, 4, 2],
@@ -371,29 +366,40 @@
         ["∞", 5, 5, 5, 4, 3, 1], ["∞", 5, 5, 5, 4, 4, 2], ["∞", 5, 5, 5, 5, 4, 3], ["∞", 5, 5, 5, 5, 5, 4], ["∞", 5, 5, 5, 5, 5, 5]
       ]
     }
-
-    
   },
 
 
   "investigator": {
-    "Parent Classes": [ "Alchemist", "Rogue" ]
-    
-        "skills": [ "Appraise (Int)", "Craft (Int)", "Fly (Dex)", "Knowledge (all) (Int)", "Linguistics (Int)", "Profession (Wis)", "Spellcraft (Int)" ],
-    "proficiency": [ "club", "dagger", "heavy crossbow", "quarterstaff" ],
+    "Parent Classes": [ "Alchemist", "Rogue" ],
+    "skills": [ "Acrobatics (Dex)", "Appraise (Int)", "Bluff (Cha)", "Climb (Str)", "Craft (Int)", "Diplomacy (Cha)", "Disable Device (Dex)", "Disguise (Cha)", "Escape Artist (Dex)", "Heal (Wis)", "Intimidate (Cha)", "Knowledge (all) (Int)", "Linguistics (Int)", "Perception (Wis)", "Perform (Cha)", "Profession (Wis)", "Sense Motive (Wis)", "Sleight of Hand (Dex)", "Spellcraft (Int)", "Stealth (Dex)", "Use Magic Device (Cha)" ],
+    "proficiency": [ "simple weapons", "hand crossbow", "rapier", "sap", "shortbow", "short sword", "sword cane", "light armor" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
-    "hd": 6, "ranks": 2, "bab":  0.5,
+    "hd": 8, "ranks": 6, "bab":  0.75,
     "fort": { "mult": 0.33, "bonus": 0 },
-    "ref":  { "mult": 0.33, "bonus": 0 },
+    "ref":  { "mult": 0.5, "bonus": 2 },
     "will": { "mult": 0.5, "bonus": 2 },
-
     "special": [ [],
-      [ "Arcane Bond (Ex od Sp)", "Arcane School", "Scribe Scroll", "Bonus Languages" ], [], [], [], [ "Bonus Feat (REPLACE)" ],
-      [], [], [], [], [ "Bonus Feat (REPLACE)" ],
-      [], [], [], [], [ "Bonus Feat (REPLACE)" ],
-      [], [], [], [], [ "Bonus Feat (REPLACE)" ]
+      [ "Alchemy (Su)", "Inspiration (Ex)", "Trapfinding" ], [ "Poison Lore (Ex)", "Poison Resistance (Ex)" ], [ "Keen Recollection", "Trap Sense (Ex)", "Investigator Talent (REPLACE)" ], [ "Studied Combat (Ex)", "Studied Strike (Ex)", "Swift Alchemy (Ex)" ], [ "Investigator Talent (REPLACE)" ],
+      [], [ "Investigator Talent (REPLACE)" ], [], [ "Investigator Talent (REPLACE)" ], [],
+      [ "Investigator Talent (REPLACE)" ], [], [ "Investigator Talent (REPLACE)" ], [], [ "Investigator Talent (REPLACE)" ],
+      [], [ "Investigator Talent (REPLACE)" ], [], [ "Investigator Talent (REPLACE)" ], [ "True Inspiration (Ex)" ]
     ],
-    
+    "magic": {
+      "style": "Prepared Arcane",
+      "castingAtr": "Intelligence",
+      "spellsKnown": {
+        "starting": "2 + Intelligence Modifier first level spells",
+        "perLevel": "1 new spell of any level castable",
+      },
+      "galdur":       [ 0, 2, 2, 2, 2,  3,         3,  3,  5,  5,  5,      6,  6,  6,  8,  6,          8,  8,  9,  9,  10 ],
+      "galdurTotal":  [ 0, 2, 4, 6, 8, 11,        14, 17, 22, 27, 32,     38, 44, 50, 58, 64,         72, 80, 89, 98, 108 ],      
+      "spellsPerDay": [ [],
+        [0, 1], [0, 2], [0, 3], [0, 3, 1], [0, 4, 2],
+        [0, 4, 3], [0, 4, 3, 1], [0, 4, 4, 2], [0, 5, 4, 3], [0, 5, 4, 3, 1],
+        [0, 5, 4, 4, 2], [0, 5, 5, 4, 3], [0, 5, 5, 4, 3, 1], [0, 5, 5, 4, 4, 2], [0, 5, 5, 5, 4, 3],
+        [0, 5, 5, 5, 4, 3, 1], [0, 5, 5, 5, 4, 4, 2], [0, 5, 5, 5, 5, 4, 3], [0, 5, 5, 5, 5, 5, 4], [0, 5, 5, 5, 5, 5, 5]
+      ]
+    }
   },
 
 
@@ -405,14 +411,12 @@
     "fort": { "mult": 0.5, "bonus": 2 },
     "ref":  { "mult": 0.33, "bonus": 0 },
     "will": { "mult": 0.5, "bonus": 2 },
-
     "special": [ [],
       [ "Cantrips", "Arcane Pool (Su)", "Spell Combat (Ex)" ], [ "Spellstrike (Su)" ], [ "Magus Arcana (REPLACE)" ], [ "Spell Recall (Su)" ], [ "Bonus Feat (REPLACE)" ],
       [ "Magus Arcana (REPLACE)" ], [	"Knowledge Pool (Su)", "Medium Armor (Ex)" ], [ "Improved Spell Combat (Ex)" ], [ "Magus Arcana (REPLACE)" ], [ "Fighter Training (Ex)" ],
       [ "Improved Spell Recall (Su)", "Bonus Feat (REPALCE)" ], [ "Magus Arcana (REPLACE)" ], [ "Heavy Armor (Ex)" ], [ "Greater Spell Combat (Ex)" ], [ "Magus Arcana (REPLACE)" ],
       [ "Counterstrike (Ex)" ],  [ "Bonus Feat (REPLACE)" ], [ "Magus Arcana (REPLACE)" ], [ "Greater Spell Access (Su)" ], [ "True Magus (Su)" ]
     ],
-
     "magic": {
       "style": "Prepared Arcane",
       "castingAtr": "Charisma",
@@ -440,7 +444,6 @@
     "fort": { "mult": 0.5, "bonus": 2 },
     "ref":  { "mult": 0.5, "bonus": 2 },
     "will": { "mult": 0.5, "bonus": 2 },
-
     "special": [ [],
       [ "AC Bonus (Ex)", "Flurry of Blows (Ex)", "Unarmed Strike", "Stunning Fist (Ex)", "Bonus Feat (REPLACE)" ], [ "Evasion (Ex)", "Bonus Feat (REPLACE)" ], [ "Fast Movement (Ex)", "Maneuver Training (Ex)", "Still Mind (Ex)" ], [ "Ki Pool (Su)", "Slow Fall (Ex)" ], [ "High Jump (Ex)", "Purity of Body (Ex)" ],
       [ "Bonus Feat (REPLACE)" ], [ "Wholeness of Body (Su)" ], [], [ "Improved Evasion (Ex)" ], [ "Bonus Feat (REPLACE)" ],
@@ -458,14 +461,12 @@
     "fort": { "mult": 0.33, "bonus": 0 },
     "ref":  { "mult": 0.33, "bonus": 0 },
     "will": { "mult": 0.5, "bonus": 2 },
-
     "special": [ [],
       [ "Mystery", "Oracle's Curse (Ex)",  "Revelation" ], [ "Mystery Spell (REPLACE)" ], [ "Revelation (REPLACE)" ], [ "Mystery Spell (REPLACE)" ], [],
       [ "Mystery Spell (REPLACE)" ], [ "Revelation (REPLACE)" ], [ "Mystery Spell (REPLACE)" ], [], [ "Mystery Spell (REPLACE)" ],
       [ "Revelation (REPLACE)" ], [ "Mystery Spell (REPLACE)" ], [], [ "Mystery Spell (REPLACE)" ], [ "Revelation (REPLACE)" ],
       [ "Mystery Spell (REPLACE)" ], [], [ "Mystery Spell (REPLACE)" ], [ "Revelation (REPLACE)" ], [ "Final Revelation" ]
     ],
-
     "magic": {
       "style": "Spontaneous Divine",
       "castingAtr": "Charisma",
@@ -497,14 +498,12 @@
     "fort": { "mult": 0.5, "bonus": 2 },
     "ref":  { "mult": 0.33, "bonus": 0 },
     "will": { "mult": 0.5, "bonus": 2 },
-
     "special": [ [],
       [ "Aura of Good (Ex)", "Detect Evil (Sp)", "Smite Evil (Su)" ], [ "Divine Grace (Su)", "Lay on Hands (Su)" ], [ "Aura of Courage (Su)", "Divine Health (Ex)", "Mercy (Su) (REPLACE)" ], [ "Channel Positive Energy (Su)" ], [ "Divine Bond (Sp)" ],
       [ "Mercy (Su) (REPLACE)" ], [], [ "Aura of Resolve (Su)" ], [ "Mercy (Su) (REPLACE)" ], [],
       [ "Aura of Justice (Su)" ], [ "Mercy (Su) (REPLACE)" ], [], [ "Aura of Faith (Su)" ], [ "Mercy (Su) (REPLACE)" ],
       [], [ "Aura of Righteousness (Su)" ], [ "Mercy (Su) (REPLACE)" ], [], [ "Holy Champion (Su)" ]
     ],
-
     "magic": {
       "style": "Prepared Divine",
       "castingAtr": "Charisma",
@@ -531,14 +530,12 @@
     "fort": { "mult": 0.5, "bonus": 2 },
     "ref":  { "mult": 0.5, "bonus": 2 },
     "will": { "mult": 0.33, "bonus": 0 },
-
     "special": [ [],
       [ "Favored Enemy (Ex) (REPLACE)", "Track (Ex)", "Wild Empathy (Ex)" ], [ "Combat Style Feat (Ex) (REPLACE)" ], [ "Endurance", "Favored Terrain (Ex) (REPLACE)" ], [ "Hunter's Bond (Ex)" ], [ "Favored Enemy (Ex) (REPLACE)" ],
       [ "Combat Style Feat (Ex) (REPLACE)" ], [ "Woodland Stride (Ex)" ], [ "Swift Tracker (Ex)", "Favored Terain (Ex) (REPLACE)" ], [ "Evasion (Ex)" ], [ "Favored Enemy (Ex) (REPLACE)", "Combat Style Feat (Ex) (REPLACE)" ],
       [ "Quarry (Ex)" ], [ "Camouflage (Ex)" ], [ "Favored Terrain (Ex) (REPLACE)" ], [ "Combat Style Feat (Ex) (REPLACE)" ], [ "Favored Enemy (Ex) (REPLACE)" ],
       [ "Imroved Evasion (Ex)" ], [ "Hide in Plain Sight (Ex)" ], [ "Favored Terrain (Ex) (REPLACE)", "Combat Style Feat (Ex) (REPLACE)" ], [ "Improved Quarry (Ex)" ], [ "Favored Enemy (Ex) (REPLACE)", "Master Hunter (Ex)" ]
     ],
-
     "magic": {
       "style": "Prepared Divine",
       "castingAtr": "Wis",
@@ -565,7 +562,6 @@
     "fort": { "mult": 0.33, "bonus": 0 },
     "ref":  { "mult": 0.5, "bonus": 2 },
     "will": { "mult": 0.33, "bonus": 0 },
-
     "special": [ [],
       [ "Sneak Attack", "Trapfinding" ], [ "Evasion (Ex)", "Rougue Talent (REPLACE)" ], [ "Trapsense (Ex)" ], [ "Rougue Talent (REPLACE)", "Uncanny Dodge (Ex)" ], [],
       [ "Rougue Talent (REPLACE)" ], [], [ "Improved Uncanny Dodge (Ex)", "Rougue Talent (REPLACE)" ], [], [ "Advanced Talents", "Rougue Talent (REPLACE)" ],
@@ -907,5 +903,29 @@
     "ref": { "mult": 0.33, "bonus": 0 },
     "will": { "mult": 0.33, "bonus": 0 }
   }
+
+         "spellsPerDay": [ [],
+        ["∞", 1],
+        ["∞", 2],
+        ["∞", 3],
+        ["∞", 3, 1],
+        ["∞", 4, 2],
+        ["∞", 4, 3],
+        ["∞", 4, 3, 1],
+        ["∞", 4, 4, 2],
+        ["∞", 5, 4, 3],
+        ["∞", 5, 4, 3, 1],
+        
+        ["∞", 5, 4, 4, 2],
+        ["∞", 5, 5, 4, 3],
+        ["∞", 5, 5, 4, 3, 1],
+        ["∞", 5, 5, 4, 4, 2],
+        ["∞", 5, 5, 5, 4, 3],
+        ["∞", 5, 5, 5, 4, 3, 1],
+        ["∞", 5, 5, 5, 4, 4, 2],
+        ["∞", 5, 5, 5, 5, 4, 3],
+        ["∞", 5, 5, 5, 5, 5, 4],
+        ["∞", 5, 5, 5, 5, 5, 5]
+      ]
   
 }
