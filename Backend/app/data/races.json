@@ -1,5 +1,172 @@
 {
-  "avaar": {
+  "Amaru": {
+
     
+    "rp": 12,
+    "age": {
+      "Adulthood": 12,
+      "Intuitive": "+1d4 (13 – 16 years)",
+      "Self-Taught": "+1d6 years (13 – 18 years)",
+      "Trained": "+2d6 years (14 – 24 years)",
+      "Middle Age": "20 years",
+      "Old Age": "30 years",
+      "Venerable": "40 years",
+      "Max Age": "40 +1d20 years"
+    },
+    "male": {
+      "names": [  ],
+      "height": "5'5\" +2d8 inches (5'7\" - 6'9\")",
+      "weight": "120 lbs. +2d4*5 lbs. (130 – 160 lbs.)"
+    },
+    "female": {
+      "names": [  ],
+      "height": "5'3\" +2d8 inches (5'5\" - 6'7\")",
+      "weight": "110 lbs. +2d4*5 lbs. (120 – 150 lbs.)"
+    },
+    "abilityMods": { "": , "": , "":  },
+    "size": "", "type": "Humanoid ()", "speed": 30,
+    "languages": [ "Common" ],
+    "bonusLanguages": [ "Dwarven", "Gnome", "Risko", "Undercommon" ],
+    "traits": {
+      "Armor": "Kobolds' naturally scaly skin grants them a +1 natural armor bonus.",
+      "Light Sensitivity": "Kobolds lives in darkness have caused them to suffer from light sensitivity."
+    },
+    "alternateTraits": {
+      "Day Raider": {
+        "description": "You’re one of the few kobolds born with a greater tolerance for sunlight. You don’t have light sensitivity, and you have low-light vision instead of darkvision.",
+        "replaces": [ "Light Sensitivity", "Darkvision" ]
+      }
+    }
   },
+  "Avaar": {
+    "rp": 12,
+    "age": {
+      "Adulthood": 12, "Intuitive": "+1d4 (13 – 16 years)", "Self-Taught": "+1d6 years (13 – 18 years)", "Trained": "+2d6 years (14 – 24 years)",
+      "Middle Age": "20 years", "Old Age": "30 years", "Venerable": "40 years", "Max Age": "40 +1d20 years"
+    },
+    "male": {
+      "names": [  ],
+      "height": "5'5\" +2d8 inches (5'7\" - 6'9\")",
+      "weight": "120 lbs. +2d4*5 lbs. (130 – 160 lbs.)"
+    },
+    "female": {
+      "names": [  ],
+      "height": "5'3\" +2d8 inches (5'5\" - 6'7\")",
+      "weight": "110 lbs. +2d4*5 lbs. (120 – 150 lbs.)"
+    },
+    "abilityMods": { "Dexterity": 2, "Intelligence": 2, "Constitution": -2 },
+    "size": "Medium", "type": "Humanoid (Harpy)", "speed": 30,
+    "languages": [ "Common" ],
+    "bonusLanguages": [ "Auran", "Draconic", "Kamago", "Risko", "Sylvan", "Ulumi", "Undercommon" ],
+    "traits": {
+      "Eagle Eyes": "Avaar gain a +2 racial bonus on Perception checks and treat Perception as  class skill.",
+      "Envoy": "Avaar with an Intelligence score of 11 or higher gain comprehend languages, detect magic, detect poison, and read magic as spell-like abilities that can be used once a day.",
+      "Flight": "Avaar have a fly speed of 50 feet with average maneuverability."
+    },
+    "alternateTraits": {
+      "Tropical Plumage": {
+        "description": "Some avaar from equitorial islands have more vibrant plumage and can use it to cast hypnotism once per day as a spell-like ability.",
+        "replaces": [ "Envoy" ]
+      },
+      "Owl Heritage": {
+        "description": "Some avaar have specialized into nocturnalism, and can see in the dark (darkvision), up to 120 feet.",
+        "replaces": [ "Eagle Eyes" ]
+      }
+    }
+  },
+
+
+  "Caeth": {},
+  "Geit": {},
+  "Kame": {},
+  "Zikaru": {},
+
+  "Tembo": {},
+  "Perwhua": {},
+  "Kets'Rir": {},
+  "Gargoyles": {} 
+
+  "Ents": {},
+  "Matoran": {},
+  
+  "Kobold": {
+    "rp": 5,
+    "age": { "Adulthood": 14, "Intuitive": "+1d4 (15 – 18 years)", "Self-Taught": "+1d6 years (15 – 20 years)", "Trained": "+2d6 years (16 – 26 years)" },
+    "male": {
+      "names": [ "Draahzin", "Eadoo", "Ipmeerk", "Jamada", "Kib", "Makroo", "Olp", "Yraalik", "Zornesk" ],
+      "height": "2'6\" +2d4 inches (2'8\" - 3'2\")",
+      "weight": "25 lbs. +2d4 lbs. (27 – 33 lbs.)"
+    },
+    "female": {
+      "names": [ "Adriaak", "Harkail", "Neeral", "Ozula", "Poro", "Saassraa", "Tarka" ],
+      "height": "2'4\" +2d4 inches (2'6\" - 3')",
+      "weight": "20 lbs. +2d4 lbs. (22 – 28 lbs.)"
+    },
+    "abilityMods": { "Dexterity": 2, "Strength": -4, "Constitution": -2 },
+    "size": "Small", "type": "Humanoid (Reptilian)", "speed": 30,
+    "languages": [ "Draconic" ],
+    "bonusLanguages": [ "Common", "Dwarven", "Gnome", "Risko", "Undercommon" ]
+    "traits": {
+      "Armor": "Kobolds' naturally scaly skin grants them a +1 natural armor bonus.",
+      "Crafty": "Kobolds gain a +2 racial bonus on Craft (trapmaking), Perception, and Profession (miner) checks. Craft (trapmaking) and Stealth are always class skills for a kobold.",
+      "Darkvision": "Kobolds can see perfectly in the dark up to 60 feet.",
+      "Light Sensitivity": "Kobolds lives in darkness have caused them to suffer from light sensitivity."
+    },
+    "alternateTraits": {
+      "Day Raider": {
+        "description": "You’re one of the few kobolds born with a greater tolerance for sunlight. You don’t have light sensitivity, and you have low-light vision instead of darkvision.",
+        "replaces": [ "Light Sensitivity", "Darkvision" ]
+      },
+      "Dragonmaw": {
+        "description": "Your draconic heritage grants you a bite attack that deals 1d4 piercing damage. Once per day, you can deal 1d6 points of additional energy damage with your bite attack dependant on your color.",
+        "replaces": [ "Armor" ]
+      }
+    }
+  },
+  "Human": {},
+  "Elf": {},
+  "Dwarf": {},
+  "Gnome": {},
+  "Halfling": {}
+
+
+
+
+  "TEMP": {
+    "rp": 12,
+    "age": {
+      "Adulthood": 12,
+      "Intuitive": "+1d4 (13 – 16 years)",
+      "Self-Taught": "+1d6 years (13 – 18 years)",
+      "Trained": "+2d6 years (14 – 24 years)",
+      "Middle Age": "20 years",
+      "Old Age": "30 years",
+      "Venerable": "40 years",
+      "Max Age": "40 +1d20 years"
+    },
+    "male": {
+      "names": [  ],
+      "height": "5'5\" +2d8 inches (5'7\" - 6'9\")",
+      "weight": "120 lbs. +2d4*5 lbs. (130 – 160 lbs.)"
+    },
+    "female": {
+      "names": [  ],
+      "height": "5'3\" +2d8 inches (5'5\" - 6'7\")",
+      "weight": "110 lbs. +2d4*5 lbs. (120 – 150 lbs.)"
+    },
+    "abilityMods": { "": , "": , "":  },
+    "size": "", "type": "Humanoid ()", "speed": 30,
+    "languages": [ "Common" ],
+    "bonusLanguages": [ "Dwarven", "Gnome", "Risko", "Undercommon" ],
+    "traits": {
+      "Armor": "Kobolds' naturally scaly skin grants them a +1 natural armor bonus.",
+      "Light Sensitivity": "Kobolds lives in darkness have caused them to suffer from light sensitivity."
+    },
+    "alternateTraits": {
+      "Day Raider": {
+        "description": "You’re one of the few kobolds born with a greater tolerance for sunlight. You don’t have light sensitivity, and you have low-light vision instead of darkvision.",
+        "replaces": [ "Light Sensitivity", "Darkvision" ]
+      }
+    }
+  }
 }
