@@ -11,7 +11,8 @@ module.exports = (sequelize, Sequelize) => {
     },
     user_id: {
       type: Sequelize.INTEGER
-    }, // belongsToMany (char through user_characters)
+    },
+    // belongsToMany (char through user_characters)
     // character_id // belongsToMany (db.user through user_characters)
     // race_id  // belongs to many (char through character_races)
     // class_id  // belongs to many (char through character_classes)

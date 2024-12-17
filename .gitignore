@@ -31,3 +31,4 @@ package-lock.json
 *.tsbuildinfo
 
 Backend/app/config/*
+Backend/app/views

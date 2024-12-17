@@ -59,6 +59,7 @@ export default {
   data() {
     return {
       user: {
+        roles: [],
         usermeta: {
           hero: {
             classes: []
@@ -79,7 +80,7 @@ export default {
       .then(response => {
         for(const [key, value] of Object.entries(response.data)) {
           if (key == "roles") {
-            for (let role of value) {
+            for (const role of value) {
               this.user['roles'].push(role.name);
             }
           } else {

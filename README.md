@@ -45,13 +45,23 @@ npm audit fix --force
 
 
 ## Deployment
-You may also build the front end ( `npm run build` ) and move the built files into `Greithar/Backend`.
-A tutorial can be found [here](https://www.bezkoder.com/vue-js-node-js-express-mysql-crud-example/).
+You may also build the front end into the back end.
+1. Open a cmd prompt in `Greithar/Frontend`, then run the following command
+```sh
+npm run build
+```
+
+This will build the frontend files into a new `/views` dir in the backend.
+2. Then open a cmd prompt in `Greithar/Backend` and run the following
+```sh
+node server.js
+```
 
 
 ## Helpful Links
 - [Vue Components Examples](https://vuejs.org/examples/#markdown).
 - [Element Plus Examples](https://element-plus.org/en-US/component/color-picker.html).
+- [Serve Vue App with Express](https://www.bezkoder.com/serve-vue-app-express/).
 
 
 ## Run in Development
@@ -77,5 +87,5 @@ A tutorial can be found [here](https://www.bezkoder.com/vue-js-node-js-express-m
 - [ ] implement Rule & Lore pages
 
 - [ ] Get Backend MYSQL running not in Laragon?
-- [ ] Deploy built files to backend
+- [x] Deploy built files to backend
 - [ ] get "greithar.com" on cloudflare

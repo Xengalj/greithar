@@ -93,7 +93,7 @@ export default {
   name: "View User",
   data() {
     return {
-      user: {},
+      user: { roles: [] },
       pass: "",
       checkPass: "",
       roles: [

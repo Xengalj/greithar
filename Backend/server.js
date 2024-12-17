@@ -1,13 +1,18 @@
 const express = require("express");
 const cors = require("cors");
 const bcrypt = require("bcryptjs");
+const path = __dirname + '/app/views/';
 const app = express();
 
-// database
-const db = require("./app/models");
-const Role = db.role;
+/***************************\
+*                           *
+*       SETUP VARS          *
+*                           *
+\***************************/
+let isProd = 1
 let reSeed = 0
 
+if (isProd) { app.use(express.static(path)); }
 
 let corsOptions = { origin: "http://localhost:8081" };
 app.use(cors(corsOptions));
@@ -18,8 +23,13 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
+
+// database
+const db = require("./app/models");
+const Role = db.role;
 // Database Syncing
 if (reSeed) {
+  // db.character.drop();
   // force: true will drop the table if it already exists
   db.sequelize.sync({force: true}).then(() => {
     console.log('Drop and Resync Database with { force: true }');
@@ -29,10 +39,17 @@ if (reSeed) {
   db.sequelize.sync();
 }
 
+
 // simple route
-app.get("/", (req, res) => {
-  res.json({ message: "Welcome to Greithar's API." });
-});
+if (isProd) {
+  app.get('/', (req, res) => {
+    res.sendFile(path + "index.html");
+  });
+} else {
+  app.get("/", (req, res) => {
+    res.json({ message: "Welcome to Greithar's API." });
+  });
+}
 
 // routes
 require('./app/routes/auth.routes')(app);

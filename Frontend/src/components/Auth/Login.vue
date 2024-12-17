@@ -115,7 +115,6 @@ label {
 }
 
 .card {
-  background-color: light-dark( #f7f7f7, var(--color-surface-200) );
   padding: 20px 25px 30px;
   margin: 0 auto 25px;
   margin-top: 50px;
@@ -126,6 +125,10 @@ label {
   -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 }
+.dark .card {
+  background-color: var(--color-surface-200);
+}
+
 
 .profile-img-card {
   width: 96px;
