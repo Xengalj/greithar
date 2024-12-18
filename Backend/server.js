@@ -42,7 +42,7 @@ if (reSeed) {
 
 // simple route
 if (isProd) {
-  app.get('/', (req, res) => {
+  app.get('*', (req, res) => {
     res.sendFile(path + "index.html");
   });
 } else {
