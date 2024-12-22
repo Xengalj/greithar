@@ -816,7 +816,7 @@
 			"Intuitive": "+1d4 (15 – 18 years)",
 			"Self-Taught": "+1d6 years (15 – 20 years)",
 			"Trained": "+2d6 years (16 – 26 years)",
-      "Middle Age": "20 years",
+			"Middle Age": "20 years",
 			"Old Age": "30 years",
 			"Venerable": "40 years",
 			"Max Age": "40 +1d20 years"
@@ -862,13 +862,9 @@
 		"rp": 10,
 		"age": {
 			"Adulthood": 12,
-			"Intuitive": "+ ( –  years)",
-			"Self-Taught": "+ years ( –  years)",
-			"Trained": "+ years ( –  years)",
-      12 years	+1d4 years
-(13 – 16 years)	+1d6 years
-(13 – 18 years)	+2d6 years
-(14 – 24 years)
+			"Intuitive": "+1d4 (13 – 16 years)",
+			"Self-Taught": "+1d6 years (13 – 18 years)",
+			"Trained": "+2d6 years (14 – 24 years)",
 			"Middle Age": "20 years",
 			"Old Age": "30 years",
 			"Venerable": "40 years",
@@ -876,19 +872,14 @@
 		},
 		"male": {
 			"names": [],
-			"height": "5'5\" +2d8 inches (5'7\" - 6'9\")",
-			"weight": " lbs. +2d4 lbs. ( –  lbs.)"
+			"height": "2'8\" +2d4 inches (2'10\" - 3'4\")",
+			"weight": "30 lbs. +2d4 lbs. (32 – 38 lbs.)"
 		},
 		"female": {
 			"names": [],
-			"height": "5'3\" +2d8 inches (5'5\" - 6'7\")",
-			"weight": " lbs. +2d4 lbs. ( –  lbs.)"
+			"height": "2'6\" +2d4 inches (2'8\" - 3'2\")",
+			"weight": "25 lbs. +2d4 lbs. (27 – 33 lbs.)"
 		},
-    Male	2 ft. 8 in.	+2d4 in. (2 ft 10 in. – 3 ft. 4 in.)	
-    30 lbs.	+(2d4 lbs.) (32 – 38 lbs.)
-    
-    Female	2 ft. 6 in.	+2d4 in. (2 ft. 8 in. – 3 ft. 2 in.)
-    25 lbs.	+(2d4 lbs.) (27 – 33 lbs.)
 		"abilityMods": {
 			"Dexterity": 4,
 			"Strength": -2,
@@ -900,9 +891,9 @@
 		"languages": ["Goblin"],
 		"bonusLanguages": ["Common", "Draconic", "Dwarven", "Gnomish", "Risko", "Ulumi"],
 		"traits": {
-      "Skilled": "Goblins gain a +4 racial bonus on Ride and Stealth checks.",
-      "Fast Movement": "Goblins gain a +10 foot bonus to their base speed (this is already added to their Base Speed above.)",
-      "Darkvision": "Goblins see perfectly in the dark up to 60 feet."
+			"Skilled": "Goblins gain a +4 racial bonus on Ride and Stealth checks.",
+			"Fast Movement": "Goblins gain a +10 foot bonus to their base speed (this is already added to their Base Speed above.)",
+			"Darkvision": "Goblins see perfectly in the dark up to 60 feet."
 		},
 		"alternateTraits": {
 			"Weapon Familiarity": {
@@ -914,34 +905,25 @@
 	"Hobgoblin": {
 		"rp": 9,
 		"age": {
-			"Adulthood": 12,
-			"Intuitive": "+ ( –  years)",
-			"Self-Taught": "+ years ( –  years)",
-			"Trained": "+ years ( –  years)",
-      15 years	+1d4 years
-(16 – 19 years)	+1d6 years
-(16 – 21 years)	+2d6 years
-(17 – 27 years
+			"Adulthood": 15,
+			"Intuitive": "+1d4 (16 – 19 years)",
+			"Self-Taught": "+1d6 years (16 – 21 years)",
+			"Trained": "+2d6 years (17 – 27 years)",
 			"Middle Age": "30 years",
 			"Old Age": "45 years",
 			"Venerable": "60 years",
 			"Max Age": "60 +2d10 years"
 		},
 		"male": {
-			"names": [Arak, Bekri, Doruk, Fethi, Grung, Hagla, Haluk, Kurat, Malgrim, Mevlut, Oktar, Saltuk, Turgut. Tooblur],
-			"height": "5'5\" +2d8 inches (5'7\" - 6'9\")",
-			"weight": " lbs. +2d4 lbs. ( –  lbs.)"
+			"names": ["Arak", "Bekri", "Doruk", "Fethi", "Grung", "Hagla", "Haluk", "Kurat", "Malgrim", "Mevlut", "Oktar", "Saltuk", "Tooblur", "Turgut"],
+			"height": "4'2\" +2d8 inches (4'4\" - 5'6\")",
+			"weight": "165 lbs. +2d8×5 lbs. (175 – 245 lbs.)"
 		},
 		"female": {
-			"names": [Afet, Ceyda, Ela, Esma, Huri, Kurmu, Maral, Masal, Melda, Nisa, Nural, Sekla, Sena, Tansu, Vesile.],
-			"height": "5'3\" +2d8 inches (5'5\" - 6'7\")",
-			"weight": " lbs. +2d4 lbs. ( –  lbs.)"
+			"names": ["Afet", "Ceyda", "Ela", "Esma", "Huri", "Kurmu", "Maral", "Masal", "Melda", "Nisa", "Nural", "Sekla", "Sena", "Tansu", "Vesile"],
+			"height": "4'0\" +2d8 inches (4'2\" - 5'4\")",
+			"weight": "145 lbs. +2d8×5 lbs. (155 – 255 lbs.)"
 		},
-    Male	4 ft. 2 in.	+2d8 in. (4 ft. 4 in. – 5 ft. 6 in.)
-    165 lbs.	+(2d8×5 lbs.) (175 – 245 lbs.)
-    
-Female	4 ft. 0 in.	+2d8 in. (4 ft. 2 in. – 5 ft. 4 in.)
-    145 lbs.	+(2d8×5 lbs.) (155 – 225 lbs.)
 		"abilityMods": {
 			"Dexterity": 2,
 			"Constitution": 2
@@ -952,8 +934,8 @@ Female	4 ft. 0 in.	+2d8 in. (4 ft. 2 in. – 5 ft. 4 in.)
 		"languages": ["Common", "Goblin"],
 		"bonusLanguages": ["Draconic", "Dwarven", "Infernal", "Giantish", "Ulumi"],
 		"traits": {
-      "Sneaky": "Hobgoblins receive a +4 racial bonus on Stealth checks.",
-      "Darkvision": "Hobgoblins can see perfectly in the dark up to 60 feet."
+			"Sneaky": "Hobgoblins receive a +4 racial bonus on Stealth checks.",
+			"Darkvision": "Hobgoblins can see perfectly in the dark up to 60 feet."
 		},
 		"alternateTraits": {
 			"Authoritative": {
@@ -964,5 +946,5 @@ Female	4 ft. 0 in.	+2d8 in. (4 ft. 2 in. – 5 ft. 4 in.)
 	}
 
 
-  
+
 }
