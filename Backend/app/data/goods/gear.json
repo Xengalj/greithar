@@ -1,38 +1,58 @@
 {
-  "Goods and Services": {
+  "group": "Tools",
 
-    "Djezet": {
-      "Cost": { "One Dose": "200 gp" },
-      "Type": "Magic", Spell Component
-      "Description": "One of the strangest of skymetals, rust-red djezet is liquid at all temperatures.",
-      "Special": [
-        "Djezet may be used as an additional material component for spells, using 1 dose per original spell level. When used this way, the spell's level is increased by 1 stacking with heightened spell."
-      ]
-    },
+  "Block and Tackle": {
+    "cost": 5,
+    "weight": 5
+    "description": "Whether it is used to hoist treasure from a pit or move supplies, a simple block-and-tackle pulley, when it is properly secured, adds a +5 circumstance bonus on Strength checks to lift heavy objects. Securing the pulley requires 1 minute."
+  },
+  "Crowbar": {
+    "cost": 2,
+    "weight": 5,
+    "description": "This versatile tool is designed to help pry open whatever the user desires. A crowbar grants a +2 circumstance bonus on Strength checks made to force open a door or chest. If it is used in combat, treat a crowbar as a one-handed improvised weapon that deals bludgeoning damage equal to that of a club of its size"
+  },
+  "Flint and Steel": {
+    "cost": 1,
+    "weight": 0,
+    "description": "Lighting a torch with a flint and steel is a full-round action. Lighting any other fire with them takes at least that long."
+  },
+  "Hourglass": {
+    "cost": 25,
+    "wieght": 1,
+    "description": "The standard hourglass takes 1 hour to empty the sand from the upper chamber; larger and smaller timers exist which mark off time in increments as short as 6 seconds."
+  },
+  "Grappling Arrow": {
+    "cost": 1,
+    "weight": 0.5,
+    "description": "This small grappling hook is designed to be tied to a silk rope and fired from a bow. When fired, it has a range increment of 30 feet. An equivalent item exists for crossbows."
+  },
+  "Grappling Hook": {
+    "cost": 1,
+    "weight": 4,
+    "description": "Throwing a grappling hook requires a ranged attack roll, treating the hook as a thrown weapon with a range increment of 10 feet. Objects with ample places to catch the hook have an AC of 5."
+  },
+  "Spell Component Pouch": {
+    "cost": 5,
+    "weight": 2,
+    "description": "A spellcaster with a spell component pouch is assumed to have all the material components and focuses needed for spellcasting, except for components that have a specific cost, divine focuses, and focuses that wouldn’t fit in a pouch.",
+  },
+  "Spyglass": {
+    "cost": 1000,
+    "weight": 1,
+    "description": "Objects viewed through a spyglass are magnified to twice their size. Characters using a spyglass take a –1 penalty on Perception skill checks per 20 feet of distance to the target, if the target is visible."
+  },
+  "Thieves’ Tools": {
+    "cost": 30,
+    "weight": 1,
+    "description": "This kit contains lockpicks and other tools you need to use the Disable Device skill. You take a -2 circumstance malus if you do not have thieves' tools."
+  },
+  "Masterwork Thieves’ Tools": {
+    "cost": 100,
+    "weight": 2,
+    "description": "This kit contains extra tools and tools of better make, which grant a +2 circumstance bonus on Disable Device checks."
+  },
+  
 
-    "Alchemist’s Fire Oil": {
-      "Cost": "20 gp",
-      "Weight": "1 lb",
 
-    You can throw a flask of alchemist’s fire as a splash weapon with a range increment of 10 feet.
-    A direct hit deals 1d6 points of fire damage. Every creature within 5 feet of the point where the flask hits takes 1 point of fire damage from the splash. On the round following a direct hit, the target takes an additional 1d6 points of damage. If desired, the target can use a full-round action to attempt to extinguish the flames before taking this additional damage. Extinguishing the flames requires a DC 15 Reflex save. Rolling on the ground provides the target a +2 bonus on the save. Leaping into a lake or magically extinguishing the flames automatically smothers the fire.
-    Craft (alchemy) DC: 20
-Alchemical Power Component
-
-Source PZO9410
-
-This dwarven favorite can make fire spells last longer.
-
-Burning Hands (M): One target that fails its Reflex saving throw (your choice) catches on fire as if it has been struck by alchemist’s fire.
-Fireball (M): One target per caster level that fails its Reflex saving throw (your choice) catches on fire as if it has been struck by alchemist’s fire.
-Flaming Sphere (M): Any creature damaged by a flaming sphere catches on fire as if it has been struck by alchemist’s fire.
-Protection from Energy (M): If cast to ward against cold, increase the amount of cold damage absorbed by 5.
-Resist Energy (M): If cast to ward against cold, increase the cold resistance to 12. At caster level 7th, you may use two flasks of alchemist’s fire as a power component to increase the cold resistance to 24. At caster level 11th, you may use three flasks as a power component to increase the cold resistance to 36.
-Scorching Ray (F): Add a +1 circumstance bonus on your attack roll with all rays from the spell.
-Scorching Ray (M): Any target damaged by a scorching ray catches on fire as if it has been struck by alchemist’s fire.
-
-
-
-
-  }
+  
 }
