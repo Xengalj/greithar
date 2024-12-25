@@ -1,38 +1,87 @@
 {
-  "Goods and Services": {
-
-    "Djezet": {
-      "Cost": { "One Dose": "200 gp" },
-      "Type": "Magic", Spell Component
-      "Description": "One of the strangest of skymetals, rust-red djezet is liquid at all temperatures.",
-      "Special": [
-        "Djezet may be used as an additional material component for spells, using 1 dose per original spell level. When used this way, the spell's level is increased by 1 stacking with heightened spell."
-      ]
-    },
-
-    "Alchemist’s Fire Oil": {
-      "Cost": "20 gp",
-      "Weight": "1 lb",
-
-    You can throw a flask of alchemist’s fire as a splash weapon with a range increment of 10 feet.
-    A direct hit deals 1d6 points of fire damage. Every creature within 5 feet of the point where the flask hits takes 1 point of fire damage from the splash. On the round following a direct hit, the target takes an additional 1d6 points of damage. If desired, the target can use a full-round action to attempt to extinguish the flames before taking this additional damage. Extinguishing the flames requires a DC 15 Reflex save. Rolling on the ground provides the target a +2 bonus on the save. Leaping into a lake or magically extinguishing the flames automatically smothers the fire.
-    Craft (alchemy) DC: 20
-Alchemical Power Component
-
-Source PZO9410
-
-This dwarven favorite can make fire spells last longer.
-
-Burning Hands (M): One target that fails its Reflex saving throw (your choice) catches on fire as if it has been struck by alchemist’s fire.
-Fireball (M): One target per caster level that fails its Reflex saving throw (your choice) catches on fire as if it has been struck by alchemist’s fire.
-Flaming Sphere (M): Any creature damaged by a flaming sphere catches on fire as if it has been struck by alchemist’s fire.
-Protection from Energy (M): If cast to ward against cold, increase the amount of cold damage absorbed by 5.
-Resist Energy (M): If cast to ward against cold, increase the cold resistance to 12. At caster level 7th, you may use two flasks of alchemist’s fire as a power component to increase the cold resistance to 24. At caster level 11th, you may use three flasks as a power component to increase the cold resistance to 36.
-Scorching Ray (F): Add a +1 circumstance bonus on your attack roll with all rays from the spell.
-Scorching Ray (M): Any target damaged by a scorching ray catches on fire as if it has been struck by alchemist’s fire.
+	"Personal Kit": {
+		"cost": 6,
+		"weight": 15,
+		"group": "Kits",
+		"description": "This pack contains the  an adventure inside a leather backpack.",
+		"items": ["Backpack", "Bedroll", "Blanket", "Belt Pouch", "Mess Kit", "Waterskin", "Soap", "Hemp Rope (50 ft)"]
+	},
+	"Camp Supplies": {
+		"cost": 6,
+		"weight": 10,
+		"group": "Kits",
+		"description": "This pack contains everything you would need for a camping adventure inside a burlap sack.",
+		"items": ["Burlap Sack", "Flint & Steel", "Torches x5", "Signal Whistle", "Whetstone", "Sweing Needle", "Thread (50 ft)", "Iron Pot", "Brass Knife", "Fish Hooks"]
+	},
+	"Mess": {
+		"cost": 0.2,
+		"weight": 1,
+		"group": "Kits",
+		"description": "This kit includes a plate, bowl, cup, fork, knife, and spoon, made of wood, horn, or tin. Each item has a handle or small hole, and can be tied together using the included leather cord.",
+		"items": []
+	},
 
 
+	"Backpack": {
+		"cost": 2,
+		"weight": 2,
+		"group": "Containers",
+		"description": "This leather knapsack has one large pocket that closes with a buckled strap and holds about 2 cubic feet of material. Some may have one or more smaller pockets on the sides."
+	},
+	"Masterwork Backpack": {
+		"cost": 50,
+		"weight": 4,
+		"group": "Containers",
+		"description": "This backpack has numerous pockets and hooks for storing items that might be needed while adventuring. Like a common backpack, it can hold about 2 cubic feet of material in its main container. When wearing a masterwork backpack, treat your Strength score as +1 higher than normal when calculating your carrying capacity."
+	},
+	"Weaponrack Backpack": {
+		"cost": 25,
+		"weight": 5,
+		"group": "Containers",
+		"description": "This leather backpack includes a small weapons rack and allies adjacent to you can retrieve a weapon from the rack as a move action without provoking attacks of opportunity, as if they were simply drawing a weapon. Like a normal backpack, it can hold 2 cubic feet of material in its main compartment."
+	},
+  "Waterproof Bag": {
+    "cost": 0.5,
+    "weight": 0.5,
+    "group": "Containers",
+    "description": "This leather sack sealed with tar or pitch keeps delicate items from being ruined by water. Items kept inside remain relatively dry, making the bag ideal for carrying maps, scrolls, spellbooks, and the like, although the bag is not impervious and can only be completely immersed for 10 rounds before enough water seeps in to ruin such items."
+  },
+  
+"Bandolier": {
+  "cost": 0.5,
+  "weight": 0,
+  "group": "Containers",
+  "description": "This leather belt is worn over one shoulder and runs diagonally across the chest and back. It has eight spots to hold small items which can be retrieved as a move action that provokes Attacks of Opportunity. You may wear two bandoliers at once."
+},
+
+"Adventurer’s Sash": {
+  "cost": 20,
+  "weight": 3,
+  "group": "Containers",
+  "description": "This bandolier has six pouches along its length that can be opened or closed with a move action (you may leave them open for quick access). You may store additional items in the satchel and the whole sash
+
+This bandolier holds six 6 pouches along its length and a satchel at the hip. Each pouch has a stiff leather flap that can be secured against jostling with a clasp (requiring a move action to open or close) or left unfastened for easier access. The pouches and satchel contain loops and ties for securing additional equipment.
+
+The sash buckles at the shoulder, and in an emergency can be freed with a sharp tug as a move action.
 
 
-  }
+  
+Pocket, inside	4 gp	—	PZO1140
+Pouch, belt	1 gp	1/2 lb.1	PZO1123
+Pouch, spell components	5 gp	2 lbs.	PZO1110
+Pouch, waist	5 sp	1/2 lb.	PZO1140
+Pouch, war spirit	50 gp	—	PZO1121
+Sack	1 sp	1/2 lb.1	PZO1110
+Satchel, familiar	25 gp	6 lbs.	PZO1123
+Waterskin	1 gp	4 lbs.1
+
+
+
+  Barrel	2 gp	30 lbs.
+  Box, scroll	5 gp	1 lb.
+  Chest, Small / Small treasure chest	2 gp / 3 gp	25 lbs.	PZO9410/PoIS
+Chest, Medium / Medium treasure chest	5 gp / 7 gp	50 lbs.	PZO1110/PoIS
+Chest, Large / Large treasure chest	10 gp / 15 gp	100 lbs.	PZO1110/PoIS
+Chest, Huge / Huge treasure chest	25 gp / 37 gp	250 lbs.
+  
 }
