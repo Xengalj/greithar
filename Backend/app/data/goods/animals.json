@@ -1,38 +1,487 @@
 {
-  "Goods and Services": {
+  "Light Horse": {
+    "cost": 75,
+    "weight": 900,
+    "description": "These horses can be ridden, but often serve as porters or carriage horses.",
+    "Category": "Animals",
+    "Special": [ "Riding" ]
+  },
+  "Combat Trained Light Horse": {
+    "cost": 110,
+    "weight": 1200,
+    "description": "These light warhorses are bred for war and are favored by fast and light cavalry, scouts, and daredevil knights.",
+    "Category": "Animals",
+    "Special": [ "Riding" ]
+  },
+  "Heavy Horse": {
+    "cost": 200,
+    "weight": 2000,
+    "description": "These horses are often used as portage animals, pulling significant loads across great distances.",
+    "Category": "Animals",
+    "Special": [ "Riding" ]
+  },
+  "Combat Trained Heavy Horse": {
+    "cost": 300,
+    "weight": 3000,
+    "description": "Heavy warhorses are bred and trained for war. They are often are outfitted with heavy barding, but fight just as fiercely even without the armor.",
+    "Category": "Animals",
+    "Special": [ "Riding" ]
+  },
+  "Pony": {
+    "cost": 30,
+    "weight": 800,
+    "description": "These creatures are typically used for carting goods along narrow mountain trails or as steeds for young or Small riders.",
+    "Category": "Animals",
+    "Special": [ "Riding" ]
+  },
+  "Combat Trained Pony": {
+    "cost": 45,
+    "weight": 900,
+    "description": "Ponies can be trained for war just as effectively as their larger, more mature brethren. Such steeds often serve Small riders that expect to face battle.",
+    "Category": "Animals",
+    "Special": [ "Riding" ]
+  },
 
-    "Djezet": {
-      "Cost": { "One Dose": "200 gp" },
-      "Type": "Magic", Spell Component
-      "Description": "One of the strangest of skymetals, rust-red djezet is liquid at all temperatures.",
-      "Special": [
-        "Djezet may be used as an additional material component for spells, using 1 dose per original spell level. When used this way, the spell's level is increased by 1 stacking with heightened spell."
-      ]
-    },
+  
+  "Aurochs": {
+    "cost": 300,
+    "weight": 1750,
+    "description": "",
+    "Category": "Animals",
+    "Special": [ "Riding" ]
+  },
+    "Axe Beak": {
+    "cost": 1000,
+    "weight": 500,
+    "description": "These Large avian predators are sometimes used as hunting animals but are prized as mounts.",
+    "Category": "Animals",
+    "Special": [ "Riding" ]
+  },
 
-    "Alchemist’s Fire Oil": {
-      "Cost": "20 gp",
-      "Weight": "1 lb",
+  "Elk": {
+    "cost": 100,
+    "weight": ,
+    "description": "",
+    "Category": "Animals",
+    "Special": [ "Riding" ]
+  },
+  "Giant Chameleon": {
+    "cost": 225,
+    "weight": ,
+    "description": "",
+    "Category": "Animals",
+    "Special": [ "Riding" ]
+  },
+  "Giant Gecko": {
+    "cost": 100,
+    "weight": ,
+    "description": "",
+    "Category": "Animals",
+    "Special": [ "Riding" ]
+  },
+  "Giant Owl": {
+    "cost": 6000,
+    "weight": ,
+    "description": "",
+    "Category": "Animals",
+    "Special": [ "Riding" ]
+  },
+  "Manta Ray": {
+    "cost": 25,
+    "weight": ,
+    "description": "",
+    "Category": "Animals",
+    "Special": [ "Riding" ]
+  },
+  "Ram": {
+    "cost": 25,
+    "weight": ,
+    "description": "",
+    "Category": "Animals",
+    "Special": [ "Riding" ]
+  },
+  "Woolly Mamoth": {
+    "cost": 3000,
+    "weight": ,
+    "description": "These hairy pachyderms are sometimes used as mounts and living siege engines. As if these mounts weren’t intimidating enough, they are sometimes outfitted with spiked metal barding and tusk blades.",
+    "Category": "Animals",
+    "Special": [ "Riding" ]
+  },
 
-    You can throw a flask of alchemist’s fire as a splash weapon with a range increment of 10 feet.
-    A direct hit deals 1d6 points of fire damage. Every creature within 5 feet of the point where the flask hits takes 1 point of fire damage from the splash. On the round following a direct hit, the target takes an additional 1d6 points of damage. If desired, the target can use a full-round action to attempt to extinguish the flames before taking this additional damage. Extinguishing the flames requires a DC 15 Reflex save. Rolling on the ground provides the target a +2 bonus on the save. Leaping into a lake or magically extinguishing the flames automatically smothers the fire.
-    Craft (alchemy) DC: 20
-Alchemical Power Component
+  
+  "Bat": {
+    "cost": 5,
+    "weight": 1,
+    "description": "Bats are Diminutive nocturnal rodent fliers that eat insects and fruit. They rely primarily on sound to navigate rather than sight.",
+    "Category": "Animals",
+    "Special": [ "" ]
+  },
+  "Cat": {
+    "cost": ,
+    "weight": ,
+    "description": "These Tiny animals are often kept as pets or familiars. Though small, they are excellent hunters; grain farmers usually keep cats as pest control in crop storage areas. Stray cats occupy most cities—finding a free cat should pose little challenge.",
+    "Category": "Animals",
+    "Special": [ "" ]
+  },
+  "Cattle": {
+    "cost": 50,
+    "weight": 1500,
+    "description": "Cattle are kept for milk and meat, and used as beasts of burden. A bull is used primarily for mating. Other males are castrated and become oxen, which are used to carry loads and plow fields.",
+    "Category": "Animals",
+    "Special": [ "" ]
+  },
 
-Source PZO9410
 
-This dwarven favorite can make fire spells last longer.
+  "Dog": {
+    "cost": 25,
+    "weight": 25,
+    "description": "This Small, combat-trained dog is bred for battle; breeders favor strength, a thick body, and a low center of gravity. Guard dogs are sold in most large cities and some cultures use them for sport fighting or in some armies’ special infantry.",
+    "Category": "Animals",
+    "Special": [ "" ]
+  },
 
-Burning Hands (M): One target that fails its Reflex saving throw (your choice) catches on fire as if it has been struck by alchemist’s fire.
-Fireball (M): One target per caster level that fails its Reflex saving throw (your choice) catches on fire as if it has been struck by alchemist’s fire.
-Flaming Sphere (M): Any creature damaged by a flaming sphere catches on fire as if it has been struck by alchemist’s fire.
-Protection from Energy (M): If cast to ward against cold, increase the amount of cold damage absorbed by 5.
-Resist Energy (M): If cast to ward against cold, increase the cold resistance to 12. At caster level 7th, you may use two flasks of alchemist’s fire as a power component to increase the cold resistance to 24. At caster level 11th, you may use three flasks as a power component to increase the cold resistance to 36.
-Scorching Ray (F): Add a +1 circumstance bonus on your attack roll with all rays from the spell.
-Scorching Ray (M): Any target damaged by a scorching ray catches on fire as if it has been struck by alchemist’s fire.
+  "Donkey": {
+    "cost": 8,
+    "weight": 700,
+    "description": "Donkeys and mules are stolid in the face of danger, hardy, surefooted, and capable of carrying heavy loads over vast distances. Unlike a horse, a donkey or mule is willing (though not eager) to enter dungeons and other strange or threatening places. Donkeys and mules have the same statistics as ponies.",
+    "Category": "Animals",
+    "Special": [ "" ]
+  },
+
+
+
+  "Fox": {
+    "cost": 8,
+    "weight": 12,
+    "description": "These quick and wily carnivores can be difficult to train, but often make excellent familiars. Many humanoid communities see these canines as a menace to their farming fowl, and some use dogs to track them during recreational hunts.",
+    "Category": "Animals",
+    "Special": [ "" ]
+  },
+
+
+
+  "Goat": {
+    "cost": 6,
+    "weight": 50,
+    "description": "As an agricultural animal, goats provide milk, meat, hair, and hide, and they are sometimes used to clear fields of weeds and shrubbery. Some spellcasters bond with them as familiars.",
+    "Category": "Animals",
+    "Special": [ "" ]
+  },
+
+
+
+  "Hedgehog": {
+    "cost": 5,
+    "weight": 3,
+    "description": "These spiny mammals roll into a ball when threatened. They are sometimes kept as pets and are favored by some wizards as familiars.",
+    "Category": "Animals",
+    "Special": [ "" ]
+  },
+
+  "Monkey": {
+    "cost": ,
+    "weight": ,
+    "description": "These tiny animals are herbivorous and can most often be found in warm forests and jungles. Monkeys can grasp and carry objects that weigh under a pound. Trained “familiar capuchins” can sometimes be purchased.",
+    "Category": "Animals",
+    "Special": [ "" ]
+  },
+
+
+  "Otter": {
+    "cost": 20,
+    "weight": 10,
+    "description": "These playful water mammals are either used as familiars or trained to perform tricks as pets. They are surprisingly intelligent, and have been known to use rocks as simple tools, such as for opening the shells of mollusks.",
+    "Category": "Animals",
+    "Special": [ "" ]
+  },
+
+
+
+  "Pig": {
+    "cost": 10,
+    "weight": 200,
+    "description": "Domesticated pigs are the descendants of wild boars, and are raised for their meat and hide, being among the most versatile and common farm animals.",
+    "Category": "Animals",
+    "Special": [ "" ]
+  },
 
 
 
 
-  }
+  "Rabbit": {
+    "cost": 2,
+    "weight": 3,
+    "description": "Rabbits are often raised or hunted for their meat and skins, though some people keep the skittish mammals as pets. Though they are often confused with hares, rabbits are distinctly different in that they make their homes in burrows beneath the ground, and they are usually smaller than hares. Rabbits have the same statistics as rats.",
+    "Category": "Animals",
+    "Special": [ "" ]
+  },
+
+
+
+  "Raccoon": {
+    "cost": 5,
+    "weight": 7,
+    "description": "These nocturnal hunter-scavengers are found primarily in forested terrains, and are noted for their domino mask-like visages, highly dexterous forepaws (which they rely on for their hyper-sensitive sense of touch), and the strangely anthropomorphic tendency to “wash” their food in water before eating it. Raccoons are sometimes kept as pets and used by some spellcasters as familiars.",
+    "Category": "Animals",
+    "Special": [ "" ]
+  },
+
+
+
+  "Rat": {
+    "cost": ,
+    "weight": ,
+    "description": "These tiny rodents live everywhere and eat nearly anything. Despite having a reputation as disease-ridden scavengers, domesticated rats are clean, loyal creatures that make excellent familiars.",
+    "Category": "Animals",
+    "Special": [ "" ]
+  },
+
+
+
+  "Sheep": {
+    "cost": 20,
+    "weight": 150,
+    "description": "These livestock animals are kept for their fur, meat, and hide, and can be found in virtually any civilized settlement. They are especially prized in colder environs, where their wool and hide can be used to make durable and highly insulated clothing. Sheep have the same statistics as goats .",
+    "Category": "Animals",
+    "Special": [ "" ]
+  },
+
+
+
+  
+
+  "Canary": {
+    "cost": ,
+    "weight": ,
+    "description": "These Diminutive birds usually have bright feathers and sing pleasantly. More pragmatically, they are also used in mines to detect bad air, as their small bodies are more sensitive to such things; the warning they provide gives humanoids a chance to escape before succumbing to the danger.",
+    "Category": "Animals",
+    "Special": [ "" ]
+  },
+
+
+
+
+  "Chicken": {
+    "cost": 1,
+    "weight": 6,
+    "description": "These domesticated birds are not capable of long distance flights, and are raised for their eggs and meat. Male chickens are kept for mating and occasionally blood sport.",
+    "Category": "Animals",
+    "Special": [ "" ]
+  },
+
+
+
+
+  "Duck": {
+    "cost": 2,
+    "weight": 3,
+    "description": "Farm ducks are used for eggs, meat, and down, while wild ducks are hunted for meat. Ducks have the same statistics as ravens.",
+    "Category": "Animals",
+    "Special": [ "" ]
+  },
+
+
+
+
+  "Falcon": {
+    "cost": ,
+    "weight": 2,
+    "description": "This Tiny, long-winged hawk is a popular hunting bird for nobility. Falcons are technically a subset of hawks but are considered more “noble.” Ownership is denied to commoners in many nations with hierarchical monarchies.",
+    "Category": "Animals",
+    "Special": [ "" ]
+  },
+
+  
+
+  "Hawk": {
+    "cost": 18,
+    "weight": 2,
+    "description": "This Tiny, short-winged raptor is a popular hunting bird, but is utilized more often by lower nobility than by commoners without titles. Hawks are known for their sharp eyesight and powerful aerial dives.",
+    "Category": "Animals",
+    "Special": [ "" ]
+  },
+
+  "Owl": {
+    "cost": 10,
+    "weight": 2,
+    "description": "These Tiny birds of prey are mainly nocturnal and are known for their keen eyes and near-silent flight. Owls eat small animals and insects, and can be found in nearly any environment. Some farmers create owl homes near fields and barns to control rodent populations. The smartest owls make excellent familiars.",
+    "Category": "Animals",
+    "Special": [ "" ]
+  },
+
+
+
+  "Parrot": {
+    "cost": 50,
+    "weight": 4,
+    "description": "These colorful and intelligent birds can be trained to mimic humanoid voices. They are often kept as pets by the wealthy and those who live in the tropical climates they favor. Parrots have the same statistics as ravens.",
+    "Category": "Animals",
+    "Special": [ "" ]
+  },
+
+
+
+  "Raven": {
+    "cost": 2,
+    "weight": 3,
+    "description": "These Tiny birds are known for their intelligence, and even play games with each other in the wild. They eat insects and can be found in surprisingly varied habitats.",
+    "Category": "Animals",
+    "Special": [ "" ]
+  },
+
+
+
+  "Gecko": {
+    "cost": 0.05,
+    "weight": 0.125,
+    "description": "These Tiny cold-blooded animals can be found in all warm regions and are often quite colorful. They eat insects and have the ability to walk up walls and hang upside down. Varieties of more intelligent lizards are often selected by wizards as familiars.",
+    "Category": "Animals",
+    "Special": [ "" ]
+  },
+
+
+
+  "Horse": {
+    "cost": ,
+    "weight": ,
+    "description": "",
+    "Category": "Animals",
+    "Special": [ "" ]
+  },
+Gecko, Riding
+Type	Price	Weight	Source
+Common	300 gp	1,200 lbs.	PZO1123
+Combat trained	400 gp	1,500 lbs.	PZO1123
+Source PZO1121
+
+Larger than even what is commonly referred to as a giant gecko, these mammoth lizards have been specifically bred to be used as mounts for the drow. Prized for their ability to run along cave ceilings and sheer walls, these creatures require exotic saddles to ride. Use the statistics for a giant gecko with the giant template.
+
+  "Lizard": {
+    "cost": 0.05,
+    "weight": 0.125,
+    "description": "These Tiny cold-blooded animals can be found in all warm regions and are often quite colorful. They eat insects and have the ability to walk up walls and hang upside down. Varieties of more intelligent lizards are often selected by wizards as familiars.",
+    "Category": "Animals",
+    "Special": [ "" ]
+  },
+
+
+
+  "Horse": {
+    "cost": ,
+    "weight": ,
+    "description": "",
+    "Category": "Animals",
+    "Special": [ "" ]
+  },
+Snake, Viper
+Price 5 gp; Weight 10 oz.
+
+This tiny reptile eats small animals and can be found in most temperate and warm environments. The bite is painful but not especially dangerous to the average adventurer.
+
+  "Horse": {
+    "cost": ,
+    "weight": ,
+    "description": "",
+    "Category": "Animals",
+    "Special": [ "" ]
+  },
+Turtle
+Price 3 gp; Weight 4 lbs.
+
+These reptiles have bony shells that they can retreat into. They are sometimes kept as pets and used as familiars, and in some places their flesh is eaten or used as an ingredient in medicines.
+
+
+
+
+
+  "Horse": {
+    "cost": ,
+    "weight": ,
+    "description": "",
+    "Category": "Animals",
+    "Special": [ "" ]
+  },
+Centipede, House
+Price 1 cp; Weight 3 oz.
+
+These creatures come in many forms, from the lighter-colored 20-legged variety to the darker 300-legged variety. Typically, these arthropods are what pass for pets in the slums, but the young and eccentric often search for the best specimens to serve as familiars. Centipedes employed as familiars have an Intelligence score and lose the mindless trait.
+
+  "Horse": {
+    "cost": ,
+    "weight": ,
+    "description": "",
+    "Category": "Animals",
+    "Special": [ "" ]
+  },
+Crab
+Price 20 gp; Weight 5–7 lbs.
+
+Aquatic spellcasters often find large ocean crabs to be agreeable familiars. Without the bond of a familiar, however, these crustacean’s lack of intelligence makes them dull pets.
+
+  "Horse": {
+    "cost": ,
+    "weight": ,
+    "description": "",
+    "Category": "Animals",
+    "Special": [ "" ]
+  },
+Octopus
+Price 25 gp; Weight 2 lbs.
+
+These cunning animals can be employed as familiars by aquatic spellcasters. If they are kept is pets, they must be kept in water, as they cannot survive out of it.
+
+  "Horse": {
+    "cost": ,
+    "weight": ,
+    "description": "",
+    "Category": "Animals",
+    "Special": [ "" ]
+  },
+Scorpion, Greensting
+Price 15 gp; Weight 9 oz.
+
+Typically found in forested areas, these Tiny scorpions sport pincers too small to be dangerous to anything larger than an insect, but they still possess a poisonous stinger. Sometimes they are kept as pets or serve as familiars. Greensting scorpions employed as familiars have an Intelligence score and lose the mindless trait.
+
+  "Horse": {
+    "cost": ,
+    "weight": ,
+    "description": "",
+    "Category": "Animals",
+    "Special": [ "" ]
+  },
+Spider
+Price 25 gp; Weight 8 oz.
+
+These Tiny spiders have red bodies and black legs. They are hunting spiders, so they do not cast webs, though they are poisonous.
+
+
+
+
+
+
+
+  "Horse": {
+    "cost": ,
+    "weight": ,
+    "description": "",
+    "Category": "Animals",
+    "Special": [ "" ]
+  },
+
+
+
+Bit and Bridle
+Price 2 gp; Weight 1 lb.
+
+A bridle is a piece of equipment used to direct a horse. The bridle includes both the headstall that holds a bit that goes in the mouth of a horse, and the reins that are attached to the bit.
+
+Brush, Dandy
+Source PPZO9410
+
+Price 2 sp; Weight 2 lbs.
+
+
+This hard-bristled tool has a handle that slips over the wearer’s hand, and is used by animal breeders, owners, and grooms to brush the animals in their care, loosening dirt and detritus from the creatures’ coats and stimulating the skin so it produces the natural oils that keep them healthy and clean.
+
+
 }
