@@ -122,5 +122,47 @@
 		"weight": 100,
 		"group": "Containers",
 		"description": "This common wooden chest is huge and includes a simple lock (8 cubic feet, 50 hit points, break DC 35)."
+	},
+
+	"Minor Bag of Holding": {
+		"cost": 1000,
+		"weight": 3,
+		"group": "Containers",
+		"description": "This appears to be a common cloth sack about 2 feet by 4 feet in size, but it opens into a nondimensional space. Regardless of what is put into the bag, it weighs a fixed Amount.",
+		"special": [ "Capacity: 50 lbs.", "Retrieving a specific item from a bag of holding is a move action, unless the bag contains more than an ordinary backpack would hold, in which case retrieving a specific item is a full-round action" ]		
+	},
+	"Handy Haversack": {
+		"cost": 2000,
+		"weight": 15,
+		"group": "Containers",
+		"description": "A backpack of this sort appears to be well made, well used, and quite ordinary, but it is in fact magical. This bag can hold a total of 120 lbs, always weighs 5 pounds, and you may retrieve any item without provoking an Attack of Opportunity."
+	},
+	"Bag of Holding I": {
+		"cost": 2500,
+		"weight": 15,
+		"group": "Containers",
+		"description": "This appears to be a common cloth sack about 2 feet by 4 feet in size, but it opens into a nondimensional space. Regardless of what is put into the bag, it weighs a fixed Amount.",
+		"special": [ "Capacity: 250 lbs.", "Retrieving a specific item from a bag of holding is a move action, unless the bag contains more than an ordinary backpack would hold, in which case retrieving a specific item is a full-round action" ]
+	},
+	"Bag of Holding II": {
+		"cost": 5000,
+		"weight": 25,
+		"group": "Containers",
+		"description": "This appears to be a common cloth sack about 2 feet by 4 feet in size, but it opens into a nondimensional space. Regardless of what is put into the bag, it weighs a fixed Amount.",
+		"special": [ "Capacity: 500 lbs.", "Retrieving a specific item from a bag of holding is a move action, unless the bag contains more than an ordinary backpack would hold, in which case retrieving a specific item is a full-round action" ]
+	},
+	"Bag of Holding III": {
+		"cost": 7400,
+		"weight": 35,
+		"group": "Containers",
+		"description": "This appears to be a common cloth sack about 2 feet by 4 feet in size, but it opens into a nondimensional space. Regardless of what is put into the bag, it weighs a fixed Amount.",
+		"special": [ "Capacity: 1000 lbs.", "Retrieving a specific item from a bag of holding is a move action, unless the bag contains more than an ordinary backpack would hold, in which case retrieving a specific item is a full-round action" ]
+	},
+	"Bag of Holding IV": {
+		"cost": 10000,
+		"weight": 60,
+		"group": "Containers",
+		"description": "This appears to be a common cloth sack about 2 feet by 4 feet in size, but it opens into a nondimensional space. Regardless of what is put into the bag, it weighs a fixed Amount.",
+		"special": [ "Capacity: 1500 lbs.", "Retrieving a specific item from a bag of holding is a move action, unless the bag contains more than an ordinary backpack would hold, in which case retrieving a specific item is a full-round action" ]
 	}
 }
