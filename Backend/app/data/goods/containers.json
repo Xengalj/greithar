@@ -32,7 +32,8 @@
 		"cost": 50,
 		"weight": 4,
 		"group": "Containers",
-		"description": "This backpack has numerous pockets and hooks for storing items that might be needed while adventuring. Like a common backpack, it can hold about 2 cubic feet of material in its main container. When wearing a masterwork backpack, treat your Strength score as +1 higher than normal when calculating your carrying capacity."
+		"description": "This backpack has numerous pockets and hooks for storing items that might be needed while adventuring. Like a common backpack, it can hold about 2 cubic feet of material in its main container. When wearing a masterwork backpack, treat your Strength score as +1 higher than normal when calculating your carrying capacity.",
+		"special": [ "Treat your Stregth as 1 higher for carry capacity" ]
 	},
 	"Weaponrack Backpack": {
 		"cost": 25,
@@ -40,48 +41,86 @@
 		"group": "Containers",
 		"description": "This leather backpack includes a small weapons rack and allies adjacent to you can retrieve a weapon from the rack as a move action without provoking attacks of opportunity, as if they were simply drawing a weapon. Like a normal backpack, it can hold 2 cubic feet of material in its main compartment."
 	},
-  "Waterproof Bag": {
-    "cost": 0.5,
-    "weight": 0.5,
-    "group": "Containers",
-    "description": "This leather sack sealed with tar or pitch keeps delicate items from being ruined by water. Items kept inside remain relatively dry, making the bag ideal for carrying maps, scrolls, spellbooks, and the like, although the bag is not impervious and can only be completely immersed for 10 rounds before enough water seeps in to ruin such items."
-  },
-  
-"Bandolier": {
-  "cost": 0.5,
-  "weight": 0,
-  "group": "Containers",
-  "description": "This leather belt is worn over one shoulder and runs diagonally across the chest and back. It has eight spots to hold small items which can be retrieved as a move action that provokes Attacks of Opportunity. You may wear two bandoliers at once."
-},
+	"Waterproof Bag": {
+		"cost": 0.5,
+		"weight": 0.5,
+		"group": "Containers",
+		"description": "This leather sack sealed with tar or pitch keeps delicate items from being ruined by water. Items kept inside remain relatively dry, making the bag ideal for carrying maps, scrolls, spellbooks, and the like, although the bag is not impervious and can only be completely immersed for 10 rounds before enough water seeps in to ruin such items."
+	},
+	"Adventurer’s Sash": {
+		"cost": 20,
+		"weight": 3,
+		"group": "Containers",
+		"description": "This bandolier has six pouches along its length that can be opened or closed with a move action (you may leave them open). You may store additional items in the satchel and the whole sash can be doffed as a move action."
+	},
+	"Spell Component Pouch": {
+		"cost": 5,
+		"weight": 2,
+		"group": "Containers",
+		"description": "A spellcaster with a spell component pouch is assumed to have all the material components and focuses needed for spellcasting, except for those components that have a specific cost, divine focuses, and focuses that wouldn’t fit in a pouch."
+	},
+	"Waist Pouch": {
+		"cost": 0.5,
+		"weight": 0.5,
+		"group": "Containers",
+		"description": "This leather pack is supported by two straps that can be loosened or tightened to fit most body types. It can be adjusted to any facing along its wearer’s waist. The pack can store up to 1/2 cubic foot of material"
+	},
+	"Sack": {
+		"cost": 0.1,
+		"weight": 0.5,
+		"group": "Containers",
+		"description": "A sack is a cloth bag that weighs 1/2 lb. empty and holds 1 cubic ft. or 60 lbs. of contents full."
+	},
+	"Familiar Satchel": {
+		"cost": 25,
+		"weight": 6,
+		"group": "Containers",
+		"description": "This armored case provides total cover to any Tiny or smaller creature contained within it. It includes air holes (which can be plugged with cork stoppers if you need to go underwater) and two receptacles for food and water."
+	},
+	"Waterskin": {
+		"cost": 1,
+		"weight": 4,
+		"group": "Containers",
+		"description": "A water or wineskin holds 1/2 gallon of liquid and weighs 4 lb when full (weighs 0.1 lbs empty)."
+	},
 
-"Adventurer’s Sash": {
-  "cost": 20,
-  "weight": 3,
-  "group": "Containers",
-  "description": "This bandolier has six pouches along its length that can be opened or closed with a move action (you may leave them open for quick access). You may store additional items in the satchel and the whole sash
-
-This bandolier holds six 6 pouches along its length and a satchel at the hip. Each pouch has a stiff leather flap that can be secured against jostling with a clasp (requiring a move action to open or close) or left unfastened for easier access. The pouches and satchel contain loops and ties for securing additional equipment.
-
-The sash buckles at the shoulder, and in an emergency can be freed with a sharp tug as a move action.
-
-
-  
-Pocket, inside	4 gp	—	PZO1140
-Pouch, belt	1 gp	1/2 lb.1	PZO1123
-Pouch, spell components	5 gp	2 lbs.	PZO1110
-Pouch, waist	5 sp	1/2 lb.	PZO1140
-Pouch, war spirit	50 gp	—	PZO1121
-Sack	1 sp	1/2 lb.1	PZO1110
-Satchel, familiar	25 gp	6 lbs.	PZO1123
-Waterskin	1 gp	4 lbs.1
+	
+	"Barrel": {
+		"cost": 2,
+		"weight": 30,
+		"group": "Containers",
+		"description": "A common barrel is constructed of wood with metal ring reinforcements and holds 10 cubic ft. or 650 lb. of materials. A barrel filled with liquid holds about 75 gallons."
+	},
+	"Scroll Box": {
+		"cost": 5,
+		"weight": 1,
+		"group": "Containers",
+		"description": "This water tight wooden box easily holds 10 scrolls and has small clips or bookmarks for easier indexing. Retrieving a scroll from a held scroll box is a move action that provokes AoOs."
+	},
 
 
-
-  Barrel	2 gp	30 lbs.
-  Box, scroll	5 gp	1 lb.
-  Chest, Small / Small treasure chest	2 gp / 3 gp	25 lbs.	PZO9410/PoIS
-Chest, Medium / Medium treasure chest	5 gp / 7 gp	50 lbs.	PZO1110/PoIS
-Chest, Large / Large treasure chest	10 gp / 15 gp	100 lbs.	PZO1110/PoIS
-Chest, Huge / Huge treasure chest	25 gp / 37 gp	250 lbs.
-  
+	"Small Chest": {
+		"cost": 2,
+		"weight": 25,
+		"group": "Containers",
+		"description": "This common wooden chest is small and includes a simple lock (2 cubic feet, 1 hit point, break DC 17)."
+	},
+	"Medium Chest": {
+		"cost": 5,
+		"weight": 50,
+		"group": "Containers",
+		"description": "This common wooden chest is medium and includes a simple lock (4 cubic feet, 15 hp, break DC 23)."
+	},
+	"Large Chest": {
+		"cost": 10,
+		"weight": 75,
+		"group": "Containers",
+		"description": "This common wooden chest is large and includes a simple lock (6 cubic feet, 30 hit points, break DC 29)."
+	},
+	"Huge Chest": {
+		"cost": 25,
+		"weight": 100,
+		"group": "Containers",
+		"description": "This common wooden chest is huge and includes a simple lock (8 cubic feet, 50 hit points, break DC 35)."
+	}
 }
