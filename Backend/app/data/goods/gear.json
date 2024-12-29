@@ -1,163 +1,301 @@
 {
 	"Block and Tackle": {
-    "cost": 5,
-    "weight": 5,
+		"cost": 5,
+		"weight": 5,
 		"group": "Tools",
-    "description": "Whether it is used to hoist treasure from a pit or move supplies, a simple block-and-tackle pulley, when it is properly secured, adds a +5 circumstance bonus on Strength checks to lift heavy objects. Securing the pulley requires 1 minute."
-  },
-  "Crowbar": {
-    "cost": 2,
-    "weight": 5,
+		"description": "Whether it is used to hoist treasure from a pit or move supplies, a simple block-and-tackle pulley, when it is properly secured, adds a +5 circumstance bonus on Strength checks to lift heavy objects. Securing the pulley requires 1 minute."
+	},
+	"Crowbar": {
+		"cost": 2,
+		"weight": 5,
 		"group": "Tools",
-    "description": "This versatile tool is designed to help pry open whatever the user desires. A crowbar grants a +2 circumstance bonus on Strength checks made to force open a door or chest. If it is used in combat, treat a crowbar as a one-handed improvised weapon that deals bludgeoning damage equal to that of a club of its size"
-  },
-  "Flint and Steel": {
-    "cost": 1,
-    "weight": 0,
+		"description": "This versatile tool is designed to help pry open whatever the user desires. A crowbar grants a +2 circumstance bonus on Strength checks made to force open a door or chest. If it is used in combat, treat a crowbar as a one-handed improvised weapon that deals bludgeoning damage equal to that of a club of its size"
+	},
+	"Flint and Steel": {
+		"cost": 1,
+		"weight": 0,
 		"group": "Tools",
-    "description": "Lighting a torch with a flint and steel is a full-round action. Lighting any other fire with them takes at least that long."
-  },
-  "Hourglass": {
-    "cost": 25,
-    "wieght": 1,
+		"description": "Lighting a torch with a flint and steel is a full-round action. Lighting any other fire with them takes at least that long."
+	},
+	"Hourglass": {
+		"cost": 25,
+		"wieght": 1,
 		"group": "Tools",
-    "description": "The standard hourglass takes 1 hour to empty the sand from the upper chamber; larger and smaller timers exist which mark off time in increments as short as 6 seconds."
-  },
-  "Grappling Arrow": {
-    "cost": 1,
-    "weight": 0.5,
+		"description": "The standard hourglass takes 1 hour to empty the sand from the upper chamber; larger and smaller timers exist which mark off time in increments as short as 6 seconds."
+	},
+	"Grappling Arrow": {
+		"cost": 1,
+		"weight": 0.5,
 		"group": "Tools",
-    "description": "This small grappling hook is designed to be tied to a silk rope and fired from a bow. When fired, it has a range increment of 30 feet. An equivalent item exists for crossbows."
-  },
-  "Grappling Hook": {
-    "cost": 1,
-    "weight": 4,
+		"description": "This small grappling hook is designed to be tied to a silk rope and fired from a bow. When fired, it has a range increment of 30 feet. An equivalent item exists for crossbows."
+	},
+	"Grappling Hook": {
+		"cost": 1,
+		"weight": 4,
 		"group": "Tools",
-    "description": "Throwing a grappling hook requires a ranged attack roll, treating the hook as a thrown weapon with a range increment of 10 feet. Objects with ample places to catch the hook have an AC of 5."
-  },
-  "Spell Component Pouch": {
-    "cost": 5,
-    "weight": 2,
+		"description": "Throwing a grappling hook requires a ranged attack roll, treating the hook as a thrown weapon with a range increment of 10 feet. Objects with ample places to catch the hook have an AC of 5."
+	},
+	"Spell Component Pouch": {
+		"cost": 5,
+		"weight": 2,
 		"group": "Tools",
-    "description": "A spellcaster with a spell component pouch is assumed to have all the material components and focuses needed for spellcasting, except for components that have a specific cost, divine focuses, and focuses that wouldn’t fit in a pouch."
-  },
-  "Spyglass": {
-    "cost": 1000,
-    "weight": 1,
+		"description": "A spellcaster with a spell component pouch is assumed to have all the material components and focuses needed for spellcasting, except for components that have a specific cost, divine focuses, and focuses that wouldn’t fit in a pouch."
+	},
+	"Spyglass": {
+		"cost": 1000,
+		"weight": 1,
 		"group": "Tools",
-    "description": "Objects viewed through a spyglass are magnified to twice their size. Characters using a spyglass take a –1 penalty on Perception skill checks per 20 feet of distance to the target, if the target is visible."
-  },
-  "Thieves’ Tools": {
-    "cost": 30,
-    "weight": 1,
+		"description": "Objects viewed through a spyglass are magnified to twice their size. Characters using a spyglass take a –1 penalty on Perception skill checks per 20 feet of distance to the target, if the target is visible."
+	},
+	"Thieves’ Tools": {
+		"cost": 30,
+		"weight": 1,
 		"group": "Tools",
-    "description": "This kit contains lockpicks and other tools you need to use the Disable Device skill. You take a -2 circumstance malus if you do not have thieves' tools."
-  },
-  "Masterwork Thieves’ Tools": {
-    "cost": 100,
-    "weight": 2,
+		"description": "This kit contains lockpicks and other tools you need to use the Disable Device skill. You take a -2 circumstance malus if you do not have thieves' tools."
+	},
+	"Masterwork Thieves’ Tools": {
+		"cost": 100,
+		"weight": 2,
 		"group": "Tools",
-    "description": "This kit contains extra tools and tools of better make, which grant a +2 circumstance bonus on Disable Device checks."
-  },
-	
-  "Compass": {
-    "cost": 10,
-    "weight": 0.5,
+		"description": "This kit contains extra tools and tools of better make, which grant a +2 circumstance bonus on Disable Device checks."
+	},
+
+	"Compass": {
+		"cost": 10,
+		"weight": 0.5,
 		"group": "Tools",
-    "description": "An ordinary compass that points to the magnetic north pole grants you a +2 circumstance bonus on Survival checks made to avoid becoming lost. You can also use it to grant the same bonus on Knowledge (dungeoneering) checks made to navigate underground."
-  },
-  "Hempen Rope": {
-    "cost": 1,
-    "weight": 10,
+		"description": "An ordinary compass that points to the magnetic north pole grants you a +2 circumstance bonus on Survival checks made to avoid becoming lost. You can also use it to grant the same bonus on Knowledge (dungeoneering) checks made to navigate underground."
+	},
+	"Hempen Rope": {
+		"cost": 1,
+		"weight": 10,
 		"group": "Tools",
-    "description": "The DC to escape hemp rope bonds (grapple check) is equal to 20 + the CMB of the creature that tied the bonds. The listed price is for 50 ft.",
-		"special": [ "This rope has 2 hit points and can be burst with a DC 23 Strength check." ]
-  },
-  "Twine": {
-    "cost": 0.01,
-    "weight": 0.5,
+		"description": "The DC to escape hemp rope bonds (grapple check) is equal to 20 + the CMB of the creature that tied the bonds. The listed price is for 50 ft.",
+		"special": ["This rope has 2 hit points and can be burst with a DC 23 Strength check."]
+	},
+	"Twine": {
+		"cost": 0.01,
+		"weight": 0.5,
 		"group": "Tools",
-    "description": "Sold in balls or spools of 50 feet, string and twine are useful for rigging traps and alarms and are a vital component of grappling bolts and arrows."
-  },
-  "Whetstone": {
-    "cost": 0.02,
-    "weight": 1,
+		"description": "Sold in balls or spools of 50 feet, string and twine are useful for rigging traps and alarms and are a vital component of grappling bolts and arrows."
+	},
+	"Whetstone": {
+		"cost": 0.02,
+		"weight": 1,
 		"group": "Tools",
-    "description": "A whetstone allows you to sharpen a blade by sliding it against the stone at a precise angle. Honing a blade with a whetstone requires about 15 minutes of work and grants the weapon a +1 bonus on your damage roll the first time you hit with it. This only works on nonmagical blades."
-  },
-  "Signal Whistle": {
-    "cost": 0.8,
-    "weight": 0,
+		"description": "A whetstone allows you to sharpen a blade by sliding it against the stone at a precise angle. Honing a blade with a whetstone requires about 15 minutes of work and grants the weapon a +1 bonus on your damage roll the first time you hit with it. This only works on nonmagical blades."
+	},
+	"Signal Whistle": {
+		"cost": 0.8,
+		"weight": 0,
 		"group": "Tools",
-    "description": "With a DC 5 Perform (wind instruments) check, you can use a whistle to signal the same sorts of situations as signal horns. A whistle’s piercing report can be clearly heard (Perception DC 0) up to a quarter-mile away. For each quarter-mile beyond, Perception checks to hear a whistle take a –2 penalty."
-  },
-  "Folding Chair": {
-    "cost": 2,
-    "weight": 10,
+		"description": "With a DC 5 Perform (wind instruments) check, you can use a whistle to signal the same sorts of situations as signal horns. A whistle’s piercing report can be clearly heard (Perception DC 0) up to a quarter-mile away. For each quarter-mile beyond, Perception checks to hear a whistle take a –2 penalty."
+	},
+	"Folding Chair": {
+		"cost": 2,
+		"weight": 10,
 		"group": "Tools",
-    "description": "This simple folding chair has a wooden frame and canvas seat and back, making it easy to transport and set up wherever you wish. It folds up easily and fits in a handy carrying bag. The chair can support up to 250 pounds with ease."
-  },
-  "Soap": {
-    "cost": 0.01,
-    "weight": 0.5,
+		"description": "This simple folding chair has a wooden frame and canvas seat and back, making it easy to transport and set up wherever you wish. It folds up easily and fits in a handy carrying bag. The chair can support up to 250 pounds with ease."
+	},
+	"Soap": {
+		"cost": 0.01,
+		"weight": 0.5,
 		"group": "Tools",
-    "description": "You can use this thick block of soap to scrub clothes, pots, linens, or anything else that might be dirty. A bar of soap has approximately 50 uses."
-  },
+		"description": "You can use this thick block of soap to scrub clothes, pots, linens, or anything else that might be dirty. A bar of soap has approximately 50 uses."
+	},
 
 
 
-  "Bedroll": {
-    "cost": 0.1,
-    "weight": 5,
+	"Bedroll": {
+		"cost": 0.1,
+		"weight": 5,
 		"group": "Sleep",
-    "description": "This consists of two woolen sheets sewn together along the bottom and one side to create a bag for sleeping in. Some have cloth straps along the open side so the bedroll can be tied closed while you are sleeping. It can be rolled and tied into a tight coil for storage or transport. Most people use a blanket with the bedroll to stay warm or provide a ground cushion."
-  },
-  "Blanket": {
-    "cost": 0.5,
-    "weight": 3,
+		"description": "This consists of two woolen sheets sewn together along the bottom and one side to create a bag for sleeping in. Some have cloth straps along the open side so the bedroll can be tied closed while you are sleeping. It can be rolled and tied into a tight coil for storage or transport. Most people use a blanket with the bedroll to stay warm or provide a ground cushion."
+	},
+	"Blanket": {
+		"cost": 0.5,
+		"weight": 3,
 		"group": "Sleep",
-    "description": "This warm, woven blanket has straps so it can be rolled up and tied. Blankets are often used in conjunction with bedrolls to provide additional warmth or a ground cushion."
-  },
-  "Cot": {
-    "cost": 1,
-    "weight": 30,
+		"description": "This warm, woven blanket has straps so it can be rolled up and tied. Blankets are often used in conjunction with bedrolls to provide additional warmth or a ground cushion."
+	},
+	"Cot": {
+		"cost": 1,
+		"weight": 30,
 		"group": "Sleep",
-    "description": "This elevated camp bed is made of wood and canvas, and is particularly useful when the ground is wet or rocky. It is large enough for a full-grown human, but folds down into a 4-foot-by-9-inch cylindrical bag."
-  },
-  "Hammock": {
-    "cost": 0.1,
-    "weight": 3,
+		"description": "This elevated camp bed is made of wood and canvas, and is particularly useful when the ground is wet or rocky. It is large enough for a full-grown human, but folds down into a 4-foot-by-9-inch cylindrical bag."
+	},
+	"Hammock": {
+		"cost": 0.1,
+		"weight": 3,
 		"group": "Sleep",
-    "description": "This blanket or net is attached to strong ropes, allowing you to hang it from a heavy branch or two trees and sleep above the ground. Climbing into or out of a hammock is a full-round action. A successful DC 5 Dexterity check reduces this to a move action."
-  },
-  "Small Tent": {
-    "cost": 10,
-    "weight": 20,
+		"description": "This blanket or net is attached to strong ropes, allowing you to hang it from a heavy branch or two trees and sleep above the ground. Climbing into or out of a hammock is a full-round action. A successful DC 5 Dexterity check reduces this to a move action."
+	},
+	"Small Tent": {
+		"cost": 10,
+		"weight": 20,
 		"group": "Sleep",
-    "description": "A small tent holds one Medium creature and takes 20 minutes to assemble."
-  },
-  "Medium Tent": {
-    "cost": 15,
-    "weight": 30,
+		"description": "A small tent holds one Medium creature and takes 20 minutes to assemble."
+	},
+	"Medium Tent": {
+		"cost": 15,
+		"weight": 30,
 		"group": "Sleep",
-    "description": "A medium tent holds two creatures and takes 30 minutes to assemble."
-  },
-  "Large Tent": {
-    "cost": 30,
-    "weight": 40,
+		"description": "A medium tent holds two creatures and takes 30 minutes to assemble."
+	},
+	"Large Tent": {
+		"cost": 30,
+		"weight": 40,
 		"group": "Sleep",
-    "description": "A large tent holds four creatures and takes 45 minutes to assemble."
-  },
-  "Pavilion Tent": {
-    "cost": 100,
-    "weight": 50,
+		"description": "A large tent holds four creatures and takes 45 minutes to assemble."
+	},
+	"Pavilion Tent": {
+		"cost": 100,
+		"weight": 50,
 		"group": "Sleep",
-    "description": "A huge open-air canopy, plus stakes, poles, and ropes. A pavilion holds 10 creatures and takes 90 minutes to assemble. Pavilion tents are large enough to accommodate a small fire in the center."
-  },
-  "Hanging Tent": {
-    "cost": 20,
-    "weight": 15,
+		"description": "A huge open-air canopy, plus stakes, poles, and ropes. A pavilion holds 10 creatures and takes 90 minutes to assemble. Pavilion tents are large enough to accommodate a small fire in the center."
+	},
+	"Hanging Tent": {
+		"cost": 20,
+		"weight": 15,
 		"group": "Sleep",
-    "description": "A hanging tent is a small tent (able to comfortably house a single Medium creature) with a teardrop shape, which hangs from a sturdy anchor rope. The rope can be tied to a tree limb, grappling hook, or even a piton hammered into a cliff side. Hanging tents are used primarily in mountainous terrain (where no flat surface may be available for camping) and swamps (where no dry ground may be available). Climbing in or out of a hanging tent is a full-round action that requires a DC 10 Climb check. Failure indicates another attempt must be made, while failure by 5 or more indicates the camper has fallen from the tent."
-  }
+		"description": "A hanging tent is a small tent (able to comfortably house a single Medium creature) with a teardrop shape, which hangs from a sturdy anchor rope. The rope can be tied to a tree limb, grappling hook, or even a piton hammered into a cliff side. Hanging tents are used primarily in mountainous terrain (where no flat surface may be available for camping) and swamps (where no dry ground may be available). Climbing in or out of a hanging tent is a full-round action that requires a DC 10 Climb check. Failure indicates another attempt must be made, while failure by 5 or more indicates the camper has fallen from the tent."
+	},
+
+
+	"Candle": {
+		"cost": 0.01,
+		"weight": 0,
+		"group": "Light",
+		"description": "A candle dimly illuminates a small area, increasing the light level in a 5-foot radius by one step (darkness becomes dim light and dim light becomes normal light). A candle cannot increase the light level above normal light. A candle burns for 1 hour."
+	},
+	"Firewood": {
+		"cost": 0.01,
+		"weight": 20,
+		"group": "Light",
+		"description": "This bundle of dry wood includes twigs and logs, and is enough to burn for 1 day."
+	},
+	"Lamp": {
+		"cost": 0.1,
+		"weight": 1,
+		"group": "Light",
+		"description": "A common lamp illuminates a small area, providing normal light in a 15-foot radius and increasing the light level by one step for an additional 15 feet beyond that area (darkness becomes dim light and dim light becomes normal light). A lamp does not increase the light level in normal light or bright light. A lamp burns for 6 hours on 1 pint of oil. You can carry a lamp in one hand."
+	},
+	"Torch": {
+		"cost": 0.01,
+		"weight": 1,
+		"group": "Light",
+		"description": "A torch burns for 1 hour, shedding normal light in a 20-foot radius and increasing the light level by one step for an additional 20 feet beyond that area (darkness becomes dim light and dim light becomes normal light)."
+	},
+
+
+	"Trail Rations": {
+		"cost": 0.5,
+		"weight": 1,
+		"group": "Foods",
+		"description": "The listed price is for a day’s worth of food. This bland food is usually some kind of hard tack, jerky, and dried fruit, though the contents vary from region to region and the race of those creating it. As long as it stays dry, it can go for months without spoiling."
+	},
+	"Bread": {
+		"cost": 0.02,
+		"weight": 0.5,
+		"group": "Foods",
+		"description": "A single loaf of bread found in your average town restaurant or tavern."
+	},
+	"Cheese": {
+		"cost": 0.01,
+		"weight": 0.5,
+		"group": "Foods",
+		"description": "The listed prices are for one hunk of cheese in a tavern or restaurant in an average city."
+	},
+	"Honey": {
+		"cost": 1,
+		"weight": 0.5,
+		"group": "Foods",
+		"description": "A sweet viscous liquid made by bees."
+	},
+	"Poor Meal": {
+		"cost": 0.1,
+		"weight": 0,
+		"group": "Foods",
+		"description": "Poor meals might be composed of bread, baked turnips, onions, and water."
+	},
+	"Common Meal": {
+		"cost": 0.3,
+		"weight": 0,
+		"group": "Foods",
+		"description": "Common meals might consist of bread, chicken stew, carrots, and watered-down ale or wine."
+	},
+	"Good Meal": {
+		"cost": 0.5,
+		"weight": 0,
+		"group": "Foods",
+		"description": "Good meals might be composed of bread and pastries, beef, peas, and ale or wine."
+	},
+	"Meat": {
+		"cost": 0.3,
+		"weight": 0.5,
+		"group": "Foods",
+		"description": "The listed prices are for a tavern or restaurant in an average city."
+	},
+
+
+	"Gallon of Ale": {
+		"cost": 0.2,
+		"weight": 8,
+		"group": "Foods",
+		"description": "The listed prices are for a tavern or restaurant in an average city."
+	},
+	"Mug of Ale": {
+		"cost": 0.04,
+		"weight": 1,
+		"group": "Foods",
+		"description": "The listed prices are for a tavern or restaurant in an average city."
+	},
+	"Mug of Mead": {
+		"cost": 0.05,
+		"weight": 0.5,
+		"group": "Foods",
+		"description": "This alcoholic beverage is made by fermenting honey and water. It may be flavored with spices, fruit, or hops."
+	},
+	"Gallon of Mead": {
+		"cost": 2,
+		"weight": 8,
+		"group": "Foods",
+		"description": "This alcoholic beverage is made by fermenting honey and water. It may be flavored with spices, fruit, or hops."
+	},
+	"Common Wine": {
+		"cost": 0.2,
+		"weight": 6,
+		"group": "Foods",
+		"description": "The listed prices are for a tavern or restaurant in an average city."
+	},
+	"Fine Wine": {
+		"cost": 10,
+		"weight": 1.5,
+		"group": "Foods",
+		"description": "The listed prices are for a tavern or restaurant in an average city."
+	},
+	"Mug of Grog": {
+		"cost": 0.02,
+		"weight": 0.5,
+		"group": "Foods",
+		"description": "A foul mix of different alcohols and whatever’s handy, grog was invented by pirates and sailors and never managed to crawl far onto land. Grog is no one’s first choice of drink, but anyone who’s spent enough time on a ship has had at least a taste."
+	},
+	"Coffee": {
+		"cost": 0.01,
+		"weight": 0.5,
+		"group": "Foods",
+		"description": "This drink is brewed by pouring boiling water through crushed, roasted coffee beans. A very strong form is potent enough to reduce the penalties from the fatigued condition from –2 to –1 for 1 hour, if the target has had 2 cups."
+	},
+	"Milk": {
+		"cost": 0.05,
+		"weight": 0.5,
+		"group": "Foods",
+		"description": "The listed prices are for a tavern or restaurant in an average city."
+	},
+	"Tea": {
+		"cost": 0.02,
+		"weight": 0.5,
+		"group": "Foods",
+		"description": "A popular beverage in most civilized regions, tea is usually served with milk, sugar, or spices."
+	}
 }
