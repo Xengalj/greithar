@@ -1,38 +1,168 @@
 {
-  "Goods and Services": {
-
-    "Djezet": {
-      "Cost": { "One Dose": "200 gp" },
-      "Type": "Magic", Spell Component
-      "Description": "One of the strangest of skymetals, rust-red djezet is liquid at all temperatures.",
-      "Special": [
-        "Djezet may be used as an additional material component for spells, using 1 dose per original spell level. When used this way, the spell's level is increased by 1 stacking with heightened spell."
-      ]
-    },
-
-    "Alchemist’s Fire Oil": {
-      "Cost": "20 gp",
-      "Weight": "1 lb",
-
-    You can throw a flask of alchemist’s fire as a splash weapon with a range increment of 10 feet.
-    A direct hit deals 1d6 points of fire damage. Every creature within 5 feet of the point where the flask hits takes 1 point of fire damage from the splash. On the round following a direct hit, the target takes an additional 1d6 points of damage. If desired, the target can use a full-round action to attempt to extinguish the flames before taking this additional damage. Extinguishing the flames requires a DC 15 Reflex save. Rolling on the ground provides the target a +2 bonus on the save. Leaping into a lake or magically extinguishing the flames automatically smothers the fire.
-    Craft (alchemy) DC: 20
-Alchemical Power Component
-
-Source PZO9410
-
-This dwarven favorite can make fire spells last longer.
-
-Burning Hands (M): One target that fails its Reflex saving throw (your choice) catches on fire as if it has been struck by alchemist’s fire.
-Fireball (M): One target per caster level that fails its Reflex saving throw (your choice) catches on fire as if it has been struck by alchemist’s fire.
-Flaming Sphere (M): Any creature damaged by a flaming sphere catches on fire as if it has been struck by alchemist’s fire.
-Protection from Energy (M): If cast to ward against cold, increase the amount of cold damage absorbed by 5.
-Resist Energy (M): If cast to ward against cold, increase the cold resistance to 12. At caster level 7th, you may use two flasks of alchemist’s fire as a power component to increase the cold resistance to 24. At caster level 11th, you may use three flasks as a power component to increase the cold resistance to 36.
-Scorching Ray (F): Add a +1 circumstance bonus on your attack roll with all rays from the spell.
-Scorching Ray (M): Any target damaged by a scorching ray catches on fire as if it has been struck by alchemist’s fire.
+	"Personal Kit": {
+		"cost": 6,
+		"weight": 15,
+		"group": "Kits",
+		"description": "This pack contains the  an adventure inside a leather backpack.",
+		"items": ["Backpack", "Bedroll", "Blanket", "Belt Pouch", "Mess Kit", "Waterskin", "Soap", "Hemp Rope (50 ft)"]
+	},
+	"Camp Supplies": {
+		"cost": 6,
+		"weight": 10,
+		"group": "Kits",
+		"description": "This pack contains everything you would need for a camping adventure inside a burlap sack.",
+		"items": ["Burlap Sack", "Flint & Steel", "Torches x5", "Signal Whistle", "Whetstone", "Sweing Needle", "Thread (50 ft)", "Iron Pot", "Brass Knife", "Fish Hooks"]
+	},
+	"Mess": {
+		"cost": 0.2,
+		"weight": 1,
+		"group": "Kits",
+		"description": "This kit includes a plate, bowl, cup, fork, knife, and spoon, made of wood, horn, or tin. Each item has a handle or small hole, and can be tied together using the included leather cord.",
+		"items": []
+	},
 
 
+	"Backpack": {
+		"cost": 2,
+		"weight": 2,
+		"group": "Containers",
+		"description": "This leather knapsack has one large pocket that closes with a buckled strap and holds about 2 cubic feet of material. Some may have one or more smaller pockets on the sides."
+	},
+	"Masterwork Backpack": {
+		"cost": 50,
+		"weight": 4,
+		"group": "Containers",
+		"description": "This backpack has numerous pockets and hooks for storing items that might be needed while adventuring. Like a common backpack, it can hold about 2 cubic feet of material in its main container. When wearing a masterwork backpack, treat your Strength score as +1 higher than normal when calculating your carrying capacity.",
+		"special": [ "Treat your Stregth as 1 higher for carry capacity" ]
+	},
+	"Weaponrack Backpack": {
+		"cost": 25,
+		"weight": 5,
+		"group": "Containers",
+		"description": "This leather backpack includes a small weapons rack and allies adjacent to you can retrieve a weapon from the rack as a move action without provoking attacks of opportunity, as if they were simply drawing a weapon. Like a normal backpack, it can hold 2 cubic feet of material in its main compartment."
+	},
+	"Waterproof Bag": {
+		"cost": 0.5,
+		"weight": 0.5,
+		"group": "Containers",
+		"description": "This leather sack sealed with tar or pitch keeps delicate items from being ruined by water. Items kept inside remain relatively dry, making the bag ideal for carrying maps, scrolls, spellbooks, and the like, although the bag is not impervious and can only be completely immersed for 10 rounds before enough water seeps in to ruin such items."
+	},
+	"Adventurer’s Sash": {
+		"cost": 20,
+		"weight": 3,
+		"group": "Containers",
+		"description": "This bandolier has six pouches along its length that can be opened or closed with a move action (you may leave them open). You may store additional items in the satchel and the whole sash can be doffed as a move action."
+	},
+	"Spell Component Pouch": {
+		"cost": 5,
+		"weight": 2,
+		"group": "Containers",
+		"description": "A spellcaster with a spell component pouch is assumed to have all the material components and focuses needed for spellcasting, except for those components that have a specific cost, divine focuses, and focuses that wouldn’t fit in a pouch."
+	},
+	"Waist Pouch": {
+		"cost": 0.5,
+		"weight": 0.5,
+		"group": "Containers",
+		"description": "This leather pack is supported by two straps that can be loosened or tightened to fit most body types. It can be adjusted to any facing along its wearer’s waist. The pack can store up to 1/2 cubic foot of material"
+	},
+	"Sack": {
+		"cost": 0.1,
+		"weight": 0.5,
+		"group": "Containers",
+		"description": "A sack is a cloth bag that weighs 1/2 lb. empty and holds 1 cubic ft. or 60 lbs. of contents full."
+	},
+	"Familiar Satchel": {
+		"cost": 25,
+		"weight": 6,
+		"group": "Containers",
+		"description": "This armored case provides total cover to any Tiny or smaller creature contained within it. It includes air holes (which can be plugged with cork stoppers if you need to go underwater) and two receptacles for food and water."
+	},
+	"Waterskin": {
+		"cost": 1,
+		"weight": 4,
+		"group": "Containers",
+		"description": "A water or wineskin holds 1/2 gallon of liquid and weighs 4 lb when full (weighs 0.1 lbs empty)."
+	},
+
+	
+	"Barrel": {
+		"cost": 2,
+		"weight": 30,
+		"group": "Containers",
+		"description": "A common barrel is constructed of wood with metal ring reinforcements and holds 10 cubic ft. or 650 lb. of materials. A barrel filled with liquid holds about 75 gallons."
+	},
+	"Scroll Box": {
+		"cost": 5,
+		"weight": 1,
+		"group": "Containers",
+		"description": "This water tight wooden box easily holds 10 scrolls and has small clips or bookmarks for easier indexing. Retrieving a scroll from a held scroll box is a move action that provokes AoOs."
+	},
 
 
-  }
+	"Small Chest": {
+		"cost": 2,
+		"weight": 25,
+		"group": "Containers",
+		"description": "This common wooden chest is small and includes a simple lock (2 cubic feet, 1 hit point, break DC 17)."
+	},
+	"Medium Chest": {
+		"cost": 5,
+		"weight": 50,
+		"group": "Containers",
+		"description": "This common wooden chest is medium and includes a simple lock (4 cubic feet, 15 hp, break DC 23)."
+	},
+	"Large Chest": {
+		"cost": 10,
+		"weight": 75,
+		"group": "Containers",
+		"description": "This common wooden chest is large and includes a simple lock (6 cubic feet, 30 hit points, break DC 29)."
+	},
+	"Huge Chest": {
+		"cost": 25,
+		"weight": 100,
+		"group": "Containers",
+		"description": "This common wooden chest is huge and includes a simple lock (8 cubic feet, 50 hit points, break DC 35)."
+	},
+
+	"Minor Bag of Holding": {
+		"cost": 1000,
+		"weight": 3,
+		"group": "Containers",
+		"description": "This appears to be a common cloth sack about 2 feet by 4 feet in size, but it opens into a nondimensional space. Regardless of what is put into the bag, it weighs a fixed Amount.",
+		"special": [ "Capacity: 50 lbs.", "Retrieving a specific item from a bag of holding is a move action, unless the bag contains more than an ordinary backpack would hold, in which case retrieving a specific item is a full-round action" ]		
+	},
+	"Handy Haversack": {
+		"cost": 2000,
+		"weight": 15,
+		"group": "Containers",
+		"description": "A backpack of this sort appears to be well made, well used, and quite ordinary, but it is in fact magical. This bag can hold a total of 120 lbs, always weighs 5 pounds, and you may retrieve any item without provoking an Attack of Opportunity."
+	},
+	"Bag of Holding I": {
+		"cost": 2500,
+		"weight": 15,
+		"group": "Containers",
+		"description": "This appears to be a common cloth sack about 2 feet by 4 feet in size, but it opens into a nondimensional space. Regardless of what is put into the bag, it weighs a fixed Amount.",
+		"special": [ "Capacity: 250 lbs.", "Retrieving a specific item from a bag of holding is a move action, unless the bag contains more than an ordinary backpack would hold, in which case retrieving a specific item is a full-round action" ]
+	},
+	"Bag of Holding II": {
+		"cost": 5000,
+		"weight": 25,
+		"group": "Containers",
+		"description": "This appears to be a common cloth sack about 2 feet by 4 feet in size, but it opens into a nondimensional space. Regardless of what is put into the bag, it weighs a fixed Amount.",
+		"special": [ "Capacity: 500 lbs.", "Retrieving a specific item from a bag of holding is a move action, unless the bag contains more than an ordinary backpack would hold, in which case retrieving a specific item is a full-round action" ]
+	},
+	"Bag of Holding III": {
+		"cost": 7400,
+		"weight": 35,
+		"group": "Containers",
+		"description": "This appears to be a common cloth sack about 2 feet by 4 feet in size, but it opens into a nondimensional space. Regardless of what is put into the bag, it weighs a fixed Amount.",
+		"special": [ "Capacity: 1000 lbs.", "Retrieving a specific item from a bag of holding is a move action, unless the bag contains more than an ordinary backpack would hold, in which case retrieving a specific item is a full-round action" ]
+	},
+	"Bag of Holding IV": {
+		"cost": 10000,
+		"weight": 60,
+		"group": "Containers",
+		"description": "This appears to be a common cloth sack about 2 feet by 4 feet in size, but it opens into a nondimensional space. Regardless of what is put into the bag, it weighs a fixed Amount.",
+		"special": [ "Capacity: 1500 lbs.", "Retrieving a specific item from a bag of holding is a move action, unless the bag contains more than an ordinary backpack would hold, in which case retrieving a specific item is a full-round action" ]
+	}
 }

@@ -1,38 +1,158 @@
 {
-  "Goods and Services": {
+	"Cart": {
+		"Cost": 15,
+		"weight": 0,
+		"group": "Vehicles",
+		"description": "This two-wheeled vehicle can be drawn by a single horse or other beast of burden, and is often used to transport goods across short distances. It comes with a harness.",
+		"special": [ "Passage 1 cp per mile" ]
+	},
+	"Light Wagon": {
+		"Cost": 50,
+		"weight": 0,
+		"group": "Vehicles",
+		"description": "Wagons of this type are most commonly employed by farmers and craftsmen transporting their goods short distances or by vendors in and around cities. A light wagon carries up to 1,000 pounds of cargo and requires two Medium creatures or one Large creature to pull it.",
+		"special": [ "Passage 2 cp per mile" ]
+	},
+	"Medium Wagon": {
+		"Cost": 75,
+		"weight": 0,
+		"group": "Vehicles",
+		"description": "Wagons of this type are typically employed for heavy duty work, often in agricultural, mining, or construction settings. A medium wagon can carry up to 2,000 pounds of cargo and requires four Medium or two Large creatures to pull it.",
+		"special": [ "Passage 2 cp per mile" ]
+	},
+	"Heavy Wagon": {
+		"Cost": 100,
+		"weight": 0,
+		"group": "Vehicles",
+		"description": "Wagons of this type are large, four-wheeled vehicles primarily used in caravans to transport goods over long stretches of territory. A heavy wagon carries up to 4,000 pounds of cargo, and is pulled by either eight Medium creatures or four Large creatures.",
+		"special": [ "Passage 3 cp per mile" ]
+	},
+	"Carriage": {
+		"Cost": 100,
+		"weight": 0,
+		"group": "Vehicles",
+		"description": "This four-wheeled vehicle can transport as many as four people within an enclosed cab, plus two drivers. In general, two horses (or other beasts of burden) draw it. A carriage comes with the harness needed to pull it.",
+		"special": [ "Passage 3 cp per mile" ]
+	},
 
-    "Djezet": {
-      "Cost": { "One Dose": "200 gp" },
-      "Type": "Magic", Spell Component
-      "Description": "One of the strangest of skymetals, rust-red djezet is liquid at all temperatures.",
-      "Special": [
-        "Djezet may be used as an additional material component for spells, using 1 dose per original spell level. When used this way, the spell's level is increased by 1 stacking with heightened spell."
-      ]
-    },
 
-    "Alchemist’s Fire Oil": {
-      "Cost": "20 gp",
-      "Weight": "1 lb",
+	"Raft": {
+		"Cost": 0,
+		"weight": 0,
+		"group": "Vehicles",
+		"description": "The most basic and primitive type of watercraft, a raft is a simple, flat boat with no hull, often made of logs lashed together. It typically uses two to four oars for propulsion.",
+		"special": [ "Passage 1 cp per mile" ]
+	},
+	"Rowboat": {
+		"Cost": 50,
+		"weight": 0,
+		"group": "Vehicles",
+		"description": "This 8- to 12-foot-long boat with two oars holds two or three Medium passengers, and is either carried on the deck of a larger ship or moored to a dock onshore. A rowboat moves about 1-1/2 miles per hour.",
+		"special": [ "Passage 2 cp per mile" ]
+	},
+	"Keelboat": {
+		"Cost": 3000,
+		"weight": 0,
+		"group": "Vehicles",
+		"description": "This 50- to 75-foot-long ship is 15 to 20 feet wide and has a dozen oars to supplement its single mast with a square sail. It requires a crew of 8 to 15 to sail and can carry 40 to 50 tons of cargo or 100 soldiers. It can make sea voyages, as well as sail down rivers (thanks to its flat bottom). It moves about 1 mile per hour.",
+		"special": [ "Passage 10 cp (1 sp) per mile" ]
+	},
+	"Longship": {
+		"Cost": 10000,
+		"weight": 0,
+		"group": "Vehicles",
+		"description": "This 75-foot-long ship with 40 oars requires a total crew of 50. It has a single mast and a square sail, and it can carry 50 tons of cargo or 120 soldiers. A longship can make sea voyages. It moves about 3 miles per hour when being rowed or under sail.",
+		"special": [ "Passage 5 cp per mile" ]
+	},
+	"Sailing Ship": {
+		"Cost": 10000,
+		"weight": 0,
+		"group": "Vehicles",
+		"description": "This large, seaworthy ship is 75 to 90 feet long, 20 feet wide, and has a crew of 20. It can carry 150 tons of cargo. It has square sails on its two masts and can make sea voyages. It moves about 2 miles per hour.",
+		"special": [ "Passage 20 cp (2 sp) per mile" ]
+	},
 
-    You can throw a flask of alchemist’s fire as a splash weapon with a range increment of 10 feet.
-    A direct hit deals 1d6 points of fire damage. Every creature within 5 feet of the point where the flask hits takes 1 point of fire damage from the splash. On the round following a direct hit, the target takes an additional 1d6 points of damage. If desired, the target can use a full-round action to attempt to extinguish the flames before taking this additional damage. Extinguishing the flames requires a DC 15 Reflex save. Rolling on the ground provides the target a +2 bonus on the save. Leaping into a lake or magically extinguishing the flames automatically smothers the fire.
-    Craft (alchemy) DC: 20
-Alchemical Power Component
 
-Source PZO9410
+	"Road Toll": {
+		"Cost": 0.01,
+		"weight": 0,
+		"group": "Services",
+		"description": "This is a toll commonly assessed to travelers either on a road or seeking entry into a city or town."
+	},
+	"Poor Inn Stay": {
+		"Cost": 0.2,
+		"weight": 0,
+		"group": "Services",
+		"description": "Accommodations at an inn amount to a place on the floor near the hearth."
+	},
+	"Common Inn Stay": {
+		"Cost": 0.5,
+		"weight": 0,
+		"group": "Services",
+		"description": "Accommodations consist of a place on a raised, heated floor, the use of a blanket and a pillow."
+	},
+	"Good Inn Stay": {
+		"Cost": 2,
+		"weight": 0,
+		"group": "Services",
+		"description": "Accommodations consist of a small, private room with one bed, some amenities, and a covered chamber pot in the corner."
+	},
+	"Small Inn Sutie": {
+		"Cost": 4,
+		"weight": 0,
+		"group": "Services",
+		"description": "A small suite includes a fireplace and good lock on the outer door."
+	},
+	"Average Inn Sutie": {
+		"Cost": 16,
+		"weight": 0,
+		"group": "Services",
+		"description": "An average suite includes a fireplace, a superior lock on the door, and either two bedrooms or one larger bedroom."
+	},
+	"Luxurious Inn Sutie": {
+		"Cost": 32,
+		"weight": 0,
+		"group": "Services",
+		"description": "A luxurious suite includes a fireplace, a superior lock on the outer door, and two large or three or four smaller bedrooms, plus servants on call to clean, cook, help with dressing, or send messages."
+	},
 
-This dwarven favorite can make fire spells last longer.
 
-Burning Hands (M): One target that fails its Reflex saving throw (your choice) catches on fire as if it has been struck by alchemist’s fire.
-Fireball (M): One target per caster level that fails its Reflex saving throw (your choice) catches on fire as if it has been struck by alchemist’s fire.
-Flaming Sphere (M): Any creature damaged by a flaming sphere catches on fire as if it has been struck by alchemist’s fire.
-Protection from Energy (M): If cast to ward against cold, increase the amount of cold damage absorbed by 5.
-Resist Energy (M): If cast to ward against cold, increase the cold resistance to 12. At caster level 7th, you may use two flasks of alchemist’s fire as a power component to increase the cold resistance to 24. At caster level 11th, you may use three flasks as a power component to increase the cold resistance to 36.
-Scorching Ray (F): Add a +1 circumstance bonus on your attack roll with all rays from the spell.
-Scorching Ray (M): Any target damaged by a scorching ray catches on fire as if it has been struck by alchemist’s fire.
+	"Cold Bath": {
+		"Cost": 0.02,
+		"weight": 0,
+		"group": "Services",
+		"description": "A cold bath usually involves someone else’s used soapy bath water."
+	},
+	"Hot Bath": {
+		"Cost": 0.06,
+		"weight": 0,
+		"group": "Services",
+		"description": "A hot bath is a one-person washtub filled with hot water one pot at a time."
+	},
+	"Public Bath": {
+		"Cost": 0.5,
+		"weight": 0,
+		"group": "Services",
+		"description": "A public bath is a bath facility (such as a bath house or resort) that provides hot water, soap, and cologne or perfume, and may also offer wading pools, massages, or other services for an additional cost. Some public baths require membership or a minimum social status and are more expensive."
+	},
 
-
-
-
-  }
+	
+	"Messenger": {
+		"Cost": 0.02,
+		"weight": 0,
+		"group": "Services",
+		"description": "This includes horse-riding messengers and runners. Those willing to carry a message to a place they were going anyway may ask for only half the indicated amount. The ammount listed is per mile."
+	},
+	"Laundry": {
+		"Cost": 0.1,
+		"weight": 0,
+		"group": "Services",
+		"description": "The listed price is for up to four items (such as trousers, an undergarment, shirt, and jacket or vest). Additional items may be washed for 3cp each. Laundry is finished the next day unless you bring it to the washer early."
+	},
+	"Magic Laundry": {
+		"Cost": 1,
+		"weight": 0,
+		"group": "Services",
+		"description": "Magical laundry service is a mage (typically an apprentice wizard) magically and instantly cleaning your clothes with prestidigitation."
+	}
 }

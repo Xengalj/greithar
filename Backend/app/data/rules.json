@@ -1,4 +1,10 @@
 {
+  "classAges": {
+    "Intuitive": [ "barbarians", "oracles", "rogues", "sorcerers" ],
+    "Self-Taught": [ "bards", "cavaliers", "fighters", "gunslingers", "paladins", "rangers", "summoners", "witches" ],
+    "Trained": [ "alchemists", "clerics", "druids", "inquisitors", "magi", "monks", "wizards" ]
+  },
+  
   "size": {
     "fine": {
       "ac / atk":   8,

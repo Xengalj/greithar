@@ -1,0 +1,20 @@
+{
+
+  
+  "Potion, Cure Light Wounds": {
+    "cost": 50,
+    "weight": 0.1,
+    "description": "A small vial containing a cure light wounds spell in liquid form. The vial is 2 inches tall and 1 inch wide, containing one ounce of liquid. Drinking this as a standard action will heal 1d8 + 1 damage and provoke an Attack of Opportunity."
+  },
+  "Potion, Cure Moderate Wounds": {
+    "cost": 300,
+    "weight": 0.1,
+    "description": "A small vial containing a cure moderate wounds spell in liquid form. The vial is 2 inches tall and 1 inch wide, containing one ounce of liquid. Drinking this as a standard action will heal 2d8 + 3 damage and provoke an Attack of Opportunity."
+  },
+  "Potion, Cure Serious Wounds": {
+    "cost": 750,
+    "weight": 0.1,
+    "description": "A small vial containing a cure serious wounds spell in liquid form. The vial is 2 inches tall and 1 inch wide, containing one ounce of liquid. Drinking this as a standard action will heal 3d8 + 5 damage and provoke an Attack of Opportunity."
+  }
+  
+}
