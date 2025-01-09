@@ -59,6 +59,17 @@ export default {
       rules: {},
       equipment: {},
 
+      classes: {
+        "warrior": {
+          "skills": [ "Climb (Str)", "Craft (Int)", "Handle Animal (Cha)", "Intimidate (Cha)", "Profession (Wis)", "Ride (Dex)", "Swim (Str)" ],
+          "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "heavy armor", "shields" ],
+          "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
+          "hd": 10, "ranks": 2, "bab": 1,
+          "fort": { "mult": 0.5, "bonus": 2 },
+          "ref": { "mult": 0.33, "bonus": 0 },
+          "will": { "mult": 0.33, "bonus": 0 }
+        }
+      },
 
     }
   },
@@ -114,7 +125,7 @@ export default {
   mounted() {
 
     DataService.getRules().then( (response) => { this.rules = response;
-      // console.log(this.rules);
+      console.log(response);
      } );
     DataService.getEquipment().then( (response) => { this.equipment = response; } );
 
@@ -138,6 +149,7 @@ export default {
       .then(response => {
         console.log("Orig", response);
         let tempNum = 0;
+let perm = {};
         let creature = {
           "name": response.Name,
           "attributes": { "Str": response.Str, "Dex": response.Dex, "Con": response.Con, "Int": response.Int, "Wis": response.Wis, "Cha": response.Cha },
@@ -145,12 +157,12 @@ export default {
             "cr": response.CR,
             "size": response.Size.toLowerCase(),
             "alignment": response.Alignment,
-            "environment": response.environment,
-            "treasure": response.Treasure,
+            "environment": response.Environment,
           },
+          "type": {},
+          "feats": [],
+
           "health": { total: 0, bonus: 0 },
-
-
 
           "bab": 0,   // TODO: Remove
           "melee": [],
@@ -159,33 +171,9 @@ export default {
           "magic": [],
 
           "abilities": {},
+          "bonuses": {},
+          "active": {},   // active bonuses
           "equipment": {}
-          // "temp": {}
-        };
-
-        let classes = {
-          "warrior": {
-            "hd": 10,
-            "ranks": 2,
-            "skills": [ "Climb (Str)", "Craft (Int)", "Handle Animal (Cha)", "Intimidate (Cha)", "Profession (Wis)", "Ride (Dex)", "Swim (Str)" ],
-            "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "heavy armor", "shields" ],
-            "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
-            "bab": 1, // Fast BAB: HD*1
-            "fort": { "mult": 0.5, "bonus": 2 }, // Good Save: HD/2 +2
-            "ref": { "mult": 0.33, "bonus": 0 }, // Poor Save: HD/3
-            "will": { "mult": 0.33, "bonus": 0 }
-          }
-        };
-
-        let types = {
-          "undead": {
-            "hd": 8,
-            "ranks": 2,
-            "bab": 0.75, // Med BAB: HD*0.75
-            "fort": { "mult": 0.33, "bonus": 0 }, // Poor Save: HD/3
-            "ref": { "mult": 0.33, "bonus": 0 },
-            "will": { "mult": 0.5, "bonus": 2 } // Good Save: HD/2 +2
-          }
         };
 
 
@@ -194,9 +182,13 @@ export default {
         *          BASICS           *
         *                           *
         \***************************/
+perm.name = creature.name;
+perm.attributes = creature.attributes;
+perm.characteristics = creature.characteristics;
+perm.classes = {};
+perm.defense = {};
 
-        // creature.subtype = [];  // TODO: loop check
-        let racialHD = 0;
+        // Ability Score Modifiers
         creature.attributes.StrMod = Math.floor((creature.attributes.Str - 10) / 2);
         creature.attributes.DexMod = Math.floor((creature.attributes.Dex - 10) / 2);
         creature.attributes.ConMod = Math.floor(( (isNaN(creature.attributes.Con) ? creature.attributes.Cha : creature.attributes.Con) - 10) / 2);
@@ -204,9 +196,8 @@ export default {
         creature.attributes.WisMod = Math.floor((creature.attributes.Wis - 10) / 2);
         creature.attributes.ChaMod = Math.floor((creature.attributes.Cha - 10) / 2);
 
-
-        // "17d12+102"
         // Get total HD
+        let [Class, bab, fort, ref, will, hp, hpBonus, racialHD ] = ["", 0, 0, 0, 0, 0, 0, 0];
         let strings = response.HD.split(";");
         strings = strings[1] ? strings[1] : strings[0];
         strings = strings.split("+");
@@ -219,91 +210,86 @@ export default {
         }
 
         // Class 1
-        racialHD -= response.Class1_Lvl;
-        let Class = classes[response.Class1];
-        creature.class1 = {
-          name: response.Class1,
-          levels: response.Class1_Lvl,
-          hd: Class.hd
+        if (response.Class1) {
+perm.classes[response.Class1] = { "levels": response.Class1_Lvl };
+          // subtract class HD from total HD (racialHD)
+          racialHD -= response.Class1_Lvl;
+          Class = this.classes[response.Class1];
+          creature.class1 = {
+            name: response.Class1,
+            levels: response.Class1_Lvl,
+            hd: Class.hd
+          }
+          bab   = response.Class1_Lvl * Class.bab;
+          fort  = (response.Class1_Lvl * Class.fort.mult) + Class.fort.bonus;
+          ref   = (response.Class1_Lvl * Class.ref.mult) + Class.ref.bonus;
+          will  = (response.Class1_Lvl * Class.will.mult) + Class.will.bonus;
+          hp    = response.Class1_Lvl * (Class.hd/2 + 0.5 + creature.attributes.ConMod);
+          hpBonus = response.Class1_Lvl * creature.attributes.ConMod;
         }
 
-        let bab   = response.Class1_Lvl * Class.bab;
-        let fort  = (response.Class1_Lvl * Class.fort.mult) + Class.fort.bonus;
-        let ref   = (response.Class1_Lvl * Class.ref.mult) + Class.ref.bonus;
-        let will  = (response.Class1_Lvl * Class.will.mult) + Class.will.bonus;
-
-        let hp    = response.Class1_Lvl * (Class.hd/2 + 0.5 + creature.attributes.ConMod);
-        let hpBonus = response.Class1_Lvl * creature.attributes.ConMod;
-
         // Class 2
-        if (response.Class2_Lvl) {
+        if (response.Class2) {
+perm.classes[response.class2] = { "levels": response.Class2_Lvl };
           console.log("MULTICLASS!!");
+          // subtract class HD from total HD (racialHD)
           racialHD -= response.Class2_Lvl;
-          Class   = classes[response.Class2];
+          Class   = this.classes[response.Class2];
           creature.class2 = {
             name: response.Class2,
             levels: response.Class2_Lvl,
             hd: Class.hd
           }
-
           bab     += response.Class2_Lvl * Class.bab;
           fort    += (response.Class2_Lvl * Class.fort.mult) + Class.fort.bonus;
           ref     += (response.Class2_Lvl * Class.ref.mult) + Class.ref.bonus;
           will    += (response.Class2_Lvl * Class.will.mult) + Class.will.bonus;
-
           hp      += response.Class2_Lvl * (Class.hd/2 + 0.5 + creature.attributes.ConMod);
           hpBonus += response.Class2_Lvl * creature.attributes.ConMod;
         }
 
         // Racial
-        let type  = types[response.Type];
+// Racial type & HD
+        let type  = this.rules.creature_types[response.Type];
         creature.type = {
           name: response.Type,
           levels: racialHD,
-          hd: type.hd
+          hd: type.hd,
+          subtypes: []
         }
-
+// Subtypes
+        if (response.Race) { creature.type.subtypes.push(response.Race); }
+        for (let i = 1; i < 7; i++) {
+          if (response[`subtype${i}`]) {
+            creature.type.subtypes.push(response[`subtype${i}`]);
+          }
+        }
+perm.type = creature.type;
         bab       += racialHD * type.bab;
         fort      += (racialHD * type.fort.mult) + type.fort.bonus;
         ref       += (racialHD * type.ref.mult) + type.ref.bonus;
         will      += (racialHD * type.will.mult) + type.will.bonus;
-
         hp        += racialHD * (type.hd/2 + 0.5 + creature.attributes.ConMod);
         hpBonus   += racialHD * creature.attributes.ConMod;
+        let senses = "Perception +#";
+        senses    += type.traits["Darkvision"] ? " "+type.traits["Darkvision"] : "";
+        senses    += type.traits["Low-Light Vision"] ? " "+type.traits["Low-Light Vision"] : "";
+        senses    += type.traits["Scent"] ? " "+type.traits["Scent"] : "";
 
-
-
+        // Totals
         creature.bab = Math.floor(bab);
         creature.defense = {
           "fort": Math.floor(fort + creature.attributes.ConMod),
           "ref": Math.floor(ref + creature.attributes.DexMod),
           "will": Math.floor(will + creature.attributes.WisMod),
-
-          "senses": [],
+          "senses": senses,
           "speed": response.Speed,
-
         }
+        creature.health.total = Math.floor(hp);
         creature.health.max = Math.floor(hp);
         creature.health.bonus = Math.floor(hpBonus);
-
-
-        // total HD
-        //   hd types <- class & type
-        //   hd num <- lvls & creature
-        //
-
-
-
-
-
-
-
-        // hd.undead.num = 2
-        // hd.undead.type = d8
-
-
-
-        // creature.health = health;
+perm.defense.senses = senses;
+perm.defense.speed = creature.defense.speed;
 
         /***************************\
         *                           *
@@ -333,87 +319,119 @@ export default {
           item = item[0] === " " ? item.slice(1) : item;
           item = item.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
 
-          let ability = {};
-          ability.name = item;
-          ability.stacks = false;
-
-
-          // Add items to abilities and equipment
+          // Add items to bonuses and equipment
           if (  Object.keys(this.equipment.Shields).includes(item)  ) {
-            ability.type         = "Shield";
-            ability.targets      = [ "AC" ];
-            ability.bonus        = this.equipment.Shields[item]["AC Bonus"];
-            ability.description  = this.equipment.Shields[item]["Description"];
+            creature.bonuses[item] = {};
+            creature.bonuses[item].type = "Shield";
+            creature.bonuses[item].target = "AC";
+            creature.bonuses[item].bonus = this.equipment.Shields[item]["AC Bonus"];
             creature.equipment[item] = this.equipment.Shields[item];
           }
-          if (  Object.keys(this.equipment.Armor).includes(item)  ) {
-            creature.abilities[item] = {};
-            creature.abilities[item].type = "Armor";
-            creature.abilities[item].bonus = this.equipment.Armor[item]["AC Bonus"];
-            creature.abilities[item].description = this.equipment.Armor[item]["Description"];
-            creature.abilities[item].stacks = false;
-
+          else if (  Object.keys(this.equipment.Armor).includes(item)  ) {
+            creature.bonuses[item] = {};
+            creature.bonuses[item].type = "Armor";
+            creature.bonuses[item].target = "AC";
+            creature.bonuses[item].bonus = this.equipment.Armor[item]["AC Bonus"];
             creature.equipment[item] = this.equipment.Armor[item];
           }
-          if (  Object.keys(this.equipment.Weapons).includes(item)  ) {
+          else if (  Object.keys(this.equipment.Weapons).includes(item)  ) {
             creature.equipment[item] = this.equipment.Weapons[item];
           }
-
-          // creature.abilities.push(ability);
+          else {
+            // Other Treasure
+            creature.equipment[item] = item;
+          }
         } // End items loop
+perm.equipment = creature.equipment;
 
         /***************************\
         *                           *
-        *         ABILITIES         *
+        *          BONUSES          *
         *                           *
         \***************************/
         // FEATS
         for (let feat of response.Feats.split(',')) {
           feat = feat[0] === " " ? feat.slice(1) : feat;
-          // TODO: feat table? in rules?
-          // console.log(feat);
-          // add ability ( type: dodge, bonus: # )
-          // dodge: type = dodge, bonus = 1, descrip = ..., stacks = true;
+          creature.feats.push(feat);
+        }
+perm.feats = creature.feats;
+
+        // Set up which bonuses are active, should be done after feats
+        let add = true;
+        for (const [bName, bonus] of Object.entries(creature.bonuses)) {
+          for (const prop in creature.active) {
+            if ( creature.active[prop].type == bonus.type && creature.active[prop].bonus > bonus.bonus ) {
+              add = false;
+            }
+          }
+          if (add) { creature.active[bName] = bonus; }
         }
 
         // NATURAL ARMOR
         tempNum = response.AC - 10;
         tempNum -= Math.floor((response.Dex - 10) / 2);
         tempNum -= this.rules.size[creature.characteristics.size]["ac / atk"];
-
-        for (const ability in creature.abilities) {
-          if ( this.rules["ac types"].includes(creature.abilities[ability].type) ) {
-            tempNum -= creature.abilities[ability].bonus;
+        for (const prop in creature.active) {
+          if ([ "Armor", "Shield", "Dodge", "Deflection" ].includes(creature.active[prop].type)) {
+            tempNum -= creature.active[prop].bonus;
           }
         }
-        creature.abilities["Natural Armor"] = {};
-        creature.abilities["Natural Armor"].type = "Natural";
-        creature.abilities["Natural Armor"].bonus = tempNum;
-        creature.abilities["Natural Armor"].description = "";
-        creature.abilities["Natural Armor"].stacks = false;
+        creature.bonuses["Natural Armor"] = {
+          type: "Natural Armor",
+          target: "AC",
+          bonus: tempNum
+        };
+        creature.active["Natural Armor"] = creature.bonuses["Natural Armor"];
 
 
+perm.bonuses = creature.bonuses;
+perm.active = creature.active;
 
-        // MELEE
-        // TODO:
-        /*
-        Melee: "mwk longsword +7 (1d8+3/19-20)"
 
-        grab the +2 from above for BAB
-        */
+        // OFFENSE
+        console.log(response.Melee);
+        for (var [name, item] of Object.entries(creature.equipment)) {
+          if (item.Damage) {
+            let dmgBonus, atkBonus = creature.bab;
+            atkBonus += this.rules.size[creature.characteristics.size]["ac / atk"];
+            if (item.Category == "Ranged") {
+              atkBonus += creature.attributes.DexMod;
+            } else if (item.Category != "Ammunition") {
+              atkBonus += creature.attributes.StrMod;
+              dmgBonus += creature.attributes.StrMod;
+              if (item.Category == "Two-Handed") {
+                dmgBonus += creature.attributes.StrMod/2;
+              }
+            }
 
-        // RANGED
+            let size = creature.characteristics.size
+            size =  ( size == "small" ) ? 0 :
+                    ( size == "medium" ) ? 1 :
+                    ( size == "large" ) ? 2 : 3;
+            let dmgDie = item.Damage[size];
+
+            console.log(`${name} +${atkBonus} (${dmgDie}+${dmgBonus} /${item.Critical})`);
+          }
+        }
+
 
         // SPECIAL
 
         // MAGIC
 
+        // SKILLS
+        creature.skills = response.Skills;
+//         for (let feat of response.Feats.split(',')) {
+//           feat = feat[0] === " " ? feat.slice(1) : feat;
+//           creature.feats.push(feat);
+//         }
+// perm.feats = creature.feats;
 
 
 
 
-
-        console.log("new", creature);
+        console.table("new", creature);
+        console.table("PERM", perm);
         // this.creatureSetup(response);
       })
       .catch(err => { console.error(err); });

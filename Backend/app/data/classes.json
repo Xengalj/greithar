@@ -18,10 +18,10 @@
       "castingAtr": "Intelligence",
       "spellsKnown": {
         "starting": "2 + Intelligence Modifier first level spells",
-        "perLevel": "1 new spell of any level castable",
+        "perLevel": "1 new spell of any level castable"
       },
       "galdur":       [ 0, 2, 2, 2, 2,  3,         3,  3,  5,  5,  5,      6,  6,  6,  8,  6,          8,  8,  9,  9,  10 ],
-      "galdurTotal":  [ 0, 2, 4, 6, 8, 11,        14, 17, 22, 27, 32,     38, 44, 50, 58, 64,         72, 80, 89, 98, 108 ],      
+      "galdurTotal":  [ 0, 2, 4, 6, 8, 11,        14, 17, 22, 27, 32,     38, 44, 50, 58, 64,         72, 80, 89, 98, 108 ],
       "spellsPerDay": [ [],
         [0, 1], [0, 2], [0, 3], [0, 3, 1], [0, 4, 2],
         [0, 4, 3], [0, 4, 3, 1], [0, 4, 4, 2], [0, 5, 4, 3], [0, 5, 4, 3, 1],
@@ -52,9 +52,9 @@
       "castingAtr": "Intelligence",
       "spellsKnown": {
         "starting": "All cantrips and 3 + Intelligence Modifier first level spells",
-        "perLevel": "2 new spells of any level castable",
+        "perLevel": "2 new spells of any level castable"
       },
-      "galdurCost": "1+spellLevel + ((level * casts) / 2) round up",      
+      "galdurCost": "1+spellLevel + ((level * casts) / 2) round up",
       "galdur":       [ 0, 5, 3,  3,  3,  3,      4,  4,  5,  5, 7,       9, 11, 12, 13,  14,         15,  16,  17,  18,  19 ],
       "galdurTotal":  [ 0, 5, 8, 11, 14, 17,     21, 25, 30, 35, 42,     51, 62, 74, 87, 101,        116, 132, 149, 167, 186 ],
       "spellsPerDay": [ [],
@@ -101,7 +101,7 @@
     "special": [ [],
       [ "Bardic Knowledge (Ex)", "Bardic Performance", "Countersong (Su)", "Distraction (Su)", "Fascinate (Su)", "Inspire Courage (Su)" ], [ "Versatile Performance (Ex) (REPLACE)", "Well-Versed (Ex)" ], [ "Inspire Competence (Su)" ], [], [ "Lore Master (Ex)" ],
       [ "Suggestion (Sp)", "Versatile Performance (Ex) (REPLACE)" ], [], [ "Dirge of Doom (Su)" ], [ "Inspire Greatness (Su)" ], [ "Jack-of-all-Trades (Ex)", "Versatile Performance (Ex) (REPLACE)" ],
-      [], [ "Soothing Performance (Su)" ], [], [ "Frightening Tune (Sp)", "Versatile Performance" ], [ "Inspire Heroics (Su)" ]
+      [], [ "Soothing Performance (Su)" ], [], [ "Frightening Tune (Sp)", "Versatile Performance" ], [ "Inspire Heroics (Su)" ],
       [], [], [ "Mass Suggestion (Sp)", "Versatile Performance (Ex) (REPLACE)" ], [], [ "Deadly Performance (Su)" ]
     ],
     "magic": {
@@ -122,7 +122,7 @@
         ["∞", 4, 3], ["∞", 4, 3, 1], ["∞", 4, 4, 2], ["∞", 5, 4, 3], ["∞", 5, 4, 4, 1],
         ["∞", 5, 4, 4, 2], ["∞", 5, 5, 4, 3], ["∞", 5, 5, 4, 3, 1], ["∞", 5, 5, 4, 4, 2], ["∞", 5, 5, 5, 4, 3],
         ["∞", 5, 5, 5, 4, 3, 1], ["∞", 5, 5, 5, 4, 4, 2], ["∞", 5, 5, 5, 5, 4, 3], ["∞", 5, 5, 5, 5, 5, 4], ["∞", 5, 5, 5, 5, 5, 5]
-      ],
+      ]
     }
   },
 
@@ -142,7 +142,7 @@
       [ "Greater Bloodrage (Su)" ], [ "Bloodline Feat (REPLACE)", "Bloodline Power (REPLACE)" ], [ "Bloodline Spell (REPLACE)" ], [ "Indomitable Will (Ex)" ], [ "Bloodline Feat (REPLACE)" ],
       [ "Bloodline Spell (REPLACE)", "Bloodline Power (REPLACE)" ], [ "Tireless Bloodrage (Su)" ], [ "Bloodline Feat (REPLACE)" ], [], [ "Mighty Bloodrage (Su)", "Bloodline Power (REPLACE)" ]
     ],
-    "unique": "Bloodragers may cast bloodrager spells in light / medium armor with no spell failure chance."
+    "unique": "Bloodragers may cast bloodrager spells in light / medium armor with no spell failure chance.",
     "magic": {
       "style": "Spontaneous Arcane",
       "castingAtr": "Charisma",
@@ -221,7 +221,7 @@
       "castingAtr": "Wisdom",
       "spellsKnown": {
         "total": "A cleric may prepare any spell, of appropriate level, on the cleric spell list.",
-        "spontaneousSpells": "Inflict or Cure spells",
+        "spontaneousSpells": "Inflict or Cure spells"
       },
       "galdur":       [ 0, 5, 3,  3,  3,  3,      4,  4,  5,  5, 7,       9, 11, 12, 13,  14,         15,  16,  17,  18,  19 ],
       "galdurTotal":  [ 0, 5, 8, 11, 14, 17,     21, 25, 30, 35, 42,     51, 62, 74, 87, 101,        116, 132, 149, 167, 186 ],
@@ -256,7 +256,7 @@
       "castingAtr": "Wisdom",
       "spellsKnown": {
         "total": "A druid may prepare any spell, of appropriate level, on the druid spell list.",
-        "spontaneousSpells": "Summon Nature’s Ally spells",
+        "spontaneousSpells": "Summon Nature’s Ally spells"
       },
       "galdur":       [ 0, 5, 3,  3,  3,  3,      4,  4,  5,  5, 7,       9, 11, 12, 13,  14,         15,  16,  17,  18,  19 ],
       "galdurTotal":  [ 0, 5, 8, 11, 14, 17,     21, 25, 30, 35, 42,     51, 62, 74, 87, 101,        116, 132, 149, 167, 186 ],
@@ -295,7 +295,7 @@
     "hd": 8, "ranks": 6, "bab":  0.75,
     "fort": { "mult": 0.5, "bonus": 2 },
     "ref":  { "mult": 0.5, "bonus": 2 },
-    "will": { "mult": 0.33, "bonus":  },
+    "will": { "mult": 0.33, "bonus": 0 },
     "special": [ [],
       [ "Animal Companion (Ex)", "Animal Focus (Su)", "Nature Training (Ex)", "Wild Empathy (Ex)" ], [ "Precise Companion (Ex)", "Track (Ex)" ], [ "Hunter Tactics (Ex)", "Bonus Teamwork Feat (REPALCE)" ], [ "Improved Empathic Link (Su)" ], [ "Woodland Stride (Ex)" ],
       [ "Bonus Teamwork Feat (REPALCE)" ], [ "Bonus Tricks (Ex)" ], [ "Second Animal Focus (Su)", "Swift Tracker (Ex)" ], [ "Bonus Teamwork Feat (REPALCE)" ], [ "Raise Animal Companion (Sp)" ],
@@ -384,10 +384,10 @@
       "castingAtr": "Intelligence",
       "spellsKnown": {
         "starting": "2 + Intelligence Modifier first level spells",
-        "perLevel": "1 new spell of any level castable",
+        "perLevel": "1 new spell of any level castable"
       },
       "galdur":       [ 0, 2, 2, 2, 2,  3,         3,  3,  5,  5,  5,      6,  6,  6,  8,  6,          8,  8,  9,  9,  10 ],
-      "galdurTotal":  [ 0, 2, 4, 6, 8, 11,        14, 17, 22, 27, 32,     38, 44, 50, 58, 64,         72, 80, 89, 98, 108 ],      
+      "galdurTotal":  [ 0, 2, 4, 6, 8, 11,        14, 17, 22, 27, 32,     38, 44, 50, 58, 64,         72, 80, 89, 98, 108 ],
       "spellsPerDay": [ [],
         [0, 1], [0, 2], [0, 3], [0, 3, 1], [0, 4, 2],
         [0, 4, 3], [0, 4, 3, 1], [0, 4, 4, 2], [0, 5, 4, 3], [0, 5, 4, 3, 1],
@@ -417,7 +417,7 @@
       "castingAtr": "Charisma",
       "spellsKnown": {
         "starting": "All cantrips and 3 + Intelligence Modifier first level spells",
-        "perLevel": "2 new spells of any level castable",
+        "perLevel": "2 new spells of any level castable"
       },
       "galdur":       [ 0, 6, 3,  3,  3,  3,      4,  4,  4,  5,  5,      7,  8,  9, 10, 11,         12,  13,  14,  15,  16 ],
       "galdurTotal":  [ 0, 6, 9, 12, 15, 18,     22, 26, 30, 35, 40,     47, 55, 64, 74, 85,         97, 110, 124, 139, 155 ],
@@ -595,6 +595,7 @@
         [4, 4, 4, 4, 3, 2, 1], [4, 4, 4, 4, 3, 3, 2], [4, 4, 4, 4, 4, 3, 2, 1], [4, 4, 4, 4, 4, 3, 3, 2], [4, 4, 4, 4, 4, 4, 3, 2, 1],
         [4, 4, 4, 4, 4, 4, 3, 3, 2], [4, 4, 4, 4, 4, 4, 4, 3, 2, 1], [4, 4, 4, 4, 4, 4, 4, 3, 3, 2], [4, 4, 4, 4, 4, 4, 4, 4, 3, 3], [4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
       ]
+    }
   },
 
 
@@ -742,7 +743,7 @@
         ["∞", 4, 3], ["∞", 4, 3, 1], ["∞", 4, 4, 2], ["∞", 5, 4, 3], ["∞", 5, 4, 3, 1],
         ["∞", 5, 4, 4, 2], ["∞", 5, 5, 4, 3], ["∞", 5, 5, 4, 3, 1], ["∞", 5, 5, 4, 4, 2], ["∞", 5, 5, 5, 4, 3],
         ["∞", 5, 5, 5, 4, 3, 1], ["∞", 5, 5, 5, 4, 4, 2], ["∞", 5, 5, 5, 5, 4, 3], ["∞", 5, 5, 5, 5, 5, 4], ["∞", 5, 5, 5, 5, 5, 5]
-      ],
+      ]
     }
   },
 
@@ -768,7 +769,7 @@
       "castingAtr": "Wisdom",
       "spellsKnown": {
         "total": "A cleric may prepare any spell, of appropriate level, on the cleric spell list.",
-        "spontaneousSpells": "Inflict or Cure spells",
+        "spontaneousSpells": "Inflict or Cure spells"
       },
       "galdur":      [ 0, 6, 3,  3,  3,  3,      4,  4,  4,  5,  5,      7,  8,  9, 10, 11,         12,  13,  14,  15,  16 ],
       "galdurTotal": [ 0, 6, 9, 12, 15, 18,     22, 26, 30, 35, 40,     47, 55, 64, 74, 85,         97, 110, 124, 139, 155 ],
@@ -801,7 +802,7 @@
       "castingAtr": "Intelligence",
       "spellsKnown": {
         "starting": "All cantrips and 3 + Intelligence Modifier first level spells",
-        "perLevel": "2 new spells of any level castable",
+        "perLevel": "2 new spells of any level castable"
       },
       "galdur":       [ 0, 5, 3,  3,  3,  3,      4,  4,  5,  5, 7,       9, 11, 12, 13,  14,         15,  16,  17,  18,  19 ],
       "galdurTotal":  [ 0, 5, 8, 11, 14, 17,     21, 25, 30, 35, 42,     51, 62, 74, 87, 101,        116, 132, 149, 167, 186 ],
@@ -834,7 +835,7 @@
       "castingAtr": "Intelligence",
       "spellsKnown": {
         "starting": "All cantrips and 3 + Intelligence Modifier first level spells",
-        "perLevel": "2 new spells of any level castable",
+        "perLevel": "2 new spells of any level castable"
       },
       "galdur":       [ 0, 5, 3,  3,  3,  3,      4,  4,  5,  5, 7,       9, 11, 12, 13,  14,         15,  16,  17,  18,  19 ],
       "galdurTotal":  [ 0, 5, 8, 11, 14, 17,     21, 25, 30, 35, 42,     51, 62, 74, 87, 101,        116, 132, 149, 167, 186 ],
@@ -847,7 +848,7 @@
     }
   },
 
-    
+
 
   "adept": {
     "skills": [ "Craft (Int)", "Handle Animal (Cha)", "Heal (Wis)", "Knowledge (all) (Int)", "Profession (Wis)", "Spellcraft (Int)", "Survival (Wis)" ],
@@ -908,8 +909,8 @@
 
 
 
-  
-  
+
+
   "Galdur": {
     "Sorc / Oracle": {
       "galdurTotal": [ 0, 6, 9, 12, 17, 20,     30, 40, 50, 62, 75,     90, 110, 125, 145, 160,     170, 195, 225, 240, 260 ],

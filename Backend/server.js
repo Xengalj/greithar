@@ -9,7 +9,7 @@ const app = express();
 *       SETUP VARS          *
 *                           *
 \***************************/
-let isProd = 1
+let isProd = 0
 let reSeed = 0
 
 if (isProd) { app.use(express.static(path)); }
