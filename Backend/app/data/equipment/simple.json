@@ -38,7 +38,7 @@
     "Damage": [ "1d4", "1d6", "1d8" ],
     "Critical": "20/x2",
     "Range": 0,
-    "Damage Type": [ "budgeoning" ],
+    "Damage Type": [ "Bludgeoning" ],
 
     "Proficiency": "Simple",
     "Category": "Light",

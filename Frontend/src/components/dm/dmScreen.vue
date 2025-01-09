@@ -124,9 +124,7 @@ export default {
   },
   mounted() {
 
-    DataService.getRules().then( (response) => { this.rules = response;
-      console.log(response);
-     } );
+    DataService.getRules().then( (response) => { this.rules = response; } );
     DataService.getEquipment().then( (response) => { this.equipment = response; } );
 
 
@@ -140,7 +138,8 @@ export default {
     );
 
 
-    this.monsterOpen("Skeletal Champion");
+    // this.monsterOpen("Skeletal Champion");
+    this.monsterOpen("Adult Red Dragon");
   },
   methods: {
     monsterOpen(name) {
@@ -161,13 +160,15 @@ let perm = {};
           },
           "type": {},
           "feats": [],
+          "skills": [],
 
           "health": { total: 0, bonus: 0 },
-
           "bab": 0,   // TODO: Remove
-          "melee": [],
-          "ranged": [],
-          "special": [],
+          "attacks": {
+            "melee": {},
+            "ranged": {},
+            "special": {},
+          },
           "magic": [],
 
           "abilities": {},
@@ -304,38 +305,54 @@ perm.defense.speed = creature.defense.speed;
         if (response.Gear) { items = items.concat(response.Gear.split(',')); }
 
         for (let item of items) {
-          /*
-            1. Remove "with" items then,
-            2. Remove "+#" from magic items then,
-            3. Remove "Masterwrk" then,
-            4. Remove leading " " then, Capitalize first letter of words
-          */
-          let extras = item.indexOf('with');
-          item = extras>-1 ? item.slice(0, extras) : item;
-          extras = item.indexOf('+');
-          item = extras>-1 ? item.slice(extras+2) : item;
-          extras = item.indexOf('masterwork');
-          item = extras>-1 ? item.slice(extras+10) : item;
+          let i, extras = {};
+          item = item.toLowerCase();
+          // "With" abilities (poison, bleed, frost)
+          i = item.indexOf('with');
+          if (i > -1) {
+            extras["abilities"] = item.slice(i);
+            item = item.slice(0, i);
+          }
+          // +# Magic items (can't go over +5)
+          i = item.indexOf('+');
+          if (i > -1) {
+            extras["enhancement"] = item.slice(i+1);
+            item = item.slice(i+2);
+          }
+          // Masterwork items
+          i = item.indexOf('masterwork');
+          if (i > -1) {
+            extras["masterwork"] = true;
+            item = item.slice(i+10);
+          }
+          // Remove leading any whitespace & capitalize
           item = item[0] === " " ? item.slice(1) : item;
           item = item.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
 
           // Add items to bonuses and equipment
-          if (  Object.keys(this.equipment.Shields).includes(item)  ) {
-            creature.bonuses[item] = {};
-            creature.bonuses[item].type = "Shield";
-            creature.bonuses[item].target = "AC";
-            creature.bonuses[item].bonus = this.equipment.Shields[item]["AC Bonus"];
-            creature.equipment[item] = this.equipment.Shields[item];
-          }
-          else if (  Object.keys(this.equipment.Armor).includes(item)  ) {
+          if ( Object.keys(this.equipment.Armor).includes(item) ) {
             creature.bonuses[item] = {};
             creature.bonuses[item].type = "Armor";
             creature.bonuses[item].target = "AC";
             creature.bonuses[item].bonus = this.equipment.Armor[item]["AC Bonus"];
             creature.equipment[item] = this.equipment.Armor[item];
+            creature.equipment[item].Extras = extras;
           }
-          else if (  Object.keys(this.equipment.Weapons).includes(item)  ) {
+          else if ( Object.keys(this.equipment.Shields).includes(item) ) {
+            creature.bonuses[item] = {};
+            creature.bonuses[item].type = "Shield";
+            creature.bonuses[item].target = "AC";
+            creature.bonuses[item].bonus = this.equipment.Shields[item]["AC Bonus"];
+            creature.equipment[item] = this.equipment.Shields[item];
+            creature.equipment[item].Extras = extras;
+            if (this.equipment.Shields[item]["Critical"] > 0) {
+              creature.attacks.melee[item] = creature.equipment[item];
+            }
+          }
+          else if ( Object.keys(this.equipment.Weapons).includes(item) ) {
             creature.equipment[item] = this.equipment.Weapons[item];
+            creature.equipment[item].Extras = extras;
+            creature.attacks.melee[item] = this.equipment.Weapons[item];
           }
           else {
             // Other Treasure
@@ -389,30 +406,248 @@ perm.active = creature.active;
 
 
         // OFFENSE
+        // console.log(response.Melee);
+        // TODO:
+        /*
+        split melee str into atks
+        loop each,
+        if atk = wpn, skip
+
+        repeat Ranged
+        repeat magic
+        */
+
+        // Natural Attacks
         console.log(response.Melee);
-        for (var [name, item] of Object.entries(creature.equipment)) {
-          if (item.Damage) {
-            let dmgBonus, atkBonus = creature.bab;
-            atkBonus += this.rules.size[creature.characteristics.size]["ac / atk"];
-            if (item.Category == "Ranged") {
-              atkBonus += creature.attributes.DexMod;
-            } else if (item.Category != "Ammunition") {
-              atkBonus += creature.attributes.StrMod;
-              dmgBonus += creature.attributes.StrMod;
-              if (item.Category == "Two-Handed") {
-                dmgBonus += creature.attributes.StrMod/2;
-              }
+        for (let atk of response.Melee.split(',')) {
+          let i, atkNum, extras = {};
+          atk = atk.toLowerCase();
+          // abilities (poison, bleed, frost)
+          i = atk.indexOf('plus');
+          if (i > -1) {
+            extras["abilities"] = atk.slice(i);
+            extras["abilities"] = extras.abilities.slice(0, -1); // remove trailing ')'
+            atk = atk.slice(0, i);
+          }
+          // Dmg Die
+          let dmg = atk.slice(atk.indexOf("(")+1);
+          dmg = dmg.slice(0, dmg.indexOf('+'));
+          // remove atk bonus from str
+          atk = atk.slice(0, atk.indexOf('+')-1);
+          // Strip off masterwork
+          if (atk.indexOf('Mwk') > -1) {
+            atk = atk.slice(atk.indexOf('Mwk')+4);
+          }
+          // Remove leading any whitespace & capitalize
+          atk = atk[0] === " " ? atk.slice(1) : atk;
+          atk = atk.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
+
+          if (parseInt(atk[0]) > 1) {
+            atkNum = atk[0];
+            atk = atk.slice(2);
+            atk = atk.slice(0, -1);
+          }
+
+          let NAs = {
+            "Bite": {
+              "Damage": {
+                "fine": "1",
+                "diminuitive": "1d2",
+                "tiny": "1d3",
+                "small": "1d4",
+                "medium": "1d6",
+                "large": "1d8",
+                "huge": "2d6",
+                "gargantuan": "2d8",
+                "colossal": "4d6"
+              },
+              "Critical": "20/x2",
+              "Range": 0,
+              "Damage Type": [ "Bludgeoning", "Piercing", "Slashing" ],
+              "Proficiency": "Natural",
+              "Category": "Primary"
+            },
+            "Claw": {
+              "Damage": {
+                "fine": "0",
+                "diminuitive": "1",
+                "tiny": "1d2",
+                "small": "1d3",
+                "medium": "1d4",
+                "large": "1d6",
+                "huge": "1d8",
+                "gargantuan": "2d6",
+                "colossal": "2d8"
+              },
+              "Critical": "20/x2",
+              "Range": 0,
+              "Damage Type": [ "Bludgeoning", "Slashing" ],
+              "Proficiency": "Natural",
+              "Category": "Primary"
+            },
+            "Gore": "1 1d2 1d3 1d4 1d6 1d8 2d6 2d8 4d6 P Primary",
+            "Hoof": "– 1 1d2 1d3 1d4 1d6 1d8 2d6 2d8 B Secondary",
+            "Tentacle": "– 1 1d2 1d3 1d4 1d6 1d8 2d6 2d8 B Secondary",
+            "Wing": {
+              "Damage": {
+                "fine": "0",
+                "diminuitive": "1",
+                "tiny": "1d2",
+                "small": "1d3",
+                "medium": "1d4",
+                "large": "1d6",
+                "huge": "1d8",
+                "gargantuan": "2d6",
+                "colossal": "2d8"
+              },
+              "Critical": "20/x2",
+              "Range": 0,
+              "Damage Type": [ "Bludgeoning" ],
+              "Proficiency": "Natural",
+              "Category": "Secondary"
+            },
+            "Pincers": "1 1d2 1d3 1d4 1d6 1d8 2d6 2d8 4d6 B Secondary",
+            "Tail Slap": {
+              "Damage": {
+                "fine": "1",
+                "diminuitive": "1d2",
+                "tiny": "1d3",
+                "small": "1d4",
+                "medium": "1d6",
+                "large": "1d8",
+                "huge": "2d6",
+                "gargantuan": "2d8",
+                "colossal": "4d6"
+              },
+              "Critical": "20/x2",
+              "Range": 0,
+              "Damage Type": [ "Bludgeoning" ],
+              "Proficiency": "Natural",
+              "Category": "Secondary"
+            },
+            "Slam": "– 1 1d2 1d3 1d4 1d6 1d8 2d6 2d8 B Primary",
+            "Sting": "– 1 1d2 1d3 1d4 1d6 1d8 2d6 2d8 P Primary",
+            "Talons": "– 1 1d2 1d3 1d4 1d6 1d8 2d6 2d8 S Primary",
+            "Other": "– 1 1d2 1d3 1d4 1d6 1d8 2d6 2d8 B, P, or S Secondary"
+          };
+
+          if (!Object.keys(creature.attacks.melee).includes(atk)) {
+            let atkName = atkNum ? atkNum+" "+atk : atk;
+            if (Object.keys(NAs).includes(atk)) {
+              creature.attacks.melee[atkName] = NAs[atk];
+            } else {
+              creature.attacks.melee[atkName] = {
+                "Critical": "20/x2",
+                "Range": 0,
+                "Damage Type": [ "Bludgeoning", "Piercing", "Slashing" ],
+                "Proficiency": "Natural",
+                "Category": "Secondary"
+              };
+              creature.attacks.melee[atkName].Damage = {};
             }
-
-            let size = creature.characteristics.size
-            size =  ( size == "small" ) ? 0 :
-                    ( size == "medium" ) ? 1 :
-                    ( size == "large" ) ? 2 : 3;
-            let dmgDie = item.Damage[size];
-
-            console.log(`${name} +${atkBonus} (${dmgDie}+${dmgBonus} /${item.Critical})`);
+            let tableDmg = NAs[atk].Damage[creature.characteristics.size];
+            if (tableDmg != dmg) {
+              creature.attacks.melee[atkName].Damage[creature.characteristics.size] = dmg;
+            }
+            creature.attacks.melee[atkName].Extras = { extras };
           }
         }
+
+        // console.log(creature.attacks.melee);
+
+        // TODO: Set up as listAttack(type) {} ?
+        let NatAtkNum = 0;
+        for (let [name, atk] of Object.entries(creature.attacks.melee)) {
+          let atkBonus = creature.bab;
+          let dmgBonus = 0;
+          atkBonus += this.rules.size[creature.characteristics.size]["ac / atk"];
+          // Add mwk or magic enhancements to atk bonus
+          if (atk.Extras["enhancement"]) {
+            atkBonus += atk.Extras["enhancement"];
+            dmgBonus += atk.Extras["enhancement"];
+          } else if (atk.Extras["masterwork"]) {
+            atkBonus += 1;
+          }
+
+          console.log(atk);
+          NatAtkNum += (atk.Proficiency == "Natural") ? 1 : 0;
+          if (atk.Category == "Two-Handed") {
+            dmgBonus += creature.attributes.StrMod * 1.5
+          }
+          else if (atk.Category == "Secondary") {
+            atkBonus += creature.attributes.StrMod - 5;
+            dmgBonus += creature.attributes.StrMod / 2;
+          }
+          else {
+            atkBonus += creature.attributes.StrMod;
+            dmgBonus += creature.attributes.StrMod;
+          }
+
+          let size = creature.characteristics.size
+          size =  ( size == "small" ) ? 0 :
+                  ( size == "medium" ) ? 1 :
+                  ( size == "large" ) ? 2 : 3;
+          let dmgDie = atk.Damage[creature.characteristics.size];
+          // console.log(atk.Damage);
+
+          console.log(`${name} +${atkBonus} (${dmgDie}+${dmgBonus} /${atk.Critical})`);
+        }
+
+        // TODO:
+        console.log(NatAtkNum);
+        /*
+        if (NatAtkNum = 1) {
+          loop through atks
+          find nat atk
+          if (atk.Category == "Secondary") {
+            atkBonus += 5;
+            dmgBonus += creature.attributes.StrMod;
+          } else {
+            dmgBonus += creature.attributes.StrMod / 2;
+          }
+        }
+        */
+
+
+        // for (let [name, atk] of Object.entries(creature.attacks.ranged)) {
+        //   console.log(name, atk);
+        // }
+        // for (let [name, atk] of Object.entries(creature.attacks.ranged)) {
+        //   console.log(name, atk);
+        // }
+
+        // for (var [name, item] of Object.entries(creature.equipment)) {
+        //   if (item.Damage) {
+        //     console.log(name, item);
+        //     let atkBonus = creature.bab;
+        //     let dmgBonus = 0;
+        //     atkBonus += this.rules.size[creature.characteristics.size]["ac / atk"];
+        //     // Add mwk or magic enhancements to atk bonus
+        //     if (item.Extras["enhancement"]) {
+        //       atkBonus += item.Extras["enhancement"];
+        //       dmgBonus += item.Extras["enhancement"];
+        //     } else if (item.Extras["masterwork"]) {
+        //       atkBonus += 1;
+        //     }
+        //     if (item.Category == "Ranged") {
+        //       atkBonus += creature.attributes.DexMod;
+        //     } else if (item.Category != "Ammunition") {
+        //       atkBonus += creature.attributes.StrMod;
+        //       dmgBonus += creature.attributes.StrMod;
+        //       if (item.Category == "Two-Handed") {
+        //         dmgBonus += creature.attributes.StrMod/2;
+        //       }
+        //     }
+        //
+        //     let size = creature.characteristics.size
+        //     size =  ( size == "small" ) ? 0 :
+        //             ( size == "medium" ) ? 1 :
+        //             ( size == "large" ) ? 2 : 3;
+        //     let dmgDie = item.Damage[size];
+        //
+        //     console.log(`${name} +${atkBonus} (${dmgDie}+${dmgBonus} /${item.Critical})`);
+        //   }
+        // }
 
 
         // SPECIAL
@@ -420,12 +655,11 @@ perm.active = creature.active;
         // MAGIC
 
         // SKILLS
-        creature.skills = response.Skills;
-//         for (let feat of response.Feats.split(',')) {
-//           feat = feat[0] === " " ? feat.slice(1) : feat;
-//           creature.feats.push(feat);
-//         }
-// perm.feats = creature.feats;
+        for (let skill of response.Skills.split(',')) {
+          skill = skill[0] === " " ? skill.slice(1) : skill;
+          creature.skills.push(skill);
+        }
+perm.skills = creature.skills;
 
 
 
