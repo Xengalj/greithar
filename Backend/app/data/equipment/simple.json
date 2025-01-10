@@ -1,6 +1,107 @@
 {
+  "Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
+  
+  "Bite": {
+    "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "2d8",  "colossal": "4d6"  },
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning", "Piercing", "Slashing" ],
+    "Proficiency": "Natural",
+    "Category": "Primary"
+  },
+  "Claw": {
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "2d8"  },
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning", "Slashing" ],
+    "Proficiency": "Natural",
+    "Category": "Primary"
+  },
+  "Gore": {
+    "Damage": {  "fine": "0",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "2d8",  "colossal": "4d6"  },
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+    "Proficiency": "Natural",
+    "Category": "Primary"
+  },
+  "Hoof": {
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d5",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "2d8"  },
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning" ],
+    "Proficiency": "Natural",
+    "Category": "Secondary"
+  },
+  "Tentacle": {
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d5",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "2d8"  },
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning" ],
+    "Proficiency": "Natural",
+    "Category": "Secondary"
+  },
+  "Wing": {
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "2d8"  },
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning" ],
+    "Proficiency": "Natural",
+    "Category": "Secondary"
+  },
+  "Pincers": {
+    "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "2d8",  "colossal": "4d6"  },
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning" ],
+    "Proficiency": "Natural",
+    "Category": "Secondary"
+  },
+  "Tail Slap": {
+    "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "2d8",  "colossal": "4d6"  },
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning" ],
+    "Proficiency": "Natural",
+    "Category": "Secondary"
+  },
+  "Slam": {
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "2d8"  },
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning" ],
+    "Proficiency": "Natural",
+    "Category": "Primary"
+  },
+  "Sting": {
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "2d8"  },
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+    "Proficiency": "Natural",
+    "Category": "Primary"
+  },
+  "Talons": {
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "2d8"  },
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Slashing" ],
+    "Proficiency": "Natural",
+    "Category": "Primary"
+  },
+  "Other": {
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "2d8"  },
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning", "Piercing", "Slashing" ],
+    "Proficiency": "Natural",
+    "Category": "Secondary"
+  },
+
+
+
   "Unarmed Strike": {
-    "Damage": [ "1d2", "1d3", "1d4" ],
+    "Damage": {  "fine": "0",  "diminuitive": "0",  "tiny": "1",  "small": "1d2",  "medium": "1d3",  "large": "1d4",  "huge": "1d6",  "gargantuan": "1d8",  "colossal": "2d6"  },
     "Critical": "20/x2",
     "Range": 0,
     "Damage Type": [ "Bludgeoning", "Nonlethal" ],
@@ -18,7 +119,7 @@
     ]
   },
   "Gauntlet": {
-    "Damage": [ "1d2", "1d3", "1d4" ],
+    "Damage": {  "fine": "0",  "diminuitive": "0",  "tiny": "1",  "small": "1d2",  "medium": "1d3",  "large": "1d4",  "huge": "1d6",  "gargantuan": "1d8",  "colossal": "2d6"  },
     "Critical": "20/x2",
     "Range": 0,
     "Damage Type": [ "Bludgeoning" ],
@@ -35,7 +136,7 @@
     ]
   },
   "Battle Aspergillum": {
-    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
     "Critical": "20/x2",
     "Range": 0,
     "Damage Type": [ "Bludgeoning" ],
@@ -53,7 +154,7 @@
     ]
   },
   "Brass Knife": {
-    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
     "Critical": "19/x2",
     "Range": 10,
     "Damage Type": [ "Piercing", "Slashing" ],
@@ -70,7 +171,7 @@
     ]
   },
   "Brass Knuckles": {
-    "Damage": [ "1d2", "1d3", "1d4" ],
+    "Damage": {  "fine": "0",  "diminuitive": "0",  "tiny": "1",  "small": "1d2",  "medium": "1d3",  "large": "1d4",  "huge": "1d6",  "gargantuan": "1d8",  "colossal": "2d6"  },
     "Critical": "20/x2",
     "Range": 0,
     "Damage Type": [ "Bludgeoning" ],
@@ -89,7 +190,7 @@
     ]
   },
   "Cestus": {
-    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
     "Critical": "19/x2",
     "Range": 0,
     "Damage Type": [ "Bludgeoning", "Piercing" ],
@@ -107,7 +208,7 @@
     ]
   },
   "Dagger": {
-    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
     "Critical": "19/x2",
     "Range": 10,
     "Damage Type": [ "Piercing", "Slashing" ],
@@ -124,7 +225,7 @@
     ]
   },
   "Punching Dagger": {
-    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
     "Critical": "20/x3",
     "Range": 0,
     "Damage Type": [ "Piercing" ],
@@ -139,7 +240,7 @@
     "Special": []
   },
   "Spiked Gauntlet": {
-    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
     "Critical": "20/x2",
     "Range": 0,
     "Damage Type": [ "Piercing" ],
@@ -157,7 +258,7 @@
     ]
   },
   "Traveling Kettle": {
-    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
     "Critical": "20/x2",
     "Range": 0,
     "Damage Type": [ "Bludgeoning" ],
@@ -176,7 +277,7 @@
     ]
   },
   "Hook Hand": {
-    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
     "Critical": "20/x2",
     "Range": 0,
     "Damage Type": [ "Slashing" ],
@@ -195,7 +296,7 @@
     ]
   },
   "Kunai": {
-    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
     "Critical": "20/x2",
     "Range": 10,
     "Damage Type": [ "Bludgeoning", "Piercing" ],
@@ -212,7 +313,7 @@
     ]
   },
   "Light Mace": {
-    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
     "Critical": "20/x2",
     "Range": 0,
     "Damage Type": [ "Bludgeoning" ],
@@ -227,7 +328,7 @@
     "Special": []
   },
   "Sickle": {
-    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
     "Critical": "20/x2",
     "Range": 0,
     "Damage Type": [ "Slashing" ],
@@ -244,7 +345,7 @@
     ]
   },
   "Spring Blade": {
-    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
     "Critical": "20/x2",
     "Range": 10,
     "Damage Type": [ "Piercing", "Slashing" ],
@@ -262,7 +363,7 @@
     ]
   },
   "Wodden Stake": {
-    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
     "Critical": "20/x2",
     "Range": 10,
     "Damage Type": [ "Piercing" ],
@@ -278,8 +379,9 @@
   },
 
 
+  
   "Club": {
-    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
     "Critical": "20/x2",
     "Range": 10,
     "Damage Type": [ "Bludgeoning" ],
@@ -294,7 +396,7 @@
     "Special": []
   },
   "Mere Club": {
-    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
     "Critical": "20/x2",
     "Range": 0,
     "Damage Type": [ "Bludgeoning", "Piercing" ],
@@ -311,7 +413,7 @@
     ]
   },
   "Heavy Mace": {
-    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Damage": {  "fine": "1d2",  "diminuitive": "1d3",  "tiny": "1d4",  "small": "1d6",  "medium": "1d8",  "large": "2d6",  "huge": "3d6",  "gargantuan": "4d6",  "colossal": "6d6"  },
     "Critical": "20/x2",
     "Range": 0,
     "Damage Type": [ "Bludgeoning" ],
@@ -326,7 +428,7 @@
     "Special": []
   },
   "Morningstar": {
-    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Damage": {  "fine": "1d2",  "diminuitive": "1d3",  "tiny": "1d4",  "small": "1d6",  "medium": "1d8",  "large": "2d6",  "huge": "3d6",  "gargantuan": "4d6",  "colossal": "6d6"  },
     "Critical": "20/x2",
     "Range": 0,
     "Damage Type": [ "Bludgeoning", "Piercing" ],
@@ -343,7 +445,7 @@
     ]
   },
   "Shortspear": {
-    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
     "Critical": "20/x2",
     "Range": 20,
     "Damage Type": [ "Piercing" ],
@@ -360,7 +462,7 @@
 
 
   "Bayonet": {
-    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
     "Critical": "20/x2",
     "Range": 0,
     "Damage Type": [ "Piercing" ],
@@ -378,7 +480,7 @@
     ]
   },
   "Boarding Pike": {
-    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Damage": {  "fine": "1d2",  "diminuitive": "1d3",  "tiny": "1d4",  "small": "1d6",  "medium": "1d8",  "large": "2d6",  "huge": "3d6",  "gargantuan": "4d6",  "colossal": "6d6"  },
     "Critical": "20/x3",
     "Range": 0,
     "Damage Type": [ "Piercing" ],
@@ -396,7 +498,7 @@
     ]
   },
   "Kumade": {
-    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
     "Critical": "20/x3",
     "Range": 0,
     "Damage Type": [ "Piercing" ],
@@ -414,7 +516,7 @@
     ]
   },
   "Collapsible Kumade": {
-    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
     "Critical": "20/x3",
     "Range": 0,
     "Damage Type": [ "Piercing" ],
@@ -434,7 +536,7 @@
     ]
   },
   "Lantern Staff": {
-    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
     "Critical": "20/x2",
     "Range": 0,
     "Damage Type": [ "Bludgeoning" ],
@@ -452,7 +554,7 @@
     ]
   },
   "Longspear": {
-    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Damage": {  "fine": "1d2",  "diminuitive": "1d3",  "tiny": "1d4",  "small": "1d6",  "medium": "1d8",  "large": "2d6",  "huge": "3d6",  "gargantuan": "4d6",  "colossal": "6d6"  },
     "Critical": "20/x3",
     "Range": 0,
     "Damage Type": [ "Piercing" ],
@@ -470,7 +572,7 @@
     ]
   },
   "Quarterstaff": {
-    "Damage": [ "1d4/1d4", "1d6/1d6", "1d8/1d8" ],
+    "Damage": {  "fine": "1/1",  "diminuitive": "1d2/1d2",  "tiny": "1d3/1d3",  "small": "1d4/1d4",  "medium": "1d6/1d6",  "large": "1d8/1d8",  "huge": "2d6/2d6",  "gargantuan": "3d6/3d6",  "colossal": "4d6/4d6"  },
     "Critical": "20/x2",
     "Range": 0,
     "Damage Type": [ "Bludgeoning" ],
@@ -488,7 +590,7 @@
     ]
   },
   "Spear": {
-    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Damage": {  "fine": "1d2",  "diminuitive": "1d3",  "tiny": "1d4",  "small": "1d6",  "medium": "1d8",  "large": "2d6",  "huge": "3d6",  "gargantuan": "4d6",  "colossal": "6d6"  },
     "Critical": "20/x2",
     "Range": 0,
     "Damage Type": [ "Piercing" ],
@@ -505,7 +607,7 @@
     ]
   },
   "Boar Spear": {
-    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Damage": {  "fine": "1d2",  "diminuitive": "1d3",  "tiny": "1d4",  "small": "1d6",  "medium": "1d8",  "large": "2d6",  "huge": "3d6",  "gargantuan": "4d6",  "colossal": "6d6"  },
     "Critical": "20/x2",
     "Range": 0,
     "Damage Type": [ "Piercing" ],
@@ -523,7 +625,7 @@
     ]
   },
   "Weighted Spear": {
-    "Damage": [ "1d6/1d4", "1d8/1d6", "2d6/1d8" ],
+    "Damage": {  "fine": "1d2/1",  "diminuitive": "1d3/1d2",  "tiny": "1d4/1d3",  "small": "1d6/1d4",  "medium": "1d8/1d6",  "large": "2d6/1d8",  "huge": "3d6/2d6",  "gargantuan": "4d6/3d6",  "colossal": "6d6/4d6"  },
     "Critical": "20/x3",
     "Range": 0,
     "Damage Type": [ "Bludgeoning", "Slashing" ],
@@ -544,7 +646,7 @@
 
 
   "Blowgun": {
-    "Damage": [ "1", "1d2", "1d3" ],
+    "Damage": {  "fine": "0",  "diminuitive": "0",  "tiny": "0",  "small": "1",  "medium": "1d2",  "large": "1d3",  "huge": "1d4",  "gargantuan": "1d6",  "colossal": "1d8"  },
     "Critical": "20/x2",
     "Range": 20,
     "Damage Type": [ "Piercing" ],
@@ -559,7 +661,7 @@
     "Special": []
   },
   "Heavy Crossbow": {
-    "Damage": [ "1d8", "1d10", "2d8" ],
+    "Damage": {  "fine": "1d3",  "diminuitive": "1d4",  "tiny": "1d6",  "small": "1d8",  "medium": "1d10",  "large": "2d8",  "huge": "3d8",  "gargantuan": "4d8",  "colossal": "6d8"  },
     "Critical": "19/x2",
     "Range": 120,
     "Damage Type": [ "Piercing" ],
@@ -578,7 +680,7 @@
     ]
   },
   "Heavy Crossbow (Underwater)": {
-    "Damage": [ "1d8", "1d10", "2d8" ],
+    "Damage": {  "fine": "1d3",  "diminuitive": "1d4",  "tiny": "1d6",  "small": "1d8",  "medium": "1d10",  "large": "2d8",  "huge": "3d8",  "gargantuan": "4d8",  "colossal": "6d8"  },
     "Critical": "19/x2",
     "Range": 120,
     "Damage Type": [ "Piercing" ],
@@ -595,7 +697,7 @@
     ]
   },
   "Light Crossbow": {
-    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Damage": {  "fine": "1d2",  "diminuitive": "1d3",  "tiny": "1d4",  "small": "1d6",  "medium": "1d8",  "large": "2d6",  "huge": "3d6",  "gargantuan": "4d6",  "colossal": "6d6"  },
     "Critical": "19/x2",
     "Range": 80,
     "Damage Type": [ "Piercing" ],
@@ -614,7 +716,7 @@
     ]
   },
   "Light Crossbow (Underwater)": {
-    "Damage": [ "1d6", "1d8", "2d6" ],
+    "Damage": {  "fine": "1d2",  "diminuitive": "1d3",  "tiny": "1d4",  "small": "1d6",  "medium": "1d8",  "large": "2d6",  "huge": "3d6",  "gargantuan": "4d6",  "colossal": "6d6"  },
     "Critical": "19/x2",
     "Range": 80,
     "Damage Type": [ "Piercing" ],
@@ -631,7 +733,7 @@
     ]
   },
   "Sling": {
-    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
     "Critical": "20/x2",
     "Range": 50,
     "Damage Type": [ "Bludgeoning" ],
@@ -651,7 +753,7 @@
     ]
   },
   "Stingchuck": {
-    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
     "Critical": "20/x2",
     "Range": 10,
     "Damage Type": [ "Bludgeoning" ],
@@ -670,7 +772,7 @@
     ]
   },
   "Stonebow": {
-    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
     "Critical": "20/x2",
     "Range": 50,
     "Damage Type": [ "Bludgeoning" ],
@@ -692,10 +794,8 @@
 
 
 
-
-
   "Throwing Darts": {
-    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
     "Critical": "20/x2",
     "Range": 20,
     "Damage Type": [ "Piercing" ],
@@ -710,7 +810,7 @@
     "Special": []
   },
   "Crossbow Bolts": {
-    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
     "Critical": "20/x2",
     "Range": 0,
     "Damage Type": [ "Piercing" ],
@@ -723,15 +823,15 @@
     "Weight": 0.1,
     "Description": "These bolts come in a case or quiver that holds 10 bolts (or 5 for a repeating crossbow).",
     "Special": [
-      "The given weapon stats are for a single colt, and using it as a melee weapon.",
+      "The given weapon stats are for a single bolt, and using it as a melee weapon.",
       "When using the bolt as a melee weapon, treat it as a light improvised weapon, with a -4 to attack rolls."
     ]
   },
   "Crossbow Bolts, Acid": {
-    "Damage": [ "1d4" ],
-    "Critical": "0/x0",
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
+    "Critical": "20/x2",
     "Range": 0,
-    "Damage Type": [ "acid" ],
+    "Damage Type": [ "Piercing", "Acid" ],
 
     "Proficiency": "Simple",
     "Category": "Ammunition",
@@ -741,14 +841,15 @@
     "Weight": 0.1,
     "Description": "These metal bolts have a glass section in the middle, filled with acid.",
     "Special": [
-      "These bolts deal their additional acid damage on a sucessful hit."
+      "The given weapon stats are for a single bolt, and using it as a melee weapon.",
+      "These bolts deal an additional 1d4 acid damage on a sucessful hit."
     ]
   },
   "Crossbow Bolts, Drow Poison": {
-    "Damage": [ "0" ],
-    "Critical": "0/x0",
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
+    "Critical": "20/x2",
     "Range": 0,
-    "Damage Type": [ "none" ],
+    "Damage Type": [ "Piercing" ],
 
     "Proficiency": "Simple",
     "Category": "Ammunition",
@@ -758,15 +859,16 @@
     "Weight": 0.1,
     "Description": "These bolts have a strange tip that delivers the poison, but also affects accuracy.",
     "Special": [
+      "The given weapon stats are for a single bolt, and using it as a melee weapon.",
       "Drow poison (DC 13 Fort)",
       "Range penalties are doubled when using a drow poison bolt"
     ]
   },
   "Crossbow Bolts, Fire": {
-    "Damage": [ "1d4" ],
-    "Critical": "0/x0",
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
+    "Critical": "20/x2",
     "Range": 0,
-    "Damage Type": [ "fire" ],
+    "Damage Type": [ "Piercing", "Fire" ],
 
     "Proficiency": "Simple",
     "Category": "Ammunition",
@@ -776,11 +878,12 @@
     "Weight": 0.1,
     "Description": "These metal bolts have a glass section in the middle, filled with a alchemical fire.",
     "Special": [
+      "The given weapon stats are for a single bolt, and using it as a melee weapon.",
       "These bolts deal their additional fire damage on a sucessful hit."
     ]
   },
-    "Javelin": {
-    "Damage": [ "1d4", "1d6", "1d8" ],
+  "Javelin": {
+    "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
     "Critical": "20/x2",
     "Range": 30,
     "Damage Type": [ "Piercing" ],
@@ -797,7 +900,7 @@
     ]
   },
   "Sling Bullets": {
-    "Damage": [ "0" ],
+    "Damage": {  "fine": "0",  "diminuitive": "0",  "tiny": "0",  "small": "0",  "medium": "0",  "large": "0",  "huge": "0",  "gargantuan": "0",  "colossal": "0"  },
     "Critical": 0,
     "Range": 0,
     "Damage Type": [ "none" ],
@@ -812,7 +915,7 @@
     "Special": []
   },
   "Sling Bullets, Groaning": {
-    "Damage": [ "0" ],
+    "Damage": {  "fine": "0",  "diminuitive": "0",  "tiny": "0",  "small": "0",  "medium": "0",  "large": "0",  "huge": "0",  "gargantuan": "0",  "colossal": "0"  },
     "Critical": "0/x0",
     "Range": 0,
     "Damage Type": [ "none" ],
@@ -827,7 +930,7 @@
     "Special": []
   },
   "Sling Bullets, Smoke": {
-    "Damage": [ "0" ],
+    "Damage": {  "fine": "0",  "diminuitive": "0",  "tiny": "0",  "small": "0",  "medium": "0",  "large": "0",  "huge": "0",  "gargantuan": "0",  "colossal": "0"  },
     "Critical": "0/x0",
     "Range": 0,
     "Damage Type": [ "none" ],
@@ -845,7 +948,7 @@
     ]
   },
   "Blowgun Darts": {
-    "Damage": [ "0" ],
+    "Damage": {  "fine": "0",  "diminuitive": "0",  "tiny": "0",  "small": "0",  "medium": "0",  "large": "0",  "huge": "0",  "gargantuan": "0",  "colossal": "0"  },
     "Critical": "0/x0",
     "Range": 0,
     "Damage Type": [ "none" ],
