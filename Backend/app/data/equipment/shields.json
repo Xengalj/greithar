@@ -5,12 +5,6 @@
     "Pentalty": -1,
     "Spell Failure": "5%",
 
-    "Damage": [ "0", "0", "0" ],
-    "Critical": "0",
-    "Damage Type": [ "none" ],
-    "Category": "",
-    "Group": [ "" ],
-
     "Cost": 5,
     "Weight": 5,
     "Description": "This small metal shield is worn strapped to your forearm to allow you to still wield a weapon with that hand.",
@@ -25,7 +19,7 @@
     "Pentalty": -1,
     "Spell Failure": "5%",
 
-    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
     "Critical": "20/x2",
     "Damage Type": [ "Slashing" ],
     "Category": "One-Handed",
@@ -42,7 +36,7 @@
     "Pentalty": -2,
     "Spell Failure": "5%",
 
-    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
     "Critical": "20/x2",
     "Damage Type": [ "Piercing" ],
     "Category": "Light",
@@ -62,7 +56,7 @@
     "Pentalty": -2,
     "Spell Failure": "5%",
 
-    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
     "Critical": "20/x2",
     "Damage Type": [ "Piercing" ],
     "Category": "Light",
@@ -82,7 +76,7 @@
     "Pentalty": -1,
     "Spell Failure": "5%",
 
-    "Damage": [ "1d2", "1d3", "1d4" ],
+    "Damage": {  "fine": "0",  "diminuitive": "0",  "tiny": "1",  "small": "1d2",  "medium": "1d3",  "large": "1d4",  "huge": "1d6",  "gargantuan": "1d8",  "colossal": "2d6"  },
     "Critical": "20/x2",
     "Damage Type": [ "Bludgeoning" ],
     "Category": "Light",
@@ -99,7 +93,7 @@
     "Pentalty": -2,
     "Spell Failure": "5%",
 
-    "Damage": [ "1d2", "1d3", "1d4" ],
+    "Damage": {  "fine": "0",  "diminuitive": "0",  "tiny": "1",  "small": "1d2",  "medium": "1d3",  "large": "1d4",  "huge": "1d6",  "gargantuan": "1d8",  "colossal": "2d6"  },
     "Critical": "20/x2",
     "Damage Type": [ "Bludgeoning" ],
     "Category": "Light",
@@ -120,7 +114,7 @@
     "Pentalty": -1,
     "Spell Failure": "5%",
 
-    "Damage": [ "1d2", "1d3", "1d4" ],
+    "Damage": {  "fine": "0",  "diminuitive": "0",  "tiny": "1",  "small": "1d2",  "medium": "1d3",  "large": "1d4",  "huge": "1d6",  "gargantuan": "1d8",  "colossal": "2d6"  },
     "Critical": "20/x2",
     "Damage Type": [ "Bludgeoning" ],
     "Category": "Light",
@@ -137,7 +131,7 @@
     "Pentalty": -2,
     "Spell Failure": "5%",
 
-    "Damage": [ "1d2", "1d3", "1d4" ],
+    "Damage": {  "fine": "0",  "diminuitive": "0",  "tiny": "1",  "small": "1d2",  "medium": "1d3",  "large": "1d4",  "huge": "1d6",  "gargantuan": "1d8",  "colossal": "2d6"  },
     "Critical": "20/x2",
     "Damage Type": [ "Bludgeoning" ],
     "Category": "Light",
@@ -158,7 +152,7 @@
     "Pentalty": -2,
     "Spell Failure": "15%",
 
-    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
     "Critical": "20/x2",
     "Damage Type": [ "blugeoning" ],
     "Category": "One-Handed",
@@ -175,7 +169,7 @@
     "Pentalty": -2,
     "Spell Failure": "15%",
 
-    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
     "Critical": "20/x2",
     "Damage Type": [ "blugeoning" ],
     "Category": "One-Handed",
@@ -212,7 +206,7 @@
     "Pentalty": -3,
     "Spell Failure": "15%",
 
-    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
     "Critical": "20/x2",
     "Damage Type": [ "blugeoning" ],
     "Category": "One-Handed",
@@ -231,7 +225,7 @@
     "Pentalty": -3,
     "Spell Failure": "15%",
 
-    "Damage": [ "1d3", "1d4", "1d6" ],
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
     "Critical": "20/x2",
     "Damage Type": [ "blugeoning" ],
     "Category": "One-Handed",
@@ -250,7 +244,7 @@
     "Pentalty": -1,
     "Spell Failure": "20%",
 
-    "Damage": [ "1d4", "1d6", "1d8" ],
+    "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
     "Critical": "20/x2",
     "Damage Type": [ "Piercing", "Slashing" ],
     "Category": "Light",
