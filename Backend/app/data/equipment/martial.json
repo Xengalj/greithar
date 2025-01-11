@@ -1,5 +1,6 @@
 {
 	"Boarding Axe": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
 		"Damage": ["1d4", "1d6", "1d8"],
 		"Critical": "20/x3",
 		"Range": 0,
@@ -17,6 +18,7 @@
 		]
 	},
 	"Throwing Axe": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d4", "1d6", "1d8"],
 		"Critical": "20/x2",
 		"Range": 10,
@@ -32,6 +34,7 @@
 		"Special": []
 	},
 	"Blade Boot": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d3", "1d4", "1d6"],
 		"Critical": "20/x2",
 		"Range": 0,
@@ -51,6 +54,7 @@
 		]
 	},
 	"Cat-o’-Nine-Tails": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d3", "1d4", "1d6"],
 		"Critical": "20/x2",
 		"Range": 0,
@@ -69,6 +73,7 @@
 		]
 	},
 	"Claw Blades": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d3", "1d4", "1d6"],
 		"Critical": "20/x2",
 		"Range": 0,
@@ -88,6 +93,7 @@
 		]
 	},
 	"Dueling Dagger": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d3", "1d4", "1d6"],
 		"Critical": "19/x2",
 		"Range": 10,
@@ -106,6 +112,7 @@
 		]
 	},
 	"Dogslicer": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d4", "1d6", "1d8"],
 		"Critical": "19/x2",
 		"Range": 0,
@@ -123,6 +130,7 @@
 		]
 	},
 	"Light Hammer": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d3", "1d4", "1d6"],
 		"Critical": "20/x2",
 		"Range": 20,
@@ -138,6 +146,7 @@
 		"Special": []
 	},
 	"Gladius": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d4", "1d6", "1d8"],
 		"Critical": "19/x2",
 		"Range": 0,
@@ -156,6 +165,7 @@
 		]
 	},
 	"Handaxe": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d4", "1d6", "1d8"],
 		"Critical": "20/x3",
 		"Range": 0,
@@ -171,6 +181,7 @@
 		"Special": []
 	},
 	"Tri-Bladed Katar": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d3", "1d4", "1d6"],
 		"Critical": "20/x4",
 		"Range": 0,
@@ -188,6 +199,7 @@
 		]
 	},
 	"Switchblade Knife": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d3", "1d4", "1d6"],
 		"Critical": "19/x2",
 		"Range": 10,
@@ -206,6 +218,7 @@
 		]
 	},
 	"Kobold Tail Attachment (Long Lash)": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d4", "1d6", "1d8"],
 		"Critical": "20/x2",
 		"Range": 0,
@@ -225,6 +238,7 @@
 		]
 	},
 	"Kobold Tail Attachment (Pounder)": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d6", "1d8", "2d6"],
 		"Critical": "20/x2",
 		"Range": 0,
@@ -243,6 +257,7 @@
 		]
 	},
 	"Kobold Tail Attachment (Razored)": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d6", "1d8", "2d6"],
 		"Critical": "19/x2",
 		"Range": 0,
@@ -261,6 +276,7 @@
 		]
 	},
 	"Kobold Tail Attachment (Spiked)": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d6", "1d8", "2d6"],
 		"Critical": "20/x3",
 		"Range": 0,
@@ -279,6 +295,7 @@
 		]
 	},
 	"Kobold Tail Attachment (Sweeper)": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d4", "1d6", "1d8"],
 		"Critical": "20/x2",
 		"Range": 0,
@@ -299,6 +316,7 @@
 		]
 	},
 	"Kukri": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d3", "1d4", "1d6"],
 		"Critical": "18/x2",
 		"Range": 0,
@@ -314,6 +332,7 @@
 		"Special": []
 	},
 	"Machete": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d4", "1d6", "1d8"],
 		"Critical": "19/x2",
 		"Range": 0,
@@ -331,6 +350,7 @@
 		]
 	},
 	"Light Pick": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d3", "1d4", "1d6"],
 		"Critical": "20/x4",
 		"Range": 0,
@@ -346,6 +366,7 @@
 		"Special": []
 	},
 	"Sap": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d4", "1d6", "1d8"],
 		"Critical": "20/x2",
 		"Range": 0,
@@ -361,6 +382,7 @@
 		"Special": []
 	},
 	"Starknife": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d3", "1d4", "1d6"],
 		"Critical": "20/x3",
 		"Range": 20,
@@ -376,6 +398,7 @@
 		"Special": []
 	},
 	"Butterfly Sword": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d3", "1d4", "1d6"],
 		"Critical": "19/x2",
 		"Range": 0,
@@ -396,6 +419,7 @@
 		]
 	},
 	"Shortsword": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d4", "1d6", "1d8"],
 		"Critical": "19/x2",
 		"Range": 0,
@@ -411,6 +435,7 @@
 		"Special": []
 	},
 	"War Razor": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d3", "1d4", "1d6"],
 		"Critical": "19/x2",
 		"Range": 0,
@@ -428,6 +453,7 @@
 		]
 	},
 	"Ankus": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d6", "1d8", "2d6"],
 		"Critical": "20/x2",
 		"Range": 0,
@@ -446,6 +472,7 @@
 		]
 	},
 	"Battleaxe": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d6", "1d8", "2d6"],
 		"Critical": "20/x3",
 		"Range": 0,
@@ -461,6 +488,7 @@
 		"Special": []
 	},
 	"Combat Scabbard": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d4", "1d6", "1d8"],
 		"Critical": "20/x2",
 		"Range": 0,
@@ -478,6 +506,7 @@
 		]
 	},
 	"Cutlass": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d4", "1d6", "1d8"],
 		"Critical": "18/x2",
 		"Range": 0,
@@ -495,6 +524,7 @@
 		]
 	},
 	"Light Flail": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d6", "1d8", "2d6"],
 		"Critical": "20/x2",
 		"Range": 0,
@@ -513,6 +543,7 @@
 		]
 	},
 	"Gandasa": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d6", "2d4", "2d6"],
 		"Critical": "20/x3",
 		"Range": 0,
@@ -528,6 +559,7 @@
 		"Special": []
 	},
 	"Longsword": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d6", "1d8", "2d6"],
 		"Critical": "19/x2",
 		"Range": 0,
@@ -543,6 +575,7 @@
 		"Special": []
 	},
 	"Manopole": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d6", "1d8", "2d6"],
 		"Critical": "20/x2",
 		"Range": 0,
@@ -562,6 +595,7 @@
 		]
 	},
 	"Heavy Pick": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d4", "1d6", "1d8"],
 		"Critical": "20/x2",
 		"Range": 0,
@@ -577,6 +611,7 @@
 		"Special": []
 	},
 	"Rapier": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d4", "1d6", "1d8"],
 		"Critical": "18/x2",
 		"Range": 0,
@@ -595,6 +630,7 @@
 		]
 	},
 	"Scimitar": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d4", "1d6", "1d8"],
 		"Critical": "18/x2",
 		"Range": 0,
@@ -610,6 +646,7 @@
 		"Special": []
 	},
 	"Scizore": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d8", "1d10", "2d8"],
 		"Critical": "20/x2",
 		"Range": 0,
@@ -630,6 +667,7 @@
 		]
 	},
 	"Sword Cane": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d4", "1d6", "1d8"],
 		"Critical": "20/x2",
 		"Range": 0,
@@ -650,6 +688,7 @@
 		]
 	},
 	"Macuahuitl": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d6", "1d8", "2d6"],
 		"Critical": "19/x2",
 		"Range": 0,
@@ -668,6 +707,7 @@
 		]
 	},
 	"Trident": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d6", "1d8", "2d6"],
 		"Critical": "20/x2",
 		"Range": 10,
@@ -683,6 +723,7 @@
 		"Special": []
 	},
 	"Warhammer": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d6", "1d8", "2d6"],
 		"Critical": "20/x3",
 		"Range": 0,
@@ -699,6 +740,7 @@
 	},
 
 	"Bardiche": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d8", "1d10", "2d8"],
 		"Critical": "19/x2",
 		"Range": 0,
@@ -718,6 +760,7 @@
 		]
 	},
 	"Bec De Corbin": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d8", "1d10", "2d8"],
 		"Critical": "20/x3",
 		"Range": 0,
@@ -737,6 +780,7 @@
 		]
 	},
 	"Bill": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d6", "1d8", "2d6"],
 		"Critical": "20/x3",
 		"Range": 0,
@@ -756,6 +800,7 @@
 		]
 	},
 	"Earth Breaker": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d10", "2d6", "3d6"],
 		"Critical": "20/x3",
 		"Range": 0,
@@ -771,6 +816,7 @@
 		"Special": []
 	},
 	"Falchion": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d6", "2d4", "2d6"],
 		"Critical": "18/x2",
 		"Range": 0,
@@ -786,6 +832,7 @@
 		"Special": []
 	},
 	"Heavy Flail": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d8", "1d10", "2d8"],
 		"Critical": "19/x2",
 		"Range": 0,
@@ -803,6 +850,7 @@
 		]
 	},
 	"Glaive": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d8", "1d10", "2d8"],
 		"Critical": "20/x3",
 		"Range": 0,
@@ -820,6 +868,7 @@
 		]
 	},
 	"Glaive-Guisarme": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d8", "1d10", "2d8"],
 		"Critical": "20/x3",
 		"Range": 0,
@@ -838,6 +887,7 @@
 		]
 	},
 	"Greataxe": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d10", "1d12", "3d6"],
 		"Critical": "20/x3",
 		"Range": 0,
@@ -853,6 +903,7 @@
 		"Special": []
 	},
 	"Greatclub": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d8", "1d10", "2d8"],
 		"Critical": "20/x2",
 		"Range": 0,
@@ -868,6 +919,7 @@
 		"Special": []
 	},
 	"Greatsword": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d10", "2d6", "3d6"],
 		"Critical": "19/x2",
 		"Range": 0,
@@ -883,6 +935,7 @@
 		"Special": []
 	},
 	"Guisarmee": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d6", "2d4", "2d6"],
 		"Critical": "20/x3",
 		"Range": 0,
@@ -900,6 +953,7 @@
 		]
 	},
 	"Halberd": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d8", "1d10", "2d8"],
 		"Critical": "20/x3",
 		"Range": 0,
@@ -917,6 +971,7 @@
 		]
 	},
 	"Lucerne Hammer": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d10", "1d12", "3d6"],
 		"Critical": "20/x2",
 		"Range": 0,
@@ -935,6 +990,7 @@
 		]
 	},
 	"Horsechopper": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d8", "1d10", "2d8"],
 		"Critical": "20/x3",
 		"Range": 0,
@@ -953,6 +1009,7 @@
 		]
 	},
 	"Lance": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d6", "1d8", "2d6"],
 		"Critical": "20/x3",
 		"Range": 0,
@@ -971,6 +1028,7 @@
 		]
 	},
 	"Ogre Hook": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d8", "1d10", "2d8"],
 		"Critical": "20/x3",
 		"Range": 0,
@@ -989,6 +1047,7 @@
 		]
 	},
 	"Pickaxe": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d6", "1d8", "2d6"],
 		"Critical": "20/x4",
 		"Range": 0,
@@ -1004,6 +1063,7 @@
 		"Special": []
 	},
 	"Planson": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d8", "1d10", "2d8"],
 		"Critical": "20/x2",
 		"Range": 0,
@@ -1021,6 +1081,7 @@
 		]
 	},
 	"Ranseur": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d6", "2d4", "2d6"],
 		"Critical": "20/x3",
 		"Range": 0,
@@ -1038,6 +1099,7 @@
 		]
 	},
 	"Scythe": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d6", "2d4", "2d6"],
 		"Critical": "20/x4",
 		"Range": 0,
@@ -1055,6 +1117,7 @@
 		]
 	},
 	"Syringe Spear": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d6", "1d8", "2d6"],
 		"Critical": "20/x3",
 		"Range": 20,
@@ -1073,6 +1136,7 @@
 		]
 	},
 	"Amentum": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d4", "1d6", "1d8"],
 		"Critical": "20/x2",
 		"Range": 50,
@@ -1093,6 +1157,7 @@
 		]
 	},
 	"Charkram": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d6", "1d8", "2d6"],
 		"Critical": "20/x2",
 		"Range": 30,
@@ -1112,6 +1177,7 @@
 		]
 	},
 	"Jolting Dart": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d3", "1d4", "1d6"],
 		"Critical": "20/x2",
 		"Range": 20,
@@ -1131,6 +1197,7 @@
 		]
 	},
 	"Mambele": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d4", "1d6", "1d8"],
 		"Critical": "20/x2",
 		"Range": 15,
@@ -1146,6 +1213,7 @@
 		"Special": []
 	},
 	"Hurlbat": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d4", "1d6", "1d8"],
 		"Critical": "20/x3",
 		"Range": 10,
@@ -1166,6 +1234,7 @@
 		]
 	},
 	"Longbow": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d6", "1d8", "2d6"],
 		"Critical": "20/x3",
 		"Range": 100,
@@ -1184,6 +1253,7 @@
 		]
 	},
 	"Composite Longbow": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d6", "1d8", "2d6"],
 		"Critical": "20/x3",
 		"Range": 110,
@@ -1205,6 +1275,7 @@
 		]
 	},
 	"Pilum": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d6", "1d8", "2d6"],
 		"Critical": "20/x2",
 		"Range": 20,
@@ -1223,6 +1294,7 @@
 		]
 	},
 	"Shortbow": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d4", "1d6", "1d8"],
 		"Critical": "20/x3",
 		"Range": 60,
@@ -1241,6 +1313,7 @@
 		]
 	},
 	"Composite Shortbow": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d4", "1d6", "1d8"],
 		"Critical": "20/x3",
 		"Range": 70,
@@ -1262,6 +1335,7 @@
 		]
 	},
 	"Spear-Sling": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d6", "1d8", "2d6"],
 		"Critical": "20/x3",
 		"Range": 0,
@@ -1284,6 +1358,7 @@
 		]
 	},
 	"Throwing Arrow Cord": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d3", "1d4", "1d6"],
 		"Critical": "20/x2",
 		"Range": 60,
@@ -1302,6 +1377,7 @@
 	},
 
 	"Common Arrow": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["1d3", "1d4", "1d6"],
 		"Critical": "20/x2",
 		"Range": 0,
@@ -1320,6 +1396,7 @@
 		]
 	},
 	"Barbed Arrows": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["0", "0", "0"],
 		"Critical": "0",
 		"Range": 0,
@@ -1339,6 +1416,7 @@
 		]
 	},
 	"Bleeding Arrows": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["0", "0", "0"],
 		"Critical": "0",
 		"Range": 0,
@@ -1357,6 +1435,7 @@
 		]
 	},
 	"Blunt Arrows": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["0", "0", "0"],
 		"Critical": "0",
 		"Range": 0,
@@ -1375,6 +1454,7 @@
 		]
 	},
 	"Distance Arrows": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["0", "0", "0"],
 		"Critical": "0",
 		"Range": 0,
@@ -1393,6 +1473,7 @@
 		]
 	},
 	"Durable Arrows": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["0", "0", "0"],
 		"Critical": "0",
 		"Range": 0,
@@ -1410,6 +1491,7 @@
 		]
 	},
 	"Flight Arrows": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["0", "0", "0"],
 		"Critical": "0",
 		"Range": 0,
@@ -1429,6 +1511,7 @@
 		]
 	},
 	"Incendiary Arrows": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["0", "0", "0"],
 		"Critical": "0",
 		"Range": 0,
@@ -1450,6 +1533,7 @@
 		]
 	},
 	"Lodestone Arrows": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["0", "0", "0"],
 		"Critical": "0",
 		"Range": 0,
@@ -1469,6 +1553,7 @@
 		]
 	},
 	"Pheromone Arrows": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["0", "0", "0"],
 		"Critical": "0",
 		"Range": 0,
@@ -1487,6 +1572,7 @@
 		]
 	},
 	"Pronged Arrows": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["0", "0", "0"],
 		"Critical": "0",
 		"Range": 0,
@@ -1505,6 +1591,7 @@
 		]
 	},
 	"Raining Arrows": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["0", "0", "0"],
 		"Critical": "0",
 		"Range": 0,
@@ -1523,6 +1610,7 @@
 		]
 	},
 	"Slow Burn Arrows": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["0", "0", "0"],
 		"Critical": "0",
 		"Range": 0,
@@ -1541,6 +1629,7 @@
 		]
 	},
 	"Smoke Arrows": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["0", "0", "0"],
 		"Critical": "0",
 		"Range": 0,
@@ -1558,6 +1647,7 @@
 		]
 	},
 	"Splintercloud Arrows": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["0", "0", "0"],
 		"Critical": "0",
 		"Range": 0,
@@ -1575,6 +1665,7 @@
 		]
 	},
 	"Tangleshot Arrows": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["0", "0", "0"],
 		"Critical": "0",
 		"Range": 0,
@@ -1594,6 +1685,7 @@
 		]
 	},
 	"Thistle Arrows": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["0", "0", "0"],
 		"Critical": "0",
 		"Range": 0,
@@ -1613,6 +1705,7 @@
 		]
 	},
 	"Throwing Arrows": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["0", "0", "0"],
 		"Critical": "0",
 		"Range": 0,
@@ -1630,6 +1723,7 @@
 		]
 	},
 	"Trip Arrows": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["0", "0", "0"],
 		"Critical": "0",
 		"Range": 0,
@@ -1647,6 +1741,7 @@
 		]
 	},
 	"Whistling Arrows": {
+		"Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
 		"Damage": ["0", "0", "0"],
 		"Critical": "0",
 		"Range": 0,
