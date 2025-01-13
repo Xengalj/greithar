@@ -4,7 +4,15 @@
     "Self-Taught": [ "bards", "cavaliers", "fighters", "gunslingers", "paladins", "rangers", "summoners", "witches" ],
     "Trained": [ "alchemists", "clerics", "druids", "inquisitors", "magi", "monks", "wizards" ]
   },
-
+  "level_wealth": [ 0, 111, 1000, 3000, 6000 , 10500 , 16000 , 23500, 33000, 46000, 62000, 82000, 108000, 140000, 185000, 240000, 315000, 410000, 530000, 685000, 880000 ],
+  "damage_types": {
+    "weapon":     [ "budgeoning", "piercing", "slashing" ],
+    "energy":     [ "acid", "cold", "electricity", "fire", "force", "negative", "positive", "sonic" ],
+    "aligned":    [ "chaoic", "evil", "good", "lawful" ],
+    "substance":  [ "adamantine", "cold Iron", "epic", "magic", "silver" ],
+    "misc":       [ "bleed", "nonlethal", "precision", "spell", "untyped" ]
+  },
+  
   "size": {
     "fine": {
       "ac / atk":   8,
@@ -134,13 +142,6 @@
     }
   },
 
-  "damage_types": {
-    "weapon":     [ "budgeoning", "piercing", "slashing" ],
-    "energy":     [ "acid", "cold", "electricity", "fire", "force", "negative", "positive", "sonic" ],
-    "aligned":    [ "chaoic", "evil", "good", "lawful" ],
-    "substance":  [ "adamantine", "cold Iron", "epic", "magic", "silver" ],
-    "misc":       [ "bleed", "nonlethal", "precision", "spell", "untyped" ]
-  },
   "bonuses": {
     "Alchemical": {
       "description": "An alchemical bonus is granted by the use of a non-magical, alchemical substance such as antitoxin.",
