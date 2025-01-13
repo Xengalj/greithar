@@ -1,105 +1,4 @@
 {
-  "Damage": {  "fine": "",  "diminuitive": "",  "tiny": "",  "small": "",  "medium": "",  "large": "",  "huge": "",  "gargantuan": "",  "colossal": ""  },
-  
-  "Bite": {
-    "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "2d8",  "colossal": "4d6"  },
-    "Critical": "20/x2",
-    "Range": 0,
-    "Damage Type": [ "Bludgeoning", "Piercing", "Slashing" ],
-    "Proficiency": "Natural",
-    "Category": "Primary"
-  },
-  "Claw": {
-    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "2d8"  },
-    "Critical": "20/x2",
-    "Range": 0,
-    "Damage Type": [ "Bludgeoning", "Slashing" ],
-    "Proficiency": "Natural",
-    "Category": "Primary"
-  },
-  "Gore": {
-    "Damage": {  "fine": "0",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "2d8",  "colossal": "4d6"  },
-    "Critical": "20/x2",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-    "Proficiency": "Natural",
-    "Category": "Primary"
-  },
-  "Hoof": {
-    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d5",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "2d8"  },
-    "Critical": "20/x2",
-    "Range": 0,
-    "Damage Type": [ "Bludgeoning" ],
-    "Proficiency": "Natural",
-    "Category": "Secondary"
-  },
-  "Tentacle": {
-    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d5",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "2d8"  },
-    "Critical": "20/x2",
-    "Range": 0,
-    "Damage Type": [ "Bludgeoning" ],
-    "Proficiency": "Natural",
-    "Category": "Secondary"
-  },
-  "Wing": {
-    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "2d8"  },
-    "Critical": "20/x2",
-    "Range": 0,
-    "Damage Type": [ "Bludgeoning" ],
-    "Proficiency": "Natural",
-    "Category": "Secondary"
-  },
-  "Pincers": {
-    "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "2d8",  "colossal": "4d6"  },
-    "Critical": "20/x2",
-    "Range": 0,
-    "Damage Type": [ "Bludgeoning" ],
-    "Proficiency": "Natural",
-    "Category": "Secondary"
-  },
-  "Tail Slap": {
-    "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "2d8",  "colossal": "4d6"  },
-    "Critical": "20/x2",
-    "Range": 0,
-    "Damage Type": [ "Bludgeoning" ],
-    "Proficiency": "Natural",
-    "Category": "Secondary"
-  },
-  "Slam": {
-    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "2d8"  },
-    "Critical": "20/x2",
-    "Range": 0,
-    "Damage Type": [ "Bludgeoning" ],
-    "Proficiency": "Natural",
-    "Category": "Primary"
-  },
-  "Sting": {
-    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "2d8"  },
-    "Critical": "20/x2",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-    "Proficiency": "Natural",
-    "Category": "Primary"
-  },
-  "Talons": {
-    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "2d8"  },
-    "Critical": "20/x2",
-    "Range": 0,
-    "Damage Type": [ "Slashing" ],
-    "Proficiency": "Natural",
-    "Category": "Primary"
-  },
-  "Other": {
-    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "2d8"  },
-    "Critical": "20/x2",
-    "Range": 0,
-    "Damage Type": [ "Bludgeoning", "Piercing", "Slashing" ],
-    "Proficiency": "Natural",
-    "Category": "Secondary"
-  },
-
-
-
   "Unarmed Strike": {
     "Damage": {  "fine": "0",  "diminuitive": "0",  "tiny": "1",  "small": "1d2",  "medium": "1d3",  "large": "1d4",  "huge": "1d6",  "gargantuan": "1d8",  "colossal": "2d6"  },
     "Critical": "20/x2",
@@ -379,7 +278,7 @@
   },
 
 
-  
+
   "Club": {
     "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
     "Critical": "20/x2",
@@ -963,5 +862,101 @@
     "Special": [
       "A character can apply poison to a blowgun dart without risk of poisoning himself."
     ]
+  },
+  "Bite": {
+    "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "2d8",  "colossal": "4d6"  },
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning", "Piercing", "Slashing" ],
+    "Proficiency": "Natural",
+    "Category": "Primary"
+  },
+  "Claw": {
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "2d8"  },
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning", "Slashing" ],
+    "Proficiency": "Natural",
+    "Category": "Primary"
+  },
+  "Gore": {
+    "Damage": {  "fine": "0",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "2d8",  "colossal": "4d6"  },
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+    "Proficiency": "Natural",
+    "Category": "Primary"
+  },
+  "Hoof": {
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d5",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "2d8"  },
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning" ],
+    "Proficiency": "Natural",
+    "Category": "Secondary"
+  },
+  "Tentacle": {
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d5",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "2d8"  },
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning" ],
+    "Proficiency": "Natural",
+    "Category": "Secondary"
+  },
+  "Wing": {
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "2d8"  },
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning" ],
+    "Proficiency": "Natural",
+    "Category": "Secondary"
+  },
+  "Pincers": {
+    "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "2d8",  "colossal": "4d6"  },
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning" ],
+    "Proficiency": "Natural",
+    "Category": "Secondary"
+  },
+  "Tail Slap": {
+    "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "2d8",  "colossal": "4d6"  },
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning" ],
+    "Proficiency": "Natural",
+    "Category": "Secondary"
+  },
+  "Slam": {
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "2d8"  },
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning" ],
+    "Proficiency": "Natural",
+    "Category": "Primary"
+  },
+  "Sting": {
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "2d8"  },
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Piercing" ],
+    "Proficiency": "Natural",
+    "Category": "Primary"
+  },
+  "Talons": {
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "2d8"  },
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Slashing" ],
+    "Proficiency": "Natural",
+    "Category": "Primary"
+  },
+  "Other": {
+    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "2d8"  },
+    "Critical": "20/x2",
+    "Range": 0,
+    "Damage Type": [ "Bludgeoning", "Piercing", "Slashing" ],
+    "Proficiency": "Natural",
+    "Category": "Secondary"
   }
 }

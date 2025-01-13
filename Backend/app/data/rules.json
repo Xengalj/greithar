@@ -4,7 +4,9 @@
     "Self-Taught": [ "bards", "cavaliers", "fighters", "gunslingers", "paladins", "rangers", "summoners", "witches" ],
     "Trained": [ "alchemists", "clerics", "druids", "inquisitors", "magi", "monks", "wizards" ]
   },
-  "level_wealth": [ 0, 111, 1000, 3000, 6000 , 10500 , 16000 , 23500, 33000, 46000, 62000, 82000, 108000, 140000, 185000, 240000, 315000, 410000, 530000, 685000, 880000 ],
+  "player_wealth": [ 0, 111, 1000, 3000, 6000 , 10500 , 16000 , 23500, 33000, 46000, 62000, 82000, 108000, 140000, 185000, 240000, 315000, 410000, 530000, 685000, 880000 ],
+  "heroic_wealth": [ 0, 390, 780, 1650, 2400, 3450, 4650, 6000, 7800, 10050, 12750, 16350, 21000, 27000, 34800, 45000, 58500, 75000, 96000, 123000, 159000 ],
+  "basic_wealth": [ 0, 260, 390, 780, 1650, 2400, 3450, 4650, 6000, 7800, 10050, 12750, 16350, 21000, 27000, 34800, 45000, 58500, 75000, 96000, 123000 ],
   "damage_types": {
     "weapon":     [ "budgeoning", "piercing", "slashing" ],
     "energy":     [ "acid", "cold", "electricity", "fire", "force", "negative", "positive", "sonic" ],
@@ -12,7 +14,6 @@
     "substance":  [ "adamantine", "cold Iron", "epic", "magic", "silver" ],
     "misc":       [ "bleed", "nonlethal", "precision", "spell", "untyped" ]
   },
-  
   "size": {
     "fine": {
       "ac / atk":   8,

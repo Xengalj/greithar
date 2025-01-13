@@ -1,5 +1,8 @@
 <template>
   <div style="margin: 25px;">
+
+    <el-row>{{ rules }}</el-row>
+
     <div class="hero-section">
       Select Item Type
       <el-select
@@ -15,11 +18,6 @@
           </div>
         </el-option>
       </el-select>
-
-      <el-row>
-        {{ rules }}
-      </el-row>
-
     </div>
 
     <equipment-table
@@ -27,7 +25,6 @@
       :data="tableData"
       :filters="tableFilters"
     />
-
   </div>
 </template>
 
@@ -53,7 +50,7 @@ export default {
         "Materials":          { color: "#71797E", label: "Materials" },
         "Goods and Services": { color: "#FFDE0A", label: "Goods and Services" }
       },
-      selectedType: { label: "Armor", color: "#4167F0" },
+      selectedType: { label: "Weapons", color: "#4167F0" },
 
       rules: {}
     };
@@ -124,6 +121,7 @@ export default {
               "Simple":       { color: "#1EC79D", label: "Simple" },
               "Martial":      { color: "#FFDE0A", label: "Martial" },
               "Exotic":       { color: "#E63415", label: "Exotic" },
+              "Natural":      { color: "#bfef45", label: "Natural" }
             },
             "Category": {
               "Unarmed":      { color: "#E63415", label: "Unarmed" },
@@ -131,7 +129,9 @@ export default {
               "One-Handed":   { color: "#FFDE0A", label: "One-Handed" },
               "Two-Handed":   { color: "#1EC79D", label: "Two-Handed" },
               "Ranged":       { color: "#4167F0", label: "Ranged" },
-              "Ammunition":   { color: "#6222C9", label: "Ammunition" }
+              "Ammunition":   { color: "#6222C9", label: "Ammunition" },
+              "Primary":      { color: "#42d4f4", label: "Primary" },
+              "Secondary":    { color: "#dcbeff", label: "Secondary" }
             },
             "Group": {
               "Axes":         { color: '#E63415', label: 'Axes' },

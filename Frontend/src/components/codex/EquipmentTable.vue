@@ -36,26 +36,19 @@
     </el-select>
 
     <el-button @click="clearFilter">Reset</el-button>
-    <el-tag v-if="displayedRows" size="large" effect="dark" type="primary">
-      {{ displayedRows }} Results
-    </el-tag>
+    <el-tag v-if="displayedRows" size="large" effect="dark" type="primary">{{ displayedRows }} Results</el-tag>
+    <el-button @click="randomItem">Random Item</el-button>
   </div>
 
   <table :id="id" class="g-table">
     <tr>
-      <th
-      v-for="item in tableCols"
-      @click="sortTable(item)"
-      :key="item"
-      >
+      <th v-for="item in tableCols" :key="item" @click="sortTable(item)">
         {{ item }}
       </th>
     </tr>
     <tr v-for="(item, name) in data" :key="name">
       <td name="Name">{{ name }}</td>
-      <td v-for="(prop, key) in item" :key="key" :name="key"
-      :style=" key == 'Cost' ? 'width:20%' : '' "
-      >
+      <td v-for="(prop, key) in item" :key="key" :name="key">
 
         <div v-if="Array.isArray(prop)">
           <el-collapse v-if="key == 'Special' && prop[0] ">
@@ -70,6 +63,11 @@
           <ul v-else>
             <li v-for="item in prop" :key="item"> {{ item }} </li>
           </ul>
+        </div>
+
+        <div v-else-if="typeof prop === 'object'">
+          <div>Small: {{ prop.small }}</div>
+          <div>Medium: {{ prop.medium }}</div>
         </div>
 
         <div v-else>
@@ -134,11 +132,6 @@ export default {
     }
   },
 
-  // beforeUpdate() {
-  //   // this.filterValue = {};
-  //   console.log(this.id);
-  // },
-  // mounted() {},
   methods: {
     sortTable(sortStr) {
       let table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
@@ -298,6 +291,18 @@ export default {
       for (let i = 1; i < (rows.length); i++) {
         rows[i].hidden = false;
       }
+    },
+
+    randomItem() {
+      let rows = document.getElementById("equipmentTable").rows;
+      let valid = [];
+      for (let i = 1; i < (rows.length); i++) {
+        if (!rows[i].hidden) {
+          valid.push(rows[i]);
+        }
+      }
+      let rand = Math.floor(Math.random() * (valid.length ? valid.length-1 : rows.length-1));
+      valid[rand].scrollIntoView();
     }
 
     // End Methods
