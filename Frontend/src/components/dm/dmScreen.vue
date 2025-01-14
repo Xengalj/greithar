@@ -46,30 +46,13 @@ export default {
   data() {
     return {
       content: "DM Screen",
-
       icons: icons,
 
       monsterVisible: false,
+      creature: {},
       creatureName: "",
 
-      tableName: "equipmentTable",
-      tableData: {},
-      tableFilters: {},
 
-      rules: {},
-      equipment: {},
-
-      classes: {
-        "warrior": {
-          "skills": [ "Climb (Str)", "Craft (Int)", "Handle Animal (Cha)", "Intimidate (Cha)", "Profession (Wis)", "Ride (Dex)", "Swim (Str)" ],
-          "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "heavy armor", "shields" ],
-          "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
-          "hd": 10, "ranks": 2, "bab": 1,
-          "fort": { "mult": 0.5, "bonus": 2 },
-          "ref": { "mult": 0.33, "bonus": 0 },
-          "will": { "mult": 0.33, "bonus": 0 }
-        }
-      },
 
     }
   },
@@ -84,60 +67,19 @@ export default {
     }
   },
   created() {
-    // this.tableData = this.equipment.armor;
-    // let first = Object.values(this.tableData)[0];
-    // this.tableCols = ["Name"].concat(Object.keys(first));
-
-    this.tableFilters = {
-      /*
-      //   { value: '#E63415', label: 'red' },
-      //   { value: '#FF6600', label: 'orange' },
-      //   { value: '#FFDE0A', label: 'yellow' },
-      //   { value: '#1EC79D', label: 'green' },
-      //   { value: '#14CCCC', label: 'cyan' },
-      //   { value: '#4167F0', label: 'blue' },
-      //   { value: '#6222C9', label: 'purple' }
-      */
-      "Proficiency": {
-        "Light": { label: 'Light', color: '#1EC79D' },
-        "Medium": { label: 'Medium', color: '#FF6600' },
-        "Heavy": { label: 'Heavy', color: '#E63415' },
-      },
-      "Category": {
-        "Unarmed": { label: 'Unarmed', color: '#E63415' },
-        "Light": { label: 'Light', color: '#FF6600' },
-        "One-Handed": { label: 'One-Handed', color: '#FFDE0A' },
-        "Two-Handed": { label: 'Two-Handed', color: '#1EC79D' },
-        "Ranged": { label: 'Ranged', color: '#4167F0' },
-        "Ammunition": { label: 'Ammunition', color: '#6222C9' }
-      },
-      "Group": {
-        "Close": { label: 'Close', color: '#E63415' }
-      },
-      "Damage Type": {
-        "Slashing": { label: 'Slashing', color: '#E63415' },
-        "Piercing": { label: 'Piercing', color: '#FFDE0A' },
-        "Bludgeoning": { label: 'Bludgeoning', color: '#4167F0' }
-      }
-    };
-
-  },
-  mounted() {
-
     DataService.getRules().then( (response) => { this.rules = response; } );
     DataService.getEquipment().then( (response) => { this.equipment = response; } );
-
 
     UserService.getAdminBoard().then(
       (response) => { this.content = response.data; },
       (error) => {
         this.content =
-          (error.response && error.response.data && error.response.data.message)
-          || error.message || error.toString();
+        (error.response && error.response.data && error.response.data.message)
+        || error.message || error.toString();
       }
     );
-
-
+  },
+  mounted() {
     // this.monsterOpen("Skeletal Champion");
     this.monsterOpen("Adult Red Dragon");
   },
@@ -448,88 +390,7 @@ perm.active = creature.active;
             atk = atk.slice(0, -1);
           }
 
-          let NAs = {
-            "Bite": {
-              "Damage": {
-                "fine": "1",
-                "diminuitive": "1d2",
-                "tiny": "1d3",
-                "small": "1d4",
-                "medium": "1d6",
-                "large": "1d8",
-                "huge": "2d6",
-                "gargantuan": "2d8",
-                "colossal": "4d6"
-              },
-              "Critical": "20/x2",
-              "Range": 0,
-              "Damage Type": [ "Bludgeoning", "Piercing", "Slashing" ],
-              "Proficiency": "Natural",
-              "Category": "Primary"
-            },
-            "Claw": {
-              "Damage": {
-                "fine": "0",
-                "diminuitive": "1",
-                "tiny": "1d2",
-                "small": "1d3",
-                "medium": "1d4",
-                "large": "1d6",
-                "huge": "1d8",
-                "gargantuan": "2d6",
-                "colossal": "2d8"
-              },
-              "Critical": "20/x2",
-              "Range": 0,
-              "Damage Type": [ "Bludgeoning", "Slashing" ],
-              "Proficiency": "Natural",
-              "Category": "Primary"
-            },
-            "Gore": "1 1d2 1d3 1d4 1d6 1d8 2d6 2d8 4d6 P Primary",
-            "Hoof": "– 1 1d2 1d3 1d4 1d6 1d8 2d6 2d8 B Secondary",
-            "Tentacle": "– 1 1d2 1d3 1d4 1d6 1d8 2d6 2d8 B Secondary",
-            "Wing": {
-              "Damage": {
-                "fine": "0",
-                "diminuitive": "1",
-                "tiny": "1d2",
-                "small": "1d3",
-                "medium": "1d4",
-                "large": "1d6",
-                "huge": "1d8",
-                "gargantuan": "2d6",
-                "colossal": "2d8"
-              },
-              "Critical": "20/x2",
-              "Range": 0,
-              "Damage Type": [ "Bludgeoning" ],
-              "Proficiency": "Natural",
-              "Category": "Secondary"
-            },
-            "Pincers": "1 1d2 1d3 1d4 1d6 1d8 2d6 2d8 4d6 B Secondary",
-            "Tail Slap": {
-              "Damage": {
-                "fine": "1",
-                "diminuitive": "1d2",
-                "tiny": "1d3",
-                "small": "1d4",
-                "medium": "1d6",
-                "large": "1d8",
-                "huge": "2d6",
-                "gargantuan": "2d8",
-                "colossal": "4d6"
-              },
-              "Critical": "20/x2",
-              "Range": 0,
-              "Damage Type": [ "Bludgeoning" ],
-              "Proficiency": "Natural",
-              "Category": "Secondary"
-            },
-            "Slam": "– 1 1d2 1d3 1d4 1d6 1d8 2d6 2d8 B Primary",
-            "Sting": "– 1 1d2 1d3 1d4 1d6 1d8 2d6 2d8 P Primary",
-            "Talons": "– 1 1d2 1d3 1d4 1d6 1d8 2d6 2d8 S Primary",
-            "Other": "– 1 1d2 1d3 1d4 1d6 1d8 2d6 2d8 B, P, or S Secondary"
-          };
+          let NAs = this.rules.natural_attacks;
 
           if (!Object.keys(creature.attacks.melee).includes(atk)) {
             let atkName = atkNum ? atkNum+" "+atk : atk;
@@ -667,6 +528,8 @@ perm.skills = creature.skills;
         console.table("new", creature);
         console.table("PERM", perm);
         // this.creatureSetup(response);
+
+        this.creature = perm;
       })
       .catch(err => { console.error(err); });
 
