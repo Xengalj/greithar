@@ -1,51 +1,38 @@
 <template lang="html">
 
-  <h2>{{ creature.title }}</h2>
-
+  <h2>{{ title }}</h2>
 
   <!-- Basics -->
   <el-row :gutter="20">
     <el-col :span="12" class="center-horz">
       <svg width="225" height="200">
-        <HexGraph :abilities="[this.original.Str, this.original.Dex, this.original.Con, this.original.Int, this.original.Wis, this.original.Cha]"></HexGraph>
+        <HexGraph :abilities="[attributes.Str, attributes.Dex, attributes.Con, attributes.Int, attributes.Wis, attributes.Cha]"></HexGraph>
       </svg>
       <div class="stat-controls">
         <el-row :gutter="5">
-          <el-col :span="3">Str:</el-col>
-          <el-col :span="8">
-            <el-input-number size="small" controls-position="right" v-model="this.original.Str" />
-          </el-col>
-          <el-col :span="3">Int:</el-col>
-          <el-col :span="8">
-            <el-input-number size="small" controls-position="right" v-model="this.original.Int" />
-          </el-col>
+          <el-col :span="3">  Str:</el-col>
+          <el-col :span="3">  <el-tag size="small" effect="dark" type="primary">{{attributes.Str}}</el-tag>  </el-col>
+          <el-col :span="3">  Int:</el-col>
+          <el-col :span="3">  <el-tag size="small" effect="dark" type="primary">{{attributes.Int}}</el-tag>  </el-col>
         </el-row>
         <el-row :gutter="5">
-          <el-col :span="3">Dex:</el-col>
-          <el-col :span="8">
-            <el-input-number size="small" controls-position="right" v-model="this.original.Dex" />
-          </el-col>
-          <el-col :span="3">Wis:</el-col>
-          <el-col :span="8">
-            <el-input-number size="small" controls-position="right" v-model="this.original.Wis" />
-          </el-col>
+          <el-col :span="3">  Dex:</el-col>
+          <el-col :span="3">  <el-tag size="small" effect="dark" type="primary">{{attributes.Dex}}</el-tag>  </el-col>
+          <el-col :span="3">  Wis:</el-col>
+          <el-col :span="3">  <el-tag size="small" effect="dark" type="primary">{{attributes.Wis}}</el-tag>  </el-col>
         </el-row>
         <el-row :gutter="5">
-          <el-col :span="3">Con:</el-col>
-          <el-col :span="8">
-            <el-input-number size="small" controls-position="right" v-model="this.original.Con" />
-          </el-col>
-          <el-col :span="3">Cha:</el-col>
-          <el-col :span="8">
-            <el-input-number size="small" controls-position="right" v-model="this.original.Cha" />
-          </el-col>
+          <el-col :span="3">  Con:</el-col>
+          <el-col :span="3">  <el-tag size="small" effect="dark" type="primary">{{attributes.Con}}</el-tag>  </el-col>
+          <el-col :span="3">  Cha:</el-col>
+          <el-col :span="3">  <el-tag size="small" effect="dark" type="primary">{{attributes.Cha}}</el-tag>  </el-col>
         </el-row>
       </div>
     </el-col>
 
     <el-col :span="12">
       <div class="center-horz">
-        <g-icon iconSize="128px" :icon-name="this.original.Type" :key="this.original.Type"/>
+        <g-icon iconSize="128px" :icon-name="basics.type.name" :key="basics.type.name"/>
       </div>
       <el-row :gutter="5">
         <el-col :span="4" class="center center-vert">
@@ -53,41 +40,23 @@
         </el-col>
         <el-col :span="20" class="center">
           <el-row>
-            <el-col :span="22" class="center">
-              {{ this.original.Alignment }}
-              <el-select-v2
-              v-model="this.original.Size"
-              :options="this.sizeSelect"
-              style="width: 120px"
-              />
-              ({{ creature.size.space }})
-            </el-col>
+            <el-col :span="22" class="center"> {{ basics.alignment }} {{ basics.size }} ({{ basics.sizeStats.space }}) </el-col>
           </el-row>
           <el-row>
             <el-col class="center">
-              {{ this.original.Type }}
-              <span v-if="this.original.subtype1"> ({{ this.original.subtype1 }}</span>
-              <span v-if="this.original.subtype2">, {{ this.original.subtype2 }}</span>
-              <span v-if="this.original.subtype1">)</span>
+              <el-tag size="small" effect="dark" type="primary">{{basics.type.name}}</el-tag>
+              <el-tag v-for="subtype in basics.type.subtypes" :key="subtype" size="small" effect="dark" type="info">{{ subtype }}</el-tag>
             </el-col>
           </el-row>
         </el-col>
       </el-row>
       <el-row>
-        <el-col :span="4" class="center">
-          <g-icon iconSize="24px" icon-name="treasure"/>
-        </el-col>
-        <el-col :span="20" class="center">
-          {{ this.original.Treasure }}
-        </el-col>
+        <el-col :span="4" class="center"> <g-icon iconSize="24px" icon-name="treasure"/> </el-col>
+        <el-col :span="20" class="center"> {{ this.original.Treasure }} </el-col>
       </el-row>
       <el-row>
-        <el-col :span="4" class="center">
-          <g-icon iconSize="24px" icon-name="forest"/>
-        </el-col>
-        <el-col :span="20" class="center">
-          {{ this.original.Environment }}
-        </el-col>
+        <el-col :span="4" class="center"> <g-icon iconSize="24px" icon-name="forest"/> </el-col>
+        <el-col :span="20" class="center"> {{ this.original.Environment }} </el-col>
       </el-row>
     </el-col>
   </el-row>
@@ -267,6 +236,8 @@
     <el-col :span="3" class="center">
       <el-button type="primary" @click="addMonster()"> Add to Session </el-button>
     </el-col>
+    <el-select-v2 v-model="basics.size" :options="this.sizeSelect" size="small" style="width: 120px" />
+
   </el-row>
 
 </template>
@@ -284,12 +255,15 @@ export default {
   components: { HexGraph },
   props: {
     creatureName: { type: String, default: () => "Kobold" },
+    source: { type: Object, default: () => {} }
   },
   data() {
     return {
-      tables: {}, // size & dmg types
       rules: {},
+      classes: {},
       equipment: {},
+
+      tables: {}, // size & dmg types
 
       supplement: supplementTables,
       openSections: [ "defense", "offense" ],
@@ -309,6 +283,25 @@ export default {
   },
 
   computed: {
+    title() { return this.source.name ? this.source.name.concat(" CR ", this.source.basics.cr) : ""; },
+    attributes() {
+      return this.source.attributes ? this.source.attributes : {
+        "Str": 0, "StrMod": -5,
+        "Dex": 0, "DexMod": -5,
+        "Con": 0, "ConMod": -5,
+        "Int": 0, "IntMod": -5,
+        "Wis": 0, "WisMod": -5,
+        "Cha": 0, "ChaMod": -5,
+      };
+    },
+    basics() {
+      let basics = this.source.basics ? this.source.basics : { "type": {}};
+      basics.sizeStats = this.rules.size ? this.rules.size[this.source.basics.size] : {};
+
+      return basics;
+    },
+
+
     creature() {
       let creature = {
         title: this.original.Name ? this.original.Name.concat(" CR ", this.original.CR) : "",
@@ -494,8 +487,14 @@ export default {
   },
   created() {
     DataService.getRules().then ( (response) => { this.rules = response; });
+    // DataService.getClasses().then ( (response) => { this.equipment = response; });
     DataService.getEquipment().then ( (response) => { this.equipment = response; });
   },
+
+
+
+
+
   mounted() {
     this.getCreature({Name: this.creatureName});
   },
@@ -504,9 +503,7 @@ export default {
       this.getCreature({Name: this.creatureName});
     }
   },
-  defineExpose() {
-    this.getCreature
-  },
+  defineExpose() { this.getCreature },
   methods: {
     async getCreature(original) {
       DataService.getMonster(original)
@@ -538,6 +535,12 @@ export default {
       this.original.Ranged = this.original.Ranged ? this.original.Ranged.split(',') : null;
       this.original.Special = this.original.Special ? this.original.Special : null;
     },
+
+
+
+
+
+
 
     addMonster() {
       let creatures = JSON.parse(localStorage.getItem("encounter"));
