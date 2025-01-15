@@ -16,6 +16,7 @@
     :before-close="monsterClose"
   >
     <CreatureCard :creatureName="creatureName" :source="creature"></CreatureCard>
+    <!-- <CreatureCard :creatureName="creatureName" v-bind="creature"></CreatureCard> -->
     <template #footer>
       <div class="dialog-footer">
         <el-button @click="monsterClose()"> Close </el-button>
@@ -407,7 +408,7 @@ perm.active = creature.active;
           }
 
           let NAs = this.rules.natural_attacks;
-          console.log(NAs);
+          // console.log(NAs);
 
           if (!Object.keys(creature.attacks.melee).includes(atk)) {
             let atkName = atkNum ? atkNum+" "+atk : atk;
@@ -542,8 +543,8 @@ perm.skills = creature.skills;
 
 
 
-        // console.table("new", creature);
-        console.table("PERM", perm);
+        console.table("new", creature);
+        console.table("SOURCE", perm);
         // this.creatureSetup(response);
 
         this.creature = perm;

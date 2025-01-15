@@ -67,11 +67,11 @@
   <el-collapse v-model="openSections">
     <el-collapse-item title="Defense" name="defense">
       <el-row :gutter="20">
-        <el-col :span="3" class="center center-vert">
-          <g-icon iconSize="32px" iconName="Armor" />
-        </el-col>
+        <el-col :span="3" class="center center-vert"> <g-icon iconSize="32px" iconName="Armor" /> </el-col>
 
         <el-col :span="7" class="center">
+          HP: {{ health }}
+          <br><br>
           HP: {{ creature.health.total }} ({{ this.original.HDNum }}{{ creature.health.HDString }}{{ creature.health.bonus}} / {{ this.original.HP }})
           <br><br>
           AC: {{ creature.ac.total }} / {{ this.original.AC ? this.original.AC.total : 10 }}
@@ -255,7 +255,35 @@ export default {
   components: { HexGraph },
   props: {
     creatureName: { type: String, default: () => "Kobold" },
-    source: { type: Object, default: () => {} }
+    source: { type: Object },
+    // , default: () => ({
+      // "name": "",
+      // "attributes": {
+      //   "Str": 0, "StrMod": -5,
+      //   "Dex": 0, "DexMod": -5,
+      //   "Con": 0, "ConMod": -5,
+      //   "Int": 0, "IntMod": -5,
+      //   "Wis": 0, "WisMod": -5,
+      //   "Cha": 0, "ChaMod": -5
+      // },
+      // "basics": {
+      //   "cr": 0,
+      //   "alignment": "N",
+      //   "size": "medium",
+      //   "sizeStats": {},
+      //   "type": { "name": "", "levels": 0, "hd": 0, "subtypes": [] },
+      //   "environment": "any"
+      // },
+      // "classes": {  },
+      //
+      // "defense": {  },
+      // "equipment": {  },
+      // "feats": {  },
+      // "skills": {  },
+      //
+      // "active": {  },
+      // "bonuses": {  }
+    // }) }
   },
   data() {
     return {
@@ -295,10 +323,76 @@ export default {
       };
     },
     basics() {
-      let basics = this.source.basics ? this.source.basics : { "type": {}};
-      basics.sizeStats = this.rules.size ? this.rules.size[this.source.basics.size] : {};
-
+      let basics = this.source.basics ? this.source.basics : { "type": {}, "size": "medium"};
+      basics.sizeStats = this.rules.size ? this.rules.size[basics.size] : { "space": "5 ft." };
       return basics;
+    },
+    health() {
+      let health = { "bonus": 0, "total": 0, "hd": [] };
+
+      if (this.source.classes) {
+        let firstLevel = true;
+
+        if (this.basics.type.levels) { health.hd.push( `${this.basics.type.levels}d${this.basics.type.hd}` ); }
+        for (let i = 1; i < this.basics.type.levels+1; i++) {
+          firstLevel = false;
+          health.total += this.basics.type.hd / 2 + 0.5;
+
+          if (this.basics.type.name == "undead") {
+            health.bonus += this.attributes.ChaMod;
+
+          } else if (this.basics.type.name == "construct") {
+            switch (this.basics.size) {
+              case "small": health.bonus += 10; break;
+              case "medium": health.bonus += 20; break;
+              case "large": health.bonus += 30; break;
+              case "huge": health.bonus += 40; break;
+              case "gargantuan": health.bonus += 60; break;
+              case "colossal": health.bonus += 80; break;
+              default: health.bonus += 0;
+            }
+
+          } else {
+            health.bonus += this.attributes.ConMod;
+          }
+        }
+
+        // Class Loop
+        for (let [name, cClass] of Object.entries(this.source.classes)) {
+          // get class info into class
+          cClass = {
+            "name": name,
+            "levels": cClass.levels,
+            "hd": 10,
+            "ranks": 2,
+            "skills": [ "Climb (Str)", "Craft (Int)", "Handle Animal (Cha)", "Intimidate (Cha)", "Profession (Wis)", "Ride (Dex)", "Swim (Str)" ],
+            "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "heavy armor", "shields" ],
+            "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
+            "bab": 1, // Fast BAB: HD*1
+            "fort": { "mult": 0.5, "bonus": 2 }, // Good Save: HD/2 +2
+            "ref": { "mult": 0.33, "bonus": 0 }, // Poor Save: HD/3
+            "will": { "mult": 0.33, "bonus": 0 }
+          };
+
+          health.hd.push( `${cClass.levels}d${cClass.hd}` );
+
+          // Level Loop
+          for (let i = 1; i < cClass.levels+1; i++) {
+            health.total += firstLevel ? cClass.hd : cClass.hd / 2 + 0.5;
+            if (this.basics.type.name == "undead") {
+              health.bonus += this.attributes.ChaMod;
+            } else if (this.basics.type.name != "construct") {
+              health.bonus += this.attributes.ConMod;
+            }
+          }
+        }
+      } // end if have source
+
+      health.total = Math.floor(health.total);
+      return health;
+    },
+    bab() {
+      return 0;
     },
 
 
