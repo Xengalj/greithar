@@ -2,9 +2,9 @@
   "RegEx": {
     "site": "https://regex101.com/",
     "name": "Potion of Cure Light Wounds (cr, 50 gp)",
-    "item name": "/Potion of ([\w+\s]+)/gm",
-    "item gp": "/\d+\s[pp|gp|sp|cp]/gm",
-    "item weight": "/\d+\slb/gm",
+    "item name": "/Potion of ([\\w+\\s]+)/gm",
+    "item gp": "/\\d+\\s[pp|gp|sp|cp]/gm",
+    "item weight": "/\\d+\\slb/gm"
   },
 
 
