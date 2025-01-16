@@ -621,9 +621,6 @@ export default {
       console.log(speed);
       return speed;
     },
-
-
-
     bab() {
       let bab = 0;
       if (this.source.name) {
@@ -642,6 +639,7 @@ export default {
       bab = Math.floor(bab);
       return bab;
     },
+
 
 
     creature() {

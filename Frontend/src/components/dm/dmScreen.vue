@@ -103,6 +103,10 @@ let perm = {};
             "speed": parseInt( response.Speed.replace(/\D+$/g, "") ),
             "type": {},
           },
+          "classes": {},
+
+
+
           "feats": [],
           "skills": [],
 
@@ -121,19 +125,6 @@ let perm = {};
           "equipment": {}
         };
 
-        let classes = {
-  "warrior": {
-    "hd": 10,
-    "ranks": 2,
-    "skills": [ "Climb (Str)", "Craft (Int)", "Handle Animal (Cha)", "Intimidate (Cha)", "Profession (Wis)", "Ride (Dex)", "Swim (Str)" ],
-    "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "heavy armor", "shields" ],
-    "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
-    "bab": 1, // Fast BAB: HD*1
-    "fort": { "mult": 0.5, "bonus": 2 }, // Good Save: HD/2 +2
-    "ref": { "mult": 0.33, "bonus": 0 }, // Poor Save: HD/3
-    "will": { "mult": 0.33, "bonus": 0 }
-  }
-};
 
 
         /***************************\
@@ -145,7 +136,8 @@ perm.name = creature.name;
 perm.attributes = creature.attributes;
 perm.basics = creature.basics;
 perm.classes = {};
-perm.defense = {};
+perm.actions = {};
+perm.others = {};
 
         // Ability Score Modifiers
         creature.attributes.StrMod = Math.floor((creature.attributes.Str - 10) / 2);
@@ -156,7 +148,7 @@ perm.defense = {};
         creature.attributes.ChaMod = Math.floor((creature.attributes.Cha - 10) / 2);
 
         // Get total HD
-        let [Class, bab, fort, ref, will, hp, hpBonus, racialHD ] = ["", 0, 0, 0, 0, 0, 0, 0];
+        let racialHD = 0;
         let strings = response.HD.split(";");
         strings = strings[1] ? strings[1] : strings[0];
         strings = strings.split("+");
@@ -170,46 +162,22 @@ perm.defense = {};
 
         // Class 1
         if (response.Class1) {
+creature.classes[response.Class1] = { "levels": response.Class1_Lvl };
 perm.classes[response.Class1] = { "levels": response.Class1_Lvl };
           // subtract class HD from total HD (racialHD)
           racialHD -= response.Class1_Lvl;
-          Class = classes[response.Class1];
-          // TODO: swap with get classes from backend
-          creature.class1 = {
-            name: response.Class1,
-            levels: response.Class1_Lvl,
-            hd: Class.hd
-          }
-          bab   = response.Class1_Lvl * Class.bab;
-          fort  = (response.Class1_Lvl * Class.fort.mult) + Class.fort.bonus;
-          ref   = (response.Class1_Lvl * Class.ref.mult) + Class.ref.bonus;
-          will  = (response.Class1_Lvl * Class.will.mult) + Class.will.bonus;
-          hp    = response.Class1_Lvl * (Class.hd/2 + 0.5 + creature.attributes.ConMod);
-          hpBonus = response.Class1_Lvl * creature.attributes.ConMod;
         }
 
         // Class 2
         if (response.Class2) {
-perm.classes[response.class2] = { "levels": response.Class2_Lvl };
           console.log("MULTICLASS!!");
+creature.classes[response.Class2] = { "levels": response.Class2_Lvl };
+perm.classes[response.class2] = { "levels": response.Class2_Lvl };
           // subtract class HD from total HD (racialHD)
           racialHD -= response.Class2_Lvl;
-          Class   = this.classes[response.Class2];
-          creature.class2 = {
-            name: response.Class2,
-            levels: response.Class2_Lvl,
-            hd: Class.hd
-          }
-          bab     += response.Class2_Lvl * Class.bab;
-          fort    += (response.Class2_Lvl * Class.fort.mult) + Class.fort.bonus;
-          ref     += (response.Class2_Lvl * Class.ref.mult) + Class.ref.bonus;
-          will    += (response.Class2_Lvl * Class.will.mult) + Class.will.bonus;
-          hp      += response.Class2_Lvl * (Class.hd/2 + 0.5 + creature.attributes.ConMod);
-          hpBonus += response.Class2_Lvl * creature.attributes.ConMod;
         }
 
         // Racial
-// Racial type & HD
         let type  = this.rules.creature_types[response.Type];
         creature.basics.type = {
           name: response.Type,
@@ -217,39 +185,41 @@ perm.classes[response.class2] = { "levels": response.Class2_Lvl };
           hd: type.hd,
           subtypes: []
         }
-// Subtypes
-        if (response.Race) { creature.basics.type.subtypes.push(response.Race); }
+        // Subtypes
+        if (response.Race) {
+          creature.basics.type.subtypes.push(response.Race);
+          // TODO: add traits loop for races
+          // for (let [name, trait] of Object.entries(type.traits)) {
+        }
         for (let i = 1; i < 7; i++) {
           if (response[`subtype${i}`]) {
             creature.basics.type.subtypes.push(response[`subtype${i}`]);
           }
         }
-perm.type = creature.basics.type;
-        bab       += racialHD * type.bab;
-        fort      += (racialHD * type.fort.mult) + type.fort.bonus;
-        ref       += (racialHD * type.ref.mult) + type.ref.bonus;
-        will      += (racialHD * type.will.mult) + type.will.bonus;
-        hp        += racialHD * (type.hd/2 + 0.5 + creature.attributes.ConMod);
-        hpBonus   += racialHD * creature.attributes.ConMod;
-        let senses = "Perception +#";
-        senses    += type.traits["Darkvision"] ? " "+type.traits["Darkvision"] : "";
-        senses    += type.traits["Low-Light Vision"] ? " "+type.traits["Low-Light Vision"] : "";
-        senses    += type.traits["Scent"] ? " "+type.traits["Scent"] : "";
 
-        // Totals
-        creature.bab = Math.floor(bab);
-        creature.defense = {
-          "fort": Math.floor(fort + creature.attributes.ConMod),
-          "ref": Math.floor(ref + creature.attributes.DexMod),
-          "will": Math.floor(will + creature.attributes.WisMod),
-          "senses": senses,
-          "speed": response.Speed,
+        let senses = [ "Perception +#" ];
+        for (let [name, trait] of Object.entries(type.traits)) {
+          switch (name) {
+            case "Darkvision":
+              senses.push(trait);
+              creature.abilities[name] = trait;
+              break;
+            case "Low-Light Vision":
+              senses.push(trait);
+              creature.abilities[name] = trait;
+              break;
+            case "Scent":
+              senses.push(trait);
+              creature.abilities[name] = trait;
+              break;
+            default:
+              creature.abilities[name] = trait;
+          }
         }
-        creature.health.total = Math.floor(hp);
-        creature.health.max = Math.floor(hp);
-        creature.health.bonus = Math.floor(hpBonus);
-perm.defense.senses = senses;
-perm.defense.speed = creature.defense.speed;
+
+        creature.defense = { "senses": senses };
+        perm.defense = creature.defense;
+
 
         /***************************\
         *                           *
@@ -547,7 +517,7 @@ perm.skills = creature.skills;
 
 
 
-        // console.table("new", creature);
+        console.table("new", creature);
         console.table("SOURCE", perm);
         // this.creatureSetup(response);
 
