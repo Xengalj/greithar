@@ -53,8 +53,6 @@ export default {
       creature: {},
       creatureName: "",
 
-
-
     }
   },
   computed: {
@@ -69,8 +67,9 @@ export default {
   },
   created() {
     DataService.getRules().then( (response) => { this.rules = response; } );
+    DataService.getRaces().then ( (response) => { this.races = response; } );
+    DataService.getClasses().then ( (response) => { this.classes = response; } );
     DataService.getEquipment().then( (response) => { this.equipment = response; } );
-    // DataService.getEquipment().then( (response) => { this.equipment = response; } );
 
     UserService.getAdminBoard().then(
       (response) => { this.content = response.data; },
@@ -90,7 +89,7 @@ export default {
 
       DataService.getMonster({"Name": name})
       .then(response => {
-        // console.log("Orig", response);
+        console.log("Orig", response);
         let tempNum = 0;
 let perm = {};
         let creature = {
@@ -98,9 +97,10 @@ let perm = {};
           "attributes": { "Str": response.Str, "Dex": response.Dex, "Con": (response.Con == "-" ? 0 : response.Con), "Int": response.Int, "Wis": response.Wis, "Cha": response.Cha },
           "basics": {
             "cr": response.CR,
-            "size": response.Size.toLowerCase(),
             "alignment": response.Alignment,
             "environment": response.Environment,
+            "size": response.Size.toLowerCase(),
+            "speed": parseInt( response.Speed.replace(/\D+$/g, "") ),
             "type": {},
           },
           "feats": [],
@@ -292,7 +292,8 @@ perm.defense.speed = creature.defense.speed;
           if ( Object.keys(this.equipment.Armor).includes(item) ) {
             creature.bonuses[item] = {};
             creature.bonuses[item].type = "Armor";
-            creature.bonuses[item].target = "AC";
+            creature.bonuses[item].targets = this.rules.bonuses.Armor.targets;
+            creature.bonuses[item].subtargets = this.rules.bonuses.Armor.subtargets;
             creature.bonuses[item].bonus = this.equipment.Armor[item]["AC Bonus"];
             creature.equipment[item] = this.equipment.Armor[item];
             creature.equipment[item].Extras = extras;
@@ -300,7 +301,8 @@ perm.defense.speed = creature.defense.speed;
           else if ( Object.keys(this.equipment.Shields).includes(item) ) {
             creature.bonuses[item] = {};
             creature.bonuses[item].type = "Shield";
-            creature.bonuses[item].target = "AC";
+            creature.bonuses[item].targets = this.rules.bonuses.Shield.targets;
+            creature.bonuses[item].subtargets = this.rules.bonuses.Shield.subtargets;
             creature.bonuses[item].bonus = this.equipment.Shields[item]["AC Bonus"];
             creature.equipment[item] = this.equipment.Shields[item];
             creature.equipment[item].Extras = extras;
@@ -354,10 +356,12 @@ perm.feats = creature.feats;
         }
         creature.bonuses["Natural Armor"] = {
           type: "Natural Armor",
-          target: "AC",
+          targets: this.rules.bonuses["Natural Armor"].targets,
+          subtargets: this.rules.bonuses["Natural Armor"].subtargets,
           bonus: tempNum
         };
         creature.active["Natural Armor"] = creature.bonuses["Natural Armor"];
+
 
 
 perm.bonuses = creature.bonuses;
@@ -435,7 +439,7 @@ perm.active = creature.active;
         // console.log(creature.attacks.melee);
 
         // TODO: Set up as listAttack(type) {} ?
-        let NatAtkNum = 0;
+        // let NatAtkNum = 0;
         for (let [name, atk] of Object.entries(creature.attacks.melee)) {
           let atkBonus = creature.bab;
           let dmgBonus = 0;
@@ -449,7 +453,7 @@ perm.active = creature.active;
           }
 
           // console.log(atk);
-          NatAtkNum += (atk.Proficiency == "Natural") ? 1 : 0;
+          // NatAtkNum += (atk.Proficiency == "Natural") ? 1 : 0;
           if (atk.Category == "Two-Handed") {
             dmgBonus += creature.attributes.StrMod * 1.5
           }
@@ -473,8 +477,8 @@ perm.active = creature.active;
         }
 
         // TODO:
-        if (NatAtkNum == 1) {
-          console.log(NatAtkNum);
+        // if (NatAtkNum == 1) {
+        //   console.log(NatAtkNum);
           /*
           loop through atks
           find nat atk
@@ -485,7 +489,7 @@ perm.active = creature.active;
             dmgBonus += creature.attributes.StrMod / 2;
           }
           */
-        }
+        // }
 
 
         // for (let [name, atk] of Object.entries(creature.attacks.ranged)) {
@@ -543,7 +547,7 @@ perm.skills = creature.skills;
 
 
 
-        console.table("new", creature);
+        // console.table("new", creature);
         console.table("SOURCE", perm);
         // this.creatureSetup(response);
 

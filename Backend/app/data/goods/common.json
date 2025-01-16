@@ -1,14 +1,4 @@
 {
-  "RegEx": {
-    "site": "https://regex101.com/",
-    "name": "Potion of Cure Light Wounds (cr, 50 gp)",
-    "item name": "/Potion of ([\w+\s]+)/gm",
-    "item gp": "/\d+\s[pp|gp|sp|cp]/gm",
-    "item weight": "/\d+\slb/gm",
-
-  },
-
-  
   "Potion, Cure Light Wounds": {
     "cost": 50,
     "weight": 0.1,
@@ -24,5 +14,5 @@
     "weight": 0.1,
     "description": "A small vial containing a cure serious wounds spell in liquid form. The vial is 2 inches tall and 1 inch wide, containing one ounce of liquid. Drinking this as a standard action will heal 3d8 + 5 damage and provoke an Attack of Opportunity."
   }
-  
+
 }

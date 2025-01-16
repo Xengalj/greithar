@@ -92,7 +92,31 @@ class DataService {
 
   // return the list of classes
   getClasses() {
-    return axios.post(API_URL + 'classes',
+    return axios.get(API_URL + 'classes',
+    { headers: authHeader() })
+    .then(response => {
+      return response.data;
+    })
+    .catch(err => {
+      return err;
+    });
+  }
+
+  // return the list of feats
+  getFeats() {
+    return axios.get(API_URL + 'feats',
+    { headers: authHeader() })
+    .then(response => {
+      return response.data;
+    })
+    .catch(err => {
+      return err;
+    });
+  }
+
+  // return the list of races
+  getRaces() {
+    return axios.get(API_URL + 'races',
     { headers: authHeader() })
     .then(response => {
       return response.data;

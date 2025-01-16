@@ -43,6 +43,9 @@
             <el-col :span="22" class="center"> {{ basics.alignment }} {{ basics.size }} ({{ basics.sizeStats.space }}) </el-col>
           </el-row>
           <el-row>
+            <!-- <el-col :span="22" class="center"> {{ levels.class }} </el-col> -->
+          </el-row>
+          <el-row>
             <el-col class="center">
               <el-tag size="small" effect="dark" type="primary">{{basics.type.name}}</el-tag>
               <el-tag v-for="subtype in basics.type.subtypes" :key="subtype" size="small" effect="dark" type="info">{{ subtype }}</el-tag>
@@ -70,40 +73,80 @@
         <el-col :span="3" class="center center-vert"> <g-icon iconSize="32px" iconName="Armor" /> </el-col>
 
         <el-col :span="7" class="center">
-          HP: {{ health }}
-          <br><br>
-          HP: {{ creature.health.total }} ({{ this.original.HDNum }}{{ creature.health.HDString }}{{ creature.health.bonus}} / {{ this.original.HP }})
-          <br><br>
-          AC: {{ creature.ac.total }} / {{ this.original.AC ? this.original.AC.total : 10 }}
-          <br>
-          Touch: {{ creature.ac.touch }}
-          <br>
-          Flat Footed: {{ creature.ac.flat }}
-          <br>
-          CMD: {{ 10 + this.original.BAB + creature.abilities.StrMod + creature.abilities.DexMod + (this.original.AC ? this.original.AC.dodge : 0) + creature.size["cmb / cmd"] }}
+          <el-tooltip placement="top" effect="light">
+            <el-tag size="small" effect="dark" type="danger">
+              HP: {{ health.roll + health.bonus }}
+            </el-tag>
+
+            <template #content>
+              <span v-for="hd in health.hd" :key="hd"> {{ hd }} + </span> {{ health.bonus }}
+            </template>
+          </el-tooltip>   <br>
+          <el-tooltip placement="top" effect="light">
+            AC: {{ ac.total.num }}
+            <template #content>
+              <span v-for="bonus in ac.total.sources" :key="bonus"> {{ bonus+" " }} </span>
+            </template>
+          </el-tooltip>   <br>
+          <el-tooltip placement="top" effect="light">
+            Touch: {{ ac.touch.num }}
+            <template #content>
+              <span v-for="bonus in ac.touch.sources" :key="bonus"> {{ bonus+" " }} </span>
+            </template>
+          </el-tooltip>   <br>
+          <el-tooltip placement="top" effect="light">
+            Flat Footed: {{ ac.flat.num }}
+            <template #content>
+              <span v-for="bonus in ac.flat.sources" :key="bonus"> {{ bonus+" " }} </span>
+            </template>
+          </el-tooltip>   <br>
+        </el-col>
+
+
+        <el-col :span="7" class="center">
+          <el-tooltip placement="top" effect="light">
+            CMD: {{ cmd.total }}
+            <template #content>
+              <span v-for="bonus in cmd.sources" :key="bonus"> {{ bonus+" " }} </span>
+            </template>
+          </el-tooltip>   <br>
+          <el-tooltip placement="top" effect="light">
+            Fort: +{{ saves.fort.total }}
+            <template #content>
+              <span v-for="bonus in saves.fort.sources" :key="bonus"> {{ bonus+" " }} </span>
+            </template>
+          </el-tooltip>   <br>
+          <el-tooltip placement="top" effect="light">
+            Ref: +{{ saves.ref.total }}
+            <template #content>
+              <span v-for="bonus in saves.ref.sources" :key="bonus"> {{ bonus+" " }} </span>
+            </template>
+          </el-tooltip>   <br>
+          <el-tooltip placement="top" effect="light">
+            Will: +{{ saves.will.total }}
+            <template #content>
+              <span v-for="bonus in saves.will.sources" :key="bonus"> {{ bonus+" " }} </span>
+            </template>
+          </el-tooltip>
         </el-col>
 
         <el-col :span="7" class="center">
-          <br><br>
-          Fort: {{ creature.saves.fort }} / {{ this.original.Fort }}
-          <br>
-          Ref: {{ creature.saves.ref}} / {{ this.original.Ref }}
-          <br>
-          Will: {{ creature.saves.will}} / {{ this.original.Will }}
-          <br>
-          CMB: {{ this.original.BAB + creature.abilities.StrMod + creature.size["cmb / cmd"] }}
-          <br>
-          <span v-if="this.original.dr"> DR: {{ this.original.dr }} </span>
-          <br>
-          <span v-if="this.original.sr"> SR: {{ this.original.sr }} </span>
-        </el-col>
-
-        <el-col :span="7" class="center">
-          Init: {{ creature.init }}
-          <br>
-          Senses: <span v-for="item in creature.senses" :key="item.id"> {{ item }}, </span>
-          <br>
-          Speed: {{ this.original.Speed }}
+          <el-tooltip placement="top" effect="light">
+            Init: +{{ init.total }}
+            <template #content>
+              <span v-for="bonus in init.sources" :key="bonus"> {{ bonus+" " }} </span>
+            </template>
+          </el-tooltip>   <br>
+          <el-tooltip placement="top" effect="light" v-if="speed.sources[0]">
+            Speed: {{ speed.total }} ft.
+            <template #content>
+              <span v-for="bonus in speed.sources" :key="bonus"> {{ bonus+" " }} </span>
+            </template>
+          </el-tooltip>
+          <span v-else>
+            Speed: {{ speed.total }} ft.
+          </span>         <br>
+          Senses: {{ senses }} <br>
         </el-col>
       </el-row>
 
@@ -140,9 +183,19 @@
         <el-col :span="3" class="center">
           <g-icon iconSize="32px" iconName="swordShield" />
         </el-col>
-
         <el-col :span="7" class="center">
           <div class="center-horz">Melee</div>
+          BAB {{ bab }}<br>
+          CMB {{ cmb }}
+          <br><br><br>
+
+                    CMB: {{ this.original.BAB + creature.abilities.StrMod + creature.size["cmb / cmd"] }}
+                    <br>
+                    <span v-if="this.original.dr"> DR: {{ this.original.dr }} </span>
+                    <br>
+                    <span v-if="this.original.sr"> SR: {{ this.original.sr }} </span>
+
+
           Reach: {{ this.original.Reach }} ft.
           <div v-for="atk in creature.melee" :key="atk.id">
             <span v-if="atk.atkNum"> {{ atk.atkNum }} </span> {{ atk.atkName }} {{ atk.atkMod }} ({{ atk.dmgDie }}{{ atk.dmgMod }}<span v-if="atk.bonus"> {{ atk.bonus }}</span>)<br>
@@ -256,34 +309,6 @@ export default {
   props: {
     creatureName: { type: String, default: () => "Kobold" },
     source: { type: Object },
-    // , default: () => ({
-      // "name": "",
-      // "attributes": {
-      //   "Str": 0, "StrMod": -5,
-      //   "Dex": 0, "DexMod": -5,
-      //   "Con": 0, "ConMod": -5,
-      //   "Int": 0, "IntMod": -5,
-      //   "Wis": 0, "WisMod": -5,
-      //   "Cha": 0, "ChaMod": -5
-      // },
-      // "basics": {
-      //   "cr": 0,
-      //   "alignment": "N",
-      //   "size": "medium",
-      //   "sizeStats": {},
-      //   "type": { "name": "", "levels": 0, "hd": 0, "subtypes": [] },
-      //   "environment": "any"
-      // },
-      // "classes": {  },
-      //
-      // "defense": {  },
-      // "equipment": {  },
-      // "feats": {  },
-      // "skills": {  },
-      //
-      // "active": {  },
-      // "bonuses": {  }
-    // }) }
   },
   data() {
     return {
@@ -309,6 +334,15 @@ export default {
       original: {}
     }
   },
+  created() {
+    DataService.getRules().then ( (response) => { this.rules = response; });
+    DataService.getClasses().then ( (response) => { this.classes = response; });
+    DataService.getEquipment().then ( (response) => { this.equipment = response; });
+  },
+  mounted() {
+    this.getCreature({Name: this.creatureName});
+  },
+
 
   computed: {
     title() { return this.source.name ? this.source.name.concat(" CR ", this.source.basics.cr) : ""; },
@@ -328,15 +362,15 @@ export default {
       return basics;
     },
     health() {
-      let health = { "bonus": 0, "total": 0, "hd": [] };
-
-      if (this.source.classes) {
+      let health = { "bonus": 0, "roll": 0, "hd": [] };
+      if (this.source.name) {
         let firstLevel = true;
 
+        // Racial HD Check
         if (this.basics.type.levels) { health.hd.push( `${this.basics.type.levels}d${this.basics.type.hd}` ); }
         for (let i = 1; i < this.basics.type.levels+1; i++) {
           firstLevel = false;
-          health.total += this.basics.type.hd / 2 + 0.5;
+          health.roll += this.basics.type.hd / 2 + 0.5;
 
           if (this.basics.type.name == "undead") {
             health.bonus += this.attributes.ChaMod;
@@ -359,26 +393,13 @@ export default {
 
         // Class Loop
         for (let [name, cClass] of Object.entries(this.source.classes)) {
-          // get class info into class
-          cClass = {
-            "name": name,
-            "levels": cClass.levels,
-            "hd": 10,
-            "ranks": 2,
-            "skills": [ "Climb (Str)", "Craft (Int)", "Handle Animal (Cha)", "Intimidate (Cha)", "Profession (Wis)", "Ride (Dex)", "Swim (Str)" ],
-            "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "heavy armor", "shields" ],
-            "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
-            "bab": 1, // Fast BAB: HD*1
-            "fort": { "mult": 0.5, "bonus": 2 }, // Good Save: HD/2 +2
-            "ref": { "mult": 0.33, "bonus": 0 }, // Poor Save: HD/3
-            "will": { "mult": 0.33, "bonus": 0 }
-          };
-
-          health.hd.push( `${cClass.levels}d${cClass.hd}` );
+          let levels = cClass.levels;
+          cClass = this.classes[name] ? this.classes[name] : { "hd": 0 };
+          health.hd.push( `${levels}d${cClass.hd}` );
 
           // Level Loop
-          for (let i = 1; i < cClass.levels+1; i++) {
-            health.total += firstLevel ? cClass.hd : cClass.hd / 2 + 0.5;
+          for (let i = 1; i < levels+1; i++) {
+            health.roll += firstLevel ? cClass.hd : cClass.hd / 2 + 0.5;
             if (this.basics.type.name == "undead") {
               health.bonus += this.attributes.ChaMod;
             } else if (this.basics.type.name != "construct") {
@@ -388,11 +409,238 @@ export default {
         }
       } // end if have source
 
-      health.total = Math.floor(health.total);
+      health.roll = Math.floor(health.roll);
       return health;
     },
+    ac() {
+      let ac = { "total": { "num": 10, "sources": [] }, "touch": { "num": 10, "sources": [] }, "flat": { "num": 10, "sources": [] } };
+      if (this.source.name) {
+        // total = All
+        ac.total.num += this.attributes.DexMod;
+        ac.total.sources.push(`+${this.attributes.DexMod} Dex`);
+        if (this.basics.size != "medium") {
+          ac.total.num += this.basics.sizeStats["ac / atk"];
+          ac.total.sources.push(`+${this.basics.sizeStats["ac / atk"]} Size`);
+        }
+
+        // touch = creature.ac.total - bonus.armor - bonus.shield - bonus.natural;
+        ac.touch.num += this.attributes.DexMod;
+        ac.touch.sources.push(`+${this.attributes.DexMod} Dex`);
+        if (this.basics.size != "medium") {
+          ac.touch.num += this.basics.sizeStats["ac / atk"];
+          ac.touch.sources.push(`+${this.basics.sizeStats["ac / atk"]} Size`);
+        }
+
+        // flat = creature.ac.total - bonus.dex - bonus.dodge;
+        if (this.basics.size != "medium") {
+          ac.flat.num += this.basics.sizeStats["ac / atk"];
+          ac.flat.sources.push(`+${this.basics.sizeStats["ac / atk"]} Size`);
+        }
+
+        // Bonuses Loop
+        for (let [name, bonus] of Object.entries(this.source.active)) {
+          if (bonus.targets.includes("AC")) {
+            ac.total.num += bonus.bonus;
+            ac.total.sources.push(`+${bonus.bonus} ${name}`);
+            for (let subtarget of bonus.subtargets) {
+              ac[subtarget].num += bonus.bonus;
+              ac[subtarget].sources.push(`+${bonus.bonus} ${name}`);
+            }
+          }
+        }
+
+      }
+      return ac;
+    },
+    saves() {
+      let saves = { "fort": { "total": 0, "sources": [] }, "ref": { "total": 0, "sources": [] }, "will": { "total": 0, "sources": [] } };
+      if (this.source.name) {
+        let total, bName = "";
+        for (let [name, save] of Object.entries(saves)) {
+
+          // Abilities
+          total = 0;
+          switch (name) {
+            case "fort":
+              total += (this.basics.type.name == "undead") ? this.attributes.ChaMod : this.attributes.ConMod;
+              bName = (this.basics.type.name == "undead") ? "Cha" : "Con";
+              break;
+            case "ref":
+              total += (name == "ref") ? this.attributes.DexMod : 0;
+              bName = "Dex";
+              break;
+            case "will":
+              total += (name == "will") ? this.attributes.WisMod : 0;
+              bName = "Dex";
+              break;
+          }
+          total = Math.floor(total);
+          if (total > 0) {
+            save.total += total;
+            save.sources.push(`+${total} ${bName}`);
+          }
+
+          // Racial HD Check
+          if (this.basics.type.levels && this.rules.creature_types) {
+            bName = this.basics.type.name;
+            total = 0;
+            let saveMult = this.rules.creature_types[bName][name].mult;
+            total += saveMult * this.basics.type.levels;
+            total += this.rules.creature_types[bName][name].bonus;
+            total = Math.floor(total);
+            if (total > 0) {
+              save.total += total;
+              save.sources.push(`+${total} ${bName}`);
+            }
+          }
+
+          // Class Loop
+          for (let [cName, cClass] of Object.entries(this.source.classes)) {
+            if (this.classes[cName]) {
+              let levels = cClass.levels;
+              cClass = this.classes[cName];
+              total = 0;
+              let saveMult = cClass[name].mult;
+              total += saveMult * levels;
+              total += cClass[name].bonus;
+              total = Math.floor(total);
+              if (total > 0) {
+                save.total += total;
+                save.sources.push(`+${total} ${cName}`);
+              }
+            }
+          }
+
+          // Bonus Loop
+          for (let [n, bonus] of Object.entries(this.source.active)) {
+            bName = n;
+            total = 0;
+            if (bonus.targets.includes("Saves") && bonus.subtargets.includes(name) ) {
+              save.total += bonus.bonus;
+              save.sources.push(`+${bonus.bonus} ${bName}`);
+            }
+          }
+        }
+
+      }
+      saves.fort.total = Math.floor(saves.fort.total);
+      saves.ref.total = Math.floor(saves.ref.total);
+      saves.will.total = Math.floor(saves.will.total);
+      return saves;
+    },
+    cmd() {
+      let cmd = { "total": 10, "sources": [] };
+      if (this.source.name) {
+        if (this.bab > 0) {
+          cmd.sources.push(`+${this.bab} BAB`);
+          cmd.total += this.bab;
+        }
+        if (this.attributes.StrMod > 0) {
+          cmd.sources.push(`+${this.attributes.StrMod} Str`);
+          cmd.total += this.attributes.StrMod;
+
+        }
+        if (this.attributes.DexMod) {
+          cmd.sources.push(`+${this.attributes.DexMod} Dex`);
+          cmd.total += this.attributes.DexMod;
+        }
+        if (this.basics.sizeStats["cmb / cmd"]) {
+          cmd.sources.push(`+${this.basics.sizeStats["cmb / cmd"]} Size`);
+          cmd.total += this.basics.sizeStats["cmb / cmd"];
+        }
+        for (let [name, bonus] of Object.entries(this.source.active)) {
+          if (bonus.targets.includes("CMD")) {
+            cmd.total += bonus.bonus;
+            cmd.sources.push(`+${bonus.bonus} ${name}`);
+          }
+        }
+      }
+      return cmd;
+    },
+    cmb() {
+      let cmd = { "total": 0, "sources": [] };
+      if (this.source.name) {
+        if (this.bab > 0) {
+          cmd.sources.push(`+${this.bab} BAB`);
+          cmd.total += this.bab;
+        }
+        if (["fine", "diminuitive", "tiny"].includes(this.basics.size)) {
+          if (this.attributes.DexMod > 0) {
+            cmd.sources.push(`+${this.attributes.DexMod} Str`);
+            cmd.total += this.attributes.DexMod;
+          }
+        } else {
+          if (this.attributes.StrMod > 0) {
+            cmd.sources.push(`+${this.attributes.StrMod} Str`);
+            cmd.total += this.attributes.StrMod;
+          }
+        }
+        if (this.basics.sizeStats["cmb / cmd"]) {
+          cmd.sources.push(`+${this.basics.sizeStats["cmb / cmd"]} Size`);
+          cmd.total += this.basics.sizeStats["cmb / cmd"];
+        }
+        for (let [name, bonus] of Object.entries(this.source.active)) {
+          if (bonus.targets.includes("CMB")) {
+            cmd.total += bonus.bonus;
+            cmd.sources.push(`+${bonus.bonus} ${name}`);
+          }
+        }
+      }
+      return cmd;
+    },
+    init() {
+      let init = { "total": 0, "sources": [] };
+      if (this.source.name) {
+        if (this.attributes.DexMod > 0) {
+          init.sources.push(`+${this.attributes.DexMod} Dex`);
+          init.total += this.attributes.DexMod;
+        }
+
+        for (let [name, bonus] of Object.entries(this.source.active)) {
+          if (bonus.targets.includes("Checks") && bonus.subtargets.includes("dex")) {
+            init.total += bonus.bonus;
+            init.sources.push(`+${bonus.bonus} ${name}`);
+          }
+        }
+      }
+      return init;
+    },
+    senses() { return this.source.name ? this.source.defense.senses : []; },
+    speed() {
+      let speed = { "total": 0, "sources": [] };
+      if (this.source.name) {
+        speed.total += this.source.basics.speed;
+
+        for (let [name, bonus] of Object.entries(this.source.active)) {
+          if (bonus.targets.includes("Speed")) {
+            speed.total += bonus.bonus;
+            speed.sources.push(`+${bonus.bonus} ${name}`);
+          }
+        }
+      }
+      console.log(speed);
+      return speed;
+    },
+
+
+
     bab() {
-      return 0;
+      let bab = 0;
+      if (this.source.name) {
+        // Racial HD Check
+        if (this.basics.type.levels) {
+          let racialBAB = this.rules.creature_types ? this.rules.creature_types[this.basics.type.name].bab : 0;
+          bab += racialBAB * this.basics.type.levels;
+        }
+
+        // Class Loop
+        for (let [name, cClass] of Object.entries(this.source.classes)) {
+          let classBAB = this.classes[name] ? this.classes[name].bab : 0;
+          bab += classBAB * cClass.levels;
+        }
+      }
+      bab = Math.floor(bab);
+      return bab;
     },
 
 
@@ -579,19 +827,11 @@ export default {
       return creature;
     }
   },
-  created() {
-    DataService.getRules().then ( (response) => { this.rules = response; });
-    // DataService.getClasses().then ( (response) => { this.equipment = response; });
-    DataService.getEquipment().then ( (response) => { this.equipment = response; });
-  },
 
 
 
 
 
-  mounted() {
-    this.getCreature({Name: this.creatureName});
-  },
   updated() {
     if (this.creatureName != this.original.Name) {
       this.getCreature({Name: this.creatureName});
@@ -629,6 +869,8 @@ export default {
       this.original.Ranged = this.original.Ranged ? this.original.Ranged.split(',') : null;
       this.original.Special = this.original.Special ? this.original.Special : null;
     },
+
+
 
 
 
