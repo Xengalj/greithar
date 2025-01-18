@@ -103,13 +103,15 @@ let perm = {};
             "speed": parseInt( response.Speed.replace(/\D+$/g, "") ),
             "type": {},
           },
+          "skills": {},
           "classes": {},
+          "equipment": {},
+          "abilities": {},
+          "bonuses": {},    // may remove to be built from equips & abils
 
 
 
           "feats": [],
-          "skills": [],
-
           "health": { total: 0, bonus: 0 },
           "bab": 0,   // TODO: Remove
           "attacks": {
@@ -118,11 +120,7 @@ let perm = {};
             "special": {},
           },
           "magic": [],
-
-          "abilities": {},
-          "bonuses": {},
-          "active": {},   // active bonuses
-          "equipment": {}
+          "active": {}   // active bonuses
         };
 
 
@@ -162,7 +160,7 @@ perm.others = {};
 
         // Class 1
         if (response.Class1) {
-creature.classes[response.Class1] = { "levels": response.Class1_Lvl };
+          creature.classes[response.Class1] = { "levels": response.Class1_Lvl };
 perm.classes[response.Class1] = { "levels": response.Class1_Lvl };
           // subtract class HD from total HD (racialHD)
           racialHD -= response.Class1_Lvl;
@@ -171,7 +169,7 @@ perm.classes[response.Class1] = { "levels": response.Class1_Lvl };
         // Class 2
         if (response.Class2) {
           console.log("MULTICLASS!!");
-creature.classes[response.Class2] = { "levels": response.Class2_Lvl };
+          creature.classes[response.Class2] = { "levels": response.Class2_Lvl };
 perm.classes[response.class2] = { "levels": response.Class2_Lvl };
           // subtract class HD from total HD (racialHD)
           racialHD -= response.Class2_Lvl;
@@ -190,6 +188,7 @@ perm.classes[response.class2] = { "levels": response.Class2_Lvl };
           creature.basics.type.subtypes.push(response.Race);
           // TODO: add traits loop for races
           // for (let [name, trait] of Object.entries(type.traits)) {
+          // add to abilities
         }
         for (let i = 1; i < 7; i++) {
           if (response[`subtype${i}`]) {
@@ -507,11 +506,27 @@ perm.active = creature.active;
 
         // MAGIC
 
-        // SKILLS
-        for (let skill of response.Skills.split(',')) {
-          skill = skill[0] === " " ? skill.slice(1) : skill;
-          creature.skills.push(skill);
-        }
+        // Skills
+        let skills = response.Skills.split(',');
+        console.log(skills);
+        skills.forEach(skill => {
+          console.log(`Orig Skill = ${skill}`);
+          let name = skill.slice(0, skill.search(/[+|-]/g)).trim();
+
+          let bonus = skill.slice(skill.search(/[+|-]/g)-1);
+          if (bonus.indexOf('(') > 0) { bonus = bonus.slice(0, bonus.indexOf('(')-1); }
+
+          let abil = this.rules.skills[name].ability;
+          bonus -= creature.attributes[abil.concat("Mod")];
+
+          /*
+            loop on bonuses
+            if armor || shield && active
+            bonus -= bonus.Penalty
+          */
+
+          console.log(`New Skill = ${name} ${bonus}`);
+        });
 perm.skills = creature.skills;
 
 

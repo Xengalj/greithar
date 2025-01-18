@@ -473,6 +473,44 @@
       "will": { "mult": 0.33, "bonus": 0 },
       "skills": []
     }
+  },
+
+  "skills": {
+    "Acrobatics": { "untrained": true,  "armor_pen": true,  "ability": "Dex" },
+    "Appraise": { "untrained": true,  "armor_pen": false,  "ability": "Int" },
+    "Bluff": { "untrained": true,  "armor_pen": false,  "ability": "Cha" },
+    "Climb": { "untrained": true,  "armor_pen": true,  "ability": "Str" },
+    "Craft": { "untrained": true,  "armor_pen": false,  "ability": "Int" },
+    "Diplomacy": { "untrained": true,  "armor_pen": false,  "ability": "Cha" },
+    "Disable Device": { "untrained": false,  "armor_pen": true,  "ability": "Dex" },
+    "Disguise": { "untrained": true,  "armor_pen": false,  "ability": "Cha" },
+    "Escape Artist": { "untrained": true,  "armor_pen": true,  "ability": "Dex" },
+    "Fly": { "untrained": true,  "armor_pen": true,  "ability": "Dex" },
+    "Handle Animal": { "untrained": false,  "armor_pen": false,  "ability": "Cha" },
+    "Heal": { "untrained": true,  "armor_pen": false,  "ability": "Wis" },
+    "Intimidate": { "untrained": true,  "armor_pen": false,  "ability": "Cha" },
+    "Knowledge (arcana)": { "untrained": false,  "armor_pen": false,  "ability": "Int" },
+    "Knowledge (dungeoneering)": { "untrained": false,  "armor_pen": false,  "ability": "Int" },
+    "Knowledge (engineering)": { "untrained": false,  "armor_pen": false,  "ability": "Int" },
+    "Knowledge (geography)": { "untrained": false,  "armor_pen": false,  "ability": "Int" },
+    "Knowledge (history)": { "untrained": false,  "armor_pen": false,  "ability": "Int" },
+    "Knowledge (local)": { "untrained": false,  "armor_pen": false,  "ability": "Int" },
+    "Knowledge (nature)": { "untrained": false,  "armor_pen": false,  "ability": "Int" },
+    "Knowledge (nobility)": { "untrained": false,  "armor_pen": false,  "ability": "Int" },
+    "Knowledge (planes)": { "untrained": false,  "armor_pen": false,  "ability": "Int" },
+    "Knowledge (religion)": { "untrained": false,  "armor_pen": false,  "ability": "Int" },
+    "Linguistics": { "untrained": false,  "armor_pen": false,  "ability": "Int" },
+    "Perception": { "untrained": true,  "armor_pen": false,  "ability": "Wis" },
+    "Perform": { "untrained": true,  "armor_pen": false,  "ability": "Cha" },
+    "Profession": { "untrained": false,  "armor_pen": false,  "ability": "Wis" },
+    "Ride": { "untrained": true,  "armor_pen": true,  "ability": "Dex" },
+    "Sense Motive": { "untrained": true,  "armor_pen": false,  "ability": "Wis" },
+    "Sleight of Hand": { "untrained": false,  "armor_pen": true,  "ability": "Dex" },
+    "Spellcraft": { "untrained": false,  "armor_pen": false,  "ability": "Int" },
+    "Stealth": { "untrained": true,  "armor_pen": true,  "ability": "Dex" },
+    "Survival": { "untrained": true,  "armor_pen": false,  "ability": "Wis" },
+    "Swim": { "untrained": true,  "armor_pen": true,  "ability": "Str" },
+    "Use Magic Device": { "untrained": false,  "armor_pen": false,  "ability": "Cha" }
   }
 
 
