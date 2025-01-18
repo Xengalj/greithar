@@ -195,29 +195,13 @@ perm.classes[response.class2] = { "levels": response.Class2_Lvl };
             creature.basics.type.subtypes.push(response[`subtype${i}`]);
           }
         }
-
-        let senses = [ "Perception +#" ];
+        // let senses = [ "Perception +#" ];
         for (let [name, trait] of Object.entries(type.traits)) {
-          switch (name) {
-            case "Darkvision":
-              senses.push(trait);
-              creature.abilities[name] = trait;
-              break;
-            case "Low-Light Vision":
-              senses.push(trait);
-              creature.abilities[name] = trait;
-              break;
-            case "Scent":
-              senses.push(trait);
-              creature.abilities[name] = trait;
-              break;
-            default:
-              creature.abilities[name] = trait;
-          }
+          creature.abilities[name] = trait;
         }
 
-        creature.defense = { "senses": senses };
-        perm.defense = creature.defense;
+        // creature.defense = { "senses": senses };
+        // perm.defense = creature.defense;
 
 
         /***************************\
@@ -259,25 +243,27 @@ perm.classes[response.class2] = { "levels": response.Class2_Lvl };
 
           // Add items to bonuses and equipment
           if ( Object.keys(this.equipment.Armor).includes(item) ) {
+            creature.equipment[item] = this.equipment.Armor[item];
+            creature.equipment[item].Extras = extras;
+
             creature.bonuses[item] = {};
             creature.bonuses[item].type = "Armor";
             creature.bonuses[item].targets = this.rules.bonuses.Armor.targets;
             creature.bonuses[item].subtargets = this.rules.bonuses.Armor.subtargets;
             creature.bonuses[item].bonus = this.equipment.Armor[item]["AC Bonus"];
-            creature.equipment[item] = this.equipment.Armor[item];
-            creature.equipment[item].Extras = extras;
           }
           else if ( Object.keys(this.equipment.Shields).includes(item) ) {
-            creature.bonuses[item] = {};
-            creature.bonuses[item].type = "Shield";
-            creature.bonuses[item].targets = this.rules.bonuses.Shield.targets;
-            creature.bonuses[item].subtargets = this.rules.bonuses.Shield.subtargets;
-            creature.bonuses[item].bonus = this.equipment.Shields[item]["AC Bonus"];
             creature.equipment[item] = this.equipment.Shields[item];
             creature.equipment[item].Extras = extras;
             if (this.equipment.Shields[item]["Critical"] > 0) {
               creature.attacks.melee[item] = creature.equipment[item];
             }
+            
+            creature.bonuses[item] = {};
+            creature.bonuses[item].type = "Shield";
+            creature.bonuses[item].targets = this.rules.bonuses.Shield.targets;
+            creature.bonuses[item].subtargets = this.rules.bonuses.Shield.subtargets;
+            creature.bonuses[item].bonus = this.equipment.Shields[item]["AC Bonus"];
           }
           else if ( Object.keys(this.equipment.Weapons).includes(item) ) {
             creature.equipment[item] = this.equipment.Weapons[item];
@@ -298,7 +284,11 @@ perm.equipment = creature.equipment;
         \***************************/
         // FEATS
         for (let feat of response.Feats.split(',')) {
+           // item = item.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
           feat = feat[0] === " " ? feat.slice(1) : feat;
+
+                    // creature.abilities[feat] = {};
+
           creature.feats.push(feat);
         }
 perm.feats = creature.feats;
@@ -341,7 +331,7 @@ perm.active = creature.active;
         // console.log(response.Melee);
         // TODO:
         /*
-        split melee str into atks
+        split melee string into atks
         loop each,
         if atk = wpn, skip
 
