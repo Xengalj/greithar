@@ -1,6 +1,6 @@
 {
   "alchemist": {
-    "skills": [ "Appraise (Int)", "Craft (any) (Int)", "Disable Device (Dex)", "Fly (Dex)", "Heal (Wis)", "Knowledge (arcana) (Int)", "Knowledge (nature) (Int)", "Perception (Wis)", "Profession (Wis)", "Sleight of Hand (Dex)", "Spellcraft (Int)", "Survival (Wis)", "Use Magic Device (Cha)" ],
+    "skills": [ "Appraise", "Craft", "Disable Device", "Fly", "Heal", "Knowledge (arcana)", "Knowledge (nature)", "Perception", "Profession", "Sleight of Hand", "Spellcraft", "Survival", "Use Magic Device" ],
     "proficiency": [ "simple weapons", "bombs", "light armor" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "hd": 8, "ranks": 4, "bab":  0.75,
@@ -34,7 +34,7 @@
 
   "arcanist": {
     "Parent Classes": [ "Sorcerer", "Wizard" ],
-    "skills": [ "Appraise (Int)", "Craft (Int)", "Fly (Dex)", "Knowledge (all) (Int)", "Linguistics (Int)", "Profession (Wis)", "Spellcraft (Int)", "Use Magic Device (Cha)" ],
+    "skills": [ "Appraise", "Craft", "Fly", "Knowledge (arcana)", "Knowledge (dungeoneering)", "Knowledge (engineering)", "Knowledge (geography)", "Knowledge (history)", "Knowledge (local)", "Knowledge (nature)", "Knowledge (nobility)", "Knowledge (planes)", "Knowledge (religion)", "Linguistics (Int)", "Profession", "Spellcraft", "Use Magic Device" ],
     "proficiency": [ "simple weapons" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "bab":  0.5, "hd": 6, "ranks": 2,
@@ -74,7 +74,7 @@
 
 
   "barbarian": {
-    "skills": [ "Acrobatics (Dex)", "Climb (Str)", "Craft (Int)", "Handle Animal (Cha)", "Intimidate (Cha)", "Knowledge (nature) (Int)", "Perception (Wis)", "Ride (Dex)", "Survival (Wis)", "Swim (Str)" ],
+    "skills": [ "Acrobatics", "Climb", "Craft", "Handle Animal", "Intimidate", "Knowledge (nature)", "Perception", "Ride", "Survival", "Swim" ],
     "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "shields" ],
     "alignment": [ "NG", "CG", "N", "CN", "NE", "CE" ],
     "bab":  1, "hd": 12, "ranks": 4,
@@ -91,7 +91,7 @@
 
 
   "bard": {
-    "skills": [ "Acrobatics (Dex)", "Appraise (Int)", "Bluff (Cha)", "Climb (Str)", "Craft (Int)", "Diplomacy (Cha)", "Disguise (Cha)", "Escape Artist (Dex)", "Intimidate (Cha)", "Knowledge (all) (Int)", "Linguistics (Int)", "Perception (Wis)", "Perform (Cha)", "Profession (Wis)", "Sense Motive (Wis)", "Sleight of Hand (Dex)", "Spellcraft (Int)", "Stealth (Dex)", "Use Magic Device (Cha)" ],
+    "skills": [ "Acrobatics", "Appraise", "Bluff", "Climb", "Craft", "Diplomacy", "Disguise", "Escape Artist", "Intimidate", "Knowledge (arcana)", "Knowledge (dungeoneering)", "Knowledge (engineering)", "Knowledge (geography)", "Knowledge (history)", "Knowledge (local)", "Knowledge (nature)", "Knowledge (nobility)", "Knowledge (planes)", "Knowledge (religion)", "Linguistics", "Perception", "Perform", "Profession", "Sense Motive", "Sleight of Hand", "Spellcraft", "Stealth", "Use Magic Device" ],
     "proficiency": [ "simple weapons", "longsword", "rapier", "sap", "shortsword", "shortbow", "whip", "light armor", "shields" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "bab":  0.75, "hd": 8, "ranks": 6,
@@ -129,7 +129,7 @@
 
   "bloodrager": {
     "Parent Classes": [ "Barbarian", "Sorcerer" ],
-    "skills": [ "Acrobatics (Dex)", "Climb (Str)", "Craft (Int)", "Handle Animal (Cha)", "Intimidate (Cha)", "Knowledge (arcana) (Int)", "Perception (Wis)", "Ride (Dex)", "Spellcraft (Int)", "Survival (Wis)", "Swim (Str)" ],
+    "skills": [ "Acrobatics", "Climb", "Craft", "Handle Animal", "Intimidate", "Knowledge (arcana)", "Perception", "Ride", "Spellcraft", "Survival", "Swim" ],
     "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "shields" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "bab":  1, "hd": 10, "ranks": 4,
@@ -168,7 +168,7 @@
 
   "brawler": {
     "Parent Classes": [ "Fighter", "Monk" ],
-    "skills": [ "Acrobatics (Dex)", "Climb (Str)", "Craft (Int)", "Escape Artist (Dex)", "Handle Animal (Cha)", "Intimidate (Cha)", "Knowledge (dungeoneering) (Int)", "Knowledge (local) (Int)", "Perception (Wis)", "Profession (Wis)", "Ride (Dex)", "Sense Motive (Wis)", "Swim (Str)" ],
+    "skills": [ "Acrobatics", "Climb", "Craft", "Escape Artist", "Handle Animal", "Intimidate", "Knowledge (dungeoneering)", "Knowledge (local)", "Perception", "Profession", "Ride", "Sense Motive", "Swim" ],
     "proficiency": [ "simple weapons", "handaxe", "short sword", "close weapon group", "light armor", "snields" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "hd": 10, "ranks": 4, "bab":  1,
@@ -185,7 +185,7 @@
 
 
   "cavalier": {
-    "skills": [ "Bluff (Cha)", "Climb (Str)", "Craft (Int)", "Diplomacy (Cha)", "Handle Animal (Cha)", "Intimidate (Cha)", "Profession (Wis)", "Ride (Dex)", "Sense Motive (Wis)", "Swim (Str)" ],
+    "skills": [ "Bluff", "Climb", "Craft", "Diplomacy", "Handle Animal", "Intimidate", "Profession", "Ride", "Sense Motive", "Swim" ],
     "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "heavy armor", "shields" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "bab":  1, "hd": 10, "ranks": 4,
@@ -202,7 +202,7 @@
 
 
   "cleric": {
-    "skills": [ "Appraise (Int)", "Craft (Int)", "Diplomacy (Cha)", "Heal (Wis)", "Knowledge (arcana) (Int)", "Knowledge (history) (Int)", "Knowledge (nobility) (Int)", "Knowledge (planes) (Int)", "Knowledge (religion) (Int)", "Linguistics (Int)", "Profession (Wis)", "Sense Motive (Wis)", "Spellcraft (Int)" ],
+    "skills": [ "Appraise", "Craft", "Diplomacy", "Heal", "Knowledge (arcana)", "Knowledge (history)", "Knowledge (nobility)", "Knowledge (planes)", "Knowledge (religion)", "Linguistics", "Profession", "Sense Motive", "Spellcraft" ],
     "proficiency": [ "simple weapons", "light armor", "medium armor", "shields" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "bab":  0.75, "hd": 8, "ranks": 2,
@@ -237,7 +237,7 @@
 
 
   "druid": {
-    "skills": [ "Climb (Str)", "Craft (Int)", "Fly (Dex)", "Handle Animal (Cha)", "Heal (Wis)", "Knowledge (geography) (Int)", "Knowledge (nature) (Int)", "Perception (Wis)", "Profession (Wis)", "Ride (Dex)", "Spellcraft (Int)", "Survival (Wis)", "Swim (Str)" ],
+    "skills": [ "Climb", "Craft", "Fly", "Handle Animal", "Heal", "Knowledge (geography)", "Knowledge (nature)", "Perception", "Profession", "Ride", "Spellcraft", "Survival", "Swim" ],
     "proficiency": [ "club", "dagger", "dart", "quarterstaff", "scimitar", "scythe", "sickle", "shortspear", "sling", "spear", "natural attacks", "light armor", "medium armor", "shields" ],
     "alignment": [ "NG", "LN", "N", "CN", "NE" ],
     "bab":  0.75, "hd": 8, "ranks": 4,
@@ -271,7 +271,7 @@
 
 
   "fighter": {
-    "skills": [ "Climb (Str)", "Craft (Int)", "Handle Animal (Cha)", "Intimidate (Cha)", "Knowledge (dungeoneering) (Int)", "Knowledge (engineering) (Int)", "Profession (Wis)", "Ride (Dex)", "Survival (Wis)", "Swim (Str)" ],
+    "skills": [ "Climb", "Craft", "Handle Animal", "Intimidate", "Knowledge (dungeoneering)", "Knowledge (engineering)", "Profession", "Ride", "Survival", "Swim" ],
     "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "heavy armor", "shields" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "bab":  1, "hd": 10, "ranks": 2,
@@ -289,7 +289,7 @@
 
   "hunter": {
     "Parent Classes": [ "Druid", "Ranger" ],
-    "skills": [ "Climb (Str)", "Craft (Int)", "Handle Animal (Cha)", "Heal (Wis)", "Intimidate (Cha)", "Knowledge (dungeoneering) (Int)", "Knowledge (geography) (Int)", "Knowledge (nature) (Int)", "Perception (Wis)", "Profession (Wis)", "Ride (Dex)", "Spellcraft (Int)", "Stealth (Dex)", "Survival (Wis)", "Swim (Str)" ],
+    "skills": [ "Climb", "Craft", "Handle Animal", "Heal", "Intimidate", "Knowledge (dungeoneering)", "Knowledge (geography)", "Knowledge (nature)", "Perception", "Profession", "Ride", "Spellcraft", "Stealth", "Survival", "Swim" ],
     "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "shields" ],
     "alignment": [ "NG", "LN", "N", "CN", "NE" ],
     "hd": 8, "ranks": 6, "bab":  0.75,
@@ -327,7 +327,7 @@
 
 
   "inquisitor": {
-    "skills": [ "Bluff (Cha)", "Climb (Str)", "Craft (Int)", "Diplomacy (Cha)", "Disguise (Cha)", "Heal (Wis)", "Intimidate (Cha)", "Knowledge (arcana) (Int)", "Knowledge (dungeoneering) (Int)", "Knowledge (nature) (Int)", "Knowledge (planes) (Int)", "Knowledge (religion) (Int)", "Perception (Wis)", "Profession (Wis)", "Ride (Dex)", "Sense Motive (Wis)", "Spellcraft (Int)", "Stealth (Dex)", "Survival (Wis)", "Swim (Str)" ],
+    "skills": [ "Bluff", "Climb", "Craft", "Diplomacy", "Disguise", "Heal", "Intimidate", "Knowledge (arcana)", "Knowledge (dungeoneering)", "Knowledge (nature)", "Knowledge (planes)", "Knowledge (religion)", "Perception", "Profession", "Ride", "Sense Motive", "Spellcraft", "Stealth", "Survival", "Swim" ],
     "proficiency": [ "simple weapons", "hand crossbow", "longbow", "repeating crossbow", "shortbow", "favored weapon", "light armor", "medium armor", "shields" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "hd": 8, "ranks": 6, "bab":  0.75,
@@ -366,7 +366,7 @@
 
   "investigator": {
     "Parent Classes": [ "Alchemist", "Rogue" ],
-    "skills": [ "Acrobatics (Dex)", "Appraise (Int)", "Bluff (Cha)", "Climb (Str)", "Craft (Int)", "Diplomacy (Cha)", "Disable Device (Dex)", "Disguise (Cha)", "Escape Artist (Dex)", "Heal (Wis)", "Intimidate (Cha)", "Knowledge (all) (Int)", "Linguistics (Int)", "Perception (Wis)", "Perform (Cha)", "Profession (Wis)", "Sense Motive (Wis)", "Sleight of Hand (Dex)", "Spellcraft (Int)", "Stealth (Dex)", "Use Magic Device (Cha)" ],
+    "skills": [ "Acrobatics", "Appraise", "Bluff", "Climb", "Craft", "Diplomacy", "Disable Device", "Disguise", "Escape Artist", "Heal", "Intimidate", "Knowledge (arcana)", "Knowledge (dungeoneering)", "Knowledge (engineering)", "Knowledge (geography)", "Knowledge (history)", "Knowledge (local)", "Knowledge (nature)", "Knowledge (nobility)", "Knowledge (planes)", "Knowledge (religion)", "Linguistics", "Perception", "Perform", "Profession", "Sense Motive", "Sleight of Hand", "Spellcraft", "Stealth", "Use Magic Device" ],
     "proficiency": [ "simple weapons", "hand crossbow", "rapier", "sap", "shortbow", "short sword", "sword cane", "light armor" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "hd": 8, "ranks": 6, "bab":  0.75,
@@ -399,7 +399,7 @@
 
 
   "magus": {
-    "skills": [ "Climb (Str)", "Craft (Int)", "Fly (Dex)", "Intimidate (Cha)", "Knowledge (arcana) (Int)", "Knowledge (dungeoneering) (Int)", "Knowledge (planes) (Int)", "Profession (Wis)", "Ride (Dex)", "Spellcraft (Int)", "Swim (Str)", "Use Magic Device (Cha)" ],
+    "skills": [ "Climb", "Craft", "Fly", "Intimidate", "Knowledge (arcana)", "Knowledge (dungeoneering)", "Knowledge (planes)", "Profession", "Ride", "Spellcraft", "Swim", "Use Magic Device" ],
     "proficiency": [ "simple weapons", "martial weapons", "light armor" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "bab":  0.75, "hd": 8, "ranks": 2,
@@ -432,7 +432,7 @@
 
 
   "monk": {
-    "skills": [ "Acrobatics (Dex)", "Climb (Str)", "Craft (Int)", "Escape Artist (Dex)", "Intimidate (Cha)", "Knowledge (history) (Int)", "Knowledge (religion) (Int)", "Perception (Wis)", "Perform (Cha)", "Profession (Wis)", "Ride (Dex)", "Sense Motive (Wis)", "Stealth (Dex)", "Swim (Str)" ],
+    "skills": [ "Acrobatics", "Climb", "Craft", "Escape Artist", "Intimidate", "Knowledge (history)", "Knowledge (religion)", "Perception", "Perform", "Profession", "Ride", "Sense Motive", "Stealth", "Swim" ],
     "proficiency": [ "brass knuckles, cestus, club, crossbow (light or heavy), dagger, handaxe, javelin, kama, nunchaku, quarterstaff, sai, shortspear, short sword, shuriken, siangham, sling, spear and temple sword" ],
     "alignment": [ "LG", "LN", "LE" ],
     "bab":  0.75, "hd": 8, "ranks": 4,
@@ -449,7 +449,7 @@
 
 
   "oracle": {
-    "skills": [ "Craft (Int)", "Diplomacy (Cha)", "Heal (Wis)", "Knowledge (history) (Int)", "Knowledge (planes) (Int)", "Knowledge (religion) (Int)", "Profession (Wis)", "Sense Motive (Wis)", "Spellcraft (Int)" ],
+    "skills": [ "Craft", "Diplomacy", "Heal", "Knowledge (history)", "Knowledge (planes)", "Knowledge (religion)", "Profession", "Sense Motive", "Spellcraft" ],
     "proficiency": [ "simple weapons", "light armor", "medium armor", "shields" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "bab":  0.75, "hd": 8, "ranks": 4,
@@ -486,7 +486,7 @@
 
 
   "paladin": {
-    "skills": [ "Craft (Int)", "Diplomacy (Cha)", "Handle Animal (Cha)", "Heal (Wis)", "Knowledge (nobility) (Int)", "Knowledge (religion) (Int)", "Profession (Wis)", "Ride (Dex)", "Sense Motive (Wis)", "Spellcraft (Int)" ],
+    "skills": [ "Craft", "Diplomacy", "Handle Animal", "Heal", "Knowledge (nobility)", "Knowledge (religion)", "Profession", "Ride", "Sense Motive", "Spellcraft" ],
     "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "heavy armor", "shields" ],
     "alignment": [ "LG" ],
     "bab":  1, "hd": 10, "ranks": 2,
@@ -518,7 +518,7 @@
 
 
   "ranger": {
-    "skills": [ "Climb (Str)", "Craft (Int)", "Handle Animal (Cha)", "Heal (Wis)", "Intimidate (Cha)", "Knowledge (dungeoneering) (Int)", "Knowledge (geography) (Int)", "Knowledge (nature) (Int)", "Perception (Wis)", "Profession (Wis)", "Ride (Dex)", "Spellcraft (Int)", "Stealth (Dex)", "Survival (Wis)", "Swim (Str)" ],
+    "skills": [ "Climb", "Craft", "Handle Animal", "Heal", "Intimidate", "Knowledge (dungeoneering)", "Knowledge (geography)", "Knowledge (nature)", "Perception", "Profession", "Ride", "Spellcraft", "Stealth", "Survival", "Swim" ],
     "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "shields" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "bab":  1, "hd": 10, "ranks": 6,
@@ -550,7 +550,7 @@
 
 
   "rogue": {
-    "skills": [ "Acrobatics (Dex)", "Appraise (Int)", "Bluff (Cha)", "Climb (Str)", "Craft (Int)", "Diplomacy (Cha)", "Disable Device (Dex)", "Disguise (Cha)", "Escape Artist (Dex)", "Intimidate (Cha)", "Knowledge (dungeoneering) (Int)", "Knowledge (local) (Int)", "Linguistics (Int)", "Perception (Wis)", "Perform (Cha)", "Profession (Wis)", "Sense Motive (Wis)", "Sleight of Hand (Dex)", "Stealth (Dex)", "Swim (Str)", "Use Magic Device (Cha)" ],
+    "skills": [ "Acrobatics", "Appraise", "Bluff", "Climb", "Craft", "Diplomacy", "Disable Device", "Disguise", "Escape Artist", "Intimidate", "Knowledge (dungeoneering)", "Knowledge (local)", "Linguistics", "Perception", "Perform", "Profession", "Sense Motive", "Sleight of Hand", "Stealth", "Swim", "Use Magic Device" ],
     "proficiency": [ "simple weapons", "hand crossbow", "rapier", "sap", "shortbow", "short sword", "light armor" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "bab":  0.75, "hd": 8, "ranks": 8,
@@ -568,7 +568,7 @@
 
   "shaman": {
     "Parent Classes": [ "Oracle", "Witch" ],
-    "skills": [ "Craft (Int)", "Diplomacy (Cha)", "Fly (Dex)", "Handle Animal (Cha)", "Heal (Wis)", "Knowledge (nature) (Int)", "Knowledge (planes) (Int)", "Knowledge (religion) (Int)", "Profession (Wis)", "Ride (Dex)", "Spellcraft (Int)", "Survival (Wis)" ],
+    "skills": [ "Craft", "Diplomacy", "Fly", "Handle Animal", "Heal", "Knowledge (nature)", "Knowledge (planes)", "Knowledge (religion)", "Profession", "Ride", "Spellcraft", "Survival" ],
     "proficiency": [ "simple weapons", "light armor", "medium armor" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "hd": 8, "ranks": 4, "bab":  0.75,
@@ -600,7 +600,7 @@
 
 
   "shifter": {
-    "skills": [ " Acrobatics (Dex)", "Climb (Str)", "Craft (Int)", "Fly (Dex)", "Handle Animal (Cha)", "Knowledge (nature) (Int)", "Perception (Wis)", "Profession (Wis)", "Ride (Dex)", "Stealth (Dex)", "Survival (Wis)", "Swim (Str)" ],
+    "skills": [ " Acrobatics", "Climb", "Craft", "Fly", "Handle Animal", "Knowledge (nature)", "Perception", "Profession", "Ride", "Stealth", "Survival", "Swim" ],
     "proficiency": [ "club", "dagger", "dart", "quarterstaff", "scimitar", "scythe", "sickle", "shortspear", "sling", "spear", "natural attacks", "light armor", "medium armor", "shields" ],
     "alignment": [ "NG", "LN", "N", "CN", "NE" ],
     "bab":  1, "hd": 10, "ranks": 4,
@@ -620,7 +620,7 @@
 
   "skald": {
     "Parent Classes": [ "Barbarian", "Bard" ],
-    "skills": [ "Acrobatics (Dex)", "Appraise (Int)", "Bluff (Cha)", "Climb (Str)", "Craft (Int)", "Diplomacy (Cha)", "Escape Artist (Dex)", "Handle Animal (Cha)", "Intimidate (Cha)", "Knowledge (all) (Int)", "Linguistics (Int)", "Perception (Wis)", "Perform (oratory, percussion, sing, string, wind) (Cha)", "Profession (Wis)", "Ride (Dex)", "Sense Motive (Wis)", "Spellcraft (Int)", "Swim (Str)", "Use Magic Device (Cha)" ],
+    "skills": [ "Acrobatics", "Appraise", "Bluff", "Climb", "Craft", "Diplomacy", "Escape Artist", "Handle Animal", "Intimidate", "Knowledge (arcana)", "Knowledge (dungeoneering)", "Knowledge (engineering)", "Knowledge (geography)", "Knowledge (history)", "Knowledge (local)", "Knowledge (nature)", "Knowledge (nobility)", "Knowledge (planes)", "Knowledge (religion)", "Linguistics", "Perception", "Perform (oratory, percussion, sing, string, wind)", "Profession", "Ride", "Sense Motive", "Spellcraft", "Swim", "Use Magic Device" ],
     "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "shields" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "hd": 8, "ranks": 4, "bab":  0.75,
@@ -658,7 +658,7 @@
 
   "slayer": {
     "Parent Classes": [ "Ranger", "Rogue" ],
-    "skills": [ "Acrobatics (Dex)", "Bluff (Cha)", "Climb (Str)", "Craft (Int)", "Disguise (Cha)", "Heal (Wis)", "Intimidate (Cha)", "Knowledge (dungeoneering) (Int)", "Knowledge (geography) (Int)", "Knowledge (local) (Int)", "Perception (Wis)", "Profession (Wis)", "Ride (Dex)", "Sense Motive (Wis)", "Stealth (Dex)", "Survival (Wis)", "Swim (Str" ],
+    "skills": [ "Acrobatics", "Bluff", "Climb", "Craft", "Disguise", "Heal", "Intimidate", "Knowledge (dungeoneering)", "Knowledge (geography)", "Knowledge (local)", "Perception", "Profession", "Ride", "Sense Motive", "Stealth", "Survival", "Swim" ],
     "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "shields" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "hd": 10, "ranks": 6, "bab":  1,
@@ -675,7 +675,7 @@
 
 
   "sorcerer": {
-    "skills": [ "Appraise (Int)", "Bluff (Cha)", "Craft (Int)", "Fly (Dex)", "Intimidate (Cha)", "Knowledge (arcana) (Int)", "Profession (Wis)", "Spellcraft (Int)", "Use Magic Device (Cha)" ],
+    "skills": [ "Appraise", "Bluff", "Craft", "Fly", "Intimidate", "Knowledge (arcana)", "Profession", "Spellcraft", "Use Magic Device" ],
     "proficiency": [ "simple weapons" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "bab":  0.5, "hd": 6, "ranks": 2,
@@ -712,7 +712,7 @@
 
 
   "summoner": {
-    "skills": [ "Craft (Int)", "Fly (Dex)", "Handle Animal (Cha)", "Knowledge (all) (Int)", "Linguistics (Int)", "Profession (Wis)", "Ride (Dex)", "Spellcraft (Int)", "Use Magic Device (Cha)" ],
+    "skills": [ "Craft", "Fly", "Handle Animal", "Knowledge (arcana)", "Knowledge (dungeoneering)", "Knowledge (engineering)", "Knowledge (geography)", "Knowledge (history)", "Knowledge (local)", "Knowledge (nature)", "Knowledge (nobility)", "Knowledge (planes)", "Knowledge (religion)", "Linguistics", "Profession", "Ride", "Spellcraft", "Use Magic Device" ],
     "proficiency": [ "simple weapons", "light armor" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "bab":  0.75, "hd": 8, "ranks": 2,
@@ -750,7 +750,7 @@
 
   "warpriest": {
     "Parent Classes": [ "Cleric", "Fighter" ],
-    "skills": [ "Climb (Str)", "Craft (Int)", "Diplomacy (Cha)", "Handle Animal (Cha)", "Heal (Wis)", "Intimidate (Cha)", "Knowledge (engineering) (Int)", "Knowledge (religion) (Int)", "Profession (Wis)", "Ride (Dex)", "Sense Motive (Wis)", "Spellcraft (Int)", "Survival (Wis)", "Swim (Str)" ],
+    "skills": [ "Climb", "Craft", "Diplomacy", "Handle Animal", "Heal", "Intimidate", "Knowledge (engineering)", "Knowledge (religion)", "Profession", "Ride", "Sense Motive", "Spellcraft", "Survival", "Swim" ],
     "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "heavy armor", "shields" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "hd": 8, "ranks": 2, "bab":  0.75,
@@ -784,7 +784,7 @@
 
 
   "witch": {
-    "skills": [ "Craft (Int)", "Fly (Dex)", "Heal (Wis)", "Intimidate (Cha)", "Knowledge (arcana) (Int)", "Knowledge (history) (Int)", "Knowledge (nature) (Int)", "Knowledge (planes) (Int)", "Profession (Wis)", "Spellcraft (Int)", "Use Magic Device (Cha)" ],
+    "skills": [ "Craft", "Fly", "Heal", "Intimidate", "Knowledge (arcana)", "Knowledge (history)", "Knowledge (nature)", "Knowledge (planes)", "Profession", "Spellcraft", "Use Magic Device" ],
     "proficiency": [ "simple weapons" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "hd": 6, "ranks": 2, "bab":  0.5,
@@ -817,7 +817,7 @@
 
 
   "wizard": {
-    "skills": [ "Appraise (Int)", "Craft (Int)", "Fly (Dex)", "Knowledge (all) (Int)", "Linguistics (Int)", "Profession (Wis)", "Spellcraft (Int)" ],
+    "skills": [ "Appraise", "Craft", "Fly", "Knowledge (arcana)", "Knowledge (dungeoneering)", "Knowledge (engineering)", "Knowledge (geography)", "Knowledge (history)", "Knowledge (local)", "Knowledge (nature)", "Knowledge (nobility)", "Knowledge (planes)", "Knowledge (religion)", "Linguistics", "Profession", "Spellcraft" ],
     "proficiency": [ "club", "dagger", "heavy crossbow", "quarterstaff" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "hd": 6, "ranks": 2, "bab":  0.5,
@@ -851,7 +851,7 @@
 
 
   "adept": {
-    "skills": [ "Craft (Int)", "Handle Animal (Cha)", "Heal (Wis)", "Knowledge (all) (Int)", "Profession (Wis)", "Spellcraft (Int)", "Survival (Wis)" ],
+    "skills": [ "Craft", "Handle Animal", "Heal", "Knowledge (arcana)", "Knowledge (dungeoneering)", "Knowledge (engineering)", "Knowledge (geography)", "Knowledge (history)", "Knowledge (local)", "Knowledge (nature)", "Knowledge (nobility)", "Knowledge (planes)", "Knowledge (religion)", "Profession", "Spellcraft", "Survival" ],
     "proficiency": [ "simple weapons" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "hd": 6, "ranks": 2, "bab": 0.5,
@@ -871,7 +871,7 @@
     }
   },
   "aristocrat": {
-    "skills": [ "Appraise (Int)", "Bluff (Cha)", "Craft (Int)", "Diplomacy (Cha)", "Disguise (Cha)", "Handle Animal (Cha)", "Intimidate (Cha)", "Knowledge (all) (Int)", "Linguistics (Int)", "Perception (Wis)", "Perform (Cha)", "Profession (Wis)", "Ride (Dex)", "Sense Motive (Wis)", "Swim (Str)", "Survival (Wis)" ],
+    "skills": [ "Appraise", "Bluff", "Craft", "Diplomacy", "Disguise", "Handle Animal", "Intimidate", "Knowledge (arcana)", "Knowledge (dungeoneering)", "Knowledge (engineering)", "Knowledge (geography)", "Knowledge (history)", "Knowledge (local)", "Knowledge (nature)", "Knowledge (nobility)", "Knowledge (planes)", "Knowledge (religion)", "Linguistics", "Perception", "Perform", "Profession", "Ride", "Sense Motive", "Swim", "Survival" ],
     "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "heavy armor", "shields" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "hd": 8, "ranks": 4, "bab": 0.75,
@@ -880,7 +880,7 @@
     "will": { "mult": 0.5, "bonus": 2 }
   },
   "commoner": {
-    "skills": [ "Climb (Str)", "Craft (Int)", "Handle Animal (Cha)", "Perception (Wis)", "Profession (Wis)", "Ride (Dex)", "Swim (Str)" ],
+    "skills": [ "Climb", "Craft", "Handle Animal", "Perception", "Profession", "Ride", "Swim" ],
     "proficiency": [ "one simple weapon" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "hd": 6, "ranks": 2, "bab": 0.5,
@@ -898,7 +898,7 @@
     "will": { "mult": 0.5, "bonus": 2 }
   },
   "warrior": {
-    "skills": [ "Climb (Str)", "Craft (Int)", "Handle Animal (Cha)", "Intimidate (Cha)", "Profession (Wis)", "Ride (Dex)", "Swim (Str)" ],
+    "skills": [ "Climb", "Craft", "Handle Animal", "Intimidate", "Profession", "Ride", "Swim" ],
     "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "heavy armor", "shields" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "hd": 10, "ranks": 2, "bab": 1,
