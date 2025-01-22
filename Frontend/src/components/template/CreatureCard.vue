@@ -183,14 +183,34 @@
         <el-col :span="3" class="center">
           <g-icon iconSize="32px" iconName="swordShield" />
         </el-col>
-        <el-col :span="7" class="center">
-          <div class="center-horz">Melee</div>
-          BAB {{ bab }}<br>
-          CMB {{ cmb }}
-          <br><br><br>
 
-                    CMB: {{ this.original.BAB + creature.abilities.StrMod + creature.size["cmb / cmd"] }}
-                    <br>
+        <el-col :span="21" class="center">
+          <div>Melee</div>
+          <br>
+          <div v-for="(item, name) in bonuses" :key="name">
+            {{ name }} : {{ item }}
+          </div>
+          <br><br>
+
+          BAB +{{ bab }}<br>
+          CMB +{{ cmb.total }}
+          <br><br><br>
+          {{ actions.melee }}
+          <br><br>
+
+          name  hit   dmg(1d8+1) crit mult extras[]
+
+          <div v-for="(action, name) in actions.melee" :key="name">
+            {{ name }} +{{ action.atkBonus.total}} ({{ action.dmgDie }}+{{ action.dmgBonus.total }})
+
+
+            <br><br>
+            {{ action }}
+          </div>
+
+          <!-- {{ actions }} -->
+          <br><br>
+
                     <span v-if="this.original.dr"> DR: {{ this.original.dr }} </span>
                     <br>
                     <span v-if="this.original.sr"> SR: {{ this.original.sr }} </span>
@@ -200,16 +220,18 @@
           <div v-for="atk in creature.melee" :key="atk.id">
             <span v-if="atk.atkNum"> {{ atk.atkNum }} </span> {{ atk.atkName }} {{ atk.atkMod }} ({{ atk.dmgDie }}{{ atk.dmgMod }}<span v-if="atk.bonus"> {{ atk.bonus }}</span>)<br>
           </div>
-        </el-col>
+          <el-divider />
 
-        <el-col :span="7" class="center">
+
+
           <div class="center-horz">Ranged</div>
           <div v-for="atk in creature.ranged" :key="atk.id">
             <span v-if="atk.atkNum"> {{ atk.atkNum }} </span> {{ atk.atkName }} {{ atk.atkMod }} ({{ atk.dmgDie }}<span v-if="atk.dmgMod">{{ atk.dmgMod }}</span><span v-if="atk.bonus"> {{ atk.bonus }}</span>)<br>
           </div>
-        </el-col>
 
-        <el-col :span="7" class="center">
+
+
+
           <div class="center-horz">Special</div>
           <div v-for="atk in creature.special" :key="atk.id">
             {{ atk }}
@@ -290,8 +312,9 @@
       <el-button type="primary" @click="addMonster()"> Add to Session </el-button>
     </el-col>
     <el-select-v2 v-model="basics.size" :options="this.sizeSelect" size="small" style="width: 120px" />
-
+    {{ skills.Stealth }}<br>
   </el-row>
+
 
 </template>
 
@@ -316,9 +339,6 @@ export default {
       classes: {},
       equipment: {},
 
-      tables: {}, // size & dmg types
-
-      supplement: supplementTables,
       openSections: [ "defense", "offense" ],
       sizeSelect: [
         { value: "Fine", label: "Fine", },
@@ -331,6 +351,12 @@ export default {
         { value: "Gargantuan", label: "Gargantuan", },
         { value: "Colossal", label: "Colossal", }
       ],
+
+      // actives: [], // The creatures active bonuses
+      // bonuses: this.source.abilities,
+
+      supplement: supplementTables,
+      tables: {}, // size & dmg types
       original: {}
     }
   },
@@ -340,13 +366,53 @@ export default {
     DataService.getEquipment().then ( (response) => { this.equipment = response; });
   },
   mounted() {
+    this.updateActive();
     this.getCreature({Name: this.creatureName});
   },
 
 
   computed: {
     title() { return this.source.name ? this.source.name.concat(" CR ", this.source.basics.cr) : ""; },
+    abilities() { return this.source.abilities; },
+    inventory() { return this.source.equipment; },
+    bonuses() {
+      let bonuses = {};
+      if (this.source.name) {
+        // Add feats and other abilities to bonuses
+        for (const ability in this.abilities) {
+          if (this.abilities[ability].active) {
+            for (const [name, bonus] of Object.entries(this.abilities[ability].bonuses)) {
+              bonuses[name] = bonus;
+            }
+          }
+        }
+
+        // Armor, Shield
+        for (const [name, item] of Object.entries(this.inventory)) {
+          if (item.equiped) {
+            let type = (["Light", "Medium", "Heavy"].includes(item.Proficiency)) ? "Armor" :
+                       (item.Proficiency == "Shields") ? "Shield" : "";
+            if (type != "") {
+              bonuses[name] = {};
+              bonuses[name].type = type;
+              bonuses[name].targets = this.rules.bonuses ? this.rules.bonuses[type].targets : [];
+              bonuses[name].value = item["AC Bonus"];
+            }
+            // Other Item based bonuses
+            if (item.Extras.Bonuses) {
+              for (const [name, bonus] of Object.entries(item.Extras.Bonuses)) {
+                bonuses[name] = bonus;
+              }
+            }
+          }
+        }
+      }
+      return bonuses;
+    },
+
+
     attributes() {
+      // TODO: add bonus loop
       return this.source.attributes ? this.source.attributes : {
         "Str": 0, "StrMod": -5,
         "Dex": 0, "DexMod": -5,
@@ -415,6 +481,9 @@ export default {
     ac() {
       let ac = { "total": { "num": 10, "sources": [] }, "touch": { "num": 10, "sources": [] }, "flat": { "num": 10, "sources": [] } };
       if (this.source.name) {
+
+        // TODO: max dex from armor
+
         // total = All
         ac.total.num += this.attributes.DexMod;
         ac.total.sources.push(`+${this.attributes.DexMod} Dex`);
@@ -438,17 +507,17 @@ export default {
         }
 
         // Bonuses Loop
-        for (let [name, bonus] of Object.entries(this.source.active)) {
-          if (bonus.targets.includes("AC")) {
-            ac.total.num += bonus.bonus;
-            ac.total.sources.push(`+${bonus.bonus} ${name}`);
-            for (let subtarget of bonus.subtargets) {
-              ac[subtarget].num += bonus.bonus;
-              ac[subtarget].sources.push(`+${bonus.bonus} ${name}`);
-            }
+        for (let [name, bonus] of Object.entries(this.source.bonuses)) {
+          if (this.actives.includes(name)) {
+            bonus.targets.forEach(target => {
+              // TODO: check typs
+              if (ac[target.slice(0, -2)]) {
+                ac[target.slice(0, -2)].num += bonus.bonus;
+                ac[target.slice(0, -2)].sources.push(`+${bonus.bonus} ${name}`);
+              }
+            });
           }
         }
-
       }
       return ac;
     },
@@ -512,6 +581,7 @@ export default {
           }
 
           // Bonus Loop
+          // TODO: type check
           for (let [n, bonus] of Object.entries(this.source.active)) {
             bName = n;
             total = 0;
@@ -548,6 +618,8 @@ export default {
           cmd.sources.push(`+${this.basics.sizeStats["cmb / cmd"]} Size`);
           cmd.total += this.basics.sizeStats["cmb / cmd"];
         }
+
+        // TODO: bonus loop & type check
         for (let [name, bonus] of Object.entries(this.source.active)) {
           if (bonus.targets.includes("CMD")) {
             cmd.total += bonus.bonus;
@@ -579,6 +651,7 @@ export default {
           cmd.sources.push(`+${this.basics.sizeStats["cmb / cmd"]} Size`);
           cmd.total += this.basics.sizeStats["cmb / cmd"];
         }
+        // TODO: bonus loop & type check
         for (let [name, bonus] of Object.entries(this.source.active)) {
           if (bonus.targets.includes("CMB")) {
             cmd.total += bonus.bonus;
@@ -595,7 +668,7 @@ export default {
           init.sources.push(`+${this.attributes.DexMod} Dex`);
           init.total += this.attributes.DexMod;
         }
-
+        // TODO: bonus loop & type check
         for (let [name, bonus] of Object.entries(this.source.active)) {
           if (bonus.targets.includes("Checks") && bonus.subtargets.includes("dex")) {
             init.total += bonus.bonus;
@@ -605,12 +678,26 @@ export default {
       }
       return init;
     },
-    senses() { return this.source.name ? this.source.defense.senses : []; },
+    senses() {
+      let senses = [];
+      if (this.source.name) {
+        if (this.skills && this.skills.Perception) {
+          senses.push(`Perception ${this.skills.Perception.bonus}`);
+        }
+        Object.values(this.abilities).forEach(abil => {
+          if (abil.benefit && abil.benefit.target == "senses") {
+            senses.push(abil.benefit.text);
+          }
+        });
+      }
+      return senses;
+    },
     speed() {
       let speed = { "total": 0, "sources": [] };
       if (this.source.name) {
         speed.total += this.source.basics.speed;
 
+        // TODO: bonus loop & type check
         for (let [name, bonus] of Object.entries(this.source.active)) {
           if (bonus.targets.includes("Speed")) {
             speed.total += bonus.bonus;
@@ -618,7 +705,6 @@ export default {
           }
         }
       }
-      console.log(speed);
       return speed;
     },
     bab() {
@@ -639,8 +725,140 @@ export default {
       bab = Math.floor(bab);
       return bab;
     },
+    actions() {
+      let actions = { melee: {}, ranged: {}, special: {} };
+      if (this.source.name) {
+
+        /***************************\
+        *                           *
+        *       MELEE ATTACKS       *
+        *                           *
+        \***************************/
+        let NatAtkNum = 0;
+        for (let [name, atk] of Object.entries(this.source.actions.melee)) {
+          let newAtk = {
+            dmgBonus: { "total": 0, "sources": [] },
+            atkBonus: { "total": 0, "sources": [] }
+          };
+
+          newAtk.atkBonus.total += this.bab;
+          newAtk.atkBonus.sources.push(`+${this.bab} BAB`);
+          newAtk.atkBonus.total += this.basics.sizeStats["ac / atk"];
+          newAtk.atkBonus.sources.push(`+${this.basics.sizeStats["ac / atk"]} Size`);
+
+          // Add mwk or magic enhancements to atk bonus
+          if (atk.Extras["enhancement"]) {
+            newAtk.atkBonus.total += atk.Extras["enhancement"];
+            newAtk.atkBonus.sources.push(`+${atk.Extras["enhancement"]} Magic Enhancement`);
+            newAtk.dmgBonus.total += atk.Extras["enhancement"];
+            newAtk.dmgBonus.sources.push(`+${atk.Extras["enhancement"]} Magic Enhancement`);
+          } else if (atk.Extras["masterwork"]) {
+            newAtk.atkBonus.total += 1;
+            newAtk.atkBonus.sources.push(`+1 Masterwork`);
+          }
+
+          // Add StrMod
+          NatAtkNum += (atk.Proficiency == "Natural") ? 1 : 0;
+          if (atk.Category == "Two-Handed") {
+            newAtk.dmgBonus.total += this.attributes.StrMod * 1.5;
+            newAtk.dmgBonus.sources.push(`+${this.attributes.StrMod * 1.5} Str`);
+          }
+          else if (atk.Category == "Secondary") {
+            newAtk.atkBonus.total += this.attributes.StrMod - 5;
+            newAtk.atkBonus.sources.push(`+${this.attributes.StrMod - 5} Str`);
+            newAtk.dmgBonus.total += this.attributes.StrMod / 2;
+            newAtk.dmgBonus.sources.push(`+${this.attributes.StrMod / 2} Str`);
+          }
+          else {
+            newAtk.atkBonus.total += this.attributes.StrMod;
+            newAtk.atkBonus.sources.push(`+${this.attributes.StrMod} Str`);
+            newAtk.dmgBonus.total += this.attributes.StrMod;
+            newAtk.dmgBonus.sources.push(`+${this.attributes.StrMod} Str`);
+          }
 
 
+          // Add Active Bonuses
+          let typedBonuses = {};
+          for (let [name, bonus] of Object.entries(this.bonuses)) {
+            // If the bonus type doesn't stack
+            // If we have that type already && the current is higher, skip
+            // Else, replace / add it
+            if (this.rules.bonuses && Object.keys(this.rules.bonuses).includes(bonus.type)) {
+              if (typedBonuses[bonus.type] && typedBonuses[bonus.type].value > bonus.value) {
+                continue;
+              } else {
+                // remove previos values from either atk or dmg or both
+                if (typedBonuses[bonus.type]) {
+                  bonus.targets.forEach(target => {
+                    if (newAtk[target]) {
+                      newAtk[target].total -= typedBonuses[bonus.type].value;
+                      // loop on sources looking for the one to remove
+                      newAtk[target].sources.forEach((source, i) => {
+                        if ( source.includes(typedBonuses[bonus.type].name) ) {
+                          // console.log('this one', newAtk[target].sources[i]);
+                          newAtk[target].sources.splice(i, 1);
+                        }
+                      });
+                    }
+                  });
+                }
+
+                typedBonuses[bonus.type] = { name: name, value: bonus.bonus };
+              }
+            }
+            // If bonus.targets includes atk or dmg, apply it
+            bonus.targets.forEach(target => {
+              if (newAtk[target]) {
+                newAtk[target].total += bonus.bonus;
+                newAtk[target].sources.push(`+${bonus.bonus} ${name}`);
+              }
+            });
+          }
+
+          newAtk.dmgDie = atk.Damage[this.basics.size];
+          console.log(`${NatAtkNum>1 ? NatAtkNum : ""} ${name} +${newAtk.atkBonus.total} (${newAtk.dmgDie}+${newAtk.dmgBonus.total} /${atk.Critical})`);
+          actions.melee[name] = newAtk;
+          if (NatAtkNum>1) { actions[name].natAtkNum = NatAtkNum; }
+        }
+        // actions = this.source.actions;
+      }
+
+      return actions;
+    },
+
+
+
+    skills() {
+      // TODO: add + to start of bonus
+      let skills = {};
+      if (this.source.name && this.classes['bard'] && this.rules.skills) {
+        this.updateActive();
+
+        for (const [name, skill] of Object.entries(this.source.skills)) {
+          let bonus = 0;
+          if (skill.ranks) {
+            bonus += skill.ranks;
+            bonus += skill.class ? 3 : 0;
+          }
+          bonus += this.attributes[skill.ability.concat("Mod")];
+
+          if (skill.armor_pen) {
+            for (const name of Object.keys(this.bonuses)) {
+              if (this.inventory[name] && this.inventory[name].Penalty) {
+                bonus += this.inventory[name].Penalty;
+              }
+            }
+          }
+          skill.bonus = bonus;
+          skills[name] = skill;
+        }
+      }
+
+      return skills;
+    },
+
+    magic() { return "" },
+    pets() { return "" },
 
     creature() {
       let creature = {
@@ -831,12 +1049,19 @@ export default {
 
 
   updated() {
+    this.updateActive();
     if (this.creatureName != this.original.Name) {
       this.getCreature({Name: this.creatureName});
     }
   },
   defineExpose() { this.getCreature },
   methods: {
+    updateActive() {
+      this.actives = [];
+    },
+
+
+
     async getCreature(original) {
       DataService.getMonster(original)
       .then(response => {

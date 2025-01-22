@@ -192,7 +192,7 @@
 	"Chain Shirt": {
 		"AC Bonus": 4,
 		"Max Dex": 4,
-		"Pentalty": -2,
+		"Penalty": -2,
 		"Spell Failure": "20%",
 
 		"Cost": 100,
@@ -206,7 +206,7 @@
 	"Armored Coat": {
 		"AC Bonus": 4,
 		"Max Dex": 3,
-		"Pentalty": -2,
+		"Penalty": -2,
 		"Spell Failure": "20%",
 
 		"Cost": 50,
@@ -220,7 +220,7 @@
 	"Chain Coat": {
 		"AC Bonus": 4,
 		"Max Dex": 5,
-		"Pentalty": -2,
+		"Penalty": -2,
 		"Spell Failure": "30%",
 
 		"Cost": 75,
@@ -235,7 +235,7 @@
 	"Hide": {
 		"AC Bonus": 4,
 		"Max Dex": 4,
-		"Pentalty": -3,
+		"Penalty": -3,
 		"Spell Failure": "20%",
 
 		"Cost": 15,
@@ -247,7 +247,7 @@
 	"Ice Coat": {
 		"AC Bonus": 4,
 		"Max Dex": 3,
-		"Pentalty": -2,
+		"Penalty": -2,
 		"Spell Failure": "20%",
 
 		"Cost": 80,
@@ -262,7 +262,7 @@
 	"Scale Mail": {
 		"AC Bonus": 5,
 		"Max Dex": 3,
-		"Pentalty": -4,
+		"Penalty": -4,
 		"Spell Failure": "25%",
 
 		"Cost": 50,
@@ -276,7 +276,7 @@
 	"Breastplate": {
 		"AC Bonus": 6,
 		"Max Dex": 3,
-		"Pentalty": -4,
+		"Penalty": -4,
 		"Spell Failure": "25%",
 
 		"Cost": 200,
@@ -288,7 +288,7 @@
 	"Agile Breastplate": {
 		"AC Bonus": 6,
 		"Max Dex": 3,
-		"Pentalty": -4,
+		"Penalty": -4,
 		"Spell Failure": "25%",
 
 		"Cost": 400,
@@ -302,7 +302,7 @@
 	"Chainmail": {
 		"AC Bonus": 6,
 		"Max Dex": 2,
-		"Pentalty": -5,
+		"Penalty": -5,
 		"Spell Failure": "30%",
 
 		"Cost": 150,
@@ -318,7 +318,7 @@
 	"Banded Mail": {
 		"AC Bonus": 7,
 		"Max Dex": 1,
-		"Pentalty": -6,
+		"Penalty": -6,
 		"Spell Failure": "35%",
 
 		"Cost": 250,
@@ -330,7 +330,7 @@
 	"Field Plate": {
 		"AC Bonus": 7,
 		"Max Dex": 1,
-		"Pentalty": -5,
+		"Penalty": -5,
 		"Spell Failure": "35%",
 
 		"Cost": 1200,
@@ -342,7 +342,7 @@
 	"Splint Mail": {
 		"AC Bonus": 7,
 		"Max Dex": 0,
-		"Pentalty": -7,
+		"Penalty": -7,
 		"Spell Failure": "40%",
 
 		"Cost": 200,
@@ -356,7 +356,7 @@
 	"Fortress Plate": {
 		"AC Bonus": 8,
 		"Max Dex": 0,
-		"Pentalty": -7,
+		"Penalty": -7,
 		"Spell Failure": "40%",
 
 		"Cost": 2100,
@@ -372,7 +372,7 @@
 	"Half-Plate": {
 		"AC Bonus": 8,
 		"Max Dex": 0,
-		"Pentalty": -7,
+		"Penalty": -7,
 		"Spell Failure": "40%",
 
 		"Cost": 600,
@@ -386,7 +386,7 @@
 	"Agile Half-Plate": {
 		"AC Bonus": 8,
 		"Max Dex": 0,
-		"Pentalty": -7,
+		"Penalty": -7,
 		"Spell Failure": "40%",
 
 		"Cost": 850,
@@ -401,7 +401,7 @@
 	"Hell Knight Half-Plate": {
 		"AC Bonus": 8,
 		"Max Dex": 0,
-		"Pentalty": -7,
+		"Penalty": -7,
 		"Spell Failure": "40%",
 
 		"Cost": 850,
@@ -416,7 +416,7 @@
 	"Full Plate": {
 		"AC Bonus": 9,
 		"Max Dex": 1,
-		"Pentalty": -6,
+		"Penalty": -6,
 		"Spell Failure": "35%",
 
 		"Cost": 1500,
@@ -431,7 +431,7 @@
 	"Hell Knight Plate": {
 		"AC Bonus": 9,
 		"Max Dex": 1,
-		"Pentalty": -5,
+		"Penalty": -5,
 		"Spell Failure": "35%",
 
 		"Cost": 2000,
@@ -445,7 +445,7 @@
 	"Stone Plate": {
 		"AC Bonus": 9,
 		"Max Dex": 1,
-		"Pentalty": -6,
+		"Penalty": -6,
 		"Spell Failure": "35%",
 
 		"Cost": 1800,
@@ -495,7 +495,7 @@
 	"Lamellar (Leather)": {
 		"AC Bonus": 4,
 		"Max Dex": 3,
-		"Pentalty": -2,
+		"Penalty": -2,
 		"Spell Failure": "20%",
 
 		"Cost": 60,
@@ -507,7 +507,7 @@
 	"Do-Maru": {
 		"AC Bonus": 5,
 		"Max Dex": 4,
-		"Pentalty": -4,
+		"Penalty": -4,
 		"Spell Failure": "25%",
 
 		"Cost": 200,
@@ -519,7 +519,7 @@
 	"Kikko Armor": {
 		"AC Bonus": 5,
 		"Max Dex": 4,
-		"Pentalty": -3,
+		"Penalty": -3,
 		"Spell Failure": "20%",
 
 		"Cost": 250,
@@ -531,7 +531,7 @@
 	"Lamellar (Horn)": {
 		"AC Bonus": 5,
 		"Max Dex": 3,
-		"Pentalty": -4,
+		"Penalty": -4,
 		"Spell Failure": "25%",
 
 		"Cost": 100,
@@ -543,7 +543,7 @@
 	"Four-Mirror Armor": {
 		"AC Bonus": 6,
 		"Max Dex": 2,
-		"Pentalty": -5,
+		"Penalty": -5,
 		"Spell Failure": "30%",
 
 		"Cost": 125,
@@ -555,7 +555,7 @@
 	"Lamellar (Steel)": {
 		"AC Bonus": 6,
 		"Max Dex": 3,
-		"Pentalty": -5,
+		"Penalty": -5,
 		"Spell Failure": "25%",
 
 		"Cost": 150,
@@ -567,7 +567,7 @@
 	"Mountain Pattern Armor": {
 		"AC Bonus": 6,
 		"Max Dex": 3,
-		"Pentalty": -4,
+		"Penalty": -4,
 		"Spell Failure": "30%",
 
 		"Cost": 250,
@@ -579,7 +579,7 @@
 	"Kusari Gusoku": {
 		"AC Bonus": 9,
 		"Max Dex": 1,
-		"Pentalty": -7,
+		"Penalty": -7,
 		"Spell Failure": "35%",
 
 		"Cost": 350,
@@ -591,7 +591,7 @@
 	"Lamellar (Iron)": {
 		"AC Bonus": 7,
 		"Max Dex": 0,
-		"Pentalty": -7,
+		"Penalty": -7,
 		"Spell Failure": "40%",
 
 		"Cost": 200,
@@ -603,7 +603,7 @@
 	"Tatami-Do": {
 		"AC Bonus": 7,
 		"Max Dex": 3,
-		"Pentalty": -6,
+		"Penalty": -6,
 		"Spell Failure": "35%",
 
 		"Cost": 1000,
@@ -615,7 +615,7 @@
 	"Lamellar (Stone Coat)": {
 		"AC Bonus": 8,
 		"Max Dex": 0,
-		"Pentalty": -7,
+		"Penalty": -7,
 		"Spell Failure": "40%",
 
 		"Cost": 500,
@@ -627,7 +627,7 @@
 	"O-Yoroi": {
 		"AC Bonus": 8,
 		"Max Dex": 2,
-		"Pentalty": -6,
+		"Penalty": -6,
 		"Spell Failure": "35%",
 
 		"Cost": 1700,

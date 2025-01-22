@@ -260,61 +260,52 @@
     },
     "Armor": {
       "description": "An armor bonus applies to armor class and is granted by armor or by a spell or magical effect that mimics armor. Armor bonuses stack with all other bonuses to armor class (even with natural armor bonuses) except other armor bonuses. An armor bonus doesn’t apply against touch attacks, except for armor bonuses granted by force effects (such as the mage armor spell) which apply against incorporeal touch attacks, such as that of a shadow.",
-      "targets": [ "AC" ],
+      "targets": [ "totalAC", "flatAC" ],
       "subtargets": [ "flat" ]
     },
     "Circumstance": {
       "description": "A circumstance bonus (or penalty) arises from specific conditional factors impacting the success of the task at hand. Circumstance bonuses stack with all other bonuses, including other circumstance bonuses, unless they arise from essentially the same source.",
-      "targets": [ "Attacks", "Checks" ]
+      "targets": [ "atkBonus", "Checks" ]
     },
     "Competence": {
       "description": "A competence bonus (or penalty) affects a character’s performance of a particular task, as in the case of the bardic ability to inspire competence. Multiple competence bonuses don’t stack; only the highest bonus applies.",
-      "targets": [ "Attacks", "Checks", "Saves" ],
+      "targets": [ "atkBonus", "Checks", "Saves" ],
       "subtargets": [ "fort", "ref", "will" ]
     },
     "Deflection": {
       "description": "A deflection bonus affects armor class and is granted by a spell or magic effect that makes attacks veer off harmlessly. Deflection bonuses stack with all other bonuses to AC except other deflection bonuses. A deflection bonus applies against touch attacks.",
-      "targets": [ "AC" ],
+      "targets": [ "totalAC", "touchAC", "flatAC" ],
       "subtargets": [ "touch", "flat" ]
-    },
-    "Dodge": {
-      "description": "A dodge bonus improves armor class (and sometimes Reflex saves) resulting from physical skill at avoiding blows and other ill effects. Dodge bonuses are never 1 usually not granted by spells or magic items. Any situation or effect (except wearing armor) that negates a character’s Dexterity bonus also negates any dodge bonuses the character may have. Dodge bonuses stack with all other bonuses to AC, even other dodge bonuses. Dodge bonuses apply against touch attacks.",
-      "targets": [ "AC" ],
-      "subtargets": [ "touch" ]
     },
     "Enhancement": {
       "description": "An enhancement bonus represents an increase in the effectiveness of armor, natural armor, weapon, or a general bonus to an ability score. Multiple enhancement bonuses on the same object (in the case of armor and weapons), creature (in the case of natural armor), or ability score do not stack. Only the highest enhancement bonus applies.",
-      "targets": [ "Ability Scores", "AC", "Attacks", "Damage", "Speed" ],
+      "targets": [ "Ability Scores", "totalAC", "touchAC", "flatAC", "atkBonus", "dmgBonus", "Speed" ],
       "subtargets": [ "touch", "flat", "fort", "ref", "will" ]
     },
     "Insight": {
       "description": "An insight bonus improves performance of a given activity by granting the character an almost precognitive knowledge of what might occur. Multiple insight bonuses on the same character or object do not stack. Only the highest insight bonus applies.",
-      "targets": [ "AC", "Attacks", "Checks", "Saves" ],
+      "targets": [ "totalAC", "touchAC", "flatAC", "atkBonus", "Checks", "Saves" ],
       "subtargets": [ "touch", "flat", "fort", "ref", "will" ]
     },
     "Luck": {
       "description": "A luck bonus represents good (or bad) fortune. Multiple luck bonuses on the same character or object do not stack. Only the highest luck bonus applies.",
-      "targets": [ "AC", "Attacks", "Checks", "Damage", "Saves" ],
+      "targets": [ "totalAC", "touchAC", "flatAC", "atkBonus", "Checks", "dmgBonus", "Saves" ],
       "subtargets": [ "touch", "flat", "fort", "ref", "will" ]
     },
     "Morale": {
       "description": "A morale bonus represents the effects of greater hope, courage, and determination (or hopelessness, cowardice, and despair in the case of a morale penalty). Multiple morale bonuses on the same character do not stack. Only the highest morale bonus applies. Non-intelligent creatures (creatures with an Intelligence of 0 or no Intelligence at all) cannot benefit from morale bonuses.",
-      "targets": [  "Attacks", "Checks", "Damage", "Saves", "Str", "Con", "Dex" ],
+      "targets": [  "atkBonus", "Checks", "dmgBonus", "Saves", "Str", "Con", "Dex" ],
       "subtargets": [ "fort", "ref", "will" ]
     },
     "Natural Armor": {
       "description": "A natural armor bonus improves armor class resulting from a creature’s naturally tough hide. Natural armor bonuses stack with all other bonuses to armor class (even with armor bonuses) except other natural armor bonuses. Some magical effects (such as the barkskin spell) grant an enhancement bonus to the creature’s existing natural armor bonus, which has the effect of increasing the natural armor’s overall bonus to armor class. A natural armor bonus doesn’t apply against touch attacks.",
-      "targets": [ "AC" ],
+      "targets": [ "totalAC", "flatAC" ],
       "subtargets": [ "flat" ]
     },
     "Profane": {
       "description": "A profane bonus (or penalty) stems from the power of evil. Multiple profane bonuses on the same character or object do not stack. Only the highest profane bonus applies.",
-      "targets": [  "AC", "Checks", "Damage", "DCs", "Saves" ],
+      "targets": [  "totalAC", "touchAC", "flatAC", "Checks", "dmgBonus", "DCs", "Saves" ],
       "subtargets": [ "touch", "flat", "fort", "ref", "will" ]
-    },
-    "Racial": {
-      "description": "A racial bonus comes from the culture a particular creature was brought up in or because of innate characteristics of that type of creature. If a creature’s race changes (for instance, if it dies and is reincarnated), it loses all racial bonuses it had in its previous form.",
-      "targets": []
     },
     "Resistance": {
       "description": "A resistance bonus affects saving throws, providing extra protection against harm. Multiple resistance bonuses on the same character or object do not stack. Only the highest resistance bonus applies.",
@@ -323,17 +314,17 @@
     },
     "Sacred": {
       "description": "A sacred bonus (or penalty) stems from the power of good. Multiple sacred bonuses on the same character or object do not stack. Only the highest sacred bonus applies.",
-      "targets": [ "AC", "Checks", "Damage", "DCs", "Saves" ],
+      "targets": [ "totalAC", "touchAC", "flatAC", "Checks", "dmgBonus", "DCs", "Saves" ],
       "subtargets": [ "touch", "flat", "fort", "ref", "will" ]
     },
     "Shield": {
       "description": "A shield bonus improves armor class and is granted by a shield or by a spell or magic effect that mimics a shield. Shield bonuses stack with all other bonuses to AC except other shield bonuses. A magic shield typically grants an enhancement bonus to the shield’s shield bonus, which has the effect of increasing the shield’s overall bonus to AC.",
-      "targets": [ "AC" ],
+      "targets": [ "totalAC", "flatAC" ],
       "subtargets": [ "flat" ]
     },
     "Size": {
       "description": "A size bonus or penalty is derived from a creature’s size category. Size modifiers of different kinds apply to armor class, attack rolls, Stealth checks, combat maneuver checks, and various other checks.",
-      "targets": [ "Ability Scores", "Attacks", "AC" ],
+      "targets": [ "Ability Scores", "atkBonus", "totalAC", "touchAC", "flatAC" ],
       "subtargets": [ "touch", "flat" ]
     },
     "Trait": {
@@ -397,15 +388,15 @@
           "descripction": "Constructs can see color in dim light.",
           "benefit": { "target": "senses", "text": "Low-Light Vision" },
           "bonuses": {}
-        }
+        },
         "Construct Immunities": {
           "trigger": "Continuous",
           "descripction": "Constructs is a magically animated or artificially created creatures, granting them a number of immunities.",
-          "benefit": { "target": "immunities", "text": 
+          "benefit": { "target": "immunities", "text":
             "nonlethal damage, necromancy, fatigue, exhaustion, stunning, paralysis, sleep, poison, mind effects, disease, ability damage, death effects, ability drain, energy drain"
           },
           "bonuses": {}
-        },
+        }
       }
     },
     "dragon": {
@@ -415,7 +406,7 @@
       "fort": { "mult": 0.5, "bonus": 2 },
       "ref": { "mult": 0.5, "bonus": 2 },
       "will": { "mult": 0.5, "bonus": 2 },
-      "skills": [ "Appraise", "Bluff", "Climb", "Craft", "Diplomacy", "Fly", "Heal", "Intimidate", "Knowledge (arcana)", "Knowledge (dungeoneering)", "Knowledge (engineering)", "Knowledge (geography)", "Knowledge (history)", "Knowledge (local)", "Knowledge (nature)", "Knowledge (nobility)", "Knowledge (planes)", "Knowledge (religion)", "Linguistics", "Perception", "Sense Motive", "Spellcraft", "Stealth", "Survival", "Swim", "Use Magic Device" ],,
+      "skills": [ "Appraise", "Bluff", "Climb", "Craft", "Diplomacy", "Fly", "Heal", "Intimidate", "Knowledge (arcana)", "Knowledge (dungeoneering)", "Knowledge (engineering)", "Knowledge (geography)", "Knowledge (history)", "Knowledge (local)", "Knowledge (nature)", "Knowledge (nobility)", "Knowledge (planes)", "Knowledge (religion)", "Linguistics", "Perception", "Sense Motive", "Spellcraft", "Stealth", "Survival", "Swim", "Use Magic Device" ],
       "traits": {
         "Darkvision": {
           "trigger": "Continuous",
@@ -428,7 +419,7 @@
           "descripction": "Dragons can see color in dim light.",
           "benefit": { "target": "senses", "text": "Low-Light Vision" },
           "bonuses": {}
-        }
+        },
         "Dragon Immunities": {
           "trigger": "Continuous",
           "descripction": "Dragons are immune to magical sleep and paralysis.",
@@ -539,7 +530,7 @@
           "descripction": "Oozes have no Intelligence score, giving them immunity to mind effects, they also have a number of other immunities.",
           "benefit": { "target": "immunities", "text": "critical hits, flanking, illusions, paralysis, poison, sleep, stunning, mind effects, polymorph, precision damage, gaze attacks, visual effects" },
           "bonuses": {}
-        },
+        }
       }
     },
     "outsider": {
@@ -579,7 +570,7 @@
           "descripction": "Plants are immune to a number of afects and abilities, mostly related to poisons or mind effects.",
           "benefit": { "target": "immunities", "text": "mind effects, paralysis, poison, polymorph, sleep, stunning" },
           "bonuses": {}
-        },
+        }
       }
     },
     "undead": {
@@ -602,7 +593,7 @@
           "descripction": "Undead are immune to a number of afects and abilities, mostly related to injuries the living may sustain like diseases.",
           "benefit": { "target": "immunities", "text": "nonlethal damage, mind effects, bleed, disease, sleep, paralysis, poison, stunning, exhaustion, fatigue, death effects, physical ability damage, ability drain, energy drain" },
           "bonuses": {}
-        },
+        }
       }
     },
     "vermin": {
