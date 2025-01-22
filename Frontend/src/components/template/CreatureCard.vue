@@ -3,25 +3,25 @@
   <h2>{{ title }}</h2>
 
   <!-- Basics -->
-  <el-row :gutter="20">
+  <el-row :gutter="20" style="margin-bottom: 15px;">
     <el-col :span="12" class="center-horz">
       <svg width="225" height="200">
         <HexGraph :abilities="[attributes.Str, attributes.Dex, attributes.Con, attributes.Int, attributes.Wis, attributes.Cha]"></HexGraph>
       </svg>
       <div class="stat-controls">
-        <el-row :gutter="5">
+        <el-row style="justify-content: center;">
           <el-col :span="3">  Str:</el-col>
           <el-col :span="3">  <el-tag size="small" effect="dark" type="primary">{{attributes.Str}}</el-tag>  </el-col>
           <el-col :span="3">  Int:</el-col>
           <el-col :span="3">  <el-tag size="small" effect="dark" type="primary">{{attributes.Int}}</el-tag>  </el-col>
         </el-row>
-        <el-row :gutter="5">
+        <el-row style="justify-content: center;">
           <el-col :span="3">  Dex:</el-col>
           <el-col :span="3">  <el-tag size="small" effect="dark" type="primary">{{attributes.Dex}}</el-tag>  </el-col>
           <el-col :span="3">  Wis:</el-col>
           <el-col :span="3">  <el-tag size="small" effect="dark" type="primary">{{attributes.Wis}}</el-tag>  </el-col>
         </el-row>
-        <el-row :gutter="5">
+        <el-row style="justify-content: center;">
           <el-col :span="3">  Con:</el-col>
           <el-col :span="3">  <el-tag size="small" effect="dark" type="primary">{{attributes.Con}}</el-tag>  </el-col>
           <el-col :span="3">  Cha:</el-col>
@@ -34,297 +34,469 @@
       <div class="center-horz">
         <g-icon iconSize="128px" :icon-name="basics.type.name" :key="basics.type.name"/>
       </div>
-      <el-row :gutter="5">
-        <el-col :span="4" class="center center-vert">
+      <el-row>
+        <el-col :span="4" class="center-vert center-horz">
           <g-icon iconSize="24px" icon-name="compass"/>
         </el-col>
-        <el-col :span="20" class="center">
+        <el-col :span="20">
           <el-row>
-            <el-col :span="22" class="center"> {{ basics.alignment }} {{ basics.size }} ({{ basics.sizeStats.space }}) </el-col>
+            <el-col :span="12">
+              {{ basics.alignment }} {{ capFirsts(basics.size) }} ({{ basics.sizeStats.space }})
+            </el-col>
+            <el-col :span="12">
+              <el-tooltip placement="top" effect="light">
+                <el-tag size="small" effect="dark" type="primary">{{ capFirsts(basics.type.name) }}</el-tag>
+                <template #content>
+                  {{ basics.type.levels }} HD (1d{{ basics.type.hd }})
+                </template>
+              </el-tooltip>
+            </el-col>
           </el-row>
           <el-row>
-            <!-- <el-col :span="22" class="center"> {{ levels.class }} </el-col> -->
+            <el-tooltip placement="top" effect="light" v-for="(cClass, name) in cClasses" :key="name">
+              <el-tag size="small" effect="dark" type="primary" style="margin: 0 1px 0 0;">{{ capFirsts(name) }} {{ cClass.levels }}</el-tag>
+              <template #content>
+                {{ cClass.levels }} HD (1d{{ cClass.hd }})
+              </template>
+            </el-tooltip>
+            <el-tag size="small" effect="dark" type="info" v-for="subtype in basics.type.subtypes" :key="subtype" style="margin: 0 1px 0 2px;">
+              {{ capFirsts(subtype) }}
+            </el-tag>
           </el-row>
           <el-row>
-            <el-col class="center">
-              <el-tag size="small" effect="dark" type="primary">{{basics.type.name}}</el-tag>
-              <el-tag v-for="subtype in basics.type.subtypes" :key="subtype" size="small" effect="dark" type="info">{{ subtype }}</el-tag>
+            <el-col>
             </el-col>
           </el-row>
         </el-col>
       </el-row>
       <el-row>
-        <el-col :span="4" class="center"> <g-icon iconSize="24px" icon-name="treasure"/> </el-col>
-        <el-col :span="20" class="center"> {{ this.original.Treasure }} </el-col>
+        <el-col :span="4" class="center-vert center-horz"> <g-icon iconSize="24px" icon-name="treasure"/> </el-col>
+        <el-col :span="20" class="center-vert"> {{ this.original.Treasure }} </el-col>
       </el-row>
       <el-row>
-        <el-col :span="4" class="center"> <g-icon iconSize="24px" icon-name="forest"/> </el-col>
-        <el-col :span="20" class="center"> {{ this.original.Environment }} </el-col>
+        <el-col :span="4" class="center-vert center-horz"> <g-icon iconSize="24px" icon-name="forest"/> </el-col>
+        <el-col :span="20" class="center-vert"> {{ this.original.Environment }} </el-col>
       </el-row>
     </el-col>
   </el-row>
-  <el-divider border-style="hidden"/>
+
+  <!-- Content Tabs -->
+  <el-button ref="restBtn" size="large" @click="rest()">
+    <el-tooltip placement="top" effect="light">
+      <g-icon iconSize="20px" iconName="campfire" />
+      <template #content>Rest for 8 Hours</template>
+    </el-tooltip>
+  </el-button>
+  <el-tabs ref="tabs" type="card" v-model="cardTab">
+    <el-tab-pane label="Main" name="first">
+
+      <!-- Defense -->
+      <el-collapse v-model="openSections">
+        <el-collapse-item title="Defense" name="defense">
+          <el-row :gutter="20">
+            <el-col :span="3"> <g-icon iconSize="32px" iconName="Armor" /> </el-col>
+
+            <!-- HP & AC -->
+            <el-col :span="7">
+              <el-tooltip placement="top" effect="light">
+                <el-tag size="small" effect="dark" type="danger">
+                  HP: {{ health.roll + health.bonus }}
+                </el-tag>
+                <template #content>
+                  <span v-for="hd in health.hd" :key="hd"> {{ hd }} + </span> {{ health.bonus }}
+                </template>
+              </el-tooltip>   <br>
+              <el-tooltip placement="top" effect="light">
+                AC: {{ ac.total.num }}
+                <template #content>
+                  <span v-for="bonus in ac.total.sources" :key="bonus"> {{ bonus+" " }} </span>
+                </template>
+              </el-tooltip>   <br>
+              <el-tooltip placement="top" effect="light">
+                Touch: {{ ac.touch.num }}
+                <template #content>
+                  <span v-for="bonus in ac.touch.sources" :key="bonus"> {{ bonus+" " }} </span>
+                </template>
+              </el-tooltip>   <br>
+              <el-tooltip placement="top" effect="light">
+                Flat Footed: {{ ac.flat.num }}
+                <template #content>
+                  <span v-for="bonus in ac.flat.sources" :key="bonus"> {{ bonus+" " }} </span>
+                </template>
+              </el-tooltip>   <br>
+            </el-col>
+
+            <!-- CMD & Saves -->
+            <el-col :span="7">
+              <el-tooltip placement="top" effect="light">
+                CMD: {{ cmd.total }}
+                <template #content>
+                  <span v-for="bonus in cmd.sources" :key="bonus"> {{ bonus+" " }} </span>
+                </template>
+              </el-tooltip>   <br>
+              <el-tooltip placement="top" effect="light">
+                Fort: +{{ saves.fort.total }}
+                <template #content>
+                  <span v-for="bonus in saves.fort.sources" :key="bonus"> {{ bonus+" " }} </span>
+                </template>
+              </el-tooltip>   <br>
+              <el-tooltip placement="top" effect="light">
+                Ref: +{{ saves.ref.total }}
+                <template #content>
+                  <span v-for="bonus in saves.ref.sources" :key="bonus"> {{ bonus+" " }} </span>
+                </template>
+              </el-tooltip>   <br>
+              <el-tooltip placement="top" effect="light">
+                Will: +{{ saves.will.total }}
+                <template #content>
+                  <span v-for="bonus in saves.will.sources" :key="bonus"> {{ bonus+" " }} </span>
+                </template>
+              </el-tooltip>
+            </el-col>
+
+            <!-- Init, Speed, Senses -->
+            <el-col :span="7">
+              <el-tooltip placement="top" effect="light">
+                Init: +{{ init.total }}
+                <template #content>
+                  <span v-for="bonus in init.sources" :key="bonus"> {{ bonus+" " }} </span>
+                </template>
+              </el-tooltip>   <br>
+              <el-tooltip placement="top" effect="light" v-if="speed.sources[0]">
+                Speed: {{ speed.total }} ft.
+                <template #content>
+                  <span v-for="bonus in speed.sources" :key="bonus"> {{ bonus+" " }} </span>
+                </template>
+              </el-tooltip>
+              <span v-else>
+                Speed: {{ speed.total }} ft.
+              </span>         <br>
+              Senses: {{ senses }}
+            </el-col>
+          </el-row>
+
+          <!-- Immunities & Weaknesses -->
+          <el-row v-if="this.original.Immunities">
+            <el-col :span="3">
+            </el-col>
+            <el-col :span="7">
+              Immunities
+            </el-col>
+            <el-col :span="14">
+              <span v-for="item in this.original.Immunities" :key="item.id">
+                {{ item }},
+              </span>
+            </el-col>
+          </el-row>
+          <el-row v-if="this.original.Weaknesses">
+            <el-col :span="3">
+            </el-col>
+            <el-col :span="7">
+              Weaknesses
+            </el-col>
+            <el-col :span="14">
+              <span v-for="item in this.original.Weaknesses" :key="item.id">
+                {{ item }},
+              </span>
+            </el-col>
+          </el-row>
+        </el-collapse-item>
+
+        <!-- Offense -->
+        <el-collapse-item title="Actions" name="offense">
+          <el-row :gutter="20">
+            <el-col :span="3">
+              <g-icon iconSize="32px" iconName="swordShield" />
+            </el-col>
+
+            <!-- Melee Attacks -->
+            <el-col :span="21" class="center">
+              <el-row>
+                <el-col :span="5">Melee</el-col>
+                <el-col :span="3">To Hit</el-col>
+                <el-col :span="6">Dmage</el-col>
+                <el-col :span="3">Range</el-col>
+              </el-row>
+              <el-row v-for="(action, name) in actions.melee" :key="name">
+                <el-col :span="5" class="center-vert">
+                  <g-icon iconSize="20px" iconName="meleeSword" />
+                  <span v-if="action.NatAtkNum">{{ action.NatAtkNum }} </span>
+                  {{ name }}
+                </el-col>
+                <!-- Atk Bonus(es) -->
+                <el-col :span="3" class="center-vert">
+                  <el-tooltip placement="top" effect="light">
+                    <span> <span v-if="action.atkBonus.total >= 0">+</span>{{ action.atkBonus.total }} &nbsp; </span>
+                    <template #content>
+                      <span v-for="bonus in action.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
+                    </template>
+                  </el-tooltip>
+                  <el-tooltip placement="top" effect="light" v-if="bab>5 && !action.NatAtkNum">
+                    <span><span v-if="action.atkBonus.total-5 >= 0">+</span>{{ action.atkBonus.total-5 }} &nbsp; </span>
+                    <template #content>
+                      <span v-for="bonus in action.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
+                      <span> -5 Subsequent Attack </span>
+                    </template>
+                  </el-tooltip>
+                  <el-tooltip placement="top" effect="light" v-if="bab>10 && !action.NatAtkNum">
+                    <span><span v-if="action.atkBonus.total-10 >= 0">+</span>{{ action.atkBonus.total-10 }} &nbsp; </span>
+                    <template #content>
+                      <span v-for="bonus in action.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
+                      <span> -10 Subsequent Attack </span>
+                    </template>
+                  </el-tooltip>
+                  <el-tooltip placement="top" effect="light" v-if="bab>15 && !action.NatAtkNum">
+                    <span><span v-if="action.atkBonus.total-15 >= 0">+</span>{{ action.atkBonus.total-15 }} &nbsp; </span>
+                    <template #content>
+                      <span v-for="bonus in action.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
+                      <span> -15 Subsequent Attack </span>
+                    </template>
+                  </el-tooltip>
+                </el-col>
+
+                <!-- Damage, Range, & Extras -->
+                <el-col :span="6" class="center-vert">
+                  {{ action.dmgDie }}
+                  <el-tooltip placement="top" effect="light">
+                    +{{ action.dmgBonus.total }}
+                    <template #content>
+                      <span v-for="bonus in action.dmgBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
+                    </template>
+                  </el-tooltip>
+                  ( <span v-if="action.crit.range<20">{{ action.crit.range }}-</span>20 {{ action.crit.mult }} )
+                </el-col>
+                <el-col :span="3" class="center-vert">
+                  <span v-if="action.range"> {{ action.range }} </span>
+                </el-col>
+                <el-col :span="6" class="center-vert">
+                  <div v-if="Object.values(action.extras).length">
+                    <el-collapse>
+                      <el-collapse-item title="" name="1">
+                        <template #title> <g-icon iconName="star" iconSize="20" /> Extras </template>
+                        <ul>
+                          <li v-for="(item, name) in action.extras" :key="name">
+                            <span v-if="name == 'masterwork'"> {{ name }} </span>
+                            <span v-else> {{ name }} : {{ item }} </span>
+                          </li>
+                        </ul>
+                      </el-collapse-item>
+                    </el-collapse>
+                  </div>
+                </el-col>
+              </el-row>
+              <el-divider />
+
+              <!-- Ranged Attacks -->
+              <el-row>
+                <el-col :span="5">Ranged</el-col>
+                <el-col :span="3">To Hit</el-col>
+                <el-col :span="6">Dmage</el-col>
+                <el-col :span="3">Range</el-col>
+                <!-- <el-col :span="6"><el-tag size="small" effect="dark" type="primary">CMB +{{ cmb.total }}</el-tag></el-col> -->
+              </el-row>
+              <el-row v-for="(action, name) in actions.melee" :key="name">
+                <el-col :span="5" class="center-vert">
+                  <g-icon iconSize="20px" iconName="rangedBow" />
+                  <span v-if="action.NatAtkNum">{{ action.NatAtkNum }} </span>
+                  {{ name }}
+                </el-col>
+                <!-- Atk Bonus(es) -->
+                <el-col :span="3" class="center-vert">
+                  <el-tooltip placement="top" effect="light">
+                    <span> <span v-if="action.atkBonus.total >= 0">+</span>{{ action.atkBonus.total }} &nbsp; </span>
+                    <template #content>
+                      <span v-for="bonus in action.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
+                    </template>
+                  </el-tooltip>
+                  <el-tooltip placement="top" effect="light" v-if="bab>5 && !action.NatAtkNum">
+                    <span><span v-if="action.atkBonus.total-5 >= 0">+</span>{{ action.atkBonus.total-5 }} &nbsp; </span>
+                    <template #content>
+                      <span v-for="bonus in action.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
+                      <span> -5 Subsequent Attack </span>
+                    </template>
+                  </el-tooltip>
+                  <el-tooltip placement="top" effect="light" v-if="bab>10 && !action.NatAtkNum">
+                    <span><span v-if="action.atkBonus.total-10 >= 0">+</span>{{ action.atkBonus.total-10 }} &nbsp; </span>
+                    <template #content>
+                      <span v-for="bonus in action.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
+                      <span> -10 Subsequent Attack </span>
+                    </template>
+                  </el-tooltip>
+                  <el-tooltip placement="top" effect="light" v-if="bab>15 && !action.NatAtkNum">
+                    <span><span v-if="action.atkBonus.total-15 >= 0">+</span>{{ action.atkBonus.total-15 }} &nbsp; </span>
+                    <template #content>
+                      <span v-for="bonus in action.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
+                      <span> -15 Subsequent Attack </span>
+                    </template>
+                  </el-tooltip>
+                </el-col>
+
+                <!-- Damage, Range, Extras -->
+                <el-col :span="6" class="center-vert">
+                  {{ action.dmgDie }}
+                  <el-tooltip placement="top" effect="light">
+                    +{{ action.dmgBonus.total }}
+                    <template #content>
+                      <span v-for="bonus in action.dmgBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
+                    </template>
+                  </el-tooltip>
+                  ( <span v-if="action.crit.range<20">{{ action.crit.range }}-</span>20 {{ action.crit.mult }} )
+                </el-col>
+                <el-col :span="3" class="center-vert">
+                  <span v-if="action.range"> {{ action.range }} </span>
+                </el-col>
+                <el-col :span="6" class="center-vert">
+                  <div v-if="Object.values(action.extras).length">
+                    <el-collapse>
+                      <el-collapse-item title="" name="1">
+                        <template #title> <g-icon iconName="star" iconSize="20" /> Extras </template>
+                        <ul>
+                          <li v-for="(item, name) in action.extras" :key="name">
+                            <span v-if="name == 'masterwork'"> {{ name }} </span>
+                            <span v-else> {{ name }} : {{ item }} </span>
+                          </li>
+                        </ul>
+                      </el-collapse-item>
+                    </el-collapse>
+                  </div>
+                </el-col>
+              </el-row>
+              <el-divider />
+
+              <!-- Special Actions -->
+              <el-row>
+                <el-col :span="5">Special</el-col>
+                <el-col :span="3">Action</el-col>
+                <el-col :span="6">Effects</el-col>
+                <el-col :span="3">Range</el-col>
+                <el-col :span="6"><el-tag size="small" effect="dark" type="primary">CMB +{{ cmb.total }}</el-tag></el-col>
+              </el-row>
+              <el-row v-for="(action, name) in actions.melee" :key="name">
+                <el-col :span="5" class="center-vert">
+                  <g-icon iconSize="20px" iconName="abilityPalm" />
+                  <span v-if="action.NatAtkNum">{{ action.NatAtkNum }} </span>
+                  {{ name }}
+                </el-col>
+                <!-- Action Type -->
+                <el-col :span="3" class="center-vert">
+                  <el-tooltip placement="top" effect="light">
+                    <span> <span v-if="action.atkBonus.total >= 0">+</span>{{ action.atkBonus.total }} &nbsp; </span>
+                    <template #content>
+                      <span v-for="bonus in action.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
+                    </template>
+                  </el-tooltip>
+                </el-col>
+
+                <!-- Effects, Range, Extras -->
+                <el-col :span="6" class="center-vert">
+                  {{ action.dmgDie }}
+                  <el-tooltip placement="top" effect="light">
+                    +{{ action.dmgBonus.total }}
+                    <template #content>
+                      <span v-for="bonus in action.dmgBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
+                    </template>
+                  </el-tooltip>
+                  ( <span v-if="action.crit.range<20">{{ action.crit.range }}-</span>20 {{ action.crit.mult }} )
+                </el-col>
+                <el-col :span="3" class="center-vert">
+                  <span v-if="action.range"> {{ action.range }} </span>
+                </el-col>
+                <el-col :span="6" class="center-vert">
+                  <div v-if="Object.values(action.extras).length">
+                    <el-collapse>
+                      <el-collapse-item title="" name="1">
+                        <template #title> <g-icon iconName="star" iconSize="20" /> Extras </template>
+                        <ul>
+                          <li v-for="(item, name) in action.extras" :key="name">
+                            <span v-if="name == 'masterwork'"> {{ name }} </span>
+                            <span v-else> {{ name }} : {{ item }} </span>
+                          </li>
+                        </ul>
+                      </el-collapse-item>
+                    </el-collapse>
+                  </div>
+                </el-col>
+              </el-row>
+            </el-col>
+          </el-row>
+        </el-collapse-item>
 
 
-  <!-- Defense -->
-  <el-collapse v-model="openSections">
-    <el-collapse-item title="Defense" name="defense">
-      <el-row :gutter="20">
-        <el-col :span="3" class="center center-vert"> <g-icon iconSize="32px" iconName="Armor" /> </el-col>
+        <!-- Conditions -->
+        <el-collapse-item title="Conditions" name="conditions">
+          <el-row :gutter="20">
+            <el-col :span="3">
+              <g-icon iconSize="32px" iconName="dizzyStar" />
+            </el-col>
+            <el-col :span="21">
+              CONDITIONS!!
+            </el-col>
+          </el-row>
+        </el-collapse-item>
+      </el-collapse>
+    </el-tab-pane>
 
-        <el-col :span="7" class="center">
-          <el-tooltip placement="top" effect="light">
-            <el-tag size="small" effect="dark" type="danger">
-              HP: {{ health.roll + health.bonus }}
-            </el-tag>
+    <!-- Items -->
+    <el-tab-pane label="Items" name="second">
+      {{ inventory }}
+    </el-tab-pane>
 
-            <template #content>
-              <span v-for="hd in health.hd" :key="hd"> {{ hd }} + </span> {{ health.bonus }}
-            </template>
-          </el-tooltip>   <br>
-          <el-tooltip placement="top" effect="light">
-            AC: {{ ac.total.num }}
-            <template #content>
-              <span v-for="bonus in ac.total.sources" :key="bonus"> {{ bonus+" " }} </span>
-            </template>
-          </el-tooltip>   <br>
-          <el-tooltip placement="top" effect="light">
-            Touch: {{ ac.touch.num }}
-            <template #content>
-              <span v-for="bonus in ac.touch.sources" :key="bonus"> {{ bonus+" " }} </span>
-            </template>
-          </el-tooltip>   <br>
-          <el-tooltip placement="top" effect="light">
-            Flat Footed: {{ ac.flat.num }}
-            <template #content>
-              <span v-for="bonus in ac.flat.sources" :key="bonus"> {{ bonus+" " }} </span>
-            </template>
-          </el-tooltip>   <br>
-        </el-col>
+    <!-- Skills -->
+    <el-tab-pane label="Skills" name="third">
+      <el-col :span="7">
+        Languages
+        <br>
+        {{ this.original.Languages }}
+      </el-col>
+      <el-col :span="7">
+        Skills
+        <br>
+        {{ this.original.Skills }}
+        <br>
+        {{ skills.Stealth }}<br>
+      </el-col>
+    </el-tab-pane>
 
-
-        <el-col :span="7" class="center">
-          <el-tooltip placement="top" effect="light">
-            CMD: {{ cmd.total }}
-            <template #content>
-              <span v-for="bonus in cmd.sources" :key="bonus"> {{ bonus+" " }} </span>
-            </template>
-          </el-tooltip>   <br>
-          <el-tooltip placement="top" effect="light">
-            Fort: +{{ saves.fort.total }}
-            <template #content>
-              <span v-for="bonus in saves.fort.sources" :key="bonus"> {{ bonus+" " }} </span>
-            </template>
-          </el-tooltip>   <br>
-          <el-tooltip placement="top" effect="light">
-            Ref: +{{ saves.ref.total }}
-            <template #content>
-              <span v-for="bonus in saves.ref.sources" :key="bonus"> {{ bonus+" " }} </span>
-            </template>
-          </el-tooltip>   <br>
-          <el-tooltip placement="top" effect="light">
-            Will: +{{ saves.will.total }}
-            <template #content>
-              <span v-for="bonus in saves.will.sources" :key="bonus"> {{ bonus+" " }} </span>
-            </template>
-          </el-tooltip>
-        </el-col>
-
-        <el-col :span="7" class="center">
-          <el-tooltip placement="top" effect="light">
-            Init: +{{ init.total }}
-            <template #content>
-              <span v-for="bonus in init.sources" :key="bonus"> {{ bonus+" " }} </span>
-            </template>
-          </el-tooltip>   <br>
-          <el-tooltip placement="top" effect="light" v-if="speed.sources[0]">
-            Speed: {{ speed.total }} ft.
-            <template #content>
-              <span v-for="bonus in speed.sources" :key="bonus"> {{ bonus+" " }} </span>
-            </template>
-          </el-tooltip>
-          <span v-else>
-            Speed: {{ speed.total }} ft.
-          </span>         <br>
-          Senses: {{ senses }} <br>
-        </el-col>
-      </el-row>
-
-      <el-row v-if="this.original.Immunities">
-        <el-col :span="3" class="center">
-        </el-col>
-        <el-col :span="7" class="center">
-          Immunities
-        </el-col>
-        <el-col :span="14" class="center">
-          <span v-for="item in this.original.Immunities" :key="item.id">
-            {{ item }},
-          </span>
-        </el-col>
-      </el-row>
-      <el-row v-if="this.original.Weaknesses">
-        <el-col :span="3" class="center">
-        </el-col>
-        <el-col :span="7" class="center">
-          Weaknesses
-        </el-col>
-        <el-col :span="14" class="center">
-          <span v-for="item in this.original.Weaknesses" :key="item.id">
-            {{ item }},
-          </span>
-        </el-col>
-      </el-row>
-    </el-collapse-item>
-
-
-    <!-- Offense -->
-    <el-collapse-item title="Offense" name="offense">
-      <el-row :gutter="20">
-        <el-col :span="3" class="center">
-          <g-icon iconSize="32px" iconName="swordShield" />
-        </el-col>
-
-        <el-col :span="21" class="center">
-          <div>Melee</div>
-          <br>
-          <div v-for="(item, name) in bonuses" :key="name">
-            {{ name }} : {{ item }}
-          </div>
-          <br><br>
-
-          BAB +{{ bab }}<br>
-          CMB +{{ cmb.total }}
-          <br><br><br>
-          {{ actions.melee }}
-          <br><br>
-
-          name  hit   dmg(1d8+1) crit mult extras[]
-
-          <div v-for="(action, name) in actions.melee" :key="name">
-            {{ name }} +{{ action.atkBonus.total}} ({{ action.dmgDie }}+{{ action.dmgBonus.total }})
-
-
-            <br><br>
-            {{ action }}
-          </div>
-
-          <!-- {{ actions }} -->
-          <br><br>
-
-                    <span v-if="this.original.dr"> DR: {{ this.original.dr }} </span>
-                    <br>
-                    <span v-if="this.original.sr"> SR: {{ this.original.sr }} </span>
-
-
-          Reach: {{ this.original.Reach }} ft.
-          <div v-for="atk in creature.melee" :key="atk.id">
-            <span v-if="atk.atkNum"> {{ atk.atkNum }} </span> {{ atk.atkName }} {{ atk.atkMod }} ({{ atk.dmgDie }}{{ atk.dmgMod }}<span v-if="atk.bonus"> {{ atk.bonus }}</span>)<br>
-          </div>
-          <el-divider />
-
-
-
-          <div class="center-horz">Ranged</div>
-          <div v-for="atk in creature.ranged" :key="atk.id">
-            <span v-if="atk.atkNum"> {{ atk.atkNum }} </span> {{ atk.atkName }} {{ atk.atkMod }} ({{ atk.dmgDie }}<span v-if="atk.dmgMod">{{ atk.dmgMod }}</span><span v-if="atk.bonus"> {{ atk.bonus }}</span>)<br>
-          </div>
-
-
-
-
-          <div class="center-horz">Special</div>
-          <div v-for="atk in creature.special" :key="atk.id">
-            {{ atk }}
-          </div>
-        </el-col>
-      </el-row>
-    </el-collapse-item>
-
+    <!-- Abilities -->
+    <el-tab-pane label="Abilities" name="fourth">
+      <el-col :span="7" class="center">
+        Feats
+        <br>
+        {{ this.original.Feats }}
+      </el-col>
+    </el-tab-pane>
 
     <!-- Magic -->
-    <el-collapse-item title="Magic" name="magic" v-if="this.original.Magic">
+    <el-tab-pane label="Magic" name="fifth">
       <el-row :gutter="20">
-        <el-col :span="3" class="center">
+        <el-col :span="3">
           <g-icon iconSize="32px" iconName="rolledScroll" />
         </el-col>
-        <el-col :span="21" class="center">
+        <el-col :span="21">
           {{ this.original.Magic }}
         </el-col>
       </el-row>
-    </el-collapse-item>
+    </el-tab-pane>
+  </el-tabs>
 
 
-    <!-- Specials -->
-    <el-collapse-item title="Special" name="special" v-if="this.original.Extras">
-      <el-row :gutter="20">
-        <el-col :span="3" class="center">
-          <g-icon iconSize="32px" iconName="Star" />
-        </el-col>
-        <el-col :span="21" class="center">
-          <div v-for="(value, key) in this.original.Extras" :key="key">
-            <strong>
-              {{ key }}
-            </strong>
-            <br>
-            {{ value }}
-            <br><br>
-          </div>
-        </el-col>
-      </el-row>
-    </el-collapse-item>
-
-
-    <!-- Others -->
-    <el-collapse-item title="Others" name="other">
-      <el-row :gutter="20">
-        <el-col :span="3" class="center">
-          <g-icon iconSize="32px" iconName="openBook" />
-        </el-col>
-
-        <el-col :span="7" class="center">
-          Feats
-          <br>
-          {{ this.original.Feats }}
-        </el-col>
-
-        <el-col :span="7" class="center">
-          Skills
-          <br>
-          {{ this.original.Skills }}
-        </el-col>
-
-        <el-col :span="7" class="center">
-          <span v-if="this.original.Class1">
-            Classes: {{ this.original.Class1}} ({{ this.original.Class1_Lvl }})
-            <br><br>
-          </span>
-          Languages
-          <br>
-          {{ this.original.Languages }}
-        </el-col>
-      </el-row>
-    </el-collapse-item>
-  </el-collapse>
-
-  <br>
   <el-row :gutter="20">
     <el-col :span="3" class="center">
       <el-button type="primary" @click="addMonster()"> Add to Session </el-button>
     </el-col>
     <el-select-v2 v-model="basics.size" :options="this.sizeSelect" size="small" style="width: 120px" />
-    {{ skills.Stealth }}<br>
-  </el-row>
 
+  </el-row>
+  <div v-for="(item, name) in bonuses" :key="name">
+    {{ name }} : {{ item }}
+  </div>
 
 </template>
 
 <script>
 import DataService from "@/services/data.service";
 import HexGraph from '@/components/template/HexGraph.vue'
-// const miscTables = require('@/components/codex/tables.json');
 const supplementTables = {};
-// const supplementTables = require('@/components/codex/monsters.json');
-// const equipmentTables = require('@/components/codex/equipment.json');
 
 export default {
   name: "CreatureCard",
@@ -339,6 +511,7 @@ export default {
       classes: {},
       equipment: {},
 
+      cardTab: "first",
       openSections: [ "defense", "offense" ],
       sizeSelect: [
         { value: "Fine", label: "Fine", },
@@ -366,6 +539,11 @@ export default {
     DataService.getEquipment().then ( (response) => { this.equipment = response; });
   },
   mounted() {
+    const scrollbar = this.$refs.tabs.$el.querySelector('.el-tabs__nav-scroll');
+    console.log(scrollbar);
+    scrollbar.appendChild(this.$refs.restBtn.$el);
+
+
     this.updateActive();
     this.getCreature({Name: this.creatureName});
   },
@@ -427,6 +605,15 @@ export default {
       basics.sizeStats = this.rules.size ? this.rules.size[basics.size] : { "space": "5 ft." };
       return basics;
     },
+    cClasses() {
+      let classes = {};
+      if (this.source.name) {
+        // TODO: classes loop
+        classes = this.source.classes;
+        classes.warrior.hd = 10;
+      }
+      return classes;
+     },
     health() {
       let health = { "bonus": 0, "roll": 0, "hd": [] };
       if (this.source.name) {
@@ -736,15 +923,20 @@ export default {
         \***************************/
         let NatAtkNum = 0;
         for (let [name, atk] of Object.entries(this.source.actions.melee)) {
+          console.log(name, atk);
           let newAtk = {
             dmgBonus: { "total": 0, "sources": [] },
             atkBonus: { "total": 0, "sources": [] }
           };
 
+          // TODO: ranged and ability loops
+
           newAtk.atkBonus.total += this.bab;
           newAtk.atkBonus.sources.push(`+${this.bab} BAB`);
-          newAtk.atkBonus.total += this.basics.sizeStats["ac / atk"];
-          newAtk.atkBonus.sources.push(`+${this.basics.sizeStats["ac / atk"]} Size`);
+          if (this.basics.size != "medium") {
+            newAtk.atkBonus.total += this.basics.sizeStats["ac / atk"];
+            newAtk.atkBonus.sources.push(`+${this.basics.sizeStats["ac / atk"]} Size`);
+          }
 
           // Add mwk or magic enhancements to atk bonus
           if (atk.Extras["enhancement"]) {
@@ -815,10 +1007,14 @@ export default {
             });
           }
 
+          if (NatAtkNum>1) { newAtk.atkNum = NatAtkNum; }
           newAtk.dmgDie = atk.Damage[this.basics.size];
+          newAtk.crit = {};
+          newAtk.crit.range = atk.Critical.split("/")[0];
+          newAtk.crit.mult = atk.Critical.split("/")[1];
+          newAtk.extras = (atk.Extras) ? atk.Extras : [];
           console.log(`${NatAtkNum>1 ? NatAtkNum : ""} ${name} +${newAtk.atkBonus.total} (${newAtk.dmgDie}+${newAtk.dmgBonus.total} /${atk.Critical})`);
           actions.melee[name] = newAtk;
-          if (NatAtkNum>1) { actions[name].natAtkNum = NatAtkNum; }
         }
         // actions = this.source.actions;
       }
@@ -1098,7 +1294,12 @@ export default {
 
 
 
-
+    capFirsts(string) {
+      return string ? string.replace(/(^\w|\s\w)/g, m => m.toUpperCase()) : "";
+    },
+    rest() {
+      console.log('REST UP: HP, SPELLS');
+    },
 
 
     addMonster() {
@@ -1113,13 +1314,11 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.center-vert {
-  align-content: center;
-}
-.center-horz {
-  text-align: center;
-}
 .stat-controls .el-input-number {
   width: 70px;
+}
+.el-tabs__nav-scroll {
+  display: flex;
+  justify-content: space-between;
 }
 </style>

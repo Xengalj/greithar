@@ -35,11 +35,11 @@ export default {
     return {
       labels: [
         { label: 'Str', x: 90, y: 12 },
-        { label: 'Dex', x: 175, y: 56 },
-        { label: 'Con', x: 175, y: 144 },
+        { label: 'Dex', x: 175, y: 52 },
+        { label: 'Con', x: 175, y: 152 },
         { label: 'Int', x: 90, y: 193 },
-        { label: 'Wis', x: 1, y: 144 },
-        { label: 'Cha', x: 1, y: 56 }
+        { label: 'Wis', x: 0, y: 152 },
+        { label: 'Cha', x: 0, y: 52 }
       ]
     }
   },
@@ -76,7 +76,7 @@ circle {
 
 text {
   font-size: 10px;
-  fill: #666;
+  fill: var(--el-text-color-regular);
 }
 
 label {
