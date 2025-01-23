@@ -3,91 +3,110 @@
     "type": "Creation",
     "prerequisites": [ "Craft (any):1 OR Heal:1" ],
     "description": "You can extract the choicest parts from a monster’s carcass to use as resources when crafting items.",
-    "benefit": "You may harvest parts (Craft or Heal check, DC 15+CR) for use as raw materials for crafting items, and provide a value equal to the creature’s CR squared × 10 gp."
+    "benefit": "You may harvest parts (Craft or Heal check, DC 15+CR) for use as raw materials for crafting items, and provide a value equal to the creature’s CR squared × 10 gp.",
+    "trigger": "Continuous",
+    "bonuses": {
+      "Bonus Name": {
+        "value": 0,
+        "type": "Feat",
+        "targets": [ "Initiative", "totalAC" ]
+      }
+    }
   },
   "Grisly Ornament": {
     "type": "Creation",
     "prerequisites": [ "Harvest Parts" ],
     "description": "You adorn your gear with mementos from your foes.",
     "benefit": "You may use harvested parts of recently felled foes to grant a bonus of your choice to AC, Attack Rolls, CMB, CMD, Saves, or Skills. This bonus only works on the type of enemy the momento came from and lasts until it is no longer fresh",
-    "abilities": []
+    "trigger": "Continuous",
+    "bonuses": {}
   },
   "Scribe Scroll": {
     "type": "Creation",
     "prerequisites": [ "Caster Level:1" ],
     "description": "You can create magic scrolls.",
     "benefit": "You can create a scroll of any spell that you know. See magic item creation rules for more information.",
-    "abilities": []
+    "trigger": "Continuous",
+    "bonuses": {}
   },
   "Craft Poppet": {
     "type": "Creation",
     "prerequisites": [ "Caster Level:1" ],
     "description": "Some construct builders learn their art by creating poppets.",
     "benefit": "You can craft poppets and add augmentations to existing poppets that you control. You are also treated as having both Craft Magic Arms and Armor and Craft Wondrous Item for the purpose of fulfilling the prerequisites for Craft Construct.",
-    "abilities": []
+    "trigger": "Continuous",
+    "bonuses": {}
   },
   "Brew Potion": {
     "type": "Creation",
     "prerequisites": [ "Caster Level:3" ],
     "description": "You can create magic potions.",
     "benefit": "You can create a potion of any 3rd-level or lower spell that you know. See magic item creation rules for more information.",
-    "abilities": []
+    "trigger": "Continuous",
+    "bonuses": {}
   },
   "Craft Wondrous Item": {
     "type": "Creation",
     "prerequisites": [ "Caster Level:3" ],
     "description": "You can create wondrous items, a type of magic item.",
     "benefit": "You can create a wide variety of magic wondrous items. See magic item creation rules for more information.",
-    "abilities": []
+    "trigger": "Continuous",
+    "bonuses": {}
   },
   "Craft Wand": {
     "type": "Creation",
     "prerequisites": [ "Caster Level:5" ],
     "description": "You can create magic wands.",
     "benefit": "You can create a wand of any 4th-level or lower spell that you know, and a new wand has 50 charges. See magic item creation rules for more information.",
-    "abilities": []
+    "trigger": "Continuous",
+    "bonuses": {}
   },
   "Craft Magic Arms and Armor": {
     "type": "Creation",
     "prerequisites": [ "Caster Level:5" ],
     "description": "You can create magic armor, shields, and weapons.",
     "benefit": "You can create magic weapons, armor, or shields. See magic item creation rules for more information.",
-    "abilities": []
+    "trigger": "Continuous",
+    "bonuses": {}
   },
   "Craft Construct": {
     "type": "Creation",
     "prerequisites": [ "Caster Level:5", "Craft Magic Arms and Armor", "Craft Wondrous Item" ],
     "description": "You can create construct creatures like golems.",
     "benefit": "You can create any construct whose prerequisites you meet. See construct creation rules for more information.",
-    "abilities": []
+    "trigger": "Continuous",
+    "bonuses": {}
   },
   "Forge Ring": {
     "type": "Creation",
     "prerequisites": [ "Caster Level:7" ],
     "description": "You can create magic rings.",
     "benefit": "You can create magic rings. See magic item creation rules for more information.",
-    "abilities": []
+    "trigger": "Continuous",
+    "bonuses": {}
   },
   "Craft Rod": {
     "type": "Creation",
     "prerequisites": [ "Caster Level:9" ],
     "description": "You can create magic rods.",
     "benefit": "Rods are scepter-like devices that have unique magical powers. See magic item creation rules for more information.",
-    "abilities": []
+    "trigger": "Continuous",
+    "bonuses": {}
   },
   "Craft Staff": {
     "type": "Creation",
     "prerequisites": [ "Caster Level:11" ],
     "description": "You can create magic staves.",
     "benefit": "You can create a staff that stores several spells with 10 charges. See magic item creation rules for more information.",
-    "abilities": []
+    "trigger": "Continuous",
+    "bonuses": {}
   },
 
-  
 
 
-  
-  
+
+
+
 
 
 
@@ -97,7 +116,7 @@
     "prerequisites": [],
     "description": "You are swift of foot.",
     "benefit": "When running, you move five times your normal speed (if wearing medium, light, or no armor and carrying no more than a medium load) or four times your speed (if wearing heavy armor or carrying a heavy load). If you make a jump after a running start (see Acrobatics), you gain a +4 bonus on your Acrobatics check. While running, you retain your Dexterity bonus to your Armor Class.",
-    "abilities": []
+    "bonuses": {}
   },
   "Toughness": {
     "type": "General",
@@ -111,26 +130,30 @@
     "prerequisites": [],
     "description": "Your quick reflexes allow you to react to react rapidly to danger.",
     "benefit": "You get a +4 bonus on initiative checks.",
-    "abilities": [
-      {
-        "stacks": true, "type": "Feat",
-        "targets": [ "Initiative" ],
-        "bonus": 4
+
+    "trigger": "Continuous",
+    "bonuses": {
+      "Improved Initiative": {
+        "value": 4,
+        "type": "Feat",
+        "targets": [ "Initiative" ]
       }
-    ]
+    }
   },
   "Dodge": {
     "type": "Combat",
     "prerequisites": [ "Dex:13" ],
     "description": "Your training and reflexes allow you to react swiftly to avoid an opponent's attacks.",
     "benefit": "You gain a +1 dodge bonus to your AC. A condition that makes you lose your Dex bonus to AC also makes you lose the benefits of this feat.",
-    "abilities": [
-      {
-        "stacks": true, "type": "Dodge",
-        "targets": [ "AC" ],
-        "bonus": 1
+
+    "trigger": "Continuous",
+    "bonuses": {
+      "Dodge": {
+        "value": 1,
+        "type": "Dodge",
+        "targets": [ "totalAC", "touchAC", "flatAC" ]
       }
-    ]
+    }
   },
   "Quick Draw": {
     "type": "Combat",
@@ -144,7 +167,13 @@
     "prerequisites": [ "BAB:1", "Proficiency with selected weapon" ],
     "description": "Choose one type of weapon (or unarmed strike, grapple or ray), you may select this feat multiple times, choosing a new weapon each time.",
     "benefit": "You gain a +1 bonus on all attack rolls you make using the selected weapon.",
-    "abilities": []
+    "bonuses": {
+      "Weapon Focus (weapon)": {
+        "value": 1,
+        "type": "Feat",
+        "targets": [ "atkBonus" ]
+      }
+    }
   },
   "Mounted Combat": {
     "type": "Combat",
@@ -236,7 +265,7 @@
       {
         "stacks": true, "type": "Feat",
         "targets": [ "Toggled", "Ranged Attack" ],
-        "bonus": 2
+        "value": 2
       }
     ]
   },
@@ -249,7 +278,7 @@
       {
         "stacks": true, "type": "Feat",
         "targets": [ "Toggled", "Concentration" ],
-        "bonus": 4
+        "value": 4
       }
     ]
   },
@@ -262,14 +291,14 @@
       {
         "stacks": true, "type": "Feat",
         "targets": [ "Toggled", "Penetration" ],
-        "bonus": 2
+        "value": 2
       }
     ]
   },
 
-  
 
-  
+
+
   "Vital Strike": {
     "type": "Combat",
     "prerequisites": [ "BAB:6" ],
@@ -286,7 +315,7 @@
       {
         "stacks": true, "type": "Feat",
         "targets": [ "Toggled", "Melee Attack", "CMB" ],
-        "bonus": -5
+        "value": -5
       }
     ]
   },

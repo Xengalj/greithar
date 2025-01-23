@@ -10,13 +10,8 @@
     <g-icon iconSize="24px" iconName="undead" />
   </el-button>
 
-  <el-dialog
-    width="650"
-    v-model="monsterVisible"
-    :before-close="monsterClose"
-  >
-    <CreatureCard :creatureName="creatureName" :source="creature"></CreatureCard>
-    <!-- <CreatureCard :creatureName="creatureName" v-bind="creature"></CreatureCard> -->
+  <el-dialog width="700" v-model="monsterVisible" :before-close="monsterClose">
+    <CreatureCard :source="creature"></CreatureCard>
     <template #footer>
       <div class="dialog-footer">
         <el-button @click="monsterClose()"> Close </el-button>
@@ -25,12 +20,10 @@
     </template>
   </el-dialog>
 
-
   <p v-for="(icon, name, index) in icons" :key="index">
     <strong>{{ name }}</strong>
     <g-icon :iconName="name" />
   </p>
-
 </template>
 
 <script>
@@ -51,7 +44,6 @@ export default {
 
       monsterVisible: false,
       creature: {},
-      creatureName: "",
 
     }
   },
@@ -70,6 +62,7 @@ export default {
     DataService.getRaces().then ( (response) => { this.races = response; } );
     DataService.getClasses().then ( (response) => { this.classes = response; } );
     DataService.getEquipment().then( (response) => { this.equipment = response; } );
+    DataService.getFeats().then( (response) => { this.feats = response; } );
 
     UserService.getAdminBoard().then(
       (response) => { this.content = response.data; },
@@ -132,7 +125,7 @@ export default {
         // Ability Score Modifiers
         creature.attributes.StrMod = Math.floor((creature.attributes.Str - 10) / 2);
         creature.attributes.DexMod = Math.floor((creature.attributes.Dex - 10) / 2);
-        creature.attributes.ConMod = Math.floor(( (isNaN(creature.attributes.Con) ? creature.attributes.Cha : creature.attributes.Con) - 10) / 2);
+        creature.attributes.ConMod = Math.floor((creature.attributes.Con - 10) / 2);
         creature.attributes.IntMod = Math.floor((creature.attributes.Int - 10) / 2);
         creature.attributes.WisMod = Math.floor((creature.attributes.Wis - 10) / 2);
         creature.attributes.ChaMod = Math.floor((creature.attributes.Cha - 10) / 2);
@@ -223,33 +216,23 @@ export default {
           // Remove leading any whitespace & capitalize
           item = item[0] === " " ? item.slice(1) : item;
           item = item.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
-
+// TODO: change equiped to false, after iventory set up
           // Add items to bonuses and equipment
           if ( Object.keys(this.equipment.Armor).includes(item) ) {
             creature.equipment[item] = this.equipment.Armor[item];
             creature.equipment[item].Extras = extras;
             creature.equipment[item].equiped = true;
-            // creature.bonuses[item] = {};
-            // creature.bonuses[item].type = "Armor";
-            // creature.bonuses[item].targets = this.rules.bonuses.Armor.targets;
-            // creature.bonuses[item].subtargets = this.rules.bonuses.Armor.subtargets;
-            // creature.bonuses[item].bonus = this.equipment.Armor[item]["AC Bonus"];
-            // creature.bonuses[item].active = false;
+            creature.equipment[item].targets = this.rules.bonuses.Armor.targets;
           }
           else if ( Object.keys(this.equipment.Shields).includes(item) ) {
             creature.equipment[item] = this.equipment.Shields[item];
             creature.equipment[item].Proficiency = "Shields";
             creature.equipment[item].Extras = extras;
             creature.equipment[item].equiped = true;
+            creature.equipment[item].targets = this.rules.bonuses.Shield.targets;
             if (this.equipment.Shields[item]["Critical"] > 0) {
               creature.actions.melee[item] = creature.equipment[item];
             }
-            // creature.bonuses[item] = {};
-            // creature.bonuses[item].type = "Shield";
-            // creature.bonuses[item].targets = this.rules.bonuses.Shield.targets;
-            // creature.bonuses[item].subtargets = this.rules.bonuses.Shield.subtargets;
-            // creature.bonuses[item].bonus = this.equipment.Shields[item]["AC Bonus"];
-            // creature.bonuses[item].active = false;
           }
           else if ( Object.keys(this.equipment.Weapons).includes(item) ) {
             creature.equipment[item] = this.equipment.Weapons[item];
@@ -268,58 +251,16 @@ export default {
         *                           *
         \***************************/
         // FEATS
-        let tmpWpnFocus = {
-          trigger: "Continuous",
-          active: true,
-          description: "+1 to hit w/ longswords",
-          benefit: { target: "", text: "" },
-          bonuses: {
-            "Weapon Focus (longsword)": {
-              bonus: 1,
-              type: "Feat",
-              targets: [ "atkBonus" ]
-            }
-          }
-        };
-
-
         for (let feat of response.Feats.split(',')) {
-          feat = feat[0] === " " ? feat.slice(1) : feat;
-          creature.abilities[feat] = {};
-          if (feat == "Weapon Focus (longsword)") {
-            // console.log(feat);
-            creature.abilities[feat] = tmpWpnFocus;
-            // for (const [name, bonus] of Object.entries(tmpWpnFocus.bonuses)) {
-            //   // console.log(name, bonus);
-            //   creature.bonuses[name] = {};
-            //   creature.bonuses[name].type = bonus.type;
-            //   creature.bonuses[name].targets = bonus.targets;
-            //   creature.bonuses[name].bonus = bonus.bonus;
-            //   creature.bonuses[name].active = tmpWpnFocus.active;
-            // }
-          }
-        }
+          feat = feat.trim();
+          if (feat.indexOf('(') > 0) { feat = feat.slice(0, feat.indexOf('(')-1); }
+          if (feat[feat.length-1] == 'B') { feat = feat.slice(0, -1); } // Remove 'B' from bonus feat names
 
-
-        // Set up which bonuses are active, should be done after feats
-        let add, actives = [];
-        // for every bonus & for every name in actives array
-        // check the type and bonus value of each
-        // if we need to replace the active bonus,
-        // set add to true, and remove the old active name
-        for (const [name, bonus] of Object.entries(creature.bonuses)) {
-          add = true;
-          for (let i = 0; i < actives.length; i++) {
-            if (bonus.type == creature.bonuses[actives[i]].type) {
-              if (bonus.bonus > creature.bonuses[actives[i]].bonus) {
-                actives.splice(i, 1);
-              } else {
-                add = false;
-              }
-            }
+          if (this.feats[feat]) {
+            creature.abilities[feat] = this.feats[feat];
+            creature.abilities[feat].active = true;
+            creature.feats.push(feat);
           }
-          if (add) { actives.push(name); }
-          bonus.active = add;
         }
 
         // NATURAL ARMOR
@@ -327,11 +268,17 @@ export default {
         tempNum -= Math.floor((response.Dex - 10) / 2);
         tempNum -= this.rules.size[creature.basics.size]["ac / atk"];
 
-        actives.forEach(active => {
-          if ([ "Armor", "Shield", "Dodge", "Deflection" ].includes(creature.bonuses[active].type)) {
-            tempNum -= creature.bonuses[active].bonus;
+        // Armor, Shield
+        for (const item of Object.values(creature.equipment)) {
+          if (item.equiped) {
+            let type = (["Light", "Medium", "Heavy"].includes(item.Proficiency)) ? "Armor" :
+                       (item.Proficiency == "Shields") ? "Shield" : "";
+            if (type != "") {
+              tempNum -= item["AC Bonus"];
+            }
           }
-        });
+        }
+
         creature.abilities["Natural Armor"] = {
           trigger: "Continuous",
           active: true,
@@ -339,68 +286,106 @@ export default {
           benefit: {},
           bonuses: {
             "Natural Armor": {
-              type: "Natural Armor",
               value: tempNum,
-              targets: [this.rules.bonuses["Natural Armor"].targets],
-              // active: true,
-              stacks: false
+              targets: this.rules.bonuses["Natural Armor"].targets,
+              type: "Natural Armor",
             }
           }
         };
-        // creature.bonuses["Natural Armor"] = {
-        //   type: "Natural Armor",
-        //   targets: this.rules.bonuses["Natural Armor"].targets,
-        //           subtargets: this.rules.bonuses["Natural Armor"].subtargets,
-        //   bonus: tempNum,
-        //   active: true,
-        //   stacks: false
-        // };
-        // actives.push("Natural Armor");
 
 
         // OFFENSE
-        for (let atk of response.Melee.split(',')) {
-          let i, atkNum, extras = {};
-          atk = atk.toLowerCase();
-          // abilities (poison, bleed, frost)
-          i = atk.indexOf('plus');
-          if (i > -1) {
-            extras["abilities"] = atk.slice(i);
-            extras["abilities"] = extras.abilities.slice(0, -1); // remove trailing ')'
-            atk = atk.slice(0, i);
+        if (response.Melee) {
+          for (let atk of response.Melee.split(',')) {
+            let i, atkNum, extras = {};
+            atk = atk.toLowerCase();
+            // abilities (poison, bleed, frost)
+            i = atk.indexOf('plus');
+            if (i > -1) {
+              extras["abilities"] = atk.slice(i);
+              extras["abilities"] = extras.abilities.slice(0, -1); // remove trailing ')'
+              atk = atk.slice(0, i);
+            }
+            // Dmg Die
+            let dmg = atk.slice(atk.indexOf("(")+1);
+            dmg = dmg.slice(0, dmg.indexOf('+'));
+            // remove atk bonus from string
+            atk = atk.slice(0, atk.indexOf('+')-1);
+
+            // Strip off masterwork & leading whitespace
+            atk = atk.replace(/(mwk|masterwork|Mwk|Masterwork)\s/gm, "");
+            atk = atk.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
+
+            // Add only Natural Attacks
+            if (Object.keys(creature.equipment).includes(atk)) { continue; }
+            let NAs = this.rules.natural_attacks;
+
+            // Number of Attacks (NAs)
+            if (parseInt(atk[0]) > 1) {
+              atkNum = atk[0];
+              atk = atk.slice(2);
+              atk = atk.slice(0, -1);
+            }
+            let atkName = atkNum ? atkNum+" "+atk : atk;
+            if (Object.keys(NAs).includes(atk)) {
+              creature.actions.melee[atkName] = NAs[atk];
+              let tableDmg = NAs[atk].Damage[creature.basics.size];
+              if (tableDmg != dmg) { creature.actions.melee[atkName].Damage[creature.basics.size] = dmg; }
+            } else {
+              creature.actions.melee[atkName] = NAs["Other"];
+            }
           }
-          // Dmg Die
-          let dmg = atk.slice(atk.indexOf("(")+1);
-          dmg = dmg.slice(0, dmg.indexOf('+'));
-          // remove atk bonus from string
-          atk = atk.slice(0, atk.indexOf('+')-1);
+        }
 
-          // Strip off masterwork & leading whitespace
-          atk = atk.replace(/(mwk|masterwork|Mwk|Masterwork)\s/gm, "");
-          atk = atk.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
+        // Ranged
+        if (response.Ranged) {
+          for (let atk of response.Ranged.split(',')) {
+            console.log(atk);
+            let i, atkNum, extras = {};
+            atk = atk.toLowerCase();
+            // abilities (poison, bleed, frost)
+            i = atk.indexOf('plus');
+            if (i > -1) {
+              extras["abilities"] = atk.slice(i);
+              extras["abilities"] = extras.abilities.slice(0, -1); // remove trailing ')'
+              atk = atk.slice(0, i);
+            }
+            // Dmg Die
+            let dmg = atk.slice(atk.indexOf("(")+1);
+            dmg = dmg.slice(0, dmg.indexOf('+'));
+            // remove atk bonus from string
+            atk = atk.slice(0, atk.indexOf('+')-1);
 
-          // Add only Natural Attacks
-          if (Object.keys(creature.equipment).includes(atk)) { continue; }
-          let NAs = this.rules.natural_attacks;
+            // Strip off masterwork & leading whitespace
+            atk = atk.replace(/(mwk|masterwork|Mwk|Masterwork)\s/gm, "");
+            atk = atk.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
 
-          // Number of Attacks (NAs)
-          if (parseInt(atk[0]) > 1) {
-            atkNum = atk[0];
-            atk = atk.slice(2);
-            atk = atk.slice(0, -1);
-          }
-          let atkName = atkNum ? atkNum+" "+atk : atk;
-          if (Object.keys(NAs).includes(atk)) {
-            creature.actions.melee[atkName] = NAs[atk];
-            let tableDmg = NAs[atk].Damage[creature.basics.size];
-            if (tableDmg != dmg) { creature.actions.melee[atkName].Damage[creature.basics.size] = dmg; }
-          } else {
-            creature.actions.melee[atkName] = NAs["Other"];
+            // Add only Natural Attacks
+            // TODO: HERE
+            if (Object.keys(creature.equipment).includes(atk)) { continue; }
+            let NAs = this.rules.natural_attacks;
+
+            // Number of Attacks (NAs)
+            if (parseInt(atk[0]) > 1) {
+              atkNum = atk[0];
+              atk = atk.slice(2);
+              atk = atk.slice(0, -1);
+            }
+            let atkName = atkNum ? atkNum+" "+atk : atk;
+            if (Object.keys(NAs).includes(atk)) {
+              creature.actions.melee[atkName] = NAs[atk];
+              let tableDmg = NAs[atk].Damage[creature.basics.size];
+              if (tableDmg != dmg) { creature.actions.melee[atkName].Damage[creature.basics.size] = dmg; }
+            } else {
+              creature.actions.melee[atkName] = NAs["Other"];
+            }
           }
         }
 
 
         // SPECIAL
+
+
 
         // MAGIC
 
@@ -442,10 +427,6 @@ export default {
           creature.skills[name].ranks = bonus;
         });
 
-
-
-
-        // this.creatureSetup(response);
         this.creature = creature;
         console.table("SOURCE", creature);
       })
