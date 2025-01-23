@@ -271,21 +271,21 @@
                       <span v-for="bonus in action.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
                     </template>
                   </el-tooltip>
-                  <el-tooltip placement="top" effect="light" v-if="bab>5 && !action.NatAtkNum">
+                  <el-tooltip placement="top" effect="light" v-if="bab>5 && !action.extras['Natural Attack']">
                     <span><span v-if="action.atkBonus.total-5 >= 0">+</span>{{ action.atkBonus.total-5 }} &nbsp; </span>
                     <template #content>
                       <span v-for="bonus in action.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
                       <span> -5 Subsequent Attack </span>
                     </template>
                   </el-tooltip>
-                  <el-tooltip placement="top" effect="light" v-if="bab>10 && !action.NatAtkNum">
+                  <el-tooltip placement="top" effect="light" v-if="bab>10 && !action.extras['Natural Attack']">
                     <span><span v-if="action.atkBonus.total-10 >= 0">+</span>{{ action.atkBonus.total-10 }} &nbsp; </span>
                     <template #content>
                       <span v-for="bonus in action.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
                       <span> -10 Subsequent Attack </span>
                     </template>
                   </el-tooltip>
-                  <el-tooltip placement="top" effect="light" v-if="bab>15 && !action.NatAtkNum">
+                  <el-tooltip placement="top" effect="light" v-if="bab>15 && !action.extras['Natural Attack']">
                     <span><span v-if="action.atkBonus.total-15 >= 0">+</span>{{ action.atkBonus.total-15 }} &nbsp; </span>
                     <template #content>
                       <span v-for="bonus in action.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
@@ -293,7 +293,6 @@
                     </template>
                   </el-tooltip>
                 </el-col>
-
                 <!-- Damage, Range, & Extras -->
                 <el-col :span="6" class="center-vert">
                   {{ action.dmgDie }}
@@ -316,6 +315,7 @@
                         <ul>
                           <li v-for="(item, name) in action.extras" :key="name">
                             <span v-if="name == 'masterwork'"> {{ name }} </span>
+                            <!-- <span v-else-if="name == 'Natural Attack'"> {{ name }} </span> -->
                             <span v-else> {{ name }} : {{ item }} </span>
                           </li>
                         </ul>
@@ -332,7 +332,6 @@
                 <el-col :span="3">To Hit</el-col>
                 <el-col :span="6">Dmage</el-col>
                 <el-col :span="3">Range</el-col>
-                <!-- <el-col :span="6"><el-tag size="small" effect="dark" type="primary">CMB +{{ cmb.total }}</el-tag></el-col> -->
               </el-row>
               <el-row v-for="(action, name) in actions.ranged" :key="name">
                 <el-col :span="5" class="center-vert">
@@ -348,21 +347,21 @@
                       <span v-for="bonus in action.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
                     </template>
                   </el-tooltip>
-                  <el-tooltip placement="top" effect="light" v-if="bab>5 && !action.NatAtkNum">
+                  <el-tooltip placement="top" effect="light" v-if="bab>5 && !action.extras['Natural Attack']">
                     <span><span v-if="action.atkBonus.total-5 >= 0">+</span>{{ action.atkBonus.total-5 }} &nbsp; </span>
                     <template #content>
                       <span v-for="bonus in action.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
                       <span> -5 Subsequent Attack </span>
                     </template>
                   </el-tooltip>
-                  <el-tooltip placement="top" effect="light" v-if="bab>10 && !action.NatAtkNum">
+                  <el-tooltip placement="top" effect="light" v-if="bab>10 && !action.extras['Natural Attack']">
                     <span><span v-if="action.atkBonus.total-10 >= 0">+</span>{{ action.atkBonus.total-10 }} &nbsp; </span>
                     <template #content>
                       <span v-for="bonus in action.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
                       <span> -10 Subsequent Attack </span>
                     </template>
                   </el-tooltip>
-                  <el-tooltip placement="top" effect="light" v-if="bab>15 && !action.NatAtkNum">
+                  <el-tooltip placement="top" effect="light" v-if="bab>15 && !action.extras['Natural Attack']">
                     <span><span v-if="action.atkBonus.total-15 >= 0">+</span>{{ action.atkBonus.total-15 }} &nbsp; </span>
                     <template #content>
                       <span v-for="bonus in action.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
@@ -370,11 +369,10 @@
                     </template>
                   </el-tooltip>
                 </el-col>
-
                 <!-- Damage, Range, Extras -->
                 <el-col :span="6" class="center-vert">
                   {{ action.dmgDie }}
-                  <el-tooltip placement="top" effect="light">
+                  <el-tooltip placement="top" effect="light" v-if="action.dmgBonus.total">
                     +{{ action.dmgBonus.total }}
                     <template #content>
                       <span v-for="bonus in action.dmgBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
@@ -405,56 +403,21 @@
               <!-- Special Actions -->
               <el-row v-if="Object.keys(actions.special).length > 0">
                 <el-divider />
-                <el-col :span="5">Special</el-col>
+                <el-col :span="6">Special</el-col>
                 <el-col :span="3">Action</el-col>
-                <el-col :span="6">Effects</el-col>
-                <el-col :span="3">Range</el-col>
+                <el-col :span="8">Effects</el-col>
                 <el-col :span="6"><el-tag size="small" effect="dark" type="primary">CMB +{{ cmb.total }}</el-tag></el-col>
               </el-row>
-              <el-row v-for="(action, name) in actions.special" :key="name">
+              <el-row v-for="(action, name) in actions.special" :key="name" :gutter="2">
                 <el-col :span="5" class="center-vert">
                   <g-icon iconSize="20px" iconName="abilityPalm" />
-                  <span v-if="action.NatAtkNum">{{ action.NatAtkNum }} </span>
                   {{ name }}
                 </el-col>
-                <!-- Action Type -->
-                <el-col :span="3" class="center-vert">
-                  <el-tooltip placement="top" effect="light">
-                    <span> <span v-if="action.atkBonus.total >= 0">+</span>{{ action.atkBonus.total }} &nbsp; </span>
-                    <template #content>
-                      <span v-for="bonus in action.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
-                    </template>
-                  </el-tooltip>
+                <el-col :span="4" class="center-vert center-horz">
+                  <el-button :type=" (action.active) ? 'primary' : 'info'" size="small" @click="toggleAbility(name, action)">{{ action.trigger == "Toggle" ? "Free" : action.trigger }}</el-button>
                 </el-col>
-
-                <!-- Effects, Range, Extras -->
-                <el-col :span="6" class="center-vert">
-                  {{ action.dmgDie }}
-                  <el-tooltip placement="top" effect="light">
-                    +{{ action.dmgBonus.total }}
-                    <template #content>
-                      <span v-for="bonus in action.dmgBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
-                    </template>
-                  </el-tooltip>
-                  ( <span v-if="action.crit.range<20">{{ action.crit.range }}-</span>20 {{ action.crit.mult }} )
-                </el-col>
-                <el-col :span="3" class="center-vert">
-                  <span v-if="action.range"> {{ action.range }} </span>
-                </el-col>
-                <el-col :span="6" class="center-vert">
-                  <div v-if="Object.values(action.extras).length">
-                    <el-collapse>
-                      <el-collapse-item title="" name="1">
-                        <template #title> <g-icon iconName="star" iconSize="20" /> Extras </template>
-                        <ul>
-                          <li v-for="(item, name) in action.extras" :key="name">
-                            <span v-if="name == 'masterwork'"> {{ name }} </span>
-                            <span v-else> {{ name }} : {{ item }} </span>
-                          </li>
-                        </ul>
-                      </el-collapse-item>
-                    </el-collapse>
-                  </div>
+                <el-col :span="12" class="center-vert">
+                  {{ action.benefit }}
                 </el-col>
               </el-row>
             </el-col>
@@ -470,6 +433,7 @@
             </el-col>
             <el-col :span="21">
               CONDITIONS!!
+              {{ conditions }}
             </el-col>
           </el-row>
         </el-collapse-item>
@@ -550,7 +514,7 @@ export default {
       equipment: {},
 
       cardTab: "first",
-      openSections: [ "defense", "offense" ],
+      openSections: [  "offense" ],
       sizeSelect: [
         { value: "Fine", label: "Fine", },
         { value: "Diminuitive", label: "Diminuitive", },
@@ -592,7 +556,6 @@ export default {
             }
           }
         }
-
         // Armor, Shield
         for (const [name, item] of Object.entries(this.inventory)) {
           if (item.equiped) {
@@ -624,31 +587,8 @@ export default {
         Wis: { total: 0, sources: [] }, WisMod: -5,
         Cha: { total: 0, sources: [] }, ChaMod: -5
       };
-
       if (this.source.name) {
-        attributes.Str.total = this.source.attributes.Str;
-        this.bonusLoop(attributes.Str, "Str");
-        attributes.StrMod = Math.floor((attributes.Str.total - 10) / 2);
-
-        attributes.Dex.total = this.source.attributes.Dex;
-        this.bonusLoop(attributes.Dex, "Dex");
-        attributes.DexMod = Math.floor((attributes.Dex.total - 10) / 2);
-
-        attributes.Con.total = this.source.attributes.Con;
-        this.bonusLoop(attributes.Con, "Con");
-        attributes.ConMod = Math.floor((attributes.Con.total - 10) / 2);
-
-        attributes.Int.total = this.source.attributes.Int;
-        this.bonusLoop(attributes.Int, "Int");
-        attributes.IntMod = Math.floor((attributes.Int.total - 10) / 2);
-
-        attributes.Wis.total = this.source.attributes.Wis;
-        this.bonusLoop(attributes.Wis, "Wis");
-        attributes.WisMod = Math.floor((attributes.Wis.total - 10) / 2);
-
-        attributes.Cha.total = this.source.attributes.Cha;
-        this.bonusLoop(attributes.Cha, "Cha");
-        attributes.ChaMod = Math.floor((attributes.Cha.total - 10) / 2);
+        attributes = this.source.attributes;
       }
       return attributes;
     },
@@ -660,7 +600,7 @@ export default {
 // TODO: classes loop
     cClasses() {
       let classes = {};
-      if (this.source.name) {
+      if (this.source.name && this.source.classes["commoner"]) {
         classes = this.source.classes;
         classes.warrior.hd = 10;
       }
@@ -929,12 +869,17 @@ export default {
 
           for (const [name, atk] of Object.entries(this.source.actions[type])) {
             // console.log(name, atk);
+            if (type == 'special') {
+              actions.special[name] = atk;
+              continue;
+            }
+
             let newAtk = {
               dmgBonus: { "total": 0, "sources": [] },
               atkBonus: { "total": 0, "sources": [] }
             };
 
-            NatAtkNum += (atk.Proficiency == "Natural") ? 1 : 0;
+            NatAtkNum += (atk.Proficiency == "Natural" && Object.keys(this.rules.natural_attacks).includes(name)) ? 1 : 0;
             newAtk.atkBonus.total += this.bab;
             newAtk.atkBonus.sources.push(`+${this.bab} BAB`);
             if (this.basics.size != "medium") {
@@ -943,18 +888,18 @@ export default {
             }
 
             // Add mwk or magic enhancements to atk bonus
-            if (atk.Extras["enhancement"]) {
+            if (atk.Extras && atk.Extras["enhancement"]) {
               newAtk.atkBonus.total += atk.Extras["enhancement"];
               newAtk.atkBonus.sources.push(`+${atk.Extras["enhancement"]} Magic Enhancement`);
               newAtk.dmgBonus.total += atk.Extras["enhancement"];
               newAtk.dmgBonus.sources.push(`+${atk.Extras["enhancement"]} Magic Enhancement`);
-            } else if (atk.Extras["masterwork"]) {
+            } else if (atk.Extras && atk.Extras["masterwork"]) {
               newAtk.atkBonus.total += 1;
               newAtk.atkBonus.sources.push(`+1 Masterwork`);
             }
 
             // Add AbilMod to atkBonus
-            if (atk.category == "Ranged") {
+            if (atk.category == "Ranged" || type == "ranged") {
               newAtk.atkBonus.total += this.attributes.DexMod;
               newAtk.atkBonus.sources.push(`+${this.attributes.DexMod} Dex`);
             } else if (atk.Category == "Secondary") {
@@ -966,9 +911,9 @@ export default {
             }
 
             // Add AbilMod to dmgBonus
-            if (atk.Group.includes("Thrown") ||
-                (atk.Group.includes("Bows") && this.attributes.StrMod < 0) ||
-                (atk.Group.includes("Bows") && name.includes("Composite")) ) {
+            if (atk.Group && atk.Group.includes("Thrown") ||
+                (atk.Group && atk.Group.includes("Bows") && this.attributes.StrMod < 0) ||
+                (atk.Group && atk.Group.includes("Bows") && name.includes("Composite")) ) {
               newAtk.dmgBonus.total += this.attributes.StrMod;
               newAtk.dmgBonus.sources.push(`+${this.attributes.StrMod} Str`);
 
@@ -976,9 +921,13 @@ export default {
               newAtk.dmgBonus.total += this.attributes.StrMod * 1.5;
               newAtk.dmgBonus.sources.push(`+${this.attributes.StrMod * 1.5} Str`);
 
+            } else if (!Object.keys(this.rules.natural_attacks).includes(name)) {
+              // Fake Natural Attack, like Death Worm's Electrical Jolt
+
             } else if (atk.Category == "Secondary") {
-                newAtk.dmgBonus.total += this.attributes.StrMod / 2;
-                newAtk.dmgBonus.sources.push(`+${this.attributes.StrMod / 2} Str`);
+              newAtk.dmgBonus.total += this.attributes.StrMod / 2;
+              newAtk.dmgBonus.sources.push(`+${this.attributes.StrMod / 2} Str`);
+
 
             } else {
               newAtk.dmgBonus.total += this.attributes.StrMod;
@@ -997,20 +946,28 @@ export default {
             newAtk.crit.mult = atk.Critical.split("/")[1];
             newAtk.extras = (atk.Extras) ? atk.Extras : [];
             // console.log(`${NatAtkNum>1 ? NatAtkNum : ""} ${name} +${newAtk.atkBonus.total} (${newAtk.dmgDie}+${newAtk.dmgBonus.total} /${atk.Critical})`);
-            actions.melee[name] = newAtk;
+            actions[type][name] = newAtk;
 
           } // End Action Loop
         } // End Action Types Loop
-        // TODO: if (NatAtkNum == 1) { add another STRMOD / 2 }
+        if (NatAtkNum == 1) {
+          for (const atk of Object.values(actions.melee)) {
+            atk.dmgBonus.total += this.attributes.StrMod / 2;
+            atk.dmgBonus.sources.push(`+${this.attributes.StrMod / 2} Str`);
+          }
+        }
       }
       return actions;
     },
+    conditions() {
+      let conditions = {};
+      return conditions;
+    },
 
+    // TODO: add + to start of bonus
     skills() {
-      // TODO: add + to start of bonus
       let skills = {};
-      if (this.source.name && this.classes['bard'] && this.rules.skills) {
-
+      if (this.source.name && this.classes["commoner"] && this.rules.skills) {
         for (const [name, skill] of Object.entries(this.source.skills)) {
           let bonus = 0;
           if (skill.ranks) {
@@ -1018,7 +975,6 @@ export default {
             bonus += skill.class ? 3 : 0;
           }
           bonus += this.attributes[skill.ability.concat("Mod")];
-
           if (skill.armor_pen) {
             for (const name of Object.keys(this.bonuses)) {
               if (this.inventory[name] && this.inventory[name].Penalty) {
@@ -1030,7 +986,6 @@ export default {
           skills[name] = skill;
         }
       }
-
       return skills;
     },
 
@@ -1097,6 +1052,7 @@ export default {
           // console.log("final:", creature.ranged[i]);
         });
       }
+
 */
   },
 
@@ -1113,6 +1069,8 @@ export default {
     capFirsts(string) {
       return string ? string.replace(/(^\w|\s\w)/g, m => m.toUpperCase()) : "";
     },
+    // object = the bonus object we are adding to: { total: #, sources: [] }
+    // tString = the target string we match to add to the bonus object: "atkBonus"
     bonusLoop(object, tString) {
       // Add Active Bonuses
       let typedBonuses = {};
@@ -1153,6 +1111,9 @@ export default {
 
     rest() {
       console.log('REST UP: HP, SPELLS');
+    },
+    toggleAbility(name, abil) {
+      console.log(name, abil);
     },
 
 

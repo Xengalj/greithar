@@ -24,6 +24,9 @@
     "misc":       [ "bleed", "nonlethal", "precision", "spell", "untyped" ]
   },
 
+
+
+
   "natural_attacks": {
     "Bite": {
       "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "2d8",  "colossal": "4d6"  },
@@ -255,7 +258,7 @@
   "bonuses": {
     "Alchemical": {
       "description": "An alchemical bonus is granted by the use of a non-magical, alchemical substance such as antitoxin.",
-      "targets": [ "Ability Scores", "Saves" ],
+      "targets": [ "fort", "ref", "will", "Ability Scores", "Saves" ],
       "subtargets": [ "fort", "ref", "will" ]
     },
     "Armor": {
@@ -265,36 +268,36 @@
     },
     "Circumstance": {
       "description": "A circumstance bonus (or penalty) arises from specific conditional factors impacting the success of the task at hand. Circumstance bonuses stack with all other bonuses, including other circumstance bonuses, unless they arise from essentially the same source.",
-      "targets": [ "atkBonus", "Checks" ]
+      "targets": [ "atkBonus", "cmd", "Checks" ]
     },
     "Competence": {
       "description": "A competence bonus (or penalty) affects a character’s performance of a particular task, as in the case of the bardic ability to inspire competence. Multiple competence bonuses don’t stack; only the highest bonus applies.",
-      "targets": [ "atkBonus", "Checks", "Saves" ],
+      "targets": [ "fort", "ref", "will", "atkBonus", "Checks", "Saves" ],
       "subtargets": [ "fort", "ref", "will" ]
     },
     "Deflection": {
       "description": "A deflection bonus affects armor class and is granted by a spell or magic effect that makes attacks veer off harmlessly. Deflection bonuses stack with all other bonuses to AC except other deflection bonuses. A deflection bonus applies against touch attacks.",
-      "targets": [ "totalAC", "touchAC", "flatAC" ],
+      "targets": [ "totalAC", "touchAC", "flatAC", "cmd" ],
       "subtargets": [ "touch", "flat" ]
     },
     "Enhancement": {
       "description": "An enhancement bonus represents an increase in the effectiveness of armor, natural armor, weapon, or a general bonus to an ability score. Multiple enhancement bonuses on the same object (in the case of armor and weapons), creature (in the case of natural armor), or ability score do not stack. Only the highest enhancement bonus applies.",
-      "targets": [ "Ability Scores", "totalAC", "touchAC", "flatAC", "atkBonus", "dmgBonus", "Speed" ],
+      "targets": [ "totalAC", "touchAC", "flatAC", "fort", "ref", "will", "atkBonus", "dmgBonus", "Speed", "Str", "Dex", "Con", "Int", "Wis", "Cha" ],
       "subtargets": [ "touch", "flat", "fort", "ref", "will" ]
     },
     "Insight": {
       "description": "An insight bonus improves performance of a given activity by granting the character an almost precognitive knowledge of what might occur. Multiple insight bonuses on the same character or object do not stack. Only the highest insight bonus applies.",
-      "targets": [ "totalAC", "touchAC", "flatAC", "atkBonus", "Checks", "Saves" ],
+      "targets": [ "totalAC", "touchAC", "flatAC", "fort", "ref", "will", "atkBonus", "cmd", "Checks" ],
       "subtargets": [ "touch", "flat", "fort", "ref", "will" ]
     },
     "Luck": {
       "description": "A luck bonus represents good (or bad) fortune. Multiple luck bonuses on the same character or object do not stack. Only the highest luck bonus applies.",
-      "targets": [ "totalAC", "touchAC", "flatAC", "atkBonus", "Checks", "dmgBonus", "Saves" ],
+      "targets": [ "totalAC", "touchAC", "flatAC", "fort", "ref", "will", "atkBonus", "dmgBonus", "cmd", "Checks" ],
       "subtargets": [ "touch", "flat", "fort", "ref", "will" ]
     },
     "Morale": {
       "description": "A morale bonus represents the effects of greater hope, courage, and determination (or hopelessness, cowardice, and despair in the case of a morale penalty). Multiple morale bonuses on the same character do not stack. Only the highest morale bonus applies. Non-intelligent creatures (creatures with an Intelligence of 0 or no Intelligence at all) cannot benefit from morale bonuses.",
-      "targets": [  "atkBonus", "Checks", "dmgBonus", "Saves", "Str", "Con", "Dex" ],
+      "targets": [ "fort", "ref", "will", "atkBonus", "dmgBonus", "cmd", "Str", "Con", "Dex", "Checks" ],
       "subtargets": [ "fort", "ref", "will" ]
     },
     "Natural Armor": {
@@ -304,17 +307,17 @@
     },
     "Profane": {
       "description": "A profane bonus (or penalty) stems from the power of evil. Multiple profane bonuses on the same character or object do not stack. Only the highest profane bonus applies.",
-      "targets": [  "totalAC", "touchAC", "flatAC", "Checks", "dmgBonus", "DCs", "Saves" ],
+      "targets": [ "totalAC", "touchAC", "flatAC", "fort", "ref", "will", "dmgBonus", "cmd", "DCs", "Checks" ],
       "subtargets": [ "touch", "flat", "fort", "ref", "will" ]
     },
     "Resistance": {
       "description": "A resistance bonus affects saving throws, providing extra protection against harm. Multiple resistance bonuses on the same character or object do not stack. Only the highest resistance bonus applies.",
-      "targets": [ "Saves" ],
+      "targets": [ "fort", "ref", "will" ],
       "subtargets": [ "fort", "ref", "will" ]
     },
     "Sacred": {
       "description": "A sacred bonus (or penalty) stems from the power of good. Multiple sacred bonuses on the same character or object do not stack. Only the highest sacred bonus applies.",
-      "targets": [ "totalAC", "touchAC", "flatAC", "Checks", "dmgBonus", "DCs", "Saves" ],
+      "targets": [ "totalAC", "touchAC", "flatAC", "fort", "ref", "will", "dmgBonus", "cmd", "DCs", "Checks" ],
       "subtargets": [ "touch", "flat", "fort", "ref", "will" ]
     },
     "Shield": {
@@ -324,7 +327,7 @@
     },
     "Size": {
       "description": "A size bonus or penalty is derived from a creature’s size category. Size modifiers of different kinds apply to armor class, attack rolls, Stealth checks, combat maneuver checks, and various other checks.",
-      "targets": [ "Ability Scores", "atkBonus", "totalAC", "touchAC", "flatAC" ],
+      "targets": [ "totalAC", "touchAC", "flatAC", "atkBonus", "Str", "Dex" ],
       "subtargets": [ "touch", "flat" ]
     },
     "Trait": {

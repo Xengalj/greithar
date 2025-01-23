@@ -74,8 +74,9 @@ export default {
     );
   },
   mounted() {
-    this.monsterOpen("Skeletal Champion");
+    // this.monsterOpen("Skeletal Champion");
     // this.monsterOpen("Adult Red Dragon");
+    this.monsterOpen("Death Worm");
   },
   methods: {
     monsterOpen(name) {
@@ -86,7 +87,6 @@ export default {
         let tempNum = 0;
         let creature = {
           "name": response.Name,
-          "attributes": { "Str": response.Str, "Dex": response.Dex, "Con": (response.Con == "-" ? 0 : response.Con), "Int": response.Int, "Wis": response.Wis, "Cha": response.Cha },
           "basics": {
             "cr": response.CR,
             "alignment": response.Alignment,
@@ -95,23 +95,19 @@ export default {
             "speed": parseInt( response.Speed.replace(/\D+$/g, "") ),
             "type": {},
           },
-          "skills": {},
-          "classes": {},
-          "equipment": {},
           "abilities": {},
-          "bonuses": {},    // may remove to be built from equips & abils
-
-          "actions": {
-            "melee": {},
-            "ranged": {},
-            "special": {},
-          },
-
-
-          "feats": [],
+          "equipment": {},
+          "attributes": {},
+          "classes": {},
           "health": { total: 0, bonus: 0 },
+          "actions": { melee: {}, ranged: {}, special: {} },
+          "skills": {},
+          "magic": {},
+
+          // TODO: REMOVE DELETE KILL NULL
+          "bonuses": {},    // may remove to be built from equips & abils
+          "feats": [],  // in abliities
           "bab": 0,   // TODO: Remove
-          "magic": [],
           "active": {}   // active bonuses
         };
 
@@ -123,12 +119,14 @@ export default {
         *                           *
         \***************************/
         // Ability Score Modifiers
-        creature.attributes.StrMod = Math.floor((creature.attributes.Str - 10) / 2);
-        creature.attributes.DexMod = Math.floor((creature.attributes.Dex - 10) / 2);
-        creature.attributes.ConMod = Math.floor((creature.attributes.Con - 10) / 2);
-        creature.attributes.IntMod = Math.floor((creature.attributes.Int - 10) / 2);
-        creature.attributes.WisMod = Math.floor((creature.attributes.Wis - 10) / 2);
-        creature.attributes.ChaMod = Math.floor((creature.attributes.Cha - 10) / 2);
+        creature.attributes = {
+          Str: { total: response.Str, sources: [] }, StrMod: Math.floor((response.Str - 10) / 2),
+          Dex: { total: response.Dex, sources: [] }, DexMod: Math.floor((response.Dex - 10) / 2),
+          Con: { total: (response.Con == "-" ? 0 : response.Con), sources: [] }, ConMod: Math.floor(((response.Con == "-" ? 0 : response.Con) - 10) / 2),
+          Int: { total: response.Int, sources: [] }, IntMod: Math.floor((response.Int - 10) / 2),
+          Wis: { total: response.Wis, sources: [] }, WisMod: Math.floor((response.Wis - 10) / 2),
+          Cha: { total: response.Cha, sources: [] }, ChaMod: Math.floor((response.Cha - 10) / 2)
+        }
 
         // Get total HD
         let racialHD = 0;
@@ -250,18 +248,59 @@ export default {
         *          BONUSES          *
         *                           *
         \***************************/
+        // console.log(this.rules.actions);
+        let actions = {
+          "Total Defense": {
+            trigger: "Standard",
+            description: "You get a +4 bonus to your AC but cannot make Attacks of Opportunity until your next turn.",
+            benefit: "+4 to AC but no AoOs",
+            extras: { duration: "1 Round" },
+            bonuses: {
+              "Total Defense": {
+                targets: [ "totalAC", "touchAC", "flatAC" ],
+                type: "Action",
+                value: 4
+              }
+            }
+          },
+          "Aid Another": {
+            trigger: "Standard",
+            description: "Make an attack roll vs AC 10, if you hit, you assist an ally with an attack, their defense, or a particular skill.",
+            benefit: "+2 to Attack Rolls, AC, or a specific skill check",
+            extras: {},
+            bonuses: {}
+          },
+          "Feint": {
+            trigger: "Standard",
+            description: "Make a Bluff check, on a success your opponent losses their Dex bonus to AC against your melee attack next turn.",
+            benefit: "Opponent loses their Dex bonus to AC",
+            extras: {},
+            bonuses: {}
+          },
+        };
+        creature.actions.special = actions;
         // FEATS
         for (let feat of response.Feats.split(',')) {
           feat = feat.trim();
           if (feat.indexOf('(') > 0) { feat = feat.slice(0, feat.indexOf('(')-1); }
           if (feat[feat.length-1] == 'B') { feat = feat.slice(0, -1); } // Remove 'B' from bonus feat names
-
+          // if the feat is in the feats json
           if (this.feats[feat]) {
             creature.abilities[feat] = this.feats[feat];
-            creature.abilities[feat].active = true;
             creature.feats.push(feat);
+            if (this.feats[feat].trigger == "Continuous") {
+              creature.abilities[feat].active = true;
+            } else {
+              creature.abilities[feat].active = false;
+              creature.actions.special[feat] = this.feats[feat];
+            }
           }
         }
+        // TODO: Add Class Actions
+
+
+
+
 
         // NATURAL ARMOR
         tempNum = response.AC - 10;
@@ -282,8 +321,8 @@ export default {
         creature.abilities["Natural Armor"] = {
           trigger: "Continuous",
           active: true,
-          descripction: "This creature naturally tough, granting additional armor.",
-          benefit: {},
+          description: "This creature naturally tough, granting additional armor.",
+          benefit: "",
           bonuses: {
             "Natural Armor": {
               value: tempNum,
@@ -297,7 +336,7 @@ export default {
         // OFFENSE
         if (response.Melee) {
           for (let atk of response.Melee.split(',')) {
-            let i, atkNum, extras = {};
+            let i, extras = {};
             atk = atk.toLowerCase();
             // abilities (poison, bleed, frost)
             i = atk.indexOf('plus');
@@ -313,22 +352,23 @@ export default {
             atk = atk.slice(0, atk.indexOf('+')-1);
 
             // Strip off masterwork & leading whitespace
-            atk = atk.replace(/(mwk|masterwork|Mwk|Masterwork)\s/gm, "");
+            atk = atk.replace(/(mwk|masterwork|Mwk|Masterwork)\s/gm, "").trim();
             atk = atk.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
 
             // Add only Natural Attacks
             if (Object.keys(creature.equipment).includes(atk)) { continue; }
             let NAs = this.rules.natural_attacks;
-
-            // Number of Attacks (NAs)
+            // get Nat Atk name, for searching (no #, no trailing 's')
+            let atkName = atk;
             if (parseInt(atk[0]) > 1) {
-              atkNum = atk[0];
               atk = atk.slice(2);
               atk = atk.slice(0, -1);
             }
-            let atkName = atkNum ? atkNum+" "+atk : atk;
             if (Object.keys(NAs).includes(atk)) {
+              console.log(NAs[atk]);
               creature.actions.melee[atkName] = NAs[atk];
+              extras["Natural Attack"] = NAs[atk].Category;
+              creature.actions.melee[atkName].Extras = extras;
               let tableDmg = NAs[atk].Damage[creature.basics.size];
               if (tableDmg != dmg) { creature.actions.melee[atkName].Damage[creature.basics.size] = dmg; }
             } else {
@@ -340,7 +380,6 @@ export default {
         // Ranged
         if (response.Ranged) {
           for (let atk of response.Ranged.split(',')) {
-            console.log(atk);
             let i, atkNum, extras = {};
             atk = atk.toLowerCase();
             // abilities (poison, bleed, frost)
@@ -361,7 +400,6 @@ export default {
             atk = atk.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
 
             // Add only Natural Attacks
-            // TODO: HERE
             if (Object.keys(creature.equipment).includes(atk)) { continue; }
             let NAs = this.rules.natural_attacks;
 
@@ -373,17 +411,61 @@ export default {
             }
             let atkName = atkNum ? atkNum+" "+atk : atk;
             if (Object.keys(NAs).includes(atk)) {
-              creature.actions.melee[atkName] = NAs[atk];
+              creature.actions.ranged[atkName] = NAs[atk];
+              extras["Natural Attack"] = NAs[atk].Category;
+              creature.actions.ranged[atkName].Extras = extras;
               let tableDmg = NAs[atk].Damage[creature.basics.size];
-              if (tableDmg != dmg) { creature.actions.melee[atkName].Damage[creature.basics.size] = dmg; }
+              if (tableDmg != dmg) { creature.actions.ranged[atkName].Damage[creature.basics.size] = dmg; }
             } else {
-              creature.actions.melee[atkName] = NAs["Other"];
+              creature.actions.ranged[atkName] = NAs["Other"];
+              extras["Natural Attack"] = NAs["Other"].Category;
+              creature.actions.ranged[atkName].Extras = extras;
+              let tableDmg = NAs["Other"].Damage[creature.basics.size];
+              if (tableDmg != dmg) { creature.actions.ranged[atkName].Damage[creature.basics.size] = dmg; }
             }
           }
         }
+        // SPECIAL actions done with feats
 
 
-        // SPECIAL
+        /*
+
+        move
+      movement (or 5-foot step) (swim/climb at 1/4 or climb 1/2 with -5 to climb)
+draw a weapon / stored item (3[part of movement], ready / drop shield)
+load light / heavy crossbow
+mount / dismount (Dc 20 Ride to do as free action)
+stand up from prone (AoO)
+
+full round atk
+charge      (move 10' - double speed, directly to enemy(no blocks including allies) , then one attack) [+2 atkBonus && -2 all AC]
+run (3x or 4x yor speed in straight line, lose dex bonus to AC)
+withdraw (both actions to move, only starting square isn't threatened)
+fight defensively
+
+combat mans (type varies)
+  Overrun                 AoO, (bowl someone over, pass through them and knock them prone, they can let you pass)
+  bull rush               AoO, push 5 ft, +5 for every 5 past CMD
+  drag                    AoO, opposite of bull rush
+  reposition              move target 5 ft to new location, +5ft for every 5 past CMD, must end within 5 ft of reach
+  dirty treick            AoO, apply condition (blinded, dazzled, deafened, entangled, shaken, or sickened) lasts 1 round, +1 round for every 5 past CMD
+  disarm                  AoO, force an enemy to drop 1 (2 if check is 10 past CMD), +2 from weapon with disarm, -4 if unarmed(fail by 10 you lose item)  (steal for necklace)
+  grapple                 AoO, can move, damage, pin, tie up
+  sunder                  AoO, Deal damage directly to an item, granting the broken condition
+  trip                    AoO, knock prone, fail by 10, you are prone
+
+ready action
+
+
+mounted copmbat
+  free    - dc 5 ride
+  atk smaller creature than mount   +1 to atk
+  charge applies to both mount and rider
+  lances deal double damage
+  casting between 2 mount moves requires vigorous motion check (10+spell level) (quad move is 15+lvl)
+  DC 15 ride to take no damage when mount falls in battle, 1d6 on fail
+  unconcious -> 50% to stay in saddle, else 1d6 dmg (mount avoids combat)
+        */
 
 
 
@@ -409,10 +491,10 @@ export default {
         let skills = response.Skills.split(',');
         skills.forEach(skill => {
           let name = skill.slice(0, skill.search(/[+|-]/g)).trim();
+          name = name.replace("Knowl.", "Knowledge");
 
           let bonus = skill.slice(skill.search(/[+|-]/g)-1);
           if (bonus.indexOf('(') > 0) { bonus = bonus.slice(0, bonus.indexOf('(')-1); }
-
           // total - ability mod
           let abil = this.rules.skills[name].ability;
           bonus -= creature.attributes[abil.concat("Mod")];

@@ -185,28 +185,28 @@
   "Power Attack": {
     "type": "Combat",
     "prerequisites": [ "Str:13", "BAB:1" ],
-    "description": "You can make exceptionally deadly melee attacks by sacrificing accuracy for strength.",
-    "benefit": "You can choose to take a –1 penalty on all melee attack rolls and combat maneuver checks to gain a +2 bonus on all melee damage rolls.",
-    "abilities": [
-      {
-        "name": "Power Attack Bonus",
-        "stacks": true, "type": "Feat",
-        "targets": [ "Toggled", "Melee Damage" ],
-        "bonus": 2
+    "description": "You can choose to take a –1 penalty on all melee attack rolls and combat maneuver checks to gain a +2 bonus on all melee damage rolls.",
+    "benefit": "You can make exceptionally deadly melee attacks by sacrificing accuracy for strength.",
+    "trigger": "Toggle",
+    "extras": {},
+    "bonuses": {
+      "Power Attack +": {
+        "targets": [ "dmgBonus" ],
+        "type": "Feat",
+        "value": 2
       },
-      {
-        "name": "Power Attack Malus",
-        "stacks": true, "type": "Feat",
-        "targets": [ "Toggled", "Melee Attack", "CMB" ],
-        "bonus": -1
+      "Power Attack -": {
+        "targets": [ "atkBonus", "cmb" ],
+        "type": "Feat",
+        "value": -1
       }
-    ]
+    }
   },
   "Cleave": {
     "type": "Combat",
     "prerequisites": [ "Str:13", "BAB:1", "Power Attack" ],
-    "description": "You can strike two adjacent foes with a single swing.",
-    "benefit": "As a standard action, you can make a single attack at your full base attack bonus against a foe within reach. If you hit, you deal damage normally and can make an additional attack (using your full base attack bonus) against a foe that is adjacent to the first and also within reach. You can only make one additional attack per round with this feat. When you use this feat, you take a –2 penalty to your Armor Class until your next turn.",
+    "description": "As a standard action, you can make a single attack at your full base attack bonus against a foe within reach. If you hit, you deal damage normally and can make an additional attack (using your full base attack bonus) against a foe that is adjacent to the first and also within reach. You can only make one additional attack per round with this feat. When you use this feat, you take a –2 penalty to your Armor Class until your next turn.",
+    "benefit": "You can strike two adjacent foes with a single swing.",
     "abilites": [
       {
         "stacks": true, "type": "Feat",
