@@ -107,45 +107,86 @@
 
 
 
-
-
-
-
+  "Combat Casting": {
+    "type": "General",
+    "prerequisites": [],
+    "description": "You get a +4 bonus on concentration checks made to cast a spell or use a spell-like ability when casting on the defensive or while grappled.",
+    "benefit": "+4 to grappled or defensive casting concentration checks",
+    "trigger": "Continuous",
+    "bonuses": {
+      "Combat Casting": {
+        "value": 4,
+        "type": "Feat",
+        "targets": [ "concentration" ]
+      }
+    }
+  },
   "Run": {
     "type": "General",
     "prerequisites": [],
-    "description": "You are swift of foot.",
-    "benefit": "When running, you move five times your normal speed (if wearing medium, light, or no armor and carrying no more than a medium load) or four times your speed (if wearing heavy armor or carrying a heavy load). If you make a jump after a running start (see Acrobatics), you gain a +4 bonus on your Acrobatics check. While running, you retain your Dexterity bonus to your Armor Class.",
+    "description": "When running, you move five times your normal speed (if wearing medium, light, or no armor and carrying no more than a medium load) or four times your speed (if wearing heavy armor or carrying a heavy load). If you make a jump after a running start (see Acrobatics), you gain a +4 bonus on your Acrobatics check. While running, you retain your Dexterity bonus to your Armor Class.",
+    "benefit": "You may run five times your normal speed.",
+    "trigger": "Continuous",
     "bonuses": {}
+  },
+  "Spell Penetration": {
+    "type": "General",
+    "prerequisites": [],
+    "description": "Your spells break through spell resistance more easily than most. You get a +2 bonus on caster level checks (1d20 + caster level) made to overcome a creature’s spell resistance.",
+    "benefit": "+2 to caster level checks vs Spell Resistance",
+    "trigger": "Continuous",
+    "bonuses": {
+      "Spell Penetration": {
+        "value": 2,
+        "type": "Feat",
+        "targets": [ "spellPenetration" ]
+      }
+    }
   },
   "Toughness": {
     "type": "General",
     "prerequisites": [],
-    "description": "You have enhanced physical stamina.",
-    "benefit": "You gain +3 hit points, and an additional hit point for every Hit Die beyond 3.",
-    "abilities": []
-  },
-  "Improved Initiative": {
-    "type": "Combat",
-    "prerequisites": [],
-    "description": "Your quick reflexes allow you to react to react rapidly to danger.",
-    "benefit": "You get a +4 bonus on initiative checks.",
-
+    "description": "You have enhanced physical stamina, granting you +3 hit points, and an additional hit point for every Hit Die beyond 3.",
+    "benefit": "You gain +1 hit point per level.",
     "trigger": "Continuous",
     "bonuses": {
-      "Improved Initiative": {
-        "value": 4,
+      "Toughness": {
+        "value": 1,
         "type": "Feat",
-        "targets": [ "Initiative" ]
+        "targets": [ "health" ]
       }
     }
+  },
+
+
+  
+  "Cleave": {
+    "type": "Combat",
+    "prerequisites": [ "Str:13", "BAB:1", "Power Attack" ],
+    "description": "As a standard action, you can make a single attack at your full base attack bonus against a foe within reach. If you hit, you deal damage normally and can make an additional attack (using your full base attack bonus) against a foe that is adjacent to the first and also within reach. You can only make one additional attack per round with this feat. When you use this feat, you take a –2 penalty to your Armor Class until your next turn.",
+    "benefit": "You can strike two adjacent foes with a single swing.",
+    "trigger": "Standard",
+    "bonuses": {
+      "Cleave": {
+        "value": -2,
+        "type": "Feat",
+        "targets": [ "totalAC", "touchAC", "flatAC" ],
+        "bonus": -2
+      }
+    ]
+  },
+  "Distance Thrower": {
+    "type": "Combat",
+    "prerequisites": [ "Str:13" ],
+    "description": "With a thrown weapon, you reduce your penalty on ranged attack rolls due to range by 2.",
+    "benefit": "Reduce range penalties by 2.",
+    "bonuses": {}
   },
   "Dodge": {
     "type": "Combat",
     "prerequisites": [ "Dex:13" ],
-    "description": "Your training and reflexes allow you to react swiftly to avoid an opponent's attacks.",
-    "benefit": "You gain a +1 dodge bonus to your AC. A condition that makes you lose your Dex bonus to AC also makes you lose the benefits of this feat.",
-
+    "description": "Your training and reflexes allow you to react swiftly to avoid an opponent's attacks. A condition that makes you lose your Dex bonus to AC also makes you lose the benefits of this feat.",
+    "benefit": "You gain a +1 dodge bonus to your AC.",
     "trigger": "Continuous",
     "bonuses": {
       "Dodge": {
@@ -155,40 +196,54 @@
       }
     }
   },
-  "Quick Draw": {
+  "Far Shot": {
     "type": "Combat",
-    "prerequisites": [ "BAB:1" ],
-    "description": "You can draw weapons faster than most.",
-    "benefit": "You can draw a weapon as a free action instead of as a move action. You can draw a hidden weapon as a move action instead of a standard action.",
-    "abilities": []
+    "prerequisites": [ "Point-Blank Shot" ],
+    "description": "You only suffer a –1 penalty per full range increment instead of the usual -2.",
+    "benefit": "-1 per range increment instead.",
+    "bonuses": {}
   },
-  "Weapon Focus": {
+  "Improved Initiative": {
     "type": "Combat",
-    "prerequisites": [ "BAB:1", "Proficiency with selected weapon" ],
-    "description": "Choose one type of weapon (or unarmed strike, grapple or ray), you may select this feat multiple times, choosing a new weapon each time.",
-    "benefit": "You gain a +1 bonus on all attack rolls you make using the selected weapon.",
+    "prerequisites": [],
+    "description": "Your quick reflexes allow you to react to react rapidly to danger.",
+    "benefit": "You get a +4 bonus on initiative checks.",
+    "trigger": "Continuous",
     "bonuses": {
-      "Weapon Focus (weapon)": {
-        "value": 1,
+      "Improved Initiative": {
+        "value": 4,
         "type": "Feat",
-        "targets": [ "atkBonus" ]
+        "targets": [ "initiative" ]
       }
     }
   },
   "Mounted Combat": {
     "type": "Combat",
     "prerequisite": [ "Ride:1" ],
-    "description": "You are adept at guiding your mount through combat.",
-    "benefit": "Once per round when your mount is hit in combat, you may attempt a Ride check to negate the hit (DC is equal to the attack roll).",
-    "abilities": []
+    "description": "You are adept at guiding your mount through combat, and can make ride checks to avoid damage (Once per round, with the DC equal to the Attack Roll).",
+    "benefit": "1/round, when hit, make a ride check to avoid damage (DC = Attack Roll)",
+    "trigger": "Toggle",
+    "bonuses": {}
+  },
+  "Point-Blank Shot": {
+    "type": "Combat",
+    "prerequisites": [],
+    "description": "You get a +1 bonus on attack and damage rolls with ranged weapons (and ranged touch spells) at ranges of up to 30 feet.",
+    "benefit": "+1 to attack and damage rolls with ranged weapons.",
+    "trigger": "Toggle",
+    "bonuses": {
+      "Point-Blank Shot": {
+        "value": 1,
+        "type": "Feat",
+        "targets": [ "atkBonus", "dmgBonus" ]
+    }
   },
   "Power Attack": {
     "type": "Combat",
     "prerequisites": [ "Str:13", "BAB:1" ],
-    "description": "You can choose to take a –1 penalty on all melee attack rolls and combat maneuver checks to gain a +2 bonus on all melee damage rolls.",
-    "benefit": "You can make exceptionally deadly melee attacks by sacrificing accuracy for strength.",
+    "description": "You can choose to take a –1 penalty on all melee attack rolls and combat maneuver checks to gain a +2 bonus on all melee damage rolls (Increases with higher BAB).",
+    "benefit": "You can take a -1 to hit for a +2 to damage.",
     "trigger": "Toggle",
-    "extras": {},
     "bonuses": {
       "Power Attack +": {
         "targets": [ "dmgBonus" ],
@@ -202,99 +257,58 @@
       }
     }
   },
-  "Cleave": {
-    "type": "Combat",
-    "prerequisites": [ "Str:13", "BAB:1", "Power Attack" ],
-    "description": "As a standard action, you can make a single attack at your full base attack bonus against a foe within reach. If you hit, you deal damage normally and can make an additional attack (using your full base attack bonus) against a foe that is adjacent to the first and also within reach. You can only make one additional attack per round with this feat. When you use this feat, you take a –2 penalty to your Armor Class until your next turn.",
-    "benefit": "You can strike two adjacent foes with a single swing.",
-    "abilites": [
-      {
-        "stacks": true, "type": "Feat",
-        "targets": [ "Toggled", "AC" ],
-        "bonus": -2
-      }
-    ]
-  },
-  "Two-Weapon Fighting": {
-    "type": "Combat",
-    "prerequisites": [ "Dex:15" ],
-    "description": "You can fight with a weapon wielded in each of your hands. You can make one extra attack each round with the secondary weapon.",
-    "benefit": "Your penalties on attack rolls for fighting with two weapons are reduced. The penalty for your primary hand lessens by 2 and the one for your off hand lessens by 6.",
-    "abilities": []
-  },
-  "Weapon Finesse": {
-    "type": "Combat",
-    "prerequisites": [],
-    "description": "You are trained in using your agility in melee combat, as opposed to brute strength.",
-    "benefit": "With a light weapon, elven curve blade, rapier, whip, or spiked chain made for a creature of your size category, you may use your Dexterity modifier instead of your Strength modifier on attack rolls.",
-    "abilities": []
-  },
-  "Point-Blank Shot": {
-    "type": "Combat",
-    "prerequisites": [],
-    "description": "You are especially accurate when making ranged attacks against close targets.",
-    "benefit": "You get a +1 bonus on attack and damage rolls with ranged weapons (and ranged touch spells) at ranges of up to 30 feet.",
-    "abilities": [
-      {
-        "stacks": true, "type": "Feat",
-        "targets": [ "Toggled", "Ranged Attack", "Ranged Damage" ],
-        "bonus": 1
-      }
-    ]
-  },
   "Precise Shot": {
     "type": "Combat",
     "prerequisites": [ "Point-Blank Shot" ],
     "description": "You are adept at firing ranged attacks into melee.",
     "benefit": "You don't take the -4 for firing into melee",
-    "abilities": []
+    "trigger": "Continuous",
+    "bonuses": {}
   },
-  "Far Shot": {
+  "Quick Draw": {
     "type": "Combat",
-    "prerequisites": [ "Point-Blank Shot" ],
-    "description": "You are more accurate at longer ranges.",
-    "benefit": "You only suffer a –1 penalty per full range increment between you and your target when using a ranged weapon.",
-    "abilities": []
+    "prerequisites": [ "BAB:1" ],
+    "description": "You can draw weapons faster than most, becoming a free action from a move action. You may also draw a hidden weapon as a move action instead of a standard action.",
+    "benefit": "Draw a weapon as a free action.",
+    "trigger": "Continuous",
+    "bonuses": {}
   },
-  "Distance Thrower": {
+  "Two-Weapon Fighting": {
     "type": "Combat",
-    "prerequisites": [ "Str:13" ],
-    "description": "You are accurate with thrown weapons at longer ranges than normal.",
-    "benefit": "With a thrown weapon, you reduce your penalty on ranged attack rolls due to range by 2.",
-    "abilities": [
-      {
-        "stacks": true, "type": "Feat",
-        "targets": [ "Toggled", "Ranged Attack" ],
-        "value": 2
-      }
-    ]
+    "prerequisites": [ "Dex:15" ],
+    "description": "You are adept at fighting with two weapons at once, reducing the penalty for your main hand by 2 and your off hand by 6.",
+    "benefit": "You can attack with 2 weapons, with reduced penalties",
+    "trigger": "Continuous",
+    "bonuses": {}
   },
-  "Combat Casting": {
-    "type": "General",
+  "Weapon Finesse": {
+    "type": "Combat",
     "prerequisites": [],
-    "description": "You are adept at spellcasting when threatened or distracted.",
-    "benefit": "You get a +4 bonus on concentration checks made to cast a spell or use a spell-like ability when casting on the defensive or while grappled.",
-    "abilities": [
-      {
-        "stacks": true, "type": "Feat",
-        "targets": [ "Toggled", "Concentration" ],
-        "value": 4
-      }
-    ]
+    "description": "With a light weapon, elven curve blade, rapier, whip, or spiked chain made for a creature of your size category, you may use your Dexterity modifier instead of your Strength modifier on attack rolls.",
+    "benefit": "You may use your DexMod, instead of StrMod, on attack rolls for certain weapons.",
+    "trigger": "Continuous",
+    "bonuses": {}
   },
-  "Spell Penetration": {
-    "type": "General",
-    "prerequisites": [],
-    "description": "Your spells break through spell resistance more easily than most.",
-    "benefit": "You get a +2 bonus on caster level checks (1d20 + caster level) made to overcome a creature’s spell resistance.",
-    "abilities": [
-      {
-        "stacks": true, "type": "Feat",
-        "targets": [ "Toggled", "Penetration" ],
-        "value": 2
+  "Weapon Focus": {
+    "type": "Combat",
+    "prerequisites": [ "BAB:1", "Proficiency with selected weapon" ],
+    "description": "Choose one type of weapon (or unarmed strike, grapple or ray), you may select this feat multiple times, choosing a new weapon each time. You gain a +1 bonus on all attack rolls made using your selection.",
+    "benefit": "+1 bonus on all attack rolls made using your selection.",
+    "trigger": "Continuous",
+    "bonuses": {
+      "Weapon Focus (weapon)": {
+        "value": 1,
+        "type": "Feat",
+        "targets": [ "atkBonus" ]
       }
-    ]
+    }
   },
+
+
+  
+
+
+
 
 
 
@@ -304,34 +318,38 @@
     "prerequisites": [ "BAB:6" ],
     "description": "You make a single attack that deals significantly more damage than normal.",
     "benefit": "When you use the attack action, you can make one attack at your highest base attack bonus that deals additional damage (roll weapon damage an additional time, not affected by crit).",
-    "abilities": []
+    "trigger": "toggle",
+    "bonuses": {}
   },
   "Bloody Assault": {
     "type": "Combat",
     "prerequisites": [ "BAB:6", "Str:13", "Power Attack" ],
     "description": "Sacrificing accuracy, you can inflict bloody wounds that are slow to heal.",
     "benefit": "You can choose to take a –5 penalty on all melee attack rolls and CMB to inflict an additional 1d4 bleed damage.",
-    "abilities": [
-      {
-        "stacks": true, "type": "Feat",
-        "targets": [ "Toggled", "Melee Attack", "CMB" ],
-        "value": -5
+    "trigger": "toggle",
+    "bonuses": {
+      "Bloddy Assault": {
+        "value": -5,
+        "type": "Feat",
+        "targets": [ "melee", "atkBonus", "cmb" ]
       }
-    ]
+    }
   },
   "Death or Glory": {
     "type": "Combat",
     "prerequisites": [ "BAB:6", "Str:13", "Power Attack" ],
     "description": "Even when facing a larger foe, you aren’t afraid to take great risks in order to finish the fight.",
     "benefit": "Against a creature of size Large or larger, you can make a single melee attack as a full-round action, gaining a bonus on the attack roll, damage roll, and critical confirmation roll. After you resolve your attack, the opponent you attack can spend an immediate action to make a single melee attack against you with the same bonuses.",
-    "abilities": []
+    "treigger": "toggle",
+    "bonuses": {}
   },
   "Hammer the Gap": {
     "type": "Combat",
     "prerequisites": [ "BAB:6" ],
     "description": "You repeatedly strike the same location, causing increasing amounts of damage.",
     "benefit": "When you take a full-attack action, each consecutive hit against the same opponent deals extra damage equal to the number of previous consecutive hits you have made against that opponent this turn. This damage is multiplied on a critical hit.",
-    "abilities": []
+    "trigger": "Toggle",
+    "bonuses": {}
   },
 
 
