@@ -121,6 +121,14 @@
       }
     }
   },
+  "Diehard": {
+    "type": "General",
+    "prerequisites": [ "Endurance" ],
+    "description": "When your hit point total is below 0, but you are not dead, you automatically stabilize, and you do not need to make a Constitution check each round to avoid losing additional hit points.",
+    "benefit": "Stabilize automatically when below 0 hit points",
+    "trigger": "Continuous",
+    "bonuses": {}
+  },
   "Run": {
     "type": "General",
     "prerequisites": [],
@@ -159,7 +167,20 @@
   },
 
 
-  
+  "Bloody Assault": {
+    "type": "Combat",
+    "prerequisites": [ "BAB:6", "Str:13", "Power Attack" ],
+    "description": "You can choose to take a –5 penalty on all melee attack rolls and CMB to inflict an additional 1d4 bleed damage (this happens at the start of each turn for the tarfet, but does not stack).",
+    "benefit": "+1d4 bleed damage at a -5 to hit"
+    "trigger": "toggle",
+    "bonuses": {
+      "Bloddy Assault": {
+        "value": -5,
+        "type": "Feat",
+        "targets": [ "melee", "atkBonus", "cmb" ]
+      }
+    }
+  },
   "Cleave": {
     "type": "Combat",
     "prerequisites": [ "Str:13", "BAB:1", "Power Attack" ],
@@ -170,8 +191,7 @@
       "Cleave": {
         "value": -2,
         "type": "Feat",
-        "targets": [ "totalAC", "touchAC", "flatAC" ],
-        "bonus": -2
+        "targets": [ "totalAC", "touchAC", "flatAC" ]
       }
     ]
   },
@@ -180,7 +200,22 @@
     "prerequisites": [ "Str:13" ],
     "description": "With a thrown weapon, you reduce your penalty on ranged attack rolls due to range by 2.",
     "benefit": "Reduce range penalties by 2.",
+    "trigger": "Continuous",
     "bonuses": {}
+  },
+  "Death or Glory": {
+    "type": "Combat",
+    "prerequisites": [ "BAB:6", "Str:13", "Power Attack" ],
+    "description": "Against a creature of size Large or larger, you can make a single melee attack as a full-round action, gaining a +4 on the attack roll, damage roll, and critical confirmation roll. After you resolve your attack, the opponent you attack can spend an immediate action to make a single melee attack against you with the same bonuses.",
+    "benefit": "+4 against a Large or bigger creature, but they also get a free attack on you",
+    "trigger": "Full-Round",
+    "bonuses": {
+      "Death or Glory": {
+        "value": 4,
+        "type": "Feat",
+        "targets": [ "melee", "atkBonus", "dmgBonus" ]
+      }
+    }
   },
   "Dodge": {
     "type": "Combat",
@@ -200,7 +235,16 @@
     "type": "Combat",
     "prerequisites": [ "Point-Blank Shot" ],
     "description": "You only suffer a –1 penalty per full range increment instead of the usual -2.",
-    "benefit": "-1 per range increment instead.",
+    "benefit": "-1 per range increment instead of -2",
+    "trigger": "Continuous",
+    "bonuses": {}
+  },
+  "Hammer the Gap": {
+    "type": "Combat",
+    "prerequisites": [ "BAB:6" ],
+    "description": "Each consecutive hit on the same opponent deals extra damage equal to the number of previous consecutive hits made this turn. This damage is multiplied on a crit.",
+    "benefit": "Each consecutive hit on the same opponent deals extra damage",
+    "trigger": "Full-Attack",
     "bonuses": {}
   },
   "Improved Initiative": {
@@ -281,6 +325,14 @@
     "trigger": "Continuous",
     "bonuses": {}
   },
+  "Vital Strike": {
+    "type": "Combat",
+    "prerequisites": [ "BAB:6" ],
+    "description": "With a standard attack action (not full-round attack), you can make one attack at your highest base attack bonus that deals additional damage (roll weapon damage an additional time, not affected by crit).",
+    "benefit": "Make one attack with full BAB & roll damage twice",
+    "trigger": "Standard",
+    "bonuses": {}
+  },
   "Weapon Finesse": {
     "type": "Combat",
     "prerequisites": [],
@@ -308,115 +360,78 @@
   
 
 
-
-
-
-
-
-  "Vital Strike": {
-    "type": "Combat",
-    "prerequisites": [ "BAB:6" ],
-    "description": "You make a single attack that deals significantly more damage than normal.",
-    "benefit": "When you use the attack action, you can make one attack at your highest base attack bonus that deals additional damage (roll weapon damage an additional time, not affected by crit).",
-    "trigger": "toggle",
-    "bonuses": {}
-  },
-  "Bloody Assault": {
-    "type": "Combat",
-    "prerequisites": [ "BAB:6", "Str:13", "Power Attack" ],
-    "description": "Sacrificing accuracy, you can inflict bloody wounds that are slow to heal.",
-    "benefit": "You can choose to take a –5 penalty on all melee attack rolls and CMB to inflict an additional 1d4 bleed damage.",
-    "trigger": "toggle",
-    "bonuses": {
-      "Bloddy Assault": {
-        "value": -5,
-        "type": "Feat",
-        "targets": [ "melee", "atkBonus", "cmb" ]
-      }
-    }
-  },
-  "Death or Glory": {
-    "type": "Combat",
-    "prerequisites": [ "BAB:6", "Str:13", "Power Attack" ],
-    "description": "Even when facing a larger foe, you aren’t afraid to take great risks in order to finish the fight.",
-    "benefit": "Against a creature of size Large or larger, you can make a single melee attack as a full-round action, gaining a bonus on the attack roll, damage roll, and critical confirmation roll. After you resolve your attack, the opponent you attack can spend an immediate action to make a single melee attack against you with the same bonuses.",
-    "treigger": "toggle",
-    "bonuses": {}
-  },
-  "Hammer the Gap": {
-    "type": "Combat",
-    "prerequisites": [ "BAB:6" ],
-    "description": "You repeatedly strike the same location, causing increasing amounts of damage.",
-    "benefit": "When you take a full-attack action, each consecutive hit against the same opponent deals extra damage equal to the number of previous consecutive hits you have made against that opponent this turn. This damage is multiplied on a critical hit.",
-    "trigger": "Toggle",
-    "bonuses": {}
-  },
-
-
-
-
-
   "Raging Vitality": {
     "type": "General",
     "prerequisites": [ "Con:15", "Rage Class Feature" ],
-    "description": "While raging, you are full of vigor and health.",
-    "benefit": "Whenever you are raging, the morale bonus to your Constitution increases by +2. Your rage does not end if you become unconscious. While unconscious you must still expend rounds of rage per day each round.",
-    "abilities": []
+    "description": "Whenever you are raging, the morale bonus to your Constitution increases by +2. Your rage does not end if you become unconscious. While unconscious you must still expend rounds of rage per day each round.",
+    "benefit": "+2 to the morale bonus to Constitution while raging",
+    "trigger": "Continuous",
+    "bonuses": {}
   },
   "Lingering Performance": {
     "type": "General",
     "prerequisites": [ "Bardic Performance Class Feature" ],
-    "description": "The effects of your bardic performance carry on, even after you have stopped performing.",
-    "benefit": "The bonuses and penalties from your bardic performance continue for 2 rounds after you cease performing, as long as all other requirements are still met.",
-    "abilities": []
+    "description": "The bonuses and penalties from your bardic performance continue for 2 rounds after you cease performing, as long as all other requirements are still met.",
+    "benefit": "Bardic Performance lingers for 2 rounds",
+    "trigger": "Continuous",
+    "bonuses": {}
   },
   "Selective Channeling": {
     "type": "General",
     "prerequisites": [ "Cha:13", "Channel Energy Class Feature" ],
-    "description": "You can choose whom to affect when you channel energy.",
-    "benefit": "When you channel energy, you can choose a number of targets in the area up to your Charisma modifier. These targets are not affected by your channeled energy.",
-    "abilities": []
+    "description": "When you channel energy, you can choose a number of targets in the area up to your Charisma modifier. These targets are not affected by your channeled energy.",
+    "benefit": "Can exclude targets from Channel Energy",
+    "trigger": "Continuous",
+    "bonuses": {}
   },
   "Natural Spell": {
     "type": "General",
     "prerequisites": [ "Wis:13", "Wild Shape Class Feature" ],
-    "description": "You can cast spells even while in a form that cannot normally cast spells.",
-    "benefit": "You can complete the verbal and somatic components of spells while using wild shape. You substitute various noises and gestures for the normal verbal and somatic components of a spell. You can also use any material components or focuses you possess, even if such items are melded within your current form.",
-    "abilities": []
+    "description": "You can complete the verbal and somatic components of spells while using wild shape. You substitute various noises and gestures for the normal verbal and somatic components of a spell. You can also use any material components or focuses you possess, even if such items are melded within your current form.",
+    "benefit": "Can cast spells in wild shape",
+    "trigger": "Continuous",
+    "bonuses": {}
   },
+  "Fighter": "N/A",
   "Bleeding Attack": {
     "type": "Combat",
     "prerequisites": [ "Improved Unarmed Strike" ],
-    "description": "Your unarmed strikes cause your opponent to bleed.",
-    "benefit": "When you damage an opponent with an unarmed strike, you deal an extra 1d4 bleed damage.",
-    "abilities": []
-  },
+    "description": "When you damage an opponent with an unarmed strike, you deal an extra 1d4 bleed damage.",
+    "benefit": "+1d4 bleed with an unarmed strike",
+    "trigger": "Continuous",
+    "bonuses": {}
+  },    
   "Word of Healing": {
     "type": "General",
     "prerequisites": [ "Lay on Hands Class Feature." ],
-    "description": "Using the same divine energy as your lay on hands ability, you can heal others at a distance.",
-    "benefit": "You may use your lay on hands to heal another creature at a range of 30 feet as a standard action that does not provoke an attack of opportunity. You must be able to speak and have a free hand to use this ability. The target heals half the amount they would have healed if you had touched them, but gains the benefits of your mercies as normal.",
-    "abilities": []
+    "description": "You may use your lay on hands to heal another creature at a range of 30 feet as a standard action that does not provoke an attack of opportunity. You must be able to speak and have a free hand to use this ability. The target heals half the amount they would have healed if you had touched them, but gains the benefits of your mercies as normal.",
+    "benefit": "Use lay on hands up to 30 ft away",
+    "trigger": "Continuous",
+    "bonuses": {}
   },
-  "Diehard": {
+  "Favored Defense": {
     "type": "General",
-    "prerequisites": [ "Endurance" ],
-    "description": "Not only do your wounds automatically stabilize when grievously injured, but you can remain conscious and continue to act even at death’s door.",
-    "benefit": "When your hit point total is below 0, but you are not dead, you automatically stabilize, and you do not need to make a Constitution check each round to avoid losing additional hit points.",
-    "abilities": []
+    "prerequisites": [ "Favored Enemy Class Feature" ],
+    "description": "Choose one of your favored enemy types. You add half your favored enemy bonus to your CMD and as a dodge bonus to AC when attacked by that favored enemy type.",
+    "benefit": "+1/2 your favored enemy bonus to your CMD and AC",
+    "trigger": "Continuous",
+    "bonuses": {}
   },
+  "Rougue": "N/A",
   "Sorcerous Bloodstrike": {
     "type": "General",
     "prerequisites": [ "Cha:13", "Sorcerer Bloodline Class Feature" ],
-    "description": "You can regain power when you kill a creature.",
-    "benefit": "Once per day, as an immediate action upon reducing a creature to 0 or fewer hit points with one of your sorcerer spells, you can regain one usage of a sorcerer bloodline power that has a limited number of uses per day. The slain creature must have at least half as many Hit Dice as your sorcerer level.",
-    "abilities": []
+    "description": "Once per day, as an immediate action upon reducing a creature to 0 or fewer hit points with one of your sorcerer spells, you can regain one usage of a sorcerer bloodline power that has a limited number of uses per day. The slain creature must have at least half as many Hit Dice as your sorcerer level.",
+    "benefit": "Regin a blodline power use on a kill",
+    "trigger": "Continuous",
+    "bonuses": {}
   },
   "Improved Familiar": {
     "type": "General",
     "prerequisites": [ "Ability to aquire a new familiar" ],
-    "description": "This feat allows you to acquire a powerful familiar, but only when you could normally acquire a new familiar.",
-    "benefit": "When choosing a familiar, you may choose from the listed creatures (on the wiki).",
-    "abilities": []
+    "description": "When choosing a familiar, you may choose a more powerful creature from those listed (on the wiki).",
+    "benefit": "Your familiar is stronger than most",
+    "trigger": "Continuous",
+    "bonuses": {}
   }
 }
