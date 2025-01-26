@@ -434,6 +434,11 @@
             <el-col :span="21">
               CONDITIONS!!
               {{ conditions }}
+              <!--
+              <el-row v-for="(condition, name) in conditions">
+                 name   duration   effect
+              </el-row>
+              -->
             </el-col>
           </el-row>
         </el-collapse-item>
@@ -443,6 +448,39 @@
     <!-- Items -->
     <el-tab-pane label="Items" name="second">
       {{ inventory }}
+      <!-- coins, equiped -->
+
+      <!-- el-tree for containers and contained items -->
+      
+      <el-collapse v-model="openContainers">
+        <el-collapse-item v-for="(container, cName) in inventory" :key="cName" :title="cName" :name="cName">
+          <el-row>
+            <el-col :span="3"> <g-icon iconSize="32px" iconName="equipment" /> </el-col>
+            <el-col :span="7"> {{ cName }} </el-col>
+            <el-col :span="2"> {{ container.totalValue }} </el-col>
+            <el-col :span="2"> {{ container.totalWeight }} </el-col>
+            <el-col :span="2"> {{ container.capacity }} </el-col>
+          </el-row>
+          <!-- #[+/-]   name   value   weight   notes -->
+        </el-collapse-item>
+      </el-collapse>
+      
+          <!-- 
+          <el-row v-for="(item, name) in container" :key="name">
+            <el-col :span="3"></el-col>
+            <el-col :span="7" class="center-vert"> {{ name }} </el-col>
+
+
+            <el-col :span="7">
+              <el-tooltip placement="top" effect="light">
+                <el-tag size="small" effect="dark" type="danger">
+                  HP: {{ health.current }} / {{ health.total }}
+                </el-tag>
+                <template #content>
+                  <span v-for="bonus in health.sources" :key="bonus"> {{ bonus+" " }} </span>
+                </template>
+              </el-tooltip>   <br>
+              -->
     </el-tab-pane>
 
     <!-- Skills -->
@@ -454,6 +492,8 @@
       </el-col>
       <el-col :span="7">
         Skills
+        <!-- skill name      bonus (ranks, class, bonuses)    armor penalty     example uses    -->
+        <!-- craft (general)  // cannot add rankks, used for any craft you don't have -->
         <br>
         {{ this.original.Skills }}
         <br>
@@ -463,6 +503,7 @@
 
     <!-- Abilities -->
     <el-tab-pane label="Abilities" name="fourth">
+      <!-- ablity name    toggle?     description   source? [edit] -->
       <el-col :span="7" class="center">
         Feats
         <br>
@@ -480,6 +521,12 @@
           {{ this.original.Magic }}
         </el-col>
       </el-row>
+    </el-tab-pane>
+
+    <el-tab-pane label="Edit" name="sixth">
+      <!-- [LEVEL UP] -->
+      <!-- add ability (ability & bonuses -> actions) -->
+      <!-- EDIT BASICS (name, race, alignment, attributes, casting style, etc) -->
     </el-tab-pane>
   </el-tabs>
 
@@ -514,7 +561,8 @@ export default {
       equipment: {},
 
       cardTab: "first",
-      openSections: [  "offense" ],
+      openSections: [ "offense" ],
+      openContainers: [],
       sizeSelect: [
         { value: "Fine", label: "Fine", },
         { value: "Diminuitive", label: "Diminuitive", },
