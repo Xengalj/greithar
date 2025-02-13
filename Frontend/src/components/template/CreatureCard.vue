@@ -432,13 +432,107 @@
               <g-icon iconSize="32px" iconName="dizzyStar" />
             </el-col>
             <el-col :span="21">
-              CONDITIONS!!
-              {{ conditions }}
-              <!--
-              <el-row v-for="(condition, name) in conditions">
-                 name   duration   effect
+              <el-row>
+                <el-col :span="8" :offset="16">
+                  <el-select
+                    v-model="conditions"
+                    value-key="name"
+                    multiple
+                    placeholder="Common Conditions"
+                  >
+                    <el-option v-for="item in conditionSelect" :key="item.name" :label="item.name" :value="item" >
+                      <div class="flex items-center">
+                        <el-tag type="primary" style="margin-right: 8px" size="small" effect="dark" />
+                        <span>{{ item.name }}</span>
+                      </div>
+                    </el-option>
+
+                    <template #footer>
+                      <el-button v-if="!addingCondition" text bg size="small" @click="addNewContion()"> Add custom condition </el-button>
+                      <template v-else>
+
+                        <el-row :gutter="5">
+                          <el-col :span="5">
+                            <el-input v-model="newCondition.name" size="small" placeholder="Condition Name" />
+                          </el-col>
+                          <el-col :span="10">
+                            <el-input v-model="newCondition.description" :rows="2" type="textarea" placeholder="Enter condition description" />
+                          </el-col>
+
+
+                          <el-col :span="4">
+
+                              <el-popover :visible="newConditionBonusesVisable" placement="top" :width="160">
+                                <p>Add the bonuses for the new condition</p>
+                                <el-button size="small" @click="addNewConditionsBonus">+</el-button>
+
+                                <el-row v-for="(bonus, name) in newCondition.bonuses" :key="name">
+                                  {{ name }} <br>
+                                  <!-- <el-input v-model="newCondition.name" size="small" placeholder="Condition Name" /> -->
+                                  {{ bonus.value }} <br>
+                                  <!-- <el-input v-model="newCondition.name" size="small" placeholder="Condition Name" /> -->
+                                  {{ bonus.targets }}
+                                  <!-- select -->
+                                </el-row>
+                                    <!-- bonuses: {
+                                    "Prone": {
+                                    type: "Condition",
+                                    value: -4,
+                                    targets: [ "meleeAtkBonus" ]
+                                  }
+                                } -->
+
+
+                                <div style="text-align: right; margin: 0">
+                                  <el-button size="small" text @click="newConditionBonusesVisable = false">cancel</el-button>
+                                  <el-button size="small" type="primary" @click="newConditionBonusesVisable = false"> confirm </el-button>
+                                </div>
+
+                                <template #reference>
+                                  <el-button @click="newConditionBonusesVisable = true">Bonuses</el-button>
+                                </template>
+                              </el-popover>
+
+
+                            <el-tag v-for="(item, name) in newCondition.bonuses" :key="name" type="primary" size="small" effect="dark">
+                              {{ item }}
+                            </el-tag>
+                          </el-col>
+
+                          <el-col :span="3" class="addCondition">
+                            <el-button size="small" type="primary" @click="addCondition()">confirm</el-button>
+                            <el-button size="small" @click="newCondition = {}; addingCondition = false;">cancel</el-button>
+                          </el-col>
+                        </el-row>
+
+
+                    </template>
+                  </template>
+
+                  </el-select>
+
+
+
+
+
+
+
+
+
+
+
+
+                </el-col>
               </el-row>
-              -->
+
+              <el-row v-for="(condition, name) in conditions" :key="name">
+                <el-col :span="6" class="center-vert">
+                  {{ name }}
+                </el-col>
+                <el-col :span="18" class="center-vert">
+                  {{ condition.description }}
+                </el-col>
+              </el-row>
             </el-col>
           </el-row>
         </el-collapse-item>
@@ -451,7 +545,7 @@
       <!-- coins, equiped -->
 
       <!-- el-tree for containers and contained items -->
-      
+
       <el-collapse v-model="openContainers">
         <el-collapse-item v-for="(container, cName) in inventory" :key="cName" :title="cName" :name="cName">
           <el-row>
@@ -464,8 +558,8 @@
           <!-- #[+/-]   name   value   weight   notes -->
         </el-collapse-item>
       </el-collapse>
-      
-          <!-- 
+
+          <!--
           <el-row v-for="(item, name) in container" :key="name">
             <el-col :span="3"></el-col>
             <el-col :span="7" class="center-vert"> {{ name }} </el-col>
@@ -530,14 +624,23 @@
     </el-tab-pane>
   </el-tabs>
 
-
+  <!-- FOOTER -->
   <el-row :gutter="20">
     <el-col :span="3" class="center">
-      <el-button type="primary" @click="addMonster()"> Add to Session </el-button>
+      <el-button type="primary" @click="saveMonster()"> Save Changes </el-button>
     </el-col>
-    <el-select-v2 v-model="basics.size" :options="this.sizeSelect" size="small" style="width: 120px" />
-
   </el-row>
+
+  <br><br><br>
+
+  {{ conditions }}
+
+  <br><br><br>
+
+
+  Size <el-select-v2 v-model="basics.size" :options="this.sizeSelect" size="small" style="width: 120px" />
+  <br>
+  Bonuses
   <div v-for="(item, name) in bonuses" :key="name">
     {{ name }} : {{ item }}
   </div>
@@ -561,7 +664,7 @@ export default {
       equipment: {},
 
       cardTab: "first",
-      openSections: [ "offense" ],
+      openSections: [ "conditions" ],
       openContainers: [],
       sizeSelect: [
         { value: "Fine", label: "Fine", },
@@ -575,6 +678,33 @@ export default {
         { value: "Colossal", label: "Colossal", }
       ],
 
+      conditions: {},
+      conditionSelect: [
+        { name: "Dazed", description: "The creature is unable to act normally. A dazed creature can take no actions, but has no penalty to AC.", bonuses: {} },
+        { name: "Dazzled", description: "The creature is unable to see well because of over-stimulation of the eyes. A dazzled creature takes a –1 penalty on attack rolls and sight-based Perception checks.",
+          bonuses: {
+            "Dazzled": {
+              type: "Condition",
+              value: -1,
+              targets: [ "meleeAtkBonus", "rangedAtkBonus" ]
+            }
+          }
+        },
+        { name: "Prone", description: "The character is lying on the ground. A prone attacker has a –4 penalty on melee attack rolls and cannot use a ranged weapon (except for a crossbow). A prone defender gains a +4 bonus to Armor Class against ranged attacks, but takes a –4 penalty to AC against melee attacks.",
+          bonuses: {
+            "Prone": {
+              type: "Condition",
+              value: -4,
+              targets: [ "meleeAtkBonus" ]
+            }
+          }
+        }
+      ],
+      addingCondition: false,
+      newCondition: {},
+      newConditionBonusesVisable: false,
+
+
       original: {}
     }
   },
@@ -582,8 +712,10 @@ export default {
     DataService.getRules().then ( (response) => { this.rules = response; });
     DataService.getClasses().then ( (response) => { this.classes = response; });
     DataService.getEquipment().then ( (response) => { this.equipment = response; });
+    // this.conditionSelect = rules.conditions;
   },
   mounted() {
+    // add rest button to tabs
     const scrollbar = this.$refs.tabs.$el.querySelector('.el-tabs__nav-scroll');
     scrollbar.appendChild(this.$refs.restBtn.$el);
   },
@@ -600,6 +732,14 @@ export default {
         for (const ability in this.abilities) {
           if (this.abilities[ability].active && this.abilities[ability].bonuses) {
             for (const [name, bonus] of Object.entries(this.abilities[ability].bonuses)) {
+              bonuses[name] = bonus;
+            }
+          }
+        }
+        // Add conditions
+        for (const condition in this.conditions) {
+          if (this.conditions[condition].bonuses) {
+            for (const [name, bonus] of Object.entries(this.conditions[condition].bonuses)) {
               bonuses[name] = bonus;
             }
           }
@@ -910,7 +1050,7 @@ export default {
     },
     actions() {
       let actions = { melee: {}, ranged: {}, special: {} };
-      if (this.source.name) {
+      if (this.source.name && this.rules.natural_attacks) {
         let NatAtkNum = 0;
         for (let type of Object.entries(this.source.actions)) {
           type = type[0];
@@ -984,8 +1124,8 @@ export default {
             // Dual Wield Off Hand penalty done in abilities / bonuses
 
             // Add Active Bonuses
-            this.bonusLoop(newAtk.atkBonus, "atkBonus");
-            this.bonusLoop(newAtk.dmgBonus, "dmgBonus");
+            this.bonusLoop(newAtk.atkBonus, type.concat("AtkBonus"));
+            this.bonusLoop(newAtk.dmgBonus, type.concat("DmgBonus"));
 
             if (NatAtkNum>1) { newAtk.atkNum = NatAtkNum; }
             newAtk.dmgDie = atk.Damage[this.basics.size];
@@ -1006,10 +1146,6 @@ export default {
         }
       }
       return actions;
-    },
-    conditions() {
-      let conditions = {};
-      return conditions;
     },
 
     // TODO: add + to start of bonus
@@ -1106,13 +1242,6 @@ export default {
 
 
 
-
-
-  // updated() {
-  //   // if (this.creatureName != this.original.Name) {
-  //   //   this.getCreature({Name: this.creatureName});
-  //   // }
-  // },
   methods: {
     capFirsts(string) {
       return string ? string.replace(/(^\w|\s\w)/g, m => m.toUpperCase()) : "";
@@ -1160,8 +1289,33 @@ export default {
     rest() {
       console.log('REST UP: HP, SPELLS');
     },
+
+    addNewContion() {
+      this.addingCondition = true;
+      this.newCondition = {
+        name: "TEMP",
+        description: "TEMP",
+        bonuses: {}
+      };
+    },
+    addNewConditionsBonus() {
+      let name = this.newCondition.name;
+      this.newCondition.bonuses[name.concat(Object.keys(this.newCondition.bonuses).length)] = {
+        type: "Condition",
+        value: 0,
+        targets: []
+      };
+      console.log(this.newCondition);
+    },
     toggleAbility(name, abil) {
       console.log(name, abil);
+      if (this.conditions[name]) {
+        delete this.conditions[name];
+        this.actions.special[name].active = false;
+      } else {
+        this.conditions[name] = abil;
+        this.actions.special[name].active = true;
+      }
     },
 
 
@@ -1176,5 +1330,9 @@ export default {
 .el-tabs__nav-scroll {
   display: flex;
   justify-content: space-between;
+}
+.addCondition button {
+  width: 100%;
+  margin: 0 0 2px 5px;
 }
 </style>

@@ -171,13 +171,13 @@
     "type": "Combat",
     "prerequisites": [ "BAB:6", "Str:13", "Power Attack" ],
     "description": "You can choose to take a –5 penalty on all melee attack rolls and CMB to inflict an additional 1d4 bleed damage (this happens at the start of each turn for the tarfet, but does not stack).",
-    "benefit": "+1d4 bleed damage at a -5 to hit"
+    "benefit": "+1d4 bleed damage at a -5 to hit",
     "trigger": "toggle",
     "bonuses": {
       "Bloddy Assault": {
         "value": -5,
         "type": "Feat",
-        "targets": [ "melee", "atkBonus", "cmb" ]
+        "targets": [ "meleeAtkBonus", "cmb" ]
       }
     }
   },
@@ -193,7 +193,7 @@
         "type": "Feat",
         "targets": [ "totalAC", "touchAC", "flatAC" ]
       }
-    ]
+    }
   },
   "Distance Thrower": {
     "type": "Combat",
@@ -213,7 +213,7 @@
       "Death or Glory": {
         "value": 4,
         "type": "Feat",
-        "targets": [ "melee", "atkBonus", "dmgBonus" ]
+        "targets": [ "meleeAtkBonus", "meleeDmgBonus" ]
       }
     }
   },
@@ -279,7 +279,8 @@
       "Point-Blank Shot": {
         "value": 1,
         "type": "Feat",
-        "targets": [ "atkBonus", "dmgBonus" ]
+        "targets": [ "meleeAtkBonus", "meleeDmgBonus" ]
+      }
     }
   },
   "Power Attack": {
@@ -290,12 +291,12 @@
     "trigger": "Toggle",
     "bonuses": {
       "Power Attack +": {
-        "targets": [ "dmgBonus" ],
+        "targets": [ "meleeDmgBonus" ],
         "type": "Feat",
         "value": 2
       },
       "Power Attack -": {
-        "targets": [ "atkBonus", "cmb" ],
+        "targets": [ "meleeAtkBonus", "cmb" ],
         "type": "Feat",
         "value": -1
       }
@@ -347,17 +348,11 @@
     "description": "Choose one type of weapon (or unarmed strike, grapple or ray), you may select this feat multiple times, choosing a new weapon each time. You gain a +1 bonus on all attack rolls made using your selection.",
     "benefit": "+1 bonus on all attack rolls made using your selection.",
     "trigger": "Continuous",
-    "bonuses": {
-      "Weapon Focus (weapon)": {
-        "value": 1,
-        "type": "Feat",
-        "targets": [ "atkBonus" ]
-      }
-    }
+    "bonuses": {}
   },
 
 
-  
+
 
 
   "Raging Vitality": {
@@ -400,7 +395,7 @@
     "benefit": "+1d4 bleed with an unarmed strike",
     "trigger": "Continuous",
     "bonuses": {}
-  },    
+  },
   "Word of Healing": {
     "type": "General",
     "prerequisites": [ "Lay on Hands Class Feature." ],
