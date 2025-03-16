@@ -1,4 +1,72 @@
 {
+	"Surnames": {
+		"Lusardi, Mlinar, Kremar, Tafralian, Puska, Vortal, Radloff, Scorvan, Fafinski, LaraMoor, Vilagrana, Thazel, 
+		"Amaru": {
+			"Ashcraft": "",
+			"Challwaq": "Quechua: Fisher",
+			"Heitala": "",
+			"Herrero": "Quechua: Smith",
+			"Musuqari": "Quechua: New Man",
+			"Wade XX": "Quechua: Child Of"
+		},
+		"Avaar": {
+			"Gaabzaraq": "Arabic: Blue Forest",
+			"Gutaj-Ru": "",
+			"Hadaad": "Arabic: Smithy",
+			"Ibs XX": "Arabic: Child Of",
+			"Ravala": "",
+			"Sayaad": "Arabic: Fisher"
+		},
+		"Cæth": {
+			"Foxelster": "",
+			"Gof": "Welsh: Smith",
+			"Hydrefcalon": "Welsh: AutumnHeart",
+			"Mab-XX": "Welsh: Child Of",
+			"Pysgotwr": "Welsh: Fisher",
+			"Springbeat": "",
+			"Summersong": "",
+			"Tanganika": "",
+			"Winterlick": "",
+			
+		},
+		"Geit": {
+			"Bergquist": "??: Mountain Quest?",
+			"Bikonnen": "??: Two Horn",
+			"Kjellman": "",
+			"Moyryla": "",
+			"Rafisk": "Norse: Fisher",
+			"Smith": "Norse: Smith",
+			"Thouin": "",
+			"Van Dan Elzan": "",
+			"Van Vleet": "",
+			"XX-Son": "Norse: Child Of"
+		},
+		"Kame": {
+			"Kajiya": "Japanese: Smithy",
+			"Noko-": "Japanese: Child Of",
+			"Ryoshi": "Japanese: Fisher",
+			"Yeo": ""
+		},
+		"Zikaru": {
+			"Gidru": "Akkadian: Strike",
+			"Inmar": "Akkadian: Child Of",
+			"Nevins": "",
+			"Nunulu": "Akkadian: Fish Man",
+			"Schmalz": "",
+		},
+		"Tembo": {
+			"Wagar": "",
+		},
+		"Perwhüa": {
+			
+		},
+		"Kets'Rir": {
+			
+		},
+		"Gargoyles": {
+			
+		},
+	},
 	"Amaru": {
 		"rp": 12,
 		"age": {
