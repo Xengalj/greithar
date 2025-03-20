@@ -434,6 +434,7 @@
             <el-col :span="21">
               <el-row>
                 <el-col :span="8" :offset="16">
+                  <!-- Conditions Dropdown -->
                   <el-select
                     v-model="conditions"
                     value-key="name"
@@ -446,88 +447,61 @@
                         <span>{{ item.name }}</span>
                       </div>
                     </el-option>
-
                     <template #footer>
                       <el-button v-if="!addingCondition" text bg size="small" @click="addNewContion()"> Add custom condition </el-button>
-                      <template v-else>
-
-                        <el-row :gutter="5">
-                          <el-col :span="5">
-                            <el-input v-model="newCondition.name" size="small" placeholder="Condition Name" />
-                          </el-col>
-                          <el-col :span="10">
-                            <el-input v-model="newCondition.description" :rows="2" type="textarea" placeholder="Enter condition description" />
-                          </el-col>
-
-
-                          <el-col :span="4">
-
-                              <el-popover :visible="newConditionBonusesVisable" placement="top" :width="160">
-                                <p>Add the bonuses for the new condition</p>
-                                <el-button size="small" @click="addNewConditionsBonus">+</el-button>
-
-                                <el-row v-for="(bonus, name) in newCondition.bonuses" :key="name">
-                                  {{ name }} <br>
-                                  <!-- <el-input v-model="newCondition.name" size="small" placeholder="Condition Name" /> -->
-                                  {{ bonus.value }} <br>
-                                  <!-- <el-input v-model="newCondition.name" size="small" placeholder="Condition Name" /> -->
-                                  {{ bonus.targets }}
-                                  <!-- select -->
-                                </el-row>
-                                    <!-- bonuses: {
-                                    "Prone": {
-                                    type: "Condition",
-                                    value: -4,
-                                    targets: [ "meleeAtkBonus" ]
-                                  }
-                                } -->
-
-
-                                <div style="text-align: right; margin: 0">
-                                  <el-button size="small" text @click="newConditionBonusesVisable = false">cancel</el-button>
-                                  <el-button size="small" type="primary" @click="newConditionBonusesVisable = false"> confirm </el-button>
-                                </div>
-
-                                <template #reference>
-                                  <el-button @click="newConditionBonusesVisable = true">Bonuses</el-button>
-                                </template>
-                              </el-popover>
-
-
-                            <el-tag v-for="(item, name) in newCondition.bonuses" :key="name" type="primary" size="small" effect="dark">
-                              {{ item }}
-                            </el-tag>
-                          </el-col>
-
-                          <el-col :span="3" class="addCondition">
-                            <el-button size="small" type="primary" @click="addCondition()">confirm</el-button>
-                            <el-button size="small" @click="newCondition = {}; addingCondition = false;">cancel</el-button>
-                          </el-col>
-                        </el-row>
-
-
                     </template>
-                  </template>
-
                   </el-select>
 
+                  <!-- Add New Condition -->
+                  <el-dialog v-model="addingCondition" title="New Condition" width="800">
+                    <el-row :gutter="5">
+                      <el-col :span="5">
+                        <el-input v-model="newCondition.name" size="small" placeholder="Condition Name" />
+                      </el-col>
+                      <el-col :span="10">
+                        <el-input v-model="newCondition.description" :rows="2" type="textarea" placeholder="Enter condition description" />
+                      </el-col>
 
+                      <!-- New Condition Bonuses -->
+                      <el-col :span="4">
+                        <span class="">Bonuses</span>
+                        <el-button size="small" @click="addNewConditionBonus">+</el-button>
+                        <br>
 
+                        <el-row v-for="(bonus, name) in newCondition.bonuses" :key="name">
+                          {{ name }}
+                          <el-input v-model="bonus.value" size="small" placeholder="Modifier" />
+                          <el-select
+                            v-model="bonus.targets"
+                            value-key="name"
+                            multiple
+                            placeholder="Modifier Target"
+                          >
+                            <el-option v-for="item in bonusTargets" :key="item.value" :label="item.name" :value="item.value" >
+                              <div class="flex items-center">
+                                <el-tag type="primary" style="margin-right: 8px" size="small" effect="dark" />
+                                <span>{{ item.name }}</span>
+                              </div>
+                            </el-option>
+                          </el-select>
+                          {{ bonus.targets }}
+                        </el-row>
+                      </el-col>
+                    </el-row>
 
-
-
-
-
-
-
-
-
+                    <el-row>
+                      <el-col :span="3" class="addCondition">
+                        <el-button size="small" type="primary" @click="addCondition()">confirm</el-button>
+                        <el-button size="small" @click="newCondition = {}; addingCondition = false;">cancel</el-button>
+                      </el-col>
+                    </el-row>
+                  </el-dialog>
                 </el-col>
               </el-row>
 
-              <el-row v-for="(condition, name) in conditions" :key="name">
+              <el-row v-for="condition in conditions" :key="condition.name">
                 <el-col :span="6" class="center-vert">
-                  {{ name }}
+                  {{ condition.name }}
                 </el-col>
                 <el-col :span="18" class="center-vert">
                   {{ condition.description }}
@@ -633,7 +607,6 @@
 
   <br><br><br>
 
-  {{ conditions }}
 
   <br><br><br>
 
@@ -678,7 +651,7 @@ export default {
         { value: "Colossal", label: "Colossal", }
       ],
 
-      conditions: {},
+      conditions: [],
       conditionSelect: [
         { name: "Dazed", description: "The creature is unable to act normally. A dazed creature can take no actions, but has no penalty to AC.", bonuses: {} },
         { name: "Dazzled", description: "The creature is unable to see well because of over-stimulation of the eyes. A dazzled creature takes a –1 penalty on attack rolls and sight-based Perception checks.",
@@ -700,9 +673,17 @@ export default {
           }
         }
       ],
+      bonusTargets: [
+        { name: "Total AC", value: "totalAC" },
+        { name: "Touch AC", value: "touchAC" },
+        { name: "Flat-Foot AC", value: "flatAC" },
+        { name: "Fortitude Saves", value: "fort" },
+        { name: "Reflex Saves", value: "ref" },
+        { name: "Will Saves", value: "will" }
+        // "atkBonus", "dmgBonus", "cmb", "cmd", "Str", "Con", "Dex",
+      ],
       addingCondition: false,
       newCondition: {},
-      newConditionBonusesVisable: false,
 
 
       original: {}
@@ -841,7 +822,7 @@ export default {
             }
           }
         }
-        this.bonusLoop(health.total, "health");
+        this.bonusLoop(health, "health");
         ModBonus = ModBonus.toString().concat(this.basics.type.name == "undead" ? " Cha" : " Con");
         health.sources.push(`+${ModBonus}`);
 
@@ -940,9 +921,9 @@ export default {
           }
         }
         // Bonus Loop
-        this.bonusLoop(saves.fort.total, "fort");
-        this.bonusLoop(saves.ref.total, "ref");
-        this.bonusLoop(saves.will.total, "will");
+        this.bonusLoop(saves.fort, "fort");
+        this.bonusLoop(saves.ref, "ref");
+        this.bonusLoop(saves.will, "will");
       }
       saves.fort.total = Math.floor(saves.fort.total);
       saves.ref.total = Math.floor(saves.ref.total);
@@ -1279,7 +1260,7 @@ export default {
         // If bonus.targets includes tString, apply it
         bonus.targets.forEach(target => {
           if (target == tString) {
-            object.total += bonus.value;
+            object.total += parseInt(bonus.value);
             object.sources.push(`+${bonus.value} ${name}`);
           }
         });
@@ -1293,22 +1274,28 @@ export default {
     addNewContion() {
       this.addingCondition = true;
       this.newCondition = {
-        name: "TEMP",
-        description: "TEMP",
+        name: "",
+        description: "",
         bonuses: {}
       };
     },
-    addNewConditionsBonus() {
+    addNewConditionBonus() {
       let name = this.newCondition.name;
-      this.newCondition.bonuses[name.concat(Object.keys(this.newCondition.bonuses).length)] = {
-        type: "Condition",
-        value: 0,
-        targets: []
-      };
-      console.log(this.newCondition);
+      if (name) {
+        this.newCondition.bonuses[name.concat(" ", Object.keys(this.newCondition.bonuses).length)] = {
+          type: "Condition",
+          value: 0,
+          targets: []
+        };
+      } else {
+        this.$message({ message: "Input Condition Name First", type: "error" });
+      }
+    },
+    addCondition() {
+      this.conditions.push(this.newCondition);
+      this.addingCondition = false;
     },
     toggleAbility(name, abil) {
-      console.log(name, abil);
       if (this.conditions[name]) {
         delete this.conditions[name];
         this.actions.special[name].active = false;

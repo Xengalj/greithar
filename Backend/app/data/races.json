@@ -1,6 +1,6 @@
 {
 	"Surnames": {
-		"Lusardi, Mlinar, Kremar, Tafralian, Puska, Vortal, Radloff, Scorvan, Fafinski, LaraMoor, Vilagrana, Thazel, 
+		"Any": "Lusardi, Mlinar, Kremar, Tafralian, Puska, Vortal, Radloff, Scorvan, Fafinski, LaraMoor, Vilagrana, Thazel",
 		"Amaru": {
 			"Ashcraft": "",
 			"Challwaq": "Quechua: Fisher",
@@ -26,8 +26,7 @@
 			"Springbeat": "",
 			"Summersong": "",
 			"Tanganika": "",
-			"Winterlick": "",
-			
+			"Winterlick": ""
 		},
 		"Geit": {
 			"Bergquist": "??: Mountain Quest?",
@@ -52,20 +51,17 @@
 			"Inmar": "Akkadian: Child Of",
 			"Nevins": "",
 			"Nunulu": "Akkadian: Fish Man",
-			"Schmalz": "",
+			"Schmalz": ""
 		},
 		"Tembo": {
-			"Wagar": "",
+			"Wagar": ""
 		},
 		"Perwhüa": {
-			
 		},
 		"Kets'Rir": {
-			
 		},
 		"Gargoyles": {
-			
-		},
+		}
 	},
 	"Amaru": {
 		"rp": 12,
