@@ -409,17 +409,17 @@
                 <el-col :span="6"><el-tag size="small" effect="dark" type="primary">CMB +{{ cmb.total }}</el-tag></el-col>
               </el-row>
               <el-row v-for="(action, name) in actions.special" :key="name" :gutter="2">
-                <el-col :span="5" class="center-vert">
-                  <g-icon iconSize="20px" iconName="abilityPalm" />
-                  {{ name }}
-                </el-col>
-                <el-col :span="4" class="center-vert center-horz">
-                  <el-button :type=" (action.active) ? 'primary' : 'info'" size="small" @click="toggleAbility(name, action)">{{ action.trigger == "Toggle" ? "Free" : action.trigger }}</el-button>
-                </el-col>
-                <el-col :span="12" class="center-vert">
-                  {{ action.benefit }}
-                </el-col>
-              </el-row>
+                  <el-col :span="5" class="center-vert" v-if="action.extras.showMain == true" >
+                    <g-icon iconSize="20px" iconName="abilityPalm" />
+                    {{ name }}
+                  </el-col>
+                  <el-col :span="4" class="center-vert center-horz" v-if="action.extras.showMain == true" >
+                    <el-button :type=" (action.active) ? 'primary' : 'info'" size="small" @click="toggleAbility(name, action)">{{ action.trigger == "Toggle" ? "Free" : action.trigger }}</el-button>
+                  </el-col>
+                  <el-col :span="12" class="center-vert" v-if="action.extras.showMain == true" >
+                    {{ action.benefit }}
+                  </el-col>
+                </el-row>
             </el-col>
           </el-row>
         </el-collapse-item>
@@ -575,8 +575,38 @@
       <el-col :span="7" class="center">
         Feats
         <br>
-        {{ this.original.Feats }}
+        {{ this.source.feats }}
       </el-col>
+
+
+actions:
+
+      <el-row v-if="Object.keys(actions.special).length > 0">
+        <el-divider />
+        on Main       active       name         action         effects 
+        <el-col :span="6">Special</el-col>
+        <el-col :span="3">Action</el-col>
+        <el-col :span="8">Effects</el-col>
+        <el-col :span="6"><el-tag size="small" effect="dark" type="primary">CMB +{{ cmb.total }}</el-tag></el-col>
+      </el-row>
+      <el-row v-for="(action, name) in actions.special" :key="name" :gutter="2">
+          <el-col :span="5" class="center-vert" v-if="action.extras.showMain == true" >
+            <g-icon iconSize="20px" iconName="abilityPalm" />
+            {{ name }}
+          </el-col>
+          <el-col :span="4" class="center-vert center-horz" v-if="action.extras.showMain == true" >
+            <el-button :type=" (action.active) ? 'primary' : 'info'" size="small" @click="toggleAbility(name, action)">{{ action.trigger == "Toggle" ? "Free" : action.trigger }}</el-button>
+          </el-col>
+          <el-col :span="12" class="center-vert" v-if="action.extras.showMain == true" >
+            {{ action.benefit }}
+          </el-col>
+        </el-row>
+
+
+
+
+
+
     </el-tab-pane>
 
     <!-- Magic -->
@@ -636,7 +666,7 @@ export default {
       classes: {},
       equipment: {},
 
-      cardTab: "first",
+      cardTab: "fourth",
       openSections: [ "conditions" ],
       openContainers: [],
       sizeSelect: [

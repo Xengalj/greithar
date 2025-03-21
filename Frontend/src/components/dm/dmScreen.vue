@@ -83,7 +83,7 @@ export default {
 
       DataService.getMonster({"Name": name})
       .then(response => {
-        console.log("Orig", response);
+        console.log("CSV", response);
         let tempNum = 0;
         let creature = {
           "name": response.Name,
@@ -254,7 +254,7 @@ export default {
             trigger: "Standard",
             description: "You get a +4 bonus to your AC but cannot make Attacks of Opportunity until your next turn.",
             benefit: "+4 to AC but no AoOs",
-            extras: { duration: "1 Round" },
+            extras: { showMain: true, duration: "1 Round" },
             bonuses: {
               "Total Defense": {
                 targets: [ "totalAC", "touchAC", "flatAC" ],
@@ -267,14 +267,14 @@ export default {
             trigger: "Standard",
             description: "Make an attack roll vs AC 10, if you hit, you assist an ally with an attack, their defense, or a particular skill.",
             benefit: "+2 to Attack Rolls, AC, or a specific skill check",
-            extras: {},
+            extras: { showMain: true },
             bonuses: {}
           },
           "Feint": {
             trigger: "Standard",
             description: "Make a Bluff check, on a success your opponent losses their Dex bonus to AC against your melee attack next turn.",
             benefit: "Opponent loses their Dex bonus to AC",
-            extras: {},
+            extras: { showMain: true },
             bonuses: {}
           },
         };
@@ -291,9 +291,12 @@ export default {
             if (this.feats[feat].trigger == "Continuous") {
               creature.abilities[feat].active = true;
             } else {
+              creature.abilities[feat].extras = { showMain: false };
               creature.abilities[feat].active = false;
               creature.actions.special[feat] = this.feats[feat];
             }
+          } else {
+            creature.feats.push(feat);
           }
         }
         // TODO: Add Class Actions
@@ -365,7 +368,6 @@ export default {
               atk = atk.slice(0, -1);
             }
             if (Object.keys(NAs).includes(atk)) {
-              console.log(NAs[atk]);
               creature.actions.melee[atkName] = NAs[atk];
               extras["Natural Attack"] = NAs[atk].Category;
               creature.actions.melee[atkName].Extras = extras;
