@@ -10,13 +10,8 @@
     <g-icon iconSize="24px" iconName="undead" />
   </el-button>
 
-  <el-dialog
-    width="650"
-    v-model="monsterVisible"
-    :before-close="monsterClose"
-  >
-    <CreatureCard :creatureName="creatureName" :source="creature"></CreatureCard>
-    <!-- <CreatureCard :creatureName="creatureName" v-bind="creature"></CreatureCard> -->
+  <el-dialog width="700" v-model="monsterVisible" :before-close="monsterClose">
+    <CreatureCard :source="creature"></CreatureCard>
     <template #footer>
       <div class="dialog-footer">
         <el-button @click="monsterClose()"> Close </el-button>
@@ -25,12 +20,10 @@
     </template>
   </el-dialog>
 
-
   <p v-for="(icon, name, index) in icons" :key="index">
     <strong>{{ name }}</strong>
     <g-icon :iconName="name" />
   </p>
-
 </template>
 
 <script>
@@ -51,7 +44,6 @@ export default {
 
       monsterVisible: false,
       creature: {},
-      creatureName: "",
 
     }
   },
@@ -70,6 +62,7 @@ export default {
     DataService.getRaces().then ( (response) => { this.races = response; } );
     DataService.getClasses().then ( (response) => { this.classes = response; } );
     DataService.getEquipment().then( (response) => { this.equipment = response; } );
+    DataService.getFeats().then( (response) => { this.feats = response; } );
 
     UserService.getAdminBoard().then(
       (response) => { this.content = response.data; },
@@ -83,18 +76,17 @@ export default {
   mounted() {
     this.monsterOpen("Skeletal Champion");
     // this.monsterOpen("Adult Red Dragon");
+    // this.monsterOpen("Death Worm");
   },
   methods: {
     monsterOpen(name) {
 
       DataService.getMonster({"Name": name})
       .then(response => {
-        console.log("Orig", response);
+        console.log("CSV", response);
         let tempNum = 0;
-let perm = {};
         let creature = {
           "name": response.Name,
-          "attributes": { "Str": response.Str, "Dex": response.Dex, "Con": (response.Con == "-" ? 0 : response.Con), "Int": response.Int, "Wis": response.Wis, "Cha": response.Cha },
           "basics": {
             "cr": response.CR,
             "alignment": response.Alignment,
@@ -103,37 +95,22 @@ let perm = {};
             "speed": parseInt( response.Speed.replace(/\D+$/g, "") ),
             "type": {},
           },
-          "feats": [],
-          "skills": [],
-
-          "health": { total: 0, bonus: 0 },
-          "bab": 0,   // TODO: Remove
-          "attacks": {
-            "melee": {},
-            "ranged": {},
-            "special": {},
-          },
-          "magic": [],
-
           "abilities": {},
-          "bonuses": {},
-          "active": {},   // active bonuses
-          "equipment": {}
+          "equipment": {},
+          "attributes": {},
+          "classes": {},
+          "health": { total: 0, bonus: 0 },
+          "actions": { melee: {}, ranged: {}, special: {} },
+          "skills": {},
+          "magic": {},
+
+          // TODO: REMOVE DELETE KILL NULL
+          "bonuses": {},    // may remove to be built from equips & abils
+          "feats": [],  // in abliities
+          "bab": 0,   // TODO: Remove
+          "active": {}   // active bonuses
         };
 
-        let classes = {
-  "warrior": {
-    "hd": 10,
-    "ranks": 2,
-    "skills": [ "Climb (Str)", "Craft (Int)", "Handle Animal (Cha)", "Intimidate (Cha)", "Profession (Wis)", "Ride (Dex)", "Swim (Str)" ],
-    "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "heavy armor", "shields" ],
-    "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
-    "bab": 1, // Fast BAB: HD*1
-    "fort": { "mult": 0.5, "bonus": 2 }, // Good Save: HD/2 +2
-    "ref": { "mult": 0.33, "bonus": 0 }, // Poor Save: HD/3
-    "will": { "mult": 0.33, "bonus": 0 }
-  }
-};
 
 
         /***************************\
@@ -141,22 +118,18 @@ let perm = {};
         *          BASICS           *
         *                           *
         \***************************/
-perm.name = creature.name;
-perm.attributes = creature.attributes;
-perm.basics = creature.basics;
-perm.classes = {};
-perm.defense = {};
-
         // Ability Score Modifiers
-        creature.attributes.StrMod = Math.floor((creature.attributes.Str - 10) / 2);
-        creature.attributes.DexMod = Math.floor((creature.attributes.Dex - 10) / 2);
-        creature.attributes.ConMod = Math.floor(( (isNaN(creature.attributes.Con) ? creature.attributes.Cha : creature.attributes.Con) - 10) / 2);
-        creature.attributes.IntMod = Math.floor((creature.attributes.Int - 10) / 2);
-        creature.attributes.WisMod = Math.floor((creature.attributes.Wis - 10) / 2);
-        creature.attributes.ChaMod = Math.floor((creature.attributes.Cha - 10) / 2);
+        creature.attributes = {
+          Str: { total: response.Str, sources: [] }, StrMod: Math.floor((response.Str - 10) / 2),
+          Dex: { total: response.Dex, sources: [] }, DexMod: Math.floor((response.Dex - 10) / 2),
+          Con: { total: (response.Con == "-" ? 0 : response.Con), sources: [] }, ConMod: Math.floor(((response.Con == "-" ? 0 : response.Con) - 10) / 2),
+          Int: { total: response.Int, sources: [] }, IntMod: Math.floor((response.Int - 10) / 2),
+          Wis: { total: response.Wis, sources: [] }, WisMod: Math.floor((response.Wis - 10) / 2),
+          Cha: { total: response.Cha, sources: [] }, ChaMod: Math.floor((response.Cha - 10) / 2)
+        }
 
         // Get total HD
-        let [Class, bab, fort, ref, will, hp, hpBonus, racialHD ] = ["", 0, 0, 0, 0, 0, 0, 0];
+        let racialHD = 0;
         let strings = response.HD.split(";");
         strings = strings[1] ? strings[1] : strings[0];
         strings = strings.split("+");
@@ -168,48 +141,17 @@ perm.defense = {};
           }
         }
 
-        // Class 1
+        // Subtract Class HD from total HD to find racialHD
         if (response.Class1) {
-perm.classes[response.Class1] = { "levels": response.Class1_Lvl };
-          // subtract class HD from total HD (racialHD)
+          creature.classes[response.Class1] = { "levels": response.Class1_Lvl };
           racialHD -= response.Class1_Lvl;
-          Class = classes[response.Class1];
-          // TODO: swap with get classes from backend
-          creature.class1 = {
-            name: response.Class1,
-            levels: response.Class1_Lvl,
-            hd: Class.hd
-          }
-          bab   = response.Class1_Lvl * Class.bab;
-          fort  = (response.Class1_Lvl * Class.fort.mult) + Class.fort.bonus;
-          ref   = (response.Class1_Lvl * Class.ref.mult) + Class.ref.bonus;
-          will  = (response.Class1_Lvl * Class.will.mult) + Class.will.bonus;
-          hp    = response.Class1_Lvl * (Class.hd/2 + 0.5 + creature.attributes.ConMod);
-          hpBonus = response.Class1_Lvl * creature.attributes.ConMod;
         }
-
-        // Class 2
         if (response.Class2) {
-perm.classes[response.class2] = { "levels": response.Class2_Lvl };
-          console.log("MULTICLASS!!");
-          // subtract class HD from total HD (racialHD)
+          creature.classes[response.Class2] = { "levels": response.Class2_Lvl };
           racialHD -= response.Class2_Lvl;
-          Class   = this.classes[response.Class2];
-          creature.class2 = {
-            name: response.Class2,
-            levels: response.Class2_Lvl,
-            hd: Class.hd
-          }
-          bab     += response.Class2_Lvl * Class.bab;
-          fort    += (response.Class2_Lvl * Class.fort.mult) + Class.fort.bonus;
-          ref     += (response.Class2_Lvl * Class.ref.mult) + Class.ref.bonus;
-          will    += (response.Class2_Lvl * Class.will.mult) + Class.will.bonus;
-          hp      += response.Class2_Lvl * (Class.hd/2 + 0.5 + creature.attributes.ConMod);
-          hpBonus += response.Class2_Lvl * creature.attributes.ConMod;
         }
 
         // Racial
-// Racial type & HD
         let type  = this.rules.creature_types[response.Type];
         creature.basics.type = {
           name: response.Type,
@@ -217,39 +159,26 @@ perm.classes[response.class2] = { "levels": response.Class2_Lvl };
           hd: type.hd,
           subtypes: []
         }
-// Subtypes
-        if (response.Race) { creature.basics.type.subtypes.push(response.Race); }
+        for (let [name, trait] of Object.entries(type.traits)) {
+          creature.abilities[name] = trait;
+          creature.abilities[name].extras = { active: true, source: "Trait" };
+        }
+        if (response.Race) {
+          creature.basics.type.subtypes.push(response.Race);
+          if (Object.keys(this.races).includes(response.Race)) {
+            for (let [name, trait] of Object.entries(this.races[response.Race].traits)) {
+              creature.abilities[name] = trait;
+              creature.abilities[name].extras = { active: true, source: "Trait" };
+            }
+          }
+        }
+        // Subtypes
         for (let i = 1; i < 7; i++) {
           if (response[`subtype${i}`]) {
             creature.basics.type.subtypes.push(response[`subtype${i}`]);
           }
         }
-perm.type = creature.basics.type;
-        bab       += racialHD * type.bab;
-        fort      += (racialHD * type.fort.mult) + type.fort.bonus;
-        ref       += (racialHD * type.ref.mult) + type.ref.bonus;
-        will      += (racialHD * type.will.mult) + type.will.bonus;
-        hp        += racialHD * (type.hd/2 + 0.5 + creature.attributes.ConMod);
-        hpBonus   += racialHD * creature.attributes.ConMod;
-        let senses = "Perception +#";
-        senses    += type.traits["Darkvision"] ? " "+type.traits["Darkvision"] : "";
-        senses    += type.traits["Low-Light Vision"] ? " "+type.traits["Low-Light Vision"] : "";
-        senses    += type.traits["Scent"] ? " "+type.traits["Scent"] : "";
 
-        // Totals
-        creature.bab = Math.floor(bab);
-        creature.defense = {
-          "fort": Math.floor(fort + creature.attributes.ConMod),
-          "ref": Math.floor(ref + creature.attributes.DexMod),
-          "will": Math.floor(will + creature.attributes.WisMod),
-          "senses": senses,
-          "speed": response.Speed,
-        }
-        creature.health.total = Math.floor(hp);
-        creature.health.max = Math.floor(hp);
-        creature.health.bonus = Math.floor(hpBonus);
-perm.defense.senses = senses;
-perm.defense.speed = creature.defense.speed;
 
         /***************************\
         *                           *
@@ -287,271 +216,283 @@ perm.defense.speed = creature.defense.speed;
           // Remove leading any whitespace & capitalize
           item = item[0] === " " ? item.slice(1) : item;
           item = item.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
-
+// TODO: change equiped to false, after iventory set up
           // Add items to bonuses and equipment
           if ( Object.keys(this.equipment.Armor).includes(item) ) {
-            creature.bonuses[item] = {};
-            creature.bonuses[item].type = "Armor";
-            creature.bonuses[item].targets = this.rules.bonuses.Armor.targets;
-            creature.bonuses[item].subtargets = this.rules.bonuses.Armor.subtargets;
-            creature.bonuses[item].bonus = this.equipment.Armor[item]["AC Bonus"];
             creature.equipment[item] = this.equipment.Armor[item];
             creature.equipment[item].Extras = extras;
+            creature.equipment[item].equiped = true;
+            creature.equipment[item].targets = this.rules.bonuses.Armor.targets;
           }
           else if ( Object.keys(this.equipment.Shields).includes(item) ) {
-            creature.bonuses[item] = {};
-            creature.bonuses[item].type = "Shield";
-            creature.bonuses[item].targets = this.rules.bonuses.Shield.targets;
-            creature.bonuses[item].subtargets = this.rules.bonuses.Shield.subtargets;
-            creature.bonuses[item].bonus = this.equipment.Shields[item]["AC Bonus"];
             creature.equipment[item] = this.equipment.Shields[item];
+            creature.equipment[item].Proficiency = "Shields";
             creature.equipment[item].Extras = extras;
+            creature.equipment[item].equiped = true;
+            creature.equipment[item].targets = this.rules.bonuses.Shield.targets;
             if (this.equipment.Shields[item]["Critical"] > 0) {
-              creature.attacks.melee[item] = creature.equipment[item];
+              creature.actions.melee[item] = creature.equipment[item];
             }
           }
           else if ( Object.keys(this.equipment.Weapons).includes(item) ) {
             creature.equipment[item] = this.equipment.Weapons[item];
             creature.equipment[item].Extras = extras;
-            creature.attacks.melee[item] = this.equipment.Weapons[item];
+            creature.actions.melee[item] = this.equipment.Weapons[item];
           }
           else {
             // Other Treasure
             creature.equipment[item] = item;
           }
         } // End items loop
-perm.equipment = creature.equipment;
 
         /***************************\
         *                           *
         *          BONUSES          *
         *                           *
         \***************************/
+        // console.log(this.rules.actions);
+        let actions = {
+          "Total Defense": {
+            trigger: "Standard",
+            description: "You get a +4 bonus to your AC but cannot make Attacks of Opportunity until your next turn.",
+            benefit: "+4 to AC but no AoOs",
+            extras: { showMain: true, duration: "1 Round", source: "Race" },
+            bonuses: {
+              "Total Defense": {
+                targets: [ "totalAC", "touchAC", "flatAC" ],
+                type: "Action",
+                value: 4
+              }
+            }
+          },
+          "Aid Another": {
+            trigger: "Standard",
+            description: "Make an attack roll vs AC 10, if you hit, you assist an ally with an attack, their defense, or a particular skill.",
+            benefit: "+2 to Attack Rolls, AC, or a specific skill check",
+            extras: { showMain: true, source: "Race" },
+            bonuses: {}
+          },
+          "Feint": {
+            trigger: "Standard",
+            description: "Make a Bluff check, on a success your opponent losses their Dex bonus to AC against your melee attack next turn.",
+            benefit: "Opponent loses their Dex bonus to AC",
+            extras: { showMain: true, source: "Race" },
+            bonuses: {}
+          },
+        };
+        creature.actions.special = actions;
         // FEATS
         for (let feat of response.Feats.split(',')) {
-          feat = feat[0] === " " ? feat.slice(1) : feat;
-          creature.feats.push(feat);
-        }
-perm.feats = creature.feats;
+          feat = feat.trim();
+          if (feat.indexOf('(') > 0) { feat = feat.slice(0, feat.indexOf('(')-1); }
+          if (feat[feat.length-1] == 'B') { feat = feat.slice(0, -1); } // Remove 'B' from bonus feat names
 
-        // Set up which bonuses are active, should be done after feats
-        let add = true;
-        for (const [bName, bonus] of Object.entries(creature.bonuses)) {
-          for (const prop in creature.active) {
-            if ( creature.active[prop].type == bonus.type && creature.active[prop].bonus > bonus.bonus ) {
-              add = false;
+          // if the feat is in the feats json
+          if (this.feats[feat]) {
+            creature.abilities[feat] = this.feats[feat];
+            if (this.feats[feat].trigger == "Continuous") {
+              creature.abilities[feat].extras = { active: true, showMain: false, source: "Feat" };
+            } else {
+              creature.abilities[feat].extras = { active: false, showMain: true, source: "Feat" };
+              creature.actions.special[feat] = this.feats[feat];
             }
+          } else {
+            creature.abilities[feat] = {
+              "type": "UNKNOWN",
+              "prerequisites": [ "" ],
+              "description": "PLEASE UPDATE THIS ENTRY",
+              "benefit": "",
+              "trigger": "Continuous",
+              "bonuses": {},
+              "extras": { "active": false, "showMain": false, "source": "Feat" }
+            };
           }
-          if (add) { creature.active[bName] = bonus; }
         }
+        // TODO: Add Class Actions
+
+
+
+
 
         // NATURAL ARMOR
         tempNum = response.AC - 10;
         tempNum -= Math.floor((response.Dex - 10) / 2);
         tempNum -= this.rules.size[creature.basics.size]["ac / atk"];
-        for (const prop in creature.active) {
-          if ([ "Armor", "Shield", "Dodge", "Deflection" ].includes(creature.active[prop].type)) {
-            tempNum -= creature.active[prop].bonus;
+
+        // Armor, Shield
+        for (const item of Object.values(creature.equipment)) {
+          if (item.equiped) {
+            let type = (["Light", "Medium", "Heavy"].includes(item.Proficiency)) ? "Armor" :
+                       (item.Proficiency == "Shields") ? "Shield" : "";
+            if (type != "") {
+              tempNum -= item["AC Bonus"];
+            }
           }
         }
-        creature.bonuses["Natural Armor"] = {
-          type: "Natural Armor",
-          targets: this.rules.bonuses["Natural Armor"].targets,
-          subtargets: this.rules.bonuses["Natural Armor"].subtargets,
-          bonus: tempNum
+
+        creature.abilities["Natural Armor"] = {
+          trigger: "Continuous",
+          // active: true,
+          description: "This creature naturally tough, granting additional armor.",
+          benefit: "",
+          bonuses: {
+            "Natural Armor": {
+              value: tempNum,
+              targets: this.rules.bonuses["Natural Armor"].targets,
+              type: "Natural Armor",
+            }
+          },
+          extras: { active: true, showMain: false, source: "Race" }
         };
-        creature.active["Natural Armor"] = creature.bonuses["Natural Armor"];
-
-
-
-perm.bonuses = creature.bonuses;
-perm.active = creature.active;
 
 
         // OFFENSE
-        // console.log(response.Melee);
-        // TODO:
-        /*
-        split melee str into atks
-        loop each,
-        if atk = wpn, skip
+        if (response.Melee) {
+          for (let atk of response.Melee.split(',')) {
+            let i, extras = {};
+            atk = atk.toLowerCase();
+            // abilities (poison, bleed, frost)
+            i = atk.indexOf('plus');
+            if (i > -1) {
+              extras["abilities"] = atk.slice(i);
+              extras["abilities"] = extras.abilities.slice(0, -1); // remove trailing ')'
+              atk = atk.slice(0, i);
+            }
+            // Dmg Die
+            let dmg = atk.slice(atk.indexOf("(")+1);
+            dmg = dmg.slice(0, dmg.indexOf('+'));
+            // remove atk bonus from string
+            atk = atk.slice(0, atk.indexOf('+')-1);
 
-        repeat Ranged
-        repeat magic
-        */
+            // Strip off masterwork & leading whitespace
+            atk = atk.replace(/(mwk|masterwork|Mwk|Masterwork)\s/gm, "").trim();
+            atk = atk.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
 
-        // Natural Attacks
-        // console.log(response.Melee);
-        for (let atk of response.Melee.split(',')) {
-          let i, atkNum, extras = {};
-          atk = atk.toLowerCase();
-          // abilities (poison, bleed, frost)
-          i = atk.indexOf('plus');
-          if (i > -1) {
-            extras["abilities"] = atk.slice(i);
-            extras["abilities"] = extras.abilities.slice(0, -1); // remove trailing ')'
-            atk = atk.slice(0, i);
+            // Add only Natural Attacks
+            if (Object.keys(creature.equipment).includes(atk)) { continue; }
+            let NAs = this.rules.natural_attacks;
+            // get Nat Atk name, for searching (no #, no trailing 's')
+            let atkName = atk;
+            if (parseInt(atk[0]) > 1) {
+              atk = atk.slice(2);
+              atk = atk.slice(0, -1);
+            }
+            if (Object.keys(NAs).includes(atk)) {
+              creature.actions.melee[atkName] = NAs[atk];
+              extras["Natural Attack"] = NAs[atk].Category;
+              creature.actions.melee[atkName].Extras = extras;
+              let tableDmg = NAs[atk].Damage[creature.basics.size];
+              if (tableDmg != dmg) { creature.actions.melee[atkName].Damage[creature.basics.size] = dmg; }
+            } else {
+              creature.actions.melee[atkName] = NAs["Other"];
+            }
           }
-          // Dmg Die
-          let dmg = atk.slice(atk.indexOf("(")+1);
-          dmg = dmg.slice(0, dmg.indexOf('+'));
-          // remove atk bonus from str
-          atk = atk.slice(0, atk.indexOf('+')-1);
-          // Strip off masterwork
-          if (atk.indexOf('Mwk') > -1) {
-            atk = atk.slice(atk.indexOf('Mwk')+4);
-          }
-          // Remove leading any whitespace & capitalize
-          atk = atk[0] === " " ? atk.slice(1) : atk;
-          atk = atk.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
+        }
 
-          if (parseInt(atk[0]) > 1) {
-            atkNum = atk[0];
-            atk = atk.slice(2);
-            atk = atk.slice(0, -1);
-          }
+        // Ranged
+        if (response.Ranged) {
+          for (let atk of response.Ranged.split(',')) {
+            let i, atkNum, extras = {};
+            atk = atk.toLowerCase();
+            // abilities (poison, bleed, frost)
+            i = atk.indexOf('plus');
+            if (i > -1) {
+              extras["abilities"] = atk.slice(i);
+              extras["abilities"] = extras.abilities.slice(0, -1); // remove trailing ')'
+              atk = atk.slice(0, i);
+            }
+            // Dmg Die
+            let dmg = atk.slice(atk.indexOf("(")+1);
+            dmg = dmg.slice(0, dmg.indexOf('+'));
+            // remove atk bonus from string
+            atk = atk.slice(0, atk.indexOf('+')-1);
 
-          let NAs = this.rules.natural_attacks;
-          // console.log(NAs);
+            // Strip off masterwork & leading whitespace
+            atk = atk.replace(/(mwk|masterwork|Mwk|Masterwork)\s/gm, "");
+            atk = atk.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
 
-          if (!Object.keys(creature.attacks.melee).includes(atk)) {
+            // Add only Natural Attacks
+            if (Object.keys(creature.equipment).includes(atk)) { continue; }
+            let NAs = this.rules.natural_attacks;
+
+            // Number of Attacks (NAs)
+            if (parseInt(atk[0]) > 1) {
+              atkNum = atk[0];
+              atk = atk.slice(2);
+              atk = atk.slice(0, -1);
+            }
             let atkName = atkNum ? atkNum+" "+atk : atk;
             if (Object.keys(NAs).includes(atk)) {
-              creature.attacks.melee[atkName] = NAs[atk];
+              creature.actions.ranged[atkName] = NAs[atk];
+              extras["Natural Attack"] = NAs[atk].Category;
+              creature.actions.ranged[atkName].Extras = extras;
               let tableDmg = NAs[atk].Damage[creature.basics.size];
-              if (tableDmg != dmg) {
-                creature.attacks.melee[atkName].Damage[creature.basics.size] = dmg;
-              }
+              if (tableDmg != dmg) { creature.actions.ranged[atkName].Damage[creature.basics.size] = dmg; }
             } else {
-              creature.attacks.melee[atkName] = {
-                "Critical": "20/x2",
-                "Range": 0,
-                "Damage Type": [ "Bludgeoning", "Piercing", "Slashing" ],
-                "Proficiency": "Natural",
-                "Category": "Secondary"
-              };
-              creature.attacks.melee[atkName].Damage = {};
+              creature.actions.ranged[atkName] = NAs["Other"];
+              extras["Natural Attack"] = NAs["Other"].Category;
+              creature.actions.ranged[atkName].Extras = extras;
+              let tableDmg = NAs["Other"].Damage[creature.basics.size];
+              if (tableDmg != dmg) { creature.actions.ranged[atkName].Damage[creature.basics.size] = dmg; }
             }
-            creature.attacks.melee[atkName].Extras = { extras };
           }
         }
 
-        // console.log(creature.attacks.melee);
 
-        // TODO: Set up as listAttack(type) {} ?
-        // let NatAtkNum = 0;
-        for (let [name, atk] of Object.entries(creature.attacks.melee)) {
-          let atkBonus = creature.bab;
-          let dmgBonus = 0;
-          atkBonus += this.rules.size[creature.basics.size]["ac / atk"];
-          // Add mwk or magic enhancements to atk bonus
-          if (atk.Extras["enhancement"]) {
-            atkBonus += atk.Extras["enhancement"];
-            dmgBonus += atk.Extras["enhancement"];
-          } else if (atk.Extras["masterwork"]) {
-            atkBonus += 1;
-          }
-
-          // console.log(atk);
-          // NatAtkNum += (atk.Proficiency == "Natural") ? 1 : 0;
-          if (atk.Category == "Two-Handed") {
-            dmgBonus += creature.attributes.StrMod * 1.5
-          }
-          else if (atk.Category == "Secondary") {
-            atkBonus += creature.attributes.StrMod - 5;
-            dmgBonus += creature.attributes.StrMod / 2;
-          }
-          else {
-            atkBonus += creature.attributes.StrMod;
-            dmgBonus += creature.attributes.StrMod;
-          }
-
-          let size = creature.basics.size
-          size =  ( size == "small" ) ? 0 :
-                  ( size == "medium" ) ? 1 :
-                  ( size == "large" ) ? 2 : 3;
-          let dmgDie = atk.Damage[creature.basics.size];
-          // console.log(atk.Damage);
-
-          console.log(`${name} +${atkBonus} (${dmgDie}+${dmgBonus} /${atk.Critical})`);
-        }
-
-        // TODO:
-        // if (NatAtkNum == 1) {
-        //   console.log(NatAtkNum);
-          /*
-          loop through atks
-          find nat atk
-          if (atk.Category == "Secondary") {
-            atkBonus += 5;
-            dmgBonus += creature.attributes.StrMod;
-          } else {
-            dmgBonus += creature.attributes.StrMod / 2;
-          }
-          */
-        // }
-
-
-        // for (let [name, atk] of Object.entries(creature.attacks.ranged)) {
-        //   console.log(name, atk);
-        // }
-        // for (let [name, atk] of Object.entries(creature.attacks.ranged)) {
-        //   console.log(name, atk);
-        // }
-
-        // for (var [name, item] of Object.entries(creature.equipment)) {
-        //   if (item.Damage) {
-        //     console.log(name, item);
-        //     let atkBonus = creature.bab;
-        //     let dmgBonus = 0;
-        //     atkBonus += this.rules.size[creature.basics.size]["ac / atk"];
-        //     // Add mwk or magic enhancements to atk bonus
-        //     if (item.Extras["enhancement"]) {
-        //       atkBonus += item.Extras["enhancement"];
-        //       dmgBonus += item.Extras["enhancement"];
-        //     } else if (item.Extras["masterwork"]) {
-        //       atkBonus += 1;
-        //     }
-        //     if (item.Category == "Ranged") {
-        //       atkBonus += creature.attributes.DexMod;
-        //     } else if (item.Category != "Ammunition") {
-        //       atkBonus += creature.attributes.StrMod;
-        //       dmgBonus += creature.attributes.StrMod;
-        //       if (item.Category == "Two-Handed") {
-        //         dmgBonus += creature.attributes.StrMod/2;
-        //       }
-        //     }
-        //
-        //     let size = creature.basics.size
-        //     size =  ( size == "small" ) ? 0 :
-        //             ( size == "medium" ) ? 1 :
-        //             ( size == "large" ) ? 2 : 3;
-        //     let dmgDie = item.Damage[size];
-        //
-        //     console.log(`${name} +${atkBonus} (${dmgDie}+${dmgBonus} /${item.Critical})`);
-        //   }
-        // }
-
-
-        // SPECIAL
 
         // MAGIC
 
-        // SKILLS
-        for (let skill of response.Skills.split(',')) {
-          skill = skill[0] === " " ? skill.slice(1) : skill;
-          creature.skills.push(skill);
+        // Skills
+        let classSkills = this.rules.creature_types[creature.basics.type.name].skills
+        for (let cls of Object.keys(creature.classes)) {
+          this.classes[cls].skills.forEach(skill => {
+            if (!classSkills.includes(skill)) {
+              classSkills.push(skill);
+            }
+          });
         }
-perm.skills = creature.skills;
+
+        // set up all skills
+        for (let [name, skill] of Object.entries(this.rules.skills)) {
+          // Languages
+          if (name == "Linguistics" && response.Languages) {
+            skill.extras = { languages: response.Languages.split(',') };
+          }
+          skill.class = classSkills.includes(name);
+          creature.skills[name] = skill;
+        }
+
+        // Get skill ranks
+        let skills = response.Skills.split(',');
+        skills.forEach(skill => {
+          let name = skill.slice(0, skill.search(/[+|-]/g)).trim();
+          name = name.replace("Knowl.", "Knowledge");
+
+          let bonus = skill.slice(skill.search(/[+|-]/g)-1);
+          if (bonus.indexOf('(') > 0) { bonus = bonus.slice(0, bonus.indexOf('(')-1); }
+          // total - ability mod
+          let abil = this.rules.skills[name].ability;
+          bonus -= creature.attributes[abil.concat("Mod")];
+          //class skill: total -3;
+          bonus += classSkills.includes(name) ? -3 : 0
+          // total - Armor Penalty(s)
+          if (this.rules.skills[name].armor_pen) {
+            Object.values(creature.equipment).forEach(item => {
+              if (item.Penalty) { bonus -= item.Penalty; }
+            });
+          }
+
+          // total - Size Mod
+          if (name == "Stealth" || name == "Fly") {
+            bonus -= this.rules.size[name.toLowerCase()];
+          }
 
 
+          creature.skills[name].ranks = bonus;
+        });
 
-
-        // console.table("new", creature);
-        console.table("SOURCE", perm);
-        // this.creatureSetup(response);
-
-        this.creature = perm;
+        this.creature = creature;
+        console.table("SOURCE", creature);
       })
       .catch(err => { console.error(err); });
 

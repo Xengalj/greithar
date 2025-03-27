@@ -73,6 +73,12 @@ body a:hover {
 .jumbotron {
   background-color: var(--el-card-bg-color);
 }
+.center-vert {
+  align-content: center;
+}
+.center-horz {
+  text-align: center;
+}
 
 
 

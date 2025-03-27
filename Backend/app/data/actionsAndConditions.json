@@ -1,0 +1,93 @@
+"Total Defense": {
+  trigger: "Standard",
+  description: "You get a +4 bonus to your AC but cannot make Attacks of Opportunity until your next turn.",
+  benefit: "+4 to AC but no AoOs",
+  extras: { showMain: true, duration: "1 Round" },
+  bonuses: {
+    "Total Defense": {
+      targets: [ "totalAC", "touchAC", "flatAC" ],
+      type: "Action",
+      value: 4
+    }
+  }
+},
+"Aid Another": {
+  trigger: "Standard",
+  description: "Make an attack roll vs AC 10, if you hit, you assist an ally with an attack, their defense, or a particular skill.",
+  benefit: "+2 to Attack Rolls, AC, or a specific skill check",
+  extras: { showMain: true },
+  bonuses: {}
+},
+"Feint": {
+  trigger: "Standard",
+  description: "Make a Bluff check, on a success your opponent losses their Dex bonus to AC against your melee attack next turn.",
+  benefit: "Opponent loses their Dex bonus to AC",
+  extras: { showMain: true },
+  bonuses: {}
+},
+}
+
+
+
+
+
+conditionSelect: [
+  { name: "Dazed", description: "The creature is unable to act normally. A dazed creature can take no actions, but has no penalty to AC.", bonuses: {} },
+  { name: "Dazzled", description: "The creature is unable to see well because of over-stimulation of the eyes. A dazzled creature takes a –1 penalty on attack rolls and sight-based Perception checks.",
+    bonuses: {
+      "Dazzled": {
+        type: "Condition",
+        value: -1,
+        targets: [ "meleeAtkBonus", "rangedAtkBonus" ]
+      }
+    }
+  },
+  { name: "Prone", description: "The character is lying on the ground. A prone attacker has a –4 penalty on melee attack rolls and cannot use a ranged weapon (except for a crossbow). A prone defender gains a +4 bonus to Armor Class against ranged attacks, but takes a –4 penalty to AC against melee attacks.",
+    bonuses: {
+      "Prone": {
+        type: "Condition",
+        value: -4,
+        targets: [ "meleeAtkBonus" ]
+      }
+    }
+  }
+],
+
+
+
+
+move
+movement (or 5-foot step) (swim/climb at 1/4 or climb 1/2 with -5 to climb)
+draw a weapon / stored item (3[part of movement], ready / drop shield)
+load light / heavy crossbow
+mount / dismount (Dc 20 Ride to do as free action)
+stand up from prone (AoO)
+
+full round atk
+charge      (move 10' - double speed, directly to enemy(no blocks including allies) , then one attack) [+2 atkBonus && -2 all AC]
+run (3x or 4x yor speed in straight line, lose dex bonus to AC)
+withdraw (both actions to move, only starting square isn't threatened)
+fight defensively
+
+combat mans (type varies)
+Overrun                 AoO, (bowl someone over, pass through them and knock them prone, they can let you pass)
+bull rush               AoO, push 5 ft, +5 for every 5 past CMD
+drag                    AoO, opposite of bull rush
+reposition              move target 5 ft to new location, +5ft for every 5 past CMD, must end within 5 ft of reach
+dirty treick            AoO, apply condition (blinded, dazzled, deafened, entangled, shaken, or sickened) lasts 1 round, +1 round for every 5 past CMD
+disarm                  AoO, force an enemy to drop 1 (2 if check is 10 past CMD), +2 from weapon with disarm, -4 if unarmed(fail by 10 you lose item)  (steal for necklace)
+grapple                 AoO, can move, damage, pin, tie up
+sunder                  AoO, Deal damage directly to an item, granting the broken condition
+trip                    AoO, knock prone, fail by 10, you are prone
+
+ready action
+
+
+mounted copmbat
+free    - dc 5 ride
+atk smaller creature than mount   +1 to atk
+charge applies to both mount and rider
+lances deal double damage
+casting between 2 mount moves requires vigorous motion check (10+spell level) (quad move is 15+lvl)
+DC 15 ride to take no damage when mount falls in battle, 1d6 on fail
+unconcious -> 50% to stay in saddle, else 1d6 dmg (mount avoids combat)

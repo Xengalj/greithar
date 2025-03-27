@@ -2,7 +2,7 @@
   "Buckler": {
     "AC Bonus": 1,
     "Max Dex": 10,
-    "Pentalty": -1,
+    "Penalty": -1,
     "Spell Failure": "5%",
 
     "Cost": 5,
@@ -16,7 +16,7 @@
   "Klar": {
     "AC Bonus": 1,
     "Max Dex": 10,
-    "Pentalty": -1,
+    "Penalty": -1,
     "Spell Failure": "5%",
 
     "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
@@ -33,7 +33,7 @@
   "Leather Madu": {
     "AC Bonus": 1,
     "Max Dex": 10,
-    "Pentalty": -2,
+    "Penalty": -2,
     "Spell Failure": "5%",
 
     "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
@@ -53,7 +53,7 @@
   "Steel Madu": {
     "AC Bonus": 1,
     "Max Dex": 10,
-    "Pentalty": -2,
+    "Penalty": -2,
     "Spell Failure": "5%",
 
     "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
@@ -73,7 +73,7 @@
   "Light Steel Shield": {
     "AC Bonus": 1,
     "Max Dex": 10,
-    "Pentalty": -1,
+    "Penalty": -1,
     "Spell Failure": "5%",
 
     "Damage": {  "fine": "0",  "diminuitive": "0",  "tiny": "1",  "small": "1d2",  "medium": "1d3",  "large": "1d4",  "huge": "1d6",  "gargantuan": "1d8",  "colossal": "2d6"  },
@@ -90,7 +90,7 @@
   "Light Steel Shield (Quickdraw)": {
     "AC Bonus": 1,
     "Max Dex": 10,
-    "Pentalty": -2,
+    "Penalty": -2,
     "Spell Failure": "5%",
 
     "Damage": {  "fine": "0",  "diminuitive": "0",  "tiny": "1",  "small": "1d2",  "medium": "1d3",  "large": "1d4",  "huge": "1d6",  "gargantuan": "1d8",  "colossal": "2d6"  },
@@ -111,7 +111,7 @@
   "Light Wooden Shield": {
     "AC Bonus": 1,
     "Max Dex": 10,
-    "Pentalty": -1,
+    "Penalty": -1,
     "Spell Failure": "5%",
 
     "Damage": {  "fine": "0",  "diminuitive": "0",  "tiny": "1",  "small": "1d2",  "medium": "1d3",  "large": "1d4",  "huge": "1d6",  "gargantuan": "1d8",  "colossal": "2d6"  },
@@ -128,7 +128,7 @@
   "Light Wooden Shield (Quickdraw)": {
     "AC Bonus": 1,
     "Max Dex": 10,
-    "Pentalty": -2,
+    "Penalty": -2,
     "Spell Failure": "5%",
 
     "Damage": {  "fine": "0",  "diminuitive": "0",  "tiny": "1",  "small": "1d2",  "medium": "1d3",  "large": "1d4",  "huge": "1d6",  "gargantuan": "1d8",  "colossal": "2d6"  },
@@ -149,7 +149,7 @@
   "Heavy Steel Shield": {
     "AC Bonus": 2,
     "Max Dex": 10,
-    "Pentalty": -2,
+    "Penalty": -2,
     "Spell Failure": "15%",
 
     "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
@@ -166,7 +166,7 @@
   "Heavy Wooden Shield": {
     "AC Bonus": 2,
     "Max Dex": 10,
-    "Pentalty": -2,
+    "Penalty": -2,
     "Spell Failure": "15%",
 
     "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
@@ -183,7 +183,7 @@
   "Tower Shield": {
     "AC Bonus": 4,
     "Max Dex": 2,
-    "Pentalty": -10,
+    "Penalty": -10,
     "Spell Failure": "50%",
 
     "Damage": [ "0", "0", "0" ],
@@ -203,7 +203,7 @@
   "Steel Snarlshield": {
     "AC Bonus": 2,
     "Max Dex": 10,
-    "Pentalty": -3,
+    "Penalty": -3,
     "Spell Failure": "15%",
 
     "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
@@ -222,7 +222,7 @@
   "Wooden Snarlshield": {
     "AC Bonus": 2,
     "Max Dex": 10,
-    "Pentalty": -3,
+    "Penalty": -3,
     "Spell Failure": "15%",
 
     "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
@@ -241,7 +241,7 @@
   "Dwarven War-Shield": {
     "AC Bonus": 1,
     "Max Dex": 10,
-    "Pentalty": -1,
+    "Penalty": -1,
     "Spell Failure": "20%",
 
     "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },

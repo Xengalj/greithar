@@ -3,306 +3,352 @@
     "type": "Creation",
     "prerequisites": [ "Craft (any):1 OR Heal:1" ],
     "description": "You can extract the choicest parts from a monster’s carcass to use as resources when crafting items.",
-    "benefit": "You may harvest parts (Craft or Heal check, DC 15+CR) for use as raw materials for crafting items, and provide a value equal to the creature’s CR squared × 10 gp."
+    "benefit": "You may harvest parts (Craft or Heal check, DC 15+CR) for use as raw materials for crafting items, and provide a value equal to the creature’s CR squared × 10 gp.",
+    "trigger": "Continuous",
+    "bonuses": {
+      "Bonus Name": {
+        "value": 0,
+        "type": "Feat",
+        "targets": [ "Initiative", "totalAC" ]
+      }
+    }
   },
   "Grisly Ornament": {
     "type": "Creation",
     "prerequisites": [ "Harvest Parts" ],
     "description": "You adorn your gear with mementos from your foes.",
     "benefit": "You may use harvested parts of recently felled foes to grant a bonus of your choice to AC, Attack Rolls, CMB, CMD, Saves, or Skills. This bonus only works on the type of enemy the momento came from and lasts until it is no longer fresh",
-    "abilities": []
+    "trigger": "Continuous",
+    "bonuses": {}
   },
   "Scribe Scroll": {
     "type": "Creation",
     "prerequisites": [ "Caster Level:1" ],
     "description": "You can create magic scrolls.",
     "benefit": "You can create a scroll of any spell that you know. See magic item creation rules for more information.",
-    "abilities": []
+    "trigger": "Continuous",
+    "bonuses": {}
   },
   "Craft Poppet": {
     "type": "Creation",
     "prerequisites": [ "Caster Level:1" ],
     "description": "Some construct builders learn their art by creating poppets.",
     "benefit": "You can craft poppets and add augmentations to existing poppets that you control. You are also treated as having both Craft Magic Arms and Armor and Craft Wondrous Item for the purpose of fulfilling the prerequisites for Craft Construct.",
-    "abilities": []
+    "trigger": "Continuous",
+    "bonuses": {}
   },
   "Brew Potion": {
     "type": "Creation",
     "prerequisites": [ "Caster Level:3" ],
     "description": "You can create magic potions.",
     "benefit": "You can create a potion of any 3rd-level or lower spell that you know. See magic item creation rules for more information.",
-    "abilities": []
+    "trigger": "Continuous",
+    "bonuses": {}
   },
   "Craft Wondrous Item": {
     "type": "Creation",
     "prerequisites": [ "Caster Level:3" ],
     "description": "You can create wondrous items, a type of magic item.",
     "benefit": "You can create a wide variety of magic wondrous items. See magic item creation rules for more information.",
-    "abilities": []
+    "trigger": "Continuous",
+    "bonuses": {}
   },
   "Craft Wand": {
     "type": "Creation",
     "prerequisites": [ "Caster Level:5" ],
     "description": "You can create magic wands.",
     "benefit": "You can create a wand of any 4th-level or lower spell that you know, and a new wand has 50 charges. See magic item creation rules for more information.",
-    "abilities": []
+    "trigger": "Continuous",
+    "bonuses": {}
   },
   "Craft Magic Arms and Armor": {
     "type": "Creation",
     "prerequisites": [ "Caster Level:5" ],
     "description": "You can create magic armor, shields, and weapons.",
     "benefit": "You can create magic weapons, armor, or shields. See magic item creation rules for more information.",
-    "abilities": []
+    "trigger": "Continuous",
+    "bonuses": {}
   },
   "Craft Construct": {
     "type": "Creation",
     "prerequisites": [ "Caster Level:5", "Craft Magic Arms and Armor", "Craft Wondrous Item" ],
     "description": "You can create construct creatures like golems.",
     "benefit": "You can create any construct whose prerequisites you meet. See construct creation rules for more information.",
-    "abilities": []
+    "trigger": "Continuous",
+    "bonuses": {}
   },
   "Forge Ring": {
     "type": "Creation",
     "prerequisites": [ "Caster Level:7" ],
     "description": "You can create magic rings.",
     "benefit": "You can create magic rings. See magic item creation rules for more information.",
-    "abilities": []
+    "trigger": "Continuous",
+    "bonuses": {}
   },
   "Craft Rod": {
     "type": "Creation",
     "prerequisites": [ "Caster Level:9" ],
     "description": "You can create magic rods.",
     "benefit": "Rods are scepter-like devices that have unique magical powers. See magic item creation rules for more information.",
-    "abilities": []
+    "trigger": "Continuous",
+    "bonuses": {}
   },
   "Craft Staff": {
     "type": "Creation",
     "prerequisites": [ "Caster Level:11" ],
     "description": "You can create magic staves.",
     "benefit": "You can create a staff that stores several spells with 10 charges. See magic item creation rules for more information.",
-    "abilities": []
+    "trigger": "Continuous",
+    "bonuses": {}
   },
 
-  
-
-
-  
-  
 
 
 
 
+
+  "Combat Casting": {
+    "type": "General",
+    "prerequisites": [],
+    "description": "You get a +4 bonus on concentration checks made to cast a spell or use a spell-like ability when casting on the defensive or while grappled.",
+    "benefit": "+4 to grappled or defensive casting concentration checks",
+    "trigger": "Continuous",
+    "bonuses": {
+      "Combat Casting": {
+        "value": 4,
+        "type": "Feat",
+        "targets": [ "concentration" ]
+      }
+    }
+  },
+  "Diehard": {
+    "type": "General",
+    "prerequisites": [ "Endurance" ],
+    "description": "When your hit point total is below 0, but you are not dead, you automatically stabilize, and you do not need to make a Constitution check each round to avoid losing additional hit points.",
+    "benefit": "Stabilize automatically when below 0 hit points",
+    "trigger": "Continuous",
+    "bonuses": {}
+  },
   "Run": {
     "type": "General",
     "prerequisites": [],
-    "description": "You are swift of foot.",
-    "benefit": "When running, you move five times your normal speed (if wearing medium, light, or no armor and carrying no more than a medium load) or four times your speed (if wearing heavy armor or carrying a heavy load). If you make a jump after a running start (see Acrobatics), you gain a +4 bonus on your Acrobatics check. While running, you retain your Dexterity bonus to your Armor Class.",
-    "abilities": []
+    "description": "When running, you move five times your normal speed (if wearing medium, light, or no armor and carrying no more than a medium load) or four times your speed (if wearing heavy armor or carrying a heavy load). If you make a jump after a running start (see Acrobatics), you gain a +4 bonus on your Acrobatics check. While running, you retain your Dexterity bonus to your Armor Class.",
+    "benefit": "You may run five times your normal speed.",
+    "trigger": "Continuous",
+    "bonuses": {}
+  },
+  "Spell Penetration": {
+    "type": "General",
+    "prerequisites": [],
+    "description": "Your spells break through spell resistance more easily than most. You get a +2 bonus on caster level checks (1d20 + caster level) made to overcome a creature’s spell resistance.",
+    "benefit": "+2 to caster level checks vs Spell Resistance",
+    "trigger": "Continuous",
+    "bonuses": {
+      "Spell Penetration": {
+        "value": 2,
+        "type": "Feat",
+        "targets": [ "spellPenetration" ]
+      }
+    }
   },
   "Toughness": {
     "type": "General",
     "prerequisites": [],
-    "description": "You have enhanced physical stamina.",
-    "benefit": "You gain +3 hit points, and an additional hit point for every Hit Die beyond 3.",
-    "abilities": []
+    "description": "You have enhanced physical stamina, granting you +3 hit points, and an additional hit point for every Hit Die beyond 3.",
+    "benefit": "You gain +1 hit point per level.",
+    "trigger": "Continuous",
+    "bonuses": {
+      "Toughness": {
+        "value": 1,
+        "type": "Feat",
+        "targets": [ "health" ]
+      }
+    }
+  },
+
+
+  "Bloody Assault": {
+    "type": "Combat",
+    "prerequisites": [ "BAB:6", "Str:13", "Power Attack" ],
+    "description": "You can choose to take a –5 penalty on all melee attack rolls and CMB to inflict an additional 1d4 bleed damage (this happens at the start of each turn for the tarfet, but does not stack).",
+    "benefit": "+1d4 bleed damage at a -5 to hit",
+    "trigger": "toggle",
+    "bonuses": {
+      "Bloddy Assault": {
+        "value": -5,
+        "type": "Feat",
+        "targets": [ "meleeAtkBonus", "cmb" ]
+      }
+    }
+  },
+  "Cleave": {
+    "type": "Combat",
+    "prerequisites": [ "Str:13", "BAB:1", "Power Attack" ],
+    "description": "As a standard action, you can make a single attack at your full base attack bonus against a foe within reach. If you hit, you deal damage normally and can make an additional attack (using your full base attack bonus) against a foe that is adjacent to the first and also within reach. You can only make one additional attack per round with this feat. When you use this feat, you take a –2 penalty to your Armor Class until your next turn.",
+    "benefit": "You can strike two adjacent foes with a single swing.",
+    "trigger": "Standard",
+    "bonuses": {
+      "Cleave": {
+        "value": -2,
+        "type": "Feat",
+        "targets": [ "totalAC", "touchAC", "flatAC" ]
+      }
+    }
+  },
+  "Distance Thrower": {
+    "type": "Combat",
+    "prerequisites": [ "Str:13" ],
+    "description": "With a thrown weapon, you reduce your penalty on ranged attack rolls due to range by 2.",
+    "benefit": "Reduce range penalties by 2.",
+    "trigger": "Continuous",
+    "bonuses": {}
+  },
+  "Death or Glory": {
+    "type": "Combat",
+    "prerequisites": [ "BAB:6", "Str:13", "Power Attack" ],
+    "description": "Against a creature of size Large or larger, you can make a single melee attack as a full-round action, gaining a +4 on the attack roll, damage roll, and critical confirmation roll. After you resolve your attack, the opponent you attack can spend an immediate action to make a single melee attack against you with the same bonuses.",
+    "benefit": "+4 against a Large or bigger creature, but they also get a free attack on you",
+    "trigger": "Full-Round",
+    "bonuses": {
+      "Death or Glory": {
+        "value": 4,
+        "type": "Feat",
+        "targets": [ "meleeAtkBonus", "meleeDmgBonus" ]
+      }
+    }
+  },
+  "Dodge": {
+    "type": "Combat",
+    "prerequisites": [ "Dex:13" ],
+    "description": "Your training and reflexes allow you to react swiftly to avoid an opponent's attacks. A condition that makes you lose your Dex bonus to AC also makes you lose the benefits of this feat.",
+    "benefit": "You gain a +1 dodge bonus to your AC.",
+    "trigger": "Continuous",
+    "bonuses": {
+      "Dodge": {
+        "value": 1,
+        "type": "Dodge",
+        "targets": [ "totalAC", "touchAC", "flatAC" ]
+      }
+    }
+  },
+  "Far Shot": {
+    "type": "Combat",
+    "prerequisites": [ "Point-Blank Shot" ],
+    "description": "You only suffer a –1 penalty per full range increment instead of the usual -2.",
+    "benefit": "-1 per range increment instead of -2",
+    "trigger": "Continuous",
+    "bonuses": {}
+  },
+  "Hammer the Gap": {
+    "type": "Combat",
+    "prerequisites": [ "BAB:6" ],
+    "description": "Each consecutive hit on the same opponent deals extra damage equal to the number of previous consecutive hits made this turn. This damage is multiplied on a crit.",
+    "benefit": "Each consecutive hit on the same opponent deals extra damage",
+    "trigger": "Full-Attack",
+    "bonuses": {}
   },
   "Improved Initiative": {
     "type": "Combat",
     "prerequisites": [],
     "description": "Your quick reflexes allow you to react to react rapidly to danger.",
     "benefit": "You get a +4 bonus on initiative checks.",
-    "abilities": [
-      {
-        "stacks": true, "type": "Feat",
-        "targets": [ "Initiative" ],
-        "bonus": 4
+    "trigger": "Continuous",
+    "bonuses": {
+      "Improved Initiative": {
+        "value": 4,
+        "type": "Feat",
+        "targets": [ "initiative" ]
       }
-    ]
-  },
-  "Dodge": {
-    "type": "Combat",
-    "prerequisites": [ "Dex:13" ],
-    "description": "Your training and reflexes allow you to react swiftly to avoid an opponent's attacks.",
-    "benefit": "You gain a +1 dodge bonus to your AC. A condition that makes you lose your Dex bonus to AC also makes you lose the benefits of this feat.",
-    "abilities": [
-      {
-        "stacks": true, "type": "Dodge",
-        "targets": [ "AC" ],
-        "bonus": 1
-      }
-    ]
-  },
-  "Quick Draw": {
-    "type": "Combat",
-    "prerequisites": [ "BAB:1" ],
-    "description": "You can draw weapons faster than most.",
-    "benefit": "You can draw a weapon as a free action instead of as a move action. You can draw a hidden weapon as a move action instead of a standard action.",
-    "abilities": []
-  },
-  "Weapon Focus": {
-    "type": "Combat",
-    "prerequisites": [ "BAB:1", "Proficiency with selected weapon" ],
-    "description": "Choose one type of weapon (or unarmed strike, grapple or ray), you may select this feat multiple times, choosing a new weapon each time.",
-    "benefit": "You gain a +1 bonus on all attack rolls you make using the selected weapon.",
-    "abilities": []
+    }
   },
   "Mounted Combat": {
     "type": "Combat",
     "prerequisite": [ "Ride:1" ],
-    "description": "You are adept at guiding your mount through combat.",
-    "benefit": "Once per round when your mount is hit in combat, you may attempt a Ride check to negate the hit (DC is equal to the attack roll).",
-    "abilities": []
-  },
-  "Power Attack": {
-    "type": "Combat",
-    "prerequisites": [ "Str:13", "BAB:1" ],
-    "description": "You can make exceptionally deadly melee attacks by sacrificing accuracy for strength.",
-    "benefit": "You can choose to take a –1 penalty on all melee attack rolls and combat maneuver checks to gain a +2 bonus on all melee damage rolls.",
-    "abilities": [
-      {
-        "name": "Power Attack Bonus",
-        "stacks": true, "type": "Feat",
-        "targets": [ "Toggled", "Melee Damage" ],
-        "bonus": 2
-      },
-      {
-        "name": "Power Attack Malus",
-        "stacks": true, "type": "Feat",
-        "targets": [ "Toggled", "Melee Attack", "CMB" ],
-        "bonus": -1
-      }
-    ]
-  },
-  "Cleave": {
-    "type": "Combat",
-    "prerequisites": [ "Str:13", "BAB:1", "Power Attack" ],
-    "description": "You can strike two adjacent foes with a single swing.",
-    "benefit": "As a standard action, you can make a single attack at your full base attack bonus against a foe within reach. If you hit, you deal damage normally and can make an additional attack (using your full base attack bonus) against a foe that is adjacent to the first and also within reach. You can only make one additional attack per round with this feat. When you use this feat, you take a –2 penalty to your Armor Class until your next turn.",
-    "abilites": [
-      {
-        "stacks": true, "type": "Feat",
-        "targets": [ "Toggled", "AC" ],
-        "bonus": -2
-      }
-    ]
-  },
-  "Two-Weapon Fighting": {
-    "type": "Combat",
-    "prerequisites": [ "Dex:15" ],
-    "description": "You can fight with a weapon wielded in each of your hands. You can make one extra attack each round with the secondary weapon.",
-    "benefit": "Your penalties on attack rolls for fighting with two weapons are reduced. The penalty for your primary hand lessens by 2 and the one for your off hand lessens by 6.",
-    "abilities": []
-  },
-  "Weapon Finesse": {
-    "type": "Combat",
-    "prerequisites": [],
-    "description": "You are trained in using your agility in melee combat, as opposed to brute strength.",
-    "benefit": "With a light weapon, elven curve blade, rapier, whip, or spiked chain made for a creature of your size category, you may use your Dexterity modifier instead of your Strength modifier on attack rolls.",
-    "abilities": []
+    "description": "You are adept at guiding your mount through combat, and can make ride checks to avoid damage (Once per round, with the DC equal to the Attack Roll).",
+    "benefit": "1/round, when hit, make a ride check to avoid damage (DC = Attack Roll)",
+    "trigger": "Toggle",
+    "bonuses": {}
   },
   "Point-Blank Shot": {
     "type": "Combat",
     "prerequisites": [],
-    "description": "You are especially accurate when making ranged attacks against close targets.",
-    "benefit": "You get a +1 bonus on attack and damage rolls with ranged weapons (and ranged touch spells) at ranges of up to 30 feet.",
-    "abilities": [
-      {
-        "stacks": true, "type": "Feat",
-        "targets": [ "Toggled", "Ranged Attack", "Ranged Damage" ],
-        "bonus": 1
+    "description": "You get a +1 bonus on attack and damage rolls with ranged weapons (and ranged touch spells) at ranges of up to 30 feet.",
+    "benefit": "+1 to attack and damage rolls with ranged weapons.",
+    "trigger": "Toggle",
+    "bonuses": {
+      "Point-Blank Shot": {
+        "value": 1,
+        "type": "Feat",
+        "targets": [ "meleeAtkBonus", "meleeDmgBonus" ]
       }
-    ]
+    }
+  },
+  "Power Attack": {
+    "type": "Combat",
+    "prerequisites": [ "Str:13", "BAB:1" ],
+    "description": "You can choose to take a –1 penalty on all melee attack rolls and combat maneuver checks to gain a +2 bonus on all melee damage rolls (Increases with higher BAB).",
+    "benefit": "You can take a -1 to hit for a +2 to damage.",
+    "trigger": "Toggle",
+    "bonuses": {
+      "Power Attack +": {
+        "targets": [ "meleeDmgBonus" ],
+        "type": "Feat",
+        "value": 2
+      },
+      "Power Attack -": {
+        "targets": [ "meleeAtkBonus", "cmb" ],
+        "type": "Feat",
+        "value": -1
+      }
+    }
   },
   "Precise Shot": {
     "type": "Combat",
     "prerequisites": [ "Point-Blank Shot" ],
     "description": "You are adept at firing ranged attacks into melee.",
     "benefit": "You don't take the -4 for firing into melee",
-    "abilities": []
+    "trigger": "Continuous",
+    "bonuses": {}
   },
-  "Far Shot": {
+  "Quick Draw": {
     "type": "Combat",
-    "prerequisites": [ "Point-Blank Shot" ],
-    "description": "You are more accurate at longer ranges.",
-    "benefit": "You only suffer a –1 penalty per full range increment between you and your target when using a ranged weapon.",
-    "abilities": []
+    "prerequisites": [ "BAB:1" ],
+    "description": "You can draw weapons faster than most, becoming a free action from a move action. You may also draw a hidden weapon as a move action instead of a standard action.",
+    "benefit": "Draw a weapon as a free action.",
+    "trigger": "Continuous",
+    "bonuses": {}
   },
-  "Distance Thrower": {
+  "Two-Weapon Fighting": {
     "type": "Combat",
-    "prerequisites": [ "Str:13" ],
-    "description": "You are accurate with thrown weapons at longer ranges than normal.",
-    "benefit": "With a thrown weapon, you reduce your penalty on ranged attack rolls due to range by 2.",
-    "abilities": [
-      {
-        "stacks": true, "type": "Feat",
-        "targets": [ "Toggled", "Ranged Attack" ],
-        "bonus": 2
-      }
-    ]
+    "prerequisites": [ "Dex:15" ],
+    "description": "You are adept at fighting with two weapons at once, reducing the penalty for your main hand by 2 and your off hand by 6.",
+    "benefit": "You can attack with 2 weapons, with reduced penalties",
+    "trigger": "Continuous",
+    "bonuses": {}
   },
-  "Combat Casting": {
-    "type": "General",
-    "prerequisites": [],
-    "description": "You are adept at spellcasting when threatened or distracted.",
-    "benefit": "You get a +4 bonus on concentration checks made to cast a spell or use a spell-like ability when casting on the defensive or while grappled.",
-    "abilities": [
-      {
-        "stacks": true, "type": "Feat",
-        "targets": [ "Toggled", "Concentration" ],
-        "bonus": 4
-      }
-    ]
-  },
-  "Spell Penetration": {
-    "type": "General",
-    "prerequisites": [],
-    "description": "Your spells break through spell resistance more easily than most.",
-    "benefit": "You get a +2 bonus on caster level checks (1d20 + caster level) made to overcome a creature’s spell resistance.",
-    "abilities": [
-      {
-        "stacks": true, "type": "Feat",
-        "targets": [ "Toggled", "Penetration" ],
-        "bonus": 2
-      }
-    ]
-  },
-
-  
-
-  
   "Vital Strike": {
     "type": "Combat",
     "prerequisites": [ "BAB:6" ],
-    "description": "You make a single attack that deals significantly more damage than normal.",
-    "benefit": "When you use the attack action, you can make one attack at your highest base attack bonus that deals additional damage (roll weapon damage an additional time, not affected by crit).",
-    "abilities": []
+    "description": "With a standard attack action (not full-round attack), you can make one attack at your highest base attack bonus that deals additional damage (roll weapon damage an additional time, not affected by crit).",
+    "benefit": "Make one attack with full BAB & roll damage twice",
+    "trigger": "Standard",
+    "bonuses": {}
   },
-  "Bloody Assault": {
+  "Weapon Finesse": {
     "type": "Combat",
-    "prerequisites": [ "BAB:6", "Str:13", "Power Attack" ],
-    "description": "Sacrificing accuracy, you can inflict bloody wounds that are slow to heal.",
-    "benefit": "You can choose to take a –5 penalty on all melee attack rolls and CMB to inflict an additional 1d4 bleed damage.",
-    "abilities": [
-      {
-        "stacks": true, "type": "Feat",
-        "targets": [ "Toggled", "Melee Attack", "CMB" ],
-        "bonus": -5
-      }
-    ]
+    "prerequisites": [],
+    "description": "With a light weapon, elven curve blade, rapier, whip, or spiked chain made for a creature of your size category, you may use your Dexterity modifier instead of your Strength modifier on attack rolls.",
+    "benefit": "You may use your DexMod, instead of StrMod, on attack rolls for certain weapons.",
+    "trigger": "Continuous",
+    "bonuses": {}
   },
-  "Death or Glory": {
+  "Weapon Focus": {
     "type": "Combat",
-    "prerequisites": [ "BAB:6", "Str:13", "Power Attack" ],
-    "description": "Even when facing a larger foe, you aren’t afraid to take great risks in order to finish the fight.",
-    "benefit": "Against a creature of size Large or larger, you can make a single melee attack as a full-round action, gaining a bonus on the attack roll, damage roll, and critical confirmation roll. After you resolve your attack, the opponent you attack can spend an immediate action to make a single melee attack against you with the same bonuses.",
-    "abilities": []
-  },
-  "Hammer the Gap": {
-    "type": "Combat",
-    "prerequisites": [ "BAB:6" ],
-    "description": "You repeatedly strike the same location, causing increasing amounts of damage.",
-    "benefit": "When you take a full-attack action, each consecutive hit against the same opponent deals extra damage equal to the number of previous consecutive hits you have made against that opponent this turn. This damage is multiplied on a critical hit.",
-    "abilities": []
+    "prerequisites": [ "BAB:1", "Proficiency with selected weapon" ],
+    "description": "Choose one type of weapon (or unarmed strike, grapple or ray), you may select this feat multiple times, choosing a new weapon each time. You gain a +1 bonus on all attack rolls made using your selection.",
+    "benefit": "+1 bonus on all attack rolls made using your selection.",
+    "trigger": "Continuous",
+    "bonuses": {}
   },
 
 
@@ -312,64 +358,75 @@
   "Raging Vitality": {
     "type": "General",
     "prerequisites": [ "Con:15", "Rage Class Feature" ],
-    "description": "While raging, you are full of vigor and health.",
-    "benefit": "Whenever you are raging, the morale bonus to your Constitution increases by +2. Your rage does not end if you become unconscious. While unconscious you must still expend rounds of rage per day each round.",
-    "abilities": []
+    "description": "Whenever you are raging, the morale bonus to your Constitution increases by +2. Your rage does not end if you become unconscious. While unconscious you must still expend rounds of rage per day each round.",
+    "benefit": "+2 to the morale bonus to Constitution while raging",
+    "trigger": "Continuous",
+    "bonuses": {}
   },
   "Lingering Performance": {
     "type": "General",
     "prerequisites": [ "Bardic Performance Class Feature" ],
-    "description": "The effects of your bardic performance carry on, even after you have stopped performing.",
-    "benefit": "The bonuses and penalties from your bardic performance continue for 2 rounds after you cease performing, as long as all other requirements are still met.",
-    "abilities": []
+    "description": "The bonuses and penalties from your bardic performance continue for 2 rounds after you cease performing, as long as all other requirements are still met.",
+    "benefit": "Bardic Performance lingers for 2 rounds",
+    "trigger": "Continuous",
+    "bonuses": {}
   },
   "Selective Channeling": {
     "type": "General",
     "prerequisites": [ "Cha:13", "Channel Energy Class Feature" ],
-    "description": "You can choose whom to affect when you channel energy.",
-    "benefit": "When you channel energy, you can choose a number of targets in the area up to your Charisma modifier. These targets are not affected by your channeled energy.",
-    "abilities": []
+    "description": "When you channel energy, you can choose a number of targets in the area up to your Charisma modifier. These targets are not affected by your channeled energy.",
+    "benefit": "Can exclude targets from Channel Energy",
+    "trigger": "Continuous",
+    "bonuses": {}
   },
   "Natural Spell": {
     "type": "General",
     "prerequisites": [ "Wis:13", "Wild Shape Class Feature" ],
-    "description": "You can cast spells even while in a form that cannot normally cast spells.",
-    "benefit": "You can complete the verbal and somatic components of spells while using wild shape. You substitute various noises and gestures for the normal verbal and somatic components of a spell. You can also use any material components or focuses you possess, even if such items are melded within your current form.",
-    "abilities": []
+    "description": "You can complete the verbal and somatic components of spells while using wild shape. You substitute various noises and gestures for the normal verbal and somatic components of a spell. You can also use any material components or focuses you possess, even if such items are melded within your current form.",
+    "benefit": "Can cast spells in wild shape",
+    "trigger": "Continuous",
+    "bonuses": {}
   },
+  "Fighter": "N/A",
   "Bleeding Attack": {
     "type": "Combat",
     "prerequisites": [ "Improved Unarmed Strike" ],
-    "description": "Your unarmed strikes cause your opponent to bleed.",
-    "benefit": "When you damage an opponent with an unarmed strike, you deal an extra 1d4 bleed damage.",
-    "abilities": []
+    "description": "When you damage an opponent with an unarmed strike, you deal an extra 1d4 bleed damage.",
+    "benefit": "+1d4 bleed with an unarmed strike",
+    "trigger": "Continuous",
+    "bonuses": {}
   },
   "Word of Healing": {
     "type": "General",
     "prerequisites": [ "Lay on Hands Class Feature." ],
-    "description": "Using the same divine energy as your lay on hands ability, you can heal others at a distance.",
-    "benefit": "You may use your lay on hands to heal another creature at a range of 30 feet as a standard action that does not provoke an attack of opportunity. You must be able to speak and have a free hand to use this ability. The target heals half the amount they would have healed if you had touched them, but gains the benefits of your mercies as normal.",
-    "abilities": []
+    "description": "You may use your lay on hands to heal another creature at a range of 30 feet as a standard action that does not provoke an attack of opportunity. You must be able to speak and have a free hand to use this ability. The target heals half the amount they would have healed if you had touched them, but gains the benefits of your mercies as normal.",
+    "benefit": "Use lay on hands up to 30 ft away",
+    "trigger": "Continuous",
+    "bonuses": {}
   },
-  "Diehard": {
+  "Favored Defense": {
     "type": "General",
-    "prerequisites": [ "Endurance" ],
-    "description": "Not only do your wounds automatically stabilize when grievously injured, but you can remain conscious and continue to act even at death’s door.",
-    "benefit": "When your hit point total is below 0, but you are not dead, you automatically stabilize, and you do not need to make a Constitution check each round to avoid losing additional hit points.",
-    "abilities": []
+    "prerequisites": [ "Favored Enemy Class Feature" ],
+    "description": "Choose one of your favored enemy types. You add half your favored enemy bonus to your CMD and as a dodge bonus to AC when attacked by that favored enemy type.",
+    "benefit": "+1/2 your favored enemy bonus to your CMD and AC",
+    "trigger": "Continuous",
+    "bonuses": {}
   },
+  "Rougue": "N/A",
   "Sorcerous Bloodstrike": {
     "type": "General",
     "prerequisites": [ "Cha:13", "Sorcerer Bloodline Class Feature" ],
-    "description": "You can regain power when you kill a creature.",
-    "benefit": "Once per day, as an immediate action upon reducing a creature to 0 or fewer hit points with one of your sorcerer spells, you can regain one usage of a sorcerer bloodline power that has a limited number of uses per day. The slain creature must have at least half as many Hit Dice as your sorcerer level.",
-    "abilities": []
+    "description": "Once per day, as an immediate action upon reducing a creature to 0 or fewer hit points with one of your sorcerer spells, you can regain one usage of a sorcerer bloodline power that has a limited number of uses per day. The slain creature must have at least half as many Hit Dice as your sorcerer level.",
+    "benefit": "Regin a blodline power use on a kill",
+    "trigger": "Continuous",
+    "bonuses": {}
   },
   "Improved Familiar": {
     "type": "General",
     "prerequisites": [ "Ability to aquire a new familiar" ],
-    "description": "This feat allows you to acquire a powerful familiar, but only when you could normally acquire a new familiar.",
-    "benefit": "When choosing a familiar, you may choose from the listed creatures (on the wiki).",
-    "abilities": []
+    "description": "When choosing a familiar, you may choose a more powerful creature from those listed (on the wiki).",
+    "benefit": "Your familiar is stronger than most",
+    "trigger": "Continuous",
+    "bonuses": {}
   }
 }

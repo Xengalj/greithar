@@ -24,6 +24,9 @@
     "misc":       [ "bleed", "nonlethal", "precision", "spell", "untyped" ]
   },
 
+
+
+
   "natural_attacks": {
     "Bite": {
       "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "2d8",  "colossal": "4d6"  },
@@ -127,7 +130,7 @@
     "fine": {
       "ac / atk":   8,
       "cmb / cmd": -8,
-      "flight":     8,
+      "fly":     8,
       "stealth":    16,
       "carry mod":  0.125,
       "extra legs": 0.25,
@@ -141,7 +144,7 @@
     "diminuitive": {
       "ac / atk":   4,
       "cmb / cmd": -4,
-      "flight":     6,
+      "fly":     6,
       "stealth":    12,
       "carry mod":  0.25,
       "extra legs": 0.5,
@@ -155,7 +158,7 @@
     "tiny": {
       "ac / atk":   2,
       "cmb / cmd":  -2,
-      "flight":     4,
+      "fly":     4,
       "stealth":    8,
       "carry mod":  0.5,
       "extra legs": 0.75,
@@ -169,7 +172,7 @@
     "small": {
       "ac / atk":   1,
       "cmb / cmd":  -1,
-      "flight":     2,
+      "fly":     2,
       "stealth":    4,
       "carry mod":  0.5,
       "extra legs": 1,
@@ -183,7 +186,7 @@
     "medium": {
       "ac / atk":   0,
       "cmb / cmd":  0,
-      "flight":     0,
+      "fly":     0,
       "stealth":    0,
       "carry mod":  1,
       "extra legs": 1.5,
@@ -197,7 +200,7 @@
     "large": {
       "ac / atk":   -1,
       "cmb / cmd":  1,
-      "flight":     -2,
+      "fly":     -2,
       "stealth":    -4,
       "carry mod":  2,
       "extra legs": 3,
@@ -211,7 +214,7 @@
     "huge": {
       "ac / atk":   -2,
       "cmb / cmd":  2,
-      "flight":     -4,
+      "fly":     -4,
       "stealth":    -8,
       "carry mod":  4,
       "extra legs": 6,
@@ -225,7 +228,7 @@
     "gargantuan": {
       "ac / atk":   -4,
       "cmb / cmd":  4,
-      "flight":     -6,
+      "fly":     -6,
       "stealth":    -12,
       "carry mod":  8,
       "extra legs": 12,
@@ -239,7 +242,7 @@
     "colossal": {
       "ac / atk":   -8,
       "cmb / cmd":  8,
-      "flight":     -8,
+      "fly":     -8,
       "stealth":    -16,
       "carry mod":  16,
       "extra legs": 24,
@@ -255,85 +258,76 @@
   "bonuses": {
     "Alchemical": {
       "description": "An alchemical bonus is granted by the use of a non-magical, alchemical substance such as antitoxin.",
-      "targets": [ "Ability Scores", "Saves" ],
+      "targets": [ "fort", "ref", "will", "Ability Scores", "Saves" ],
       "subtargets": [ "fort", "ref", "will" ]
     },
     "Armor": {
       "description": "An armor bonus applies to armor class and is granted by armor or by a spell or magical effect that mimics armor. Armor bonuses stack with all other bonuses to armor class (even with natural armor bonuses) except other armor bonuses. An armor bonus doesn’t apply against touch attacks, except for armor bonuses granted by force effects (such as the mage armor spell) which apply against incorporeal touch attacks, such as that of a shadow.",
-      "targets": [ "AC" ],
+      "targets": [ "totalAC", "flatAC" ],
       "subtargets": [ "flat" ]
     },
     "Circumstance": {
       "description": "A circumstance bonus (or penalty) arises from specific conditional factors impacting the success of the task at hand. Circumstance bonuses stack with all other bonuses, including other circumstance bonuses, unless they arise from essentially the same source.",
-      "targets": [ "Attacks", "Checks" ]
+      "targets": [ "atkBonus", "cmd", "Checks" ]
     },
     "Competence": {
       "description": "A competence bonus (or penalty) affects a character’s performance of a particular task, as in the case of the bardic ability to inspire competence. Multiple competence bonuses don’t stack; only the highest bonus applies.",
-      "targets": [ "Attacks", "Checks", "Saves" ],
+      "targets": [ "fort", "ref", "will", "atkBonus", "Checks", "Saves" ],
       "subtargets": [ "fort", "ref", "will" ]
     },
     "Deflection": {
       "description": "A deflection bonus affects armor class and is granted by a spell or magic effect that makes attacks veer off harmlessly. Deflection bonuses stack with all other bonuses to AC except other deflection bonuses. A deflection bonus applies against touch attacks.",
-      "targets": [ "AC" ],
+      "targets": [ "totalAC", "touchAC", "flatAC", "cmd" ],
       "subtargets": [ "touch", "flat" ]
-    },
-    "Dodge": {
-      "description": "A dodge bonus improves armor class (and sometimes Reflex saves) resulting from physical skill at avoiding blows and other ill effects. Dodge bonuses are never 1 usually not granted by spells or magic items. Any situation or effect (except wearing armor) that negates a character’s Dexterity bonus also negates any dodge bonuses the character may have. Dodge bonuses stack with all other bonuses to AC, even other dodge bonuses. Dodge bonuses apply against touch attacks.",
-      "targets": [ "AC" ],
-      "subtargets": [ "touch" ]
     },
     "Enhancement": {
       "description": "An enhancement bonus represents an increase in the effectiveness of armor, natural armor, weapon, or a general bonus to an ability score. Multiple enhancement bonuses on the same object (in the case of armor and weapons), creature (in the case of natural armor), or ability score do not stack. Only the highest enhancement bonus applies.",
-      "targets": [ "Ability Scores", "AC", "Attacks", "Damage", "Speed" ],
+      "targets": [ "totalAC", "touchAC", "flatAC", "fort", "ref", "will", "atkBonus", "dmgBonus", "Speed", "Str", "Dex", "Con", "Int", "Wis", "Cha" ],
       "subtargets": [ "touch", "flat", "fort", "ref", "will" ]
     },
     "Insight": {
       "description": "An insight bonus improves performance of a given activity by granting the character an almost precognitive knowledge of what might occur. Multiple insight bonuses on the same character or object do not stack. Only the highest insight bonus applies.",
-      "targets": [ "AC", "Attacks", "Checks", "Saves" ],
+      "targets": [ "totalAC", "touchAC", "flatAC", "fort", "ref", "will", "atkBonus", "cmd", "Checks" ],
       "subtargets": [ "touch", "flat", "fort", "ref", "will" ]
     },
     "Luck": {
       "description": "A luck bonus represents good (or bad) fortune. Multiple luck bonuses on the same character or object do not stack. Only the highest luck bonus applies.",
-      "targets": [ "AC", "Attacks", "Checks", "Damage", "Saves" ],
+      "targets": [ "totalAC", "touchAC", "flatAC", "fort", "ref", "will", "atkBonus", "dmgBonus", "cmd", "Checks" ],
       "subtargets": [ "touch", "flat", "fort", "ref", "will" ]
     },
     "Morale": {
       "description": "A morale bonus represents the effects of greater hope, courage, and determination (or hopelessness, cowardice, and despair in the case of a morale penalty). Multiple morale bonuses on the same character do not stack. Only the highest morale bonus applies. Non-intelligent creatures (creatures with an Intelligence of 0 or no Intelligence at all) cannot benefit from morale bonuses.",
-      "targets": [  "Attacks", "Checks", "Damage", "Saves", "Str", "Con", "Dex" ],
+      "targets": [ "fort", "ref", "will", "atkBonus", "dmgBonus", "cmd", "Str", "Con", "Dex", "Checks" ],
       "subtargets": [ "fort", "ref", "will" ]
     },
     "Natural Armor": {
       "description": "A natural armor bonus improves armor class resulting from a creature’s naturally tough hide. Natural armor bonuses stack with all other bonuses to armor class (even with armor bonuses) except other natural armor bonuses. Some magical effects (such as the barkskin spell) grant an enhancement bonus to the creature’s existing natural armor bonus, which has the effect of increasing the natural armor’s overall bonus to armor class. A natural armor bonus doesn’t apply against touch attacks.",
-      "targets": [ "AC" ],
+      "targets": [ "totalAC", "flatAC" ],
       "subtargets": [ "flat" ]
     },
     "Profane": {
       "description": "A profane bonus (or penalty) stems from the power of evil. Multiple profane bonuses on the same character or object do not stack. Only the highest profane bonus applies.",
-      "targets": [  "AC", "Checks", "Damage", "DCs", "Saves" ],
+      "targets": [ "totalAC", "touchAC", "flatAC", "fort", "ref", "will", "dmgBonus", "cmd", "DCs", "Checks" ],
       "subtargets": [ "touch", "flat", "fort", "ref", "will" ]
-    },
-    "Racial": {
-      "description": "A racial bonus comes from the culture a particular creature was brought up in or because of innate characteristics of that type of creature. If a creature’s race changes (for instance, if it dies and is reincarnated), it loses all racial bonuses it had in its previous form.",
-      "targets": []
     },
     "Resistance": {
       "description": "A resistance bonus affects saving throws, providing extra protection against harm. Multiple resistance bonuses on the same character or object do not stack. Only the highest resistance bonus applies.",
-      "targets": [ "Saves" ],
+      "targets": [ "fort", "ref", "will" ],
       "subtargets": [ "fort", "ref", "will" ]
     },
     "Sacred": {
       "description": "A sacred bonus (or penalty) stems from the power of good. Multiple sacred bonuses on the same character or object do not stack. Only the highest sacred bonus applies.",
-      "targets": [ "AC", "Checks", "Damage", "DCs", "Saves" ],
+      "targets": [ "totalAC", "touchAC", "flatAC", "fort", "ref", "will", "dmgBonus", "cmd", "DCs", "Checks" ],
       "subtargets": [ "touch", "flat", "fort", "ref", "will" ]
     },
     "Shield": {
       "description": "A shield bonus improves armor class and is granted by a shield or by a spell or magic effect that mimics a shield. Shield bonuses stack with all other bonuses to AC except other shield bonuses. A magic shield typically grants an enhancement bonus to the shield’s shield bonus, which has the effect of increasing the shield’s overall bonus to AC.",
-      "targets": [ "AC" ],
+      "targets": [ "totalAC", "flatAC" ],
       "subtargets": [ "flat" ]
     },
     "Size": {
       "description": "A size bonus or penalty is derived from a creature’s size category. Size modifiers of different kinds apply to armor class, attack rolls, Stealth checks, combat maneuver checks, and various other checks.",
-      "targets": [ "Ability Scores", "Attacks", "AC" ],
+      "targets": [ "totalAC", "touchAC", "flatAC", "atkBonus", "Str", "Dex" ],
       "subtargets": [ "touch", "flat" ]
     },
     "Trait": {
@@ -350,7 +344,15 @@
       "fort": { "mult": 0.33, "bonus": 0 },
       "ref": { "mult": 0.33, "bonus": 0 },
       "will": { "mult": 0.5, "bonus": 2 },
-      "skills": [ "Acrobatics", "Climb", "Escape Artist", "Fly", "Intimidate", "Perception", "Spellcraft", "Stealth", "Survival", "Swim" ]
+      "skills": [ "Acrobatics", "Climb", "Escape Artist", "Fly", "Intimidate", "Perception", "Spellcraft", "Stealth", "Survival", "Swim" ],
+      "traits": {
+        "Darkvision": {
+          "trigger": "Continuous",
+          "description": "Aberrations can see in the dark up to 60 feet.",
+          "benefit": { "target": "senses", "text": "Darkvision 60 ft." },
+          "bonuses": {}
+        }
+      }
     },
     "animal": {
       "hd": 8,
@@ -359,7 +361,15 @@
       "fort": { "mult": 0.5, "bonus": 2 },
       "ref": { "mult": 0.5, "bonus": 2 },
       "will": { "mult": 0.33, "bonus": 0 },
-      "skills": [ "Acrobatics", "Climb", "Fly", "Perception", "Stealth", "Swim" ]
+      "skills": [ "Acrobatics", "Climb", "Fly", "Perception", "Stealth", "Swim" ],
+      "traits": {
+        "Low-light Vision": {
+          "trigger": "Continuous",
+          "description": "Animals can see color in dim light.",
+          "benefit": { "target": "senses", "text": "Low-Light Vision" },
+          "bonuses": {}
+        }
+      }
     },
     "construct": {
       "hd": 10,
@@ -368,7 +378,29 @@
       "fort": { "mult": 0.33, "bonus": 0 },
       "ref": { "mult": 0.33, "bonus": 0 },
       "will": { "mult": 0.33, "bonus": 0 },
-      "skills": []
+      "skills": [],
+      "traits": {
+        "Darkvision": {
+          "trigger": "Continuous",
+          "description": "Constructs can see in the dark up to 60 feet.",
+          "benefit": { "target": "senses", "text": "Darkvision 60 ft." },
+          "bonuses": {}
+        },
+        "Low-light Vision": {
+          "trigger": "Continuous",
+          "description": "Constructs can see color in dim light.",
+          "benefit": { "target": "senses", "text": "Low-Light Vision" },
+          "bonuses": {}
+        },
+        "Construct Immunities": {
+          "trigger": "Continuous",
+          "description": "Constructs is a magically animated or artificially created creatures, granting them a number of immunities.",
+          "benefit": { "target": "immunities", "text":
+            "nonlethal damage, necromancy, fatigue, exhaustion, stunning, paralysis, sleep, poison, mind effects, disease, ability damage, death effects, ability drain, energy drain"
+          },
+          "bonuses": {}
+        }
+      }
     },
     "dragon": {
       "hd": 12,
@@ -377,11 +409,26 @@
       "fort": { "mult": 0.5, "bonus": 2 },
       "ref": { "mult": 0.5, "bonus": 2 },
       "will": { "mult": 0.5, "bonus": 2 },
-      "skills": [ "Appraise", "Bluff", "Climb", "Craft", "Diplomacy", "Fly", "Heal", "Intimidate", "Knowledge (all)", "Linguistics", "Perception", "Sense Motive", "Spellcraft", "Stealth", "Survival", "Swim", "Use Magic Device" ],
+      "skills": [ "Appraise", "Bluff", "Climb", "Craft", "Diplomacy", "Fly", "Heal", "Intimidate", "Knowledge (arcana)", "Knowledge (dungeoneering)", "Knowledge (engineering)", "Knowledge (geography)", "Knowledge (history)", "Knowledge (local)", "Knowledge (nature)", "Knowledge (nobility)", "Knowledge (planes)", "Knowledge (religion)", "Linguistics", "Perception", "Sense Motive", "Spellcraft", "Stealth", "Survival", "Swim", "Use Magic Device" ],
       "traits": {
-        "Darkvision": "Darkvision 60 ft.",
-        "Low-Light Vision": "Low-Light Vision",
-        "Immunities": [ "sleep", "paralysis" ]
+        "Darkvision": {
+          "trigger": "Continuous",
+          "description": "Dragons can see in the dark up to 60 feet.",
+          "benefit": { "target": "senses", "text": "Darkvision 60 ft." },
+          "bonuses": {}
+        },
+        "Low-light Vision": {
+          "trigger": "Continuous",
+          "description": "Dragons can see color in dim light.",
+          "benefit": { "target": "senses", "text": "Low-Light Vision" },
+          "bonuses": {}
+        },
+        "Dragon Immunities": {
+          "trigger": "Continuous",
+          "description": "Dragons are immune to magical sleep and paralysis.",
+          "benefit": { "target": "immunities", "text": "paralysis, sleep" },
+          "bonuses": {}
+        }
       }
     },
     "fey": {
@@ -391,7 +438,15 @@
       "fort": { "mult": 0.33, "bonus": 2 },
       "ref": { "mult": 0.5, "bonus": 2 },
       "will": { "mult": 0.5, "bonus": 2 },
-      "skills": [ "Acrobatics", "Bluff", "Climb", "Craft", "Diplomacy", "Disguise", "Escape Artist", "Fly", "Knowledge (geography)", "Knowledge (local)", "Knowledge (nature)", "Perception", "Perform", "Sense Motive", "Sleight of Hand", "Stealth", "Swim", "Use Magic Device" ]
+      "skills": [ "Acrobatics", "Bluff", "Climb", "Craft", "Diplomacy", "Disguise", "Escape Artist", "Fly", "Knowledge (geography)", "Knowledge (local)", "Knowledge (nature)", "Perception", "Perform", "Sense Motive", "Sleight of Hand", "Stealth", "Swim", "Use Magic Device" ],
+      "traits": {
+        "Low-light Vision": {
+          "trigger": "Continuous",
+          "description": "Fey can see color in dim light.",
+          "benefit": { "target": "senses", "text": "Low-Light Vision" },
+          "bonuses": {}
+        }
+      }
     },
     "humanoid": {
       "hd": 8,
@@ -400,7 +455,8 @@
       "fort": { "mult": 0.33, "bonus": 0 },
       "ref": { "mult": 0.33, "bonus": 0 },
       "will": { "mult": 0.33, "bonus": 0 },
-      "skills": [ "Climb", "Craft", "Handle Animal", "Heal", "Profession", "Ride", "Survival" ]
+      "skills": [ "Climb", "Craft", "Handle Animal", "Heal", "Profession", "Ride", "Survival" ],
+      "traits": {}
     },
     "magical beast": {
       "hd": 10,
@@ -411,8 +467,18 @@
       "will": { "mult": 0.33, "bonus": 0 },
       "skills": [ "Acrobatics", "Climb", "Fly", "Perception", "Stealth", "Swim" ],
       "traits": {
-        "Darkvision": "Darkvision 60 ft.",
-        "Low-Light Vision": "Low-Light Vision"
+        "Darkvision": {
+          "trigger": "Continuous",
+          "description": "Magical Beasts can see in the dark up to 60 feet.",
+          "benefit": { "target": "senses", "text": "Darkvision 60 ft." },
+          "bonuses": {}
+        },
+        "Low-light Vision": {
+          "trigger": "Continuous",
+          "description": "Magical Beasts can see color in dim light.",
+          "benefit": { "target": "senses", "text": "Low-Light Vision" },
+          "bonuses": {}
+        }
       }
     },
     "monstrous humanoid": {
@@ -422,7 +488,15 @@
       "fort": { "mult": 0.33, "bonus": 0 },
       "ref": { "mult": 0.5, "bonus": 2 },
       "will": { "mult": 0.5, "bonus": 2 },
-      "skills": [ "Climb", "Craft", "Fly", "Intimidate", "Perception", "Ride", "Stealth", "Survival", "Swim" ]
+      "skills": [ "Climb", "Craft", "Fly", "Intimidate", "Perception", "Ride", "Stealth", "Survival", "Swim" ],
+      "traits": {
+        "Darkvision": {
+          "trigger": "Continuous",
+          "description": "Monstrous Humanoids can see in the dark up to 60 feet.",
+          "benefit": { "target": "senses", "text": "Darkvision 60 ft." },
+          "bonuses": {}
+        }
+      }
     },
     "ooze": {
       "hd": 8,
@@ -431,7 +505,36 @@
       "fort": { "mult": 0.33, "bonus": 0 },
       "ref": { "mult": 0.33, "bonus": 0 },
       "will": { "mult": 0.33, "bonus": 0 },
-      "skills": []
+      "skills": [],
+      "traits": {
+        "Blind": {
+          "trigger": "Continuous",
+          "description": "Oozes are blind, they have no eyes but do possess blindsight.",
+          "benefit": { "target": "senses", "text": "Blindsight 60 ft." },
+          "bonuses": {
+            "Blind_1": {
+              "bonus": -2,
+              "type": "trait",
+              "targets": [ "totalAC", "touchAC", "flatAC" ],
+              "active": true,
+              "stacks": true
+            },
+            "blind_2": {
+              "bonus": -4,
+              "type": "trait",
+              "targets": [ "strChecks", "dexChecks" ],
+              "active": true,
+              "stacks": true
+            }
+          }
+        },
+        "Ooze Immunities": {
+          "trigger": "Continuous",
+          "description": "Oozes have no Intelligence score, giving them immunity to mind effects, they also have a number of other immunities.",
+          "benefit": { "target": "immunities", "text": "critical hits, flanking, illusions, paralysis, poison, sleep, stunning, mind effects, polymorph, precision damage, gaze attacks, visual effects" },
+          "bonuses": {}
+        }
+      }
     },
     "outsider": {
       "hd": 10,
@@ -440,7 +543,15 @@
       "fort": { "mult": 0.33, "bonus": 0 },
       "ref": { "mult": 0.33, "bonus": 0 },
       "will": { "mult": 0.33, "bonus": 0 },
-      "skills": [ "Bluff", "Craft", "Knowledge (planes)", "Perception", "Sense Motive", "Stealth" ]
+      "skills": [ "Bluff", "Craft", "Knowledge (planes)", "Perception", "Sense Motive", "Stealth" ],
+      "traits": {
+        "Darkvision": {
+          "trigger": "Continuous",
+          "description": "Outsiders can see in the dark up to 60 feet.",
+          "benefit": { "target": "senses", "text": "Darkvision 60 ft." },
+          "bonuses": {}
+        }
+      }
     },
     "plant": {
       "hd": 8,
@@ -449,7 +560,21 @@
       "fort": { "mult": 0.5, "bonus": 2 },
       "ref": { "mult": 0.33, "bonus": 0 },
       "will": { "mult": 0.33, "bonus": 0 },
-      "skills": [ "Perception", "Stealth" ]
+      "skills": [ "Perception", "Stealth" ],
+      "traits": {
+        "Low-light Vision": {
+          "trigger": "Continuous",
+          "description": "Plants can see color in dim light.",
+          "benefit": { "target": "senses", "text": "Low-Light Vision" },
+          "bonuses": {}
+        },
+        "Plant Immunities": {
+          "trigger": "Continuous",
+          "description": "Plants are immune to a number of afects and abilities, mostly related to poisons or mind effects.",
+          "benefit": { "target": "immunities", "text": "mind effects, paralysis, poison, polymorph, sleep, stunning" },
+          "bonuses": {}
+        }
+      }
     },
     "undead": {
       "hd": 8,
@@ -460,8 +585,18 @@
       "will": { "mult": 0.5, "bonus": 2 },
       "skills": [ "Climb", "Disguise", "Fly", "Intimidate", "Knowledge (arcana)", "Knowledge (religion)", "Perception", "Sense Motive", "Spellcraft", "Stealth" ],
       "traits": {
-        "Darkvision": "Darkvision 60 ft.",
-        "Immunities": [ "Nonlethal damage", "ability drain", "energy drain", "physical ability damage", "mind effects", "bleed", "death effects", "disease", "sleep", "paralysis", "poison", "stunning", "exhaustion", "fatigue" ]
+        "Darkvision": {
+          "trigger": "Continuous",
+          "description": "Undead can see in the dark up to 60 feet.",
+          "benefit": { "target": "senses", "text": "Darkvision 60 ft." },
+          "bonuses": {}
+        },
+        "Undead Immunities": {
+          "trigger": "Continuous",
+          "description": "Undead are immune to a number of afects and abilities, mostly related to injuries the living may sustain like diseases.",
+          "benefit": { "target": "immunities", "text": "nonlethal damage, mind effects, bleed, disease, sleep, paralysis, poison, stunning, exhaustion, fatigue, death effects, physical ability damage, ability drain, energy drain" },
+          "bonuses": {}
+        }
       }
     },
     "vermin": {
@@ -471,8 +606,60 @@
       "fort": { "mult": 0.5, "bonus": 2 },
       "ref": { "mult": 0.33, "bonus": 0 },
       "will": { "mult": 0.33, "bonus": 0 },
-      "skills": []
+      "skills": [],
+      "traits": {
+        "Darkvision": {
+          "trigger": "Continuous",
+          "description": "Vermin can see in the dark up to 60 feet.",
+          "benefit": { "target": "senses", "text": "Darkvision 60 ft." },
+          "bonuses": {}
+        },
+        "Mindless": {
+          "trigger": "Continuous",
+          "description": "Vermin have no intelligence score, and immunity to all mind-affecting effects.",
+          "benefit": { "targtet": "immunities", "text": "mind effects" },
+          "bonuses": {}
+        }
+      }
     }
+  },
+
+  "skills": {
+    "Acrobatics": { "untrained": true,  "armor_pen": true,  "ability": "Dex" },
+    "Appraise": { "untrained": true,  "armor_pen": false,  "ability": "Int" },
+    "Bluff": { "untrained": true,  "armor_pen": false,  "ability": "Cha" },
+    "Climb": { "untrained": true,  "armor_pen": true,  "ability": "Str" },
+    "Craft": { "untrained": true,  "armor_pen": false,  "ability": "Int" },
+    "Diplomacy": { "untrained": true,  "armor_pen": false,  "ability": "Cha" },
+    "Disable Device": { "untrained": false,  "armor_pen": true,  "ability": "Dex" },
+    "Disguise": { "untrained": true,  "armor_pen": false,  "ability": "Cha" },
+    "Escape Artist": { "untrained": true,  "armor_pen": true,  "ability": "Dex" },
+    "Fly": { "untrained": true,  "armor_pen": true,  "ability": "Dex" },
+    "Handle Animal": { "untrained": false,  "armor_pen": false,  "ability": "Cha" },
+    "Heal": { "untrained": true,  "armor_pen": false,  "ability": "Wis" },
+    "Intimidate": { "untrained": true,  "armor_pen": false,  "ability": "Cha" },
+    "Knowledge (arcana)": { "untrained": false,  "armor_pen": false,  "ability": "Int" },
+    "Knowledge (dungeoneering)": { "untrained": false,  "armor_pen": false,  "ability": "Int" },
+    "Knowledge (engineering)": { "untrained": false,  "armor_pen": false,  "ability": "Int" },
+    "Knowledge (geography)": { "untrained": false,  "armor_pen": false,  "ability": "Int" },
+    "Knowledge (history)": { "untrained": false,  "armor_pen": false,  "ability": "Int" },
+    "Knowledge (local)": { "untrained": false,  "armor_pen": false,  "ability": "Int" },
+    "Knowledge (nature)": { "untrained": false,  "armor_pen": false,  "ability": "Int" },
+    "Knowledge (nobility)": { "untrained": false,  "armor_pen": false,  "ability": "Int" },
+    "Knowledge (planes)": { "untrained": false,  "armor_pen": false,  "ability": "Int" },
+    "Knowledge (religion)": { "untrained": false,  "armor_pen": false,  "ability": "Int" },
+    "Linguistics": { "untrained": false,  "armor_pen": false,  "ability": "Int" },
+    "Perception": { "untrained": true,  "armor_pen": false,  "ability": "Wis" },
+    "Perform": { "untrained": true,  "armor_pen": false,  "ability": "Cha" },
+    "Profession": { "untrained": false,  "armor_pen": false,  "ability": "Wis" },
+    "Ride": { "untrained": true,  "armor_pen": true,  "ability": "Dex" },
+    "Sense Motive": { "untrained": true,  "armor_pen": false,  "ability": "Wis" },
+    "Sleight of Hand": { "untrained": false,  "armor_pen": true,  "ability": "Dex" },
+    "Spellcraft": { "untrained": false,  "armor_pen": false,  "ability": "Int" },
+    "Stealth": { "untrained": true,  "armor_pen": true,  "ability": "Dex" },
+    "Survival": { "untrained": true,  "armor_pen": false,  "ability": "Wis" },
+    "Swim": { "untrained": true,  "armor_pen": true,  "ability": "Str" },
+    "Use Magic Device": { "untrained": false,  "armor_pen": false,  "ability": "Cha" }
   }
 
 

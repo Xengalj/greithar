@@ -1,4 +1,88 @@
 {
+	"Surnames": {
+		"Any": "Lusardi, Mlinar, Kremar, Tafralian, Puska, Vortal, Radloff, Scorvan, Fafinski, LaraMoor, Vilagrana, Thazel, Salanda, ",
+		"Amaru": {
+			"Ashcraft": "",
+			"Challwaq": "Quechua: Fisher",
+			"Heitala": "",
+			"Herrero": "Quechua: Smith",
+			"Musuqari": "Quechua: New Man",
+			"Nina'Chuqcha": "Quechua: Fire Fang",
+			"Qulqi'Niqi": "Quechua: Silver Scale",
+			"Qumpana": "Quechua: Green Hood",
+			"Sacha-Sacha'Qari": "Quechua: Woods Man (Cutter)",
+			"Wade XX": "Quechua: Child Of"
+		},
+		"Avaar": {
+			"Dahabiaj": "Arabic: Gold Crown",
+			"Gaabzaraq": "Arabic: Blue Forest",
+			"Gutaj-Ru": "",
+			"Hadaad": "Arabic: Smithy",
+			"Hitab": "Arabic: Woodsman",
+			"Ibs XX": "Arabic: Child Of",
+			"Ravala": "",
+			"Sammahamra": "Arabic: Red Sky",
+			"Sayaad": "Arabic: Fisher",
+			"Taayir-Alfiniq": "Arabic: Phoenix"
+		},
+		"Cæth": {
+			"Canyrhaf": "Welsh: Summersong",
+			"Coediwr": "Welsh: Woodsman",
+			"Curiadwyn": "Welsh: Spring Beat",
+			"Enaidgaeaf": "Welsh: Winter Soul",
+			"Foxelster": "",
+			"Gof": "Welsh: Smith",
+			"Hydrefcalon": "Welsh: AutumnHeart",
+			"Mab-XX": "Welsh: Child Of",
+			"Pysgotwr": "Welsh: Fisher",
+			"Tanganika": ""
+		},
+		"Geit": {
+			"Bergquist": "??: Mountain Quest?",
+			"Bikonnen": "??: Two Horn",
+			"Kjellman": "",
+			"Moyryla": "",
+			"Rafisk": "Norse: Fisher",
+			"Smith": "Norse: Smith",
+			"Thouin": "",
+			"Van Dan Elzan": "",
+			"Van Vleet": "",
+			"XX-Son": "Norse: Child Of"
+		},
+		"Kame": {
+			"Akaigara": "Japanese: Red Shell",
+			"Chairoko": "Japanese: Brown Scales",
+			"Kajiya": "Japanese: Smithy",
+			"Kojoto": "Japanese: Mill Person",
+			"Midorifu": "Japanese: Green Skin",
+			"Noko-": "Japanese: Child Of",
+			"Ryoshi": "Japanese: Fisher",
+			"Shinjuha": "Japanese: Pearl Tooth",
+			"Shizuka": "",
+			"Yeo": ""
+		},
+		"Zikaru": {
+			"Bandumu": "Akkadian: SMall",
+			"Barbarulibu": "Akkadian: Wolf Heart",
+			"Gidru": "Akkadian: Strike",
+			"Inmar": "Akkadian: Child Of",
+			"Kibtusum": "Akkadian: Wheat Fresh",
+			"Nevins": "",
+			"Nunulu": "Akkadian: Fish Man",
+			"Samu": "Akkadian: Sky",
+			"Uqnumsinnu": "Akkadian: Blue Tooth",
+			"Warquisum": "Akkadian: Green Wood"
+		},
+		"Tembo": {
+			"Wagar": ""
+		},
+		"Perwhüa": {
+		},
+		"Kets'Rir": {
+		},
+		"Gargoyles": {
+		}
+	},
 	"Amaru": {
 		"rp": 12,
 		"age": {
