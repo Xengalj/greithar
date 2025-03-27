@@ -66,7 +66,6 @@
         </router-link>
       </el-col>
     </el-row>
-
   </div>
 </template>
 
@@ -96,7 +95,6 @@ export default {
           error.toString();
       }
     );
-
   },
 };
 </script>
