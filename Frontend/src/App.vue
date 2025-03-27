@@ -4,13 +4,11 @@
       <el-header>
         <Header/>
       </el-header>
-      <el-container>
-        <el-container class="wrapper">
-          <el-main class="main">
-            <h1 class="jumbotron center-horz title">{{ pageTitle }}</h1>
-            <router-view v-model="pageTitle"/>
-          </el-main>
-        </el-container>
+      <el-container class="wrapper">
+        <el-main class="main">
+          <h1 class="jumbotron center-horz title">{{ pageTitle }}</h1>
+          <router-view v-model="pageTitle"/>
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -29,7 +27,7 @@ export default {
     },
     currentUser() {
       return this.$store.state.auth.user;
-    }
+    },
   },
   data() {
     return {
@@ -41,6 +39,9 @@ export default {
   },
 
   mounted() {
+    this.$store.dispatch('data/init'); // Init the data jsons from back end
+    console.log(this.$store.state.data);
+
     this.usermeta.faveColor = "--el-color-primary: " + this.currentUser.usermeta.faveColor + " !important";
     document.documentElement.style.cssText = this.usermeta.faveColor;
 

@@ -645,7 +645,6 @@
 </template>
 
 <script>
-import DataService from "@/services/data.service";
 import HexGraph from '@/components/template/HexGraph.vue'
 
 export default {
@@ -715,9 +714,10 @@ export default {
     }
   },
   created() {
-    DataService.getRules().then ( (response) => { this.rules = response; });
-    DataService.getClasses().then ( (response) => { this.classes = response; });
-    DataService.getEquipment().then ( (response) => { this.equipment = response; });
+    this.rules = this.$store.state.data.rules;
+    this.classes = this.$store.state.data.classes;
+    this.equipment = this.$store.state.data.equipment;
+
     // this.conditionSelect = rules.conditions;
   },
   mounted() {

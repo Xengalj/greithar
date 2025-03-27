@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import DataService from "@/services/data.service";
+// import DataService from "@/services/data.service";
 import EquipmentTable from "./EquipmentTable.vue";
 
 export default {
@@ -59,18 +59,11 @@ export default {
   created() {
     this.getEquipment();
   },
-  mounted() {},
   methods: {
-    async getEquipment() {
+    getEquipment() {
       this.loading = true;
-      DataService.getEquipment()
-      .then(response => {
-        // console.log("Server:", response);
-        this.equipment = response;
-        this.tableUpdate();
-      })
-      .catch(err => { console.error(err); })
-
+      this.equipment = this.$store.state.data.equipment;
+      this.tableUpdate();
     },
     tableUpdate() {
       this.tableData = this.equipment[this.selectedType.label] ? this.equipment[this.selectedType.label] : {};

@@ -58,11 +58,11 @@ export default {
     }
   },
   created() {
-    DataService.getRules().then( (response) => { this.rules = response; } );
-    DataService.getRaces().then ( (response) => { this.races = response; } );
-    DataService.getClasses().then ( (response) => { this.classes = response; } );
-    DataService.getEquipment().then( (response) => { this.equipment = response; } );
-    DataService.getFeats().then( (response) => { this.feats = response; } );
+    this.rules = this.$store.state.data.rules;
+    this.races = this.$store.state.data.races;
+    this.classes = this.$store.state.data.classes;
+    this.equipment = this.$store.state.data.equipment;
+    this.feats = this.$store.state.data.feats;
 
     UserService.getAdminBoard().then(
       (response) => { this.content = response.data; },
