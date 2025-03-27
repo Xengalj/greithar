@@ -414,7 +414,7 @@
                     {{ name }}
                   </el-col>
                   <el-col :span="4" class="center-vert center-horz" v-if="action.extras.showMain == true" >
-                    <el-button :type=" (action.active) ? 'primary' : 'info'" size="small" @click="toggleAbility(name, action)">{{ action.trigger == "Toggle" ? "Free" : action.trigger }}</el-button>
+                    <el-button :type=" (action.extras.active) ? 'primary' : 'info'" size="small" @click="toggleAbility(name, action)">{{ action.trigger == "Toggle" ? "Free" : action.trigger }}</el-button>
                   </el-col>
                   <el-col :span="12" class="center-vert" v-if="action.extras.showMain == true" >
                     {{ action.benefit }}
@@ -523,7 +523,7 @@
       <el-collapse v-model="openContainers">
         <el-collapse-item v-for="(container, cName) in inventory" :key="cName" :title="cName" :name="cName">
           <el-row>
-            <el-col :span="3"> <g-icon iconSize="32px" iconName="equipment" /> </el-col>
+            <el-col :span="3"> <g-icon iconSize="32px" iconName="inventory" /> </el-col>
             <el-col :span="7"> {{ cName }} </el-col>
             <el-col :span="2"> {{ container.totalValue }} </el-col>
             <el-col :span="2"> {{ container.totalWeight }} </el-col>
@@ -553,60 +553,59 @@
 
     <!-- Skills -->
     <el-tab-pane label="Skills" name="third">
-      <el-col :span="7">
-        Languages
-        <br>
-        {{ this.original.Languages }}
-      </el-col>
-      <el-col :span="7">
-        Skills
-        <!-- skill name      bonus (ranks, class, bonuses)    armor penalty     example uses    -->
-        <!-- craft (general)  // cannot add rankks, used for any craft you don't have -->
-        <br>
-        {{ this.original.Skills }}
-        <br>
-        {{ skills.Stealth }}<br>
-      </el-col>
+      <el-row v-if="skills.Linguistics && skills.Linguistics.extras">
+        <el-col :span="3"> Languages: </el-col>
+        <el-col :span="21">
+          <el-tag size="small" effect="dark" type="primary" v-for="language in skills.Linguistics.extras.languages" :key="language">{{ language }}</el-tag>
+        </el-col>
+      </el-row>
+      <el-divider />
+
+      <div v-for="(skill, name) in skills" :key="name">
+        <el-row v-if="skill.untrained || skill.ranks" style="margin-bottom:5px; border-bottom:1px solid grey">
+          <el-col :span="5">{{ name }}</el-col>
+          <el-col :span="5" class="center-horz"><!-- Bonus -->
+            <el-tooltip placement="top" effect="light">
+              {{ skill.bonus.total }}
+              <template #content>
+                <span v-for="bonus in skill.bonus.sources" :key="bonus"> {{ bonus+" " }} </span>
+              </template>
+            </el-tooltip>
+          </el-col>
+          <el-col :span="2"> {{ skill.ability }} </el-col>
+        </el-row>
+      </div>
     </el-tab-pane>
 
     <!-- Abilities -->
     <el-tab-pane label="Abilities" name="fourth">
-      <!-- ablity name    toggle?     description   source? [edit] -->
-      <el-col :span="7" class="center">
-        Feats
-        <br>
-        {{ this.source.feats }}
-      </el-col>
-
-
-actions:
-
-      <el-row v-if="Object.keys(actions.special).length > 0">
-        <el-divider />
-        on Main       active       name         action         effects 
-        <el-col :span="6">Special</el-col>
-        <el-col :span="3">Action</el-col>
-        <el-col :span="8">Effects</el-col>
-        <el-col :span="6"><el-tag size="small" effect="dark" type="primary">CMB +{{ cmb.total }}</el-tag></el-col>
+      <el-row class="center-horz">
+        <el-col :span="5">Name</el-col>
+        <el-col :span="3">Toggles</el-col>
+        <el-col :span="12">Description</el-col>
+        <el-col :span="2">Source</el-col>
+        <el-col :span="2">Edit</el-col>
       </el-row>
-      <el-row v-for="(action, name) in actions.special" :key="name" :gutter="2">
-          <el-col :span="5" class="center-vert" v-if="action.extras.showMain == true" >
-            <g-icon iconSize="20px" iconName="abilityPalm" />
-            {{ name }}
-          </el-col>
-          <el-col :span="4" class="center-vert center-horz" v-if="action.extras.showMain == true" >
-            <el-button :type=" (action.active) ? 'primary' : 'info'" size="small" @click="toggleAbility(name, action)">{{ action.trigger == "Toggle" ? "Free" : action.trigger }}</el-button>
-          </el-col>
-          <el-col :span="12" class="center-vert" v-if="action.extras.showMain == true" >
-            {{ action.benefit }}
-          </el-col>
-        </el-row>
+      <el-divider />
 
-
-
-
-
-
+      <el-row v-for="(abil, name) in abilities" :key="name" style="margin-bottom:5px;">
+        <el-col :span="5">{{ name }}</el-col>
+        <el-col :span="3">
+          <el-button style="width:95%; margin: 0;" :type="abil.extras.active?'primary':'info'" size="small" :disabled="abil.trigger=='Continuous'?true:false" @click="toggleAbility(name, abil)">{{ abil.trigger == "Toggle" ? "Free" : abil.trigger }}</el-button>
+          <el-button style="width:95%; margin: 0;" :type="abil.extras.showMain?'primary':'info'" size="small" @click="abilShowMain(name, abil)">{{ abil.extras.showMain ? "On Main" : "Just Here" }}</el-button>
+        </el-col>
+        <el-col :span="12"> {{ abil.description }} </el-col>
+        <el-col :span="2" class="center-horz;">
+          <el-tag size="small" effect="dark" type="primary">
+            {{ abil.extras.source }}
+          </el-tag>
+        </el-col>
+        <el-col :span="2" class="center-horz;">
+          <el-button type="info" circle @click="editAbility(abil)">
+            <g-icon iconSize="20px" iconColor="#000" iconName="quill" />
+          </el-button>
+        </el-col>
+      </el-row>
     </el-tab-pane>
 
     <!-- Magic -->
@@ -625,6 +624,14 @@ actions:
       <!-- [LEVEL UP] -->
       <!-- add ability (ability & bonuses -> actions) -->
       <!-- EDIT BASICS (name, race, alignment, attributes, casting style, etc) -->
+      <!--
+      Size <el-select-v2 v-model="basics.size" :options="this.sizeSelect" size="small" style="width: 120px" />
+      <br><br>
+      Bonuses
+      <div v-for="(item, name) in bonuses" :key="name">
+        {{ name }} : {{ item }}
+      </div>
+    -->
     </el-tab-pane>
   </el-tabs>
 
@@ -634,19 +641,6 @@ actions:
       <el-button type="primary" @click="saveMonster()"> Save Changes </el-button>
     </el-col>
   </el-row>
-
-  <br><br><br>
-
-
-  <br><br><br>
-
-
-  Size <el-select-v2 v-model="basics.size" :options="this.sizeSelect" size="small" style="width: 120px" />
-  <br>
-  Bonuses
-  <div v-for="(item, name) in bonuses" :key="name">
-    {{ name }} : {{ item }}
-  </div>
 
 </template>
 
@@ -666,8 +660,8 @@ export default {
       classes: {},
       equipment: {},
 
-      cardTab: "fourth",
-      openSections: [ "conditions" ],
+      cardTab: "first",
+      openSections: [ "defense", "conditions" ],
       openContainers: [],
       sizeSelect: [
         { value: "Fine", label: "Fine", },
@@ -714,6 +708,7 @@ export default {
       ],
       addingCondition: false,
       newCondition: {},
+      editingAbil: false,
 
 
       original: {}
@@ -734,14 +729,12 @@ export default {
 
   computed: {
     title() { return this.source.name ? this.source.name.concat(" CR ", this.source.basics.cr) : ""; },
-    abilities() { return this.source.abilities; },
-    inventory() { return this.source.equipment; },
     bonuses() {
       let bonuses = {};
       if (this.source.name) {
         // Add feats and other abilities to bonuses
         for (const ability in this.abilities) {
-          if (this.abilities[ability].active && this.abilities[ability].bonuses) {
+          if (this.abilities[ability].extras.active && this.abilities[ability].bonuses) {
             for (const [name, bonus] of Object.entries(this.abilities[ability].bonuses)) {
               bonuses[name] = bonus;
             }
@@ -777,6 +770,123 @@ export default {
       }
       return bonuses;
     },
+    actions() {
+      let actions = { melee: {}, ranged: {}, special: {} };
+      if (this.source.name && this.rules.natural_attacks) {
+        let NatAtkNum = 0;
+        for (let type of Object.entries(this.source.actions)) {
+          type = type[0];
+
+          for (const [name, atk] of Object.entries(this.source.actions[type])) {
+            // console.log(name, atk);
+            if (type == 'special') {
+              actions.special[name] = atk;
+              continue;
+            }
+
+            let newAtk = {
+              dmgBonus: { "total": 0, "sources": [] },
+              atkBonus: { "total": 0, "sources": [] }
+            };
+
+            NatAtkNum += (atk.Proficiency == "Natural" && Object.keys(this.rules.natural_attacks).includes(name)) ? 1 : 0;
+            newAtk.atkBonus.total += this.bab;
+            newAtk.atkBonus.sources.push(`+${this.bab} BAB`);
+            if (this.basics.size != "medium") {
+              newAtk.atkBonus.total += this.basics.sizeStats["ac / atk"];
+              newAtk.atkBonus.sources.push(`+${this.basics.sizeStats["ac / atk"]} Size`);
+            }
+
+            // Add mwk or magic enhancements to atk bonus
+            if (atk.Extras && atk.Extras["enhancement"]) {
+              newAtk.atkBonus.total += atk.Extras["enhancement"];
+              newAtk.atkBonus.sources.push(`+${atk.Extras["enhancement"]} Magic Enhancement`);
+              newAtk.dmgBonus.total += atk.Extras["enhancement"];
+              newAtk.dmgBonus.sources.push(`+${atk.Extras["enhancement"]} Magic Enhancement`);
+            } else if (atk.Extras && atk.Extras["masterwork"]) {
+              newAtk.atkBonus.total += 1;
+              newAtk.atkBonus.sources.push(`+1 Masterwork`);
+            }
+
+            // Add AbilMod to atkBonus
+            if (atk.category == "Ranged" || type == "ranged") {
+              newAtk.atkBonus.total += this.attributes.DexMod;
+              newAtk.atkBonus.sources.push(`+${this.attributes.DexMod} Dex`);
+            } else if (atk.Category == "Secondary") {
+              newAtk.atkBonus.total += this.attributes.StrMod - 5;
+              newAtk.atkBonus.sources.push(`+${this.attributes.StrMod - 5} Str`);
+            } else {
+              newAtk.atkBonus.total += this.attributes.StrMod;
+              newAtk.atkBonus.sources.push(`+${this.attributes.StrMod} Str`);
+            }
+
+            // Add AbilMod to dmgBonus
+            if (atk.Group && atk.Group.includes("Thrown") ||
+                (atk.Group && atk.Group.includes("Bows") && this.attributes.StrMod < 0) ||
+                (atk.Group && atk.Group.includes("Bows") && name.includes("Composite")) ) {
+              newAtk.dmgBonus.total += this.attributes.StrMod;
+              newAtk.dmgBonus.sources.push(`+${this.attributes.StrMod} Str`);
+
+            } else if (atk.Category == "Two-Handed") {
+              newAtk.dmgBonus.total += this.attributes.StrMod * 1.5;
+              newAtk.dmgBonus.sources.push(`+${this.attributes.StrMod * 1.5} Str`);
+
+            } else if (!Object.keys(this.rules.natural_attacks).includes(name)) {
+              // Fake Natural Attack, like Death Worm's Electrical Jolt
+
+            } else if (atk.Category == "Secondary") {
+              newAtk.dmgBonus.total += this.attributes.StrMod / 2;
+              newAtk.dmgBonus.sources.push(`+${this.attributes.StrMod / 2} Str`);
+
+
+            } else {
+              newAtk.dmgBonus.total += this.attributes.StrMod;
+              newAtk.dmgBonus.sources.push(`+${this.attributes.StrMod} Str`);
+            }
+            // Dual Wield Off Hand penalty done in abilities / bonuses
+
+            // Add Active Bonuses
+            this.bonusLoop(newAtk.atkBonus, type.concat("AtkBonus"));
+            this.bonusLoop(newAtk.dmgBonus, type.concat("DmgBonus"));
+
+            if (NatAtkNum>1) { newAtk.atkNum = NatAtkNum; }
+            newAtk.dmgDie = atk.Damage[this.basics.size];
+            newAtk.crit = {};
+            newAtk.crit.range = atk.Critical.split("/")[0];
+            newAtk.crit.mult = atk.Critical.split("/")[1];
+            newAtk.extras = (atk.Extras) ? atk.Extras : [];
+            // console.log(`${NatAtkNum>1 ? NatAtkNum : ""} ${name} +${newAtk.atkBonus.total} (${newAtk.dmgDie}+${newAtk.dmgBonus.total} /${atk.Critical})`);
+            actions[type][name] = newAtk;
+
+          } // End Action Loop
+        } // End Action Types Loop
+        if (NatAtkNum == 1) {
+          for (const atk of Object.values(actions.melee)) {
+            atk.dmgBonus.total += this.attributes.StrMod / 2;
+            atk.dmgBonus.sources.push(`+${this.attributes.StrMod / 2} Str`);
+          }
+        }
+      }
+      return actions;
+    },
+    abilities() {
+      let abilities = this.source.abilities;
+      if (this.source.name) {
+        for (let actions of Object.entries(this.actions)) {
+          if (actions[0] == "special") {
+            actions = actions[1];
+            for (var action in actions) {
+              if (!Object.keys(abilities).includes(action)) {
+                abilities[action] = actions[action];
+              }
+            }
+          }
+        }
+      }
+      return abilities;
+    },
+    inventory() { return this.source.equipment; },
+
     attributes() {
       let attributes = {
         Str: { total: 0, sources: [] }, StrMod: -5,
@@ -879,7 +989,9 @@ export default {
         ac.touch.sources.push(`+${this.attributes.DexMod} Dex`);
         if (this.basics.size != "medium") {
           ac.touch.total += this.basics.sizeStats["ac / atk"];
+
           ac.touch.sources.push(`+${this.basics.sizeStats["ac / atk"]} Size`);
+          // // TODO: -
         }
 
         // flat = creature.ac.total - bonus.dex - bonus.dodge;
@@ -1059,124 +1171,49 @@ export default {
       bab = Math.floor(bab);
       return bab;
     },
-    actions() {
-      let actions = { melee: {}, ranged: {}, special: {} };
-      if (this.source.name && this.rules.natural_attacks) {
-        let NatAtkNum = 0;
-        for (let type of Object.entries(this.source.actions)) {
-          type = type[0];
-
-          for (const [name, atk] of Object.entries(this.source.actions[type])) {
-            // console.log(name, atk);
-            if (type == 'special') {
-              actions.special[name] = atk;
-              continue;
-            }
-
-            let newAtk = {
-              dmgBonus: { "total": 0, "sources": [] },
-              atkBonus: { "total": 0, "sources": [] }
-            };
-
-            NatAtkNum += (atk.Proficiency == "Natural" && Object.keys(this.rules.natural_attacks).includes(name)) ? 1 : 0;
-            newAtk.atkBonus.total += this.bab;
-            newAtk.atkBonus.sources.push(`+${this.bab} BAB`);
-            if (this.basics.size != "medium") {
-              newAtk.atkBonus.total += this.basics.sizeStats["ac / atk"];
-              newAtk.atkBonus.sources.push(`+${this.basics.sizeStats["ac / atk"]} Size`);
-            }
-
-            // Add mwk or magic enhancements to atk bonus
-            if (atk.Extras && atk.Extras["enhancement"]) {
-              newAtk.atkBonus.total += atk.Extras["enhancement"];
-              newAtk.atkBonus.sources.push(`+${atk.Extras["enhancement"]} Magic Enhancement`);
-              newAtk.dmgBonus.total += atk.Extras["enhancement"];
-              newAtk.dmgBonus.sources.push(`+${atk.Extras["enhancement"]} Magic Enhancement`);
-            } else if (atk.Extras && atk.Extras["masterwork"]) {
-              newAtk.atkBonus.total += 1;
-              newAtk.atkBonus.sources.push(`+1 Masterwork`);
-            }
-
-            // Add AbilMod to atkBonus
-            if (atk.category == "Ranged" || type == "ranged") {
-              newAtk.atkBonus.total += this.attributes.DexMod;
-              newAtk.atkBonus.sources.push(`+${this.attributes.DexMod} Dex`);
-            } else if (atk.Category == "Secondary") {
-              newAtk.atkBonus.total += this.attributes.StrMod - 5;
-              newAtk.atkBonus.sources.push(`+${this.attributes.StrMod - 5} Str`);
-            } else {
-              newAtk.atkBonus.total += this.attributes.StrMod;
-              newAtk.atkBonus.sources.push(`+${this.attributes.StrMod} Str`);
-            }
-
-            // Add AbilMod to dmgBonus
-            if (atk.Group && atk.Group.includes("Thrown") ||
-                (atk.Group && atk.Group.includes("Bows") && this.attributes.StrMod < 0) ||
-                (atk.Group && atk.Group.includes("Bows") && name.includes("Composite")) ) {
-              newAtk.dmgBonus.total += this.attributes.StrMod;
-              newAtk.dmgBonus.sources.push(`+${this.attributes.StrMod} Str`);
-
-            } else if (atk.Category == "Two-Handed") {
-              newAtk.dmgBonus.total += this.attributes.StrMod * 1.5;
-              newAtk.dmgBonus.sources.push(`+${this.attributes.StrMod * 1.5} Str`);
-
-            } else if (!Object.keys(this.rules.natural_attacks).includes(name)) {
-              // Fake Natural Attack, like Death Worm's Electrical Jolt
-
-            } else if (atk.Category == "Secondary") {
-              newAtk.dmgBonus.total += this.attributes.StrMod / 2;
-              newAtk.dmgBonus.sources.push(`+${this.attributes.StrMod / 2} Str`);
-
-
-            } else {
-              newAtk.dmgBonus.total += this.attributes.StrMod;
-              newAtk.dmgBonus.sources.push(`+${this.attributes.StrMod} Str`);
-            }
-            // Dual Wield Off Hand penalty done in abilities / bonuses
-
-            // Add Active Bonuses
-            this.bonusLoop(newAtk.atkBonus, type.concat("AtkBonus"));
-            this.bonusLoop(newAtk.dmgBonus, type.concat("DmgBonus"));
-
-            if (NatAtkNum>1) { newAtk.atkNum = NatAtkNum; }
-            newAtk.dmgDie = atk.Damage[this.basics.size];
-            newAtk.crit = {};
-            newAtk.crit.range = atk.Critical.split("/")[0];
-            newAtk.crit.mult = atk.Critical.split("/")[1];
-            newAtk.extras = (atk.Extras) ? atk.Extras : [];
-            // console.log(`${NatAtkNum>1 ? NatAtkNum : ""} ${name} +${newAtk.atkBonus.total} (${newAtk.dmgDie}+${newAtk.dmgBonus.total} /${atk.Critical})`);
-            actions[type][name] = newAtk;
-
-          } // End Action Loop
-        } // End Action Types Loop
-        if (NatAtkNum == 1) {
-          for (const atk of Object.values(actions.melee)) {
-            atk.dmgBonus.total += this.attributes.StrMod / 2;
-            atk.dmgBonus.sources.push(`+${this.attributes.StrMod / 2} Str`);
-          }
-        }
-      }
-      return actions;
-    },
-
-    // TODO: add + to start of bonus
     skills() {
       let skills = {};
       if (this.source.name && this.classes["commoner"] && this.rules.skills) {
         for (const [name, skill] of Object.entries(this.source.skills)) {
-          let bonus = 0;
-          if (skill.ranks) {
-            bonus += skill.ranks;
-            bonus += skill.class ? 3 : 0;
+          let bonus = { "total": 0, "sources": [] };
+
+          // Size Mod
+          if (name == "Stealth" || name == "Fly") {
+            bonus.total += this.basics.sizeStats[name.toLowerCase()];
+            let str = (this.basics.sizeStats[name.toLowerCase()] < 0) ? "" : "+";
+            str = str.concat(`${this.basics.sizeStats[name.toLowerCase()]} Size`);
+            bonus.sources.push(str);
           }
-          bonus += this.attributes[skill.ability.concat("Mod")];
+
+          // Ranks
+          if (skill.ranks) {
+            bonus.total += skill.ranks;
+            bonus.sources.push(`+${skill.ranks} Ranks`);
+            if (skill.class) {
+              bonus.total += 3;
+              bonus.sources.push("+3 Class Skill");
+            }
+          }
+
+          // Ability
+          bonus.total += this.attributes[skill.ability.concat("Mod")];
+          let str = this.attributes[skill.ability.concat("Mod")] < 0 ? "" : "+";
+          str = str.concat(`${this.attributes[skill.ability.concat("Mod")]} ${skill.ability.concat("Mod")}`);
+          bonus.sources.push(str);
+
+          // Armor Penalty
           if (skill.armor_pen) {
-            for (const name of Object.keys(this.bonuses)) {
-              if (this.inventory[name] && this.inventory[name].Penalty) {
-                bonus += this.inventory[name].Penalty;
+            for (const iName of Object.keys(this.bonuses)) {
+              if (this.inventory[iName] && this.inventory[iName].Penalty) {
+                bonus.total += this.inventory[iName].Penalty;
+                bonus.sources.push(`${this.inventory[iName].Penalty} ${iName}`);
               }
             }
           }
+          this.bonusLoop(bonus, name);
+
+          // Add leading +
+          bonus.total = (bonus.total > -1) ? "+".concat(bonus.total) : bonus.total;
           skill.bonus = bonus;
           skills[name] = skill;
         }
@@ -1262,45 +1299,49 @@ export default {
     bonusLoop(object, tString) {
       // Add Active Bonuses
       let typedBonuses = {};
-      for (let [name, bonus] of Object.entries(this.bonuses)) {
-        // If the bonus type doesn't stack
-        // If we have that type already && the current is higher, skip
-        // Else, replace / add it
-        if (this.rules.bonuses && Object.keys(this.rules.bonuses).includes(bonus.type)) {
-          if (typedBonuses[bonus.type] && typedBonuses[bonus.type].value > bonus.value) {
-            continue;
-          } else {
-            // remove previos values from either atk or dmg or both
-            if (typedBonuses[bonus.type]) {
-              bonus.targets.forEach(target => {
-                if (target == tString) {
-                  object.total -= typedBonuses[bonus.type].value;
-                  // loop on sources looking for the one to remove
-                  object.sources.forEach((source, i) => {
-                    if ( source.includes(typedBonuses[bonus.type].name) ) {
-                      object.sources.splice(i, 1);
-                    }
-                  });
-                }
-              });
+      if (this.bonuses) {
+        for (let [name, bonus] of Object.entries(this.bonuses)) {
+          // If the bonus type doesn't stack
+          // If we have that type already && the current is higher, skip
+          // Else, replace / add it
+          if (this.rules.bonuses && Object.keys(this.rules.bonuses).includes(bonus.type)) {
+            if (typedBonuses[bonus.type] && typedBonuses[bonus.type].value > bonus.value) {
+              continue;
+            } else {
+              // remove previos values from either atk or dmg or both
+              if (typedBonuses[bonus.type]) {
+                bonus.targets.forEach(target => {
+                  if (target == tString) {
+                    object.total -= typedBonuses[bonus.type].value;
+                    // loop on sources looking for the one to remove
+                    object.sources.forEach((source, i) => {
+                      if ( source.includes(typedBonuses[bonus.type].name) ) {
+                        object.sources.splice(i, 1);
+                      }
+                    });
+                  }
+                });
+              }
+              typedBonuses[bonus.type] = { name: name, value: bonus.value };
             }
-            typedBonuses[bonus.type] = { name: name, value: bonus.value };
           }
-        }
-        // If bonus.targets includes tString, apply it
-        bonus.targets.forEach(target => {
-          if (target == tString) {
-            object.total += parseInt(bonus.value);
-            object.sources.push(`+${bonus.value} ${name}`);
-          }
-        });
-      } // End Bonuses Loop
+          // If bonus.targets includes tString, apply it
+          bonus.targets.forEach(target => {
+            if (target == tString) {
+              object.total += parseInt(bonus.value);
+              object.sources.push(`+${bonus.value} ${name}`);
+            }
+          });
+        } // End Bonuses Loop
+      }
+
     },
 
     rest() {
       console.log('REST UP: HP, SPELLS');
     },
 
+    // CONDITION METHODS
     addNewContion() {
       this.addingCondition = true;
       this.newCondition = {
@@ -1325,16 +1366,30 @@ export default {
       this.conditions.push(this.newCondition);
       this.addingCondition = false;
     },
+
+    // ABITLY METHODS
     toggleAbility(name, abil) {
       if (this.conditions[name]) {
         delete this.conditions[name];
-        this.actions.special[name].active = false;
+        this.actions.special[name].extras.active = false;
       } else {
         this.conditions[name] = abil;
-        this.actions.special[name].active = true;
+        this.actions.special[name].extras.active = true;
       }
     },
+    abilShowMain(name, abil) { abil.extras.showMain = abil.extras.showMain ? false : true; },
+    editAbility(abil) {
+      console.log(abil);
+      this.$message({ message: "NOT YET IMPLEMENTED", type: "warning" });
+    },
 
+    // MAGIC METHODS
+
+    // EDIT METHODS
+
+    saveMonster() {
+      console.log(this);
+    }
 
   }
 }

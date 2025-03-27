@@ -130,7 +130,7 @@
     "fine": {
       "ac / atk":   8,
       "cmb / cmd": -8,
-      "flight":     8,
+      "fly":     8,
       "stealth":    16,
       "carry mod":  0.125,
       "extra legs": 0.25,
@@ -144,7 +144,7 @@
     "diminuitive": {
       "ac / atk":   4,
       "cmb / cmd": -4,
-      "flight":     6,
+      "fly":     6,
       "stealth":    12,
       "carry mod":  0.25,
       "extra legs": 0.5,
@@ -158,7 +158,7 @@
     "tiny": {
       "ac / atk":   2,
       "cmb / cmd":  -2,
-      "flight":     4,
+      "fly":     4,
       "stealth":    8,
       "carry mod":  0.5,
       "extra legs": 0.75,
@@ -172,7 +172,7 @@
     "small": {
       "ac / atk":   1,
       "cmb / cmd":  -1,
-      "flight":     2,
+      "fly":     2,
       "stealth":    4,
       "carry mod":  0.5,
       "extra legs": 1,
@@ -186,7 +186,7 @@
     "medium": {
       "ac / atk":   0,
       "cmb / cmd":  0,
-      "flight":     0,
+      "fly":     0,
       "stealth":    0,
       "carry mod":  1,
       "extra legs": 1.5,
@@ -200,7 +200,7 @@
     "large": {
       "ac / atk":   -1,
       "cmb / cmd":  1,
-      "flight":     -2,
+      "fly":     -2,
       "stealth":    -4,
       "carry mod":  2,
       "extra legs": 3,
@@ -214,7 +214,7 @@
     "huge": {
       "ac / atk":   -2,
       "cmb / cmd":  2,
-      "flight":     -4,
+      "fly":     -4,
       "stealth":    -8,
       "carry mod":  4,
       "extra legs": 6,
@@ -228,7 +228,7 @@
     "gargantuan": {
       "ac / atk":   -4,
       "cmb / cmd":  4,
-      "flight":     -6,
+      "fly":     -6,
       "stealth":    -12,
       "carry mod":  8,
       "extra legs": 12,
@@ -242,7 +242,7 @@
     "colossal": {
       "ac / atk":   -8,
       "cmb / cmd":  8,
-      "flight":     -8,
+      "fly":     -8,
       "stealth":    -16,
       "carry mod":  16,
       "extra legs": 24,
@@ -348,7 +348,7 @@
       "traits": {
         "Darkvision": {
           "trigger": "Continuous",
-          "descripction": "Aberrations can see in the dark up to 60 feet.",
+          "description": "Aberrations can see in the dark up to 60 feet.",
           "benefit": { "target": "senses", "text": "Darkvision 60 ft." },
           "bonuses": {}
         }
@@ -365,7 +365,7 @@
       "traits": {
         "Low-light Vision": {
           "trigger": "Continuous",
-          "descripction": "Animals can see color in dim light.",
+          "description": "Animals can see color in dim light.",
           "benefit": { "target": "senses", "text": "Low-Light Vision" },
           "bonuses": {}
         }
@@ -382,19 +382,19 @@
       "traits": {
         "Darkvision": {
           "trigger": "Continuous",
-          "descripction": "Constructs can see in the dark up to 60 feet.",
+          "description": "Constructs can see in the dark up to 60 feet.",
           "benefit": { "target": "senses", "text": "Darkvision 60 ft." },
           "bonuses": {}
         },
         "Low-light Vision": {
           "trigger": "Continuous",
-          "descripction": "Constructs can see color in dim light.",
+          "description": "Constructs can see color in dim light.",
           "benefit": { "target": "senses", "text": "Low-Light Vision" },
           "bonuses": {}
         },
         "Construct Immunities": {
           "trigger": "Continuous",
-          "descripction": "Constructs is a magically animated or artificially created creatures, granting them a number of immunities.",
+          "description": "Constructs is a magically animated or artificially created creatures, granting them a number of immunities.",
           "benefit": { "target": "immunities", "text":
             "nonlethal damage, necromancy, fatigue, exhaustion, stunning, paralysis, sleep, poison, mind effects, disease, ability damage, death effects, ability drain, energy drain"
           },
@@ -413,19 +413,19 @@
       "traits": {
         "Darkvision": {
           "trigger": "Continuous",
-          "descripction": "Dragons can see in the dark up to 60 feet.",
+          "description": "Dragons can see in the dark up to 60 feet.",
           "benefit": { "target": "senses", "text": "Darkvision 60 ft." },
           "bonuses": {}
         },
         "Low-light Vision": {
           "trigger": "Continuous",
-          "descripction": "Dragons can see color in dim light.",
+          "description": "Dragons can see color in dim light.",
           "benefit": { "target": "senses", "text": "Low-Light Vision" },
           "bonuses": {}
         },
         "Dragon Immunities": {
           "trigger": "Continuous",
-          "descripction": "Dragons are immune to magical sleep and paralysis.",
+          "description": "Dragons are immune to magical sleep and paralysis.",
           "benefit": { "target": "immunities", "text": "paralysis, sleep" },
           "bonuses": {}
         }
@@ -442,7 +442,7 @@
       "traits": {
         "Low-light Vision": {
           "trigger": "Continuous",
-          "descripction": "Fey can see color in dim light.",
+          "description": "Fey can see color in dim light.",
           "benefit": { "target": "senses", "text": "Low-Light Vision" },
           "bonuses": {}
         }
@@ -469,13 +469,13 @@
       "traits": {
         "Darkvision": {
           "trigger": "Continuous",
-          "descripction": "Magical Beasts can see in the dark up to 60 feet.",
+          "description": "Magical Beasts can see in the dark up to 60 feet.",
           "benefit": { "target": "senses", "text": "Darkvision 60 ft." },
           "bonuses": {}
         },
         "Low-light Vision": {
           "trigger": "Continuous",
-          "descripction": "Magical Beasts can see color in dim light.",
+          "description": "Magical Beasts can see color in dim light.",
           "benefit": { "target": "senses", "text": "Low-Light Vision" },
           "bonuses": {}
         }
@@ -492,7 +492,7 @@
       "traits": {
         "Darkvision": {
           "trigger": "Continuous",
-          "descripction": "Monstrous Humanoids can see in the dark up to 60 feet.",
+          "description": "Monstrous Humanoids can see in the dark up to 60 feet.",
           "benefit": { "target": "senses", "text": "Darkvision 60 ft." },
           "bonuses": {}
         }
@@ -530,7 +530,7 @@
         },
         "Ooze Immunities": {
           "trigger": "Continuous",
-          "descripction": "Oozes have no Intelligence score, giving them immunity to mind effects, they also have a number of other immunities.",
+          "description": "Oozes have no Intelligence score, giving them immunity to mind effects, they also have a number of other immunities.",
           "benefit": { "target": "immunities", "text": "critical hits, flanking, illusions, paralysis, poison, sleep, stunning, mind effects, polymorph, precision damage, gaze attacks, visual effects" },
           "bonuses": {}
         }
@@ -547,7 +547,7 @@
       "traits": {
         "Darkvision": {
           "trigger": "Continuous",
-          "descripction": "Outsiders can see in the dark up to 60 feet.",
+          "description": "Outsiders can see in the dark up to 60 feet.",
           "benefit": { "target": "senses", "text": "Darkvision 60 ft." },
           "bonuses": {}
         }
@@ -564,13 +564,13 @@
       "traits": {
         "Low-light Vision": {
           "trigger": "Continuous",
-          "descripction": "Plants can see color in dim light.",
+          "description": "Plants can see color in dim light.",
           "benefit": { "target": "senses", "text": "Low-Light Vision" },
           "bonuses": {}
         },
         "Plant Immunities": {
           "trigger": "Continuous",
-          "descripction": "Plants are immune to a number of afects and abilities, mostly related to poisons or mind effects.",
+          "description": "Plants are immune to a number of afects and abilities, mostly related to poisons or mind effects.",
           "benefit": { "target": "immunities", "text": "mind effects, paralysis, poison, polymorph, sleep, stunning" },
           "bonuses": {}
         }
@@ -587,13 +587,13 @@
       "traits": {
         "Darkvision": {
           "trigger": "Continuous",
-          "descripction": "Undead can see in the dark up to 60 feet.",
+          "description": "Undead can see in the dark up to 60 feet.",
           "benefit": { "target": "senses", "text": "Darkvision 60 ft." },
           "bonuses": {}
         },
         "Undead Immunities": {
           "trigger": "Continuous",
-          "descripction": "Undead are immune to a number of afects and abilities, mostly related to injuries the living may sustain like diseases.",
+          "description": "Undead are immune to a number of afects and abilities, mostly related to injuries the living may sustain like diseases.",
           "benefit": { "target": "immunities", "text": "nonlethal damage, mind effects, bleed, disease, sleep, paralysis, poison, stunning, exhaustion, fatigue, death effects, physical ability damage, ability drain, energy drain" },
           "bonuses": {}
         }
@@ -610,13 +610,13 @@
       "traits": {
         "Darkvision": {
           "trigger": "Continuous",
-          "descripction": "Vermin can see in the dark up to 60 feet.",
+          "description": "Vermin can see in the dark up to 60 feet.",
           "benefit": { "target": "senses", "text": "Darkvision 60 ft." },
           "bonuses": {}
         },
         "Mindless": {
           "trigger": "Continuous",
-          "descripction": "Vermin have no intelligence score, and immunity to all mind-affecting effects.",
+          "description": "Vermin have no intelligence score, and immunity to all mind-affecting effects.",
           "benefit": { "targtet": "immunities", "text": "mind effects" },
           "bonuses": {}
         }

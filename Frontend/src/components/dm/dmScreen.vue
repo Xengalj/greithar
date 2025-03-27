@@ -74,9 +74,9 @@ export default {
     );
   },
   mounted() {
-    // this.monsterOpen("Skeletal Champion");
+    this.monsterOpen("Skeletal Champion");
     // this.monsterOpen("Adult Red Dragon");
-    this.monsterOpen("Death Worm");
+    // this.monsterOpen("Death Worm");
   },
   methods: {
     monsterOpen(name) {
@@ -161,12 +161,14 @@ export default {
         }
         for (let [name, trait] of Object.entries(type.traits)) {
           creature.abilities[name] = trait;
+          creature.abilities[name].extras = { active: true, source: "Trait" };
         }
         if (response.Race) {
           creature.basics.type.subtypes.push(response.Race);
           if (Object.keys(this.races).includes(response.Race)) {
             for (let [name, trait] of Object.entries(this.races[response.Race].traits)) {
               creature.abilities[name] = trait;
+              creature.abilities[name].extras = { active: true, source: "Trait" };
             }
           }
         }
@@ -254,7 +256,7 @@ export default {
             trigger: "Standard",
             description: "You get a +4 bonus to your AC but cannot make Attacks of Opportunity until your next turn.",
             benefit: "+4 to AC but no AoOs",
-            extras: { showMain: true, duration: "1 Round" },
+            extras: { showMain: true, duration: "1 Round", source: "Race" },
             bonuses: {
               "Total Defense": {
                 targets: [ "totalAC", "touchAC", "flatAC" ],
@@ -267,14 +269,14 @@ export default {
             trigger: "Standard",
             description: "Make an attack roll vs AC 10, if you hit, you assist an ally with an attack, their defense, or a particular skill.",
             benefit: "+2 to Attack Rolls, AC, or a specific skill check",
-            extras: { showMain: true },
+            extras: { showMain: true, source: "Race" },
             bonuses: {}
           },
           "Feint": {
             trigger: "Standard",
             description: "Make a Bluff check, on a success your opponent losses their Dex bonus to AC against your melee attack next turn.",
             benefit: "Opponent loses their Dex bonus to AC",
-            extras: { showMain: true },
+            extras: { showMain: true, source: "Race" },
             bonuses: {}
           },
         };
@@ -284,19 +286,26 @@ export default {
           feat = feat.trim();
           if (feat.indexOf('(') > 0) { feat = feat.slice(0, feat.indexOf('(')-1); }
           if (feat[feat.length-1] == 'B') { feat = feat.slice(0, -1); } // Remove 'B' from bonus feat names
+
           // if the feat is in the feats json
           if (this.feats[feat]) {
             creature.abilities[feat] = this.feats[feat];
-            creature.feats.push(feat);
             if (this.feats[feat].trigger == "Continuous") {
-              creature.abilities[feat].active = true;
+              creature.abilities[feat].extras = { active: true, showMain: false, source: "Feat" };
             } else {
-              creature.abilities[feat].extras = { showMain: false };
-              creature.abilities[feat].active = false;
+              creature.abilities[feat].extras = { active: false, showMain: true, source: "Feat" };
               creature.actions.special[feat] = this.feats[feat];
             }
           } else {
-            creature.feats.push(feat);
+            creature.abilities[feat] = {
+              "type": "UNKNOWN",
+              "prerequisites": [ "" ],
+              "description": "PLEASE UPDATE THIS ENTRY",
+              "benefit": "",
+              "trigger": "Continuous",
+              "bonuses": {},
+              "extras": { "active": false, "showMain": false, "source": "Feat" }
+            };
           }
         }
         // TODO: Add Class Actions
@@ -323,7 +332,7 @@ export default {
 
         creature.abilities["Natural Armor"] = {
           trigger: "Continuous",
-          active: true,
+          // active: true,
           description: "This creature naturally tough, granting additional armor.",
           benefit: "",
           bonuses: {
@@ -332,7 +341,8 @@ export default {
               targets: this.rules.bonuses["Natural Armor"].targets,
               type: "Natural Armor",
             }
-          }
+          },
+          extras: { active: true, showMain: false, source: "Race" }
         };
 
 
@@ -427,47 +437,6 @@ export default {
             }
           }
         }
-        // SPECIAL actions done with feats
-
-
-        /*
-
-        move
-      movement (or 5-foot step) (swim/climb at 1/4 or climb 1/2 with -5 to climb)
-draw a weapon / stored item (3[part of movement], ready / drop shield)
-load light / heavy crossbow
-mount / dismount (Dc 20 Ride to do as free action)
-stand up from prone (AoO)
-
-full round atk
-charge      (move 10' - double speed, directly to enemy(no blocks including allies) , then one attack) [+2 atkBonus && -2 all AC]
-run (3x or 4x yor speed in straight line, lose dex bonus to AC)
-withdraw (both actions to move, only starting square isn't threatened)
-fight defensively
-
-combat mans (type varies)
-  Overrun                 AoO, (bowl someone over, pass through them and knock them prone, they can let you pass)
-  bull rush               AoO, push 5 ft, +5 for every 5 past CMD
-  drag                    AoO, opposite of bull rush
-  reposition              move target 5 ft to new location, +5ft for every 5 past CMD, must end within 5 ft of reach
-  dirty treick            AoO, apply condition (blinded, dazzled, deafened, entangled, shaken, or sickened) lasts 1 round, +1 round for every 5 past CMD
-  disarm                  AoO, force an enemy to drop 1 (2 if check is 10 past CMD), +2 from weapon with disarm, -4 if unarmed(fail by 10 you lose item)  (steal for necklace)
-  grapple                 AoO, can move, damage, pin, tie up
-  sunder                  AoO, Deal damage directly to an item, granting the broken condition
-  trip                    AoO, knock prone, fail by 10, you are prone
-
-ready action
-
-
-mounted copmbat
-  free    - dc 5 ride
-  atk smaller creature than mount   +1 to atk
-  charge applies to both mount and rider
-  lances deal double damage
-  casting between 2 mount moves requires vigorous motion check (10+spell level) (quad move is 15+lvl)
-  DC 15 ride to take no damage when mount falls in battle, 1d6 on fail
-  unconcious -> 50% to stay in saddle, else 1d6 dmg (mount avoids combat)
-        */
 
 
 
@@ -485,6 +454,10 @@ mounted copmbat
 
         // set up all skills
         for (let [name, skill] of Object.entries(this.rules.skills)) {
+          // Languages
+          if (name == "Linguistics" && response.Languages) {
+            skill.extras = { languages: response.Languages.split(',') };
+          }
           skill.class = classSkills.includes(name);
           creature.skills[name] = skill;
         }
@@ -508,6 +481,13 @@ mounted copmbat
               if (item.Penalty) { bonus -= item.Penalty; }
             });
           }
+
+          // total - Size Mod
+          if (name == "Stealth" || name == "Fly") {
+            bonus -= this.rules.size[name.toLowerCase()];
+          }
+
+
           creature.skills[name].ranks = bonus;
         });
 
