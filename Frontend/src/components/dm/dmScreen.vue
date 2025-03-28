@@ -185,6 +185,48 @@ export default {
         *         EQUIPMENT         *
         *                           *
         \***************************/
+        // tree element, draggable
+        let equipmentStructure = [
+          {
+            label: 'Equipped',
+            children: [
+              { label: 'Head', children: [] },
+              { label: 'headband', children: [] },
+              { label: 'eyes', children: [] },
+              { label: 'shoulders', children: [] },
+              { label: 'neck', children: [] },
+              { label: 'chest', children: [] },
+              { label: 'body', children: [] },
+              { label: 'armor', children: [] },
+              { label: 'belt', children: [] },
+              { label: 'wrists', children: [] },
+              { label: 'ringL', children: [] },
+              { label: 'ringR', children: [] },
+              { label: 'feet', children: [] },
+              { label: 'slotless', children: [] },
+              { label: 'weapons',
+                children: [
+                  { label: 'hips', children: [
+                    // Object.keys(this.equipped.weapons.hips).length < 2
+                  ] },
+                  { label: 'back', children: [
+                    // Object.keys(this.equipped.weapons.bakc).length < 2
+                  ] },
+                ]
+              } // end weapons
+            ] // end equipped children
+          },
+          {
+            label: 'Loot',
+            children: []
+          },
+          {
+            label: 'Backpack',
+            children: []
+          }
+        };
+
+        
         let items = [];
         if (response.Treasure.includes("(")) {
           let equip = response.Treasure.split('(').pop().split(')')[0];
@@ -216,6 +258,7 @@ export default {
           // Remove leading any whitespace & capitalize
           item = item[0] === " " ? item.slice(1) : item;
           item = item.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
+          
 // TODO: change equiped to false, after iventory set up
           // Add items to bonuses and equipment
           if ( Object.keys(this.equipment.Armor).includes(item) ) {
