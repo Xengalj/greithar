@@ -96,7 +96,38 @@ export default {
             "type": {},
           },
           "abilities": {},
-          "equipment": {},
+          "equipment": [
+            {
+              label: 'Equipped',
+              children: [
+                { label: 'Head', children: [] },
+                { label: 'Headband', children: [] },
+                { label: 'Eyes', children: [] },
+              
+                { label: 'Shoulders', children: [] }, // 3
+                { label: 'Neck', children: [] },
+                { label: 'Chest', children: [] },
+                { label: 'Body', children: [] },
+                { label: 'Armor', children: [] }, // 7
+              
+                { label: 'Belt', children: [] }, // 8
+                { label: 'Wrists', children: [] },
+                { label: 'Ring 1', children: [] },
+                { label: 'Ring 2', children: [] }, // 11
+              
+                { label: 'Feet', children: [] },
+                { label: 'Slotless', children: [] },
+                { label: 'Weapons', // 14
+                  children: [
+                    { label: 'Hands', children: [ ] },
+                    { label: 'Back', children: [ ] },
+                  ]
+                } // end weapons
+              ] // end equipped children
+            },
+            { label: 'Loot', children: [] },
+            { label: 'Backpack', children: [] }
+          ],
           "attributes": {},
           "classes": {},
           "health": { total: 0, bonus: 0 },
@@ -185,48 +216,6 @@ export default {
         *         EQUIPMENT         *
         *                           *
         \***************************/
-        // tree element, draggable
-        let equipmentStructure = [
-          {
-            label: 'Equipped',
-            children: [
-              { label: 'Head', children: [] },
-              { label: 'headband', children: [] },
-              { label: 'eyes', children: [] },
-              { label: 'shoulders', children: [] },
-              { label: 'neck', children: [] },
-              { label: 'chest', children: [] },
-              { label: 'body', children: [] },
-              { label: 'armor', children: [] },
-              { label: 'belt', children: [] },
-              { label: 'wrists', children: [] },
-              { label: 'ringL', children: [] },
-              { label: 'ringR', children: [] },
-              { label: 'feet', children: [] },
-              { label: 'slotless', children: [] },
-              { label: 'weapons',
-                children: [
-                  { label: 'hips', children: [
-                    // Object.keys(this.equipped.weapons.hips).length < 2
-                  ] },
-                  { label: 'back', children: [
-                    // Object.keys(this.equipped.weapons.bakc).length < 2
-                  ] },
-                ]
-              } // end weapons
-            ] // end equipped children
-          },
-          {
-            label: 'Loot',
-            children: []
-          },
-          {
-            label: 'Backpack',
-            children: []
-          }
-        };
-
-        
         let items = [];
         if (response.Treasure.includes("(")) {
           let equip = response.Treasure.split('(').pop().split(')')[0];
@@ -262,29 +251,88 @@ export default {
 // TODO: change equiped to false, after iventory set up
           // Add items to bonuses and equipment
           if ( Object.keys(this.equipment.Armor).includes(item) ) {
-            creature.equipment[item] = this.equipment.Armor[item];
-            creature.equipment[item].Extras = extras;
-            creature.equipment[item].equiped = true;
-            creature.equipment[item].targets = this.rules.bonuses.Armor.targets;
+            // creature.equipment[equipped].children[armor].children
+            let armor = creature.equipment[0].children[7].children;
+            console.log(armor); // should be empty array
+            let tmpArmor = this.equipment.Armor[item];
+            tmpArmor.Extras = extras;
+            tmpArmor.targets = this.rules.bonuses.Armor.targets;
+            if (!armor.length) {
+              armor.push({ label: item, value: tmpArmor });
+            } else {
+              // creature.equipment[loot].children
+              creature.equipment[2].children.push({ label: item, value: tmpArmor });
+            }            
+            // creature.equipment[item] = this.equipment.Armor[item];
+            // creature.equipment[item].Extras = extras;
+            // creature.equipment[item].equiped = true;
+            // creature.equipment[item].targets = this.rules.bonuses.Armor.targets;
           }
-          else if ( Object.keys(this.equipment.Shields).includes(item) ) {
-            creature.equipment[item] = this.equipment.Shields[item];
-            creature.equipment[item].Proficiency = "Shields";
-            creature.equipment[item].Extras = extras;
-            creature.equipment[item].equiped = true;
-            creature.equipment[item].targets = this.rules.bonuses.Shield.targets;
-            if (this.equipment.Shields[item]["Critical"] > 0) {
-              creature.actions.melee[item] = creature.equipment[item];
-            }
-          }
+            
           else if ( Object.keys(this.equipment.Weapons).includes(item) ) {
-            creature.equipment[item] = this.equipment.Weapons[item];
-            creature.equipment[item].Extras = extras;
-            creature.actions.melee[item] = this.equipment.Weapons[item];
+            // creature.equipment[equipment].children[weapons]
+            let weapons = creature.equipment[0].children[14].children;   
+            let tmpWpn = this.equipment.Weapons[item];
+            tmpWpn.Extras = extras;
+            
+            if (weapons.children[0].children.length < 2) {
+              // if weapons.children[hands].children
+              weapons.children[0].children.push({ label: item, value: tmpWpn });
+              creature.actions.melee[item] = tmpWpn;
+            } else if (weapons.children[1].children.length < 2) {
+              // if weapons.children[back].children
+              weapons.children[1].children.push({ label: item, value: tmpWpn });
+              creature.actions.melee[item] = tmpWpn;
+            } else {
+              // add weapon to creature.equipment[loot].children
+              creature.equipment[2].children.push({ label: item, value: tmpWpn });
+            }
+            // creature.equipment[item] = this.equipment.Weapons[item];
+            // creature.equipment[item].Extras = extras;
+            // creature.actions.melee[item] = this.equipment.Weapons[item];
           }
-          else {
+
+          else if ( Object.keys(this.equipment.Shields).includes(item) ) {
+            // creature.equipment[equipment].children[weapons]
+            let weapons = creature.equipment[0].children[14].children;   
+            let tmpWpn = this.equipment.Shields[item];
+            tmpWpn.Proficiency = "Shields";
+            tmpWpn.Extras = extras;
+            tmpWpn.targets = this.rules.bonuses.Shield.targets;
+
+            if (weapons.children[0].children.length < 2) {
+              // if weapons.children[hands].children
+              weapons.children[0].children.push({ label: item, value: tmpWpn });
+              creature.actions.melee[item] = tmpWpn;
+              if (this.equipment.Shields[item]["Critical"] > 0) {
+                creature.actions.melee[item] = tmpWpn;
+              }
+
+            } else if (weapons.children[1].children.length < 2) {
+              // if weapons.children[back].children
+              weapons.children[1].children.push({ label: item, value: tmpWpn });
+              creature.actions.melee[item] = tmpWpn;
+              if (this.equipment.Shields[item]["Critical"] > 0) {
+                creature.actions.melee[item] = creature.equipment[item];
+              }
+              
+            } else {
+              // add shield to creature.equipment[loot].children
+              creature.equipment[2].children.push({ label: item, value: tmpWpn });
+            }
+            
+            // creature.equipment[item] = this.equipment.Shields[item];
+            // creature.equipment[item].Proficiency = "Shields";
+            // creature.equipment[item].Extras = extras;
+            // creature.equipment[item].equiped = true;
+            // creature.equipment[item].targets = this.rules.bonuses.Shield.targets;
+            // if (this.equipment.Shields[item]["Critical"] > 0) {
+            //   creature.actions.melee[item] = creature.equipment[item];
+            // }
+            
+          } else {
             // Other Treasure
-            creature.equipment[item] = item;
+            creature.equipment[2].children.push({ label: item });
           }
         } // End items loop
 
