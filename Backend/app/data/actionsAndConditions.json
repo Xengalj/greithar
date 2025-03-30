@@ -1,62 +1,33 @@
-"Total Defense": {
-  trigger: "Standard",
-  description: "You get a +4 bonus to your AC but cannot make Attacks of Opportunity until your next turn.",
-  benefit: "+4 to AC but no AoOs",
-  extras: { showMain: true, duration: "1 Round" },
-  bonuses: {
+{
+  "actions": {
     "Total Defense": {
-      targets: [ "totalAC", "touchAC", "flatAC" ],
-      type: "Action",
-      value: 4
-    }
-  }
-},
-"Aid Another": {
-  trigger: "Standard",
-  description: "Make an attack roll vs AC 10, if you hit, you assist an ally with an attack, their defense, or a particular skill.",
-  benefit: "+2 to Attack Rolls, AC, or a specific skill check",
-  extras: { showMain: true },
-  bonuses: {}
-},
-"Feint": {
-  trigger: "Standard",
-  description: "Make a Bluff check, on a success your opponent losses their Dex bonus to AC against your melee attack next turn.",
-  benefit: "Opponent loses their Dex bonus to AC",
-  extras: { showMain: true },
-  bonuses: {}
-},
-}
-
-
-
-
-
-conditionSelect: [
-  { name: "Dazed", description: "The creature is unable to act normally. A dazed creature can take no actions, but has no penalty to AC.", bonuses: {} },
-  { name: "Dazzled", description: "The creature is unable to see well because of over-stimulation of the eyes. A dazzled creature takes a –1 penalty on attack rolls and sight-based Perception checks.",
-    bonuses: {
-      "Dazzled": {
-        type: "Condition",
-        value: -1,
-        targets: [ "meleeAtkBonus", "rangedAtkBonus" ]
+      trigger: "Standard",
+      description: "You get a +4 bonus to your AC but cannot make Attacks of Opportunity until your next turn.",
+      benefit: "+4 to AC but no AoOs",
+      extras: { showMain: true, duration: "1 Round" },
+      bonuses: {
+        "Total Defense": {
+          targets: [ "totalAC", "touchAC", "flatAC" ],
+          type: "Action",
+          value: 4
+        }
       }
-    }
-  },
-  { name: "Prone", description: "The character is lying on the ground. A prone attacker has a –4 penalty on melee attack rolls and cannot use a ranged weapon (except for a crossbow). A prone defender gains a +4 bonus to Armor Class against ranged attacks, but takes a –4 penalty to AC against melee attacks.",
-    bonuses: {
-      "Prone": {
-        type: "Condition",
-        value: -4,
-        targets: [ "meleeAtkBonus" ]
-      }
-    }
-  }
-],
-
-
-
-
-move
+    },
+    "Aid Another": {
+      trigger: "Standard",
+      description: "Make an attack roll vs AC 10, if you hit, you assist an ally with an attack, their defense, or a particular skill.",
+      benefit: "+2 to Attack Rolls, AC, or a specific skill check",
+      extras: { showMain: true },
+      bonuses: {}
+    },
+    "Feint": {
+      trigger: "Standard",
+      description: "Make a Bluff check, on a success your opponent losses their Dex bonus to AC against your melee attack next turn.",
+      benefit: "Opponent loses their Dex bonus to AC",
+      extras: { showMain: true },
+      bonuses: {}
+    },
+    move
 movement (or 5-foot step) (swim/climb at 1/4 or climb 1/2 with -5 to climb)
 draw a weapon / stored item (3[part of movement], ready / drop shield)
 load light / heavy crossbow
@@ -91,3 +62,221 @@ lances deal double damage
 casting between 2 mount moves requires vigorous motion check (10+spell level) (quad move is 15+lvl)
 DC 15 ride to take no damage when mount falls in battle, 1d6 on fail
 unconcious -> 50% to stay in saddle, else 1d6 dmg (mount avoids combat)
+
+
+  },
+  "conditions": [
+    {
+      name: "Bleeding",
+      description: "You are bleeding and take the listed amount of damage at the beginning of every turn, it can be staunched with a DC 15 Heal check or any magical healing.",
+      bonuses: {}
+    },
+    {
+      name: "Blinded",
+      description: "You are blind and cannot see, automatically failing checks that rely on vision, and granting enemies total concealment from you (50% miss chance). You must make a DC 10 Acrobatics check to move faster than half speed or fall prone.",
+      bonuses: {
+        "Blinded AC": {
+          type: "Condition",
+          value: -2,
+          targets: [ "totalAC", "touchAC", "flatAC" ]
+        },
+        "Blinded Skills": {
+          type: "Condition",
+          value: -4,
+          targets: [ "strSkills", "dexSkills", "perception" ]
+        }
+      },
+      extras: { loseDexAC: true }
+    },
+    {
+      name: "Confused",
+      description: "You are mentally befuddled and cannot act normally. Roll on the confusion table on the wiki.",
+      bonuses: {}
+    },
+    {
+      name: "Cowering",
+      description: "You are frozen in fear and can take no actions.",
+      bonuses: {
+        "Cowering": {
+          type: "Conditions",
+          value: -2,
+          targets: [ "totalAC", "touchAC", "flatAC" ]
+        }
+      },
+      extras: { loseDexAC: true }
+    },
+    {
+      name: "Dazed",
+      description: "You are unable to act normally and can take no actions, but have no penalty to AC.",
+      bonuses: {}
+    },
+    {
+      name: "Dazzled",
+      description: "You are unable to see well because of over-stimulation of the eyes. You take a –1 penalty on attack rolls and sight-based Perception checks.",
+      bonuses: {
+        "Dazzled": {
+          type: "Condition",
+          value: -1,
+          targets: [ "meleeAtkBonus", "rangedAtkBonus" ]
+        }
+      }
+    },
+    {
+      name: "Deafened",
+      description: "You cannot hear, and automatically fail sound based Perception checks, and have a 20% spell failure chance for spells with verbal components.",
+      bonuses: {
+        "Deafened": {
+          type: "Condition",
+          value: -4,
+          targets: [ "initiative", "perception" ]
+      }
+    },
+    {
+      name: "Disabled",
+      description: "You may take a single move OR standard action each round (nor can you take full-round actions, but you can still take swift, immediate, and free actions). You move at half speed, and performing any standard action (or any other action the GM deems strenuous, including some free actions such as casting a Quicken Spell spell) deals 1 point of damage after the completion of the act, and you are now dying.",
+      bonuses: {}
+    },
+    {
+      name: "Dying",
+      description: "You are unconscious, near death, and can take no actions. On all subsequent turns, make a DC 10 Stabilization check or lose 1 HP. If you have negative HP equal to your Constitution score, you die.",
+      bonuses: {}
+    },
+
+
+    {
+      name: "Entangled",
+      description: "You are ensnared, and move at half speed (unless the bonds are anchored somehow). Attempting to cast a spell requiers a concentration check (DC 15 + pell level).",
+      bonuses: {
+        "Entangled Atk": {
+          type: "Condition",
+          value: -2,
+          targets: [ "meleeAtkBonus", "rangedAtkBonus" ]
+        },
+        "Entangled Dex": {
+          type: "Condition",
+          value: -4,
+          targets: [ "Dex" ]
+        }
+      }
+    },
+    {
+      name: "Exhausted",
+      description: "You move at half speed and cannot run or charge. After 1 hour of complete rest, you become fatigued instead of exhausted.",
+      bonuses: {
+        "Exhausted": {
+          type: "Condition",
+          value: -6,
+          targets: [ "Str", "Dex" ]
+        }
+      }
+    },
+
+    {
+      name: "Fascinated",
+      description: "",
+      bonuses: {
+        "": {
+          type: "Condition",
+          value: ,
+          targets: []
+        }
+      }
+    },
+Fascinated
+    You are entranced by a supernatural or spell effect.
+    
+    The creature stands or sits quietly, taking no actions other than to pay attention to the fascinating effect, for as long as the effect lasts.
+It takes a –4 penalty on skill checks made as reactions, such as Perception checks.
+Any potential threat, such as a hostile creature approaching, allows the fascinated creature a new saving throw against the fascinating effect.
+Any obvious threat, such as someone drawing a weapon, casting a spell, or aiming a ranged weapon at the fascinated creature, automatically breaks the effect.
+A fascinated creature’s ally may shake it free of the spell as a standard action.
+
+    {
+      name: "",
+      description: "",
+      bonuses: {
+        "": {
+          type: "Condition",
+          value: ,
+          targets: []
+        }
+      }
+    },
+Fatigued
+A fatigued character can neither run nor charge and takes a –2 penalty to Strength and Dexterity.
+Doing anything that would normally cause fatigue causes the fatigued character to become exhausted.
+After 8 hours of complete rest, fatigued characters are no longer fatigued.
+
+    {
+      name: "",
+      description: "",
+      bonuses: {
+        "": {
+          type: "Condition",
+          value: ,
+          targets: []
+        }
+      }
+    },
+Flat-Footed
+A character who has not yet acted during a combat is flat-footed, unable to react normally to the situation.
+A flat-footed character loses his Dexterity bonus to AC and Combat Maneuver Defense (CMD) (if any) and cannot make attacks of opportunity,
+unless he has the Combat Reflexes feat or Uncanny Dodge class ability.
+
+Characters with Uncanny Dodge retain their Dexterity bonus to their AC and can make attacks of opportunity before they have acted in the first round of combat.
+
+Editor’s Note: Reference from immediate action rules: You cannot take immediate actions while flat-footed.
+
+    {
+      name: "",
+      description: "",
+      bonuses: {
+        "": {
+          type: "Condition",
+          value: ,
+          targets: []
+        }
+      }
+    },
+Frightened
+A frightened creature flees from the source of its fear as best it can. If unable to flee, it may fight.
+A frightened creature takes a –2 penalty on all attack rolls, saving throws, skill checks, and ability checks.
+A frightened creature can use special abilities, including spells, to flee; indeed, the creature must use such means if they are the only way to escape.
+
+Frightened is like shaken, except that the creature must flee if possible. Panicked is a more extreme state of fear.
+
+
+
+
+
+
+
+
+
+
+    {
+      name: "Prone",
+      description: "The character is lying on the ground. A prone attacker has a –4 penalty on melee attack rolls and cannot use a ranged weapon (except for a crossbow). A prone defender gains a +4 bonus to Armor Class against ranged attacks, but takes a –4 penalty to AC against melee attacks.",
+      bonuses: {
+        "Prone": {
+          type: "Condition",
+          value: -4,
+          targets: [ "meleeAtkBonus" ]
+        }
+      }
+    },
+    
+    {
+      name: "",
+      description: "",
+      bonuses: {
+        "": {
+          type: "Condition",
+          value: ,
+          targets: []
+        }
+      }
+    },
+    
+  ]
+}
