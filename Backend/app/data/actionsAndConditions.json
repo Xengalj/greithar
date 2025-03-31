@@ -1,15 +1,15 @@
 {
   "actions": {
     "Total Defense": {
-      trigger: "Standard",
-      description: "You get a +4 bonus to your AC but cannot make Attacks of Opportunity until your next turn.",
-      benefit: "+4 to AC but no AoOs",
-      extras: { showMain: true, duration: "1 Round" },
-      bonuses: {
+      "trigger": "Standard",
+      "description": "You get a +4 bonus to your AC but cannot make Attacks of Opportunity until your next turn.",
+      "benefit": "+4 to AC but no AoOs",
+      "extras": { "showMain": true, "duration": "1 Round" },
+      "bonuses": {
         "Total Defense": {
-          targets: [ "totalAC", "touchAC", "flatAC" ],
-          type: "Action",
-          value: 4
+          "targets": [ "totalAC", "touchAC", "flatAC" ],
+          "type": "Action",
+          "value": 4
         }
       }
     },
