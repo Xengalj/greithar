@@ -1,5 +1,40 @@
 {
   "actions": {
+    "": {
+      "trigger": "Move",
+      "description": "",
+      "benefit": "",
+      "extras": {},
+      "bonuses": {}
+    },
+    movement (or 5-foot step) (swim/climb at 1/4 or climb 1/2 with -5 to climb)
+    draw a weapon / stored item (3[part of movement], ready / drop shield)
+    load light / heavy crossbow
+    mount / dismount (Dc 20 Ride to do as free action)
+    stand up from prone (AoO)
+
+    "": {
+      "trigger": "Standard",
+      "description": "",
+      "benefit": "",
+      "extras": {},
+      "bonuses": {}
+    },
+
+    "Aid Another": {
+      "trigger": "Standard",
+      "description": "Make an attack roll vs AC 10, if you hit, you assist an ally with an attack, their defense, or a particular skill.",
+      "benefit": "+2 to Attack Rolls, AC, or a specific skill check",
+      "extras": { "showMain": true },
+      "bonuses": {}
+    },
+    "Feint": {
+      "trigger": "Standard",
+      "description": "Make a Bluff check, on a success your opponent losses their Dex bonus to AC against your melee attack next turn.",
+      "benefit": "Opponent loses their Dex bonus to AC",
+      "extras": { "showMain": true },
+      "bonuses": {}
+    },
     "Total Defense": {
       "trigger": "Standard",
       "description": "You get a +4 bonus to your AC but cannot make Attacks of Opportunity until your next turn.",
@@ -13,32 +48,24 @@
         }
       }
     },
-    "Aid Another": {
-      trigger: "Standard",
-      description: "Make an attack roll vs AC 10, if you hit, you assist an ally with an attack, their defense, or a particular skill.",
-      benefit: "+2 to Attack Rolls, AC, or a specific skill check",
-      extras: { showMain: true },
-      bonuses: {}
+
+    
+
+    "": {
+      "trigger": "Full-Round",
+      "description": "",
+      "benefit": "",
+      "extras": {},
+      "bonuses": {}
     },
-    "Feint": {
-      trigger: "Standard",
-      description: "Make a Bluff check, on a success your opponent losses their Dex bonus to AC against your melee attack next turn.",
-      benefit: "Opponent loses their Dex bonus to AC",
-      extras: { showMain: true },
-      bonuses: {}
-    },
-    move
-movement (or 5-foot step) (swim/climb at 1/4 or climb 1/2 with -5 to climb)
-draw a weapon / stored item (3[part of movement], ready / drop shield)
-load light / heavy crossbow
-mount / dismount (Dc 20 Ride to do as free action)
-stand up from prone (AoO)
 
 full round atk
 charge      (move 10' - double speed, directly to enemy(no blocks including allies) , then one attack) [+2 atkBonus && -2 all AC]
 run (3x or 4x yor speed in straight line, lose dex bonus to AC)
 withdraw (both actions to move, only starting square isn't threatened)
 fight defensively
+
+
 
 combat mans (type varies)
 Overrun                 AoO, (bowl someone over, pass through them and knock them prone, they can let you pass)
@@ -54,7 +81,7 @@ trip                    AoO, knock prone, fail by 10, you are prone
 ready action
 
 
-mounted copmbat
+mounted combat
 free    - dc 5 ride
 atk smaller creature than mount   +1 to atk
 charge applies to both mount and rider
@@ -339,7 +366,7 @@ Standing up is a move-equivalent action that provokes an attack of opportunity.
         }
       }
     },
-    
+
     {
       "name": "",
       "description": "",
@@ -351,6 +378,6 @@ Standing up is a move-equivalent action that provokes an attack of opportunity.
         }
       }
     },
-    
+
   ]
 }
