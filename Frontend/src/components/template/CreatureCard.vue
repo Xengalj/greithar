@@ -108,9 +108,9 @@
       <el-row>
         <el-col :span="4" class="center-vert center-horz"> <g-icon iconSize="24px" icon-name="treasure"/> </el-col>
         <el-col :span="20" class="center-vert">
-          <span v-for="(item, name) in inventory" :key="name">
-            {{ name }},
-          </span>
+          <!-- <span v-for="(item, index) in inventory[0].children" :key="index">
+            {{ item.label }},
+          </span> -->
          </el-col>
       </el-row>
       <el-row>
@@ -127,10 +127,10 @@
       <template #content>Rest for 8 Hours</template>
     </el-tooltip>
   </el-button>
-  <el-tabs ref="tabs" type="card" v-model="cardTab">
+  <el-tabs ref="tabs" type="card" v-model="userSettings.cardTab">
     <!-- Main -->
-    <el-tab-pane label="Main" name="first">
-      <el-collapse v-model="openSections">
+    <el-tab-pane label="Main" name="Main">
+      <el-collapse v-model="userSettings.mainSections">
         <!-- Defensse -->
         <el-collapse-item title="Defense" name="defense">
           <el-row :gutter="20">
@@ -514,45 +514,87 @@
     </el-tab-pane>
 
     <!-- Items -->
-    <el-tab-pane label="Items" name="second">
-      {{ inventory }}
-      <!-- coins, equiped -->
+    <el-tab-pane label="Items" name="Items">
+      <el-row>
+        <g-icon iconSize="16px" iconName="treasure" />
+        COINS
+      </el-row>
+      <el-divider />
 
-      <!-- el-tree for containers and contained items -->
+      <el-row :gutter="10">
+        <el-col :span="20">
+          <el-input v-model="itemFilter" class="w-60 mb-2" placeholder="Item Search" />
+        </el-col>
+        <el-col :span="4">
+          <el-button type="primary" @click="editItem({})">Add Item</el-button>
+        </el-col>
+      </el-row>
+      <el-tree
+        :data="inventory"
+        node-key="id"
+        ref="tree"
+        draggable
+        render-after-expand
+        :default-expand-all="userSettings.expandInventory"
+        :filter-node-method="filterNode"
+        :allow-drag="allowDrag"
+        :allow-drop="allowDrop"
+      >
+        <template #default="{ node, data }">
+          <el-col :span="1" style="text-align: center; margin-right:2px;">
+            <g-icon iconSize="20px" v-if="data.extras && data.extras.icon" :iconName="data.extras.icon" />
+            <span v-else> • </span>
+          </el-col>
+          <el-col :span="7"> {{ node.label }} </el-col>
+          <el-col :span="3">
+            <span v-if="data.value"> {{ data.value.Cost }} gp </span>
+          </el-col>
+          <el-col :span="3">
+            <span v-if="data.value"> {{ data.value.Weight }} lbs. </span>
+          </el-col>
+          <div class="custom-tree-node" v-if="data.value">
+            <!-- View Item (in modal component) -->
+            <el-tooltip placement="top" effect="light">
+              <el-button type="info" circle size="small" @click="editItem(data)">
+                <g-icon iconSize="16px" iconColor="#000" iconName="eye" />
+              </el-button>
+              <template #content> View Item </template>
+            </el-tooltip>
+            <!-- Edit Item (in modal component) -->
+            <el-tooltip placement="top" effect="light">
+              <el-button type="info" circle size="small" @click="editItem(data)">
+                <g-icon iconSize="16px" iconColor="#000" iconName="quill" />
+              </el-button>
+              <template #content> Edit Item </template>
+            </el-tooltip>
 
-      <el-collapse v-model="openContainers">
-        <el-collapse-item v-for="(container, cName) in inventory" :key="cName" :title="cName" :name="cName">
-          <el-row>
-            <el-col :span="3"> <g-icon iconSize="32px" iconName="inventory" /> </el-col>
-            <el-col :span="7"> {{ cName }} </el-col>
-            <el-col :span="2"> {{ container.totalValue }} </el-col>
-            <el-col :span="2"> {{ container.totalWeight }} </el-col>
-            <el-col :span="2"> {{ container.capacity }} </el-col>
-          </el-row>
-          <!-- #[+/-]   name   value   weight   notes -->
-        </el-collapse-item>
-      </el-collapse>
-
-          <!--
-          <el-row v-for="(item, name) in container" :key="name">
-            <el-col :span="3"></el-col>
-            <el-col :span="7" class="center-vert"> {{ name }} </el-col>
-
-
-            <el-col :span="7">
-              <el-tooltip placement="top" effect="light">
-                <el-tag size="small" effect="dark" type="danger">
-                  HP: {{ health.current }} / {{ health.total }}
-                </el-tag>
-                <template #content>
-                  <span v-for="bonus in health.sources" :key="bonus"> {{ bonus+" " }} </span>
-                </template>
-              </el-tooltip>   <br>
-              -->
+            <!-- Delete Item -->
+            <el-tooltip placement="top" effect="light">
+              <div style="margin-left:12px;">
+                <el-popconfirm title="Are you sure to delete this?">
+                  <template #reference>
+                    <el-button type="danger" circle size="small">
+                      <g-icon iconSize="16px" iconColor="#000" iconName="trash" />
+                    </el-button>
+                  </template>
+                  <template #actions="">
+                    <el-button type="danger" size="small" @click="deleteItem(node, data)">Yes</el-button>
+                  </template>
+                </el-popconfirm>
+              </div>
+              <template #content> Delete Item </template>
+            </el-tooltip>
+          </div>
+        </template>
+      </el-tree>
+      <el-dialog v-model="editingItem" width="800">
+        <g-item :source="item" />
+      </el-dialog>
     </el-tab-pane>
 
+
     <!-- Skills -->
-    <el-tab-pane label="Skills" name="third">
+    <el-tab-pane label="Skills" name="Skills">
       <el-row v-if="skills.Linguistics && skills.Linguistics.extras">
         <el-col :span="3"> Languages: </el-col>
         <el-col :span="21">
@@ -578,7 +620,7 @@
     </el-tab-pane>
 
     <!-- Abilities -->
-    <el-tab-pane label="Abilities" name="fourth">
+    <el-tab-pane label="Abilities" name="Abilities">
       <el-row class="center-horz">
         <el-col :span="5">Name</el-col>
         <el-col :span="3">Toggles</el-col>
@@ -609,7 +651,7 @@
     </el-tab-pane>
 
     <!-- Magic -->
-    <el-tab-pane label="Magic" name="fifth">
+    <el-tab-pane label="Magic" name="Magic">
       <el-row :gutter="20">
         <el-col :span="3">
           <g-icon iconSize="32px" iconName="rolledScroll" />
@@ -620,7 +662,7 @@
       </el-row>
     </el-tab-pane>
 
-    <el-tab-pane label="Edit" name="sixth">
+    <el-tab-pane label="Edit" name="Edit">
       <!-- [LEVEL UP] -->
       <!-- add ability (ability & bonuses -> actions) -->
       <!-- EDIT BASICS (name, race, alignment, attributes, casting style, etc) -->
@@ -645,23 +687,16 @@
 </template>
 
 <script>
+// import DataService from "@/services/data.service";
 import HexGraph from '@/components/template/HexGraph.vue'
+import GItem from '@/components/template/GItem.vue'
 
 export default {
   name: "CreatureCard",
-  components: { HexGraph },
-  props: {
-    source: { type: Object },
-  },
+  components: { HexGraph, GItem },
+  props: { source: { type: Object } },
   data() {
     return {
-      rules: {},
-      classes: {},
-      equipment: {},
-
-      cardTab: "first",
-      openSections: [ "defense", "conditions" ],
-      openContainers: [],
       sizeSelect: [
         { value: "Fine", label: "Fine", },
         { value: "Diminuitive", label: "Diminuitive", },
@@ -674,6 +709,10 @@ export default {
         { value: "Colossal", label: "Colossal", }
       ],
 
+
+      // cardTab: "Main",
+      openSections: [ "defense", "conditions" ],
+      // expandInventory: false,
       conditions: [],
       conditionSelect: [
         { name: "Dazed", description: "The creature is unable to act normally. A dazed creature can take no actions, but has no penalty to AC.", bonuses: {} },
@@ -705,20 +744,18 @@ export default {
         { name: "Will Saves", value: "will" }
         // "atkBonus", "dmgBonus", "cmb", "cmd", "Str", "Con", "Dex",
       ],
-      addingCondition: false,
       newCondition: {},
+      addingCondition: false,
       editingAbil: false,
+      abil: {},
+      editingItem: false,
+      item: {},
+      itemFilter: "",
+
 
 
       original: {}
     }
-  },
-  created() {
-    this.rules = this.$store.state.data.rules;
-    this.classes = this.$store.state.data.classes;
-    this.equipment = this.$store.state.data.equipment;
-
-    // this.conditionSelect = rules.conditions;
   },
   mounted() {
     // add rest button to tabs
@@ -728,6 +765,14 @@ export default {
 
 
   computed: {
+    rules() { return this.$store.state.data.rules; },
+    classes() { return this.$store.state.data.classes; },
+    equipment() { return this.$store.state.data.equipment; },
+    userSettings() {
+      let userSettings = this.source.userSettings;
+      userSettings.cardTab = this.capFirsts(this.source.userSettings.cardTab);
+      return userSettings;
+    },
     title() { return this.source.name ? this.source.name.concat(" CR ", this.source.basics.cr) : ""; },
     bonuses() {
       let bonuses = {};
@@ -1222,81 +1267,20 @@ export default {
     },
 
     magic() { return "" },
-
-/*
-    creature() {
-      if (this.original.Ranged) {
-        this.original.Ranged.forEach((atk, i) => {
-          let [atkType, atkNum, atkName, atkMod, dmgDie, dmgMod, crit, bonus] = [ "ranged", 0, "", "", "", 0, "", "" ];
-          let atkArr = atk.split(" ");
-          // console.log("original : ", atkArr);
-
-          // Rremove leading empty index from extra attack types
-          if (!atkArr[0]) { atkArr.shift(); }
-          // Handle multi-attacks
-          if (!isNaN(parseInt(atkArr[0])) ) {
-            atkNum = atkArr[0];
-            atkArr.shift();
-          }
-
-          // Set atkName, dmgDie, bonus & atkType
-          let nameDone = false;
-          while(atkArr.length > 0) {
-            // Set atkName
-            if (atkArr[0][0] == "+" || atkArr[0][0] == "-") { nameDone = true; }
-            if (!nameDone) {
-              atkName = atkName.concat(atkArr[0], " ");
-              if (["sling", "shortbow", "longbow"].includes(atkArr[0])) {
-                atkType = "thrown";
-              }
-            }
-            // Set bonus (check if we are past the dmg die)
-            if (dmgDie) {
-              if (atkArr[0][atkArr[0].length-1] == ")") {
-                atkArr[0] = atkArr[0].slice(0, -1);
-              }
-              bonus = bonus.concat(" ", atkArr[0]);
-            }
-            // Set dmgDie
-            if (atkArr[0][0] == "(") {
-              dmgDie = atkArr[0];
-              dmgDie = dmgDie.split("+")[0].substr(1);
-              dmgDie = dmgDie.split("-")[0];
-              crit = atkArr[0].split("x")[1]
-              if (crit) {
-                crit = crit.slice(0, 1);
-                crit = "/x".concat(crit);
-              }
-            }
-            atkArr.shift();
-          }
-
-          // Set dmgMod based on attack type [ranged, thrown, etc]
-          atkMod = this.original.BAB + creature.abilities.DexMod + creature.size["ac / atk"];
-          if (atkType == "thrown") {
-            dmgMod = creature.abilities.StrMod;
-          }
-
-          atkMod = atkMod>0 ? `+${atkMod}` : atkMod;
-          dmgMod = dmgMod>0 ? `+${dmgMod}` : dmgMod;
-          if (crit) { dmgMod = dmgMod.toString().concat(crit); }
-          creature.ranged[i] = { atkNum, atkName, atkMod, dmgDie, dmgMod, bonus };
-          // console.log("final:", creature.ranged[i]);
-        });
-      }
-
-*/
   },
 
-
-
+  watch: {
+    itemFilter(val) {
+      this.$refs.tree.filter(val);
+    }
+  },
   methods: {
     capFirsts(string) {
       return string ? string.replace(/(^\w|\s\w)/g, m => m.toUpperCase()) : "";
     },
-    // object = the bonus object we are adding to: { total: #, sources: [] }
-    // tString = the target string we match to add to the bonus object: "atkBonus"
     bonusLoop(object, tString) {
+      // object = the bonus object we are adding to: { total: #, sources: [] }
+      // tString = the target string we match to add to the bonus object: "atkBonus"
       // Add Active Bonuses
       let typedBonuses = {};
       if (this.bonuses) {
@@ -1367,6 +1351,44 @@ export default {
       this.addingCondition = false;
     },
 
+    // INVENTORY METHODS
+    filterNode(value, data) {
+      if (!value) return true;
+      return data.label.indexOf(value) !== -1;
+    },
+    allowDrag(draggingNode) {
+      // Do not allow nonDraggable Arr to be moved
+      const nonDraggable = [ "Equipped", "Armor", "Weapons", "Hands", "Back", "Magic Items", "Head", "Headband", "Eyes", "Shoulders", "Neck", "Chest", "Body", "Belt", "Wrists", "Ring 1", "Ring 2", "Feet", "Slotless" ];
+      return !nonDraggable.includes(draggingNode.data.label);
+    },
+    allowDrop(draggingNode, dropNode, type) {
+      let parentCap = dropNode.parent.data.extras?.capacity ? dropNode.parent.data.extras.capacity : 0;
+      let capacity = dropNode.data.extras?.capacity ? dropNode.data.extras.capacity : 0;
+      if (type == "inner" && capacity > 0) {
+        // only allow dropping into a container based on that containers capacity
+        return dropNode.childNodes.length < capacity;
+      } else if (type=='next' && parentCap > 0) {
+        // allow sorting within a container
+        return dropNode.parent.childNodes.length < parentCap;
+      } else {
+        return false;
+      }
+    },
+    editItem(item) {
+      this.item = item;
+      this.editingItem = true;
+    },
+    deleteItem(node, data) {
+      const parent = node.parent;
+      const children = parent.data.children || parent.data;
+      const index = children.findIndex(d => d.id === data.id);
+      children.splice(index, 1);
+      this.$message({ message: `${data.label} was removed from inventory`, type: "warning" });
+    },
+
+
+
+
     // ABITLY METHODS
     toggleAbility(name, abil) {
       if (this.conditions[name]) {
@@ -1406,5 +1428,12 @@ export default {
 .addCondition button {
   width: 100%;
   margin: 0 0 2px 5px;
+}
+
+.custom-tree-node {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: end;
 }
 </style>

@@ -40,7 +40,6 @@ export default {
 
   mounted() {
     this.$store.dispatch('data/init'); // Init the data jsons from back end
-    console.log(this.$store.state.data);
 
     this.usermeta.faveColor = "--el-color-primary: " + this.currentUser.usermeta.faveColor + " !important";
     document.documentElement.style.cssText = this.usermeta.faveColor;

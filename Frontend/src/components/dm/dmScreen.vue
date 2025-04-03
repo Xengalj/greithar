@@ -55,15 +55,14 @@ export default {
       // this.$store.state.auth.status.loggedIn
       // console.log(this.$store.state.auth);
       return user;
-    }
+    },
+    rules() { return this.$store.state.data.rules; },
+    races() { return this.$store.state.data.races; },
+    classes() { return this.$store.state.data.classes; },
+    equipment() { return this.$store.state.data.equipment; },
+    feats() { return this.$store.state.data.feats; },
   },
   created() {
-    this.rules = this.$store.state.data.rules;
-    this.races = this.$store.state.data.races;
-    this.classes = this.$store.state.data.classes;
-    this.equipment = this.$store.state.data.equipment;
-    this.feats = this.$store.state.data.feats;
-
     UserService.getAdminBoard().then(
       (response) => { this.content = response.data; },
       (error) => {
@@ -87,6 +86,7 @@ export default {
         let tempNum = 0;
         let creature = {
           "name": response.Name,
+          "userSettings": {},
           "basics": {
             "cr": response.CR,
             "alignment": response.Alignment,
@@ -95,44 +95,41 @@ export default {
             "speed": parseInt( response.Speed.replace(/\D+$/g, "") ),
             "type": {},
           },
-          "abilities": {},
-          "equipment": [
-            {
-              label: 'Equipped',
-              children: [
-                { label: 'Head', children: [] },
-                { label: 'Headband', children: [] },
-                { label: 'Eyes', children: [] },
-              
-                { label: 'Shoulders', children: [] }, // 3
-                { label: 'Neck', children: [] },
-                { label: 'Chest', children: [] },
-                { label: 'Body', children: [] },
-                { label: 'Armor', children: [] }, // 7
-              
-                { label: 'Belt', children: [] }, // 8
-                { label: 'Wrists', children: [] },
-                { label: 'Ring 1', children: [] },
-                { label: 'Ring 2', children: [] }, // 11
-              
-                { label: 'Feet', children: [] },
-                { label: 'Slotless', children: [] },
-                { label: 'Weapons', // 14
-                  children: [
-                    { label: 'Hands', children: [ ] },
-                    { label: 'Back', children: [ ] },
-                  ]
-                } // end weapons
-              ] // end equipped children
-            },
-            { label: 'Loot', children: [] },
-            { label: 'Backpack', children: [] }
-          ],
           "attributes": {},
           "classes": {},
           "health": { total: 0, bonus: 0 },
           "actions": { melee: {}, ranged: {}, special: {} },
+          "conditions": [],
+
+          "equipment": [
+            { label: 'Equipped',  extras: { icon: "equipment" }, children: [
+              { label: 'Armor',   extras: { icon: "armor", capacity: 1 }, children: [] },
+              { label: 'Weapons', extras: { icon: "weapons" }, children: [
+                { label: 'Hands', extras: { icon: "abilityPalm", capacity: 2 }, children: [] },
+                { label: 'Back',  extras: { icon: "swordShield", capacity: 2 }, children: [] },
+              ] }
+            ] },
+            { label: 'Magic Items', extras: { icon: "amulet" }, children: [
+              { label: 'Head', extras: { capacity: 1 }, children: [] },
+              { label: 'Headband', extras: { capacity: 1 }, children: [] },
+              { label: 'Eyes', extras: { capacity: 1 }, children: [] },
+              { label: 'Shoulders', extras: { capacity: 1 }, children: [] },
+              { label: 'Neck', extras: { capacity: 1 }, children: [] },
+              { label: 'Chest', extras: { capacity: 1 }, children: [] },
+              { label: 'Body', extras: { capacity: 1 }, children: [] },
+              { label: 'Belt', extras: { capacity: 1 }, children: [] },
+              { label: 'Wrists', extras: { capacity: 1 }, children: [] },
+              { label: 'Ring 1', extras: { capacity: 1 }, children: [] },
+              { label: 'Ring 2', extras: { capacity: 1 }, children: [] },
+              { label: 'Feet', extras: { capacity: 1 }, children: [] },
+              { label: 'Slotless', extras: { capacity: 1 }, children: [] },
+            ] },
+            { label: 'Items', extras: { icon: "inventory" }, children: [
+              { label: 'Backpack', extras: { icon: "backpack", capacity: 50 }, children: [] }
+            ] },
+          ],
           "skills": {},
+          "abilities": {},
           "magic": {},
 
           // TODO: REMOVE DELETE KILL NULL
@@ -247,13 +244,11 @@ export default {
           // Remove leading any whitespace & capitalize
           item = item[0] === " " ? item.slice(1) : item;
           item = item.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
-          
-// TODO: change equiped to false, after iventory set up
+
           // Add items to bonuses and equipment
           if ( Object.keys(this.equipment.Armor).includes(item) ) {
             // creature.equipment[equipped].children[armor].children
-            let armor = creature.equipment[0].children[7].children;
-            console.log(armor); // should be empty array
+            let armor = creature.equipment[0].children[0].children;
             let tmpArmor = this.equipment.Armor[item];
             tmpArmor.Extras = extras;
             tmpArmor.targets = this.rules.bonuses.Armor.targets;
@@ -262,26 +257,25 @@ export default {
             } else {
               // creature.equipment[loot].children
               creature.equipment[2].children.push({ label: item, value: tmpArmor });
-            }            
+            }
             // creature.equipment[item] = this.equipment.Armor[item];
             // creature.equipment[item].Extras = extras;
             // creature.equipment[item].equiped = true;
             // creature.equipment[item].targets = this.rules.bonuses.Armor.targets;
           }
-            
-          else if ( Object.keys(this.equipment.Weapons).includes(item) ) {
-            // creature.equipment[equipment].children[weapons]
-            let weapons = creature.equipment[0].children[14].children;   
+
+          else if ( Object.keys(this.equipment.Weapons).includes(item) ) {96210
+            // creature.equipment[equipped].children[weapons]
+            let weapons = creature.equipment[0].children[1].children;
             let tmpWpn = this.equipment.Weapons[item];
             tmpWpn.Extras = extras;
-            
-            if (weapons.children[0].children.length < 2) {
-              // if weapons.children[hands].children
-              weapons.children[0].children.push({ label: item, value: tmpWpn });
+            if (weapons[0].children.length < 2) {
+              // if weapons[hands].children
+              weapons[0].children.push({ label: item, value: tmpWpn });
               creature.actions.melee[item] = tmpWpn;
-            } else if (weapons.children[1].children.length < 2) {
-              // if weapons.children[back].children
-              weapons.children[1].children.push({ label: item, value: tmpWpn });
+            } else if (weapons[1].children.length < 2) {
+              // if weapons[back].children
+              weapons[1].children.push({ label: item, value: tmpWpn });
               creature.actions.melee[item] = tmpWpn;
             } else {
               // add weapon to creature.equipment[loot].children
@@ -293,34 +287,33 @@ export default {
           }
 
           else if ( Object.keys(this.equipment.Shields).includes(item) ) {
-            // creature.equipment[equipment].children[weapons]
-            let weapons = creature.equipment[0].children[14].children;   
+            // creature.equipment[equipped].children[weapons]
+            let weapons = creature.equipment[0].children[1].children;
             let tmpWpn = this.equipment.Shields[item];
             tmpWpn.Proficiency = "Shields";
             tmpWpn.Extras = extras;
             tmpWpn.targets = this.rules.bonuses.Shield.targets;
-
-            if (weapons.children[0].children.length < 2) {
-              // if weapons.children[hands].children
-              weapons.children[0].children.push({ label: item, value: tmpWpn });
+            if (weapons[0].children.length < 2) {
+              // if weapons[hands].children
+              weapons[0].children.push({ label: item, value: tmpWpn });
               creature.actions.melee[item] = tmpWpn;
               if (this.equipment.Shields[item]["Critical"] > 0) {
                 creature.actions.melee[item] = tmpWpn;
               }
 
-            } else if (weapons.children[1].children.length < 2) {
-              // if weapons.children[back].children
-              weapons.children[1].children.push({ label: item, value: tmpWpn });
+            } else if (weapons[1].children.length < 2) {
+              // if weapons[back].children
+              weapons[1].children.push({ label: item, value: tmpWpn });
               creature.actions.melee[item] = tmpWpn;
               if (this.equipment.Shields[item]["Critical"] > 0) {
                 creature.actions.melee[item] = creature.equipment[item];
               }
-              
+
             } else {
               // add shield to creature.equipment[loot].children
               creature.equipment[2].children.push({ label: item, value: tmpWpn });
             }
-            
+
             // creature.equipment[item] = this.equipment.Shields[item];
             // creature.equipment[item].Proficiency = "Shields";
             // creature.equipment[item].Extras = extras;
@@ -329,7 +322,7 @@ export default {
             // if (this.equipment.Shields[item]["Critical"] > 0) {
             //   creature.actions.melee[item] = creature.equipment[item];
             // }
-            
+
           } else {
             // Other Treasure
             creature.equipment[2].children.push({ label: item });
@@ -338,6 +331,8 @@ export default {
 
         /***************************\
         *                           *
+        *         ABILITIES         *
+        *             &             *
         *          BONUSES          *
         *                           *
         \***************************/
@@ -403,13 +398,10 @@ export default {
 
 
 
-
-
         // NATURAL ARMOR
         tempNum = response.AC - 10;
         tempNum -= Math.floor((response.Dex - 10) / 2);
         tempNum -= this.rules.size[creature.basics.size]["ac / atk"];
-
         // Armor, Shield
         for (const item of Object.values(creature.equipment)) {
           if (item.equiped) {
@@ -420,10 +412,8 @@ export default {
             }
           }
         }
-
         creature.abilities["Natural Armor"] = {
           trigger: "Continuous",
-          // active: true,
           description: "This creature naturally tough, granting additional armor.",
           benefit: "",
           bonuses: {
@@ -437,7 +427,7 @@ export default {
         };
 
 
-        // OFFENSE
+        // MELEE
         if (response.Melee) {
           for (let atk of response.Melee.split(',')) {
             let i, extras = {};
@@ -480,7 +470,7 @@ export default {
           }
         }
 
-        // Ranged
+        // RANGED
         if (response.Ranged) {
           for (let atk of response.Ranged.split(',')) {
             let i, atkNum, extras = {};
@@ -582,15 +572,23 @@ export default {
           creature.skills[name].ranks = bonus;
         });
 
+        creature.userSettings = {
+          expandInventory: true,
+          cardTab: "items",
+          mainSections: [ "defense", "conditions" ]
+        };
+
         this.creature = creature;
         console.table("SOURCE", creature);
+
+
+        this.creatureName = name
+        this.monsterVisible = true;
       })
       .catch(err => { console.error(err); });
 
 
 
-      this.creatureName = name
-      this.monsterVisible = true;
     },
     monsterClose() {
       this.monsterVisible = false;
@@ -603,14 +601,4 @@ export default {
 </script>
 
 <style>
-
-/* .center-vert {
-  align-content: center;
-}
-.center-horz {
-  text-align: center;
-}
-.stat-controls .el-input-number {
-  width: 70px;
-} */
 </style>
