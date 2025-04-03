@@ -268,13 +268,14 @@ export default {
             // creature.equipment[equipped].children[weapons]
             let weapons = creature.equipment[0].children[1].children;
             let tmpWpn = this.equipment.Weapons[item];
+            tmpWpn.Damage = this.equipment.Weapons[item].Damage[creature.basics.size];
             tmpWpn.Extras = extras;
             if (weapons[0].children.length < 2) {
-              // if weapons[hands].children
+              // if weapons[hands].children < 2
               weapons[0].children.push({ label: item, value: tmpWpn });
               creature.actions.melee[item] = tmpWpn;
             } else if (weapons[1].children.length < 2) {
-              // if weapons[back].children
+              // if weapons[back].children < 2
               weapons[1].children.push({ label: item, value: tmpWpn });
               creature.actions.melee[item] = tmpWpn;
             } else {
@@ -291,6 +292,7 @@ export default {
             let weapons = creature.equipment[0].children[1].children;
             let tmpWpn = this.equipment.Shields[item];
             tmpWpn.Proficiency = "Shields";
+            tmpWpn.Damage = this.equipment.Shields[item].Damage[creature.basics.size];
             tmpWpn.Extras = extras;
             tmpWpn.targets = this.rules.bonuses.Shield.targets;
             if (weapons[0].children.length < 2) {

@@ -9,11 +9,13 @@
 		"Weight": 10,
 		"Proficiency": "Light",
 		"Description": "The armored kilt is made of a thick cloth skirt with bars of steel hanging down from the waist and a ring of horizontal steel plates just above the hem.",
-		"Special": [
-			"An armored kilt can be worn with other armors, changing the armor similar to how chainmail is a chain shirt plus leg and arm coverings.",
-			"Light armor becomes medium armor, gaining a +1 to the armor bonus, adding 15 pounds, and lowering the Max Dex by 1 (You also move at 2/3 your base speed).",
-			"Medium armor becomes heavy armor, gaining a +1 to the armor bonus, adding 15 pounds, and lowering the Max Dex by 1 (You also move at 2/3 your base speed and move only x3 your speed when Running)."
-		]
+		"Extras": {
+			"Notes": [
+				"An armored kilt can be worn with other armors, changing the armor similar to how chainmail is a chain shirt plus leg and arm coverings.",
+				"Light armor becomes medium armor, gaining a +1 to the armor bonus, adding 15 pounds, and lowering the Max Dex by 1 (You also move at 2/3 your base speed).",
+				"Medium armor becomes heavy armor, gaining a +1 to the armor bonus, adding 15 pounds, and lowering the Max Dex by 1 (You also move at 2/3 your base speed and move only x3 your speed when Running)."
+			]
+		}
 	},
 	"Dancing Scarves": {
 		"AC Bonus": 0,

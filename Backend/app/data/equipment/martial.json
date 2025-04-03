@@ -540,7 +540,9 @@
 		"Cost": 15,
 		"Weight": 4,
 		"Description": "This sword is about 3½ feet in length.",
-		"Special": []
+		"Extras": {
+			"Notes": []
+		}
 	},
 	"Manopole": {
 		"Damage": {  "fine": "1d2",  "diminuitive": "1d3",  "tiny": "1d4",  "small": "1d6",  "medium": "1d8",  "large": "2d6",  "huge": "3d6",  "gargantuan": "4d6",  "colossal": "6d6"  },

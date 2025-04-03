@@ -441,6 +441,13 @@
                     multiple
                     placeholder="Common Conditions"
                   >
+                  <!--
+                  <template #tag>
+                    <el-tag v-for="(item, name) in filterValue[key]" effect="dark" :color="item.color" :key="name" >
+                      {{ item.label }}
+                    </el-tag>
+                  </template>
+                 -->
                     <el-option v-for="item in conditionSelect" :key="item.name" :label="item.name" :value="item" >
                       <div class="flex items-center">
                         <el-tag type="primary" style="margin-right: 8px" size="small" effect="dark" />
