@@ -1,7 +1,6 @@
 {
   "Aklys": {
  		"Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
-    "Damage": [ "1d4", "1d6", "1d8" ],
     "Critical": "20/x2",
     "Range": 20,
     "Damage Type": [ "Bludgeoning" ],
@@ -13,10 +12,12 @@
     "Cost": 5,
     "Weight": 2,
     "Description": "The aklys is a hooked throwing club with a 20-foot-long cord, usually of woven leather.",
-    "Special": [
-      "You may retrieve a thrown aklys with the atached cord as a move action.",
-      "Performance", "Trip"
-    ]
+    "Extras": {
+      "Notes": [
+        "Performance", "Trip",
+        "You may retrieve a thrown aklys with the atached cord as a move action."
+      ]
+    }
   },
   "Dwarven Light Axe-Gauntlet": {
  		"Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
@@ -31,10 +32,12 @@
     "Cost": 16,
     "Weight": 5,
     "Description": "An axe-gauntlet is a locked gauntlet covering the hand and forearm up to and over the elbow, with an axe blade built around the gauntlet’s permanently closed fist.",
-    "Special": [
-      "Donning an axe-gauntlet is a full-round action, and you get a +10 bonus to CMD vs disarm attempts.",
-      "Blocking", "Disarm"
-    ]
+    "Extras": {
+      "Notes": [
+        "Blocking", "Disarm",
+        "Donning an axe-gauntlet is a full-round action, and you get a +10 bonus to CMD vs disarm attempts."
+      ]
+		}
   },
   "Knuckle Axe": {
  		"Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
@@ -49,11 +52,13 @@
     "Cost": 9,
     "Weight": 2,
     "Description": "Knuckle axes, usually used in pairs, resemble axe blades mounted on brass knuckles.",
-    "Special": [
-      "You may hold, but not wield, a weapon or other object in a hand wearing a knuckle axe.",
-      "Unlike when wearing brass knuckles, you cannot use a hand wearing a knuckle axe for spellcasting.",
-      "Monk", "Performance"
-    ]
+    "Extras": {
+      "Notes": [
+        "Monk", "Performance",
+        "You may hold, but not wield, a weapon or other object in a hand wearing a knuckle axe.",
+        "Unlike when wearing brass knuckles, you cannot use a hand wearing a knuckle axe for spellcasting."
+      ]
+		}
   },
   "Barbazu Beard": {
     "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
@@ -68,10 +73,12 @@
     "Cost": 25,
     "Weight": 5,
     "Description": "A barbazu beard is a helm with a full facemask and razor-sharp blade extending from the chin.",
-    "Special": [
-      "A barbazu beard can be used as an off-hand weapon that requires no hands to use.",
-      "Atacking with a barbazu beard provokes attacks of opportunity."
-    ]
+    "Extras": {
+      "Notes": [
+        "A barbazu beard can be used as an off-hand weapon that requires no hands to use.",
+        "Atacking with a barbazu beard provokes attacks of opportunity."
+      ]
+		}
   },
   "Battle Poi": {
     "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
@@ -86,11 +93,13 @@
     "Cost": 5,
     "Weight": 2,
     "Description": "",
-    "Special": [
-      "Poi are too light to deal physical weapon damage, but they instead deal fire damage when lit.",
-      "Poi can be extinguished by spending a full round action smothering them in sand or submerging them in water.",
-      "If you are proficient with battle poi, you are treated as if you have the Two-Weapon Fighting feat when using poi."
-    ]
+    "Extras": {
+      "Notes": [
+        "Poi are too light to deal physical weapon damage, but they instead deal fire damage when lit.",
+        "Poi can be extinguished by spending a full round action smothering them in sand or submerging them in water.",
+        "If you are proficient with battle poi, you are treated as if you have the Two-Weapon Fighting feat when using poi."
+      ]
+		}
   },
   "Swordbreker Dagger": {
     "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
@@ -105,10 +114,12 @@
     "Cost": 10,
     "Weight": 3,
     "Description": "A swordbreaker dagger has large, deep serrations along one side of the blade, resembling the barbed teeth of a comb.",
-    "Special": [
-      "If you are proficient with this weapon, add +4 on your disarm or sunder attempts against bladed weapons.",
-      "Disarm", "Sunder"
-    ]
+    "Extras": {
+      "Notes": [
+        "Disarm", "Sunder",
+        "If you are proficient with this weapon, add +4 on your disarm or sunder attempts against bladed weapons."
+      ]
+		}
   },
   "Flying Talon": {
     "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
@@ -123,10 +134,12 @@
     "Cost": 15,
     "Weight": 5,
     "Description": "This weapon consists of a three-pronged, barbed hook attached to a length of chain.",
-    "Special": [
-      "Due to the weapon’s unwieldiness, you cannot make attacks of opportunity with a flying talon and do not threaten any squares with it.",
-      "Disarm", "Trip"
-    ]
+    "Extras": {
+      "Notes": [
+        "Due to the weapon’s unwieldiness, you cannot make attacks of opportunity with a flying talon and do not threaten any squares with it.",
+        "Disarm", "Trip"
+      ]
+    }
   },
   "Gnome Pincher": {
  		"Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
@@ -141,11 +154,13 @@
     "Cost": 10,
     "Weight": 2,
     "Description": "This odd weapon is a 2-foot rod topped with four blunt claws. Squeezing the handle causes the claws to close.",
-    "Special": [
-      "You can use the gnome pincher to attempt a disarm or steal combat maneuver with a +2 bonus.",
-      "You can transfer an object from the pincher to your free hand as a free action.",
-      "Gnomes treat gnome pinchers as martial weapons."
-    ]
+    "Extras": {
+      "Notes": [
+        "You can use the gnome pincher to attempt a disarm or steal combat maneuver with a +2 bonus.",
+        "You can transfer an object from the pincher to your free hand as a free action.",
+        "Gnomes treat gnome pinchers as martial weapons."
+      ]
+    }
   },
   "Halfling Rope-Shot": {
  		"Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
@@ -160,12 +175,14 @@
     "Cost": 1,
     "Weight": 1,
     "Description": "One end of this short rope has a sling bullet wrapped in a monkey’s fist knot, and the other end is tied in a small loop.",
-    "Special": [
-      "Wrapping or removing the loop from your wrist is a full-round action.",
-      "If attached and you drop the rope-shot (or are disarmed), you can recover it as a swift action.",
-      "You get a +2 bonus on Sleight of Hand chacks to conceal a rope-shot and Halflings treat rope-shots as martial weapons.",
-      "Disarm"
-    ]
+    "Extras": {
+      "Notes": [
+        "Disarm",
+        "Wrapping or removing the loop from your wrist is a full-round action.",
+        "If attached and you drop the rope-shot (or are disarmed), you can recover it as a swift action.",
+        "You get a +2 bonus on Sleight of Hand chacks to conceal a rope-shot and Halflings treat rope-shots as martial weapons."
+      ]
+    }
   },
   "Dwarven Boulder Helmet": {
     "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
@@ -180,11 +197,13 @@
     "Cost": 20,
     "Weight": 10,
     "Description": "This heavy, reinforced metal helmet can be used to make melee attacks.",
-    "Special": [
-      "You get a +2 circumstance bonus on bull rush maneuvers, but you become staggered until the end of your next turn.",
-      "You also get a +2 circumstance bonus to AC against critical hit confirmation rolls.",
-      "A dwarven boulder helmet adds 20% to the wearer's arcane spell failure chance."
-    ]
+    "Extras": {
+      "Notes": [
+        "You get a +2 circumstance bonus on bull rush maneuvers, but you become staggered until the end of your next turn.",
+        "You also get a +2 circumstance bonus to AC against critical hit confirmation rolls.",
+        "A dwarven boulder helmet adds 20% to the wearer's arcane spell failure chance."
+      ]
+    }
   },
   "Kama": {
  		"Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
@@ -199,7 +218,9 @@
     "Cost": 2,
     "Weight": 2,
     "Description": "A kama is a short, curved blade attached to a simple handle, usually made of wood.",
-    "Special": []
+    "Extras": {
+      "Notes": []
+    }
   },
   "Butterfly Knife": {
     "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
@@ -214,10 +235,12 @@
     "Cost": 5,
     "Weight": 1,
     "Description": "A butterfly knife has a blade concealed between two halves of the handle that can be brought to bear quickly.",
-    "Special": [
-      "You may open a butterfly knife as a move action, or as a free action if you have proficincy (or the Quick Draw feat).",
-      "When closed, you gain a +2 bonus on Sleight of Hand checks made to conceal it on your body."
-    ]
+    "Extras": {
+      "Notes": [
+        "You may open a butterfly knife as a move action, or as a free action if you have proficincy (or the Quick Draw feat).",
+        "When closed, you gain a +2 bonus on Sleight of Hand checks made to conceal it on your body."
+      ]
+    }
   },
   "Deer Horn Knife": {
     "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
@@ -232,9 +255,11 @@
     "Cost": 10,
     "Weight": 3,
     "Description": "This flat, metal weapon consists of two joined crescent-shaped blades overlapping to form a hollow center with four projecting points.",
-    "Special": [
-      "Blocking"
-    ]
+    "Extras": {
+      "Notes": [
+        "Blocking"
+      ]
+    }
   },
   "Dwarven Maulaxe": {
  		"Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
@@ -249,7 +274,9 @@
     "Cost": 25,
     "Weight": 5,
     "Description": "This versatile weapon appears like a heavy-headed axe, but a skilled wielder can strike equally well with its chopping edge as with the forged sledge that backs the blade.",
-    "Special": []
+    "Extras": {
+      "Notes": []
+    }
   },
   "Nunchaku": {
  		"Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
@@ -264,9 +291,11 @@
     "Cost": 2,
     "Weight": 2,
     "Description": "A nunchaku is made up of two wooden or metal bars connected by a small length of rope or chain.",
-    "Special": [
-      "Disarm", "Monk"
-    ]
+    "Extras": {
+      "Notes": [
+        "Disarm", "Monk"
+      ]
+    }
   },
   "Quadrens": {
  		"Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
@@ -281,10 +310,12 @@
     "Cost": 8,
     "Weight": 2,
     "Description": "A quadrens looks similar to a sturdy dagger, but with four spikes mounted in a square pattern in place of a blade.",
-    "Special": [
-      "On a critical hit, you leave a gaping wound causing 1 point of bleed damage.",
-      "Performance", "Disarm"
-    ]
+    "Extras": {
+      "Notes": [
+        "Performance", "Disarm",
+        "On a critical hit, you leave a gaping wound causing 1 point of bleed damage."
+      ]
+    }
   },
   "Drow Razor": {
     "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
@@ -299,9 +330,11 @@
     "Cost": 25,
     "Weight": 2,
     "Description": "Meant for quick strikes and slashes, this long, slender knife is incredibly sharp along one edge.",
-    "Special": [
-      "A critical hit deals an addition 2 precision damage (this is not multiplied by the critical)."
-    ]
+    "Extras": {
+      "Notes": [
+        "A critical hit deals an addition 2 precision damage (this is not multiplied by the critical)."
+      ]
+    }
   },
   "Rope Gauntlet": {
     "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
@@ -316,10 +349,12 @@
     "Cost": 0.2,
     "Weight": 2,
     "Description": "By wrapping your hands and forearms in thin but tough hemp ropes and then soaking the makeshift gloves in water for weight and expansion, you can transform your fists into rockhard weapons easily capable of killing in a fistfight.",
-    "Special": [
-      "Each rope gauntlet takes a full minute to wrap and another minute to soak, but once applied can be worn for a day; removing a rope gauntlet takes 1 full round.",
-      "You may wield or carry items in your hands while wearing rope gauntlets, but you take a -2 penalty on all precision based tasks (like lockpicking)."
-    ]
+    "Extras": {
+      "Notes": [
+        "Each rope gauntlet takes a full minute to wrap and another minute to soak, but once applied can be worn for a day; removing a rope gauntlet takes 1 full round.",
+        "You may wield or carry items in your hands while wearing rope gauntlets, but you take a -2 penalty on all precision based tasks (like lockpicking)."
+      ]
+    }
   },
   "Sawtoothed Sabre": {
     "Damage": {  "fine": "1d2",  "diminuitive": "1d3",  "tiny": "1d4",  "small": "1d6",  "medium": "1d8",  "large": "2d6",  "huge": "3d6",  "gargantuan": "4d6",  "colossal": "6d6"  },
@@ -334,9 +369,11 @@
     "Cost": 35,
     "Weight": 2,
     "Description": "The sawtooth sabre's blade is curved like a normal sabre, but instead of a straight edge, the cutting edge is serrated, allowing deeper wounds.",
-    "Special": [
-      "A sawtooth sabre may be used as a Martial Weapon (in which case it functions identically to a longsword)."
-    ]
+    "Extras": {
+      "Notes": [
+        "A sawtooth sabre may be used as a Martial Weapon (in which case it functions identically to a longsword)."
+      ]
+    }
   },
   "Sai": {
     "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
@@ -351,10 +388,12 @@
     "Cost": 1,
     "Weight": 1,
     "Description": "A sai is a metal spike flanked by a pair of prongs used to trap an enemy’s weapon. Though pointed, a sai is not usually used for stabbing. Instead, it is used primarily to bludgeon foes, punching with the hilt, or else to catch and disarm weapons between its tines. Sais are often wielded in pairs.",
-    "Special": [
-      "Disarm", "Monk",
-      "When wielding a sai, you get a +2 bonus on combat maneuver checks to sunder an enemy’s weapon."
-    ]
+    "Extras": {
+      "Notes": [
+        "Disarm", "Monk",
+        "When wielding a sai, you get a +2 bonus on combat maneuver checks to sunder an enemy’s weapon."
+      ]
+    }
   },
   "Sanpkhang": {
     "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
@@ -369,9 +408,11 @@
     "Cost": 60,
     "Weight": 1,
     "Description": "This elaborate knife is carved with special barbs and grooves, meant to channel toxins into the bloodstream.",
-    "Special": [
-      "Any injury poison delivered with a sanpkhang has its DC increased by 1, or by 2 if delivered as part of a critical hit or sneak attack."
-    ]
+    "Extras": {
+      "Notes": [
+        "Any injury poison delivered with a sanpkhang has its DC increased by 1, or by 2 if delivered as part of a critical hit or sneak attack."
+      ]
+    }
   },
   "Siangham": {
  		"Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
@@ -386,7 +427,9 @@
     "Cost": 3,
     "Weight": 1,
     "Description": "This weapon is a handheld shaft fitted with a pointed tip for stabbing foes. It resembles a (much sturdier) arrow with a grip designed for melee combat.",
-    "Special": [ "Monk" ]
+    "Extras": {
+      "Notes": [ "Monk" ]
+    }
   },
   "Sica": {
  		"Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
@@ -401,9 +444,11 @@
     "Cost": 10,
     "Weight": 2,
     "Description": "This blade is a smaller, lighter version of the shotel.",
-    "Special": [
-      "You gain a +1 bonus on attack rolls with a sica against opponents using bucklers, light shields, or heavy shields."
-    ]
+    "Extras": {
+      "Notes": [
+        "You gain a +1 bonus on attack rolls with a sica against opponents using bucklers, light shields, or heavy shields."
+      ]
+    }
   },
   "Thorn Bracer": {
  		"Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
@@ -418,10 +463,12 @@
     "Cost": 30,
     "Weight": 3,
     "Description": "These sturdy leather bracers are studded with lacquered rose thorns that can be used to pierce foes.",
-    "Special": [
-      "A thorn bracer can be used to make an offhand attack if you aren’t wielding a weapon or shield in that hand.",
-      "You can attack with these bracers even while holding objects in your hands."
-    ]
+    "Extras": {
+      "Notes": [
+        "A thorn bracer can be used to make an offhand attack if you aren’t wielding a weapon or shield in that hand.",
+        "You can attack with these bracers even while holding objects in your hands."
+      ]
+    }
   },
   "Dwarven War-Shield": {
  		"Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
@@ -436,11 +483,13 @@
     "Cost": 50,
     "Weight": 8,
     "Description": "This shield’s sides are cut into jagged angles and honed to razor sharpness; they are often wielded in paris.",
-    "Special": [
-      "With the Two-Weapon Fighting feat (and 2 war-shields), you increase the higher of the two shield bonuses by 1.",
-      "You lose this benefit for 1 round if you attack with either shield (unless you have Improved Shield Bash ro a similar benefit).",
-      "A dwarven war-shield gains no benefit from shield spikes."
-    ]
+    "Extras": {
+      "Notes": [
+        "With the Two-Weapon Fighting feat (and 2 war-shields), you increase the higher of the two shield bonuses by 1.",
+        "You lose this benefit for 1 round if you attack with either shield (unless you have Improved Shield Bash ro a similar benefit).",
+        "A dwarven war-shield gains no benefit from shield spikes."
+      ]
+    }
   },
   "Waveblade": {
  		"Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
@@ -455,9 +504,11 @@
     "Cost": 5,
     "Weight": 2,
     "Description": "Also known as a “scorpion’s tail” due to its unique, stinger-like shape, this short, double-curved blade has no hilt but features a knuckle guard.",
-    "Special": [
-      "You gain a +2 bonus to your CMD against disarm attempts made to disarm you of a waveblade."
-    ]
+    "Extras": {
+      "Notes": [
+        "You gain a +2 bonus to your CMD against disarm attempts made to disarm you of a waveblade."
+      ]
+    }
   },
   "Scorpion Whip": {
     "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
@@ -472,9 +523,11 @@
     "Cost": 5,
     "Weight": 3,
     "Description": "This whip has a series of razor-sharp blades and fangs inset along its tip.",
-    "Special": [
-      "Disarm", "Performance", "Reach", "Trip"
-    ]
+    "Extras": {
+      "Notes": [
+        "Disarm", "Performance", "Reach", "Trip"
+      ]
+    }
   },
   "Dwarven Heavy Axe-Gauntlet": {
     "Damage": {  "fine": "1d2",  "diminuitive": "1d3",  "tiny": "1d4",  "small": "1d6",  "medium": "1d8",  "large": "2d6",  "huge": "3d6",  "gargantuan": "4d6",  "colossal": "6d6"  },
@@ -489,11 +542,13 @@
     "Cost": 21,
     "Weight": 5,
     "Description": "An axe-gauntlet is a locked gauntlet covering the hand and forearm up to and over the elbow, with an axe blade built around the gauntlet’s permanently closed fist.",
-    "Special": [
-      "Blocking", "Disarm",
-      "An axe-gauntlet takes a full-round action to don, and it gives you a +10 bonus to your CMD against disarm attempts.",
-      "You can’t use the hand on which an axe-gauntlet is worn for anything else."
-    ]
+    "Extras": {
+      "Notes": [
+        "Blocking", "Disarm",
+        "An axe-gauntlet takes a full-round action to don, and it gives you a +10 bonus to your CMD against disarm attempts.",
+        "You can’t use the hand on which an axe-gauntlet is worn for anything else."
+      ]
+    }
   },
   "Hooked Axe": {
     "Damage": {  "fine": "1d2",  "diminuitive": "1d3",  "tiny": "1d4",  "small": "1d6",  "medium": "1d8",  "large": "2d6",  "huge": "3d6",  "gargantuan": "4d6",  "colossal": "6d6"  },
@@ -508,9 +563,11 @@
     "Cost": 20,
     "Weight": 7,
     "Description": "A hooked axe features a hook at the end of its blade for tripping or disarming opponents.",
-    "Special": [
-      "Disarm", "Performance", "Trip"
-    ]
+    "Extras": {
+      "Notes": [
+        "Disarm", "Performance", "Trip"
+      ]
+    }
   },
   "Broken-Back Seax": {
     "Damage": {  "fine": "1d3",  "diminuitive": "1d4",  "tiny": "1d6",  "small": "1d8",  "medium": "1d10",  "large": "2d8",  "huge": "3d8",  "gargantuan": "4d8",  "colossal": "6d8"  },
@@ -525,14 +582,15 @@
     "Cost": 40,
     "Weight": 4,
     "Description": "The broken-back seax is the size of a short sword, and has a broad blade with a distinctive trapezoidal shape.",
-    "Special": [
-      "This weapon deals both Piercing and Slashing damage at once.",
-      "If your Strength score is less than 15, you take a –2 penalty on attack rolls with a broken-back seax."
-    ]
+    "Extras": {
+      "Notes": [
+        "This weapon deals both Piercing and Slashing damage at once.",
+        "If your Strength score is less than 15, you take a –2 penalty on attack rolls with a broken-back seax."
+      ]
+    }
   },
   "Estoc": {
     "Damage": {  "fine": "1",  "diminuitive": "1d3",  "tiny": "2d2",  "small": "2d3",  "medium": "2d4",  "large": "2d6",  "huge": "3d6",  "gargantuan": "4d6",  "colossal": "6d6"  },
-    "Damage": [ "2d3", "2d4", "2d6" ],
     "Critical": "18/x2",
     "Range": 0,
     "Damage Type": [ "Piercing" ],
@@ -544,10 +602,12 @@
     "Cost": 50,
     "Weight": 4,
     "Description": "An estoc is a sword about as long as a bastard sword, but designed exclusively for thrusting attacks.",
-    "Special": [
-      "An estoc can be wielded with two hands as a martial weapon.",
-      "If you have estoc proficiency, you may use Weapon Finesse to apply your Dex mod even though it isn't a light weapon."
-    ]
+    "Extras": {
+      "Notes": [
+        "An estoc can be wielded with two hands as a martial weapon.",
+        "If you have estoc proficiency, you may use Weapon Finesse to apply your Dex mod even though it isn't a light weapon."
+      ]
+    }
   },
   "Falcata": {
     "Damage": {  "fine": "1d2",  "diminuitive": "1d3",  "tiny": "1d4",  "small": "1d6",  "medium": "1d8",  "large": "2d6",  "huge": "3d6",  "gargantuan": "4d6",  "colossal": "6d6"  },
@@ -562,7 +622,9 @@
     "Cost": 18,
     "Weight": 4,
     "Description": "The falcata has a single-edged blade that pitches forward towards the point, the edge being concave near the hilt, but convex near the point.",
-    "Special": []
+    "Extras": {
+      "Notes": []
+    }
   },
   "Flickmace": {
     "Damage": {  "fine": "1d2",  "diminuitive": "1d3",  "tiny": "1d4",  "small": "1d6",  "medium": "1d8",  "large": "2d6",  "huge": "3d6",  "gargantuan": "4d6",  "colossal": "6d6"  },
@@ -577,9 +639,11 @@
     "Cost": 20,
     "Weight": 10,
     "Description": "The innovation behind a flick-mace, which has an ordinary mace head, lies within its spring-loaded haft and protruding handles.",
-    "Special": [
-      "Reach", "Trip"
-    ]
+    "Extras": {
+      "Notes": [
+        "Reach", "Trip"
+      ]
+    }
   },
   "Flindbar": {
     "Damage": {  "fine": "1d2",  "diminuitive": "1d3",  "tiny": "1d4",  "small": "1d6",  "medium": "1d8",  "large": "2d6",  "huge": "3d6",  "gargantuan": "4d6",  "colossal": "6d6"  },
@@ -594,10 +658,12 @@
     "Cost": 9,
     "Weight": 6,
     "Description": "This one-handed weapon is similar to a nunchaku, but a flindbar’s bars are made of iron and are capped with a ring of spikes or studs.",
-    "Special": [
-      "Disarm", "Trip",
-      "This weapon deals both Bludgeoning and Piercing damage at once"
-    ]
+    "Extras": {
+      "Notes": [
+        "Disarm", "Trip",
+        "This weapon deals both Bludgeoning and Piercing damage at once"
+      ]
+    }
   },
   "Khopesh": {
     "Damage": {  "fine": "1d2",  "diminuitive": "1d3",  "tiny": "1d4",  "small": "1d6",  "medium": "1d8",  "large": "2d6",  "huge": "3d6",  "gargantuan": "4d6",  "colossal": "6d6"  },
@@ -612,9 +678,11 @@
     "Cost": 20,
     "Weight": 8,
     "Description": "This heavy blade has a convex curve near the end, making its overall shape similar to that of a battleaxe.",
-    "Special": [
-      "Trip"
-    ]
+    "Extras": {
+      "Notes": [
+        "Trip"
+      ]
+    }
   },
   "Knobkerrie": {
  		"Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
@@ -629,9 +697,11 @@
     "Cost": 5,
     "Weight": 4,
     "Description": "A knobkerrie, or iwisa, is carved from a single piece of hardwood with a shaft 2 to 4 feet long surmounted by a bulbous knob.",
-    "Special": [
-      "You gain a +1 on ranged attack rolls with a knobkerrie against opponents using shields (except tower shields)."
-    ]
+    "Extras": {
+      "Notes": [
+        "You gain a +1 on ranged attack rolls with a knobkerrie against opponents using shields (except tower shields)."
+      ]
+    }
   },
   "Dwarven Ram Hammer": {
     "Damage": {  "fine": "1d2",  "diminuitive": "1d3",  "tiny": "1d4",  "small": "1d6",  "medium": "1d8",  "large": "2d6",  "huge": "3d6",  "gargantuan": "4d6",  "colossal": "6d6"  },
@@ -646,7 +716,9 @@
     "Cost": 25,
     "Weight": 5,
     "Description": "The dwarven ram hammer is designed to be thrown or used in melee, with a long leather strap that is wrapped around the wrist when used to deliver blows in close combat but unfurled to aid in swinging the weapon when the hammer is thrown.",
-    "Special": []
+    "Extras": {
+      "Notes": []
+    }
   },
   "Spiral Rapier": {
  		"Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
@@ -661,11 +733,13 @@
     "Cost": 80,
     "Weight": 3,
     "Description": "This rapier like weapon has a thicker blade than normal, which is shaped into a corkscrewing spiral of sharpened edges.",
-    "Special": [
-      "Blocking", "Disarm",
-      "You may use Weapon Finesse with a Spiral Rapier even though it isn't a light weapon.",
-      "You cannot wield a spiral rapier in two hands to apply 1.5 times your strength modifier to its damage."
-    ]
+    "Extras": {
+      "Notes": [
+        "Blocking", "Disarm",
+        "You may use Weapon Finesse with a Spiral Rapier even though it isn't a light weapon.",
+        "You cannot wield a spiral rapier in two hands to apply 1.5 times your strength modifier to its damage."
+      ]
+    }
   },
   "Rhoka": {
     "Damage": {  "fine": "1d2",  "diminuitive": "1d3",  "tiny": "1d4",  "small": "1d6",  "medium": "1d8",  "large": "2d6",  "huge": "3d6",  "gargantuan": "4d6",  "colossal": "6d6"  },
@@ -680,7 +754,9 @@
     "Cost": 5,
     "Weight": 6,
     "Description": "This sword consists of two serrated blades placed side by side, each ending in a cruel hook.",
-    "Special": []
+    "Extras": {
+      "Notes": []
+    }
   },
   "Shotel": {
     "Damage": {  "fine": "1d2",  "diminuitive": "1d3",  "tiny": "1d4",  "small": "1d6",  "medium": "1d8",  "large": "2d6",  "huge": "3d6",  "gargantuan": "4d6",  "colossal": "6d6"  },
@@ -695,10 +771,12 @@
     "Cost": 30,
     "Weight": 3,
     "Description": "The shotel is a downward-curving sword designed to reach over or around an opponent’s shield.",
-    "Special": [
-      "Performance",
-      "You gain a +1 bonus on attack rolls with a shotel against opponents using bucklers, light shields, or heavy shields."
-    ]
+    "Extras": {
+      "Notes": [
+        "Performance",
+        "You gain a +1 bonus on attack rolls with a shotel against opponents using bucklers, light shields, or heavy shields."
+      ]
+    }
   },
   "Sickle-Sword": {
     "Damage": {  "fine": "1d2",  "diminuitive": "1d3",  "tiny": "1d4",  "small": "1d6",  "medium": "1d8",  "large": "2d6",  "huge": "3d6",  "gargantuan": "4d6",  "colossal": "6d6"  },
@@ -713,10 +791,12 @@
     "Cost": 20,
     "Weight": 4,
     "Description": "Favored by those with no talent for witchcraft, this exotic blade curves multiple times along its 3-1/2 feet.",
-    "Special": [
-      "Distracting",
-      "When wielding a sickle-sword in one hand and nothing in the other, you can spend a swift action to gain a +2 bonus on your next attack roll before the end of your turn."
-    ]
+    "Extras": {
+      "Notes": [
+        "Distracting",
+        "When wielding a sickle-sword in one hand and nothing in the other, you can spend a swift action to gain a +2 bonus on your next attack roll before the end of your turn."
+      ]
+    }
   },
   "Split-Blade Sword": {
     "Damage": {  "fine": "1d4",  "diminuitive": "1d6",  "tiny": "1d8",  "small": "1d10",  "medium": "2d6",  "large": "3d6",  "huge": "4d6",  "gargantuan": "6d6",  "colossal": "8d6"  },
@@ -731,9 +811,11 @@
     "Cost": 200,
     "Weight": 8,
     "Description": "A split-blade sword resembles a large scimitar whose blade splits into two about two-thirds of the way toward the tip.",
-    "Special": [
-      "If your Dex is less than 15, you take a -2 penalty on attack rolls with a split-blade sword."
-    ]
+    "Extras": {
+      "Notes": [
+        "If your Dex is less than 15, you take a -2 penalty on attack rolls with a split-blade sword."
+      ]
+    }
   },
   "Dueling Sword": {
     "Damage": {  "fine": "1d2",  "diminuitive": "1d3",  "tiny": "1d4",  "small": "1d6",  "medium": "1d8",  "large": "2d6",  "huge": "3d6",  "gargantuan": "4d6",  "colossal": "6d6"  },
@@ -748,11 +830,13 @@
     "Cost": 20,
     "Weight": 3,
     "Description": "These slightly curved swords measure just over 3 feet in length.",
-    "Special": [
-      "A dueling sword can be used as a martial weapon (in which case it functions as a longsword).",
-      "You may use Weapon Finesse with a dueling sword, even though it isn't a light weapon.",
-      "You can also wield a dueling sword in two hands to apply 1-1/2 times your Strength bonus to damage rolls."
-    ]
+    "Extras": {
+      "Notes": [
+        "A dueling sword can be used as a martial weapon (in which case it functions as a longsword).",
+        "You may use Weapon Finesse with a dueling sword, even though it isn't a light weapon.",
+        "You can also wield a dueling sword in two hands to apply 1-1/2 times your Strength bonus to damage rolls."
+      ]
+    }
   },
   "Bastard Sword": {
     "Damage": {  "fine": "1d3",  "diminuitive": "1d4",  "tiny": "1d6",  "small": "1d8",  "medium": "1d10",  "large": "2d8",  "huge": "3d8",  "gargantuan": "4d8",  "colossal": "6d8"  },
@@ -767,9 +851,11 @@
     "Cost": 35,
     "Weight": 6,
     "Description": "A bastard sword is about 4 feet in length, making it too large to use in one hand without special training",
-    "Special": [
-      "You may use a bastard sword as a two-handed martial weapon."
-    ]
+    "Extras": {
+      "Notes": [
+        "You may use a bastard sword as a two-handed martial weapon."
+      ]
+    }
   },
   "Tongi": {
  		"Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
@@ -784,7 +870,9 @@
     "Cost": 18,
     "Weight": 4,
     "Description": "This rare weapon resembles a battleaxe with wedges cut out of the head, presenting four sharp points that splay from the handle rather than a single convex blade",
-    "Special": []
+    "Extras": {
+      "Notes": []
+    }
   },
   "Dwarven Waraxe": {
     "Damage": {  "fine": "1d3",  "diminuitive": "1d4",  "tiny": "1d6",  "small": "1d8",  "medium": "1d10",  "large": "2d8",  "huge": "3d8",  "gargantuan": "4d8",  "colossal": "6d8"  },
@@ -799,9 +887,11 @@
     "Cost": 30,
     "Weight": 8,
     "Description": "A dwarven waraxe has a large, ornate head mounted to a thick handle, making it too large to use in one hand without special training.",
-    "Special": [
-      "A character can wield a correctly sized dwarven waraxe as a two-handed martial weapon, or smaller waraxe (1 size smaller) as a one-handed martial weapon."
-    ]
+    "Extras": {
+      "Notes": [
+        "A character can wield a correctly sized dwarven waraxe as a two-handed martial weapon, or smaller waraxe (1 size smaller) as a one-handed martial weapon."
+      ]
+    }
   },
   "Dwarven Double Waraxe": {
     "Damage": {  "fine": "1d3",  "diminuitive": "1d4",  "tiny": "1d6",  "small": "1d8",  "medium": "1d10",  "large": "2d8",  "huge": "3d8",  "gargantuan": "4d8",  "colossal": "6d8"  },
@@ -816,9 +906,11 @@
     "Cost": 60,
     "Weight": 12,
     "Description": "This hefty waraxe is similar to the common dwarven waraxe, but its recurved blade spans forward and back from its head like a deadly butterfly.",
-    "Special": [
-      "A dwarven double waraxe grants a +1 bonus on all attack rolls after the first when using Cleave or Great Cleave."
-    ]
+    "Extras": {
+      "Notes": [
+        "A dwarven double waraxe grants a +1 bonus on all attack rolls after the first when using Cleave or Great Cleave."
+      ]
+    }
   },
   "Whip": {
     "Damage": {  "fine": "0",  "diminuitive": "0",  "tiny": "1",  "small": "1d2",  "medium": "1d3",  "large": "1d4",  "huge": "1d6",  "gargantuan": "1d8",  "colossal": "2d6"  },
@@ -833,14 +925,16 @@
     "Cost": 1,
     "Weight": 2,
     "Description": "A whip is a long leather cord or strand that can be wielded as a non-lethal, if painful, one-handed weapon.",
-    "Special": [
-      "Disarm", "Reach", "Trip", "Nonlethal",
-      "A whip deals no damage to any creature with an armor bonus of +1 or higher or a natural armor bonus of +3 or higher.",
-      "A whip's reach allows you to make attacks anwhere within 15feet, though you do not threaten further than your natural reach.",
-      "Using a whip provokes an attack of opportunity, just as if you had used a ranged weapon.",
-      "You may use Weapon Finesse with a whip, even though it isn't a light weapon.",
-      "Wielding a whip with two hands does not add 1.5 times your Strength modifier to your damage rolls."
-    ]
+    "Extras": {
+      "Notes": [
+        "Disarm", "Reach", "Trip", "Nonlethal",
+        "A whip deals no damage to any creature with an armor bonus of +1 or higher or a natural armor bonus of +3 or higher.",
+        "A whip's reach allows you to make attacks anwhere within 15feet, though you do not threaten further than your natural reach.",
+        "Using a whip provokes an attack of opportunity, just as if you had used a ranged weapon.",
+        "You may use Weapon Finesse with a whip, even though it isn't a light weapon.",
+        "Wielding a whip with two hands does not add 1.5 times your Strength modifier to your damage rolls."
+      ]
+    }
   },
   "Orc Double Axe": {
     "Damage": {  "fine": "1d2/1d2",  "diminuitive": "1d3/1d3",  "tiny": "1d4/1d4",  "small": "1d6/1d6",  "medium": "1d8/1d8",  "large": "2d6/2d6",  "huge": "3d6/3d6",  "gargantuan": "4d6/4d6",  "colossal": "6d6/6d6"  },
@@ -855,9 +949,11 @@
     "Cost": 60,
     "Weight": 15,
     "Description": "A cruel weapon with blades placed at opposite ends of a long haft, an orc double axe is a double weapon.",
-    "Special": [
-      "Double"
-    ]
+    "Extras": {
+      "Notes": [
+        "Double"
+      ]
+    }
   },
   "Butchering Axe": {
     "Damage": {  "fine": "1d6",  "diminuitive": "1d8",  "tiny": "1d10",  "small": "1d12",  "medium": "3d6",  "large": "4d6",  "huge": "6d6",  "gargantuan": "8d6",  "colossal": "12d6"  },
@@ -872,9 +968,11 @@
     "Cost": 65,
     "Weight": 25,
     "Description": "A creation of orc smiths, this axe has an oversized head bristling with spikes and a long, thick haft that only barely counterbalances its weight.",
-    "Special": [
-      "If your Strength is less than 19 (or 17 for a Small or smaller butchering axe), you take a –2 penalty on attacks with it, as you’re unable to maneuver its daunting size and weight."
-    ]
+    "Extras": {
+      "Notes": [
+        "If your Strength is less than 19 (or 17 for a Small or smaller butchering axe), you take a –2 penalty on attacks with it, as you’re unable to maneuver its daunting size and weight."
+      ]
+    }
   },
   "Gnome Battle Ladder": {
     "Damage": {  "fine": "1/1",  "diminuitive": "1d2/1d2",  "tiny": "1d3/1d3",  "small": "1d4/1d4",  "medium": "1d6/1d6",  "large": "1d8/1d8",  "huge": "2d6/2d6",  "gargantuan": "3d6/3d6",  "colossal": "4d6/4d6"  },
@@ -889,9 +987,11 @@
     "Cost": 20,
     "Weight": 8,
     "Description": "Fighting with a battle ladder is like fighting with a quarterstaff, except that the spaces in the ladder can be used to entangle limbs.",
-    "Special": [
-      "Trip"
-    ]
+    "Extras": {
+      "Notes": [
+        "Trip"
+      ]
+    }
   },
   "Boarding Gaff": {
     "Damage": {  "fine": "1/1",  "diminuitive": "1d2/1d2",  "tiny": "1d3/1d3",  "small": "1d4/1d4",  "medium": "1d6/1d6",  "large": "1d8/1d8",  "huge": "2d6/2d6",  "gargantuan": "3d6/3d6",  "colossal": "4d6/4d6"  },
@@ -906,9 +1006,11 @@
     "Cost": 8,
     "Weight": 8,
     "Description": "A gaff hook is a long pole with a hook on one end for spearing fish, and often used by pirates to prevent ships from drifting apart during boarding.",
-    "Special": [
-      "Double", "Reach", "Trip"
-    ]
+    "Extras": {
+      "Notes": [
+        "Double", "Reach", "Trip"
+      ]
+    }
   },
   "Chain-Hammer": {
     "Damage": {  "fine": "1/1",  "diminuitive": "1d2/1d2",  "tiny": "1d3/1d3",  "small": "1d4/1d4",  "medium": "1d6/1d6",  "large": "1d8/1d8",  "huge": "2d6/2d6",  "gargantuan": "3d6/3d6",  "colossal": "4d6/4d6"  },
@@ -923,10 +1025,12 @@
     "Cost": 35,
     "Weight": 8,
     "Description": "This pair of hammers is linked by a loose chain and are balanced to wield in melee together or thrown.",
-    "Special": [
-      "Double",
-      "The chain is long enough that you can throw one hammer a max of 10 feet and use a move action to pull the thrown hammer back by the chain."
-    ]
+    "Extras": {
+      "Notes": [
+        "Double",
+        "The chain is long enough that you can throw one hammer a max of 10 feet and use a move action to pull the thrown hammer back by the chain."
+      ]
+    }
   },
   "Spiked Chain": {
     "Damage": {  "fine": "1d2",  "diminuitive": "1d3",  "tiny": "1d4",  "small": "1d6",  "medium": "2d4",  "large": "2d6",  "huge": "3d6",  "gargantuan": "4d6",  "colossal": "6d6"  },
@@ -941,10 +1045,12 @@
     "Cost": 25,
     "Weight": 10,
     "Description": "A spiked chain is about 4 feet in length, covered in wicked barbs.",
-    "Special": [
-      "Disarm", "Trip",
-      "You may use Weapon Finesse with a spiked chain, even though it isn't a light weapon."
-    ]
+    "Extras": {
+      "Notes": [
+        "Disarm", "Trip",
+        "You may use Weapon Finesse with a spiked chain, even though it isn't a light weapon."
+      ]
+    }
   },
   "Crook": {
  		"Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
@@ -959,10 +1065,12 @@
     "Cost": 1,
     "Weight": 5,
     "Description": "This common herder’s tool is a wooden pole with a hooked end.",
-    "Special": [
-      "Reach", "Trip",
-      "You can ignore the -4 for not having two hands free when attempting a grapple with a crook."
-    ]
+    "Extras": {
+      "Notes": [
+        "Reach", "Trip",
+        "You can ignore the -4 for not having two hands free when attempting a grapple with a crook."
+      ]
+    }
   },
   "Elven Curve Blade": {
     "Damage": {  "fine": "1d3",  "diminuitive": "1d4",  "tiny": "1d6",  "small": "1d8",  "medium": "1d10",  "large": "2d8",  "huge": "3d8",  "gargantuan": "4d8",  "colossal": "6d8"  },
@@ -977,10 +1085,12 @@
     "Cost": 80,
     "Weight": 7,
     "Description": "Essentially a longer version of a scimitar, but with a thinner blade, the elven curve blade is exceptionally rare.",
-    "Special": [
-      "You receive a +2 circumstance bonus to your Combat Maneuver Defense whenever a foe attempts to sunder your elven curve blade.",
-      "You may use Weapon Finesse with an elven curve blade, even though it isn't a light weapon."
-    ]
+    "Extras": {
+      "Notes": [
+        "You receive a +2 circumstance bonus to your Combat Maneuver Defense whenever a foe attempts to sunder your elven curve blade.",
+        "You may use Weapon Finesse with an elven curve blade, even though it isn't a light weapon."
+      ]
+    }
   },
   "Dwarven Dorn-Dergar": {
     "Damage": {  "fine": "1d3",  "diminuitive": "1d4",  "tiny": "1d6",  "small": "1d8",  "medium": "1d10",  "large": "2d8",  "huge": "3d8",  "gargantuan": "4d8",  "colossal": "6d8"  },
@@ -995,10 +1105,12 @@
     "Cost": 50,
     "Weight": 15,
     "Description": "This 10-foot-long chain is weighted at the end by a ball of solid iron the size of a large fist, giving it its common name the chain flail.",
-    "Special": [
-      "Reach",
-      "You may adjust the slack of the chain, using it either with or without reach, as a move action."
-    ]
+    "Extras": {
+      "Notes": [
+        "Reach",
+        "You may adjust the slack of the chain, using it either with or without reach, as a move action."
+      ]
+    }
   },
   "Double Spear": {
     "Damage": {  "fine": "1d2/1d2",  "diminuitive": "1d3/1d3",  "tiny": "1d4/1d4",  "small": "1d6/1d6",  "medium": "1d8/1d8",  "large": "2d6/2d6",  "huge": "3d6/3d6",  "gargantuan": "4d6/4d6",  "colossal": "5d6/5d6"  },
@@ -1013,9 +1125,11 @@
     "Cost": 25,
     "Weight": 12,
     "Description": "This long, heavy spear has a point at each end, allowing it to be used as a double weapon.",
-    "Special": [
-      "Double"
-    ]
+    "Extras": {
+      "Notes": [
+        "Double"
+      ]
+    }
   },
   "Elven Branched Spear": {
     "Damage": {  "fine": "1d2",  "diminuitive": "1d3",  "tiny": "1d4",  "small": "1d6",  "medium": "1d8",  "large": "2d6",  "huge": "3d6",  "gargantuan": "4d6",  "colossal": "6d6"  },
@@ -1030,11 +1144,13 @@
     "Cost": 20,
     "Weight": 10,
     "Description": "Behind this long pole weapon’s spearhead, several short branches project from the shaft at irregular intervals, each angled forward and tipped with a smaller leaf-like blade.",
-    "Special": [
-      "Brace", "Reach",
-      "When you make attacks of opportunity provoked by movement, you gain a +2 bonus on attack rolls.",
-      "You may use Weapon Finesse with an elven branched spear, even though it isn't a light weapon."
-    ]
+    "Extras": {
+      "Notes": [
+        "Brace", "Reach",
+        "When you make attacks of opportunity provoked by movement, you gain a +2 bonus on attack rolls.",
+        "You may use Weapon Finesse with an elven branched spear, even though it isn't a light weapon."
+      ]
+    }
   },
   "Fauchard": {
     "Damage": {  "fine": "1d3",  "diminuitive": "1d4",  "tiny": "1d6",  "small": "1d8",  "medium": "1d10",  "large": "2d8",  "huge": "3d8",  "gargantuan": "4d8",  "colossal": "6d8"  },
@@ -1049,10 +1165,12 @@
     "Cost": 14,
     "Weight": 10,
     "Description": "",
-    "Special": [
-      "Reach", "Trip",
-      "Like a glaive, the fauchard is a curved blade at the end of a pole, except the cutting edge is along the concave side."
-    ]
+    "Extras": {
+      "Notes": [
+        "Reach", "Trip",
+        "Like a glaive, the fauchard is a curved blade at the end of a pole, except the cutting edge is along the concave side."
+      ]
+    }
   },
   "Dire Flail": {
     "Damage": {  "fine": "1d2/1d2",  "diminuitive": "1d3/1d3",  "tiny": "1d4/1d4",  "small": "1d6/1d6",  "medium": "1d8/1d8",  "large": "2d6/2d6",  "huge": "3d6/3d6",  "gargantuan": "4d6/4d6",  "colossal": "6d6/6d6"  },
@@ -1067,9 +1185,11 @@
     "Cost": 90,
     "Weight": 10,
     "Description": "A dire flail consists of two spheres of spiked iron dangling from chains at opposite ends of a long haft.",
-    "Special": [
-      "Disarm", "Double", "Trip"
-    ]
+    "Extras": {
+      "Notes": [
+        "Disarm", "Double", "Trip"
+      ]
+    }
   },
   "Flailpole": {
     "Damage": {  "fine": "1d2",  "diminuitive": "1d3",  "tiny": "1d4",  "small": "1d6",  "medium": "1d8",  "large": "2d6",  "huge": "3d6",  "gargantuan": "4d6",  "colossal": "6d6"  },
@@ -1084,9 +1204,11 @@
     "Cost": 15,
     "Weight": 10,
     "Description": "This is simply a heavy flail mounted on the end of a long polearm.",
-    "Special": [
-      "Disarm", "Reach", "Trip"
-    ]
+    "Extras": {
+      "Notes": [
+        "Disarm", "Reach", "Trip"
+      ]
+    }
   },
   "Flambard": {
     "Damage": {  "fine": "1d3",  "diminuitive": "1d4",  "tiny": "1d6",  "small": "1d8",  "medium": "1d10",  "large": "2d8",  "huge": "3d8",  "gargantuan": "4d8",  "colossal": "6d8"  },
@@ -1101,10 +1223,12 @@
     "Cost": 50,
     "Weight": 6,
     "Description": "This two-handed sword has a wavy blade that is especially useful for cutting through wooden weapons.",
-    "Special": [
-      "Sunder",
-      "You get a +4 bonus on any sunder attempts against weapons with a wooden haft."
-    ]
+    "Extras": {
+      "Notes": [
+        "Sunder",
+        "You get a +4 bonus on any sunder attempts against weapons with a wooden haft."
+      ]
+    }
   },
   "Flying Blade": {
     "Damage": {  "fine": "1d4",  "diminuitive": "1d6",  "tiny": "1d8",  "small": "1d10",  "medium": "1d12",  "large": "3d6",  "huge": "4d6",  "gargantuan": "6d6",  "colossal": "8d6"  },
@@ -1119,12 +1243,14 @@
     "Cost": 40,
     "Weight": 12,
     "Description": "A flying blade is a large, crescent-shaped blade anchored to a 10-foot chain.",
-    "Special": [
-      "Performance", "Reach",
-      "This weapon is clumsy and you get a -2 penalty on attack rolls.",
-      "If you are making an AoO provoked by movement, you get a +2 bonus on attack rolls instead of the -2.",
-      "You may also adjust the slack of the chain, using it either with or without reach, as a move action."
-    ]
+    "Extras": {
+      "Notes": [
+        "Performance", "Reach",
+        "This weapon is clumsy and you get a -2 penalty on attack rolls.",
+        "If you are making an AoO provoked by movement, you get a +2 bonus on attack rolls instead of the -2.",
+        "You may also adjust the slack of the chain, using it either with or without reach, as a move action."
+      ]
+    }
   },
   "Garrote": {
  		"Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
@@ -1139,13 +1265,15 @@
     "Cost": 3,
     "Weight": 1,
     "Description": "",
-    "Special": [
-      "Grapple",
-      "In order to use a garrote, your opponent must be helpless or unaware of you.",
-      "You must make a grapple check (without the –4 penalty for not having two hands free) to garrot your opponent.",
-      "While garroted, your opponent must make a concentration check (DC 20 + your CMB + spell level) to cast a spell with a verbal component, use a command word item, or use any magic requiring speech.",
-      "You may also cut off your target's air supply with a swift action, forcing them to hold their breath. Any roud you do not maintain the choke, your opponent can take a breath and resart the Constitution checks."
-    ]
+    "Extras": {
+      "Notes": [
+        "Grapple",
+        "In order to use a garrote, your opponent must be helpless or unaware of you.",
+        "You must make a grapple check (without the –4 penalty for not having two hands free) to garrot your opponent.",
+        "While garroted, your opponent must make a concentration check (DC 20 + your CMB + spell level) to cast a spell with a verbal component, use a command word item, or use any magic requiring speech.",
+        "You may also cut off your target's air supply with a swift action, forcing them to hold their breath. Any roud you do not maintain the choke, your opponent can take a breath and resart the Constitution checks."
+      ]
+    }
   },
   "Dwarven Giant-Sticker": {
     "Damage": {  "fine": "1d3",  "diminuitive": "1d4",  "tiny": "1d6",  "small": "1d8",  "medium": "2d6",  "large": "3d6",  "huge": "4d6",  "gargantuan": "6d6",  "colossal": "8d6"  },
@@ -1160,9 +1288,11 @@
     "Cost": 25,
     "Weight": 12,
     "Description": "This heavy bladed spear is specifically designed for use against giants, who have long reach and the ability to soak up large amounts of damage.",
-    "Special": [
-      "Brace", "Reach"
-    ]
+    "Extras": {
+      "Notes": [
+        "Brace", "Reach"
+      ]
+    }
   },
   "Gnome Hooked Hammer": {
     "Damage": {  "fine": "1d2/1",  "diminuitive": "1d3/1d2",  "tiny": "1d4/1d3",  "small": "1d6/1d4",  "medium": "1d6/1d6",  "large": "2d6/1d8",  "huge": "3d6/2d6",  "gargantuan": "4d6/3d6",  "colossal": "6d6/4d6"  },
@@ -1177,11 +1307,13 @@
     "Cost": 20,
     "Weight": 6,
     "Description": "A gnome hooked hammer is a double weapon — an ingenious tool with a hammer head at one end of its haft and a long, curved pick at the other.",
-    "Special": [
-      "Double", "Trip",
-      "The hammer’s blunt head is a bludgeoning weapon that deals 1d6 points of damage (crit ×3).",
-      "The hammer's hook is a piercing weapon that deals 1d4 points of damage (crit ×4)."
-    ]
+    "Extras": {
+      "Notes": [
+        "Double", "Trip",
+        "The hammer’s blunt head is a bludgeoning weapon that deals 1d6 points of damage (crit ×3).",
+        "The hammer's hook is a piercing weapon that deals 1d4 points of damage (crit ×4)."
+      ]
+    }
   },
   "Harpoon": {
     "Damage": {  "fine": "1d2",  "diminuitive": "1d3",  "tiny": "1d4",  "small": "1d6",  "medium": "1d8",  "large": "2d6",  "huge": "3d6",  "gargantuan": "4d6",  "colossal": "6d6"  },
@@ -1196,11 +1328,13 @@
     "Cost": 5,
     "Weight": 16,
     "Description": "A harpoon is a barbed spear with an attached rope 50 feet or less in length.",
-    "Special": [
-      "Grapple",
-      "If you are proficient in the harpoon, it is a grappling weapon, otherwise treat it as a spear.",
-      "A harpoon’s weight includes 10 pounds for the weight of 50 feet of hemp rope (this can be reduced by using shorter or lighter rope)."
-    ]
+    "Extras": {
+      "Notes": [
+        "Grapple",
+        "If you are proficient in the harpoon, it is a grappling weapon, otherwise treat it as a spear.",
+        "A harpoon’s weight includes 10 pounds for the weight of 50 feet of hemp rope (this can be reduced by using shorter or lighter rope)."
+      ]
+    }
   },
   "Dwarven Longaxe": {
     "Damage": {  "fine": "1d4",  "diminuitive": "1d6",  "tiny": "1d8",  "small": "1d10",  "medium": "1d12",  "large": "3d6",  "huge": "4d6",  "gargantuan": "6d6",  "colossal": "8d6"  },
@@ -1215,9 +1349,11 @@
     "Cost": 0,
     "Weight": 0,
     "Description": "These ornate and heavy blades are mounted atop a long, steel-shod haft for greater reach.",
-    "Special": [
-      "Reach"
-    ]
+    "Extras": {
+      "Notes": [
+        "Reach"
+      ]
+    }
   },
   "Dwarven Longhammer": {
     "Damage": {  "fine": "1d4",  "diminuitive": "1d6",  "tiny": "1d8",  "small": "1d10",  "medium": "2d6",  "large": "3d6",  "huge": "4d6",  "gargantuan": "6d6",  "colossal": "8d6"  },
@@ -1232,9 +1368,11 @@
     "Cost": 70,
     "Weight": 20,
     "Description": "These heavy-headed bludgeons are often carved or cast with monstrous faces or drilled with tiny holes to create a menacing whistling as they are swung through the air.",
-    "Special": [
-      "Reach"
-    ]
+    "Extras": {
+      "Notes": [
+        "Reach"
+      ]
+    }
   },
   "Mancatcher": {
     "Damage": {  "fine": "0",  "diminuitive": "0",  "tiny": "0",  "small": "1",  "medium": "1d2",  "large": "1d3",  "huge": "1d4",  "gargantuan": "1d6",  "colossal": "1d8"  },
@@ -1249,11 +1387,13 @@
     "Cost": 15,
     "Weight": 10,
     "Description": "This polearm consists of two curved metal bands that close around a target when you attack, allowing you to bind an opponent.",
-    "Special": [
-      "Grapple", "Reach",
-      "A mancatcher is built to capture a creature of a particular size category and doesn’t work on creatures of the wrong size.",
-      "Make a touch attack to hit an opponent and a combat maneuver check to grapple him (without the –4 penalty for not having two hands free)."
-    ]
+    "Extras": {
+      "Notes": [
+        "Grapple", "Reach",
+        "A mancatcher is built to capture a creature of a particular size category and doesn’t work on creatures of the wrong size.",
+        "Make a touch attack to hit an opponent and a combat maneuver check to grapple him (without the –4 penalty for not having two hands free)."
+      ]
+    }
   },
   "Orc Skull Ram": {
     "Damage": {  "fine": "1d3",  "diminuitive": "1d4",  "tiny": "1d6",  "small": "1d8",  "medium": "1d10",  "large": "2d8",  "huge": "3d8",  "gargantuan": "4d8",  "colossal": "6d8"  },
@@ -1268,9 +1408,11 @@
     "Cost": 15,
     "Weight": 20,
     "Description": "This weapon consists of a wooden log with a shoulder strap to carry some of the weight.",
-    "Special": [
-      "On a successful critical hit with a skull ram, you can attempt a combat maneuver check to bull rush your opponent as a free action."
-    ]
+    "Extras": {
+      "Notes": [
+        "On a successful critical hit with a skull ram, you can attempt a combat maneuver check to bull rush your opponent as a free action."
+      ]
+    }
   },
   "Gnome Piston Maul": {
     "Damage": {  "fine": "1d3",  "diminuitive": "1d4",  "tiny": "1d6",  "small": "1d8",  "medium": "1d10",  "large": "2d8",  "huge": "3d8",  "gargantuan": "4d8",  "colossal": "6d8"  },
@@ -1285,11 +1427,13 @@
     "Cost": 70,
     "Weight": 15,
     "Description": "An alchemically fired piston in the head of this two-handed hammer strikes targets with astounding force.",
-    "Special": [
-      "Successful sunder attacks made with a piston maul deal an additional 4 points of damage.",
-      "A piston maul requires a thunderstone to function; otherwise, it functions as a greatclub.",
-      "Inserting a thunderstone into the weapon’s compartment is a standard action, and powers the weapon for 24 hours, after which the thunderstone is consumed."
-    ]
+    "Extras": {
+      "Notes": [
+        "Successful sunder attacks made with a piston maul deal an additional 4 points of damage.",
+        "A piston maul requires a thunderstone to function; otherwise, it functions as a greatclub.",
+        "Inserting a thunderstone into the weapon’s compartment is a standard action, and powers the weapon for 24 hours, after which the thunderstone is consumed."
+      ]
+    }
   },
   "Gnome Ripsaw Glaive": {
     "Damage": {  "fine": "1d3",  "diminuitive": "1d4",  "tiny": "1d6",  "small": "1d8",  "medium": "1d10",  "large": "2d8",  "huge": "3d8",  "gargantuan": "4d8",  "colossal": "6d8"  },
@@ -1304,10 +1448,12 @@
     "Cost": 30,
     "Weight": 12,
     "Description": "The blade of this glaive is serrated and mounted on an axle, around which a heavy cord is wrapped.",
-    "Special": [
-      "Reach",
-      "You may pull the cord as a move action, spinning the blade for a number of rouds equal to your Strength bonus and granting a +2 bonus on damage rolls."
-    ]
+    "Extras": {
+      "Notes": [
+        "Reach",
+        "You may pull the cord as a move action, spinning the blade for a number of rouds equal to your Strength bonus and granting a +2 bonus on damage rolls."
+      ]
+    }
   },
   "Bladed Scarf": {
  		"Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
@@ -1322,11 +1468,13 @@
     "Cost": 12,
     "Weight": 2,
     "Description": "One side of the scarf looks like a normal, brightly colored performance scarf, while the other side has a number of blades woven into it.",
-    "Special": [
-      "Disarm", "Trip",
-      "If you are proficient and wielding the scarf, you deal 1d4 slashing damage to any creatures that succeed a grapple check against you.",
-      "You may use Weapon Finesse with a bladed scarf, even though it isn't a light weapon."
-    ]
+    "Extras": {
+      "Notes": [
+        "Disarm", "Trip",
+        "If you are proficient and wielding the scarf, you deal 1d4 slashing damage to any creatures that succeed a grapple check against you.",
+        "You may use Weapon Finesse with a bladed scarf, even though it isn't a light weapon."
+      ]
+    }
   },
   "Totem Spear": {
     "Damage": {  "fine": "1d3",  "diminuitive": "1d4",  "tiny": "1d6",  "small": "1d8",  "medium": "1d10",  "large": "2d8",  "huge": "3d8",  "gargantuan": "4d8",  "colossal": "6d8"  },
@@ -1341,10 +1489,12 @@
     "Cost": 25,
     "Weight": 6,
     "Description": "The shovel-like heads of these broad spears are decorated with variously oriented hollows allowing for musical performances.",
-    "Special": [
-      "A totem spear may be used by bards to create bardic music effects using Perform (Wind Instrument).",
-      "This spear also grants a +2 circumstance bonus on Acrobatics checks."
-    ]
+    "Extras": {
+      "Notes": [
+        "A totem spear may be used by bards to create bardic music effects using Perform (Wind Instrument).",
+        "This spear also grants a +2 circumstance bonus on Acrobatics checks."
+      ]
+    }
   },
   "Dwarven Sphinx Hammer": {
     "Damage": {  "fine": "1d3",  "diminuitive": "1d4",  "tiny": "1d6",  "small": "1d8",  "medium": "1d10",  "large": "2d8",  "huge": "3d8",  "gargantuan": "4d8",  "colossal": "6d8"  },
@@ -1359,7 +1509,9 @@
     "Cost": 45,
     "Weight": 8,
     "Description": "The dwarven sphinx hammer is a long-handled hammer with a striking head that is artfully designed to look like a ram-headed criosphinx.",
-    "Special": []
+    "Extras": {
+      "Notes": []
+    }
   },
   "Switchscythe": {
     "Damage": {  "fine": "1d2",  "diminuitive": "1d3",  "tiny": "1d4",  "small": "1d6",  "medium": "2d4",  "large": "2d6",  "huge": "3d6",  "gargantuan": "4d6",  "colossal": "6d6"  },
@@ -1374,11 +1526,13 @@
     "Cost": 18,
     "Weight": 10,
     "Description": "This scythe has a spring-loaded blade that folds down into the weapon’s handle.",
-    "Special": [
-      "Trip",
-      "Opening the scythe is a swift action, and closing it again is a standard action.",
-      "You can use Bluff or Sleight of Hand to treat a closed switchscythe as a hidden weapon; the apparatus can be disguised with 1 minute of work, which grants a +5 bonus on such checks."
-    ]
+    "Extras": {
+      "Notes": [
+        "Trip",
+        "Opening the scythe is a swift action, and closing it again is a standard action.",
+        "You can use Bluff or Sleight of Hand to treat a closed switchscythe as a hidden weapon; the apparatus can be disguised with 1 minute of work, which grants a +5 bonus on such checks."
+      ]
+    }
   },
   "Two-Bladed Sword": {
     "Damage": {  "fine": "1d2/1d2",  "diminuitive": "1d3/1d3",  "tiny": "1d4/1d4",  "small": "1d6/1d6",  "medium": "1d8/1d8",  "large": "2d6/2d6",  "huge": "3d6/3d6",  "gargantuan": "4d6/4d6",  "colossal": "6d6/6d6"  },
@@ -1393,9 +1547,11 @@
     "Cost": 100,
     "Weight": 10,
     "Description": "Twin blades extend from either side of a central, short haft, allowing the wielder to attack with graceful but deadly flourishes.",
-    "Special": [
-      "Double"
-    ]
+    "Extras": {
+      "Notes": [
+        "Double"
+      ]
+    }
   },
   "Dwarven Urgrosh": {
     "Damage": {  "fine": "1d2/1",  "diminuitive": "1d3/1d2",  "tiny": "1d4/1d3",  "small": "1d6/1d4",  "medium": "1d8/1d6",  "large": "2d6/1d8",  "huge": "3d6/2d6",  "gargantuan": "4d6/3d6",  "colossal": "6d6/4d6"  },
@@ -1410,11 +1566,13 @@
     "Cost": 50,
     "Weight": 12,
     "Description": "A dwarven urgrosh is a double weapon — an axe head and a spear point on opposite ends of a long haft.",
-    "Special": [
-      "Brace", "Double",
-      "The axe head deals 1d8 slashing while the spear head deals 1d6 piercing."
-    ]
-  },  
+    "Extras": {
+      "Notes": [
+        "Brace", "Double",
+        "The axe head deals 1d8 slashing while the spear head deals 1d6 piercing."
+      ]
+    }
+  },
   "Bolas": {
     "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
     "Critical": "20/x2",
@@ -1428,10 +1586,12 @@
     "Cost": 5,
     "Weight": 2,
     "Description": "A bolas is a pair of wooden, stone, or metal weights connected by a thin rope or cord.",
-    "Special": [
-      "Nonlethal", "Trip",
-      "You can’t be tripped during your own trip attempt when using a bolas."
-    ]
+    "Extras": {
+      "Notes": [
+        "Nonlethal", "Trip",
+        "You can’t be tripped during your own trip attempt when using a bolas."
+      ]
+    }
   },
   "Brutal Bolas": {
     "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
@@ -1446,10 +1606,12 @@
     "Cost": 15,
     "Weight": 2,
     "Description": "These bolas have spikes on them leaving grisly wounds on their targets.",
-    "Special": [
-      "Trip",
-      "These bolas deal both bludgeoning and piercing damage at once, instead of nonlethal damage."
-    ]
+    "Extras": {
+      "Notes": [
+        "Trip",
+        "These bolas deal both bludgeoning and piercing damage at once, instead of nonlethal damage."
+      ]
+    }
   },
   "Boomerang": {
  		"Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
@@ -1464,9 +1626,11 @@
     "Cost": 3,
     "Weight": 3,
     "Description": "A boomerang is made of wood and is flat, with a long haft, a pronounced forward curve, and a sharp backward bend at the head.",
-    "Special": [
-      "A combat / hunting boomerang does not fly in a returning path."
-    ]
+    "Extras": {
+      "Notes": [
+        "A combat / hunting boomerang does not fly in a returning path."
+      ]
+    }
   },
   "Thorn Bow": {
  		"Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
@@ -1481,9 +1645,11 @@
     "Cost": 50,
     "Weight": 2,
     "Description": "This polished rosewood bow is studded with thorns and tiny flowers.",
-    "Special": [
-      "Treat this weapon as a shortbow."
-    ]
+    "Extras": {
+      "Notes": [
+        "Treat this weapon as a shortbow."
+      ]
+    }
   },
   "Light Crank Crossbow": {
     "Damage": {  "fine": "1d2",  "diminuitive": "1d3",  "tiny": "1d4",  "small": "1d6",  "medium": "1d8",  "large": "2d6",  "huge": "3d6",  "gargantuan": "4d6",  "colossal": "6d6"  },
@@ -1498,12 +1664,14 @@
     "Cost": 250,
     "Weight": 6,
     "Description": "This light crossbow has a winch mounted below the stock.",
-    "Special": [
-      "You may wind up to 50 feet of silk rope onto the winch as a full-round action that provokes AoOs.",
-      "You may attach rope wound on the winch to a Barbed Bolt or a Grappling Bolt as part of a loading action (usually a move action).",
-      "When used with a barbed bolt, the winch provides a +1 bonus on grapple combat maneuver checks to pull the target toward you.",
-      "When used with a grappling bolt, the winch provides a +1 bonus on Climb checks"
-    ]
+    "Extras": {
+      "Notes": [
+        "You may wind up to 50 feet of silk rope onto the winch as a full-round action that provokes AoOs.",
+        "You may attach rope wound on the winch to a Barbed Bolt or a Grappling Bolt as part of a loading action (usually a move action).",
+        "When used with a barbed bolt, the winch provides a +1 bonus on grapple combat maneuver checks to pull the target toward you.",
+        "When used with a grappling bolt, the winch provides a +1 bonus on Climb checks"
+      ]
+    }
   },
   "Heavy Crank Crossbow": {
     "Damage": {  "fine": "1d3",  "diminuitive": "1d4",  "tiny": "1d6",  "small": "1d8",  "medium": "1d10",  "large": "2d8",  "huge": "3d8",  "gargantuan": "4d8",  "colossal": "6d8"  },
@@ -1518,12 +1686,14 @@
     "Cost": 400,
     "Weight": 12,
     "Description": "This heavy crossbow has a winch mounted below the stock.",
-    "Special": [
-      "You may wind up to 50 feet of silk rope onto the winch as a full-round action that provokes AoOs.",
-      "You may attach rope wound on the winch to a Barbed Bolt or a Grappling Bolt as part of a loading action (usually a move action).",
-      "When used with a barbed bolt, the winch provides a +2 bonus on grapple combat maneuver checks to pull the target toward you.",
-      "When used with a grappling bolt, the winch provides a +2 bonus on Climb checks"
-    ]
+    "Extras": {
+      "Notes": [
+        "You may wind up to 50 feet of silk rope onto the winch as a full-round action that provokes AoOs.",
+        "You may attach rope wound on the winch to a Barbed Bolt or a Grappling Bolt as part of a loading action (usually a move action).",
+        "When used with a barbed bolt, the winch provides a +2 bonus on grapple combat maneuver checks to pull the target toward you.",
+        "When used with a grappling bolt, the winch provides a +2 bonus on Climb checks"
+      ]
+    }
   },
   "Double Crossbow": {
     "Damage": {  "fine": "1d2",  "diminuitive": "1d3",  "tiny": "1d4",  "small": "1d6",  "medium": "1d8",  "large": "2d6",  "huge": "3d6",  "gargantuan": "4d6",  "colossal": "6d6"  },
@@ -1538,11 +1708,13 @@
     "Cost": 300,
     "Weight": 18,
     "Description": "This heavy weapon fires a pair of iron-tipped bolts with a single squeeze of the trigger.",
-    "Special": [
-      "Due to its size and weight, you take a -4 on attack rolls with proficiency or a -8 without it.",
-      "A successful hit deals damage from both bolts, but only the first bolt can crit, have sneak attack or have precision damage.",
-      "Reloading one bolt is a standard action, and Rapid Reload reduces this to a move action; Crossbow Mastery lets you load both bolts with a single move action."
-    ]
+    "Extras": {
+      "Notes": [
+        "Due to its size and weight, you take a -4 on attack rolls with proficiency or a -8 without it.",
+        "A successful hit deals damage from both bolts, but only the first bolt can crit, have sneak attack or have precision damage.",
+        "Reloading one bolt is a standard action, and Rapid Reload reduces this to a move action; Crossbow Mastery lets you load both bolts with a single move action."
+      ]
+    }
   },
   "Hand Crossbow": {
     "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
@@ -1557,10 +1729,12 @@
     "Cost": 100,
     "Weight": 2,
     "Description": "Sometimes referred to as an alley bow by rogues or ruffians, this small crossbow fires small bolts that are sometimes used to deliver poison to the target.",
-    "Special": [
-      "Loading a hand crossbow is a move action that provokes Attacks of Opportunity.",
-      "You can shoot, but not load a hand crossbow with one hand, and may use two-weapon fighting as if they are both light weapons."
-    ]
+    "Extras": {
+      "Notes": [
+        "Loading a hand crossbow is a move action that provokes Attacks of Opportunity.",
+        "You can shoot, but not load a hand crossbow with one hand, and may use two-weapon fighting as if they are both light weapons."
+      ]
+    }
   },
   "Launching Crossbow": {
  		"Damage": {  "fine": "0",  "diminuitive": "0",  "tiny": "0",  "small": "0",  "medium": "0",  "large": "0",  "huge": "0",  "gargantuan": "0",  "colossal": "0"  },
@@ -1575,9 +1749,11 @@
     "Cost": 75,
     "Weight": 8,
     "Description": "A launching crossbow is designed to launch splash weapons.",
-    "Special": [
-      "Loading a launching crossbow is a full-round action that provokes attacks of opportunity."
-    ]
+    "Extras": {
+      "Notes": [
+        "Loading a launching crossbow is a full-round action that provokes attacks of opportunity."
+      ]
+    }
   },
   "Light Repeating Crossbow": {
     "Damage": {  "fine": "1d2",  "diminuitive": "1d3",  "tiny": "1d4",  "small": "1d6",  "medium": "1d8",  "large": "2d6",  "huge": "3d6",  "gargantuan": "4d6",  "colossal": "6d6"  },
@@ -1592,12 +1768,14 @@
     "Cost": 250,
     "Weight": 6,
     "Description": "This crossbow has an internal chamber that can be loaded with up to five bolts.",
-    "Special": [
-      "A repeating light crossbow holds 5 repeating crossbow bolts.",
-      "As long as it holds bolts, you can reload it by pulling the reloading lever (a free action).",
-      "Loading a new case of 5 bolts is a full-round action that provokes attacks of opportunity.",
-      "You can fire, but not pull the reloading lever (or load a new case of bolts) with one hand, as per a standard crossbow."
-    ]
+    "Extras": {
+      "Notes": [
+        "A repeating light crossbow holds 5 repeating crossbow bolts.",
+        "As long as it holds bolts, you can reload it by pulling the reloading lever (a free action).",
+        "Loading a new case of 5 bolts is a full-round action that provokes attacks of opportunity.",
+        "You can fire, but not pull the reloading lever (or load a new case of bolts) with one hand, as per a standard crossbow."
+      ]
+    }
   },
   "Heavy Repeating Crossbow": {
     "Damage": {  "fine": "1d3",  "diminuitive": "1d4",  "tiny": "1d6",  "small": "1d8",  "medium": "1d10",  "large": "2d8",  "huge": "3d8",  "gargantuan": "4d8",  "colossal": "6d8"  },
@@ -1612,12 +1790,14 @@
     "Cost": 400,
     "Weight": 12,
     "Description": "This crossbow has an internal chamber that can be loaded with up to five bolts.",
-    "Special": [
-      "A repeating heavy crossbow holds 5 repeating crossbow bolts.",
-      "As long as it holds bolts, you can reload it by pulling the reloading lever (a free action).",
-      "Loading a new case of 5 bolts is a full-round action that provokes attacks of opportunity.",
-      "You can fire, but not pull the reloading lever (or load a new case of bolts) with one hand, as per a standard crossbow."
-    ]
+    "Extras": {
+      "Notes": [
+        "A repeating heavy crossbow holds 5 repeating crossbow bolts.",
+        "As long as it holds bolts, you can reload it by pulling the reloading lever (a free action).",
+        "Loading a new case of 5 bolts is a full-round action that provokes attacks of opportunity.",
+        "You can fire, but not pull the reloading lever (or load a new case of bolts) with one hand, as per a standard crossbow."
+      ]
+    }
   },
   "Flask Thrower": {
  		"Damage": {  "fine": "0",  "diminuitive": "0",  "tiny": "0",  "small": "0",  "medium": "0",  "large": "0",  "huge": "0",  "gargantuan": "0",  "colossal": "0"  },
@@ -1632,7 +1812,9 @@
     "Cost": 25,
     "Weight": 4,
     "Description": "This staff has a cradle at the end, designed to hold alchemical weapons such as acid.",
-    "Special": []
+    "Extras": {
+      "Notes": []
+    }
   },
   "Grappling Hook": {
  		"Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
@@ -1647,9 +1829,11 @@
     "Cost": 6,
     "Weight": 14,
     "Description": "Throwing a grappling hook requires a ranged attack roll, and objects with ample places to catch the hook have an AC of 5.",
-    "Special": [
-      "Grapple"
-    ]
+    "Extras": {
+      "Notes": [
+        "Grapple"
+      ]
+    }
   },
   "Orc Hornbow": {
     "Damage": {  "fine": "1d3",  "diminuitive": "1d4",  "tiny": "1d6",  "small": "1d8",  "medium": "2d6",  "large": "3d6",  "huge": "4d6",  "gargantuan": "6d6",  "colossal": "8d6"  },
@@ -1664,9 +1848,11 @@
     "Cost": 130,
     "Weight": 7,
     "Description": "Larger even than a longbow, these bows are often made from the horns of great beasts.",
-    "Special": [
-      "Hornbows are composite bows that behave like other composite longbows with strength scores."
-    ]
+    "Extras": {
+      "Notes": [
+        "Hornbows are composite bows that behave like other composite longbows with strength scores."
+      ]
+    }
   },
   "Stormshaft Javelin": {
  		"Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
@@ -1681,10 +1867,12 @@
     "Cost": 0,
     "Weight": 0,
     "Description": "This single-use javelin bears a thunderstone just behind the head.",
-    "Special": [
-      "On a hit, the creature takes damage as normal and is the center of the thunderstone's effect.",
-      "On a miss, roll to see where the javelin lands (as per splash weapons) and that is the center."
-    ]
+    "Extras": {
+      "Notes": [
+        "On a hit, the creature takes damage as normal and is the center of the thunderstone's effect.",
+        "On a miss, roll to see where the javelin lands (as per splash weapons) and that is the center."
+      ]
+    }
   },
   "Lasso": {
  		"Damage": {  "fine": "0",  "diminuitive": "0",  "tiny": "0",  "small": "0",  "medium": "0",  "large": "0",  "huge": "0",  "gargantuan": "0",  "colossal": "0"  },
@@ -1699,11 +1887,13 @@
     "Cost": 0.1,
     "Weight": 5,
     "Description": "This thrown weapon is a length of rope with a simple open knot on one end that allows you to entangle a foe like you would using a net.",
-    "Special": [
-      "On a successful hit, the lasso tightens; to use it again you must spend a standard action sliding the knot to enlarge the loop.",
-      "An entangled creature can slip free with a successful DC 15 Escape Artist check as a full-round action.",
-      "Casting a spell while entangled with a lasso requires a concentration check DC 10 + Spell Level."
-    ]
+    "Extras": {
+      "Notes": [
+        "On a successful hit, the lasso tightens; to use it again you must spend a standard action sliding the knot to enlarge the loop.",
+        "An entangled creature can slip free with a successful DC 15 Escape Artist check as a full-round action.",
+        "Casting a spell while entangled with a lasso requires a concentration check DC 10 + Spell Level."
+      ]
+    }
   },
   "Net": {
  		"Damage": {  "fine": "0",  "diminuitive": "0",  "tiny": "0",  "small": "0",  "medium": "0",  "large": "0",  "huge": "0",  "gargantuan": "0",  "colossal": "0"  },
@@ -1718,14 +1908,16 @@
     "Cost": 20,
     "Weight": 6,
     "Description": "A net comprises threads or yarns knotted and twisted into a grid-like structure which blocks the passage of large items, while letting small items and fluids pass.",
-    "Special": [
-      "Using a net is a ranged touch attack with a maximum range of 10 feet, and the target is entangled on a successful hit.",
-      "You may restrict an entangled creature's movement with a successful opposed Strength check.",
-      "An entangled creature can slip free with a successful DC 20 Escape Artist check as a full-round action.",
-      "Casting a spell while entangled with a net requires a concentration check DC 15 + Spell Level.",
-      "A net must be folded to be thrown effectively, otherwise you take a -4 on attack rolls.",
-      "It takes 2 rounds to fold a net if you are proficient, or twice that if not."
-    ]
+    "Extras": {
+      "Notes": [
+        "Using a net is a ranged touch attack with a maximum range of 10 feet, and the target is entangled on a successful hit.",
+        "You may restrict an entangled creature's movement with a successful opposed Strength check.",
+        "An entangled creature can slip free with a successful DC 20 Escape Artist check as a full-round action.",
+        "Casting a spell while entangled with a net requires a concentration check DC 15 + Spell Level.",
+        "A net must be folded to be thrown effectively, otherwise you take a -4 on attack rolls.",
+        "It takes 2 rounds to fold a net if you are proficient, or twice that if not."
+      ]
+    }
   },
   "Snag Net": {
  		"Damage": {  "fine": "0",  "diminuitive": "0",  "tiny": "0",  "small": "0",  "medium": "0",  "large": "0",  "huge": "0",  "gargantuan": "0",  "colossal": "0"  },
@@ -1740,11 +1932,13 @@
     "Cost": 30,
     "Weight": 10,
     "Description": "This short, wide net is covered in barbed loops and slipknots.",
-    "Special": [
-      "Trip",
-      "A snag net works the same as a typical net, but the concentration and Escape Artist DCs are 2 higher.",
-      "If you entangle an opponent and hold the trailing rope, instead of an attack you may make a trip maneuver, tripping or dealing 1 piercing damage to the opponent."
-    ]
+    "Extras": {
+      "Notes": [
+        "Trip",
+        "A snag net works the same as a typical net, but the concentration and Escape Artist DCs are 2 higher.",
+        "If you entangle an opponent and hold the trailing rope, instead of an attack you may make a trip maneuver, tripping or dealing 1 piercing damage to the opponent."
+      ]
+    }
   },
   "Dwarven Light Pelletbow": {
     "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
@@ -1759,10 +1953,12 @@
     "Cost": 50,
     "Weight": 4,
     "Description": "The dwarven pelletbow is a crossbowlike weapon that is loaded with and fires sling bullets rather than bolts.",
-    "Special": [
-      "A dwarven light pelletbow can be reloaded as a free action (allowing characters to attack with it multiple times in a round).",
-      "You may shoot (but not load) a pellet bow with one hand a -2 to hit."
-    ]
+    "Extras": {
+      "Notes": [
+        "A dwarven light pelletbow can be reloaded as a free action (allowing characters to attack with it multiple times in a round).",
+        "You may shoot (but not load) a pellet bow with one hand a -2 to hit."
+      ]
+    }
   },
   "Dwarven Heavy Pelletbow": {
  		"Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
@@ -1777,11 +1973,13 @@
     "Cost": 75,
     "Weight": 8,
     "Description": "The dwarven pelletbow is a crossbowlike weapon that is loaded with and fires sling bullets rather than bolts.",
-    "Special": [
-      "A dwarven light pelletbow can be reloaded as a free action (allowing characters to attack with it multiple times in a round).",
-      "You may shoot (but not load) a pellet bow with one hand a -2 to hit.",
-      "You may wield two heavy pellet bows as one-handed weapons (for Two-Weapon Fighting)."
-    ]
+    "Extras": {
+      "Notes": [
+        "A dwarven light pelletbow can be reloaded as a free action (allowing characters to attack with it multiple times in a round).",
+        "You may shoot (but not load) a pellet bow with one hand a -2 to hit.",
+        "You may wield two heavy pellet bows as one-handed weapons (for Two-Weapon Fighting)."
+      ]
+    }
   },
   "Throwing Shield": {
  		"Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "3d6",  "colossal": "4d6"  },
@@ -1796,12 +1994,14 @@
     "Cost": 50,
     "Weight": 0,
     "Description": "This shield is designed for throwing and has specially designed straps allowing you to unclasp and throw it as a free action.",
-    "Special": [
-      "Performance", "Trip",
-      "The stats given are for enhancing a shield into a throwing shield (cost is an additional 50 gp).",
-      "Neither a shield’s enhancement bonus to AC nor its shield spikes apply on your attack or damage rolls.",
-      "A throwing shield can’t be disarmed."
-    ]
+    "Extras": {
+      "Notes": [
+        "Performance", "Trip",
+        "The stats given are for enhancing a shield into a throwing shield (cost is an additional 50 gp).",
+        "Neither a shield’s enhancement bonus to AC nor its shield spikes apply on your attack or damage rolls.",
+        "A throwing shield can’t be disarmed."
+      ]
+    }
   },
   "Double Sling": {
     "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
@@ -1816,11 +2016,13 @@
     "Cost": 10,
     "Weight": 1,
     "Description": "At first glance this weapon resembles a baton-like stick with a sling dangling from each end.",
-    "Special": [
-      "You can use a double sling as a normal sling, or use the second end for Two-Weapon Fighting (as if it had Double).",
-      "Reloading one end of a double sling is a move action that provokes Attacks of Opportunity.",
-      "You may hurl ordinary stones instead of bullets, dealing damage as one size category smaller and taking a -1 to hit."
-    ]
+    "Extras": {
+      "Notes": [
+        "You can use a double sling as a normal sling, or use the second end for Two-Weapon Fighting (as if it had Double).",
+        "Reloading one end of a double sling is a move action that provokes Attacks of Opportunity.",
+        "You may hurl ordinary stones instead of bullets, dealing damage as one size category smaller and taking a -1 to hit."
+      ]
+    }
   },
   "Sling Glove": {
     "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
@@ -1835,10 +2037,12 @@
     "Cost": 5,
     "Weight": 2,
     "Description": "This curved, scooped-shaped, 2-foot-long wicker basket attaches to your wrist, allowing you to throw fist-sized stones at great speed merely by whipping your arm forward.",
-    "Special": [
-      "You may load a sling glove as a free action as long as you have a free hand.",
-      "You take a -4 when throwing a stone at an adjacent target."
-    ]
+    "Extras": {
+      "Notes": [
+        "You may load a sling glove as a free action as long as you have a free hand.",
+        "You take a -4 when throwing a stone at an adjacent target."
+      ]
+    }
   },
   "Halfling Sling Staff": {
     "Damage": {  "fine": "1d2",  "diminuitive": "1d3",  "tiny": "1d4",  "small": "1d6",  "medium": "1d8",  "large": "2d6",  "huge": "3d6",  "gargantuan": "4d6",  "colossal": "6d6"  },
@@ -1853,11 +2057,13 @@
     "Cost": 20,
     "Weight": 3,
     "Description": "Made from a specially designed sling attached to a short club, a halfling sling staff can be used by a proficient wielder to devastating effect.",
-    "Special": [
-      "You can fire, but not load, a halfling sling staff with one hand.",
-      "Loading a halfling sling staff is a move action that requires two hands and provokes attacks of opportunity.",
-      "You can hurl ordinary stones with a halfling sling staff, but they deal damage as one size category smaller and you take a -1 to hit."
-    ]
+    "Extras": {
+      "Notes": [
+        "You can fire, but not load, a halfling sling staff with one hand.",
+        "Loading a halfling sling staff is a move action that requires two hands and provokes attacks of opportunity.",
+        "You can hurl ordinary stones with a halfling sling staff, but they deal damage as one size category smaller and you take a -1 to hit."
+      ]
+    }
   },
   "Wrist Launcger": {
  		"Damage": {  "fine": "0",  "diminuitive": "0",  "tiny": "0",  "small": "0",  "medium": "0",  "large": "0",  "huge": "0",  "gargantuan": "0",  "colossal": "0"  },
@@ -1872,10 +2078,12 @@
     "Cost": 200,
     "Weight": 1,
     "Description": "This slender tube is strapped to one forearm and designed to be concealed beneath the sleeve, where the wielder can fire a featherweight dart with a twist of the wrist.",
-    "Special": [
-      "Reloading and re-cocking (with a separate ramrod) the wrist launcher is a full-round action.",
-      "After firing, the wearer can attempt a Sleight of Hand check opposed by opponents’ Perception checks to keep the wrist launcher concealed."
-    ]
+    "Extras": {
+      "Notes": [
+        "Reloading and re-cocking (with a separate ramrod) the wrist launcher is a full-round action.",
+        "After firing, the wearer can attempt a Sleight of Hand check opposed by opponents’ Perception checks to keep the wrist launcher concealed."
+      ]
+    }
   },
   "Heavy Wrist Launcger": {
     "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
@@ -1890,7 +2098,9 @@
     "Cost": 250,
     "Weight": 2,
     "Description": "This slender tube is strapped to one forearm and designed to be concealed beneath the sleeve, where the wielder can fire a crossbow bolt with a twist of the wrist.",
-    "Special": []
+    "Extras": {
+      "Notes": []
+    }
   },
   "Featherweight Darts": {
  		"Damage": {  "fine": "0",  "diminuitive": "0",  "tiny": "0",  "small": "0",  "medium": "0",  "large": "0",  "huge": "0",  "gargantuan": "0",  "colossal": "0"  },
@@ -1905,12 +2115,14 @@
     "Cost": 0.1,
     "Weight": 0.01,
     "Description": "These extremely small and lightweight darts function like blowgun darts, except they are used to deliver poisons surreptitiously instead of dealing damage.",
-    "Special": [
-      "Any amount of damage reduction, hardness or similar prevents the dart from delivering its poison.",
-      "Finding the puncture wound requires a DC 20 Percetion check, and finding the dart on the ground after a shot requires a DC 15 Percetion check.",
-      "This ammunition can be used in both blowguns and wrist launchers.",
-      "Featherweight darts come in a pack of 10, with the listed price and weight given for a single dart."
-    ]
+    "Extras": {
+      "Notes": [
+        "Any amount of damage reduction, hardness or similar prevents the dart from delivering its poison.",
+        "Finding the puncture wound requires a DC 20 Percetion check, and finding the dart on the ground after a shot requires a DC 15 Percetion check.",
+        "This ammunition can be used in both blowguns and wrist launchers.",
+        "Featherweight darts come in a pack of 10, with the listed price and weight given for a single dart."
+      ]
+    }
   },
   "Shuriken": {
     "Damage": {  "fine": "0",  "diminuitive": "0",  "tiny": "0",  "small": "1",  "medium": "1d2",  "large": "1d3",  "huge": "1d4",  "gargantuan": "1d6",  "colossal": "1d8"  },
@@ -1925,9 +2137,11 @@
     "Cost": 1,
     "Weight": 0.05,
     "Description": "A shuriken is a small piece of metal with sharpened edges, designed for throwing.",
-    "Special": [
-      "Monk"
-    ]
+    "Extras": {
+      "Notes": [
+        "Monk"
+      ]
+    }
   },
   "Crossbow Bolts": {
     "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
@@ -1942,11 +2156,13 @@
     "Cost": 0.1,
     "Weight": 0.1,
     "Description": "Typically shorter than an arrow, a crossbow bolt is a dart-like projectile.",
-    "Special": [
-      "You may use a crossbow bolt as a melee weapon, taking a -4 on attack rolls.",
-      "Bolts usually come in a case or quiver that holds 10 (price & weight listed for 1 bolt).",
-      "Bolts for a repeating crossbow come in a case of 5 (each bolt costs and weighs 0.2)."
-    ]
+    "Extras": {
+      "Notes": [
+        "You may use a crossbow bolt as a melee weapon, taking a -4 on attack rolls.",
+        "Bolts usually come in a case or quiver that holds 10 (price & weight listed for 1 bolt).",
+        "Bolts for a repeating crossbow come in a case of 5 (each bolt costs and weighs 0.2)."
+      ]
+    }
   },
   "Little Starstones": {
  		"Damage": {  "fine": "0",  "diminuitive": "0",  "tiny": "0",  "small": "1",  "medium": "1",  "large": "1d2",  "huge": "1d3",  "gargantuan": "1d4",  "colossal": "1d6"  },
@@ -1961,10 +2177,12 @@
     "Cost": 0.005,
     "Weight": 0.2,
     "Description": "Though they are technically sling ammunition, these thread- or cloth-wrapped pebbles are mainly used for signaling or celebration rather than battle, as they barely hit hard enough to sting.",
-    "Special": [
-      "When soaked in oil or strong alcohol, they burn brightly for 1 round, illuminating an area like a candle and creating brief streaks of light as they fly through the air.",
-      "Starstones come in a pack of 10 (price & weight listed for 1 stone)."
-    ]
+    "Extras": {
+      "Notes": [
+        "When soaked in oil or strong alcohol, they burn brightly for 1 round, illuminating an area like a candle and creating brief streaks of light as they fly through the air.",
+        "Starstones come in a pack of 10 (price & weight listed for 1 stone)."
+      ]
+    }
   },
   "Sharpstones": {
     "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
@@ -1979,10 +2197,12 @@
     "Cost": 0.1,
     "Weight": 0.5,
     "Description": "A thin layer of baked clay covers the spikes and jagged ridges covering this specially designed bullet.",
-    "Special": [
-      "A proficient user knows how to crack the clay (a free action) so that it peels off from either the spikes or ridges when fired, dealing either piercing or slashing damage.",
-      "Sharpstones come in a pack of 10 (price & weight listed for 1 stone)."
-    ]
+    "Extras": {
+      "Notes": [
+        "A proficient user knows how to crack the clay (a free action) so that it peels off from either the spikes or ridges when fired, dealing either piercing or slashing damage.",
+        "Sharpstones come in a pack of 10 (price & weight listed for 1 stone)."
+      ]
+    }
   },
   "Softstones": {
  		"Damage": {  "fine": "0",  "diminuitive": "0",  "tiny": "0",  "small": "0",  "medium": "0",  "large": "0",  "huge": "0",  "gargantuan": "0",  "colossal": "0"  },
@@ -1997,9 +2217,11 @@
     "Cost": 0.01,
     "Weight": 0.4,
     "Description": "These tight bundles of elastic fibers deal nonlethal damage when fired from a sling.",
-    "Special": [
-      "Softstones come in a pack of 10 (price & weight listed for 1 stone)."
-    ]
+    "Extras": {
+      "Notes": [
+        "Softstones come in a pack of 10 (price & weight listed for 1 stone)."
+      ]
+    }
   },
   "Spongestones": {
  		"Damage": {  "fine": "0",  "diminuitive": "0",  "tiny": "0",  "small": "0",  "medium": "0",  "large": "0",  "huge": "0",  "gargantuan": "0",  "colossal": "0"  },
@@ -2014,11 +2236,13 @@
     "Cost": 1,
     "Weight": 0.2,
     "Description": "These bullets are actually made from a porous stone or heavy wood that absorbs liquids and shatters on impact.",
-    "Special": [
-      "Soakstones are often used to deliver poison or burning oil, with a single flask of oil completely saturating 10 soakstones.",
-      "When ignited (a free action if fire is available), a burning, oil-soaked soakstone deals +1d2 fire damage and can ignite combustible materials (such as a thatched roof ).",
-      "Allowing a soakstone to burn in a sling’s cup for more than 1d3 rounds gives the sling the broken condition.",
-      "Spongestones come in a pack of 10 (price & weight listed for 1 stone)."
-    ]
+    "Extras": {
+      "Notes": [
+        "Soakstones are often used to deliver poison or burning oil, with a single flask of oil completely saturating 10 soakstones.",
+        "When ignited (a free action if fire is available), a burning, oil-soaked soakstone deals +1d2 fire damage and can ignite combustible materials (such as a thatched roof ).",
+        "Allowing a soakstone to burn in a sling’s cup for more than 1d3 rounds gives the sling the broken condition.",
+        "Spongestones come in a pack of 10 (price & weight listed for 1 stone)."
+      ]
+    }
   }
 }

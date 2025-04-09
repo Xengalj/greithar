@@ -16,17 +16,165 @@
   "player_wealth": [ 0, 111, 1000, 3000, 6000 , 10500 , 16000 , 23500, 33000, 46000, 62000, 82000, 108000, 140000, 185000, 240000, 315000, 410000, 530000, 685000, 880000 ],
   "heroic_wealth": [ 0, 390, 780, 1650, 2400, 3450, 4650, 6000, 7800, 10050, 12750, 16350, 21000, 27000, 34800, 45000, 58500, 75000, 96000, 123000, 159000 ],
   "basic_wealth": [ 0, 260, 390, 780, 1650, 2400, 3450, 4650, 6000, 7800, 10050, 12750, 16350, 21000, 27000, 34800, 45000, 58500, 75000, 96000, 123000 ],
-  "damage_types": {
-    "weapon":     [ "budgeoning", "piercing", "slashing" ],
-    "energy":     [ "acid", "cold", "electricity", "fire", "force", "negative", "positive", "sonic" ],
-    "aligned":    [ "chaoic", "evil", "good", "lawful" ],
-    "substance":  [ "adamantine", "cold Iron", "epic", "magic", "silver" ],
-    "misc":       [ "bleed", "nonlethal", "precision", "spell", "untyped" ]
+
+  "bonuses": {
+    "Alchemical": {
+      "description": "An alchemical bonus is granted by the use of a non-magical, alchemical substance such as antitoxin.",
+      "targets": [ "fort", "ref", "will", "Ability Scores", "Saves" ],
+      "subtargets": [ "fort", "ref", "will" ]
+    },
+    "Armor": {
+      "description": "An armor bonus applies to armor class and is granted by armor or by a spell or magical effect that mimics armor. Armor bonuses stack with all other bonuses to armor class (even with natural armor bonuses) except other armor bonuses. An armor bonus doesn’t apply against touch attacks, except for armor bonuses granted by force effects (such as the mage armor spell) which apply against incorporeal touch attacks, such as that of a shadow.",
+      "targets": [ "totalAC", "flatAC" ],
+      "subtargets": [ "flat" ]
+    },
+    "Circumstance": {
+      "description": "A circumstance bonus (or penalty) arises from specific conditional factors impacting the success of the task at hand. Circumstance bonuses stack with all other bonuses, including other circumstance bonuses, unless they arise from essentially the same source.",
+      "targets": [ "atkBonus", "cmd", "Checks" ]
+    },
+    "Competence": {
+      "description": "A competence bonus (or penalty) affects a character’s performance of a particular task, as in the case of the bardic ability to inspire competence. Multiple competence bonuses don’t stack; only the highest bonus applies.",
+      "targets": [ "fort", "ref", "will", "atkBonus", "Checks", "Saves" ],
+      "subtargets": [ "fort", "ref", "will" ]
+    },
+    "Deflection": {
+      "description": "A deflection bonus affects armor class and is granted by a spell or magic effect that makes attacks veer off harmlessly. Deflection bonuses stack with all other bonuses to AC except other deflection bonuses. A deflection bonus applies against touch attacks.",
+      "targets": [ "totalAC", "touchAC", "flatAC", "cmd" ],
+      "subtargets": [ "touch", "flat" ]
+    },
+    "Enhancement": {
+      "description": "An enhancement bonus represents an increase in the effectiveness of armor, natural armor, weapon, or a general bonus to an ability score. Multiple enhancement bonuses on the same object (in the case of armor and weapons), creature (in the case of natural armor), or ability score do not stack. Only the highest enhancement bonus applies.",
+      "targets": [ "totalAC", "touchAC", "flatAC", "fort", "ref", "will", "atkBonus", "dmgBonus", "Speed", "Str", "Dex", "Con", "Int", "Wis", "Cha" ],
+      "subtargets": [ "touch", "flat", "fort", "ref", "will" ]
+    },
+    "Insight": {
+      "description": "An insight bonus improves performance of a given activity by granting the character an almost precognitive knowledge of what might occur. Multiple insight bonuses on the same character or object do not stack. Only the highest insight bonus applies.",
+      "targets": [ "totalAC", "touchAC", "flatAC", "fort", "ref", "will", "atkBonus", "cmd", "Checks" ],
+      "subtargets": [ "touch", "flat", "fort", "ref", "will" ]
+    },
+    "Luck": {
+      "description": "A luck bonus represents good (or bad) fortune. Multiple luck bonuses on the same character or object do not stack. Only the highest luck bonus applies.",
+      "targets": [ "totalAC", "touchAC", "flatAC", "fort", "ref", "will", "atkBonus", "dmgBonus", "cmd", "Checks" ],
+      "subtargets": [ "touch", "flat", "fort", "ref", "will" ]
+    },
+    "Morale": {
+      "description": "A morale bonus represents the effects of greater hope, courage, and determination (or hopelessness, cowardice, and despair in the case of a morale penalty). Multiple morale bonuses on the same character do not stack. Only the highest morale bonus applies. Non-intelligent creatures (creatures with an Intelligence of 0 or no Intelligence at all) cannot benefit from morale bonuses.",
+      "targets": [ "fort", "ref", "will", "atkBonus", "dmgBonus", "cmd", "Str", "Con", "Dex", "Checks" ],
+      "subtargets": [ "fort", "ref", "will" ]
+    },
+    "Natural Armor": {
+      "description": "A natural armor bonus improves armor class resulting from a creature’s naturally tough hide. Natural armor bonuses stack with all other bonuses to armor class (even with armor bonuses) except other natural armor bonuses. Some magical effects (such as the barkskin spell) grant an enhancement bonus to the creature’s existing natural armor bonus, which has the effect of increasing the natural armor’s overall bonus to armor class. A natural armor bonus doesn’t apply against touch attacks.",
+      "targets": [ "totalAC", "flatAC" ],
+      "subtargets": [ "flat" ]
+    },
+    "Profane": {
+      "description": "A profane bonus (or penalty) stems from the power of evil. Multiple profane bonuses on the same character or object do not stack. Only the highest profane bonus applies.",
+      "targets": [ "totalAC", "touchAC", "flatAC", "fort", "ref", "will", "dmgBonus", "cmd", "DCs", "Checks" ],
+      "subtargets": [ "touch", "flat", "fort", "ref", "will" ]
+    },
+    "Resistance": {
+      "description": "A resistance bonus affects saving throws, providing extra protection against harm. Multiple resistance bonuses on the same character or object do not stack. Only the highest resistance bonus applies.",
+      "targets": [ "fort", "ref", "will" ],
+      "subtargets": [ "fort", "ref", "will" ]
+    },
+    "Sacred": {
+      "description": "A sacred bonus (or penalty) stems from the power of good. Multiple sacred bonuses on the same character or object do not stack. Only the highest sacred bonus applies.",
+      "targets": [ "totalAC", "touchAC", "flatAC", "fort", "ref", "will", "dmgBonus", "cmd", "DCs", "Checks" ],
+      "subtargets": [ "touch", "flat", "fort", "ref", "will" ]
+    },
+    "Shield": {
+      "description": "A shield bonus improves armor class and is granted by a shield or by a spell or magic effect that mimics a shield. Shield bonuses stack with all other bonuses to AC except other shield bonuses. A magic shield typically grants an enhancement bonus to the shield’s shield bonus, which has the effect of increasing the shield’s overall bonus to AC.",
+      "targets": [ "totalAC", "flatAC" ],
+      "subtargets": [ "flat" ]
+    },
+    "Size": {
+      "description": "A size bonus or penalty is derived from a creature’s size category. Size modifiers of different kinds apply to armor class, attack rolls, Stealth checks, combat maneuver checks, and various other checks.",
+      "targets": [ "totalAC", "touchAC", "flatAC", "atkBonus", "Str", "Dex" ],
+      "subtargets": [ "touch", "flat" ]
+    },
+    "Trait": {
+      "description": "A trait bonus is a bonus granted via a character trait. Character traits are an optional additional character defining feature like feats but less powerful (typically about half as strong as a feat.) As with other named bonuses, trait bonuses do not “stack” with other trait bonuses.",
+      "targets": []
+    }
   },
+  "targets": [
+    { "color": "#E63415", "label": "Strength",            "value": "Str" },
+    { "color": "#FF6600", "label": "Dexterity",           "value": "Dex" },
+    { "color": "#FFDE0A", "label": "Constitution",        "value": "Con" },
+    { "color": "#3cb44b", "label": "Intelligence",        "value": "Int" },
+    { "color": "#4167F0", "label": "Wisdom",              "value": "Wis" },
+    { "color": "#911eb4", "label": "Charisma",            "value": "Cha" },
+    { "color": "#DD111B", "label": "Health",              "value": "HP" },
+    { "color": "#42d4f4", "label": "Total AC",            "value": "totalAC" },
+    { "color": "#42d4f4", "label": "Touch AC",            "value": "touchAC" },
+    { "color": "#42d4f4", "label": "Flat-Footed AC",      "value": "flatAC" },
+    { "color": "#f032e6", "label": "CMD",                 "value": "CMD" },
+    { "color": "#FFDE0A", "label": "Fortitude",           "value": "fort" },
+    { "color": "#FF6600", "label": "Reflex",              "value": "ref" },
+    { "color": "#4167F0", "label": "Will",                "value": "will" },
+    { "color": "#FF6600", "label": "Initiative",          "value": "init" },
+    { "color": "#FF6600", "label": "Speed",               "value": "speed" },
+    { "color": "#1EC79D", "label": "Base Attack Bonus",   "value": "BAB" },
+    { "color": "#1EC79D", "label": "CMB",                 "value": "CMB" },
+    { "color": "#E63415", "label": "Melee Attack Bonus",  "value": "meleeAtkBonus" },
+    { "color": "#E63415", "label": "Melee Damage Bonus",  "value": "meleeDmgBonus" },
+    { "color": "#FF6600", "label": "Ranged Attack Bonus", "value": "rangedAtkBonus" },
+    { "color": "#FF6600", "label": "Ranged Damage Bonus", "value": "rangedDmgBonus" },
+    { "color": "#3cb44b", "label": "Skills",              "value": "skills" }
+  ],
 
-
-
-
+  "Damage Types": {
+    "Weapon": [
+      { "color": "#4167F0", "label": "Bludgeoning",       "value": "Bludgeoning" },
+      { "color": "#FFDE0A", "label": "Piercing",          "value": "Piercing" },
+      { "color": "#E63415", "label": "Slashing",          "value": "Slashing" }
+    ],
+    "Energy": [
+      { "color": "#bfef45", "label": "Acid",              "value": "Acid" },
+      { "color": "#ADD8E6", "label": "Cold",              "value": "Cold" },
+      { "color": "#42d4f4", "label": "Electricity",       "value": "Electricity" },
+      { "color": "#E63415", "label": "Fire",              "value": "Fire" },
+      { "color": "#911eb4", "label": "Force",             "value": "Force" },
+      { "color": "#f032e6", "label": "Positive",          "value": "Positive" },
+      { "color": "#71797E", "label": "Negative",          "value": "Negative" }
+    ],
+    "Aligned": [
+      { "color": "#FFDE0A", "label": "Lawful",            "value": "Lawful" },
+      { "color": "#f032e6", "label": "Chaotic",           "value": "Chaotic" },
+      { "color": "#3cb44b", "label": "Good",              "value": "Good" },
+      { "color": "#4167F0", "label": "Evil",              "value": "Evil" }
+    ],
+    "Substance": [
+      { "color": "#4682b4", "label": "Adamantine",        "value": "Adamantine" },
+      { "color": "#71797E", "label": "Cold Iron",         "value": "Cold Iron" },
+      { "color": "#c0c0c0", "label": "Silver",            "value": "Silver" },
+      { "color": "#1EC79D", "label": "Magic",             "value": "Magic" },
+      { "color": "#911eb4", "label": "Epic",              "value": "Epic" }
+    ],
+    "Misc": [
+      { "color": "#f032e6", "label": "Nonlethal",         "value": "Nonlethal" },
+      { "color": "#800000", "label": "Bleed",             "value": "Bleed" },
+      { "color": "#FFDE0A", "label": "Precision",         "value": "Precision" },
+      { "color": "#1EC79D", "label": "Spell",             "value": "Spell" },
+      { "color": "#71797E", "label": "Untyped",           "value": "Untyped" }
+    ]
+  },
+  "Weapon Groups": [
+    { "color": "#E63415", "label": "Axes",                "value": "Axes" },
+    { "color": "#FF6600", "label": "Light Blades",        "value": "Light Blades" },
+    { "color": "#FFDE0A", "label": "Heavy Blades",        "value": "Heavy Blades" },
+    { "color": "#3cb44b", "label": "Bows",                "value": "Bows" },
+    { "color": "#4167F0", "label": "Close",               "value": "Close" },
+    { "color": "#911eb4", "label": "Crossbows",           "value": "Crossbows" },
+    { "color": "#800000", "label": "Double",              "value": "Double" },
+    { "color": "#bfef45", "label": "Flails",              "value": "Flails" },
+    { "color": "#1EC79D", "label": "Hammers",             "value": "Hammers" },
+    { "color": "#42d4f4", "label": "Monk",                "value": "Monk" },
+    { "color": "#f032e6", "label": "Polearms",            "value": "Polearms" },
+    { "color": "#ffd8b1", "label": "Spears",              "value": "Spears" },
+    { "color": "#aaffc3", "label": "Thrown",              "value": "Thrown" },
+    { "color": "#dcbeff", "label": "Tribal",              "value": "Tribal" }
+  ],
   "natural_attacks": {
     "Bite": {
       "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "2d8",  "colossal": "4d6"  },
@@ -125,6 +273,7 @@
       "Category": "Secondary"
     }
   },
+
 
   "size": {
     "fine": {
@@ -254,88 +403,6 @@
       "weight":     "125 tons or more"
     }
   },
-
-  "bonuses": {
-    "Alchemical": {
-      "description": "An alchemical bonus is granted by the use of a non-magical, alchemical substance such as antitoxin.",
-      "targets": [ "fort", "ref", "will", "Ability Scores", "Saves" ],
-      "subtargets": [ "fort", "ref", "will" ]
-    },
-    "Armor": {
-      "description": "An armor bonus applies to armor class and is granted by armor or by a spell or magical effect that mimics armor. Armor bonuses stack with all other bonuses to armor class (even with natural armor bonuses) except other armor bonuses. An armor bonus doesn’t apply against touch attacks, except for armor bonuses granted by force effects (such as the mage armor spell) which apply against incorporeal touch attacks, such as that of a shadow.",
-      "targets": [ "totalAC", "flatAC" ],
-      "subtargets": [ "flat" ]
-    },
-    "Circumstance": {
-      "description": "A circumstance bonus (or penalty) arises from specific conditional factors impacting the success of the task at hand. Circumstance bonuses stack with all other bonuses, including other circumstance bonuses, unless they arise from essentially the same source.",
-      "targets": [ "atkBonus", "cmd", "Checks" ]
-    },
-    "Competence": {
-      "description": "A competence bonus (or penalty) affects a character’s performance of a particular task, as in the case of the bardic ability to inspire competence. Multiple competence bonuses don’t stack; only the highest bonus applies.",
-      "targets": [ "fort", "ref", "will", "atkBonus", "Checks", "Saves" ],
-      "subtargets": [ "fort", "ref", "will" ]
-    },
-    "Deflection": {
-      "description": "A deflection bonus affects armor class and is granted by a spell or magic effect that makes attacks veer off harmlessly. Deflection bonuses stack with all other bonuses to AC except other deflection bonuses. A deflection bonus applies against touch attacks.",
-      "targets": [ "totalAC", "touchAC", "flatAC", "cmd" ],
-      "subtargets": [ "touch", "flat" ]
-    },
-    "Enhancement": {
-      "description": "An enhancement bonus represents an increase in the effectiveness of armor, natural armor, weapon, or a general bonus to an ability score. Multiple enhancement bonuses on the same object (in the case of armor and weapons), creature (in the case of natural armor), or ability score do not stack. Only the highest enhancement bonus applies.",
-      "targets": [ "totalAC", "touchAC", "flatAC", "fort", "ref", "will", "atkBonus", "dmgBonus", "Speed", "Str", "Dex", "Con", "Int", "Wis", "Cha" ],
-      "subtargets": [ "touch", "flat", "fort", "ref", "will" ]
-    },
-    "Insight": {
-      "description": "An insight bonus improves performance of a given activity by granting the character an almost precognitive knowledge of what might occur. Multiple insight bonuses on the same character or object do not stack. Only the highest insight bonus applies.",
-      "targets": [ "totalAC", "touchAC", "flatAC", "fort", "ref", "will", "atkBonus", "cmd", "Checks" ],
-      "subtargets": [ "touch", "flat", "fort", "ref", "will" ]
-    },
-    "Luck": {
-      "description": "A luck bonus represents good (or bad) fortune. Multiple luck bonuses on the same character or object do not stack. Only the highest luck bonus applies.",
-      "targets": [ "totalAC", "touchAC", "flatAC", "fort", "ref", "will", "atkBonus", "dmgBonus", "cmd", "Checks" ],
-      "subtargets": [ "touch", "flat", "fort", "ref", "will" ]
-    },
-    "Morale": {
-      "description": "A morale bonus represents the effects of greater hope, courage, and determination (or hopelessness, cowardice, and despair in the case of a morale penalty). Multiple morale bonuses on the same character do not stack. Only the highest morale bonus applies. Non-intelligent creatures (creatures with an Intelligence of 0 or no Intelligence at all) cannot benefit from morale bonuses.",
-      "targets": [ "fort", "ref", "will", "atkBonus", "dmgBonus", "cmd", "Str", "Con", "Dex", "Checks" ],
-      "subtargets": [ "fort", "ref", "will" ]
-    },
-    "Natural Armor": {
-      "description": "A natural armor bonus improves armor class resulting from a creature’s naturally tough hide. Natural armor bonuses stack with all other bonuses to armor class (even with armor bonuses) except other natural armor bonuses. Some magical effects (such as the barkskin spell) grant an enhancement bonus to the creature’s existing natural armor bonus, which has the effect of increasing the natural armor’s overall bonus to armor class. A natural armor bonus doesn’t apply against touch attacks.",
-      "targets": [ "totalAC", "flatAC" ],
-      "subtargets": [ "flat" ]
-    },
-    "Profane": {
-      "description": "A profane bonus (or penalty) stems from the power of evil. Multiple profane bonuses on the same character or object do not stack. Only the highest profane bonus applies.",
-      "targets": [ "totalAC", "touchAC", "flatAC", "fort", "ref", "will", "dmgBonus", "cmd", "DCs", "Checks" ],
-      "subtargets": [ "touch", "flat", "fort", "ref", "will" ]
-    },
-    "Resistance": {
-      "description": "A resistance bonus affects saving throws, providing extra protection against harm. Multiple resistance bonuses on the same character or object do not stack. Only the highest resistance bonus applies.",
-      "targets": [ "fort", "ref", "will" ],
-      "subtargets": [ "fort", "ref", "will" ]
-    },
-    "Sacred": {
-      "description": "A sacred bonus (or penalty) stems from the power of good. Multiple sacred bonuses on the same character or object do not stack. Only the highest sacred bonus applies.",
-      "targets": [ "totalAC", "touchAC", "flatAC", "fort", "ref", "will", "dmgBonus", "cmd", "DCs", "Checks" ],
-      "subtargets": [ "touch", "flat", "fort", "ref", "will" ]
-    },
-    "Shield": {
-      "description": "A shield bonus improves armor class and is granted by a shield or by a spell or magic effect that mimics a shield. Shield bonuses stack with all other bonuses to AC except other shield bonuses. A magic shield typically grants an enhancement bonus to the shield’s shield bonus, which has the effect of increasing the shield’s overall bonus to AC.",
-      "targets": [ "totalAC", "flatAC" ],
-      "subtargets": [ "flat" ]
-    },
-    "Size": {
-      "description": "A size bonus or penalty is derived from a creature’s size category. Size modifiers of different kinds apply to armor class, attack rolls, Stealth checks, combat maneuver checks, and various other checks.",
-      "targets": [ "totalAC", "touchAC", "flatAC", "atkBonus", "Str", "Dex" ],
-      "subtargets": [ "touch", "flat" ]
-    },
-    "Trait": {
-      "description": "A trait bonus is a bonus granted via a character trait. Character traits are an optional additional character defining feature like feats but less powerful (typically about half as strong as a feat.) As with other named bonuses, trait bonuses do not “stack” with other trait bonuses.",
-      "targets": []
-    }
-  },
-
   "creature_types": {
     "aberration": {
       "hd": 8,

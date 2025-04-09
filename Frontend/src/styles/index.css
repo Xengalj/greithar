@@ -79,7 +79,9 @@ body a:hover {
 .center-horz {
   text-align: center;
 }
-
+.el-icon.el-dialog__close {
+	font-size: 36px;
+}
 
 
 

@@ -31,17 +31,14 @@
           <el-row :gutter="5">
             <el-col :span="10">{{ prop }}</el-col>
             <el-col :span="10">
-              <el-select v-if="Object.keys(selects).includes(prop)" v-model="item.value[prop]" value-key="label" multiple>
+              <el-select v-if="Object.keys(selects).includes(prop)" v-model="item.value[prop]" multiple>
                 <template #tag>
-                  <el-tag v-for="(element, name) in item.value[prop]" effect="dark" :key="name" >
-                    {{ element }}
-                  </el-tag>
+                  <el-tag v-for="element in item.value[prop]" effect="dark" :key="element"> {{ element }} </el-tag>
                 </template>
-                <el-option v-for="element in selects[prop]" :key="element.name" :label="element.name" :value="element.label" >
+                <el-option v-for="element in selects[prop]" :key="element.label" :label="element.label" :value="element.value" >
                   <div class="flex items-center">
                     <el-tag :color="element.color" style="margin-right: 8px" size="small" />
                     <span :style="{ color: element.color }">{{ element.label }}</span>
-                    <span>{{ element.name }}</span>
                   </div>
                 </el-option>
               </el-select>
@@ -53,13 +50,31 @@
 
       <el-divider>Extras</el-divider>
       <!-- Masterwork, Abilities, (Magic) Enhancement, Notes -->
+      Extras: {{ item.value.Extras }} XX
 
-      <el-row v-for="prop in item.value.Extras" :key="prop" :gutter="5">
-        <el-col :span="10">{{ prop }}</el-col>
-        <el-col :span="10">
-          {{ item.value.Extras[prop] }}
-          <el-input v-model="item.value.Extras[prop]" :rows="2" type="textarea" placeholder="Special notes about this weapon" />
+      <el-row v-for="(value, prop) in item.value.Extras" :key="prop" :gutter="5">
+        <el-col :span="6">
+          {{ prop }}
         </el-col>
+        <el-col :span="18">
+          <el-checkbox v-if="prop == 'Masterwork'" v-model="item.value.Extras[prop]" />
+          <el-input-number v-if="prop == 'Enhancement'" v-model="item.value.Extras[prop]" />
+          <div v-if="prop == 'Notes'">
+            <el-input
+              v-for="(note, index) in item.value.Extras[prop]" :key="index"
+              v-model="item.value.Extras[prop][index]"
+              placeholder="New Note"
+            />
+            <el-button size="small" type="primary" @click="item.value.Extras[prop].push('')">Add Note</el-button>
+
+          </div>
+        </el-col>
+
+        <br>
+
+          <!-- Notes
+          {{ item.value.Extras[prop] }} -->
+
       </el-row>
     </div>
 
@@ -82,50 +97,17 @@ export default {
     return {
       original: {},
       selects: {
-        "Damage Type": {
-          "Slashing":     { color: "#E63415", label: "Slashing" },
-          "Piercing":     { color: "#FFDE0A", label: "Piercing" },
-          "Bludgeoning":  { color: "#4167F0", label: "Bludgeoning" }
-        },
-        "Group": {
-          "Axes":         { color: '#E63415', label: 'Axes' },
-          "Light Blades": { color: '#FF6600', label: 'Light Blades' },
-          "Heavy Blades": { color: '#FFDE0A', label: 'Heavy Blades' },
-          "Bows":         { color: '#3cb44b', label: 'Bows' },
-          "Close":        { color: '#4167F0', label: 'Close' },
-          "Crossbows":    { color: '#911eb4', label: 'Crossbows' },
-          "Double":       { color: '#800000', label: 'Double' },
-          "Flails":       { color: '#bfef45', label: 'Flails' },
-          "Hammers":      { color: '#1EC79D', label: 'Hammers' },
-          "Monk":         { color: '#42d4f4', label: 'Monk' },
-          "Polearms":     { color: '#f032e6', label: 'Polearms' },
-          "Spears":       { color: '#ffd8b1', label: 'Spears' },
-          "Thrown":       { color: '#aaffc3', label: 'Thrown' },
-          "Tribal":       { color: '#dcbeff', label: 'Tribal' }
-        },
-        "targets": {
-
-          "Axes":         { color: '#E63415', label: 'Axes' },
-          "Light Blades": { color: '#FF6600', label: 'Light Blades' },
-          "Heavy Blades": { color: '#FFDE0A', label: 'Heavy Blades' },
-          "Bows":         { color: '#3cb44b', label: 'Bows' },
-          "Close":        { color: '#4167F0', label: 'Close' },
-          "Crossbows":    { color: '#911eb4', label: 'Crossbows' },
-          "Double":       { color: '#800000', label: 'Double' },
-          "Flails":       { color: '#bfef45', label: 'Flails' },
-          "Hammers":      { color: '#1EC79D', label: 'Hammers' },
-          "Monk":         { color: '#42d4f4', label: 'Monk' },
-          "Polearms":     { color: '#f032e6', label: 'Polearms' },
-          "Spears":       { color: '#ffd8b1', label: 'Spears' },
-          "Thrown":       { color: '#aaffc3', label: 'Thrown' },
-          "Tribal":       { color: '#dcbeff', label: 'Tribal' }
-
-        }
+        "Damage Type": [],
+        "Group": [],
+        "targets": []
       },
     }
   },
   mounted() {
     this.original = JSON.stringify(this.source);
+    this.selects["Damage Type"] = this.rules["Damage Types"].Weapon;
+    this.selects.Group = this.rules["Weapon Groups"];
+    this.selects.targets = this.rules.targets;
   },
   computed: {
     rules() { return this.$store.state.data.rules; },

@@ -243,7 +243,7 @@
         </el-collapse-item>
 
         <!-- Actions -->
-        <el-collapse-item title="Actions" name="offense">
+        <el-collapse-item title="Actions" name="actions">
           <el-row :gutter="20">
             <el-col :span="3">
               <g-icon iconSize="32px" iconName="swordShield" />
@@ -560,13 +560,6 @@
             <span v-if="data.value"> {{ data.value.Weight }} lbs. </span>
           </el-col>
           <div class="custom-tree-node" v-if="data.value">
-            <!-- View Item (in modal component) -->
-            <el-tooltip placement="top" effect="light">
-              <el-button type="info" circle size="small" @click="editItem(data)">
-                <g-icon iconSize="16px" iconColor="#000" iconName="eye" />
-              </el-button>
-              <template #content> View Item </template>
-            </el-tooltip>
             <!-- Edit Item (in modal component) -->
             <el-tooltip placement="top" effect="light">
               <el-button type="info" circle size="small" @click="editItem(data)">
@@ -655,6 +648,9 @@
           </el-button>
         </el-col>
       </el-row>
+      <!-- <el-dialog v-model="editingItem" width="800">
+        <g-item :source="item" />
+      </el-dialog> -->
     </el-tab-pane>
 
     <!-- Magic -->
@@ -717,9 +713,6 @@ export default {
       ],
 
 
-      // cardTab: "Main",
-      openSections: [ "defense", "conditions" ],
-      // expandInventory: false,
       conditions: [],
       conditionSelect: [
         { name: "Dazed", description: "The creature is unable to act normally. A dazed creature can take no actions, but has no penalty to AC.", bonuses: {} },
@@ -783,58 +776,70 @@ export default {
     title() { return this.source.name ? this.source.name.concat(" CR ", this.source.basics.cr) : ""; },
     bonuses() {
       let bonuses = {};
-      if (this.source.name) {
-        // Add feats and other abilities to bonuses
-        for (const ability in this.abilities) {
-          if (this.abilities[ability].extras.active && this.abilities[ability].bonuses) {
-            for (const [name, bonus] of Object.entries(this.abilities[ability].bonuses)) {
-              bonuses[name] = bonus;
-            }
+      // Add feats and other abilities to bonuses
+      for (const ability in this.abilities) {
+        if (this.abilities[ability].extras.active && this.abilities[ability].bonuses) {
+          for (const [name, bonus] of Object.entries(this.abilities[ability].bonuses)) {
+            bonuses[name] = bonus;
           }
         }
-        // Add conditions
-        for (const condition in this.conditions) {
-          if (this.conditions[condition].bonuses) {
-            for (const [name, bonus] of Object.entries(this.conditions[condition].bonuses)) {
-              bonuses[name] = bonus;
-            }
-          }
-        }
-        // Armor, Shield
-        for (const [name, item] of Object.entries(this.inventory)) {
-          if (item.equiped) {
-            let type = (["Light", "Medium", "Heavy"].includes(item.Proficiency)) ? "Armor" :
-                       (item.Proficiency == "Shields") ? "Shield" : "";
-            if (type != "") {
-              bonuses[name] = {};
-              bonuses[name].type = type;
-              bonuses[name].targets = this.rules.bonuses ? this.rules.bonuses[type].targets : [];
-              bonuses[name].value = item["AC Bonus"];
-            }
-            // Other Item based bonuses
-            if (item.Extras.Bonuses) {
-              for (const [name, bonus] of Object.entries(item.Extras.Bonuses)) {
-                bonuses[name] = bonus;
-              }
-            }
-          }
-        } // End inventory loop
       }
+      // Add conditions
+      for (const condition in this.conditions) {
+        if (this.conditions[condition].bonuses) {
+          for (const [name, bonus] of Object.entries(this.conditions[condition].bonuses)) {
+            bonuses[name] = bonus;
+          }
+        }
+      }
+      // Armor
+      let item = this.inventory[0].children[0].children[0];
+      if (item) {
+        bonuses[item.label] = {};
+        bonuses[item.label].type = "Armor";
+        bonuses[item.label].targets = item.value.targets;
+        bonuses[item.label].value = item.value["AC Bonus"];
+      }
+      // Shields          For items in equipment . equipped . hands
+      for (const item of this.inventory[0].children[1].children[0].children) {
+        if (item.value.Proficiency == "Shields") {
+          bonuses[item.label] = {};
+          bonuses[item.label].type = "Shield";
+          bonuses[item.label].targets = item.value.targets;
+          bonuses[item.label].value = item.value["AC Bonus"];
+        }
+      }
+      // Magic Items        For items in equipment . Magic Items
+      for (const slot of this.inventory[1].children) {
+        for (const item of slot.children) {
+          if (item.bonuses) {
+            for (const [name, bonus] of Object.entries(item.bonuses)) {
+              console.log(name, bonus);
+              bonuses[name] = {};
+              bonuses[name].type = bonus.type;
+              bonuses[name].targets = bonus.targets;
+              bonuses[name].value = bonus.value;
+            }
+          }
+        }
+      } // end magic items
+      // console.log(bonuses);
       return bonuses;
     },
     actions() {
       let actions = { melee: {}, ranged: {}, special: {} };
-      if (this.source.name && this.rules.natural_attacks) {
+      // if (this.source.name && this.rules.natural_attacks) {
         let NatAtkNum = 0;
         for (let type of Object.entries(this.source.actions)) {
           type = type[0];
 
           for (const [name, atk] of Object.entries(this.source.actions[type])) {
-            // console.log(name, atk);
             if (type == 'special') {
               actions.special[name] = atk;
               continue;
             }
+
+            // TODO: split nat atk num from nat atk name (2 wings)
 
             let newAtk = {
               dmgBonus: { "total": 0, "sources": [] },
@@ -847,17 +852,6 @@ export default {
             if (this.basics.size != "medium") {
               newAtk.atkBonus.total += this.basics.sizeStats["ac / atk"];
               newAtk.atkBonus.sources.push(`+${this.basics.sizeStats["ac / atk"]} Size`);
-            }
-
-            // Add mwk or magic enhancements to atk bonus
-            if (atk.Extras && atk.Extras["enhancement"]) {
-              newAtk.atkBonus.total += atk.Extras["enhancement"];
-              newAtk.atkBonus.sources.push(`+${atk.Extras["enhancement"]} Magic Enhancement`);
-              newAtk.dmgBonus.total += atk.Extras["enhancement"];
-              newAtk.dmgBonus.sources.push(`+${atk.Extras["enhancement"]} Magic Enhancement`);
-            } else if (atk.Extras && atk.Extras["masterwork"]) {
-              newAtk.atkBonus.total += 1;
-              newAtk.atkBonus.sources.push(`+1 Masterwork`);
             }
 
             // Add AbilMod to atkBonus
@@ -873,29 +867,18 @@ export default {
             }
 
             // Add AbilMod to dmgBonus
-            if (atk.Group && atk.Group.includes("Thrown") ||
-                (atk.Group && atk.Group.includes("Bows") && this.attributes.StrMod < 0) ||
-                (atk.Group && atk.Group.includes("Bows") && name.includes("Composite")) ) {
-              newAtk.dmgBonus.total += this.attributes.StrMod;
-              newAtk.dmgBonus.sources.push(`+${this.attributes.StrMod} Str`);
-
-            } else if (atk.Category == "Two-Handed") {
-              newAtk.dmgBonus.total += this.attributes.StrMod * 1.5;
-              newAtk.dmgBonus.sources.push(`+${this.attributes.StrMod * 1.5} Str`);
-
-            } else if (!Object.keys(this.rules.natural_attacks).includes(name)) {
+            if (!Object.keys(this.rules.natural_attacks).includes(name)) {
               // Fake Natural Attack, like Death Worm's Electrical Jolt
+              // They get no bonuses to DMG
 
             } else if (atk.Category == "Secondary") {
               newAtk.dmgBonus.total += this.attributes.StrMod / 2;
               newAtk.dmgBonus.sources.push(`+${this.attributes.StrMod / 2} Str`);
 
-
             } else {
               newAtk.dmgBonus.total += this.attributes.StrMod;
               newAtk.dmgBonus.sources.push(`+${this.attributes.StrMod} Str`);
             }
-            // Dual Wield Off Hand penalty done in abilities / bonuses
 
             // Add Active Bonuses
             this.bonusLoop(newAtk.atkBonus, type.concat("AtkBonus"));
@@ -907,18 +890,119 @@ export default {
             newAtk.crit.range = atk.Critical.split("/")[0];
             newAtk.crit.mult = atk.Critical.split("/")[1];
             newAtk.extras = (atk.Extras) ? atk.Extras : [];
-            // console.log(`${NatAtkNum>1 ? NatAtkNum : ""} ${name} +${newAtk.atkBonus.total} (${newAtk.dmgDie}+${newAtk.dmgBonus.total} /${atk.Critical})`);
             actions[type][name] = newAtk;
 
           } // End Action Loop
         } // End Action Types Loop
         if (NatAtkNum == 1) {
+          console.log('Extra Strength to Nat Attack');
           for (const atk of Object.values(actions.melee)) {
-            atk.dmgBonus.total += this.attributes.StrMod / 2;
-            atk.dmgBonus.sources.push(`+${this.attributes.StrMod / 2} Str`);
+            atk.dmgBonus.total += Math.floor(this.attributes.StrMod / 2);
+            atk.dmgBonus.sources.push(`+${Math.floor(this.attributes.StrMod / 2)} Str`);
           }
         }
-      }
+
+        // Weapon Actions
+        let mainHand = this.inventory[0].children[1].children[0].children[0];
+        let offHand = this.inventory[0].children[1].children[0].children[1];
+
+        for (const weapon of this.inventory[0].children[1].children[0].children) {
+          // this.inventory[ equipped ].children[ weapons ].children[ hands ].children
+
+          if (!weapon.value.Damage) { continue; }
+          if (weapon.value.Group.includes("Bows")){
+            if (weapon.label != mainHand.label || offHand != undefined) {
+              continue;
+            }
+          }
+
+          let type = (weapon.value.Category == "Ranged" || weapon.value.Group.includes("Thrown")) ? "ranged" : "melee";
+          let newAtk = { dmgBonus: { "total": 0, "sources": [] }, atkBonus: { "total": 0, "sources": [] } };
+
+          newAtk.atkBonus.total += this.bab;
+          newAtk.atkBonus.sources.push(`+${this.bab} BAB`);
+          if (this.basics.size != "medium") {
+            newAtk.atkBonus.total += this.basics.sizeStats["ac / atk"];
+            newAtk.atkBonus.sources.push(`+${this.basics.sizeStats["ac / atk"]} Size`);
+          }
+
+          // Add mwk or magic enhancements to atk bonus
+          if (weapon.value.Extras["Enhancement"] > 0) {
+            newAtk.atkBonus.total += weapon.value.Extras["Enhancement"];
+            newAtk.atkBonus.sources.push(`+${weapon.value.Extras["Enhancement"]} Magic Enhancement`);
+            newAtk.dmgBonus.total += weapon.value.Extras["Enhancement"];
+            newAtk.dmgBonus.sources.push(`+${weapon.value.Extras["Enhancement"]} Magic Enhancement`);
+          } else if (weapon.value.Extras["Masterwork"]) {
+            newAtk.atkBonus.total += 1;
+            newAtk.atkBonus.sources.push(`+1 Masterwork`);
+          }
+
+
+          // Add AbilMod to atkBonus
+          if (type == "ranged") {
+            newAtk.atkBonus.total += this.attributes.DexMod;
+            newAtk.atkBonus.sources.push(`+${this.attributes.DexMod} Dex`);
+            // BOW && THROWN STR MOD
+            if (weapon.value.Group.includes("Thrown") ||
+                (weapon.value.Group.includes("Bows") && this.attributes.StrMod < 0) ||
+                (weapon.value.Group.includes("Bows") && name.includes("Composite")) ) {
+              newAtk.dmgBonus.total += this.attributes.StrMod;
+              newAtk.dmgBonus.sources.push(`+${this.attributes.StrMod} Str`);
+            }
+
+          } else {
+            newAtk.atkBonus.total += this.attributes.StrMod;
+            newAtk.atkBonus.sources.push(`+${this.attributes.StrMod} Str`);
+
+            if (weapon.label == mainHand.label) {
+              // Main Hand
+
+              if (offHand == undefined && (weapon.value.Category == "One-Handed" || weapon.value.Category == "Two-Handed")) {
+                // if only mainHand
+                newAtk.dmgBonus.total += Math.floor(this.attributes.StrMod * 1.5);
+                newAtk.dmgBonus.sources.push(`+${Math.floor(this.attributes.StrMod * 1.5)} Str`);
+
+              } else {
+                newAtk.dmgBonus.total += this.attributes.StrMod;
+                newAtk.dmgBonus.sources.push(`+${this.attributes.StrMod} Str`);
+              }
+
+            } else {
+              // Off Hand
+              if (weapon.value.Category == "Light" || weapon.value.Category == "One-Handed") {
+                newAtk.dmgBonus.total += Math.floor(this.attributes.StrMod / 2);
+                newAtk.dmgBonus.sources.push(`+${Math.floor(this.attributes.StrMod / 2)} Str`);
+              }
+            }
+          }
+
+          // Dual Wield Off Hand penalty done in abilities / bonuses
+          /*
+          penalties to AtkBonus, during a full-round atk
+          light & feat      { main -2  off -2 }
+          two-weapon feat   { main -4  off -4 }
+          off hand light    { main -4  off -8 }
+          normal            { main -6  off -10}
+          */
+
+
+          this.bonusLoop(newAtk.atkBonus, type.concat("AtkBonus"));
+          this.bonusLoop(newAtk.dmgBonus, type.concat("DmgBonus"));
+
+          // TODO: change wpn dmg die back to obj based on size, to allow size changing
+          newAtk.dmgDie = weapon.value.Damage;
+          // newAtk.dmgDie = weapon.value.Damage[this.basics.size];
+          newAtk.crit = {};
+          newAtk.crit.range = weapon.value.Critical.split("/")[0];
+          newAtk.crit.mult = weapon.value.Critical.split("/")[1];
+          newAtk.extras = (weapon.value.Extras) ? weapon.value.Extras : [];
+          // console.log(`${NatAtkNum>1 ? NatAtkNum : ""} ${name} +${newAtk.atkBonus.total} (${newAtk.dmgDie}+${newAtk.dmgBonus.total} /${atk.Critical})`);
+          actions[type][weapon.label] = newAtk;
+        }
+
+
+
+      // }
       return actions;
     },
     abilities() {
@@ -935,6 +1019,7 @@ export default {
           }
         }
       }
+      console.log(abilities);
       return abilities;
     },
     inventory() { return this.source.equipment; },
@@ -1024,38 +1109,44 @@ export default {
 
       return health;
     },
-// TODO: max dex from armor
     ac() {
       let ac = { "total": { "total": 10, "sources": [] }, "touch": { "total": 10, "sources": [] }, "flat": { "total": 10, "sources": [] } };
-      if (this.source.name) {
-        // total = All
+      let armor = this.inventory[0].children[0].children[0];
+      // total = All
+      if (armor) {
+        ac.total.total += Math.min(armor.value["Max Dex"], this.attributes.DexMod);
+        ac.total.sources.push(`+${this.attributes.DexMod} Dex`);
+      } else {
         ac.total.total += this.attributes.DexMod;
         ac.total.sources.push(`+${this.attributes.DexMod} Dex`);
-        if (this.basics.size != "medium") {
-          ac.total.total += this.basics.sizeStats["ac / atk"];
-          ac.total.sources.push(`+${this.basics.sizeStats["ac / atk"]} Size`);
-        }
+      }
+      if (this.basics.size != "medium") {
+        ac.total.total += this.basics.sizeStats["ac / atk"];
+        ac.total.sources.push(`+${this.basics.sizeStats["ac / atk"]} Size`);
+      }
 
-        // touch = creature.ac.total - bonus.armor - bonus.shield - bonus.natural;
+      // touch = creature.ac.total - bonus.armor - bonus.shield - bonus.natural;
+      if (armor) {
+        ac.touch.total += Math.min(armor.value["Max Dex"], this.attributes.DexMod);
+        ac.touch.sources.push(`+${this.attributes.DexMod} Dex`);
+      } else {
         ac.touch.total += this.attributes.DexMod;
         ac.touch.sources.push(`+${this.attributes.DexMod} Dex`);
-        if (this.basics.size != "medium") {
-          ac.touch.total += this.basics.sizeStats["ac / atk"];
-
-          ac.touch.sources.push(`+${this.basics.sizeStats["ac / atk"]} Size`);
-          // // TODO: -
-        }
-
-        // flat = creature.ac.total - bonus.dex - bonus.dodge;
-        if (this.basics.size != "medium") {
-          ac.flat.total += this.basics.sizeStats["ac / atk"];
-          ac.flat.sources.push(`+${this.basics.sizeStats["ac / atk"]} Size`);
-        }
-
-        this.bonusLoop(ac.total, "totalAC");
-        this.bonusLoop(ac.touch, "touchAC");
-        this.bonusLoop(ac.flat, "flatAC");
       }
+      if (this.basics.size != "medium") {
+        ac.touch.total += this.basics.sizeStats["ac / atk"];
+        ac.touch.sources.push(`+${this.basics.sizeStats["ac / atk"]} Size`);
+      }
+
+      // flat = creature.ac.total - bonus.dex - bonus.dodge;
+      if (this.basics.size != "medium") {
+        ac.flat.total += this.basics.sizeStats["ac / atk"];
+        ac.flat.sources.push(`+${this.basics.sizeStats["ac / atk"]} Size`);
+      }
+
+      this.bonusLoop(ac.total, "totalAC");
+      this.bonusLoop(ac.touch, "touchAC");
+      this.bonusLoop(ac.flat, "flatAC");
       return ac;
     },
     saves() {

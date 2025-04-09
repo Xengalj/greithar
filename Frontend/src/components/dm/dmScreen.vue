@@ -73,9 +73,11 @@ export default {
     );
   },
   mounted() {
-    this.monsterOpen("Skeletal Champion");
-    // this.monsterOpen("Adult Red Dragon");
-    // this.monsterOpen("Death Worm");
+    if (this.equipment) {
+      this.monsterOpen("Skeletal Champion");
+      // this.monsterOpen("Adult Red Dragon");
+      // this.monsterOpen("Death Worm");
+    }
   },
   methods: {
     monsterOpen(name) {
@@ -214,42 +216,52 @@ export default {
         *                           *
         \***************************/
         let items = [];
+        let treasure = response.Treasure;
         if (response.Treasure.includes("(")) {
+          treasure = treasure.split('(')[0];
           let equip = response.Treasure.split('(').pop().split(')')[0];
           items = items.concat(equip.split(','));
         }
         if (response.Gear) { items = items.concat(response.Gear.split(',')); }
+        creature.equipment[2].children.push({ label: treasure });
+
 
         for (let item of items) {
-          let i, extras = {};
+          let i, extras = {
+            "Masterwork": false,
+            "Enhancement": 0,
+            "Notes": []
+          };
           item = item.toLowerCase();
           // "With" abilities (poison, bleed, frost)
           i = item.indexOf('with');
           if (i > -1) {
-            extras["abilities"] = item.slice(i);
+            extras["Notes"].push(item.slice(i));
             item = item.slice(0, i);
           }
           // +# Magic items (can't go over +5)
           i = item.indexOf('+');
           if (i > -1) {
-            extras["enhancement"] = item.slice(i+1);
+            extras["Enhancement"] = item.slice(i+1);
             item = item.slice(i+2);
           }
           // Masterwork items
           i = item.indexOf('masterwork');
           if (i > -1) {
-            extras["masterwork"] = true;
+            extras["Masterwork"] = true;
             item = item.slice(i+10);
           }
           // Remove leading any whitespace & capitalize
           item = item[0] === " " ? item.slice(1) : item;
           item = item.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
 
-          // Add items to bonuses and equipment
+          // Add items to equipment
           if ( Object.keys(this.equipment.Armor).includes(item) ) {
             // creature.equipment[equipped].children[armor].children
             let armor = creature.equipment[0].children[0].children;
             let tmpArmor = this.equipment.Armor[item];
+            let notes = tmpArmor.Extras.Notes;
+            if (notes.length) { extras.Notes.push(notes); }
             tmpArmor.Extras = extras;
             tmpArmor.targets = this.rules.bonuses.Armor.targets;
             if (!armor.length) {
@@ -258,72 +270,58 @@ export default {
               // creature.equipment[loot].children
               creature.equipment[2].children.push({ label: item, value: tmpArmor });
             }
-            // creature.equipment[item] = this.equipment.Armor[item];
-            // creature.equipment[item].Extras = extras;
-            // creature.equipment[item].equiped = true;
-            // creature.equipment[item].targets = this.rules.bonuses.Armor.targets;
           }
 
-          else if ( Object.keys(this.equipment.Weapons).includes(item) ) {96210
+          else if ( Object.keys(this.equipment.Weapons).includes(item) ) {
             // creature.equipment[equipped].children[weapons]
             let weapons = creature.equipment[0].children[1].children;
             let tmpWpn = this.equipment.Weapons[item];
-            tmpWpn.Damage = this.equipment.Weapons[item].Damage[creature.basics.size];
+            let notes = tmpWpn.Extras.Notes;
+            if (notes.length) { extras.notes.push(notes); }
             tmpWpn.Extras = extras;
+            // do not reset damage on rerender
+            if (typeof tmpWpn.Damage != 'string') {
+              tmpWpn.Damage = this.equipment.Weapons[item].Damage[creature.basics.size];
+            }
             if (weapons[0].children.length < 2) {
               // if weapons[hands].children < 2
               weapons[0].children.push({ label: item, value: tmpWpn });
-              creature.actions.melee[item] = tmpWpn;
+              // creature.actions.melee[item] = tmpWpn;
             } else if (weapons[1].children.length < 2) {
               // if weapons[back].children < 2
               weapons[1].children.push({ label: item, value: tmpWpn });
-              creature.actions.melee[item] = tmpWpn;
+              // creature.actions.melee[item] = tmpWpn;
             } else {
               // add weapon to creature.equipment[loot].children
               creature.equipment[2].children.push({ label: item, value: tmpWpn });
             }
-            // creature.equipment[item] = this.equipment.Weapons[item];
-            // creature.equipment[item].Extras = extras;
-            // creature.actions.melee[item] = this.equipment.Weapons[item];
           }
 
           else if ( Object.keys(this.equipment.Shields).includes(item) ) {
             // creature.equipment[equipped].children[weapons]
             let weapons = creature.equipment[0].children[1].children;
             let tmpWpn = this.equipment.Shields[item];
-            tmpWpn.Proficiency = "Shields";
-            tmpWpn.Damage = this.equipment.Shields[item].Damage[creature.basics.size];
+            let notes = tmpWpn.Extras.Notes;
+            if (notes.length) { extras.notes.push(notes); }
             tmpWpn.Extras = extras;
+            tmpWpn.Proficiency = "Shields";
+            // do not set damage on rerender
+            if (typeof tmpWpn.Damage != 'string') {
+              tmpWpn.Damage = this.equipment.Shields[item].Damage[creature.basics.size];
+            }
+
+
             tmpWpn.targets = this.rules.bonuses.Shield.targets;
             if (weapons[0].children.length < 2) {
               // if weapons[hands].children
               weapons[0].children.push({ label: item, value: tmpWpn });
-              creature.actions.melee[item] = tmpWpn;
-              if (this.equipment.Shields[item]["Critical"] > 0) {
-                creature.actions.melee[item] = tmpWpn;
-              }
-
             } else if (weapons[1].children.length < 2) {
               // if weapons[back].children
               weapons[1].children.push({ label: item, value: tmpWpn });
-              creature.actions.melee[item] = tmpWpn;
-              if (this.equipment.Shields[item]["Critical"] > 0) {
-                creature.actions.melee[item] = creature.equipment[item];
-              }
-
             } else {
               // add shield to creature.equipment[loot].children
               creature.equipment[2].children.push({ label: item, value: tmpWpn });
             }
-
-            // creature.equipment[item] = this.equipment.Shields[item];
-            // creature.equipment[item].Proficiency = "Shields";
-            // creature.equipment[item].Extras = extras;
-            // creature.equipment[item].equiped = true;
-            // creature.equipment[item].targets = this.rules.bonuses.Shield.targets;
-            // if (this.equipment.Shields[item]["Critical"] > 0) {
-            //   creature.actions.melee[item] = creature.equipment[item];
-            // }
 
           } else {
             // Other Treasure
@@ -404,14 +402,14 @@ export default {
         tempNum = response.AC - 10;
         tempNum -= Math.floor((response.Dex - 10) / 2);
         tempNum -= this.rules.size[creature.basics.size]["ac / atk"];
-        // Armor, Shield
-        for (const item of Object.values(creature.equipment)) {
-          if (item.equiped) {
-            let type = (["Light", "Medium", "Heavy"].includes(item.Proficiency)) ? "Armor" :
-                       (item.Proficiency == "Shields") ? "Shield" : "";
-            if (type != "") {
-              tempNum -= item["AC Bonus"];
-            }
+        // Armor
+        let item = creature.equipment[0].children[0].children[0];
+        if (item) { tempNum -= item.value["AC Bonus"]; }
+
+        // For items in equipment . equipped . hands
+        for (const item of creature.equipment[0].children[1].children[0].children) {
+          if (item.value.Proficiency == "Shields") {
+            tempNum -= item.value["AC Bonus"];
           }
         }
         creature.abilities["Natural Armor"] = {
@@ -452,7 +450,13 @@ export default {
             atk = atk.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
 
             // Add only Natural Attacks
-            if (Object.keys(creature.equipment).includes(atk)) { continue; }
+            // item = equipment . equipped . hands . 'main hand'
+            let item = creature.equipment[0].children[1].children[0].children[0];
+            if (item && item.label == atk) { continue; }
+            // item = equipment . equipped . hands . 'off hand'
+            item = creature.equipment[0].children[1].children[0].children[1];
+            if (item && item.label == atk) { continue; }
+
             let NAs = this.rules.natural_attacks;
             // get Nat Atk name, for searching (no #, no trailing 's')
             let atkName = atk;
@@ -495,7 +499,14 @@ export default {
             atk = atk.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
 
             // Add only Natural Attacks
-            if (Object.keys(creature.equipment).includes(atk)) { continue; }
+            // item = equipment . equipped . hands . 'main hand'
+            let item = creature.equipment[0].children[1].children[0].children[0];
+            if (item && item.label == atk) { continue; }
+            // item = equipment . equipped . hands . 'off hand'
+            item = creature.equipment[0].children[1].children[0].children[1];
+            if (item && item.label == atk) { continue; }
+
+
             let NAs = this.rules.natural_attacks;
 
             // Number of Attacks (NAs)
@@ -576,8 +587,8 @@ export default {
 
         creature.userSettings = {
           expandInventory: true,
-          cardTab: "items",
-          mainSections: [ "defense", "conditions" ]
+          cardTab: "main",
+          mainSections: [ "defense", "actions", "conditions" ]
         };
 
         this.creature = creature;
