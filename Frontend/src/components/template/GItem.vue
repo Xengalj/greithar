@@ -33,7 +33,7 @@
             <el-col :span="10">
               <el-select v-if="Object.keys(selects).includes(prop)" v-model="item.value[prop]" multiple>
                 <template #tag>
-                  <el-tag v-for="element in item.value[prop]" effect="dark" :key="element"> {{ element }} </el-tag>
+                  <el-tag v-for="(element, index) in item.value[prop]" effect="dark" :key="element"> {{ element }} {{ index }} </el-tag>
                 </template>
                 <el-option v-for="element in selects[prop]" :key="element.label" :label="element.label" :value="element.value" >
                   <div class="flex items-center">
@@ -101,12 +101,14 @@ export default {
     }
   },
   mounted() {
+    console.log(this.source);
     this.selects["Damage Type"] = this.rules["Damage Types"].Weapon;
     this.selects.Group = this.rules["Weapon Groups"];
     this.selects.targets = this.rules.targets;
     this.original = JSON.stringify(this.source);
   },
   updated() {
+    console.log(this.source);
     this.original = JSON.stringify(this.source);
   },
   computed: {

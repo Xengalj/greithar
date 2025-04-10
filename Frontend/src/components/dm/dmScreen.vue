@@ -594,7 +594,7 @@ export default {
 
         creature.userSettings = {
           expandInventory: true,
-          cardTab: "items",
+          cardTab: "abilities",
           mainSections: [ "defense", "actions", "conditions" ]
         };
 

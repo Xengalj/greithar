@@ -346,8 +346,8 @@
     "type": "Combat",
     "prerequisites": [ "BAB:1", "Proficiency with selected weapon" ],
     "description": "Choose one type of weapon (or unarmed strike, grapple or ray), you may select this feat multiple times, choosing a new weapon each time. You gain a +1 bonus on all attack rolls made using your selection.",
-    "benefit": "+1 bonus on all attack rolls made using your selection.",
     "trigger": "Continuous",
+    "benefit": { "target": "self", "text": "+1 bonus on all attack rolls made using your selection." },
     "bonuses": {}
   },
 

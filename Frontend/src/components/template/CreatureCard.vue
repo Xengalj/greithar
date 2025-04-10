@@ -477,7 +477,7 @@
 
                         <el-row v-for="(bonus, name) in newCondition.bonuses" :key="name">
                           {{ name }}
-                          <el-input v-model="bonus.value" size="small" placeholder="Modifier" />
+                          <el-input-number v-model="bonus.value" size="small" />
                           <el-select
                             v-model="bonus.targets"
                             value-key="name"
@@ -621,36 +621,73 @@
 
     <!-- Abilities -->
     <el-tab-pane label="Abilities" name="Abilities">
-      <el-row class="center-horz">
+      <el-row class="center-horz" :gutter="5">
         <el-col :span="5">Name</el-col>
-        <el-col :span="3">Toggles</el-col>
-        <el-col :span="12">Description</el-col>
         <el-col :span="2">Source</el-col>
-        <el-col :span="2">Edit</el-col>
-      </el-row>
-      <el-divider />
-
-      <el-row v-for="(abil, name) in abilities" :key="name" style="margin-bottom:5px;">
-        <el-col :span="5">{{ name }}</el-col>
-        <el-col :span="3">
-          <el-button style="width:95%; margin: 0;" :type="abil.extras.active?'primary':'info'" size="small" :disabled="abil.trigger=='Continuous'?true:false" @click="toggleAbility(name, abil)">{{ abil.trigger == "Toggle" ? "Free" : abil.trigger }}</el-button>
-          <el-button style="width:95%; margin: 0;" :type="abil.extras.showMain?'primary':'info'" size="small" @click="abilShowMain(name, abil)">{{ abil.extras.showMain ? "On Main" : "Just Here" }}</el-button>
+        <el-col :span="12">Description</el-col>
+        <el-col :span="5">
+          Actions
+          <el-popconfirm title="Add New Ability?" icon-color="#626AEF" @confirm="addNewAbility">
+            <template #reference>
+              <el-button type="primary" size="small">New</el-button>
+            </template>
+            <template #actions="{ confirm }">
+              <el-input v-model="abilName" size="small" placeholder="Ability Name" style="margin-bottom:5px;" />
+              <el-button type="primary" size="small" @click="confirm" :disabled="abilName == ''">Yes</el-button>
+            </template>
+          </el-popconfirm>
         </el-col>
-        <el-col :span="12"> {{ abil.description }} </el-col>
+      </el-row>
+      <el-divider style="margin-top: 5px;" />
+
+      <el-row v-for="(abil, name) in abilities" :key="name" :gutter="5" style="margin-bottom:5px;">
+        <el-col :span="5">{{ name }}</el-col>
         <el-col :span="2" class="center-horz;">
           <el-tag size="small" effect="dark" type="primary">
             {{ abil.extras.source }}
           </el-tag>
         </el-col>
-        <el-col :span="2" class="center-horz;">
-          <el-button type="info" circle @click="editAbility(abil)">
-            <g-icon iconSize="20px" iconColor="#000" iconName="quill" />
+        <el-col :span="12"> {{ abil.description }} </el-col>
+
+        <!-- ACTIONS -->
+        <el-col :span="3">
+          <el-button
+            size="small"
+            style="width:95%; margin: 0;"
+            :type="abil.extras.active?'primary':'info'"
+            :disabled="abil.trigger=='Continuous'?true:false"
+            @click="toggleAbility(name, abil)"
+          >
+              {{ abil.trigger == "Toggle" ? "Free" : abil.trigger }}
+          </el-button>
+          <el-button
+            size="small"
+            style="width:95%; margin: 0;"
+            :type="abil.extras.showMain?'primary':'info'"
+            @click="abilShowMain(name, abil)"
+          >
+            {{ abil.extras.showMain ? "On Main" : "Just Here" }}
           </el-button>
         </el-col>
+        <el-col :span="2" class="center-horz;">
+          <el-button type="info" size="small" @click="editAbility(name, abil)">
+            <g-icon iconSize="16px" iconColor="#000" iconName="quill" />
+          </el-button>
+          <el-popconfirm title="Are you sure to delete this?">
+            <template #reference>
+              <el-button type="danger" size="small">
+                <g-icon iconSize="16px" iconColor="#000" iconName="trash" />
+              </el-button>
+            </template>
+            <template #actions="">
+              <el-button type="danger" size="small" @click="deleteAbil(name, abil)">Yes</el-button>
+            </template>
+          </el-popconfirm>
+        </el-col>
       </el-row>
-      <!-- <el-dialog v-model="editingItem" width="800">
-        <g-item :source="item" />
-      </el-dialog> -->
+      <el-dialog v-model="editingAbil" width="800">
+        <g-ability :newAbil="addAbil" :name="abilName" :source="abil" @save-abil="saveAbility"/>
+      </el-dialog>
     </el-tab-pane>
 
     <!-- Magic -->
@@ -692,10 +729,11 @@
 <script>
 import HexGraph from '@/components/template/HexGraph.vue'
 import GItem from '@/components/template/GItem.vue'
+import GAbility from '@/components/template/GAbility.vue'
 
 export default {
   name: "CreatureCard",
-  components: { HexGraph, GItem },
+  components: { HexGraph, GItem, GAbility },
   props: { source: { type: Object } },
   data() {
     return {
@@ -745,13 +783,16 @@ export default {
       ],
       newCondition: {},
       addingCondition: false,
+
+      addAbil: false,
+      abilName: "",
       editingAbil: false,
       abil: {},
+
       addItem: false,
       editingItem: false,
       item: {},
       itemFilter: "",
-
 
 
       original: {}
@@ -814,7 +855,6 @@ export default {
         for (const item of slot.children) {
           if (item.bonuses) {
             for (const [name, bonus] of Object.entries(item.bonuses)) {
-              console.log(name, bonus);
               bonuses[name] = {};
               bonuses[name].type = bonus.type;
               bonuses[name].targets = bonus.targets;
@@ -985,6 +1025,8 @@ export default {
           normal            { main -6  off -10}
           */
 
+          this.bonusLoop(newAtk.atkBonus, weapon.label.concat("AtkBonus"));
+          this.bonusLoop(newAtk.dmgBonus, weapon.label.concat("DmgBonus"));
 
           this.bonusLoop(newAtk.atkBonus, type.concat("AtkBonus"));
           this.bonusLoop(newAtk.dmgBonus, type.concat("DmgBonus"));
@@ -1043,7 +1085,7 @@ export default {
       basics.sizeStats = this.rules.size ? this.rules.size[basics.size] : { "space": "5 ft." };
       return basics;
     },
-// TODO: classes loop
+    // TODO: classes loop
     cClasses() {
       let classes = {};
       if (this.source.name && this.source.classes["commoner"]) {
@@ -1524,11 +1566,52 @@ export default {
       }
     },
     abilShowMain(name, abil) { abil.extras.showMain = abil.extras.showMain ? false : true; },
-    editAbility(abil) {
-      console.log(abil);
-      // TODO: set up like items, with new dialog?
+    addNewAbility() {
+      this.addAbil = true;
+      this.abil = {
+        trigger: "Standard",
+        description: "",
+        benefit: { target: "Self", text: "" },
+        bonuses: {},
+        extras: { active: true, source: "Feat" }
+      };
+      this.editingAbil = true;
+    },
+    saveAbility(abil) {
+      let name = Object.keys(abil)[0];
+      this.abilities[name] = abil[name];
+      this.editingAbil = false;
+    },
+
+    editAbility(name, ability) {
+      console.log(name, ability);
+      this.addAbil = false;
+      this.abilName = name;
+      this.abil = {};
+      if (!Object.keys(ability).length) {
+        ability = {};
+        ability[name] = {
+          trigger: "Standard",
+          description: "",
+          benefit: { target: "Self", text: "" },
+          bonuses: {},
+          Extras: { active: true, source: "Feat" }
+        };
+      }
+      this.abil = ability;
+      this.editingAbil = true;
+    },
+    deleteAbil(name, abil) {
+      console.log(name, abil);
+      // const parent = node.parent;
+      // const children = parent.data.children || parent.data;
+      // const index = children.findIndex(d => d.label === data.label);
+      // children.splice(index, 1);
+      // this.$message({ message: `${data.label} was removed from inventory`, type: "warning" });
       this.$message({ message: "NOT YET IMPLEMENTED", type: "warning" });
     },
+
+
 
     // MAGIC METHODS
 
@@ -1564,5 +1647,9 @@ export default {
   display: flex;
   align-items: center;
   justify-content: end;
+}
+
+.el-button.el-button--danger.el-button--small.el-tooltip__trigger {
+	margin-left: 0;
 }
 </style>

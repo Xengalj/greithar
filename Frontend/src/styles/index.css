@@ -60,8 +60,6 @@ Dark/Mixed - 600: For on background texts color */
   background-color: var(--el-bg-color-page);
   color: var(--el-text-color-primary);
 }
-
-
 body a,
 a.nav-link {
   color: var(--el-color-primary);
@@ -69,22 +67,12 @@ a.nav-link {
 body a:hover {
   color: var(--color-secondary-300);
 }
-
 .jumbotron {
   background-color: var(--el-card-bg-color);
 }
-.center-vert {
-  align-content: center;
+.title {
+  color: var(--el-color-primary);
 }
-.center-horz {
-  text-align: center;
-}
-.main .el-icon,
-.main .el-icon.el-dialog__close {
-	font-size: 28px;
-}
-
-
 
 
 
@@ -114,7 +102,8 @@ footer {
   align-content: center;
 }
 
-
-.title {
-  color: var(--el-color-primary);
+#app .el-icon,
+#app .el-icon.el-dialog__close,
+#app .el-icon.el-popconfirm__icon {
+  font-size: 28px;
 }
