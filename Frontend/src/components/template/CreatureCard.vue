@@ -533,7 +533,7 @@
           <el-input v-model="itemFilter" class="w-60 mb-2" placeholder="Item Search" />
         </el-col>
         <el-col :span="4">
-          <el-button type="primary" @click="editItem({})">Add Item</el-button>
+          <el-button type="primary" @click="editItem({}); addItem=true;">Add Item</el-button>
         </el-col>
       </el-row>
       <el-tree
@@ -588,7 +588,7 @@
         </template>
       </el-tree>
       <el-dialog v-model="editingItem" width="800">
-        <g-item :source="item" />
+        <g-item :source="item" :newItem="addItem" @save-item="saveItem"/>
       </el-dialog>
     </el-tab-pane>
 
@@ -690,7 +690,6 @@
 </template>
 
 <script>
-// import DataService from "@/services/data.service";
 import HexGraph from '@/components/template/HexGraph.vue'
 import GItem from '@/components/template/GItem.vue'
 
@@ -748,6 +747,7 @@ export default {
       addingCondition: false,
       editingAbil: false,
       abil: {},
+      addItem: false,
       editingItem: false,
       item: {},
       itemFilter: "",
@@ -910,7 +910,7 @@ export default {
           // this.inventory[ equipped ].children[ weapons ].children[ hands ].children
 
           if (!weapon.value.Damage) { continue; }
-          if (weapon.value.Group.includes("Bows")){
+          if (weapon.value.Group.includes("Bows") || weapon.value.Category == "Two-Handed"){
             if (weapon.label != mainHand.label || offHand != undefined) {
               continue;
             }
@@ -1019,7 +1019,7 @@ export default {
           }
         }
       }
-      console.log(abilities);
+      // console.log(abilities);
       return abilities;
     },
     inventory() { return this.source.equipment; },
@@ -1419,11 +1419,11 @@ export default {
 
     },
 
-    rest() {
-      console.log('REST UP: HP, SPELLS');
-    },
-
-    // CONDITION METHODS
+    /***************************\
+    *                           *
+    *         CONDITIONS        *
+    *                           *
+    \***************************/
     addNewContion() {
       this.addingCondition = true;
       this.newCondition = {
@@ -1449,7 +1449,11 @@ export default {
       this.addingCondition = false;
     },
 
-    // INVENTORY METHODS
+    /***************************\
+    *                           *
+    *         INVENTORY         *
+    *                           *
+    \***************************/
     filterNode(value, data) {
       if (!value) return true;
       return data.label.indexOf(value) !== -1;
@@ -1472,14 +1476,32 @@ export default {
         return false;
       }
     },
+    saveItem(item) {
+      this.inventory[2].children.push(item);
+      this.editingItem = false;
+    },
     editItem(item) {
+      this.addItem = false;
+      if (!Object.keys(item).length) {
+        item = {
+          label: "",
+          value: {
+            Description: "",
+            Cost: 0,
+            Weight: 0,
+            Extras: {
+              Notes: []
+            }
+          }
+        };
+      }
       this.item = item;
       this.editingItem = true;
     },
     deleteItem(node, data) {
       const parent = node.parent;
       const children = parent.data.children || parent.data;
-      const index = children.findIndex(d => d.id === data.id);
+      const index = children.findIndex(d => d.label === data.label);
       children.splice(index, 1);
       this.$message({ message: `${data.label} was removed from inventory`, type: "warning" });
     },
@@ -1487,7 +1509,11 @@ export default {
 
 
 
-    // ABITLY METHODS
+    /***************************\
+    *                           *
+    *         ABILITIES         *
+    *                           *
+    \***************************/
     toggleAbility(name, abil) {
       if (this.conditions[name]) {
         delete this.conditions[name];
@@ -1500,12 +1526,17 @@ export default {
     abilShowMain(name, abil) { abil.extras.showMain = abil.extras.showMain ? false : true; },
     editAbility(abil) {
       console.log(abil);
+      // TODO: set up like items, with new dialog?
       this.$message({ message: "NOT YET IMPLEMENTED", type: "warning" });
     },
 
     // MAGIC METHODS
 
     // EDIT METHODS
+
+    rest() {
+      console.log('REST UP: HP, SPELLS');
+    },
 
     saveMonster() {
       console.log(this);

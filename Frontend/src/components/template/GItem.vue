@@ -50,49 +50,46 @@
 
       <el-divider>Extras</el-divider>
       <!-- Masterwork, Abilities, (Magic) Enhancement, Notes -->
-      Extras: {{ item.value.Extras }} XX
-
       <el-row v-for="(value, prop) in item.value.Extras" :key="prop" :gutter="5">
         <el-col :span="6">
           {{ prop }}
         </el-col>
         <el-col :span="18">
-          <el-checkbox v-if="prop == 'Masterwork'" v-model="item.value.Extras[prop]" />
+          <el-checkbox v-if="prop == 'Masterwork'" v-model="item.value.Extras[prop]" style="margin:0;"/>
           <el-input-number v-if="prop == 'Enhancement'" v-model="item.value.Extras[prop]" />
           <div v-if="prop == 'Notes'">
             <el-input
               v-for="(note, index) in item.value.Extras[prop]" :key="index"
               v-model="item.value.Extras[prop][index]"
               placeholder="New Note"
-            />
-            <el-button size="small" type="primary" @click="item.value.Extras[prop].push('')">Add Note</el-button>
+            >
+            <template #append>
+              <el-button @click="deleteNote(index)" style="display: flex;">
+                <g-icon iconSize="16px" iconColor="#f56c6c" iconName="trash" />
+              </el-button>
+            </template>
+            </el-input>
 
+            <el-button size="small" type="primary" @click="addNote()">Add Note</el-button>
           </div>
         </el-col>
-
-        <br>
-
-          <!-- Notes
-          {{ item.value.Extras[prop] }} -->
-
       </el-row>
     </div>
 
     <el-row>
-      <el-col :span="3" class="addCondition">
-        <el-button size="small" type="warning" @click="reset()">Reset</el-button>
-      </el-col>
+      <el-button size="small" type="warning" @click="reset()">Reset</el-button>
+      <el-button v-if="newItem" size="small" type="primary" @click="saveItem()">Save</el-button>
     </el-row>
-
-    {{ item }}<br>
-
   </div>
 </template>
 
 <script>
 export default {
   name: 'g-item',
-  props: { source: { type: Object } },
+  props: {
+    source: { type: Object },
+    newItem: { type: Boolean }
+  },
   data() {
     return {
       original: {},
@@ -104,27 +101,29 @@ export default {
     }
   },
   mounted() {
-    this.original = JSON.stringify(this.source);
     this.selects["Damage Type"] = this.rules["Damage Types"].Weapon;
     this.selects.Group = this.rules["Weapon Groups"];
     this.selects.targets = this.rules.targets;
+    this.original = JSON.stringify(this.source);
+  },
+  updated() {
+    this.original = JSON.stringify(this.source);
   },
   computed: {
     rules() { return this.$store.state.data.rules; },
     equipment() { return this.$store.state.data.equipment; },
-    item() {
-      let item = Object.keys(this.source).length ? this.source : {
-        label: "",
-        value: {
-          Description: "",
-          Cost: 0,
-          Weight: 0
-        }
-      };
-      return item;
-    }
+    item() { return this.source; }
   },
   methods: {
+    addNote() {
+      this.item.value.Extras['Notes'].push('');
+    },
+    deleteNote(index) {
+      this.item.value.Extras['Notes'].splice(index, 1);
+    },
+    saveItem() {
+      this.$emit('save-item', this.item);
+    },
     reset() {
       let old = JSON.parse(this.original);
       this.item.label = old.label;

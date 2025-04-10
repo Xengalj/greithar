@@ -223,7 +223,6 @@ export default {
           items = items.concat(equip.split(','));
         }
         if (response.Gear) { items = items.concat(response.Gear.split(',')); }
-        creature.equipment[2].children.push({ label: treasure });
 
 
         for (let item of items) {
@@ -325,7 +324,15 @@ export default {
 
           } else {
             // Other Treasure
-            creature.equipment[2].children.push({ label: item });
+            creature.equipment[2].children.push({
+              "label": item,
+              "extras": { "icon": "treasure", "capacity": 1 },
+              "children": [
+                { "label": treasure, "value": { "Extras": { "Notes": [] } } }
+              ]
+            });
+
+
           }
         } // End items loop
 
@@ -587,7 +594,7 @@ export default {
 
         creature.userSettings = {
           expandInventory: true,
-          cardTab: "main",
+          cardTab: "items",
           mainSections: [ "defense", "actions", "conditions" ]
         };
 
