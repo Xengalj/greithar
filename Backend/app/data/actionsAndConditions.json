@@ -1,45 +1,103 @@
 {
   "actions": {
-    "": {
+    "Draw/Sheathe": {
       "trigger": "Move",
-      "description": "",
-      "benefit": "",
-      "extras": {},
+      "description": "You may draw or sheathe a weapon or weapon like item (like wands, shields) in easy reach. With a BAB of +1, you may draw a weapon as part of movement (not 5-foot step).",
+      "benefit": { "taret": "Self", "text": "You may draw / sheathe a weapon" },
+      "extras": { "showMain": false },
       "bonuses": {}
     },
-    movement (or 5-foot step) (swim/climb at 1/4 or climb 1/2 with -5 to climb)
-    draw a weapon / stored item (3[part of movement], ready / drop shield)
-    load light / heavy crossbow
-    mount / dismount (Dc 20 Ride to do as free action)
-    stand up from prone (AoO)
-
-    "": {
-      "trigger": "Standard",
-      "description": "",
-      "benefit": "",
-      "extras": {},
+    "Manipulte Item": {
+      "trigger": "Move",
+      "description": "You may retrieve, store, or pick up an item, as well as move a heavy object or open a door.",
+      "benefit": { "taret": "Self", "text": "You may retrieve, store, or pick up an item" },
+      "extras": { "showMain": false },
+      "bonuses": {}
+    },
+    "Mount": {
+      "trigger": "Move",
+      "description": "You may mount or dismount your steed as a move action. You may also attempt a DC 20 Ride check to do it as a free action with no penaly.",
+      "benefit": { "taret": "Self", "text": "You may mout or dismount your steed" },
+      "extras": { "showMain": false },
+      "bonuses": {}
+    },
+    "Stand Up": {
+      "trigger": "Move",
+      "description": "You may stand up as a move action that provokes and attack of opportunity. You may also crawl 5 ft as a move action that provokes an AoO and counts as prone.",
+      "benefit": { "taret": "Self", "text": "You may stand up from prone, provoking AoO" },
+      "extras": { "showMain": false },
       "bonuses": {}
     },
 
+
+    
     "Aid Another": {
       "trigger": "Standard",
       "description": "Make an attack roll vs AC 10, if you hit, you assist an ally with an attack, their defense, or a particular skill.",
-      "benefit": "+2 to Attack Rolls, AC, or a specific skill check",
-      "extras": { "showMain": true },
+      "benefit": "benefit": { "taret": "Self", "text": "+2 to Attack Rolls, AC, or a specific skill check" },
+      "extras": { "showMain": false },
+      "bonuses": {}
+    },
+    "Bull Rush": {
+      "trigger": "Standard",
+      "description": "Push an opponent 5 ft back, and an additional 5 ft for every 5 your CMB check exceeds your opponents CMD. This provokes AoO, and you can only push an opponent up to one size category larger than you.",
+      "benefit": { "taret": "Self", "text": "You may push an enemy back 5 or more feet" },
+      "extras": { "showMain": false },
+      "bonuses": {}
+    },
+    "Dirty Trick": {
+      "trigger": "Standard",
+      "description": "Apply Blinded, Dazzled, Deafened, Entangled, Shaken, or Sickened to an enemy for 1 round, and an additional round for every 5 your CMB check exceeds your opponents CMD. This provokes AoO",
+      "benefit": { "taret": "Self", "text": "Apply a number of hindering conditions" },
+      "extras": { "showMain": false },
+      "bonuses": {}
+    },
+    "Disarm": {
+      "trigger": "Standard",
+      "description": "Force an enemy to drop an item in their hands (or 2 if you exceed by 10). If you fail by 10 you drop the item you were using to disarm. This provokes AoO and you take a -4 to disarm while unarmed (but automatically pick up the dropped item.",
+      "benefit": { "taret": "Self", "text": "Force an enemy to drop an item" },
+      "extras": { "showMain": false },
+      "bonuses": {}
+    },
+    "Drag": {
+      "trigger": "Standard",
+      "description": "Pull an opponent in a straight line behind you 5 ft, and an additional 5 ft for every 5 you exceed your foes CMD. This provokes AoO, and you can only drag a foe no more than one size category larger than you.",
+      "benefit": { "taret": "Self", "text": "Pull an opponent in a straight line behind you" },
+      "extras": { "showMain": false },
       "bonuses": {}
     },
     "Feint": {
       "trigger": "Standard",
       "description": "Make a Bluff check, on a success your opponent losses their Dex bonus to AC against your melee attack next turn.",
-      "benefit": "Opponent loses their Dex bonus to AC",
+      "benefit": { "taret": "Self", "text": "Opponent loses their Dex bonus to AC" },
+      "extras": { "showMain": false },
+      "bonuses": {}
+    },
+    "Grapple": {
+      "trigger": "Standard",
+      "description": "Grapple with an opponent, allowing you to also move, damage, pin, or tie up, your oppenent.",
+      "benefit": { "taret": "Self", "text": "Grapple with an opponent" },
       "extras": { "showMain": true },
       "bonuses": {}
     },
+    "Overrun": {
+      "trigger": "Standard",
+      "description": "You run through someone's square with a CMB check, if you suceed by 5 or more, they are knocked prone. This provokes AoO.",
+      "benefit": { "taret": "Self", "text": "Bowl someone over, passing through their square" },
+      "extras": { "showMain": false },
+      "bonuses": {}
+    },
+  Reposition
+  Steal
+  Sunder
+reposition              move target 5 ft to new location, +5ft for every 5 past CMD, must end within 5 ft of reach
+sunder                  AoO, Deal damage directly to an item, granting the broken condition
+  
     "Total Defense": {
       "trigger": "Standard",
       "description": "You get a +4 bonus to your AC but cannot make Attacks of Opportunity until your next turn.",
-      "benefit": "+4 to AC but no AoOs",
-      "extras": { "showMain": true, "duration": "1 Round" },
+      "benefit": "benefit": { "taret": "Self", "text": "+4 to AC but no AoOs" },
+      "extras": { "showMain": false, "duration": "1 Round" },
       "bonuses": {
         "Total Defense": {
           "targets": [ "totalAC", "touchAC", "flatAC" ],
@@ -49,49 +107,67 @@
       }
     },
 
-    
+trip                    AoO, knock prone, fail by 10, you are prone
+    "": {
+      "trigger": "Standard",
+      "description": "",
+      "benefit": { "taret": "Self", "text": "" },
+      "extras": { "showMain": false },
+      "bonuses": {}
+    },
+
+
+    "Charge": {
+      "trigger": "Full-Round",
+      "description": "You may move up to double your speed (min 10 ft), directly to your enemy and make one attack with an additional +2 to hit and a -2 to AC until your next turn.",
+      "benefit": { "taret": "Self", "text": "Move up to double your speed and attack at a +2" },
+      "extras": { "showMain": false },
+      "bonuses": {
+        "Charge Atk": {
+          "type": "Action",
+          "value": 2,
+          "targets": [ "meleeAtkBonus" ]
+        },
+        "Charge AC": {
+          "type": "Action",
+          "value": -2,
+          "targets": [ "totalAC", "touchAC", "flatAC" ]
+        }
+      }
+    },
+    "Coup de Grace": {
+      "trigger": "Full-Round",
+      "description": "If the defender is helpless, you may automatically hit and score a critical. If the defender survives the damage, they must make a Fort save DC 10 + damage dealt, or die.",
+      "benefit": { "taret": "Self", "text": "Hit and Crit a helpless defender" },
+      "extras": { "showMain": false },
+      "bonuses": {}
+    },
+    "Run": {
+      "trigger": "Full-Round",
+      "description": "You may run in a straight line up to 4x your speed, or 3x in heavy armor. You also lose your Dex bonus to AC unless you have the Run feat.",
+      "benefit": { "taret": "Self", "text": "Move up to 4x your speed in a straight line" },
+      "extras": { "showMain": false, "noDexAC": true },
+      "bonuses": {}
+    },
+    "Withdraw": {
+      "trigger": "Full-Round",
+      "description": "You may move up to double your speed, and your starting square is not considered threatened for AoOs.",
+      "benefit": { "taret": "Self", "text": "You may leave your square without AoO" },
+      "extras": { "showMain": false },
+      "bonuses": {}
+    },
 
     "": {
       "trigger": "Full-Round",
       "description": "",
-      "benefit": "",
-      "extras": {},
+      "benefit": { "taret": "Self", "text": "" },
+      "extras": { "showMain": false },
       "bonuses": {}
     },
-
-full round atk
-charge      (move 10' - double speed, directly to enemy(no blocks including allies) , then one attack) [+2 atkBonus && -2 all AC]
-run (3x or 4x yor speed in straight line, lose dex bonus to AC)
-withdraw (both actions to move, only starting square isn't threatened)
-fight defensively
-
-
-
-combat mans (type varies)
-Overrun                 AoO, (bowl someone over, pass through them and knock them prone, they can let you pass)
-bull rush               AoO, push 5 ft, +5 for every 5 past CMD
-drag                    AoO, opposite of bull rush
-reposition              move target 5 ft to new location, +5ft for every 5 past CMD, must end within 5 ft of reach
-dirty treick            AoO, apply condition (blinded, dazzled, deafened, entangled, shaken, or sickened) lasts 1 round, +1 round for every 5 past CMD
-disarm                  AoO, force an enemy to drop 1 (2 if check is 10 past CMD), +2 from weapon with disarm, -4 if unarmed(fail by 10 you lose item)  (steal for necklace)
-grapple                 AoO, can move, damage, pin, tie up
-sunder                  AoO, Deal damage directly to an item, granting the broken condition
-trip                    AoO, knock prone, fail by 10, you are prone
-
-ready action
-
-
-mounted combat
-free    - dc 5 ride
-atk smaller creature than mount   +1 to atk
-charge applies to both mount and rider
-lances deal double damage
-casting between 2 mount moves requires vigorous motion check (10+spell level) (quad move is 15+lvl)
-DC 15 ride to take no damage when mount falls in battle, 1d6 on fail
-unconcious -> 50% to stay in saddle, else 1d6 dmg (mount avoids combat)
-
-
   },
+
+
+
   "conditions": [
     {
       "name": "Bleeding",
@@ -113,7 +189,7 @@ unconcious -> 50% to stay in saddle, else 1d6 dmg (mount avoids combat)
           "targets": [ "strSkills", "dexSkills", "perception" ]
         }
       },
-      "extras": { "loseDexAC": true }
+      "extras": { "noDexAC": true }
     },
     {
       "name": "Confused",
@@ -130,7 +206,7 @@ unconcious -> 50% to stay in saddle, else 1d6 dmg (mount avoids combat)
           "targets": [ "totalAC", "touchAC", "flatAC" ]
         }
       },
-      "extras": { "loseDexAC": true }
+      "extras": { "noDexAC": true }
     },
     {
       "name": "Dazed",
@@ -220,7 +296,9 @@ unconcious -> 50% to stay in saddle, else 1d6 dmg (mount avoids combat)
         }
       }
     },
-
+ fight defensively
+    Fighting Defensively as a Standard Action
+You can choose to fight defensively when attacking. If you do so, you take a –4 penalty on all attacks in a round to gain a +2 dodge bonus to AC until the start of your next turn.
 
     {
       "name": "Frightened",
@@ -271,6 +349,16 @@ unconcious -> 50% to stay in saddle, else 1d6 dmg (mount avoids combat)
         }
       }
     },
+
+mounted combat
+free    - dc 5 ride
+atk smaller creature than mount   +1 to atk
+charge applies to both mount and rider
+lances deal double damage
+casting between 2 mount moves requires vigorous motion check (10+spell level) (quad move is 15+lvl)
+DC 15 ride to take no damage when mount falls in battle, 1d6 on fail
+unconcious -> 50% to stay in saddle, else 1d6 dmg (mount avoids combat)
+    
     {
       "name": "Nauseated",
       "description": "You are experiencign stomach distress, may only take a single move action, and are unable to attack, cast spells, concentrate on spells, or do anything requiring attention.",
