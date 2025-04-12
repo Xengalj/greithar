@@ -87,12 +87,27 @@
       "extras": { "showMain": false },
       "bonuses": {}
     },
-  Reposition
-  Steal
-  Sunder
-reposition              move target 5 ft to new location, +5ft for every 5 past CMD, must end within 5 ft of reach
-sunder                  AoO, Deal damage directly to an item, granting the broken condition
-  
+    "Reposition": {
+      "trigger": "Standard",
+      "description": "Move a foe 5 ft, and an additional 5 ft for every 5 you exceed your check by. This provokes AoO, they must end within 5 ft of your reach, they cannot be put in harm, and you can only move an opponent up to one size category larger than you.",
+      "benefit": { "taret": "Self", "text": "Move 5 or more feet around you" },
+      "extras": { "showMain": false },
+      "bonuses": {}
+    },
+    "Steal": {
+      "trigger": "Standard",
+      "description": "Take an item that is neither held nor hidden in a pack. Fastened items like cloaks or loose pouches are made a -5. You cannot take a wielded item with steal (see Disarm) and steal provokes AoO.",
+      "benefit": { "taret": "Self", "text": "Take an item that isn't held or stored" },
+      "extras": { "showMain": false },
+      "bonuses": {}
+    },
+    "Sunder": {
+      "trigger": "Standard",
+      "description": "Deal damage to an item an not a person in place of an attack, provoking a AoO.",
+      "benefit": { "taret": "Self", "text": "Deal damage to an item" },
+      "extras": { "showMain": false },
+      "bonuses": {}
+    },
     "Total Defense": {
       "trigger": "Standard",
       "description": "You get a +4 bonus to your AC but cannot make Attacks of Opportunity until your next turn.",
@@ -106,12 +121,10 @@ sunder                  AoO, Deal damage directly to an item, granting the broke
         }
       }
     },
-
-trip                    AoO, knock prone, fail by 10, you are prone
-    "": {
+    "Trip": {
       "trigger": "Standard",
-      "description": "",
-      "benefit": { "taret": "Self", "text": "" },
+      "description": "Trip an opponent no more than one size category larger than you, provoking AoO. If you fail by you are knocked prone instead of your foe.",
+      "benefit": { "taret": "Self", "text": "Knock a foe prone" },
       "extras": { "showMain": false },
       "bonuses": {}
     },
@@ -244,8 +257,6 @@ trip                    AoO, knock prone, fail by 10, you are prone
       "description": "You are unconscious, near death, and can take no actions. On all subsequent turns, make a DC 10 Stabilization check or lose 1 HP. If you have negative HP equal to your Constitution score, you die.",
       "bonuses": {}
     },
-
-
     {
       "name": "Entangled",
       "description": "You are ensnared, and move at half speed (unless the bonds are anchored somehow). Attempting to cast a spell requiers a concentration check (DC 15 + pell level).",
@@ -284,7 +295,6 @@ trip                    AoO, knock prone, fail by 10, you are prone
         }
       }
     },
-
     {
       "name": "Fatigued",
       "description": "You can neither run nor charge, and doing anything that would cause fatigue, makes you exhausted instead. 8 hours of complete rest removes fatigue.",
@@ -296,10 +306,22 @@ trip                    AoO, knock prone, fail by 10, you are prone
         }
       }
     },
- fight defensively
-    Fighting Defensively as a Standard Action
-You can choose to fight defensively when attacking. If you do so, you take a –4 penalty on all attacks in a round to gain a +2 dodge bonus to AC until the start of your next turn.
-
+    {
+      "name": "Fighting Defensively",
+      "description": "You are fighting with a greater focus on your guard.",
+      "bonuses": {
+        "Defensive AC": {
+          "type": "Dodge",
+          "value": 2,
+          "targets": [ "totalAC", "touch AC" ]
+        },
+        "Defesive Atk": {
+          "type": "Condition",
+          "value" -4,
+          "targets": [ "meleeAtkBonus", "rangedAtkBonus" ]
+        }
+      }
+    },
     {
       "name": "Frightened",
       "description": "You must flee from the source of the fear as best you can, and if you are unable to flee you may fight. Frightened is more extreme than shaken, with panicked being even more than frightened.",
