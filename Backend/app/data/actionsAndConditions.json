@@ -34,7 +34,7 @@
     "Aid Another": {
       "trigger": "Standard",
       "description": "Make an attack roll vs AC 10, if you hit, you assist an ally with an attack, their defense, or a particular skill.",
-      "benefit": "benefit": { "taret": "Self", "text": "+2 to Attack Rolls, AC, or a specific skill check" },
+      "benefit": { "taret": "Self", "text": "+2 to Attack Rolls, AC, or a specific skill check" },
       "extras": { "showMain": false },
       "bonuses": {}
     },
@@ -111,7 +111,7 @@
     "Total Defense": {
       "trigger": "Standard",
       "description": "You get a +4 bonus to your AC but cannot make Attacks of Opportunity until your next turn.",
-      "benefit": "benefit": { "taret": "Self", "text": "+4 to AC but no AoOs" },
+      "benefit": { "taret": "Self", "text": "+4 to AC but no AoOs" },
       "extras": { "showMain": false, "duration": "1 Round" },
       "bonuses": {
         "Total Defense": {
@@ -168,7 +168,7 @@
       "benefit": { "taret": "Self", "text": "You may leave your square without AoO" },
       "extras": { "showMain": false },
       "bonuses": {}
-    },
+    }
   },
 
 
@@ -248,6 +248,7 @@
           "type": "Condition",
           "value": -4,
           "targets": [ "initiative", "perception" ]
+        }
       }
     },
     {
@@ -320,7 +321,7 @@
         },
         "Defesive Atk": {
           "type": "Condition",
-          "value" -4,
+          "value": -4,
           "targets": [ "meleeAtkBonus", "rangedAtkBonus" ]
         }
       }
@@ -377,6 +378,7 @@
     {
       "name": "Mounted",
       "description": "You get a free DC 5 Ride check every turn to use the mount's move action and speed instead of your own (still cannot take melee Full-Attack action). You get a +5 to attacks vs creatures smaller than your mount, and lances deal double damage on a mounted charge.",
+      "bonuses": {}
     },
     {
       "name": "Nauseated",
@@ -397,11 +399,13 @@
     {
       "name": "Paralyzed",
       "description": "You are frozen in place and unable to move or act, with an effective Str and Dex of 0. You are helpless but can still take purely mental actions.",
+      "bonuses": {},
       "extras": { "setScore": { "Dex": 0, "Str": 0 } }
     },
     {
       "name": "Petrified",
       "description": "You have been turned to stone and are considered unconcious. If your body is incomplete when it returns to flesh, there will be some ammount of permanent hit point loss and/or dibilitation.",
+      "bonuses": {}
     },
     {
       "name": "Pinned",
@@ -412,7 +416,7 @@
           "value": -4,
           "targets": [ "totalAC", "touchAC", "flatAC" ]
         }
-      }
+      },
       "extras": { "noDexAC": true }
     },
     {
@@ -451,10 +455,12 @@
     {
       "name": "Stable",
       "description": "You have negative hit points but are no longer dying and you may make a Constitution check (DC 10 + current negative HP) each hour to become concious and disabled. If you became stable on your own, you lose 1 HP each time you fail the wake up check.",
+      "bonuses": {}
     },
     {
       "name": "Staggered",
       "description": "You may take a single move or standard action each round (but not both and no full-round actions).",
+      "bonuses": {}
     },
     {
       "name": "Stunned",
@@ -471,6 +477,7 @@
     {
       "name": "Unconcious",
       "description": "You are knocked out and helpless. If you have negative HP, or nonlethal damage greater than your current HP, you become lose conciousness.",
+      "bonuses": {}
     }
   ]
 }
