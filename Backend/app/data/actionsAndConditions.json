@@ -169,19 +169,22 @@
       "extras": { "showMain": false },
       "bonuses": {}
     },
-
-    "": {
-      "trigger": "Full-Round",
-      "description": "",
-      "benefit": { "taret": "Self", "text": "" },
-      "extras": { "showMain": false },
-      "bonuses": {}
-    },
   },
 
 
 
   "conditions": [
+    {
+      "name": "Asleep",
+      "description": "You are resting and helpless, but can be awoken by an ally using Aid Another or by being wounded. While asleep you take a -10 on Perception checks, and cannot make perception checks that rely on vision.",
+      "bonuses": {
+        "Asleep": {
+          "type": "Condition",
+          "value": -10,
+          "targets": [ "perception" ]
+        }
+      }
+    },
     {
       "name": "Bleeding",
       "description": "You are bleeding and take the listed amount of damage at the beginning of every turn, it can be staunched with a DC 15 Heal check or any magical healing.",
@@ -371,16 +374,10 @@
         }
       }
     },
-
-mounted combat
-free    - dc 5 ride
-atk smaller creature than mount   +1 to atk
-charge applies to both mount and rider
-lances deal double damage
-casting between 2 mount moves requires vigorous motion check (10+spell level) (quad move is 15+lvl)
-DC 15 ride to take no damage when mount falls in battle, 1d6 on fail
-unconcious -> 50% to stay in saddle, else 1d6 dmg (mount avoids combat)
-    
+    {
+      "name": "Mounted",
+      "description": "You get a free DC 5 Ride check every turn to use the mount's move action and speed instead of your own (still cannot take melee Full-Attack action). You get a +5 to attacks vs creatures smaller than your mount, and lances deal double damage on a mounted charge.",
+    },
     {
       "name": "Nauseated",
       "description": "You are experiencign stomach distress, may only take a single move action, and are unable to attack, cast spells, concentrate on spells, or do anything requiring attention.",
@@ -398,76 +395,29 @@ unconcious -> 50% to stay in saddle, else 1d6 dmg (mount avoids combat)
       }
     },
     {
-      "name": "",
-      "description": "",
-      "bonuses": {
-        "": {
-          "type": "Condition",
-          "value": ,
-          "targets": []
-        }
-      }
+      "name": "Paralyzed",
+      "description": "You are frozen in place and unable to move or act, with an effective Str and Dex of 0. You are helpless but can still take purely mental actions.",
+      "extras": { "setScore": { "Dex": 0, "Str": 0 } }
     },
-Paralyzed
-A paralyzed character is frozen in place and unable to move or act.
-A paralyzed character has effective Dexterity and Strength scores of 0 and is helpless, but can take purely mental actions.
-A winged creature flying in the air at the time that it becomes paralyzed cannot flap its wings and falls.
-A paralyzed swimmer can’t swim and may drown. A creature can move through a space occupied by a paralyzed creature—ally or not.
-Each square occupied by a paralyzed creature, however, counts as 2 squares to move through.
     {
-      "name": "",
-      "description": "",
-      "bonuses": {
-        "": {
-          "type": "Condition",
-          "value": ,
-          "targets": []
-        }
-      }
+      "name": "Petrified",
+      "description": "You have been turned to stone and are considered unconcious. If your body is incomplete when it returns to flesh, there will be some ammount of permanent hit point loss and/or dibilitation.",
     },
-Petrified
-A petrified character has been turned to stone and is considered unconscious.
-If a petrified character cracks or breaks, but the broken pieces are joined with the body as he returns to flesh, he is unharmed.
-If the character’s petrified body is incomplete when it returns to flesh, the body is likewise incomplete and there is some amount of permanent hit point loss and/or debilitation.
     {
-      "name": "",
-      "description": "",
+      "name": "Pinned",
+      "description": "You are tightly bound and can take few actions, as well as losing your Dex Bonus. If you cast a spell that has only a verbal component, you must make a concentration check DC 10 + grappler's CMB + spell level.",
       "bonuses": {
-        "": {
+        "Pinned AC": {
           "type": "Condition",
-          "value": ,
-          "targets": []
+          "value": -4,
+          "targets": [ "totalAC", "touchAC", "flatAC" ]
         }
       }
+      "extras": { "noDexAC": true }
     },
-Pinned
-A pinned creature is tightly bound and can take few actions.
-A pinned creature cannot move and is denied its Dexterity bonus.
-A pinned character also takes an additional –4 penalty to his Armor Class.
-A pinned creature is limited in the actions that it can take.
-A pinned creature can always attempt to free itself, usually through a combat maneuver check or Escape Artist check.
-A pinned creature can take verbal and mental actions, but cannot cast any spells that require a somatic or material component.
-A pinned character who attempts to cast a spell or use a spell-like ability must make a concentration check (DC 10 + grappler’s CMB + spell level) or lose the spell.
-Pinned is a more severe version of grappled, and their effects do not stack.
-
-
-
-
-Prone
-The character is lying on the ground.
-A prone attacker has a –4 penalty on melee attack rolls and cannot use a ranged weapon (except for a crossbow).
-A prone defender gains a +4 bonus to Armor Class against ranged attacks, but takes a –4 penalty to AC against melee attacks.
-
-Standing up is a move-equivalent action that provokes an attack of opportunity.
-
-
-
-
-
-
     {
       "name": "Prone",
-      "description": "The character is lying on the ground. A prone attacker has a –4 penalty on melee attack rolls and cannot use a ranged weapon (except for a crossbow). A prone defender gains a +4 bonus to Armor Class against ranged attacks, but takes a –4 penalty to AC against melee attacks.",
+      "description": "You are lying on the ground, have a penalty on melee weapons, and cannot use a ranged weapon (except for a crossbow). A prone defender gains a +4 bonus to Armor Class against ranged attacks, but takes a –4 penalty to AC against melee attacks.",
       "bonuses": {
         "Prone": {
           "type": "Condition",
@@ -476,18 +426,51 @@ Standing up is a move-equivalent action that provokes an attack of opportunity.
         }
       }
     },
-
     {
-      "name": "",
-      "description": "",
+      "name": "Shaken",
+      "description": "You are afraid and take a -2 on attacks, saves, skills, and ability checks. Shaken is a less sever state of fear than frightned or panicked.",
       "bonuses": {
-        "": {
+        "Shaken": {
           "type": "Condition",
-          "value": ,
-          "targets": []
+          "value": -2,
+          "targets": [ "meleeAtkBonus", "rangedAtkBonus", "fort", "ref", "will", "skills" ]
         }
       }
     },
-
+    {
+      "name": "Sickened",
+      "description": "You feel ill and take a -2 penalty on attacks, weapon damage, saves, skills, and ability checks.",
+      "bonuses": {
+        "Sickened": {
+          "type": "Condition",
+          "value": -2,
+          "targets": [ "meleeAtkBonus", "rangedAtkBonus", "meleeDmgBonus", "rangedDmgBonus", "fort", "ref", "will", "skills" ]
+        }
+      }
+    },
+    {
+      "name": "Stable",
+      "description": "You have negative hit points but are no longer dying and you may make a Constitution check (DC 10 + current negative HP) each hour to become concious and disabled. If you became stable on your own, you lose 1 HP each time you fail the wake up check.",
+    },
+    {
+      "name": "Staggered",
+      "description": "You may take a single move or standard action each round (but not both and no full-round actions).",
+    },
+    {
+      "name": "Stunned",
+      "description": "You drop eveything you are holding, cannot take actions, take a -2 to AC, and lose your Dex bonus to AC. Attackers also get a +4 to perform combat maneuvers against you.",
+      "bonuses": {
+        "Stunned": {
+          "type": "Condition",
+          "value": -2,
+          "targets": [ "totalAC", "touchAC", "flatAC" ]
+        }
+      },
+      "extras": { "noDexAC": true }
+    },
+    {
+      "name": "Unconcious",
+      "description": "You are knocked out and helpless. If you have negative HP, or nonlethal damage greater than your current HP, you become lose conciousness.",
+    }
   ]
 }
