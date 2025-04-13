@@ -50,7 +50,7 @@
     "trigger": "Continuous",
     "description": "You can create a wide variety of magic wondrous items. See magic item creation rules for more information.",
     "prerequisites": [ "Caster Level:3" ],
-    "benefit": { "target": "self", "text": "You can create wondrous items, a type of magic item",
+    "benefit": { "target": "self", "text": "You can create wondrous items, a type of magic item" },
     "bonuses": {}
   },
   "Craft Wand": {
@@ -59,7 +59,6 @@
     "description": "You can create a wand of any 4th-level or lower spell that you know, and a new wand has 50 charges. See magic item creation rules for more information.",
     "prerequisites": [ "Caster Level:5" ],
     "benefit": { "target": "self", "text": "You can create magic wands" },
-    "trigger": "Continuous",
     "bonuses": {}
   },
   "Craft Magic Arms and Armor": {
