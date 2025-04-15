@@ -61,6 +61,8 @@ export default {
     classes() { return this.$store.state.data.classes; },
     equipment() { return this.$store.state.data.equipment; },
     feats() { return this.$store.state.data.feats; },
+    actions() { return this.$store.state.data.actions; },
+    conditions() { return this.$store.state.data.conditions; },
   },
   created() {
     UserService.getAdminBoard().then(
@@ -77,18 +79,21 @@ export default {
       this.monsterOpen("Skeletal Champion");
       // this.monsterOpen("Adult Red Dragon");
       // this.monsterOpen("Death Worm");
+
+// console.log(this.actions);
+// console.log(this.conditions);
+
+
     }
   },
   methods: {
     monsterOpen(name) {
-
       DataService.getMonster({"Name": name})
       .then(response => {
         console.log("CSV", response);
         let tempNum = 0;
         let creature = {
           "name": response.Name,
-          "userSettings": {},
           "basics": {
             "cr": response.CR,
             "alignment": response.Alignment,
@@ -133,14 +138,18 @@ export default {
           "skills": {},
           "abilities": {},
           "magic": {},
+          "userSettings": {
+            expandInventory: false,
+            cardTab: "main",
+            mainSections: [ "defense", "actions", "conditions" ]
+          },
 
           // TODO: REMOVE DELETE KILL NULL
-          "bonuses": {},    // may remove to be built from equips & abils
-          "feats": [],  // in abliities
-          "bab": 0,   // TODO: Remove
-          "active": {}   // active bonuses
+          // "bonuses": {},    // may remove to be built from equips & abils
+          // "feats": [],  // in abliities
+          // "bab": 0,   // TODO: Remove
+          // "active": {}   // active bonuses
         };
-
 
 
         /***************************\
@@ -150,12 +159,12 @@ export default {
         \***************************/
         // Ability Score Modifiers
         creature.attributes = {
-          Str: { total: response.Str, sources: [] }, StrMod: Math.floor((response.Str - 10) / 2),
-          Dex: { total: response.Dex, sources: [] }, DexMod: Math.floor((response.Dex - 10) / 2),
-          Con: { total: (response.Con == "-" ? 0 : response.Con), sources: [] }, ConMod: Math.floor(((response.Con == "-" ? 0 : response.Con) - 10) / 2),
-          Int: { total: response.Int, sources: [] }, IntMod: Math.floor((response.Int - 10) / 2),
-          Wis: { total: response.Wis, sources: [] }, WisMod: Math.floor((response.Wis - 10) / 2),
-          Cha: { total: response.Cha, sources: [] }, ChaMod: Math.floor((response.Cha - 10) / 2)
+          Str: { total: response.Str }, StrMod: Math.floor((response.Str - 10) / 2),
+          Dex: { total: response.Dex }, DexMod: Math.floor((response.Dex - 10) / 2),
+          Con: { total: (response.Con == "-" ? 0 : response.Con) }, ConMod: Math.floor(((response.Con == "-" ? 0 : response.Con) - 10) / 2),
+          Int: { total: response.Int }, IntMod: Math.floor((response.Int - 10) / 2),
+          Wis: { total: response.Wis }, WisMod: Math.floor((response.Wis - 10) / 2),
+          Cha: { total: response.Cha }, ChaMod: Math.floor((response.Cha - 10) / 2)
         }
 
         // Get total HD
@@ -343,37 +352,10 @@ export default {
         *          BONUSES          *
         *                           *
         \***************************/
-        // console.log(this.rules.actions);
-        let actions = {
-          "Total Defense": {
-            trigger: "Standard",
-            description: "You get a +4 bonus to your AC but cannot make Attacks of Opportunity until your next turn.",
-            benefit: "+4 to AC but no AoOs",
-            extras: { showMain: true, duration: "1 Round", source: "Race" },
-            bonuses: {
-              "Total Defense": {
-                targets: [ "totalAC", "touchAC", "flatAC" ],
-                type: "Action",
-                value: 4
-              }
-            }
-          },
-          "Aid Another": {
-            trigger: "Standard",
-            description: "Make an attack roll vs AC 10, if you hit, you assist an ally with an attack, their defense, or a particular skill.",
-            benefit: "+2 to Attack Rolls, AC, or a specific skill check",
-            extras: { showMain: true, source: "Race" },
-            bonuses: {}
-          },
-          "Feint": {
-            trigger: "Standard",
-            description: "Make a Bluff check, on a success your opponent losses their Dex bonus to AC against your melee attack next turn.",
-            benefit: "Opponent loses their Dex bonus to AC",
-            extras: { showMain: true, source: "Race" },
-            bonuses: {}
-          },
-        };
-        creature.actions.special = actions;
+        creature.actions.basic = this.actions;
+        for (let action of Object.entries(creature.actions.basic)) {
+          action[1].extras["source"] = "Basic";
+        }
         // FEATS
         for (let feat of response.Feats.split(',')) {
           feat = feat.trim();
@@ -404,7 +386,6 @@ export default {
         // TODO: Add Class Actions
 
 
-
         // NATURAL ARMOR
         tempNum = response.AC - 10;
         tempNum -= Math.floor((response.Dex - 10) / 2);
@@ -419,19 +400,21 @@ export default {
             tempNum -= item.value["AC Bonus"];
           }
         }
-        creature.abilities["Natural Armor"] = {
-          trigger: "Continuous",
-          description: "This creature naturally tough, granting additional armor.",
-          benefit: "",
-          bonuses: {
-            "Natural Armor": {
-              value: tempNum,
-              targets: this.rules.bonuses["Natural Armor"].targets,
-              type: "Natural Armor",
-            }
-          },
-          extras: { active: true, showMain: false, source: "Race" }
-        };
+        if (tempNum > 0) {
+          creature.abilities["Natural Armor"] = {
+            trigger: "Continuous",
+            description: "This creature naturally tough, granting additional armor.",
+            benefit: "",
+            bonuses: {
+              "Natural Armor": {
+                value: tempNum,
+                targets: this.rules.bonuses["Natural Armor"].targets,
+                type: "Natural Armor",
+              }
+            },
+            extras: { active: true, showMain: false, source: "Trait" }
+          };
+        }
 
 
         // MELEE
@@ -541,9 +524,18 @@ export default {
 
 
 
-        // MAGIC
+        /***************************\
+        *                           *
+        *           MAGIC           *
+        *                           *
+        \***************************/
+        // TODO:
 
-        // Skills
+        /***************************\
+        *                           *
+        *          SKILLS           *
+        *                           *
+        \***************************/
         let classSkills = this.rules.creature_types[creature.basics.type.name].skills
         for (let cls of Object.keys(creature.classes)) {
           this.classes[cls].skills.forEach(skill => {
@@ -587,21 +579,12 @@ export default {
           if (name == "Stealth" || name == "Fly") {
             bonus -= this.rules.size[name.toLowerCase()];
           }
-
-
           creature.skills[name].ranks = bonus;
-        });
+        }); // End Skills for each
 
-        creature.userSettings = {
-          expandInventory: true,
-          cardTab: "abilities",
-          mainSections: [ "defense", "actions", "conditions" ]
-        };
 
         this.creature = creature;
         console.table("SOURCE", creature);
-
-
         this.creatureName = name
         this.monsterVisible = true;
       })

@@ -6,6 +6,7 @@ const Rules =   require('../data/rules.json');
 const Classes =   require('../data/classes.json');
 const Feats =   require('../data/feats.json');
 const Races =   require('../data/races.json');
+const actionsAndConditions =   require('../data/actionsAndConditions.json');
 
 const Armor =     require('../data/equipment/armor.json');
 const Shields =   require('../data/equipment/shields.json');
@@ -156,6 +157,14 @@ module.exports = function(app) {
     "/api/data/races",
     (req, res) => {
       res.status(200).send(Races);
+    }
+  );
+
+  // return the actions/conditions json in /data
+  app.get(
+    "/api/data/actionsAndConditions",
+    (req, res) => {
+      res.status(200).send(actionsAndConditions);
     }
   );
 

@@ -31,6 +31,10 @@ export const data = {
       DataService.getEquipment().then( response => {
         commit('init', { "name": "equipment", "data": response });
       } );
+      DataService.getActionsAndConditions().then( response => {
+        commit('init', { "name": "actions", "data": response.actions });
+        commit('init', { "name": "conditions", "data": response.conditions });
+      } );
 
     }
   }
