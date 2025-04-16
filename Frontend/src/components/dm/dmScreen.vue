@@ -1,13 +1,21 @@
 <template>
-
-  <el-button type="primary" circle @click="monsterOpen('Death Worm')">
-    <g-icon iconSize="24px" iconName="eye" />
-  </el-button>
-  <el-button type="primary" circle @click="monsterOpen('Adult Red Dragon')">
-    <g-icon iconSize="24px" iconName="firebolt" />
-  </el-button>
   <el-button type="primary" circle @click="monsterOpen('Skeletal Champion')">
     <g-icon iconSize="24px" iconName="undead" />
+  </el-button>
+  <el-button type="primary" circle @click="monsterOpen('Death Worm')">
+    <g-icon iconSize="24px" iconName="magical beast" />
+  </el-button>
+  <el-button type="primary" circle @click="monsterOpen('Ochre Jelly')">
+    <g-icon iconSize="24px" iconName="ooze" />
+  </el-button>
+  <el-button type="primary" circle @click="monsterOpen('Giant Isopod')">
+    <g-icon iconSize="24px" iconName="vermin" />
+  </el-button>
+  <el-button type="primary" circle @click="monsterOpen('Common Bat')">
+    <g-icon iconSize="24px" iconName="animal" />
+  </el-button>
+  <el-button type="primary" circle @click="monsterOpen('Adult Red Dragon')">
+    <g-icon iconSize="24px" iconName="dragon" />
   </el-button>
 
   <el-dialog width="700" v-model="monsterVisible" :before-close="monsterClose">
@@ -79,10 +87,10 @@ export default {
       this.monsterOpen("Skeletal Champion");
       // this.monsterOpen("Adult Red Dragon");
       // this.monsterOpen("Death Worm");
+      // this.monsterOpen("Ochre Jelly");
 
-// console.log(this.actions);
-// console.log(this.conditions);
-
+      // console.log(this.actions);
+      // console.log(this.conditions);
 
     }
   },
@@ -104,7 +112,7 @@ export default {
           },
           "attributes": {},
           "classes": {},
-          "health": { total: 0, bonus: 0 },
+          "health": { current: 0 },
           "actions": { melee: {}, ranged: {}, special: {} },
           "conditions": [],
 
@@ -159,12 +167,12 @@ export default {
         \***************************/
         // Ability Score Modifiers
         creature.attributes = {
-          Str: { total: response.Str }, StrMod: Math.floor((response.Str - 10) / 2),
-          Dex: { total: response.Dex }, DexMod: Math.floor((response.Dex - 10) / 2),
-          Con: { total: (response.Con == "-" ? 0 : response.Con) }, ConMod: Math.floor(((response.Con == "-" ? 0 : response.Con) - 10) / 2),
-          Int: { total: response.Int }, IntMod: Math.floor((response.Int - 10) / 2),
-          Wis: { total: response.Wis }, WisMod: Math.floor((response.Wis - 10) / 2),
-          Cha: { total: response.Cha }, ChaMod: Math.floor((response.Cha - 10) / 2)
+          Str: { total: (response.Str == "-" ? 0 : response.Str) }, StrMod: Math.floor( (response.Str == "-" ? 0 : response.Str - 10) / 2 ),
+          Dex: { total: (response.Dex == "-" ? 0 : response.Dex) }, DexMod: Math.floor( (response.Dex == "-" ? 0 : response.Dex - 10) / 2 ),
+          Con: { total: (response.Con == "-" ? 0 : response.Con) }, ConMod: Math.floor( (response.Con == "-" ? 0 : response.Con - 10) / 2 ),
+          Int: { total: (response.Int == "-" ? 0 : response.Int) }, IntMod: Math.floor( (response.Int == "-" ? 0 : response.Int - 10) / 2 ),
+          Wis: { total: (response.Wis == "-" ? 0 : response.Wis) }, WisMod: Math.floor( (response.Wis == "-" ? 0 : response.Wis - 10) / 2 ),
+          Cha: { total: (response.Cha == "-" ? 0 : response.Cha) }, ChaMod: Math.floor( (response.Cha == "-" ? 0 : response.Cha - 10) / 2 )
         }
 
         // Get total HD
@@ -287,10 +295,10 @@ export default {
             let notes = tmpWpn.Extras.Notes;
             if (notes.length) { extras.notes.push(notes); }
             tmpWpn.Extras = extras;
-            // do not reset damage on rerender
-            if (typeof tmpWpn.Damage != 'string') {
-              tmpWpn.Damage = this.equipment.Weapons[item].Damage[creature.basics.size];
-            }
+            tmpWpn.Damage = this.equipment.Weapons[item].Damage;
+            // // do not reset damage on rerender
+            // if (typeof tmpWpn.Damage != 'string') {
+            // }
             if (weapons[0].children.length < 2) {
               // if weapons[hands].children < 2
               weapons[0].children.push({ label: item, value: tmpWpn });
@@ -313,10 +321,10 @@ export default {
             if (notes.length) { extras.notes.push(notes); }
             tmpWpn.Extras = extras;
             tmpWpn.Proficiency = "Shields";
-            // do not set damage on rerender
-            if (typeof tmpWpn.Damage != 'string') {
-              tmpWpn.Damage = this.equipment.Shields[item].Damage[creature.basics.size];
-            }
+            tmpWpn.Damage = this.equipment.Shields[item].Damage;
+            // // do not set damage on rerender
+            // if (typeof tmpWpn.Damage != 'string') {
+            // }
 
 
             tmpWpn.targets = this.rules.bonuses.Shield.targets;
@@ -357,30 +365,32 @@ export default {
           action[1].extras["source"] = "Basic";
         }
         // FEATS
-        for (let feat of response.Feats.split(',')) {
-          feat = feat.trim();
-          if (feat.indexOf('(') > 0) { feat = feat.slice(0, feat.indexOf('(')-1); }
-          if (feat[feat.length-1] == 'B') { feat = feat.slice(0, -1); } // Remove 'B' from bonus feat names
+        if (response.Feats) {
+          for (let feat of response.Feats.split(',')) {
+            feat = feat.trim();
+            if (feat.indexOf('(') > 0) { feat = feat.slice(0, feat.indexOf('(')-1); }
+            if (feat[feat.length-1] == 'B') { feat = feat.slice(0, -1); } // Remove 'B' from bonus feat names
 
-          // if the feat is in the feats json
-          if (this.feats[feat]) {
-            creature.abilities[feat] = this.feats[feat];
-            if (this.feats[feat].trigger == "Continuous") {
-              creature.abilities[feat].extras = { active: true, showMain: false, source: "Feat" };
+            // if the feat is in the feats json
+            if (this.feats[feat]) {
+              creature.abilities[feat] = this.feats[feat];
+              if (this.feats[feat].trigger == "Continuous") {
+                creature.abilities[feat].extras = { active: true, showMain: false, source: "Feat" };
+              } else {
+                creature.abilities[feat].extras = { active: false, showMain: true, source: "Feat" };
+                creature.actions.special[feat] = this.feats[feat];
+              }
             } else {
-              creature.abilities[feat].extras = { active: false, showMain: true, source: "Feat" };
-              creature.actions.special[feat] = this.feats[feat];
+              creature.abilities[feat] = {
+                "type": "UNKNOWN",
+                "prerequisites": [ "" ],
+                "description": "PLEASE UPDATE THIS ENTRY",
+                "benefit": "",
+                "trigger": "Continuous",
+                "bonuses": {},
+                "extras": { "active": false, "showMain": false, "source": "Feat" }
+              };
             }
-          } else {
-            creature.abilities[feat] = {
-              "type": "UNKNOWN",
-              "prerequisites": [ "" ],
-              "description": "PLEASE UPDATE THIS ENTRY",
-              "benefit": "",
-              "trigger": "Continuous",
-              "bonuses": {},
-              "extras": { "active": false, "showMain": false, "source": "Feat" }
-            };
           }
         }
         // TODO: Add Class Actions
@@ -536,6 +546,14 @@ export default {
         *          SKILLS           *
         *                           *
         \***************************/
+        let armor = creature.equipment[0].children[0].children[0];
+        let mainHand = creature.equipment[0].children[1].children[0].children[0];
+        let offHand = creature.equipment[0].children[1].children[0].children[1];
+        let penalties = {};
+        if (armor.value.Penalty < 0) { penalties[armor.label] = armor.value.Penalty; }
+        if (mainHand.value.Penalty < 0) { penalties[mainHand.label] = mainHand.value.Penalty; }
+        if (offHand.value.Penalty < 0) { penalties[offHand.label] = offHand.value.Penalty; }
+
         let classSkills = this.rules.creature_types[creature.basics.type.name].skills
         for (let cls of Object.keys(creature.classes)) {
           this.classes[cls].skills.forEach(skill => {
@@ -560,7 +578,6 @@ export default {
         skills.forEach(skill => {
           let name = skill.slice(0, skill.search(/[+|-]/g)).trim();
           name = name.replace("Knowl.", "Knowledge");
-
           let bonus = skill.slice(skill.search(/[+|-]/g)-1);
           if (bonus.indexOf('(') > 0) { bonus = bonus.slice(0, bonus.indexOf('(')-1); }
           // total - ability mod
@@ -570,21 +587,22 @@ export default {
           bonus += classSkills.includes(name) ? -3 : 0
           // total - Armor Penalty(s)
           if (this.rules.skills[name].armor_pen) {
-            Object.values(creature.equipment).forEach(item => {
-              if (item.Penalty) { bonus -= item.Penalty; }
-            });
+            for (let penalty of Object.entries(penalties)) {
+              bonus -= penalty[1];
+            }
           }
-
           // total - Size Mod
           if (name == "Stealth" || name == "Fly") {
-            bonus -= this.rules.size[name.toLowerCase()];
+            bonus -= this.rules.size[creature.basics.size][name.toLowerCase()];
           }
           creature.skills[name].ranks = bonus;
         }); // End Skills for each
 
 
+
+
         this.creature = creature;
-        console.table("SOURCE", creature);
+        // console.table("SOURCE", creature);
         this.creatureName = name
         this.monsterVisible = true;
       })

@@ -105,7 +105,8 @@ footer {
 #app .el-icon,
 #app .el-icon.el-dialog__close,
 .el-icon.el-popconfirm__icon,
-.el-icon.el-message__icon {
+.el-icon.el-message__icon,
+.el-icon.el-message__closeBtn {
   font-size: 28px;
   width: 28px;
 }

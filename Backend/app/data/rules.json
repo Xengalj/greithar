@@ -16,6 +16,44 @@
   "player_wealth": [ 0, 111, 1000, 3000, 6000 , 10500 , 16000 , 23500, 33000, 46000, 62000, 82000, 108000, 140000, 185000, 240000, 315000, 410000, 530000, 685000, 880000 ],
   "heroic_wealth": [ 0, 390, 780, 1650, 2400, 3450, 4650, 6000, 7800, 10050, 12750, 16350, 21000, 27000, 34800, 45000, 58500, 75000, 96000, 123000, 159000 ],
   "basic_wealth": [ 0, 260, 390, 780, 1650, 2400, 3450, 4650, 6000, 7800, 10050, 12750, 16350, 21000, 27000, 34800, 45000, 58500, 75000, 96000, 123000 ],
+  "experience": {
+    "1/8":  "50",
+    "1/6": 	"65",
+    "1/4": 	"100",
+    "1/3": 	"135",
+    "1/2": 	"200",
+    "1":    "400",
+    "2":    "600",
+    "3":    "800",
+    "4":    "1,200",
+    "5":    "1,600",
+    "6":    "2,400",
+    "7":    "3,200",
+    "8":    "4,800",
+    "9":    "6,400",
+    "10":   "9,600",
+    "11":   "12,800",
+    "12":   "19,200",
+    "13":   "25,600",
+    "14":   "38,400",
+    "15":   "51,200",
+    "16":   "76,800",
+    "17":   "102,400",
+    "18":   "153,600",
+    "19":   "204,800",
+    "20":   "307,200",
+    "21":   "409,600",
+    "22":   "614,400",
+    "23":   "819,200",
+    "24":   "1,228,800",
+    "25":   "1,638,400",
+    "26":   "2,457,600",
+    "27":   "3,276,800",
+    "28":   "4,915,200",
+    "29":   "6,553,600",
+    "30":   "9,830,400"
+  },
+
 
   "bonuses": {
     "Alchemical": {
@@ -462,9 +500,7 @@
         "Construct Immunities": {
           "trigger": "Continuous",
           "description": "Constructs is a magically animated or artificially created creatures, granting them a number of immunities.",
-          "benefit": { "target": "immunities", "text":
-            "nonlethal damage, necromancy, fatigue, exhaustion, stunning, paralysis, sleep, poison, mind effects, disease, ability damage, death effects, ability drain, energy drain"
-          },
+          "benefit": { "target": "immunities", "text": "nonlethal damage, necromancy, fatigue, exhaustion, stunning, paralysis, sleep, poison, mind effects, disease, ability damage, death effects, ability drain, energy drain" },
           "bonuses": {}
         }
       }
@@ -578,22 +614,7 @@
           "trigger": "Continuous",
           "description": "Oozes are blind, they have no eyes but do possess blindsight.",
           "benefit": { "target": "senses", "text": "Blindsight 60 ft." },
-          "bonuses": {
-            "Blind_1": {
-              "bonus": -2,
-              "type": "trait",
-              "targets": [ "totalAC", "touchAC", "flatAC" ],
-              "active": true,
-              "stacks": true
-            },
-            "blind_2": {
-              "bonus": -4,
-              "type": "trait",
-              "targets": [ "strChecks", "dexChecks" ],
-              "active": true,
-              "stacks": true
-            }
-          }
+          "bonuses": {}
         },
         "Ooze Immunities": {
           "trigger": "Continuous",

@@ -12,7 +12,7 @@
       </el-col>
       <el-col :span="5">
         <div class="center-horz"> Trigger </div>
-        <el-select v-model="ability.trigger" lbael="Trigger">
+        <el-select v-model="ability.trigger">
           <el-option v-for="trigger in selects.trigger" :key="trigger.label" :label="trigger.label" :value="trigger.value" >
             <div class="flex items-center">
               <el-tag :color="trigger.color" style="margin-right: 8px" size="small" />
