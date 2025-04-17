@@ -194,6 +194,11 @@
                   <span v-for="bonus in init.sources" :key="bonus"> {{ bonus+" " }} </span>
                 </template>
               </el-tooltip>   <br>
+
+              <!--
+              <span v-for="mode in speed" :key="mode">
+                {{ mode }}
+              </span>
               <el-tooltip placement="top" effect="light" v-if="speed.sources[0]">
                 Speed: {{ speed.total }} ft.
                 <template #content>
@@ -202,7 +207,10 @@
               </el-tooltip>
               <span v-else>
                 Speed: {{ speed.total }} ft.
-              </span>         <br>
+              </span>
+            -->
+
+              <br>
               Senses:
               <el-tag v-for="sense in senses" :key="sense" size="small" effect="dark" type="primary">
                 {{ sense }}
@@ -601,10 +609,22 @@
       </el-row>
       <el-divider />
 
+      <el-row>
+        <el-col :span="5"> Name </el-col>
+        <el-col :span="4" class="center-horz"> Bonus </el-col>
+        <el-col :span="3" class="center-horz"> Ranks </el-col>
+        <el-col :span="4"> </el-col>
+        <el-col :span="8" class="center-horz"> Ability, Armor Penalty, Class Skill </el-col>
+      </el-row>
+      <!-- <el-divider /> -->
       <div v-for="(skill, name) in skills" :key="name">
         <el-row v-if="skill.untrained || skill.ranks" style="margin-bottom:5px; border-bottom:1px solid grey">
-          <el-col :span="5">{{ name }}</el-col>
-          <el-col :span="5" class="center-horz"><!-- Bonus -->
+          <el-col :span="5">
+            {{ name }}
+            <span v-if="['Craft', 'Perform', 'Profession'].includes(name)"> (unspecified) </span>
+          </el-col>
+          <!-- Bonus -->
+          <el-col :span="4" class="center-horz">
             <el-tooltip placement="top" effect="light">
               {{ skill.bonus.total }}
               <template #content>
@@ -612,9 +632,15 @@
               </template>
             </el-tooltip>
           </el-col>
-          <el-col :span="2"> {{ skill.ability }} </el-col>
-          <el-col :span="2"> {{ skill.ranks }} </el-col>
-          <el-col :span="5"> Armor Penalty {{ skill.armor_pen }} </el-col>
+          <el-col :span="3" class="center-horz"> {{ skill.ranks }} <span v-if="skill.ranks"> Ranks </span> </el-col>
+          <el-col :span="4"> </el-col>
+          <el-col :span="3" class="center-horz"> {{ skill.ability }} </el-col>
+          <el-col :span="1" class="center-horz">
+             <g-icon v-if="skill.armor_pen" iconSize="15px" iconName="armor" />
+           </el-col>
+          <el-col :span="1" class="center-horz">
+            <g-icon v-if="skill.class" iconSize="15px" iconName="abilityPalm" />
+           </el-col>
         </el-row>
       </div>
     </el-tab-pane>
@@ -892,6 +918,7 @@ export default {
           }
         }
       } // end magic items
+      console.log("BONUSES", bonuses);
       return bonuses;
     },
 
@@ -917,9 +944,14 @@ export default {
     },
     // USES: basics, bonusLoop(bonuses)
     speed() {
-      let speed = { "total": 0, "sources": [] };
-      speed.total += this.basics.speed;
-      this.bonusLoop(speed, "speed");
+      let speed = [ { "total": 0, "sources": [] } ];
+      speed[0].total += this.basics.speed;
+      this.bonusLoop(speed[0], "speed");
+      Object.values(this.abilities).forEach(abil => {
+        if (abil.benefit && abil.benefit.target == "speed") {
+          speed.push(abil.benefit.text);
+        }
+      });
       return speed;
     },
     // USES: basics, cClasses, bonusLoop(bonuses), attributes
@@ -1079,7 +1111,7 @@ export default {
     init() {
       let init = { "total": 0, "sources": [] };
       this.applyBonus("Dex", this.attributes.DexMod, init);
-      this.bonusLoop(init, "Initiative");
+      this.bonusLoop(init, "initiative");
       return init;
     },
     // USES: basics, bab, bonusLoop(bonuses), attributes
@@ -1261,7 +1293,6 @@ export default {
 
       return actions;
     },
-    // TODO:
     // USES: basics, inventory, bonusLoop(bonuses), attributes
     skills() {
       let skills = {};
@@ -1270,9 +1301,9 @@ export default {
       let mainHand = this.inventory[0].children[1].children[0].children[0];
       let offHand = this.inventory[0].children[1].children[0].children[1];
       let penalties = {};
-      if (armor.value.Penalty < 0) { penalties[armor.label] = armor.value.Penalty; }
-      if (mainHand.value.Penalty < 0) { penalties[mainHand.label] = mainHand.value.Penalty; }
-      if (offHand.value.Penalty < 0) { penalties[offHand.label] = offHand.value.Penalty; }
+      if (armor?.value.Penalty < 0) { penalties[armor.label] = armor.value.Penalty; }
+      if (mainHand?.value.Penalty < 0) { penalties[mainHand.label] = mainHand.value.Penalty; }
+      if (offHand?.value.Penalty < 0) { penalties[offHand.label] = offHand.value.Penalty; }
 
       for (const [name, skill] of Object.entries(this.source.skills)) {
         let bonus = { "total": 0, "sources": [] };
@@ -1295,12 +1326,6 @@ export default {
           for (let [name, penalty] of Object.entries(penalties)) {
             this.applyBonus(name, penalty, bonus);
           }
-
-          // for (const bName of Object.keys(this.bonuses)) {
-          //   if (penalties[bName]) {
-          //     this.applyBonus(bName, penalties[bName], bonus);
-          //   }
-          // }
         }
         this.bonusLoop(bonus, name);
         // Add leading + to main display
@@ -1308,7 +1333,6 @@ export default {
         skill.bonus = bonus;
         skills[name] = skill;
       }
-      console.log(skills);
       return skills;
     },
     // USES: abilities, skills
@@ -1549,7 +1573,19 @@ export default {
       this.$message({ message: `${name} was removed from abilities`, type: "warning" });
     },
 
+    /***************************\
+    *                           *
+    *           MAGIC           *
+    *                           *
+    \***************************/
 
+
+
+    /***************************\
+    *                           *
+    *           EDIT            *
+    *                           *
+    \***************************/
     nonlethalCheck() {
       if (this.nonlethal == this.health.current) {
         // When (nonlethal damage == current HP) { you are DISABLED }
@@ -1559,19 +1595,10 @@ export default {
         this.activeConditions.push(this.conditions[32]);
       }
     },
-
-
-
-
-    // MAGIC METHODS
-
-    // EDIT METHODS
-
     rest() {
       console.log('REST UP: HP, SPELLS');
       this.$message({ message: "Resting for 8 hours... Heal and restore magic.", type: "primary", duration: 0, showClose: true });
     },
-
     saveMonster() {
       console.log("This", this);
       console.log("Settings", this.userSettings);
@@ -1585,7 +1612,6 @@ export default {
       console.log("Actions", this.actions);
       console.log("Skills", this.skills);
       // console.log(this.magic);
-
     }
 
   }

@@ -107,7 +107,7 @@ export default {
             "alignment": response.Alignment,
             "environment": response.Environment,
             "size": response.Size.toLowerCase(),
-            "speed": parseInt( response.Speed.replace(/\D+$/g, "") ),
+            "speed": [],
             "type": {},
           },
           "attributes": {},
@@ -187,7 +187,6 @@ export default {
             racialHD += parseInt(str[0]);
           }
         }
-
         // Subtract Class HD from total HD to find racialHD
         if (response.Class1) {
           creature.classes[response.Class1] = { "levels": response.Class1_Lvl };
@@ -197,7 +196,6 @@ export default {
           creature.classes[response.Class2] = { "levels": response.Class2_Lvl };
           racialHD -= response.Class2_Lvl;
         }
-
         // Racial
         let type  = this.rules.creature_types[response.Type];
         creature.basics.type = {
@@ -225,6 +223,11 @@ export default {
             creature.basics.type.subtypes.push(response[`subtype${i}`]);
           }
         }
+
+        /*
+        Speed: "20 ft., burrow 20 ft."
+        parseInt( response.Speed.replace(/\D+$/g, "") )
+        */
 
 
         /***************************\
@@ -550,9 +553,9 @@ export default {
         let mainHand = creature.equipment[0].children[1].children[0].children[0];
         let offHand = creature.equipment[0].children[1].children[0].children[1];
         let penalties = {};
-        if (armor.value.Penalty < 0) { penalties[armor.label] = armor.value.Penalty; }
-        if (mainHand.value.Penalty < 0) { penalties[mainHand.label] = mainHand.value.Penalty; }
-        if (offHand.value.Penalty < 0) { penalties[offHand.label] = offHand.value.Penalty; }
+        if (armor?.value.Penalty < 0) { penalties[armor.label] = armor.value.Penalty; }
+        if (mainHand?.value.Penalty < 0) { penalties[mainHand.label] = mainHand.value.Penalty; }
+        if (offHand?.value.Penalty < 0) { penalties[offHand.label] = offHand.value.Penalty; }
 
         let classSkills = this.rules.creature_types[creature.basics.type.name].skills
         for (let cls of Object.keys(creature.classes)) {
