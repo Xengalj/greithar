@@ -1,40 +1,139 @@
 {
-  "Goods and Services": {
-    
-    "Magic": "",
-    
-    "Djezet": {
-      "Cost": { "One Dose": "200 gp" },
-      "Type": "Magic", Spell Component
-      "Description": "One of the strangest of skymetals, rust-red djezet is liquid at all temperatures.",
-      "Special": [
-        "Djezet may be used as an additional material component for spells, using 1 dose per original spell level. When used this way, the spell's level is increased by 1 stacking with heightened spell."
-      ]
+  "Weapons": {
+    "Acid": {
+      "Cost": 10,
+      "Weight": 1,
+      "Description": "You can throw a flask of acid as a ranged touch attack with a range increment of 10 feet. You deal 1d6 acid damage on a direct hit and every creature within 5 feet of the hit takes 1 acid damage.",
+      "Craft": {
+        "DC": 15
+        "Time": "1 day",
+        "Tools": "Retort",
+        "Recipe": "10 brimstone + 8 salt + 1 saltpeter / distilation"
+      }
+    },
+    "Alchemist’s Fire": {
+      "Cost": 20,
+      "Weight": 1,
+      "Description": "Volitile chemicals ignite on contact with the air, and deal 1d6 fire damage on a direct hit, and 1 fire damage to all within 5 feet. The receiver of a direct hit also takes an additional 1d6 fire damage next turn, or attempt a full-round action with a DC 15 Reflex save to extinguish the flames early.",
+      "Craft": {
+        "DC": 20,
+        "Time": "10 Min",
+        "Tools": "Alchemy Lab",
+        "Recipe": "12 Magnesium + 22 spirit of wine / congelation"
+      }
+    },
+    "Bottled Lightning": {
+      "Cost": 40,
+      "Weight": 1,
+      "Description": "You can open the bottle as a standard action, making a ranged touch attack at an enemy within 20 feet of you that deals 1d8 electricity damage. Any creature in a line between you and the target (target included) takes 1 sonic damage (DC 15 Reflex negates).",
+      "Craft": {
+        "DC": 25,
+        "Time": "",
+        "Tools": "",
+        "Recipe": ""
+      }
+    },
+    "Liquid Ice": {
+      "Cost": 40,
+      "Weight": 2,
+      "Description": "The blue fluid inside hisses and evaporates once opened. You may throw the jar as a splash weapon dealing 1d6 cold damage on a direct hit with 1 cold damage to all within 5 feet.",
+      "Craft": {
+        "DC": 25,
+        "Time": "",
+        "Tools": "",
+        "Recipe": ""
+      }
+    },
+    "Stormstone": {
+      "Cost": 150,
+      "Weight": 1,
+      "Description": "You may throw the stormstone as a ranged attack with a 20 foot increment. Upon striking a hard surface it detonates dealing 1d6 sonic damage and deafening all within 10 feet for 1 hour (DC 15 Fortitude halves the damage and deafens for just 1 round).",
+      "Craft": {
+        "DC": 30,
+        "Time": "1 Hour",
+        "Tools": "Crucible",
+        "Recipe": "15 black powder + 85 phosphorus / digestion"
+      }
+    },
+    "Holy Water": {
+      "Cost": 25,
+      "Weight": 1,
+      "Description": "Can be thrown as a splash weapons that damages undead and evil outsiders as acid. Treat it as a ranged touch attack with a 10 foot increment that deals 2d4 positive energy damage on a direct hit and 1 positive energy damage from the splash.",
+      "Craft": {
+        "DC": 0,
+        "Time": "",
+        "Tools": "",
+        "Recipe": ""
+      }
+    },
+    "Elemental Flux": {
+      "Cost": 20,
+      "Weight": 1,
+      "Description": "Works like a vial of acid (1d6 plus spalsh), except the damage is based on the type of elemental blood used at creation. A DC 10 Craft (alchemy) check can identify the damage type.",
+      "Craft": {
+        "DC": 20,
+        "Time": "",
+        "Tools": "",
+        "Recipe": ""
+      }
     },
 
-    "Alchemist’s Fire Oil": {
-      "Cost": "20 gp",
-      "Weight": "1 lb",
-
-    You can throw a flask of alchemist’s fire as a splash weapon with a range increment of 10 feet.
-    A direct hit deals 1d6 points of fire damage. Every creature within 5 feet of the point where the flask hits takes 1 point of fire damage from the splash. On the round following a direct hit, the target takes an additional 1d6 points of damage. If desired, the target can use a full-round action to attempt to extinguish the flames before taking this additional damage. Extinguishing the flames requires a DC 15 Reflex save. Rolling on the ground provides the target a +2 bonus on the save. Leaping into a lake or magically extinguishing the flames automatically smothers the fire.
-    Craft (alchemy) DC: 20
-Alchemical Power Component
-
-Source PZO9410
-
-This dwarven favorite can make fire spells last longer.
-
-Burning Hands (M): One target that fails its Reflex saving throw (your choice) catches on fire as if it has been struck by alchemist’s fire.
-Fireball (M): One target per caster level that fails its Reflex saving throw (your choice) catches on fire as if it has been struck by alchemist’s fire.
-Flaming Sphere (M): Any creature damaged by a flaming sphere catches on fire as if it has been struck by alchemist’s fire.
-Protection from Energy (M): If cast to ward against cold, increase the amount of cold damage absorbed by 5.
-Resist Energy (M): If cast to ward against cold, increase the cold resistance to 12. At caster level 7th, you may use two flasks of alchemist’s fire as a power component to increase the cold resistance to 24. At caster level 11th, you may use three flasks as a power component to increase the cold resistance to 36.
-Scorching Ray (F): Add a +1 circumstance bonus on your attack roll with all rays from the spell.
-Scorching Ray (M): Any target damaged by a scorching ray catches on fire as if it has been struck by alchemist’s fire.
-
-
     
+    "Ectoplasmic Residue": {
+      "Cost": 20,
+      "Weight": 2,
+      "Description": "Throw this flask as a ranged touch attack with a 10 foot increment. A hit creature must make a DC 13 Will save or be shaken for 1d4 rounds, while nearby (5' splash) creatures must make DC 13 Will save or be shaken for 1 round.",
+      "Craft": {
+        "DC": 25,
+        "Time": "",
+        "Tools": "",
+        "Recipe": ""
+      }
+    },
+    "Itching Powder": {
+      "Cost": 60,
+      "Weight": 2,
+      "Description": "A fine gray powder that causes uncontrollable itching (-2 on attack rolls, saves, skill checks, and ability checks) until you spend at least 1 round washing it off. A packet can be thrown as a splash attack with a 10 foot increment, and anyone in the impact square must make a DC 12 Fortitude save, while adjacent creatures must make a DC 8 Fort save.",
+      "Craft": {
+        "DC": 25,
+        "Time": "",
+        "Tools": "",
+        "Recipe": ""
+      }
+    },
+    "Slime Grenade": {
+      "Cost": 100,
+      "Weight": 3,
+      "Description": "You may throw a slime grenade as a ranged touch attack with a 5 foot increment. A direct hit deals 2d6 acid damage and 3d6 acid to any wooden/metal armor/shields worn. Adjacent (5' spalsh) creatures' wooden/metal armor/shields take 1d6 acid damage. All equipment damage ignores hardness and may be halved with a DC 15 Reflex save.",
+      "Craft": {
+        "DC": 25,
+        "Time": "10 Min",
+        "Tools": "Alchemy Lab",
+        "Recipe": "50 phospohorus + 75 quicksilver + 50 urea / congelation"
+      }
+    },
+    "Sneezing Powder": {
+      "Cost": 60,
+      "Weight": 2,
+      "Description": "A coarse yellow powder that causes uncontrollable sneezing (staggered; DC 10 Fort negates on subsequent rounds) for 1d4+1 rounds. A packet can be thrown as a splash attack with a 10 foot increment, and anyone in the impact square must make a DC 12 Fortitude save, while adjacent creatures must make a DC 8 Fort save.",
+      "Craft": {
+        "DC": 25,
+        "Time": "",
+        "Tools": "",
+        "Recipe": ""
+      }
+    },
+    "Thunderstone": {
+      "Cost": 30,
+      "Weight": 1,
+      "Description": "You may throw this stone as a ranged attack with a 20 foot increment. Upon striking a hard surface it detonates deafening all within 10 feet for 1 hour (DC 15 Fortitude negates).",
+      "Craft": {
+        "DC": 25,
+        "Time": "1 day",
+        "Tools": "Crucible",
+        "Recipe": "7 saltpeter + 15 silver / digestion"
+      }
+    },
     
   }
 }
