@@ -3,6 +3,7 @@
     "Acid": {
       "Cost": 10,
       "Weight": 1,
+      "Group": "Weapons",
       "Description": "You can throw a flask of acid as a ranged touch attack with a range increment of 10 feet. You deal 1d6 acid damage on a direct hit and every creature within 5 feet of the hit takes 1 acid damage.",
       "Craft": {
         "DC": 15
@@ -14,6 +15,7 @@
     "Alchemist’s Fire": {
       "Cost": 20,
       "Weight": 1,
+      "Group": "Weapons",
       "Description": "Volitile chemicals ignite on contact with the air, and deal 1d6 fire damage on a direct hit, and 1 fire damage to all within 5 feet. The receiver of a direct hit also takes an additional 1d6 fire damage next turn, or attempt a full-round action with a DC 15 Reflex save to extinguish the flames early.",
       "Craft": {
         "DC": 20,
@@ -25,6 +27,7 @@
     "Bottled Lightning": {
       "Cost": 40,
       "Weight": 1,
+      "Group": "Weapons",
       "Description": "You can open the bottle as a standard action, making a ranged touch attack at an enemy within 20 feet of you that deals 1d8 electricity damage. Any creature in a line between you and the target (target included) takes 1 sonic damage (DC 15 Reflex negates).",
       "Craft": {
         "DC": 25,
@@ -36,6 +39,7 @@
     "Liquid Ice": {
       "Cost": 40,
       "Weight": 2,
+      "Group": "Weapons",
       "Description": "The blue fluid inside hisses and evaporates once opened. You may throw the jar as a splash weapon dealing 1d6 cold damage on a direct hit with 1 cold damage to all within 5 feet.",
       "Craft": {
         "DC": 25,
@@ -47,6 +51,7 @@
     "Stormstone": {
       "Cost": 150,
       "Weight": 1,
+      "Group": "Weapons",
       "Description": "You may throw the stormstone as a ranged attack with a 20 foot increment. Upon striking a hard surface it detonates dealing 1d6 sonic damage and deafening all within 10 feet for 1 hour (DC 15 Fortitude halves the damage and deafens for just 1 round).",
       "Craft": {
         "DC": 30,
@@ -58,6 +63,7 @@
     "Holy Water": {
       "Cost": 25,
       "Weight": 1,
+      "Group": "Weapons",
       "Description": "Can be thrown as a splash weapons that damages undead and evil outsiders as acid. Treat it as a ranged touch attack with a 10 foot increment that deals 2d4 positive energy damage on a direct hit and 1 positive energy damage from the splash.",
       "Craft": {
         "DC": 0,
@@ -69,6 +75,7 @@
     "Elemental Flux": {
       "Cost": 20,
       "Weight": 1,
+      "Group": "Weapons",
       "Description": "Works like a vial of acid (1d6 plus spalsh), except the damage is based on the type of elemental blood used at creation. A DC 10 Craft (alchemy) check can identify the damage type.",
       "Craft": {
         "DC": 20,
@@ -78,10 +85,10 @@
       }
     },
 
-    
     "Ectoplasmic Residue": {
       "Cost": 20,
       "Weight": 2,
+      "Group": "Weapons",
       "Description": "Throw this flask as a ranged touch attack with a 10 foot increment. A hit creature must make a DC 13 Will save or be shaken for 1d4 rounds, while nearby (5' splash) creatures must make DC 13 Will save or be shaken for 1 round.",
       "Craft": {
         "DC": 25,
@@ -93,6 +100,7 @@
     "Itching Powder": {
       "Cost": 60,
       "Weight": 2,
+      "Group": "Weapons",
       "Description": "A fine gray powder that causes uncontrollable itching (-2 on attack rolls, saves, skill checks, and ability checks) until you spend at least 1 round washing it off. A packet can be thrown as a splash attack with a 10 foot increment, and anyone in the impact square must make a DC 12 Fortitude save, while adjacent creatures must make a DC 8 Fort save.",
       "Craft": {
         "DC": 25,
@@ -104,6 +112,7 @@
     "Slime Grenade": {
       "Cost": 100,
       "Weight": 3,
+      "Group": "Weapons",
       "Description": "You may throw a slime grenade as a ranged touch attack with a 5 foot increment. A direct hit deals 2d6 acid damage and 3d6 acid to any wooden/metal armor/shields worn. Adjacent (5' spalsh) creatures' wooden/metal armor/shields take 1d6 acid damage. All equipment damage ignores hardness and may be halved with a DC 15 Reflex save.",
       "Craft": {
         "DC": 25,
@@ -115,6 +124,7 @@
     "Sneezing Powder": {
       "Cost": 60,
       "Weight": 2,
+      "Group": "Weapons",
       "Description": "A coarse yellow powder that causes uncontrollable sneezing (staggered; DC 10 Fort negates on subsequent rounds) for 1d4+1 rounds. A packet can be thrown as a splash attack with a 10 foot increment, and anyone in the impact square must make a DC 12 Fortitude save, while adjacent creatures must make a DC 8 Fort save.",
       "Craft": {
         "DC": 25,
@@ -123,9 +133,22 @@
         "Recipe": ""
       }
     },
+    "Tanglefoot Bag": {
+      "Cost": 50,
+      "Weight": 4,
+      "Group": "Weapons",
+      "Description": "A small sack full of tar, resin, and other things, can be thrown as a ranged touch attack with a 10 foot range increment. An entangled creature takes a -2 on attack rolls, a -4 to Dexterity, and becomes glued to the floor unable to move (DC 15 Reflex lets the target move at half speed).",
+      "Craft": {
+        "DC": 25,
+        "Time": "10 Min",
+        "Tools": "Alchemy Lab",
+        "Recipe": "55 myrrh + 55 urea / congelation"
+      }
+    },
     "Thunderstone": {
       "Cost": 30,
       "Weight": 1,
+      "Group": "Weapons",
       "Description": "You may throw this stone as a ranged attack with a 20 foot increment. Upon striking a hard surface it detonates deafening all within 10 feet for 1 hour (DC 15 Fortitude negates).",
       "Craft": {
         "DC": 25,
@@ -133,7 +156,230 @@
         "Tools": "Crucible",
         "Recipe": "7 saltpeter + 15 silver / digestion"
       }
+    }
+  },
+
+  "reagents": {
+    "Black Powder": {
+      "Cost": 10,
+      "Weight": 0,
+      "Group": "Reagents",
+      "Description": "Black powder is a volatile explosive and is the primary component in fireworks and other explosives.",
+      "APC": {
+        "Doses": 1
+        "Spells": [ "Evocation" ],
+        "Effect": "Spells of the evocation school deal 1 additional point of the same type of energy damage."
+      }
     },
-    
+    "Brain Mold Spores": {
+      "Cost": 5,
+      "Weight": 0,
+      "Group": "Reagents",
+      "Description": "The spore of the brain mold fungus is a versatile reagent, and is often combined with other poisonous elements to create deliriums, hallucinogens, and psychotics.",
+      "APC": {
+        "Doses": 1,
+        "Spells": [ "Charm", "Compulsion" ],
+        "Effect": "Spells of the charm or compulsion subschools are cast at +1 caster level for the purpose of determining duration."
+      }
+    },
+    },
+    "Brimstone": {
+      "Cost": 0.5
+      "Weight": 0
+      "Group": "Reagents",
+      "Description": "Brimstone, also called sulfur, has a distinctive odor and caustic properties.",
+      "APC": {
+        "Doses": 2,
+        "Spells": [ "Acid" ],
+        "Effect": "Spells with the [acid] descriptor deal +1 acid damage."
+      }
+    },
+    "Cold Iron": {
+      "Cost": 1,
+      "Weight": 0,
+      "Group": "Reagents",
+      "Description": "Cold iron is often used to produce alloyed metals, catalysts, and items that interfere with magic.",
+      "APC": {
+        "Doses": 5
+        "Spells": [ "Abjuration" ],
+        "Effect": "Spells of the abjuration school are cast at +1 caster level for the purpose of caster level and dispel checks."
+      }
+    },
+    "Darkwood": {
+      "Cost": 2,
+      "Weight": 0,
+      "Group": "Reagents",
+      "Description": "The bark of the darkwood tree is useful in numerous alchemical applications, especially those that require a light but strong foundation.",
+      "APC": {
+        "Doses": 5
+        "Spells": [ "Creation" ],
+        "Effect": "Spells of the creation subschool are cast at +1 caster level for the purpose of all effects."
+      }
+    },
+    "Ginger Extract": {
+      "Cost": 0.5,
+      "Weight": 0,
+      "Group": "Reagents",
+      "Description": "In addition to serving as a spice and as an alchemical reagent, ginger extract has a wide variety of uses in herbal remedies that treat nausea and pain.",
+      "APC": {
+        "Doses": 10
+        "Spells": [ "Transmutaion" ],
+        "Effect": "Spells of the transmutation school are cast at +1 caster level for the purpose of overcoming spell resistance."
+      }
+    },
+    "Gold": {
+      "Cost": 5,
+      "Weight": 0,
+      "Group": "Reagents",
+      "Description": "In its purest form, gold is a dense, nonreactive metal. Its alchemical products are useful in stains and in treating swelling, pain, and infections.",
+      "APC": {
+        "Doses": 1,
+        "Spells": [ "Healing" ],
+        "Effect": "Spells of the healing subschool heal +1 hit point if they heal hit points."
+      }
+    },
+    "Keif": {
+      "Cost": 15,
+      "Weight": 0,
+      "Group": "Reagents",
+      "Description": "When used as an alchemical reagent, refined keif is often sublimated along with other reagents to create new forms of the famous drug.",
+      "APC": {
+        "Doses": 1
+        "Spells": [ "Enchantment" ],
+        "Effect": "Spells of the enchantment school are cast at +1 caster level for the purpose of determining duration."
+      }
+    },
+    "Magnesium": {
+      "Cost": 1,
+      "Weight": 0,
+      "Group": "Reagents",
+      "Description": "Magnesium is an extremely light and reactive metal that burns brightly when exposed to air. It is important for all living things, especially plants.",
+      "APC": {
+        "Doses": 2,
+        "Spells": [ "Transmutation" ],
+        "Effect": "Spells of the transmutation school are cast at +1 caster level for the purpose of determining duration."
+      }
+    },
+    "Moondew": {
+      "Cost": 4,
+      "Weight": 0,
+      "Group": "Reagents",
+      "Description": "Moondew is derived from a potent herb. It is commonly used in the creation of medicinal, protective, and divinatory items.",
+      "APC": {
+        "Doses": 5,
+        "Spells": [ "Divination" ],
+        "Effect": "Spells of the divination school are cast at +1 caster level for the purpose of all effects."
+      }
+    },
+    "Mugwort Extract": {
+      "Cost": 2,
+      "Weight": 0,
+      "Group": "Reagents",
+      "Description": "Many varieties of mugwort exist; some are used in acupuncture, while others are key ingredients in herbal remedies that ward off fatigue, cold, or even supernatural dangers.",
+      "APC": {
+        "Doses": 2,
+        "Spells": [ "Abjuration" ],
+        "Effect": "Spells of the abjuration school are cast at +1 caster level for the purpose of determining range."
+      }
+    },
+    "Myrrh": {
+      "Cost": 0.5,
+      "Weight": 0,
+      "Group": "Reagents",
+      "Description": "Myrrh is an aromatic gum used as a base for alchemical remedies and as a sticky bonding agent.",
+      "APC": {
+        "Doses": 4,
+        "Spells": [ "Abjuration" ],
+        "Effect": "Spells of the abjuration school are cast at +1 caster level for the purpose of caster level checks and dispel checks."
+      }
+    },
+    "Phosphorus": {
+      "Cost": 0.2,
+      "Weight": 0,
+      "Group": "Reagents",
+      "Description": "Phosphorus is a highly reactive mineral that glows faintly in air. Vital to all life, it is most commonly used by alchemists to create fertilizers, poisons, soaps, and tindertwigs. It is obtained by processing uric acid or bone ash.",
+      "APC": {
+        "Doses": 10,
+        "Spells": [ "Light", "Teleportation" ],
+        "Effect": "Spells with the [light] descriptor or of the teleportation subschool are cast at +1 caster level for the purpose of determining range."
+      }
+    },
+    "Quicksillver": {
+      "Cost": 1,
+      "Weight": 0,
+      "Group": "Reagents",
+      "Description": "Quicksilver is a liquid metal with dangerous mental effects on those who handle it. It is most often distilled from crystalline amalgams such as cinnabar and stored in iron flasks.",
+      "APC": {
+        "Doses": 3,
+        "Spells": [ "Mind-Affecting" ],
+        "Effect": "Spells with the [mind-affecting] descriptor are cast at +1 caster level for the purpose of determining duration."
+      }
+    },
+    "Realgar": {
+      "Cost": 3,
+      "Weight": 0,
+      "Group": "Reagents",
+      "Description": "Realgar, also called ruby of arsenic, is a red crystal useful in creating poisons and medicines. It is commonly purified into arsenic, a crystalline metal known as the “king of poisons” for its popularity among nobles seeking to poison their rivals.",
+      "APC": {
+        "Doses": 1,
+        "Spells": [ "Poison" ],
+        "Effect": "The DC to identify or neutralize spells with the [poison] descriptor is increased by +2."
+      }
+    },
+    "Salt": {
+      "Cost": 0.5,
+      "Weight": 0,
+      "Group": "Reagents",
+      "Description": "Salt is a vital mineral commodity. It is most commonly used as a desiccant and as a catalyst.",
+      "APC": {
+        "Doses": 20,
+        "Spells": [ "Necromancy" ],
+        "Effect": "Spells of the necromancy school are cast at +1 caster level for the purpose of effects."
+      }
+    },
+    "Saltpeter": {
+      "Cost": 3,
+      "Weight": 0,
+      "Group": "Reagents",
+      "Description": "Saltpeter is used to create fertilizers, propellants, fireworks, and preservatives.",
+      "APC": {
+        "Doses": 1,
+        "Spells": [ "Fire" ],
+        "Effect": "Spells with the [fire] descriptor deal +1 fire damage."
+      }
+    },
+    "Silver": {
+      "Cost": 1,
+      "Weight": 0,
+      "Group": "Reagents",
+      "Description": "Silver is a lustrous precious metal used in mirrors, disinfectants, electrics, and illusion-creating magic items.",
+      "APC": {
+        "Doses": 10,
+        "Spells": [ "Illusion" ],
+        "Effect": "The DC of Will saves made to disbelieve a spell of the illusion school is increased by +1."
+      }
+    },
+    "Spirit of Wine": {
+      "Cost": 0.5,
+      "Weight": 0,
+      "Group": "Reagents",
+      "Description": "Spirit of wine is purified, alchemically active alcohol commonly used as a fuel or solvent in alchemical items, specialized inks, and perfumes. It is too pure to drink alone, but can be used as a reagent to form tinctures and alchemical drinks.",
+      "APC": {
+        "Doses": 6,
+        "Spells": [ "Calling", "Summoning" ],
+        "Effect": "Spells of the calling and summoning subschools are cast at +1 caster level for the purpose of determining duration of effects."
+      }
+    },
+    "Urea": {
+      "Cost": 0.5,
+      "Weight": 0,
+      "Group": "Reagents",
+      "Description": "Urea is a highly versatile reagent most commonly used in salves and as a stabilizer for particularly volatile alchemical reactions.",
+      "APC": {
+        "Doses": 4,
+        "Spells": [ "Cold" ],
+        "Effect": "Spells with the [cold] descriptor are cast at +1 caster level for the purpose of all effects."
+      }
+    }
   }
 }
