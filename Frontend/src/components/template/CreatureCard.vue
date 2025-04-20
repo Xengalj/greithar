@@ -132,7 +132,7 @@
             <el-col :span="7">
               <el-tooltip placement="top" effect="light">
                 <el-tag size="small" effect="dark" type="danger">
-                  HP: {{ health.current }} / {{ health.total }}
+                  HP: {{ currHealth }} / {{ health.total }}
                 </el-tag>
                 <template #content>
                   <span v-for="bonus in health.sources" :key="bonus"> {{ bonus+" " }} </span>
@@ -728,10 +728,16 @@
     <el-tab-pane label="Edit" name="Edit">
       <el-row :gutter="5">
         <el-col :span="10">
-          Nonlethal Damage <br>
-          <el-input-number v-model="nonlethal" :min="0" :max="health.current + 1" @change="nonlethalCheck()">
+	  Current Health <br>
+          <el-input-number v-model="currHealth" :min="attributes.Constitution" :max="health.total" @change="currHealthCheck()">
             <template #suffix>
-              <span> / {{ health.current + 1 }} </span>
+              <span> / {{ health.total }} </span>
+            </template>
+          </el-input-number>
+          Nonlethal Damage <br>
+          <el-input-number v-model="nonlethal" :min="0" :max="currHealth + 1" @change="nonlethalCheck()">
+            <template #suffix>
+              <span> / {{ currHealth + 1 }} </span>
             </template>
           </el-input-number>
         </el-col>
@@ -742,6 +748,9 @@
           </el-select>
         </el-col>
       </el-row>
+	<div>
+		<el-input v-model="notes" :rows="5" type="textarea" placeholder="Notes on your adventure" />
+	</div>
       <el-divider style="margin: 24px 0 10px 0"> Bonuses </el-divider>
       <div>
         <el-row :gutter="5">
@@ -778,7 +787,9 @@ export default {
   props: { source: { type: Object } },
   data() {
     return {
+      currHealth: 0,
       nonlethal: 0,
+      notes: "",
 
       activeConditions: [],
       newCondition: {},
@@ -804,6 +815,7 @@ export default {
     // add rest button to tabs
     const scrollbar = this.$refs.tabs.$el.querySelector('.el-tabs__nav-scroll');
     scrollbar.appendChild(this.$refs.restBtn.$el);
+    this.currHealth = this.source.health.current;
     console.log('SOURCE', this.source);
   },
 
@@ -956,7 +968,7 @@ export default {
     },
     // USES: basics, cClasses, bonusLoop(bonuses), attributes
     health() {
-      let health = { current: 0, nonlethal: 0, total: 0, sources: [] };
+      let health = { nonlethal: 0, total: 0, sources: [] };
       let firstLevel = true;
       let ModBonus = 0;
       let prefix = "";
@@ -1011,7 +1023,7 @@ export default {
         health.sources.push(`${prefix}${ModBonus}`);
         health.total = Math.floor(health.total);
       }
-      health.current = this.source.health.current ? this.source.health.current : health.total;
+      // health.current = this.source.health.current ? this.source.health.current : health.total;
       this.bonusLoop(health, "health");
       return health;
     },
@@ -1586,11 +1598,14 @@ export default {
     *           EDIT            *
     *                           *
     \***************************/
+	currHealthCheck() {
+		console.log(this.currHealth);
+	},
     nonlethalCheck() {
-      if (this.nonlethal == this.health.current) {
+      if (this.nonlethal == this.currHealth) {
         // When (nonlethal damage == current HP) { you are DISABLED }
         this.activeConditions.push(this.conditions[8]);
-      } else if (this.nonlethal > this.health.current) {
+      } else if (this.nonlethal > this.currHealth) {
         // When (nonlethal damage > current HP) { you are UNCONSIOUS }
         this.activeConditions.push(this.conditions[32]);
       }
@@ -1602,16 +1617,17 @@ export default {
     saveMonster() {
       console.log("This", this);
       console.log("Settings", this.userSettings);
-      console.log("Name", this.source.name); // this.title will have CR?
+      console.log("Name", this.source.name); // this.title could have CR
       console.log("Basics", this.basics);
       console.log("Inventory", this.inventory);
       console.log("Classes", this.cClasses);
       console.log("Abilities", this.abilities);
       console.log("Attributes", this.attributes);
-      console.log("Health", this.health); // .current
+      console.log("Health", this.health); // this.currHealth & this.nonleathal too
       console.log("Actions", this.actions);
       console.log("Skills", this.skills);
       // console.log(this.magic);
+	console.log("Notes", this.notes);
     }
 
   }
