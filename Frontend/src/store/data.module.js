@@ -9,6 +9,11 @@ export const data = {
     feats: {},
     equipment: {}
   },
+  getters: {
+    rules (state) {
+      return state.rules;
+    }
+  },
   mutations: {
     init (state, payload) {
       state[payload.name] = payload.data;

@@ -95,12 +95,9 @@ footer {
   /* background-color: var(--color-surface-200); */
 }
 
-.center-horz {
-  text-align: center;
-}
-.center-vert {
-  align-content: center;
-}
+.center-horz { text-align: center; }
+.center-vert { align-content: center; }
+.text-right { text-align: right; }
 
 #app .el-icon,
 #app .el-icon.el-dialog__close,

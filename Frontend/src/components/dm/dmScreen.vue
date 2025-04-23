@@ -11,7 +11,7 @@
   <el-button type="primary" circle @click="monsterOpen('Giant Isopod')">
     <g-icon iconSize="24px" iconName="vermin" />
   </el-button>
-  <el-button type="primary" circle @click="monsterOpen('Common Bat')">
+  <el-button type="primary" circle @click="monsterOpen('Bat')">
     <g-icon iconSize="24px" iconName="animal" />
   </el-button>
   <el-button type="primary" circle @click="monsterOpen('Adult Red Dragon')">
@@ -84,10 +84,10 @@ export default {
   },
   mounted() {
     if (this.equipment) {
-      this.monsterOpen("Skeletal Champion");
+      // this.monsterOpen("Skeletal Champion");
       // this.monsterOpen("Adult Red Dragon");
       // this.monsterOpen("Death Worm");
-      // this.monsterOpen("Ochre Jelly");
+      this.monsterOpen("Ochre Jelly");
 
       // console.log(this.actions);
       // console.log(this.conditions);
@@ -107,7 +107,7 @@ export default {
             "alignment": response.Alignment,
             "environment": response.Environment,
             "size": response.Size.toLowerCase(),
-            "speed": [],
+            "speed": {},
             "type": {},
           },
           "attributes": {},
@@ -117,13 +117,6 @@ export default {
           "conditions": [],
 
           "equipment": [
-            { label: 'Equipped',  extras: { icon: "equipment" }, children: [
-              { label: 'Armor',   extras: { icon: "armor", capacity: 1 }, children: [] },
-              { label: 'Weapons', extras: { icon: "weapons" }, children: [
-                { label: 'Hands', extras: { icon: "abilityPalm", capacity: 2 }, children: [] },
-                { label: 'Back',  extras: { icon: "swordShield", capacity: 2 }, children: [] },
-              ] }
-            ] },
             { label: 'Magic Items', extras: { icon: "amulet" }, children: [
               { label: 'Head', extras: { capacity: 1 }, children: [] },
               { label: 'Headband', extras: { capacity: 1 }, children: [] },
@@ -139,6 +132,13 @@ export default {
               { label: 'Feet', extras: { capacity: 1 }, children: [] },
               { label: 'Slotless', extras: { capacity: 1 }, children: [] },
             ] },
+            { label: 'Equipped',  extras: { icon: "equipment" }, children: [
+              { label: 'Armor',   extras: { icon: "armor", capacity: 1 }, children: [] },
+              { label: 'Weapons', extras: { icon: "weapons" }, children: [
+                { label: 'Hands', extras: { icon: "abilityPalm", capacity: 2 }, children: [] },
+                { label: 'Back',  extras: { icon: "swordShield", capacity: 2 }, children: [] },
+              ] }
+            ] },
             { label: 'Items', extras: { icon: "inventory" }, children: [
               { label: 'Backpack', extras: { icon: "backpack", capacity: 50 }, children: [] }
             ] },
@@ -147,7 +147,7 @@ export default {
           "abilities": {},
           "magic": {},
           "userSettings": {
-            expandInventory: false,
+            expandInventory: ['Equipped', 'Armor', 'Weapons', 'Hands', 'Back', 'Items'],
             cardTab: "main",
             mainSections: [ "defense", "actions", "conditions" ]
           },
@@ -223,11 +223,42 @@ export default {
             creature.basics.type.subtypes.push(response[`subtype${i}`]);
           }
         }
+        creature.health.current = response.HP;
 
-        /*
-        Speed: "20 ft., burrow 20 ft."
-        parseInt( response.Speed.replace(/\D+$/g, "") )
-        */
+        // Speed
+        creature.basics.speed = {
+          speed: { "total": 0, "sources": [] },
+          swim: { "total": 0, "sources": [] },
+          climb: { "total": 0, "sources": [] },
+          fly: { "total": 0, "sources": [] },
+          burrow: { "total": 0, "sources": [] }
+        }
+        response.Speed.split(',').forEach((speed, i) => {
+          // Remove leading any whitespace & capitalize
+          speed = speed.trim();
+          speed = speed.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
+          if (i == 0) {
+            creature.basics.speed.speed.total = parseInt(speed);
+            creature.basics.speed.speed.sources.push("Racial Base");
+
+          } else if (speed.includes("Swim")) {
+            creature.basics.speed.swim.total = parseInt(speed.slice(5));
+            creature.basics.speed.swim.sources.push("Racial Swim");
+
+          } else if (speed.includes("Climb")) {
+            creature.basics.speed.climb.total = parseInt(speed.slice(6));
+            creature.basics.speed.climb.sources.push("Racial Climb");
+
+          } else if (speed.includes("Fly")) {
+            creature.basics.speed.fly.total = parseInt(speed.slice(4));
+            creature.basics.speed.fly.sources.push("Racial Fly");
+
+          } else if (speed.includes("Burrow")) {
+            console.log('burrowSpeed');
+            creature.basics.speed.burrow.total = parseInt(speed.slice(7));
+            creature.basics.speed.burrow.sources.push("Racial Burrow");
+          }
+        });
 
 
         /***************************\
@@ -277,7 +308,7 @@ export default {
           // Add items to equipment
           if ( Object.keys(this.equipment.Armor).includes(item) ) {
             // creature.equipment[equipped].children[armor].children
-            let armor = creature.equipment[0].children[0].children;
+            let armor = creature.equipment[1].children[0].children;
             let tmpArmor = this.equipment.Armor[item];
             let notes = tmpArmor.Extras.Notes;
             if (notes.length) { extras.Notes.push(notes); }
@@ -293,7 +324,7 @@ export default {
 
           else if ( Object.keys(this.equipment.Weapons).includes(item) ) {
             // creature.equipment[equipped].children[weapons]
-            let weapons = creature.equipment[0].children[1].children;
+            let weapons = creature.equipment[1].children[1].children;
             let tmpWpn = this.equipment.Weapons[item];
             let notes = tmpWpn.Extras.Notes;
             if (notes.length) { extras.notes.push(notes); }
@@ -318,7 +349,7 @@ export default {
 
           else if ( Object.keys(this.equipment.Shields).includes(item) ) {
             // creature.equipment[equipped].children[weapons]
-            let weapons = creature.equipment[0].children[1].children;
+            let weapons = creature.equipment[1].children[1].children;
             let tmpWpn = this.equipment.Shields[item];
             let notes = tmpWpn.Extras.Notes;
             if (notes.length) { extras.notes.push(notes); }
@@ -363,10 +394,10 @@ export default {
         *          BONUSES          *
         *                           *
         \***************************/
-        creature.actions.basic = this.actions;
-        for (let action of Object.entries(creature.actions.basic)) {
-          action[1].extras["source"] = "Basic";
-        }
+        // creature.actions.basic = this.actions;
+        // for (let action of Object.entries(creature.actions.basic)) {
+        //   action[1].extras["source"] = "Basic";
+        // }
         // FEATS
         if (response.Feats) {
           for (let feat of response.Feats.split(',')) {
@@ -404,11 +435,11 @@ export default {
         tempNum -= Math.floor((response.Dex - 10) / 2);
         tempNum -= this.rules.size[creature.basics.size]["ac / atk"];
         // Armor
-        let item = creature.equipment[0].children[0].children[0];
+        let item = creature.equipment[1].children[0].children[0];
         if (item) { tempNum -= item.value["AC Bonus"]; }
 
         // For items in equipment . equipped . hands
-        for (const item of creature.equipment[0].children[1].children[0].children) {
+        for (const item of creature.equipment[1].children[1].children[0].children) {
           if (item.value.Proficiency == "Shields") {
             tempNum -= item.value["AC Bonus"];
           }
@@ -454,10 +485,10 @@ export default {
 
             // Add only Natural Attacks
             // item = equipment . equipped . hands . 'main hand'
-            let item = creature.equipment[0].children[1].children[0].children[0];
+            let item = creature.equipment[1].children[1].children[0].children[0];
             if (item && item.label == atk) { continue; }
             // item = equipment . equipped . hands . 'off hand'
-            item = creature.equipment[0].children[1].children[0].children[1];
+            item = creature.equipment[1].children[1].children[0].children[1];
             if (item && item.label == atk) { continue; }
 
             let NAs = this.rules.natural_attacks;
@@ -503,10 +534,10 @@ export default {
 
             // Add only Natural Attacks
             // item = equipment . equipped . hands . 'main hand'
-            let item = creature.equipment[0].children[1].children[0].children[0];
+            let item = creature.equipment[1].children[1].children[0].children[0];
             if (item && item.label == atk) { continue; }
             // item = equipment . equipped . hands . 'off hand'
-            item = creature.equipment[0].children[1].children[0].children[1];
+            item = creature.equipment[1].children[1].children[0].children[1];
             if (item && item.label == atk) { continue; }
 
 
@@ -549,9 +580,9 @@ export default {
         *          SKILLS           *
         *                           *
         \***************************/
-        let armor = creature.equipment[0].children[0].children[0];
-        let mainHand = creature.equipment[0].children[1].children[0].children[0];
-        let offHand = creature.equipment[0].children[1].children[0].children[1];
+        let armor = creature.equipment[1].children[0].children[0];
+        let mainHand = creature.equipment[1].children[1].children[0].children[0];
+        let offHand = creature.equipment[1].children[1].children[0].children[1];
         let penalties = {};
         if (armor?.value.Penalty < 0) { penalties[armor.label] = armor.value.Penalty; }
         if (mainHand?.value.Penalty < 0) { penalties[mainHand.label] = mainHand.value.Penalty; }
@@ -565,13 +596,13 @@ export default {
             }
           });
         }
-
         // set up all skills
         for (let [name, skill] of Object.entries(this.rules.skills)) {
           // Languages
           if (name == "Linguistics" && response.Languages) {
             skill.extras = { languages: response.Languages.split(',') };
           }
+          skill.ranks = 0
           skill.class = classSkills.includes(name);
           creature.skills[name] = skill;
         }
@@ -602,10 +633,13 @@ export default {
         }); // End Skills for each
 
 
+        console.log(this.rules);
+        console.log(this.$store.getters.rules);
+
 
 
         this.creature = creature;
-        // console.table("SOURCE", creature);
+        console.table("SOURCE", creature);
         this.creatureName = name
         this.monsterVisible = true;
       })

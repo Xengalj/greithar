@@ -123,7 +123,7 @@
     <!-- Main -->
     <el-tab-pane label="Main" name="Main">
       <el-collapse v-model="userSettings.mainSections">
-        <!-- Defensse -->
+        <!-- Defense -->
         <el-collapse-item title="Defense" name="defense">
           <el-row :gutter="20">
             <el-col :span="3"> <g-icon iconSize="32px" iconName="Armor" /> </el-col>
@@ -167,19 +167,19 @@
                 </template>
               </el-tooltip>   <br>
               <el-tooltip placement="top" effect="light">
-                Fort: +{{ saves.fort.total }}
+                Fort: {{ saves.fort.total > 0 ? "+" : "" }}{{ saves.fort.total }}
                 <template #content>
                   <span v-for="bonus in saves.fort.sources" :key="bonus"> {{ bonus+" " }} </span>
                 </template>
               </el-tooltip>   <br>
               <el-tooltip placement="top" effect="light">
-                Ref: +{{ saves.ref.total }}
+                Ref: {{ saves.ref.total > 0 ? "+" : "" }}{{ saves.ref.total }}
                 <template #content>
                   <span v-for="bonus in saves.ref.sources" :key="bonus"> {{ bonus+" " }} </span>
                 </template>
               </el-tooltip>   <br>
               <el-tooltip placement="top" effect="light">
-                Will: +{{ saves.will.total }}
+                Will: {{ saves.will.total > 0 ? "+" : "" }}{{ saves.will.total }}
                 <template #content>
                   <span v-for="bonus in saves.will.sources" :key="bonus"> {{ bonus+" " }} </span>
                 </template>
@@ -189,57 +189,50 @@
             <!-- Init, Speed, Senses -->
             <el-col :span="7">
               <el-tooltip placement="top" effect="light">
-                Init: +{{ init.total }}
+                Init: {{ init.total > 0 ? "+" : "" }}{{ init.total }}
                 <template #content>
                   <span v-for="bonus in init.sources" :key="bonus"> {{ bonus+" " }} </span>
                 </template>
               </el-tooltip>   <br>
 
-              <!--
-              <span v-for="mode in speed" :key="mode">
-                {{ mode }}
+              <span v-for="(mode, name) in speed" :key="name">
+                <span v-if="mode.total">
+                  <el-tooltip placement="top" effect="light" v-if="mode.sources[0]">
+                    {{ capFirsts(name) }}: {{ mode.total }} ft.
+                    <template #content>
+                      <span v-for="bonus in mode.sources" :key="bonus"> {{ bonus+" " }} </span>
+                    </template>
+                  </el-tooltip>
+                  <span v-else>
+                    {{ capFirsts(name) }}: {{ mode.total }} ft.
+                  </span>
+                </span>
               </span>
-              <el-tooltip placement="top" effect="light" v-if="speed.sources[0]">
-                Speed: {{ speed.total }} ft.
-                <template #content>
-                  <span v-for="bonus in speed.sources" :key="bonus"> {{ bonus+" " }} </span>
-                </template>
-              </el-tooltip>
-              <span v-else>
-                Speed: {{ speed.total }} ft.
-              </span>
-            -->
 
               <br>
               Senses:
-              <el-tag v-for="sense in senses" :key="sense" size="small" effect="dark" type="primary">
+              <el-tag v-for="sense in senses" :key="sense" size="small" effect="dark" type="primary" style="margin-right:5px;">
                 {{ sense }}
               </el-tag>
             </el-col>
           </el-row>
 
           <!-- Immunities & Weaknesses -->
-          <el-row v-if="this.original.Immunities">
-            <el-col :span="3">
-            </el-col>
-            <el-col :span="7">
-              Immunities
-            </el-col>
-            <el-col :span="14">
-              <span v-for="item in this.original.Immunities" :key="item.id">
-                {{ item }},
-              </span>
-            </el-col>
-          </el-row>
-          <el-row v-if="this.original.Weaknesses">
-            <el-col :span="3">
-            </el-col>
-            <el-col :span="7">
-              Weaknesses
-            </el-col>
-            <el-col :span="14">
-              <span v-for="item in this.original.Weaknesses" :key="item.id">
-                {{ item }},
+          <el-row v-for="(type, name) in defenses" :key="name">
+            <el-col :span="3"></el-col>
+            <el-col :span="5" v-if="type.length"> {{ capFirsts(name) }} </el-col>
+            <el-col :span="16">
+              <span v-for="defense in type" :key="defense">
+                <span v-if="Array.isArray(defense)">
+                  <el-tag v-for="item in defense" :key="item" size="small" effect="dark" type="info" style="margin-right:5px;">
+                    {{ capFirsts(item) }}
+                  </el-tag>
+                </span>
+                <span v-else>
+                  <el-tag size="small" effect="dark" type="info" style="margin-right:5px;">
+                    {{ capFirsts(defense) }}
+                  </el-tag>
+                </span>
               </span>
             </el-col>
           </el-row>
@@ -252,8 +245,8 @@
               <g-icon iconSize="32px" iconName="swordShield" />
             </el-col>
 
-            <!-- Melee Attacks -->
             <el-col :span="21">
+              <!-- Melee Attacks -->
               <el-row v-if="Object.keys(actions.melee).length > 0">
                 <el-col :span="5">Melee</el-col>
                 <el-col :span="3">To Hit</el-col>
@@ -407,26 +400,25 @@
               <el-row v-if="Object.keys(actions.special).length > 0">
                 <el-divider />
                 <el-col :span="6">Special</el-col>
-                <el-col :span="3">Action</el-col>
+                <el-col :span="4" class="center-horz">Action</el-col>
                 <el-col :span="8">Effects</el-col>
                 <el-col :span="6"><el-tag size="small" effect="dark" type="primary">CMB +{{ cmb.total }}</el-tag></el-col>
               </el-row>
               <el-row v-for="(action, name) in actions.special" :key="name" :gutter="2">
-                  <el-col :span="5" class="center-vert" v-if="action.extras.showMain == true" >
+                  <el-col :span="6" class="center-vert" v-if="action.extras.showMain == true" >
                     <g-icon iconSize="20px" iconName="abilityPalm" />
                     {{ name }}
                   </el-col>
                   <el-col :span="4" class="center-vert center-horz" v-if="action.extras.showMain == true" >
                     <el-button :type=" (action.extras.active) ? 'primary' : 'info'" size="small" @click="toggleAbility(name, action)">{{ action.trigger == "Toggle" ? "Free" : action.trigger }}</el-button>
                   </el-col>
-                  <el-col :span="15" class="center-vert" v-if="action.extras.showMain == true" >
+                  <el-col :span="14" class="center-vert" v-if="action.extras.showMain == true" >
                     {{ action.benefit.text }}
                   </el-col>
                 </el-row>
             </el-col>
           </el-row>
         </el-collapse-item>
-
 
         <!-- Conditions -->
         <el-collapse-item title="Conditions" name="conditions">
@@ -553,11 +545,11 @@
       </el-row>
       <el-tree
         :data="inventory"
-        node-key="id"
         ref="tree"
         draggable
         render-after-expand
-        :default-expand-all="userSettings.expandInventory"
+        node-key="label"
+        :default-expanded-keys="userSettings.expandInventory"
         :filter-node-method="filterNode"
         :allow-drag="allowDrag"
         :allow-drop="allowDrop"
@@ -726,31 +718,38 @@
 
     <!-- Edit -->
     <el-tab-pane label="Edit" name="Edit">
-      <el-row :gutter="5">
-        <el-col :span="10">
-	  Current Health <br>
-          <el-input-number v-model="currHealth" :min="attributes.Constitution" :max="health.total" @change="currHealthCheck()">
-            <template #suffix>
-              <span> / {{ health.total }} </span>
-            </template>
-          </el-input-number>
-          Nonlethal Damage <br>
-          <el-input-number v-model="nonlethal" :min="0" :max="currHealth + 1" @change="nonlethalCheck()">
-            <template #suffix>
-              <span> / {{ currHealth + 1 }} </span>
-            </template>
-          </el-input-number>
+      <el-row :gutter="5" style="margin-bottom:5px;">
+        <el-col :span="12">
+          <el-row :gutter="5" style="margin-bottom:5px;">
+            <el-col :span="10" class="center-vert text-right">
+              <el-tag effect="dark" type="danger"> Current Health </el-tag>
+            </el-col>
+            <el-col :span="6">
+              <el-input-number v-model="currHealth" :min="attributes.Constitution" :max="health.total" @change="currHealthCheck()">
+                <template #suffix> <span> / {{ health.total }} </span> </template>
+              </el-input-number>
+            </el-col>
+          </el-row>
+          <el-row :gutter="5" style="margin-bottom:5px;">
+            <el-col :span="10" class="center-vert text-right">
+              <el-tag effect="dark" type="warning"> Nonlethal Damage </el-tag>
+            </el-col>
+            <el-col :span="6">
+              <el-input-number v-model="nonlethal" :min="0" :max="currHealth + 1" @change="nonlethalCheck()">
+                <template #suffix> <span> / {{ currHealth + 1 }} </span> </template>
+              </el-input-number>
+            </el-col>
+          </el-row>
         </el-col>
-        <el-col :span="10">
+        <el-col :span="8">
           Creature Size <br>
           <el-select v-model="basics.size" label="Size">
             <el-option v-for="size in Object.keys(rules.size)" :key="size" :label="capFirsts(size)" :value="size" />
           </el-select>
         </el-col>
       </el-row>
-	<div>
-		<el-input v-model="notes" :rows="5" type="textarea" placeholder="Notes on your adventure" />
-	</div>
+      <div> <el-input v-model="notes" :rows="5" type="textarea" placeholder="Notes on your adventure" /> </div>
+
       <el-divider style="margin: 24px 0 10px 0"> Bonuses </el-divider>
       <div>
         <el-row :gutter="5">
@@ -816,9 +815,7 @@ export default {
     const scrollbar = this.$refs.tabs.$el.querySelector('.el-tabs__nav-scroll');
     scrollbar.appendChild(this.$refs.restBtn.$el);
     this.currHealth = this.source.health.current;
-    console.log('SOURCE', this.source);
   },
-
 
   computed: {
     rules() { return this.$store.state.data.rules; },
@@ -881,6 +878,30 @@ export default {
       bab = Math.floor(bab);
       return bab;
     },
+    // USES: abilities
+    defenses() {
+      let defenses = {
+        immunities: [],
+        weaknesses: [],
+        special: []
+      };
+      Object.values(this.abilities).forEach(abil => {
+        if (abil.benefit) {
+          switch (abil.benefit.target) {
+            case "immunities":
+              defenses.immunities.push(abil.benefit.text.split(','));
+              break;
+            case "weakness":
+              defenses.weaknesses.push(abil.benefit.text.split(','));
+              break;
+            case "specialDef":
+              defenses.special.push(abil.benefit.text);
+              break;
+          }
+        }
+      });
+      return defenses
+    },
     // USES: <data>activeConditions, inventory, abilities
     bonuses() {
       let bonuses = {};
@@ -901,7 +922,7 @@ export default {
         }
       }
       // Armor
-      let item = this.inventory[0].children[0].children[0];
+      let item = this.inventory[1].children[0].children[0];
       if (item) {
         bonuses[item.label] = {};
         bonuses[item.label].type = "Armor";
@@ -909,7 +930,7 @@ export default {
         bonuses[item.label].value = item.value["AC Bonus"];
       }
       // Shields          For items in equipment . equipped . hands
-      for (const item of this.inventory[0].children[1].children[0].children) {
+      for (const item of this.inventory[1].children[1].children[0].children) {
         if (item.value.Proficiency == "Shields") {
           bonuses[item.label] = {};
           bonuses[item.label].type = "Shield";
@@ -918,7 +939,7 @@ export default {
         }
       }
       // Magic Items        For items in equipment . (slotted) Magic Items
-      for (const slot of this.inventory[1].children) {
+      for (const slot of this.inventory[0].children) {
         for (const item of slot.children) {
           if (item.bonuses) {
             for (const [name, bonus] of Object.entries(item.bonuses)) {
@@ -930,7 +951,7 @@ export default {
           }
         }
       } // end magic items
-      console.log("BONUSES", bonuses);
+      // console.log("BONUSES", bonuses);
       return bonuses;
     },
 
@@ -956,9 +977,13 @@ export default {
     },
     // USES: basics, bonusLoop(bonuses)
     speed() {
-      let speed = [ { "total": 0, "sources": [] } ];
-      speed[0].total += this.basics.speed;
-      this.bonusLoop(speed[0], "speed");
+      let speed = {};
+      speed = this.basics.speed;
+      this.bonusLoop(speed.speed, "baseSpeed");
+      this.bonusLoop(speed.burrow, "burrowSpeed");
+      this.bonusLoop(speed.climb, "climbSpeed");
+      this.bonusLoop(speed.fly, "flySpeed");
+      this.bonusLoop(speed.swim, "swimSpeed");
       Object.values(this.abilities).forEach(abil => {
         if (abil.benefit && abil.benefit.target == "speed") {
           speed.push(abil.benefit.text);
@@ -1030,7 +1055,7 @@ export default {
     // USES: inventory, bonusLoop(bonuses), attributes
     ac() {
       let ac = { "total": { "total": 10, "sources": [] }, "touch": { "total": 10, "sources": [] }, "flat": { "total": 10, "sources": [] } };
-      let armor = this.inventory[0].children[0].children[0];
+      let armor = this.inventory[1].children[0].children[0];
       let bonus = 0;
       // total = All
       // touch = creature.ac.total - bonus.armor - bonus.shield - bonus.natural;
@@ -1154,11 +1179,19 @@ export default {
     actions() {
       let actions = { melee: {}, ranged: {}, special: {} };
       let NatAtkNum = 0;
+
+      for (const [name, abil] of Object.entries(this.abilities)) {
+        if (abil.extras.showMain) {
+          actions.special[name] = abil;
+        }
+      }
+
       for (let type of Object.entries(this.source.actions)) {
         type = type[0];
 
         for (const [name, atk] of Object.entries(this.source.actions[type])) {
-          if (type == 'special' || type == 'basic') { actions.special[name] = atk; continue; }
+          if (type == 'special' || type == 'basic') { continue; }
+          // skip special and basics, they are done in prev loop
 
           // TODO: split nat atk num from nat atk name (2 wings)
 
@@ -1212,10 +1245,10 @@ export default {
         }
 
         // Weapon Actions
-        let mainHand = this.inventory[0].children[1].children[0].children[0];
-        let offHand = this.inventory[0].children[1].children[0].children[1];
+        let mainHand = this.inventory[1].children[1].children[0].children[0];
+        let offHand = this.inventory[1].children[1].children[0].children[1];
 
-        for (const weapon of this.inventory[0].children[1].children[0].children) {
+        for (const weapon of this.inventory[1].children[1].children[0].children) {
           // this.inventory[ equipped ].children[ weapons ].children[ hands ].children
 
           // If the wielded item is not a weapon or inproperly equipped, skip
@@ -1309,9 +1342,9 @@ export default {
     skills() {
       let skills = {};
 
-      let armor = this.inventory[0].children[0].children[0];
-      let mainHand = this.inventory[0].children[1].children[0].children[0];
-      let offHand = this.inventory[0].children[1].children[0].children[1];
+      let armor = this.inventory[1].children[0].children[0];
+      let mainHand = this.inventory[1].children[1].children[0].children[0];
+      let offHand = this.inventory[1].children[1].children[0].children[1];
       let penalties = {};
       if (armor?.value.Penalty < 0) { penalties[armor.label] = armor.value.Penalty; }
       if (mainHand?.value.Penalty < 0) { penalties[mainHand.label] = mainHand.value.Penalty; }
@@ -1360,8 +1393,6 @@ export default {
       });
       return senses;
     },
-
-
 
 
     // USES: ???
@@ -1554,7 +1585,7 @@ export default {
         description: "",
         benefit: { target: "Self", text: "" },
         bonuses: {},
-        extras: { active: true, source: "Feat" }
+        extras: { active: true, source: "Feat", showMain: false }
       };
       this.editingAbil = true;
     },
@@ -1598,13 +1629,32 @@ export default {
     *           EDIT            *
     *                           *
     \***************************/
-	currHealthCheck() {
-		console.log(this.currHealth);
-	},
-    nonlethalCheck() {
-      if (this.nonlethal == this.currHealth) {
+    currHealthCheck() {
+      let deathNum = -10;
+      if (this.basics.type.name == "undead") {
+        deathNum = 0 - this.attributes.Cha.total;
+      } else if (this.basics.type.name == "construct") {
+        deathNum = 0;
+      } else {
+        deathNum = 0 - this.attributes.Con.total;
+      }
+
+      if (this.currHealth == 0) {
         // When (nonlethal damage == current HP) { you are DISABLED }
         this.activeConditions.push(this.conditions[8]);
+
+      } else if (this.currHealth == -1) {
+        // When (nonlethal damage == current HP) { you are DYING }
+        this.activeConditions.push(this.conditions[9]);
+
+      } else if (this.currHealth < deathNum) {
+        this.$alert( "<strong style='font-size:36px;'> YOU HAVE DIED </strong>", null, { center: true, dangerouslyUseHTMLString: true, });
+      }
+    },
+    nonlethalCheck() {
+      if (this.nonlethal == this.currHealth) {
+        // When (nonlethal damage == current HP) { you are STAGGERED }
+        this.activeConditions.push(this.conditions[30]);
       } else if (this.nonlethal > this.currHealth) {
         // When (nonlethal damage > current HP) { you are UNCONSIOUS }
         this.activeConditions.push(this.conditions[32]);
@@ -1612,7 +1662,10 @@ export default {
     },
     rest() {
       console.log('REST UP: HP, SPELLS');
-      this.$message({ message: "Resting for 8 hours... Heal and restore magic.", type: "primary", duration: 0, showClose: true });
+
+      this.currHealth = this.health.total;
+
+      this.$message({ message: "Resting for 8 hours... Heal and restore magic.", type: "primary", duration: 10000, showClose: true });
     },
     saveMonster() {
       console.log("This", this);
@@ -1627,9 +1680,8 @@ export default {
       console.log("Actions", this.actions);
       console.log("Skills", this.skills);
       // console.log(this.magic);
-	console.log("Notes", this.notes);
+      console.log("Notes", this.notes);
     }
-
   }
 }
 </script>

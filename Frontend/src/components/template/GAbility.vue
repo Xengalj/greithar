@@ -107,13 +107,19 @@
         <el-col :span="6" style="text-align:right"> {{ prop }} </el-col>
         <el-col :span="18">
           <el-checkbox v-if="prop == 'active'" v-model="ability.extras[prop]" style="margin:0;"/>
+          <el-checkbox v-if="prop == 'showMain'" v-model="ability.extras[prop]" style="margin:0;"/>
           <el-input v-else-if="prop == 'source'" v-model="ability.extras[prop]" placeholder="What kind of ability is this" />
           <div v-else> {{ value }} </div>
         </el-col>
       </el-row>
     </div>
 
-{{ ability }}
+    <div v-if="advanced">
+      OBJECT CODE
+      <div v-for="(item, name) in ability" :key="name">
+        {{ name }} : {{ item }}
+      </div>
+    </div>
 
     <div>
       <el-button type="info" @click="advanced = advanced ? false : true;"> Toggle Advanced Mode </el-button>
