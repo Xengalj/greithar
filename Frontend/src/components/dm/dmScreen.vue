@@ -111,7 +111,6 @@ export default {
             "type": {},
           },
           "attributes": {},
-          "classes": {},
           "health": { current: 0 },
           "actions": { melee: {}, ranged: {}, special: {} },
           "conditions": [],
@@ -145,7 +144,50 @@ export default {
           ],
           "skills": {},
           "abilities": {},
-          "magic": {},
+          "classes": {},
+
+          "magic": {
+            "race1": {
+              "style": "Spontaneous Arcane",
+              "castingAtr": "Cha",
+              "galdur": { "total": 195, "currOpen": 50, "currReserve": 50 },
+              "casterLevel": 7,
+              "concentration": "10 (CL [7] + Cast Abil [3])        CALC",
+              "spellsPerDay": [ -1, 7, 7, 5 ],
+              "spellsKnown": {
+                [ "arcane mark", "light", "mage hand", "mending", "message", "prestidigitation", "read magic" ],
+                [ "alarm", "grease", "magic missile", "shield", "true strike" ],
+                [ "invisibility", "resist energy", "see invisibility" ],
+                [ "dispel magic", 
+                 {
+                   "Name": "Haste",
+                   "Description": "",
+                   "Casting Time": "1 standard action",
+                   "Components": "V, S, M (a shaving of licorice root)",
+                   "Range": "Close          CALC",
+                   "Targets": "one creature/level, no two of which can be more than 30 ft. apart",
+                   "Duration": "1 round/level",
+                   "Saving Throw": "Fortitude negates (harmless)",
+                   "Spell Resistance": "yes (harmless)"
+                 }
+                ]
+              },
+            },
+            "race2": {
+              "style": "Spontaneous Arcane",
+              "castingAtr": "Charisma",
+              "casterLevel": 17,
+              "concentration": "20 (CL [17] + Cast Abil [3])  REMOVE",
+              "spellsPerDay": [ -1, -1, -1, -1 ],
+              "spellsKnown": {
+                [ "detect magic" ],
+                [],
+                [ "pyrotechnics" ],
+                [ "suggestion" ]
+              }
+            }
+
+          },
           "userSettings": {
             expandInventory: ['Equipped', 'Armor', 'Weapons', 'Hands', 'Back', 'Items'],
             cardTab: "main",
