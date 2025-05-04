@@ -724,7 +724,7 @@
           <br />
           <br />
           
-          class tabs
+          class tabs [+ racial spells]
             
           caster level: # <br />
           caster ability: Str # (+/- mod)
