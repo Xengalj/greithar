@@ -126,6 +126,18 @@ class DataService {
     });
   }
 
+  // return the list of actions and conditions
+  getActionsAndConditions() {
+    return axios.get(API_URL + 'actionsAndConditions',
+    { headers: authHeader() })
+    .then(response => {
+      return response.data;
+    })
+    .catch(err => {
+      return err;
+    });
+  }
+
 
 }
 

@@ -1,93 +1,483 @@
-"Total Defense": {
-  trigger: "Standard",
-  description: "You get a +4 bonus to your AC but cannot make Attacks of Opportunity until your next turn.",
-  benefit: "+4 to AC but no AoOs",
-  extras: { showMain: true, duration: "1 Round" },
-  bonuses: {
+{
+  "actions": {
+    "Draw/Sheathe": {
+      "trigger": "Move",
+      "description": "You may draw or sheathe a weapon or weapon like item (like wands, shields) in easy reach. With a BAB of +1, you may draw a weapon as part of movement (not 5-foot step).",
+      "benefit": { "taret": "Self", "text": "You may draw / sheathe a weapon" },
+      "extras": { "showMain": false },
+      "bonuses": {}
+    },
+    "Manipulte Item": {
+      "trigger": "Move",
+      "description": "You may retrieve, store, or pick up an item, as well as move a heavy object or open a door.",
+      "benefit": { "taret": "Self", "text": "You may retrieve, store, or pick up an item" },
+      "extras": { "showMain": false },
+      "bonuses": {}
+    },
+    "Mount": {
+      "trigger": "Move",
+      "description": "You may mount or dismount your steed as a move action. You may also attempt a DC 20 Ride check to do it as a free action with no penaly.",
+      "benefit": { "taret": "Self", "text": "You may mout or dismount your steed" },
+      "extras": { "showMain": false },
+      "bonuses": {}
+    },
+    "Stand Up": {
+      "trigger": "Move",
+      "description": "You may stand up as a move action that provokes and attack of opportunity. You may also crawl 5 ft as a move action that provokes an AoO and counts as prone.",
+      "benefit": { "taret": "Self", "text": "You may stand up from prone, provoking AoO" },
+      "extras": { "showMain": false },
+      "bonuses": {}
+    },
+
+
+    
+    "Aid Another": {
+      "trigger": "Standard",
+      "description": "Make an attack roll vs AC 10, if you hit, you assist an ally with an attack, their defense, or a particular skill.",
+      "benefit": { "taret": "Self", "text": "+2 to Attack Rolls, AC, or a specific skill check" },
+      "extras": { "showMain": false },
+      "bonuses": {}
+    },
+    "Bull Rush": {
+      "trigger": "Standard",
+      "description": "Push an opponent 5 ft back, and an additional 5 ft for every 5 your CMB check exceeds your opponents CMD. This provokes AoO, and you can only push an opponent up to one size category larger than you.",
+      "benefit": { "taret": "Self", "text": "You may push an enemy back 5 or more feet" },
+      "extras": { "showMain": false },
+      "bonuses": {}
+    },
+    "Dirty Trick": {
+      "trigger": "Standard",
+      "description": "Apply Blinded, Dazzled, Deafened, Entangled, Shaken, or Sickened to an enemy for 1 round, and an additional round for every 5 your CMB check exceeds your opponents CMD. This provokes AoO",
+      "benefit": { "taret": "Self", "text": "Apply a number of hindering conditions" },
+      "extras": { "showMain": false },
+      "bonuses": {}
+    },
+    "Disarm": {
+      "trigger": "Standard",
+      "description": "Force an enemy to drop an item in their hands (or 2 if you exceed by 10). If you fail by 10 you drop the item you were using to disarm. This provokes AoO and you take a -4 to disarm while unarmed (but automatically pick up the dropped item.",
+      "benefit": { "taret": "Self", "text": "Force an enemy to drop an item" },
+      "extras": { "showMain": false },
+      "bonuses": {}
+    },
+    "Drag": {
+      "trigger": "Standard",
+      "description": "Pull an opponent in a straight line behind you 5 ft, and an additional 5 ft for every 5 you exceed your foes CMD. This provokes AoO, and you can only drag a foe no more than one size category larger than you.",
+      "benefit": { "taret": "Self", "text": "Pull an opponent in a straight line behind you" },
+      "extras": { "showMain": false },
+      "bonuses": {}
+    },
+    "Feint": {
+      "trigger": "Standard",
+      "description": "Make a Bluff check, on a success your opponent losses their Dex bonus to AC against your melee attack next turn.",
+      "benefit": { "taret": "Self", "text": "Opponent loses their Dex bonus to AC" },
+      "extras": { "showMain": false },
+      "bonuses": {}
+    },
+    "Grapple": {
+      "trigger": "Standard",
+      "description": "Grapple with an opponent, allowing you to also move, damage, pin, or tie up, your oppenent.",
+      "benefit": { "taret": "Self", "text": "Grapple with an opponent" },
+      "extras": { "showMain": true },
+      "bonuses": {}
+    },
+    "Overrun": {
+      "trigger": "Standard",
+      "description": "You run through someone's square with a CMB check, if you suceed by 5 or more, they are knocked prone. This provokes AoO.",
+      "benefit": { "taret": "Self", "text": "Bowl someone over, passing through their square" },
+      "extras": { "showMain": false },
+      "bonuses": {}
+    },
+    "Reposition": {
+      "trigger": "Standard",
+      "description": "Move a foe 5 ft, and an additional 5 ft for every 5 you exceed your check by. This provokes AoO, they must end within 5 ft of your reach, they cannot be put in harm, and you can only move an opponent up to one size category larger than you.",
+      "benefit": { "taret": "Self", "text": "Move 5 or more feet around you" },
+      "extras": { "showMain": false },
+      "bonuses": {}
+    },
+    "Steal": {
+      "trigger": "Standard",
+      "description": "Take an item that is neither held nor hidden in a pack. Fastened items like cloaks or loose pouches are made a -5. You cannot take a wielded item with steal (see Disarm) and steal provokes AoO.",
+      "benefit": { "taret": "Self", "text": "Take an item that isn't held or stored" },
+      "extras": { "showMain": false },
+      "bonuses": {}
+    },
+    "Sunder": {
+      "trigger": "Standard",
+      "description": "Deal damage to an item an not a person in place of an attack, provoking a AoO.",
+      "benefit": { "taret": "Self", "text": "Deal damage to an item" },
+      "extras": { "showMain": false },
+      "bonuses": {}
+    },
     "Total Defense": {
-      targets: [ "totalAC", "touchAC", "flatAC" ],
-      type: "Action",
-      value: 4
-    }
-  }
-},
-"Aid Another": {
-  trigger: "Standard",
-  description: "Make an attack roll vs AC 10, if you hit, you assist an ally with an attack, their defense, or a particular skill.",
-  benefit: "+2 to Attack Rolls, AC, or a specific skill check",
-  extras: { showMain: true },
-  bonuses: {}
-},
-"Feint": {
-  trigger: "Standard",
-  description: "Make a Bluff check, on a success your opponent losses their Dex bonus to AC against your melee attack next turn.",
-  benefit: "Opponent loses their Dex bonus to AC",
-  extras: { showMain: true },
-  bonuses: {}
-},
-}
-
-
-
-
-
-conditionSelect: [
-  { name: "Dazed", description: "The creature is unable to act normally. A dazed creature can take no actions, but has no penalty to AC.", bonuses: {} },
-  { name: "Dazzled", description: "The creature is unable to see well because of over-stimulation of the eyes. A dazzled creature takes a –1 penalty on attack rolls and sight-based Perception checks.",
-    bonuses: {
-      "Dazzled": {
-        type: "Condition",
-        value: -1,
-        targets: [ "meleeAtkBonus", "rangedAtkBonus" ]
+      "trigger": "Standard",
+      "description": "You get a +4 bonus to your AC but cannot make Attacks of Opportunity until your next turn.",
+      "benefit": { "taret": "Self", "text": "+4 to AC but no AoOs" },
+      "extras": { "showMain": false, "duration": "1 Round" },
+      "bonuses": {
+        "Total Defense": {
+          "targets": [ "totalAC", "touchAC", "flatAC" ],
+          "type": "Action",
+          "value": 4
+        }
       }
+    },
+    "Trip": {
+      "trigger": "Standard",
+      "description": "Trip an opponent no more than one size category larger than you, provoking AoO. If you fail by you are knocked prone instead of your foe.",
+      "benefit": { "taret": "Self", "text": "Knock a foe prone" },
+      "extras": { "showMain": false },
+      "bonuses": {}
+    },
+
+
+    "Charge": {
+      "trigger": "Full-Round",
+      "description": "You may move up to double your speed (min 10 ft), directly to your enemy and make one attack with an additional +2 to hit and a -2 to AC until your next turn.",
+      "benefit": { "taret": "Self", "text": "Move up to double your speed and attack at a +2" },
+      "extras": { "showMain": false },
+      "bonuses": {
+        "Charge Atk": {
+          "type": "Action",
+          "value": 2,
+          "targets": [ "meleeAtkBonus" ]
+        },
+        "Charge AC": {
+          "type": "Action",
+          "value": -2,
+          "targets": [ "totalAC", "touchAC", "flatAC" ]
+        }
+      }
+    },
+    "Coup de Grace": {
+      "trigger": "Full-Round",
+      "description": "If the defender is helpless, you may automatically hit and score a critical. If the defender survives the damage, they must make a Fort save DC 10 + damage dealt, or die.",
+      "benefit": { "taret": "Self", "text": "Hit and Crit a helpless defender" },
+      "extras": { "showMain": false },
+      "bonuses": {}
+    },
+    "Run": {
+      "trigger": "Full-Round",
+      "description": "You may run in a straight line up to 4x your speed, or 3x in heavy armor. You also lose your Dex bonus to AC unless you have the Run feat.",
+      "benefit": { "taret": "Self", "text": "Move up to 4x your speed in a straight line" },
+      "extras": { "showMain": false, "noDexAC": true },
+      "bonuses": {}
+    },
+    "Withdraw": {
+      "trigger": "Full-Round",
+      "description": "You may move up to double your speed, and your starting square is not considered threatened for AoOs.",
+      "benefit": { "taret": "Self", "text": "You may leave your square without AoO" },
+      "extras": { "showMain": false },
+      "bonuses": {}
     }
   },
-  { name: "Prone", description: "The character is lying on the ground. A prone attacker has a –4 penalty on melee attack rolls and cannot use a ranged weapon (except for a crossbow). A prone defender gains a +4 bonus to Armor Class against ranged attacks, but takes a –4 penalty to AC against melee attacks.",
-    bonuses: {
-      "Prone": {
-        type: "Condition",
-        value: -4,
-        targets: [ "meleeAtkBonus" ]
+
+
+
+  "conditions": [
+    {
+      "name": "Asleep",
+      "description": "You are resting and helpless, but can be awoken by an ally using Aid Another or by being wounded. While asleep you take a -10 on Perception checks, and cannot make perception checks that rely on vision.",
+      "bonuses": {
+        "Asleep": {
+          "type": "Condition",
+          "value": -10,
+          "targets": [ "perception" ]
+        }
       }
+    },
+    {
+      "name": "Bleeding",
+      "description": "You are bleeding and take the listed amount of damage at the beginning of every turn, it can be staunched with a DC 15 Heal check or any magical healing.",
+      "bonuses": {}
+    },
+    {
+      "name": "Blinded",
+      "description": "You are blind and cannot see, automatically failing checks that rely on vision, and granting enemies total concealment from you (50% miss chance). You must make a DC 10 Acrobatics check to move faster than half speed or fall prone.",
+      "bonuses": {
+        "Blinded AC": {
+          "type": "Condition",
+          "value": -2,
+          "targets": [ "totalAC", "touchAC", "flatAC" ]
+        },
+        "Blinded Skills": {
+          "type": "Condition",
+          "value": -4,
+          "targets": [ "strSkills", "dexSkills", "perception" ]
+        }
+      },
+      "extras": { "noDexAC": true }
+    },
+    {
+      "name": "Confused",
+      "description": "You are mentally befuddled and cannot act normally. Roll on the confusion table on the wiki.",
+      "bonuses": {}
+    },
+    {
+      "name": "Cowering",
+      "description": "You are frozen in fear and can take no actions.",
+      "bonuses": {
+        "Cowering": {
+          "type": "Conditions",
+          "value": -2,
+          "targets": [ "totalAC", "touchAC", "flatAC" ]
+        }
+      },
+      "extras": { "noDexAC": true }
+    },
+    {
+      "name": "Dazed",
+      "description": "You are unable to act normally and can take no actions, but have no penalty to AC.",
+      "bonuses": {}
+    },
+    {
+      "name": "Dazzled",
+      "description": "You are unable to see well because of over-stimulation of the eyes. You take a –1 penalty on attack rolls and sight-based Perception checks.",
+      "bonuses": {
+        "Dazzled": {
+          "type": "Condition",
+          "value": -1,
+          "targets": [ "meleeAtkBonus", "rangedAtkBonus" ]
+        }
+      }
+    },
+    {
+      "name": "Deafened",
+      "description": "You cannot hear, and automatically fail sound based Perception checks, and have a 20% spell failure chance for spells with verbal components.",
+      "bonuses": {
+        "Deafened": {
+          "type": "Condition",
+          "value": -4,
+          "targets": [ "initiative", "perception" ]
+        }
+      }
+    },
+    {
+      "name": "Disabled",
+      "description": "You may take a single move OR standard action each round (nor can you take full-round actions, but you can still take swift, immediate, and free actions). You move at half speed, and performing any standard action (or any other action the GM deems strenuous, including some free actions such as casting a Quicken Spell spell) deals 1 point of damage after the completion of the act, and you are now dying.",
+      "bonuses": {}
+    },
+    {
+      "name": "Dying",
+      "description": "You are unconscious, near death, and can take no actions. On all subsequent turns, make a DC 10 Stabilization check or lose 1 HP. If you have negative HP equal to your Constitution score, you die.",
+      "bonuses": {}
+    },
+    {
+      "name": "Entangled",
+      "description": "You are ensnared, and move at half speed (unless the bonds are anchored somehow). Attempting to cast a spell requiers a concentration check (DC 15 + pell level).",
+      "bonuses": {
+        "Entangled Atk": {
+          "type": "Condition",
+          "value": -2,
+          "targets": [ "meleeAtkBonus", "rangedAtkBonus" ]
+        },
+        "Entangled Dex": {
+          "type": "Condition",
+          "value": -4,
+          "targets": [ "Dex" ]
+        }
+      }
+    },
+    {
+      "name": "Exhausted",
+      "description": "You move at half speed and cannot run or charge. After 1 hour of complete rest, you become fatigued instead of exhausted.",
+      "bonuses": {
+        "Exhausted": {
+          "type": "Condition",
+          "value": -6,
+          "targets": [ "Str", "Dex" ]
+        }
+      }
+    },
+    {
+      "name": "Fascinated",
+      "description": "You are entranced by a supernatural or spell effect and can take no actions other than to pay attention the fascinating effect. Potential threats grant additional save chances, and obvious threats break fascination. An ally may use a standard action to break you free of the effect.",
+      "bonuses": {
+        "Fascinated": {
+          "type": "Condition",
+          "value": -4,
+          "targets": [ "skills" ]
+        }
+      }
+    },
+    {
+      "name": "Fatigued",
+      "description": "You can neither run nor charge, and doing anything that would cause fatigue, makes you exhausted instead. 8 hours of complete rest removes fatigue.",
+      "bonuses": {
+        "Fatigued": {
+          "type": "Condition",
+          "value": -2,
+          "targets": [ "Str", "Dex" ]
+        }
+      }
+    },
+    {
+      "name": "Fighting Defensively",
+      "description": "You are fighting with a greater focus on your guard.",
+      "bonuses": {
+        "Defensive AC": {
+          "type": "Dodge",
+          "value": 2,
+          "targets": [ "totalAC", "touch AC" ]
+        },
+        "Defesive Atk": {
+          "type": "Condition",
+          "value": -4,
+          "targets": [ "meleeAtkBonus", "rangedAtkBonus" ]
+        }
+      }
+    },
+    {
+      "name": "Frightened",
+      "description": "You must flee from the source of the fear as best you can, and if you are unable to flee you may fight. Frightened is more extreme than shaken, with panicked being even more than frightened.",
+      "bonuses": {
+        "Frightened": {
+          "type": "Condition",
+          "value": -2,
+          "targets": [ "meleeAtkBonus", "rangedAtkBonus", "fort", "ref", "will", "skills" ]
+        }
+      }
+    },
+    {
+      "name": "Grappled",
+      "description": "You are restrained by a creature, trap, or effect and cannot move, or take actions that require two hands to perform. Attempting a spell or spell-like ability requires a concentration check (DC 10 + grappler's CMB + spell level).",
+      "bonuses": {
+        "Grappled Dex": {
+          "type": "Condition",
+          "value": -4,
+          "targets": [ "Dex" ]
+        },
+        "Grappled Atk": {
+          "type": "Condition",
+          "value": -2,
+          "targets": [ "meleeAtkBonus", "rangedAtkBonus" ]
+        }
+      }
+    },
+    {
+      "name": "Helpless",
+      "description": "You are completely at an opponent's mercy and melee attacks get a +4 bonus against you.",
+      "bonuses": {},
+      "extras": { "setScore": { "Dex": 0 } }
+    },
+    {
+      "name": "Incorporeal",
+      "description": "You have no physical body, are immune to all nonmagical attacks, take half damage from magic weapons, spells, spell-like effects, and supernatural effects, and take full damage from other incorporeal creatures and effects, as well as force effects.",
+      "bonuses": {}
+    },
+    {
+      "name": "Invisible",
+      "description": "You are visually undetectable, and ignore opponents' Dex bonus to AC.",
+      "bonuses": {
+        "Invisible": {
+          "type": "Condition",
+          "value": 2,
+          "targets": [ "meleeAtkBonus", "rangedAtkBonus" ]
+        }
+      }
+    },
+    {
+      "name": "Mounted",
+      "description": "You get a free DC 5 Ride check every turn to use the mount's move action and speed instead of your own (still cannot take melee Full-Attack action). You get a +5 to attacks vs creatures smaller than your mount, and lances deal double damage on a mounted charge.",
+      "bonuses": {}
+    },
+    {
+      "name": "Nauseated",
+      "description": "You are experiencign stomach distress, may only take a single move action, and are unable to attack, cast spells, concentrate on spells, or do anything requiring attention.",
+      "bonuses": {}
+    },
+    {
+      "name": "Panicked",
+      "description": "You must drop anything you are holding and flee at top speed from the source of your fear, and any additionall dangers you encounter, along a random path (1d8). If cornered, you must cower but may use total defense.",
+      "bonuses": {
+        "Panicked": {
+          "type": "Condition",
+          "value": -2,
+          "targets": [ "fort", "ref", "will", "skills" ]
+        }
+      }
+    },
+    {
+      "name": "Paralyzed",
+      "description": "You are frozen in place and unable to move or act, with an effective Str and Dex of 0. You are helpless but can still take purely mental actions.",
+      "bonuses": {},
+      "extras": { "setScore": { "Dex": 0, "Str": 0 } }
+    },
+    {
+      "name": "Petrified",
+      "description": "You have been turned to stone and are considered unconcious. If your body is incomplete when it returns to flesh, there will be some ammount of permanent hit point loss and/or dibilitation.",
+      "bonuses": {}
+    },
+    {
+      "name": "Pinned",
+      "description": "You are tightly bound and can take few actions, as well as losing your Dex Bonus. If you cast a spell that has only a verbal component, you must make a concentration check DC 10 + grappler's CMB + spell level.",
+      "bonuses": {
+        "Pinned AC": {
+          "type": "Condition",
+          "value": -4,
+          "targets": [ "totalAC", "touchAC", "flatAC" ]
+        }
+      },
+      "extras": { "noDexAC": true }
+    },
+    {
+      "name": "Prone",
+      "description": "You are lying on the ground, have a penalty on melee weapons, and cannot use a ranged weapon (except for a crossbow). A prone defender gains a +4 bonus to Armor Class against ranged attacks, but takes a –4 penalty to AC against melee attacks.",
+      "bonuses": {
+        "Prone": {
+          "type": "Condition",
+          "value": -4,
+          "targets": [ "meleeAtkBonus" ]
+        }
+      }
+    },
+    {
+      "name": "Shaken",
+      "description": "You are afraid and take a -2 on attacks, saves, skills, and ability checks. Shaken is a less sever state of fear than frightned or panicked.",
+      "bonuses": {
+        "Shaken": {
+          "type": "Condition",
+          "value": -2,
+          "targets": [ "meleeAtkBonus", "rangedAtkBonus", "fort", "ref", "will", "skills" ]
+        }
+      }
+    },
+    {
+      "name": "Sickened",
+      "description": "You feel ill and take a -2 penalty on attacks, weapon damage, saves, skills, and ability checks.",
+      "bonuses": {
+        "Sickened": {
+          "type": "Condition",
+          "value": -2,
+          "targets": [ "meleeAtkBonus", "rangedAtkBonus", "meleeDmgBonus", "rangedDmgBonus", "fort", "ref", "will", "skills" ]
+        }
+      }
+    },
+    {
+      "name": "Stable",
+      "description": "You have negative hit points but are no longer dying and you may make a Constitution check (DC 10 + current negative HP) each hour to become concious and disabled. If you became stable on your own, you lose 1 HP each time you fail the wake up check.",
+      "bonuses": {}
+    },
+    {
+      "name": "Staggered",
+      "description": "You may take a single move or standard action each round (but not both and no full-round actions).",
+      "bonuses": {}
+    },
+    {
+      "name": "Stunned",
+      "description": "You drop eveything you are holding, cannot take actions, take a -2 to AC, and lose your Dex bonus to AC. Attackers also get a +4 to perform combat maneuvers against you.",
+      "bonuses": {
+        "Stunned": {
+          "type": "Condition",
+          "value": -2,
+          "targets": [ "totalAC", "touchAC", "flatAC" ]
+        }
+      },
+      "extras": { "noDexAC": true }
+    },
+    {
+      "name": "Unconcious",
+      "description": "You are knocked out and helpless. If you have negative HP, or nonlethal damage greater than your current HP, you become lose conciousness.",
+      "bonuses": {}
     }
-  }
-],
-
-
-
-
-move
-movement (or 5-foot step) (swim/climb at 1/4 or climb 1/2 with -5 to climb)
-draw a weapon / stored item (3[part of movement], ready / drop shield)
-load light / heavy crossbow
-mount / dismount (Dc 20 Ride to do as free action)
-stand up from prone (AoO)
-
-full round atk
-charge      (move 10' - double speed, directly to enemy(no blocks including allies) , then one attack) [+2 atkBonus && -2 all AC]
-run (3x or 4x yor speed in straight line, lose dex bonus to AC)
-withdraw (both actions to move, only starting square isn't threatened)
-fight defensively
-
-combat mans (type varies)
-Overrun                 AoO, (bowl someone over, pass through them and knock them prone, they can let you pass)
-bull rush               AoO, push 5 ft, +5 for every 5 past CMD
-drag                    AoO, opposite of bull rush
-reposition              move target 5 ft to new location, +5ft for every 5 past CMD, must end within 5 ft of reach
-dirty treick            AoO, apply condition (blinded, dazzled, deafened, entangled, shaken, or sickened) lasts 1 round, +1 round for every 5 past CMD
-disarm                  AoO, force an enemy to drop 1 (2 if check is 10 past CMD), +2 from weapon with disarm, -4 if unarmed(fail by 10 you lose item)  (steal for necklace)
-grapple                 AoO, can move, damage, pin, tie up
-sunder                  AoO, Deal damage directly to an item, granting the broken condition
-trip                    AoO, knock prone, fail by 10, you are prone
-
-ready action
-
-
-mounted copmbat
-free    - dc 5 ride
-atk smaller creature than mount   +1 to atk
-charge applies to both mount and rider
-lances deal double damage
-casting between 2 mount moves requires vigorous motion check (10+spell level) (quad move is 15+lvl)
-DC 15 ride to take no damage when mount falls in battle, 1d6 on fail
-unconcious -> 50% to stay in saddle, else 1d6 dmg (mount avoids combat)
+  ]
+}

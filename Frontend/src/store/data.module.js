@@ -9,6 +9,11 @@ export const data = {
     feats: {},
     equipment: {}
   },
+  getters: {
+    rules (state) {
+      return state.rules;
+    }
+  },
   mutations: {
     init (state, payload) {
       state[payload.name] = payload.data;
@@ -30,6 +35,10 @@ export const data = {
       } );
       DataService.getEquipment().then( response => {
         commit('init', { "name": "equipment", "data": response });
+      } );
+      DataService.getActionsAndConditions().then( response => {
+        commit('init', { "name": "actions", "data": response.actions });
+        commit('init', { "name": "conditions", "data": response.conditions });
       } );
 
     }

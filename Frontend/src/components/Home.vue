@@ -14,13 +14,13 @@
 
     <el-row class="center-horz" justify="space-between">
       <el-col :span="6">
-        Rules
+        Campaign
       </el-col>
       <el-col :span="6">
         Lore
       </el-col>
       <el-col :span="6">
-        Tables
+        Rules
       </el-col>
       <el-col :span="6">
         Site Info
@@ -30,11 +30,13 @@
 
     <el-row class="center-horz" justify="space-between">
       <el-col :span="6">
-        <router-link to="/equipment" class="nav-link">
-          <el-button type="primary">
-            <g-icon iconSize="24px" iconName="lockedBook" /> Rules (WIP)
-          </el-button>
-        </router-link>
+        <span v-if="user.roles.includes('admin')">
+          <router-link to="/dm-screen" class="nav-link">
+            <el-button type="primary">
+              <g-icon iconSize="24px" iconName="map" /> DM Screen
+            </el-button>
+          </router-link>
+        </span>
       </el-col>
 
       <el-col :span="6">
@@ -46,6 +48,11 @@
       </el-col>
 
       <el-col :span="6">
+        <router-link to="/equipment" class="nav-link">
+          <el-button type="primary">
+            <g-icon iconSize="24px" iconName="lockedBook" /> Rules (WIP)
+          </el-button>
+        </router-link>
         <router-link to="/equipment" class="nav-link">
           <el-button type="primary">
             <g-icon iconSize="24px" iconName="inventory" /> Equipment
@@ -78,9 +85,12 @@ export default {
     return {
       title: "Home",
       content: "",
+      user: this.$store.state.auth.user
     };
   },
   mounted() {
+    // console.log(this.$store.state.auth.user);
+
     UserService.getPublicContent().then(
       (response) => {
         this.content = response.data;

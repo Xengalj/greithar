@@ -8,10 +8,12 @@
     "Cost": 5,
     "Weight": 5,
     "Description": "This small metal shield is worn strapped to your forearm to allow you to still wield a weapon with that hand.",
-    "Special": [
-      "While using a weapon in the hand a buckler is strapped to, you take a -1 on attack rolls (except bow / crossbow).",
-      "If you attack or cast a spell with the arm weilding a buckler, you lose it's AC bonus until your next turn."
-    ]
+    "Extras": {
+      "Notes": [
+        "While using a weapon in the hand a buckler is strapped to, you take a -1 on attack rolls (except bow / crossbow).",
+        "If you attack or cast a spell with the arm weilding a buckler, you lose it's AC bonus until your next turn."
+      ]
+    }
   },
   "Klar": {
     "AC Bonus": 1,
@@ -28,7 +30,9 @@
     "Cost": 12,
     "Weight": 6,
     "Description": "A small shield with spikes used for both offense and defense.",
-    "Special": []
+    "Extras": {
+      "Notes": []
+    }
   },
   "Leather Madu": {
     "AC Bonus": 1,
@@ -45,10 +49,12 @@
     "Cost": 30,
     "Weight": 5,
     "Description": "This small shield has two antlers, usually from an antelope extending out either side.",
-    "Special": [
-      "If you are proficient with the madu, you take only a -2 when fighting defensively instead of the usual -4, and your Combat Expertise penalty improves by +1 (min -1)",
-      "If you are not proficient with the madu, you treat it as a light spiked shield."
-    ]
+    "Extras": {
+      "Notes": [
+        "If you are proficient with the madu, you take only a -2 when fighting defensively instead of the usual -4, and your Combat Expertise penalty improves by +1 (min -1)",
+        "If you are not proficient with the madu, you treat it as a light spiked shield."
+      ]
+    }
   },
   "Steel Madu": {
     "AC Bonus": 1,
@@ -65,10 +71,12 @@
     "Cost": 40,
     "Weight": 6,
     "Description": "This small shield has two antlers, usually from an antelope extending out either side.",
-    "Special": [
-      "If you are proficient with the madu, you take only a -2 when fighting defensively instead of the usual -4, and your Combat Expertise penalty improves by +1 (min -1)",
-      "If you are not proficient with the madu, you treat it as a light spiked shield."
-    ]
+    "Extras": {
+      "Notes": [
+        "If you are proficient with the madu, you take only a -2 when fighting defensively instead of the usual -4, and your Combat Expertise penalty improves by +1 (min -1)",
+        "If you are not proficient with the madu, you treat it as a light spiked shield."
+      ]
+    }
   },
   "Light Steel Shield": {
     "AC Bonus": 1,
@@ -85,7 +93,9 @@
     "Cost": 9,
     "Weight": 6,
     "Description": "A simple shield made of good steel.",
-    "Special": []
+    "Extras": {
+      "Notes": []
+    }
   },
   "Light Steel Shield (Quickdraw)": {
     "AC Bonus": 1,
@@ -102,11 +112,13 @@
     "Cost": 59,
     "Weight": 7,
     "Description": "A simple shield made of good steel and designed for quick retrieval.",
-    "Special": [
-      "If your BAB is at least +1 you may don or remove this shield as a swift action combined with a move action.",
-      "If you have the Two-Weapon Fighting feat, you can draw a light or one-handed weapon with one hand and a quickdraw shield with the other in the time it would normally take you to draw one weapon (a single move action).",
-      "If you have the Quick Draw feat, you may don or put away a quickdraw shield as a free action."
-    ]
+    "Extras": {
+      "Notes": [
+        "If your BAB is at least +1 you may don or remove this shield as a swift action combined with a move action.",
+        "If you have the Two-Weapon Fighting feat, you can draw a light or one-handed weapon with one hand and a quickdraw shield with the other in the time it would normally take you to draw one weapon (a single move action).",
+        "If you have the Quick Draw feat, you may don or put away a quickdraw shield as a free action."
+      ]
+    }
   },
   "Light Wooden Shield": {
     "AC Bonus": 1,
@@ -123,7 +135,9 @@
     "Cost": 3,
     "Weight": 5,
     "Description": "A simple shield made of solid wood.",
-    "Special": []
+    "Extras": {
+      "Notes": []
+    }
   },
   "Light Wooden Shield (Quickdraw)": {
     "AC Bonus": 1,
@@ -140,11 +154,13 @@
     "Cost": 53,
     "Weight": 6,
     "Description": "A simple shield made of solid wood and designed for quick retrieval.",
-    "Special": [
-      "If your BAB is at least +1 you may don or remove this shield as a swift action combined with a move action.",
-      "If you have the Two-Weapon Fighting feat, you can draw a light or one-handed weapon with one hand and a quickdraw shield with the other in the time it would normally take you to draw one weapon (a single move action).",
-      "If you have the Quick Draw feat, you may don or put away a quickdraw shield as a free action."
-    ]
+    "Extras": {
+      "Notes": [
+        "If your BAB is at least +1 you may don or remove this shield as a swift action combined with a move action.",
+        "If you have the Two-Weapon Fighting feat, you can draw a light or one-handed weapon with one hand and a quickdraw shield with the other in the time it would normally take you to draw one weapon (a single move action).",
+        "If you have the Quick Draw feat, you may don or put away a quickdraw shield as a free action."
+      ]
+    }
   },
   "Heavy Steel Shield": {
     "AC Bonus": 2,
@@ -154,14 +170,16 @@
 
     "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
     "Critical": "20/x2",
-    "Damage Type": [ "blugeoning" ],
+    "Damage Type": [ "Bludgeoning" ],
     "Category": "One-Handed",
     "Group": [ "Close", "Tribal" ],
 
     "Cost": 20,
     "Weight": 15,
     "Description": "A sturdy metal shield reinforced with good steel.",
-    "Special": []
+    "Extras": {
+      "Notes": []
+    }
   },
   "Heavy Wooden Shield": {
     "AC Bonus": 2,
@@ -171,14 +189,16 @@
 
     "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
     "Critical": "20/x2",
-    "Damage Type": [ "blugeoning" ],
+    "Damage Type": [ "Bludgeoning" ],
     "Category": "One-Handed",
     "Group": [ "Close", "Tribal" ],
 
     "Cost": 7,
     "Weight": 10,
     "Description": "A sturdy wooden shield reinforced with bands of solid hardwood.",
-    "Special": []
+    "Extras": {
+      "Notes": []
+    }
   },
   "Tower Shield": {
     "AC Bonus": 4,
@@ -195,10 +215,12 @@
     "Cost": 30,
     "Weight": 45,
     "Description": "These massive shields can be used to provide cover to nearly the entire body.",
-    "Special": [
-      "A tower shield is unweildy and applies a -2 to your attack rolls when equiped.",
-      "As a standard action, you can use the tower shield to grant yourself total cover until the beggining of your next turn. Choose one edge of your space and that edge is treated as a wall for attacks targeting you."
-    ]
+    "Extras": {
+      "Notes": [
+        "A tower shield is unweildy and applies a -2 to your attack rolls when equiped.",
+        "As a standard action, you can use the tower shield to grant yourself total cover until the beggining of your next turn. Choose one edge of your space and that edge is treated as a wall for attacks targeting you."
+      ]
+    }
   },
   "Steel Snarlshield": {
     "AC Bonus": 2,
@@ -208,16 +230,18 @@
 
     "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
     "Critical": "20/x2",
-    "Damage Type": [ "blugeoning" ],
+    "Damage Type": [ "Bludgeoning" ],
     "Category": "One-Handed",
     "Group": [ "Close", "Tribal" ],
 
     "Cost": 50,
     "Weight": 20,
     "Description": "A sturdy metal shield reinforced with good steel and a dozen rods protruding from the surface to grab enemy weapons.",
-    "Special": [
-      "Disarm: +2 to CMB when attempting to disarm an enemy"
-    ]
+    "Extras": {
+      "Notes": [
+        "Disarm"
+      ]
+    }
   },
   "Wooden Snarlshield": {
     "AC Bonus": 2,
@@ -227,16 +251,18 @@
 
     "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
     "Critical": "20/x2",
-    "Damage Type": [ "blugeoning" ],
+    "Damage Type": [ "Bludgeoning" ],
     "Category": "One-Handed",
     "Group": [ "Close", "Tribal" ],
 
     "Cost": 37,
     "Weight": 15,
     "Description": "A sturdy wooden shield reinforced with bands of solid hardwood with a dozen protruding rods to grab enemy weapons.",
-    "Special": [
-      "Disarm: +2 to CMB when attempting to disarm an enemy"
-    ]
+    "Extras": {
+      "Notes": [
+        "Disarm"
+      ]
+    }
   },
   "Dwarven War-Shield": {
     "AC Bonus": 1,
@@ -253,10 +279,12 @@
     "Cost": 50,
     "Weight": 8,
     "Description": "The shield's sides are cut into jagged angles, honed to razor sharpness.",
-    "Special": [
-      "War-Shields require exotic weapon proficiency to use",
-      "If you have Two-Weapon Fighting, you increase the higher shield bonus by 1.",
-      "You lose this bonus for 1 round when you make an attack with one or both shields (unless you have the Improved Shield Bash feat or a similar benefit)."
-    ]
+    "Extras": {
+      "Notes": [
+        "War-Shields require exotic weapon proficiency to use",
+        "If you have Two-Weapon Fighting, you increase the higher shield bonus by 1.",
+        "You lose this bonus for 1 round when you make an attack with one or both shields (unless you have the Improved Shield Bash feat or a similar benefit)."
+      ]
+    }
   }
 }
