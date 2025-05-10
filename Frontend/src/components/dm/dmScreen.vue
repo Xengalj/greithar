@@ -85,9 +85,9 @@ export default {
   mounted() {
     if (this.equipment) {
       // this.monsterOpen("Skeletal Champion");
-      // this.monsterOpen("Adult Red Dragon");
+      this.monsterOpen("Adult Red Dragon");
       // this.monsterOpen("Death Worm");
-      this.monsterOpen("Ochre Jelly");
+      // this.monsterOpen("Ochre Jelly");
 
       // console.log(this.actions);
       // console.log(this.conditions);
@@ -154,11 +154,11 @@ export default {
               "casterLevel": 7,
               "concentration": "10 (CL [7] + Cast Abil [3])        CALC",
               "spellsPerDay": [ -1, 7, 7, 5 ],
-              "spellsKnown": {
+              "spellsKnown": [
                 [ "arcane mark", "light", "mage hand", "mending", "message", "prestidigitation", "read magic" ],
                 [ "alarm", "grease", "magic missile", "shield", "true strike" ],
                 [ "invisibility", "resist energy", "see invisibility" ],
-                [ "dispel magic", 
+                [ "dispel magic",
                  {
                    "Name": "Haste",
                    "Description": "",
@@ -171,7 +171,7 @@ export default {
                    "Spell Resistance": "yes (harmless)"
                  }
                 ]
-              },
+              ],
             },
             "race2": {
               "style": "Spontaneous Arcane",
@@ -179,12 +179,12 @@ export default {
               "casterLevel": 17,
               "concentration": "20 (CL [17] + Cast Abil [3])  REMOVE",
               "spellsPerDay": [ -1, -1, -1, -1 ],
-              "spellsKnown": {
+              "spellsKnown": [
                 [ "detect magic" ],
                 [],
                 [ "pyrotechnics" ],
                 [ "suggestion" ]
-              }
+              ]
             }
 
           },

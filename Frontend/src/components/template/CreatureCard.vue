@@ -645,9 +645,9 @@
         for (abil in class) {
           if (abil.extra.pool) {
             el-progress w/ [-][+] btns
-        }}}
+          }}}
 
-      
+
       <el-row class="center-horz" :gutter="5">
         <el-col :span="5">Name</el-col>
         <el-col :span="14">Description</el-col>
@@ -720,27 +720,27 @@
           <g-icon iconSize="32px" iconName="rolledScroll" />
         </el-col>
         <el-col :span="21">
-          {{ this.sousrce.magic }}
+          {{ this.source.magic }}
           <br />
           <br />
-          
+
           class tabs [+ racial spells]
-            
+
           caster level: # <br />
           caster ability: Str # (+/- mod)
           concentratoin: # (+ [previous 2])
-              POP-UP (defensive: DC 15 + (spell lvl x2);
-                      injury: DC 10 + damage + spell level;
-                      spell affect: DC spell DC + spell level;
-                      grapple: DC 10 + grappler’s CMB + spell level)
+          POP-UP (defensive: DC 15 + (spell lvl x2);
+          injury: DC 10 + damage + spell level;
+          spell affect: DC spell DC + spell level;
+          grapple: DC 10 + grappler’s CMB + spell level)
 
           if (usersettings.useGaldur) {
             reserve pool    open pool [dashboards]
             [-][+]          [-][+]
             extra pool(s)     <br />           [bars & btns]
-		      } else {
+          } else {
             spell slots
-             if ( magic.style.find('preperation') ) { [prep spells btn] }
+            if ( magic.style.find('preperation') ) { [prep spells btn] }
             [lvl / spell name]
           }
 
@@ -752,18 +752,18 @@
           spell:
           [@] [X] #  "NAME"  "DESCRIPTION"      # Ft    # rounds    DC #
           link cast lvl                        range    duration    save
-                                    Pop-UP (casting time, components, targets)
-          
-                   "Name": "Haste",
-                   "Description": "",
-                   "Casting Time": "1 standard action",
-                   "Components": "V, S, M (a shaving of licorice root)",
-                   "Range": "Close          CALC",
-                   "Targets": "one creature/level, no two of which can be more than 30 ft. apart",
-                   "Duration": "1 round/level",
-                   // "Saving Throw": "Fortitude negates (harmless)",
-                   // "Spell Resistance": "yes (harmless)"
-		
+          Pop-UP (casting time, components, targets)
+
+          "Name": "Haste",
+          "Description": "",
+          "Casting Time": "1 standard action",
+          "Components": "V, S, M (a shaving of licorice root)",
+          "Range": "Close          CALC",
+          "Targets": "one creature/level, no two of which can be more than 30 ft. apart",
+          "Duration": "1 round/level",
+          // "Saving Throw": "Fortitude negates (harmless)",
+          // "Spell Resistance": "yes (harmless)"
+
         </el-col>
       </el-row>
     </el-tab-pane>
