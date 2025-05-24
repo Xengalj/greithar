@@ -1,130 +1,7 @@
 {
-	"Names": {
-		"General": {
-			"Surnames": [ "Fafinski", "Kremar", "Lara'Moor", "Lusardi", "Mlinar", "Puska", "Radloff", "Salanda", "Scorvan", "Tafralian", "Thazel", "Tuggle", "Vilagrana", "Vortal", "Zamora" ]
-		},
-		"Amaru": {
-			"Surnames": {
-				"Ashcraft": "",
-				"Challwaq": "Quechua: Fisher",
-				"Heitala": "",
-				"Herrero": "Quechua: Smith",
-				"Musuqari": "Quechua: New Man",
-				"Nina'Chuqcha": "Quechua: Fire Fang",
-				"Qulqi'Niqi": "Quechua: Silver Scale",
-				"Qumpana": "Quechua: Green Hood",
-				"Sacha-Sacha'Qari": "Quechua: Woods Man (Cutter)",
-				"Wade XX": "Quechua: Child Of"
-			},
-			"Male": [  ],
-			"Female": [  ]
-		},
-		"Avaar": {
-			"Surnames": {
-				"Dahabiaj": "Arabic: Gold Crown",
-				"Gaabzaraq": "Arabic: Blue Forest",
-				"Gutaj-Ru": "",
-				"Hadaad": "Arabic: Smithy",
-				"Hitab": "Arabic: Woodsman",
-				"Ibs XX": "Arabic: Child Of",
-				"Ravala": "",
-				"Sammahamra": "Arabic: Red Sky",
-				"Sayaad": "Arabic: Fisher",
-				"Taayir-Alfiniq": "Arabic: Phoenix"
-			},
-			"Male": [  ],
-			"Female": [  ]
-		},
-		"Cæth": {
-			"Surnames": {
-				"Canyrhaf": "Welsh: Summersong",
-				"Coediwr": "Welsh: Woodsman",
-				"Curiadwyn": "Welsh: Spring Beat",
-				"Enaidgaeaf": "Welsh: Winter Soul",
-				"Foxelster": "",
-				"Gof": "Welsh: Smith",
-				"Hydrefcalon": "Welsh: AutumnHeart",
-				"Mab-XX": "Welsh: Child Of",
-				"Pysgotwr": "Welsh: Fisher",
-				"Tanganika": ""
-			},
-			"Male": [  ],
-			"Female": [  ]
-		},
-		"Geit": {
-			"Surnames": {
-				"Bergquist": "??: Mountain Quest?",
-				"Bikonnen": "??: Two Horn",
-				"Kjellman": "",
-				"Moyryla": "",
-				"Rafisk": "Norse: Fisher",
-				"Smith": "Norse: Smith",
-				"Thouin": "",
-				"Van Dan Elzan": "",
-				"Van Vleet": "",
-				"XX-Son": "Norse: Child Of"
-			},
-			"Male": [  ],
-			"Female": [  ]
-		},
-		"Kame": {
-			"Surnames": {
-				"Akaigara": "Japanese: Red Shell",
-				"Chairoko": "Japanese: Brown Scales",
-				"Kajiya": "Japanese: Smithy",
-				"Kojoto": "Japanese: Mill Person",
-				"Midorifu": "Japanese: Green Skin",
-				"Noko-": "Japanese: Child Of",
-				"Ryoshi": "Japanese: Fisher",
-				"Shinjuha": "Japanese: Pearl Tooth",
-				"Shizuka": "",
-				"Yeo": ""
-			},
-			"Male": [  ],
-			"Female": [  ]
-		},
-		"Zikaru": {
-			"Surnames": {
-				"Bandumu": "Akkadian: SMall",
-				"Barbarulibu": "Akkadian: Wolf Heart",
-				"Gidru": "Akkadian: Strike",
-				"Inmar": "Akkadian: Child Of",
-				"Kibtusum": "Akkadian: Wheat Fresh",
-				"Nevins": "",
-				"Nunulu": "Akkadian: Fish Man",
-				"Samu": "Akkadian: Sky",
-				"Uqnumsinnu": "Akkadian: Blue Tooth",
-				"Warquisum": "Akkadian: Green Wood"
-			},
-			"Male": [  ],
-			"Female": [  ]
-		},
-		"Tembo": {
-			"Surnames": {
-				"Wagar": ""
-			},
-			"Male": [  ],
-			"Female": [  ]
-		},
-		"Perwhüa": {
-			"Surnames": {
-			},
-			"Male": [  ],
-			"Female": [  ]
-		},
-		"Kets'Rir": {
-			"Surnames": {
-			},
-			"Male": [  ],
-			"Female": [  ]
-		},
-		"Gargoyles": {
-			"Surnames": {
-			},
-			"Male": [  ],
-			"Female": [  ]
-		}
-	},
+	"Surnames": [ "Fafinski", "Kremar", "Lara'Moor", "Lusardi", "Mlinar", "Puska", "Radloff", "Salanda", "Scorvan", "Tafralian", "Thazel", "Tuggle", "Vilagrana", "Vortal", "Zamora" ],
+
+
 	"Amaru": {
 		"rp": 12,
 		"age": {
@@ -137,13 +14,27 @@
 			"Venerable": "70 years",
 			"Max Age": "70 +2d20 years"
 		},
+		"surnames": {
+			"Ashcraft": "",
+			"Challwaq": "Quechua: Fisher",
+			"Heitala": "",
+			"Herrero": "Quechua: Smith",
+			"Musuqari": "Quechua: New Man",
+			"Nina'Chuqcha": "Quechua: Fire Fang",
+			"Qulqi'Niqi": "Quechua: Silver Scale",
+			"Qumpana": "Quechua: Green Hood",
+			"Sacha-Sacha'Qari": "Quechua: Woods Man (Cutter)",
+			"Wadé XX": "Quechua: Child Of"
+		},
 		"male": {
 			"height": "6'3\" +2d10 inches (6'5\" - 8'1\")  (4.5 - 6.5 x2)",
-			"weight": "200 lbs. +2d10×5 lbs. (210 – 300 lbs.)"
+			"weight": "200 lbs. +2d10×5 lbs. (210 – 300 lbs.)",
+			"names": [ "Akwa, Awank'ay, Huch'uy, Ka'Dra, Kaipa, Killa, Kuri, Llapo'ma, Mit'a, Na'tsu, Orthradus, Pillku, Rawa, Rulik'Sha, Sayri, Scoperus, Sonk'o, Sotax, Tin'Kupuma, Tomayro" ]
 		},
 		"female": {
 			"height": "6'6\" +2d10 inches (6'8\" - 8'4\")  (5 - 7 x2)",
-			"weight": "225 lbs. +2d10×5 lbs. (235 – 325 lbs.)"
+			"weight": "225 lbs. +2d10×5 lbs. (235 – 325 lbs.)",
+			"names": [ "Auka, Caipa, Chalco, Chinpu, Kucha, Llo'Que, Nyusta, Ophiiphelia, Pari, Phoexis, Qatquil, Qori, Rauwa, Shero, Talla, Tamia, Thiesla, Uluqu'u, Wayna" ]
 		},
 		"abilityMods": {
 			"Dexterity": 2,
@@ -156,20 +47,56 @@
 		"languages": ["Common", "Risko"],
 		"bonusLanguages": ["Draconic", "Dwarven", "Elvish", "Gnomish", "Ignan", "Kamago", "Undercommon"],
 		"traits": {
-			"Stability": "An amaru gets a +4 racial bonus to CMD when resisting bull rush or trip attempts.",
-			"Stalker": "Perception and stealth are always considered class skills for an amaru.",
-			"Pyromaniac": "An amaru is treated as 1 level higher when casting spells with the fire descriptor or that deal fire damage. In addition, Amarus with a charisma score of 11 or higher gain dancing lights, flare, prestidigitaion, and produce flame, as spell-like abilities, usable once per day.",
-			"Hypnotic Gaze": "Amarus can cast hypnotism once a day, for 1 round.",
-			"Darkvision": "An amaru can see 60 feet in total darkness.",
-			"Prehensile Tail": "Amarus can use their tail to carry objects. They cannot wield weapons with their tails, but can retrieve small, stored objects carried on them as a swift action."
+			"Stability": {
+				"trigger": "Continuous",
+				"description": "An amaru gets a +4 racial bonus to CMD when resisting bull rush or trip attempts.",
+				"benefit": { "target": "self", "text": "You have a +4 bonus to CMD vs Trips & Bull Rush" },
+				"bonuses": {}
+			},
+			"Stalker": {
+				"trigger": "Continuous",
+				"description": "Perception and stealth are always considered class skills for an amaru.",
+				"benefit": { "target": "self", "text": "Perception and stealth are class skills" },
+				"bonuses": {}
+			},
+			"Pyromaniac": {
+				"trigger": "Continuous",
+				"description": "An amaru is treated as 1 level higher when casting spells with the fire descriptor or that deal fire damage. In addition, Amarus with a charisma score of 11 or higher gain dancing lights, flare, prestidigitaion, and produce flame, as spell-like abilities, usable once per day.",
+				"benefit": { "target": "self", "text": "Treat your caster level as 1 higher for fire spells" },
+				"bonuses": {}
+			},
+			"Hypnotic Gaze": {
+				"trigger": "Standard",
+				"description": "Amarus can cast hypnotism once a day, for 1 round.",
+				"benefit": { "target": "self", "text": "Hypnotize enemies" },
+				"bonuses": {}
+			},
+			"Darkvision": {
+				"trigger": "Continuous",
+				"description": "An amaru can see 60 feet in total darkness.",
+				"benefit": { "target": "senses", "text": "Darkvision 60 ft." },
+				"bonuses": {}
+			},
+			"Prehensile Tail": {
+				"trigger": "Continuous",
+				"description": "Amarus can use their tail to carry objects. They cannot wield weapons with their tails, but can retrieve small, stored objects carried on them as a swift action.",
+				"benefit": { "target": "self", "text": "Retrieve small items as a swift action" },
+				"bonuses": {}
+			}
 		},
 		"alternateTraits": {
 			"Slapping Tail": {
+				"trigger": "Standard",
 				"description": "An amaru can use their tail to make a secondary natural attack that deals 1d8 + their strength modifier bludgeoning damage.",
+				"benefit": { "target": "self", "text": "Make a slam attack (1d8 + StrMod)" },
+				"bonuses": {},
 				"replaces": ["Pyromaniac"]
 			}
 		}
 	},
+
+
+	
 	"Avaar": {
 		"rp": 12,
 		"age": {
@@ -182,13 +109,25 @@
 			"Venerable": "40 years",
 			"Max Age": "40 +1d20 years"
 		},
+		"surnames": {
+			"Dahabiaj": "Arabic: Gold Crown",
+			"Gaabzaraq": "Arabic: Blue Forest",
+			"Gutaj-Ru": "",
+			"Hadaad": "Arabic: Smithy",
+			"Hitab": "Arabic: Woodsman",
+			"Ibs XX": "Arabic: Child Of",
+			"Ravala": "",
+			"Sammahamra": "Arabic: Red Sky",
+			"Sayaad": "Arabic: Fisher",
+			"Taayir-Alfiniq": "Arabic: Phoenix"
+		},
 		"male": {
-			"names": [],
+			"names": [ "Aabak, Arm-Uus, Aki-Ke, Azim, Barid, Bat-Saikhan, Belor, Hadzi, Hanbal, Kjell, Merhet-Nets, Nefer-Skai, Nonek, Pateba, Ra-Kheper-Ka, Seb, Tachus, Tezman, Vaelyth, Zylys" ],
 			"height": "5'5\" +2d8 inches (5'7\" - 6'9\")",
 			"weight": "120 lbs. +2d4×5 lbs. (130 – 160 lbs.)"
 		},
 		"female": {
-			"names": [],
+			"names": [ "Aula, Aurera, Bleka, Challa, Femi, Eopi, Indra, Kamshi, Kistra, Leyla, Meeka, Naytu, Pappi, Rhoot, Ronri, Safira, Sefu, Sephyris, Shafira, Thiti" ],
 			"height": "5'3\" +2d8 inches (5'5\" - 6'7\")",
 			"weight": "110 lbs. +2d4×5 lbs. (120 – 150 lbs.)"
 		},
@@ -203,9 +142,30 @@
 		"languages": ["Common"],
 		"bonusLanguages": ["Auran", "Draconic", "Elvish", "Gnomish", "Goblin", "Kamago", "Matoran", "Necriil", "Risko", "Sylvan", "Ulumi"],
 		"traits": {
-			"Eagle Eyes": "Avaar gain a +2 racial bonus on Perception checks and treat Perception as  class skill.",
-			"Envoy": "Avaar with an Intelligence score of 11 or higher gain comprehend languages, detect magic, detect poison, and read magic as spell-like abilities that can be used once a day.",
-			"Flight": "Avaar have a fly speed of 50 feet with average maneuverability."
+			"Eagle Eyes": {
+				"trigger": "Continuous",
+				"description": "Avaar gain a +2 racial bonus on Perception checks and treat Perception as a class skill.",
+				"benefit": { "target": "self", "text": "+2 bonus to Perception and treat is as a class skill" },
+				"bonuses": {
+					"Eagle Eyes": {
+						"value": 2,
+        				"type": "Trait",
+        				"targets": [ "perception" ]
+					}
+				}
+			},
+			"Envoy": {
+				"trigger": "Continuous",
+				"description": "Avaar with an Intelligence score of 11 or higher gain comprehend languages, detect magic, detect poison, and read magic as spell-like abilities that can be used once a day.",
+				"benefit": { "target": "self", "text": "Bonus abilities with high Intelligence" },
+				"bonuses": {}
+			},
+			"Flight": {
+				"trigger": "Continuous",
+				"description": "Avaar have a fly speed of 50 feet with average maneuverability.",
+				"benefit": { "target": "move", "text": "Fly 50 ft. (average)" },
+				"bonuses": {}
+			}
 		},
 		"alternateTraits": {
 			"Tropical Plumage": {
@@ -218,6 +178,9 @@
 			}
 		}
 	},
+
+
+	
 	"Cæth": {
 		"rp": 12,
 		"age": {
@@ -230,13 +193,25 @@
 			"Venerable": "70 years",
 			"Max Age": "70 +2d20 years"
 		},
+		"surnames": {
+			"Canyrhaf": "Welsh: Summersong",
+			"Coediwr": "Welsh: Woodsman",
+			"Curiadwyn": "Welsh: Spring Beat",
+			"Enaidgaeaf": "Welsh: Winter Soul",
+			"Foxelster": "",
+			"Gof": "Welsh: Smith",
+			"Hydrefcalon": "Welsh: AutumnHeart",
+			"Mab-XX": "Welsh: Child Of",
+			"Pysgotwr": "Welsh: Fisher",
+			"Tanganika": ""
+		},
 		"male": {
-			"names": [],
+			"names": [ "Aethlyn, Anda, Caladrel, Fezzez, Heldalel, Katsuo, Kieron, Lanliss, Lloyd, Meirdarel, Revalor, Rhys, Seldon, Talathel, Taji, Tauwir, Thaucaxius, Theo, Tom, Variel" ],
 			"height": "4'10\" +2d8 inches (5'0\" - 6'9\")",
 			"weight": "120 lbs. +2d8×5 lbs. (130 – 200 lbs.)"
 		},
 		"female": {
-			"names": [],
+			"names": [ "Alys, Amelia, Amrunelara, Ceri, Chie, Daralla, Elora, Faenia, Fezieso, ,Jathal, Kamy, Oparal, Merisiel, Renna, Skeeko, Solianna, Soumral, Tessara, Yalanduri, Ziziesh" ],
 			"height": "4'5\" +2d8 inches (5'5\" - 6'7\")",
 			"weight": "85 lbs. +2d8×5 lbs. (95 – 165 lbs.)"
 		},
@@ -251,6 +226,13 @@
 		"languages": ["Common"],
 		"bonusLanguages": ["Dwarven", "Elvish", "Gnomish", "Kamago", "Risko", "Sylvan", "Ulumi", "Undercommon"],
 		"traits": {
+			"TRAIT NAME": {
+				"trigger": "Continuous",
+				"description": "DESCRIPTION.",
+				"benefit": { "target": "self", "text": "SHOR BLURB" },
+				"bonuses": {}
+			},
+			
 			"Cat's Luck": "Once per day, before making a Reflex saving throw, a cæth can roll twice and take the better result.",
 			"Curiosity": "Cæth gain a +4 racial bonus on Diplomacy checks and treat Knowledge (history and local) as class skills. If either is already a class skill, they get a +2 racial bonus instead.",
 			"Stalker": "Perception and Stealth are always class skills for cæth.",
@@ -265,6 +247,9 @@
 			}
 		}
 	},
+
+
+	
 	"Geit": {
 		"rp": 12,
 		"age": {
@@ -276,6 +261,18 @@
 			"Old Age": "53 years",
 			"Venerable": "70 years",
 			"Max Age": "70 +2d20 years"
+		},
+		"Surnames": {
+			"Bergquist": "??: Mountain Quest?",
+			"Bikonnen": "??: Two Horn",
+			"Kjellman": "",
+			"Moyryla": "",
+			"Rafisk": "Norse: Fisher",
+			"Smith": "Norse: Smith",
+			"Thouin": "",
+			"Van Dan Elzan": "",
+			"Van Vleet": "",
+			"XX-Son": "Norse: Child Of"
 		},
 		"male": {
 			"names": [],
@@ -298,6 +295,13 @@
 		"languages": ["Common"],
 		"bonusLanguages": ["Draconic", "Dwarven", "Gnomish", "Goblin", "Kamago", "Matoran", "Risko", "Terran", "Undercommon"],
 		"traits": {
+			"TRAIT NAME": {
+				"trigger": "Continuous",
+				"description": "DESCRIPTION.",
+				"benefit": { "target": "self", "text": "SHOR BLURB" },
+				"bonuses": {}
+			},
+			
 			"Healthy": "Geiter gain a +4 racial bonus on Fortitude saves against disease and poison, including magical diseases.",
 			"Mountain-Born": "Geiter gain a +2 racial bonus on Acrobatics checks made to cross narrow ledges.",
 			"Craftsman": "Geiter gain a +2 racial bonus on Craft and Profession checks when using metal or stone.",
@@ -315,6 +319,9 @@
 			}
 		}
 	},
+
+
+	
 	"Kame": {
 		"rp": 12,
 		"age": {
@@ -327,6 +334,18 @@
 			"Venerable": "250 years",
 			"Max Age": "250 +3d20 years"
 		},
+			"Surnames": {
+				"Akaigara": "Japanese: Red Shell",
+				"Chairoko": "Japanese: Brown Scales",
+				"Kajiya": "Japanese: Smithy",
+				"Kojoto": "Japanese: Mill Person",
+				"Midorifu": "Japanese: Green Skin",
+				"Noko-": "Japanese: Child Of",
+				"Ryoshi": "Japanese: Fisher",
+				"Shinjuha": "Japanese: Pearl Tooth",
+				"Shizuka": "",
+				"Yeo": ""
+			},
 		"male": {
 			"names": [],
 			"height": "3'9\" +2d4 inches (3'11\" - 4'5\")",
@@ -348,6 +367,13 @@
 		"languages": ["Common", "Kamago"],
 		"bonusLanguages": ["Aquan", "Draconic", "Dwarven", "Elvish", "Gnomish", "Goblin", "Matoran", "Necriil", "Risko", "Undercommon"],
 		"traits": {
+			"TRAIT NAME": {
+				"trigger": "Continuous",
+				"description": "DESCRIPTION.",
+				"benefit": { "target": "self", "text": "SHOR BLURB" },
+				"bonuses": {}
+			},
+			
 			"Shell": "Kame gain a +3 natural armor bonus to AC.",
 			"Historian": "Kame gain a +2 racial bonus on Knowledge (History) checks and treat it as a class skill.",
 			"Skill Training": "Kame treat Knowledge (Geography) and Knowledge (Nature) as class skills.",
@@ -361,6 +387,10 @@
 			}
 		}
 	},
+
+
+
+	
 	"Zikaru": {
 		"rp": 12,
 		"age": {
@@ -373,6 +403,18 @@
 			"Venerable": "60 years",
 			"Max Age": "60 +1d20 years"
 		},
+			"Surnames": {
+				"Bandumu": "Akkadian: SMall",
+				"Barbarulibu": "Akkadian: Wolf Heart",
+				"Gidru": "Akkadian: Strike",
+				"Inmar": "Akkadian: Child Of",
+				"Kibtusum": "Akkadian: Wheat Fresh",
+				"Nevins": "",
+				"Nunulu": "Akkadian: Fish Man",
+				"Samu": "Akkadian: Sky",
+				"Uqnumsinnu": "Akkadian: Blue Tooth",
+				"Warquisum": "Akkadian: Green Wood"
+			},
 		"male": {
 			"names": [],
 			"height": "4'10\" +2d10 inches (5'0\" - 6'6\")",
@@ -394,6 +436,13 @@
 		"languages": ["Common"],
 		"bonusLanguages": ["Kamago", "Risko", "Ulumi", "Undercommon"],
 		"traits": {
+			"TRAIT NAME": {
+				"trigger": "Continuous",
+				"description": "DESCRIPTION.",
+				"benefit": { "target": "self", "text": "SHOR BLURB" },
+				"bonuses": {}
+			},
+			
 			"Animal Friend": "Zikari always treat Handle Animal and Ride as class skills.",
 			"Animal Minded": "Zikari get a +2 racial bonus on Handle Animal checks.",
 			"Natural Rider": "Zikari get a +2 racial bonus on Ride checks.",
@@ -408,6 +457,10 @@
 		}
 	},
 
+
+
+
+	
 	"Tembo": {
 		"rp": 12,
 		"age": {
@@ -420,6 +473,9 @@
 			"Venerable": "70 years",
 			"Max Age": "70 +2d20 years"
 		},
+					"Surnames": {
+				"Wagar": ""
+			},
 		"male": {
 			"names": [],
 			"height": "9'4\" +2d8 inches (9'6\" - 10'8\")",
@@ -441,6 +497,13 @@
 		"languages": ["Ulumi", "Common"],
 		"bonusLanguages": ["Draconic", "Dwarven", "Giantish", "Kamago", "Risko", "Undercommon"],
 		"traits": {
+			"TRAIT NAME": {
+				"trigger": "Continuous",
+				"description": "DESCRIPTION.",
+				"benefit": { "target": "self", "text": "SHOR BLURB" },
+				"bonuses": {}
+			},
+			
 			"Plagueborn": "Tembo gain a +2 racial bonus on saving throws against disease, ingested poisons, and becoming nauseated or sickened.",
 			"Sprinter": "Tembo gain a +10 foot racial bonus to their speed when charging, running, or withdrawing (but not double moving).",
 			"Tusks": "Tembo can use their tusks as a primary natural attack. They can make one gore attack per round that deals 1d8 + half their Strength modifier piercing damage.",
@@ -481,6 +544,13 @@
 		"languages": ["Common", "Perwhüa"],
 		"bonusLanguages": ["Draconic", "Elvish", "Gnomish", "Kamago", "Risko", "Sylvan"],
 		"traits": {
+			"TRAIT NAME": {
+				"trigger": "Continuous",
+				"description": "DESCRIPTION.",
+				"benefit": { "target": "self", "text": "SHOR BLURB" },
+				"bonuses": {}
+			},
+			
 			"Flight": "Perwhüa have a fly speed of 30 feet with clumsy maneuverability.",
 			"Low-Light Vision": "Perwhüa can see twice as far (60 feet) in dim light.",
 			"Slow Speed": "Perwhüa are a slow people and have a base speed of 20 feet, which is never modified by armor or encumbrance.",
@@ -521,6 +591,13 @@
 		"languages": ["Common"],
 		"bonusLanguages": ["Draconic", "Elvish", "Gnomish", "Necriil", "Risko", "Sylvan"],
 		"traits": {
+			"TRAIT NAME": {
+				"trigger": "Continuous",
+				"description": "DESCRIPTION.",
+				"benefit": { "target": "self", "text": "SHOR BLURB" },
+				"bonuses": {}
+			},
+			
 			"Aura-Touched": "Kets'Rir may cast prestidigitation at will.",
 			"Low-Light Vision": "Kets'Rir can see twice as far (60 feet) in dim light.",
 			"Quadruped": "Kets'Rir have 4 legs and two arms, giving them a +4 racial bonus to CMD against trip attempts. They also use armor and weapons as if they were medium creatures."
@@ -556,6 +633,13 @@
 		"languages": ["Undercommon"],
 		"bonusLanguages": ["Common", "Draconic", "Dwarven", "Giantish", "Goblin", "Risko", "Terran"],
 		"traits": {
+			"TRAIT NAME": {
+				"trigger": "Continuous",
+				"description": "DESCRIPTION.",
+				"benefit": { "target": "self", "text": "SHOR BLURB" },
+				"bonuses": {}
+			},
+			
 			"Stone Skin": "Gargoyles get a +2 natural armor bonus to AC.",
 			"Flight": "Gargoyles have a speed of 30 feet with clumsy maneuverability.",
 			"Flight 2": "Most gargoyles have well developed wings, granting a +10 to their fly speed and increasing their maneuverability to poor.",
@@ -596,6 +680,13 @@
 		"languages": ["Common", "Entish"],
 		"bonusLanguages": ["Dwarven", "Elvish", "Gnomish", "Kamago", "Matoran", "Risko", "Sylvan", "Undercommon"],
 		"traits": {
+			"TRAIT NAME": {
+				"trigger": "Continuous",
+				"description": "DESCRIPTION.",
+				"benefit": { "target": "self", "text": "SHOR BLURB" },
+				"bonuses": {}
+			},
+			
 			"Plant Immunity": "Ents are immune to all mind-affecting effects (charms, compulsions, moral effects, patterns, and phantasms).",
 			"Plant Immunity 2": "Ents are immune to paralysis, poison, polymorph, sleep effects, and stunning.",
 			"Camouflage": "Ents gain a +4 racial bonus to stealth checks when within a forest.",
@@ -622,6 +713,13 @@
 		"languages": ["Matoran"],
 		"bonusLanguages": ["Aquan", "Auran", "Common", "Dwarven", "Elvish", "Gnomish", "Ignan", "Kamago", "Risko", "Terran", "Ulumi", "Undercommon"],
 		"traits": {
+			"TRAIT NAME": {
+				"trigger": "Continuous",
+				"description": "DESCRIPTION.",
+				"benefit": { "target": "self", "text": "SHOR BLURB" },
+				"bonuses": {}
+			},
+			
 			"Construct Resistance": "Matoran get a +2 racial bonus on saving throws against disease, mind effects, poison, and effects that cause exhaustion or fatigue.",
 			"Swarming": "Matoran are used to living and fighting communally with other matoran. Up to two matoran can share the same square, and if they attack the same foe while they are sharing a square, they are considered to be flanking that foe.",
 			"Weapon Familiarity": "Matoran are proficient with Kanoka-Disks and Kanoka Disk Launchers.",
@@ -731,6 +829,13 @@
 		"languages": ["Common", "Dwarven"],
 		"bonusLanguages": ["Giantish", "Gnomish", "Goblin", "Terran", "Ulumi", "Undercommon"],
 		"traits": {
+			"TRAIT NAME": {
+				"trigger": "Continuous",
+				"description": "DESCRIPTION.",
+				"benefit": { "target": "self", "text": "SHOR BLURB" },
+				"bonuses": {}
+			},
+			
 			"Defensive Training": "Dwarves gain a +4 dodge bonus to AC against monsters of the giant subtype.",
 			"Hardy": "Dwarves gain a +2 racial bonus on saving throws against poison, spells, and spell-like abilities.",
 			"Stability": "Dwarves gain a +4 racial bonus to their Combat Maneuver Defense when resisting a bull rush or trip attempt while standing on the ground.",
@@ -780,6 +885,13 @@
 		"languages": ["Common", "Elvish"],
 		"bonusLanguages": ["Celestial", "Draconic", "Gnomish", "Goblin", "Kamago", "Risko", "Sylvan"],
 		"traits": {
+			"TRAIT NAME": {
+				"trigger": "Continuous",
+				"description": "DESCRIPTION.",
+				"benefit": { "target": "self", "text": "SHOR BLURB" },
+				"bonuses": {}
+			},
+			
 			"Elven Immunities": "Elves are immune to magic sleep effects and gain a +2 racial saving throw bonus against enchantment spells and effects.",
 			"Keen Senses": "Elves receive a +2 racial bonus on Perception checks.",
 			"Elven Magic": "Elves receive a +2 racial bonus on caster level checks made to overcome spell resistance. In addition, elves receive a +2 racial bonus on Spellcraft skill checks made to identify the properties of magic items.",
@@ -826,6 +938,13 @@
 		"languages": ["Common", "Gnomish", "Sylvan"],
 		"bonusLanguages": ["Draconic", "Dwarven", "Elven", "Giantish", "Goblin", "Risko", "Ulumi"],
 		"traits": {
+			"TRAIT NAME": {
+				"trigger": "Continuous",
+				"description": "DESCRIPTION.",
+				"benefit": { "target": "self", "text": "SHOR BLURB" },
+				"bonuses": {}
+			},
+			
 			"Defensive Training": "Gnomes gain a +4 dodge bonus to AC against monsters of the giant subtype.",
 			"Illusion Resistance": "Gnomes gain a +2 racial saving throw bonus against illusion spells and effects.",
 			"Keen Senses": "Gnomes receive a +2 racial bonus on Perception checks.",
@@ -875,6 +994,13 @@
 		"languages": ["Common"],
 		"bonusLanguages": ["Dwarven", "Elven", "English", "Gnomish", "Goblin", "Kamago", "Risko"],
 		"traits": {
+			"TRAIT NAME": {
+				"trigger": "Continuous",
+				"description": "DESCRIPTION.",
+				"benefit": { "target": "self", "text": "SHOR BLURB" },
+				"bonuses": {}
+			},
+			
 			"Fearless": "Halflings receive a +2 racial bonus on all saving throws against fear. This bonus stacks with the bonus granted by halfling luck.",
 			"Halfling Luck": "Halflings receive a +1 racial bonus on all saving throws.",
 			"Sure-Footed": "Halflings receive a +2 racial bonus on Acrobatics and Climb checks.",
@@ -919,6 +1045,13 @@
 		"languages": ["Common"],
 		"bonusLanguages": ["Aboleth", "Abyssal", "Aquan", "Auran", "Celestial", "Draconic", "Dwarven", "Elvish", "English", "Entish", "Giantish", "Gnomish", "Goblin", "Ignan", "Infernal", "Kamago", "Matoran", "Necriil", "Perwhüa", "Risko", "Sylvan", "Terran", "Ulumi", "Undercommon"],
 		"traits": {
+			"TRAIT NAME": {
+				"trigger": "Continuous",
+				"description": "DESCRIPTION.",
+				"benefit": { "target": "self", "text": "SHOR BLURB" },
+				"bonuses": {}
+			},
+			
 			"Bonus Feat": "Humans select one extra feat at 1st level.",
 			"Skilled": "Humans gain an additional skill rank at first level and one additional rank whenever they gain a level."
 		},
@@ -966,6 +1099,13 @@
 		"languages": ["Draconic"],
 		"bonusLanguages": ["Common", "Dwarven", "Gnomish", "Goblin", "Risko", "Undercommon"],
 		"traits": {
+			"TRAIT NAME": {
+				"trigger": "Continuous",
+				"description": "DESCRIPTION.",
+				"benefit": { "target": "self", "text": "SHOR BLURB" },
+				"bonuses": {}
+			},
+			
 			"Armor": "Kobolds' naturally scaly skin grants them a +1 natural armor bonus.",
 			"Crafty": "Kobolds gain a +2 racial bonus on Craft (trapmaking), Perception, and Profession (miner) checks. Craft (trapmaking) and Stealth are always class skills for a kobold.",
 			"Darkvision": "Kobolds can see perfectly in the dark up to 60 feet.",
@@ -1015,6 +1155,13 @@
 		"languages": ["Goblin"],
 		"bonusLanguages": ["Common", "Draconic", "Dwarven", "Gnomish", "Risko", "Ulumi"],
 		"traits": {
+			"TRAIT NAME": {
+				"trigger": "Continuous",
+				"description": "DESCRIPTION.",
+				"benefit": { "target": "self", "text": "SHOR BLURB" },
+				"bonuses": {}
+			},
+			
 			"Skilled": "Goblins gain a +4 racial bonus on Ride and Stealth checks.",
 			"Fast Movement": "Goblins gain a +10 foot bonus to their base speed (this is already added to their Base Speed above.)",
 			"Darkvision": "Goblins see perfectly in the dark up to 60 feet."
@@ -1058,6 +1205,13 @@
 		"languages": ["Common", "Goblin"],
 		"bonusLanguages": ["Draconic", "Dwarven", "Infernal", "Giantish", "Ulumi"],
 		"traits": {
+			"TRAIT NAME": {
+				"trigger": "Continuous",
+				"description": "DESCRIPTION.",
+				"benefit": { "target": "self", "text": "SHOR BLURB" },
+				"bonuses": {}
+			},
+			
 			"Sneaky": "Hobgoblins receive a +4 racial bonus on Stealth checks.",
 			"Darkvision": "Hobgoblins can see perfectly in the dark up to 60 feet."
 		},
