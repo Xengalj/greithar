@@ -602,16 +602,16 @@
 			"Venerable": "70 years",
 			"Max Age": "70 +2d20 years"
 		},
-					"Surnames": {
-				"Wagar": ""
-			},
+		"surnames": {
+			"Wagar": ""
+		},
 		"male": {
-			"names": [],
+			"names": [ "Baraka, Elea, Jaha, Jalopy, Jiona, Kesi, Kinja, Kontij, Kwashi, Malkia, Olri, Oolyey, Rolyu, Saada, Silnoo, Sudin, Tontil, Unyel, Zakiya, Zurus" ],
 			"height": "9'4\" +2d8 inches (9'6\" - 10'8\")",
 			"weight": "460 lbs. +2d8×10 lbs. (680 – 620 lbs.)"
 		},
 		"female": {
-			"names": [],
+			"names": [ "Amani, Atieno, Bwana Mkubwa, Boonjos, Din, Dremooj, Drooldrom, Faraji, Hajon, Jamba, Khalfani, Mbita, Moyo, Ogol, Sogon, Svelos, Telrus, Torduroj, Zanruv, Zawadi" ],
 			"height": "9'3\" +2d8 inches (9'5\" - 10'7\")",
 			"weight": "450 lbs. +2d8×10 lbs. (470 – 630 lbs.)"
 		},
@@ -626,36 +626,30 @@
 		"languages": ["Ulumi", "Common"],
 		"bonusLanguages": ["Draconic", "Dwarven", "Giantish", "Kamago", "Risko", "Undercommon"],
 		"traits": {
-
-			
 			"Plagueborn": {
 				"trigger": "Continuous",
-				"description": "DESCRIPTION.",
-				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"description": "Tembo gain a +2 racial bonus on saving throws against disease, ingested poisons, and becoming nauseated or sickened.",
+				"benefit": { "target": "self", "text": "+2 bonus vs disease, ingested poisons, nauseated, & sickened" },
 				"bonuses": {}
 			},
-			"Tembo gain a +2 racial bonus on saving throws against disease, ingested poisons, and becoming nauseated or sickened.",
 			"Sprinter": {
 				"trigger": "Continuous",
-				"description": "DESCRIPTION.",
-				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"description": "Tembo gain a +10 foot racial bonus to their speed when charging, running, or withdrawing (but not double moving).",
+				"benefit": { "target": "self", "text": "+10 ft when charging, running, or withdrawing" },
 				"bonuses": {}
 			},
-			"Tembo gain a +10 foot racial bonus to their speed when charging, running, or withdrawing (but not double moving).",
 			"Tusks": {
-				"trigger": "Continuous",
-				"description": "DESCRIPTION.",
-				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"trigger": "Standard",
+				"description": "Tembo can use their tusks as a primary natural attack. They can make one gore attack per round that deals 1d8 + half their Strength modifier piercing damage.",
+				"benefit": { "target": "self", "text": "Gore (1d8 + Str/2 Piercing)" },
 				"bonuses": {}
 			},
-			"Tembo can use their tusks as a primary natural attack. They can make one gore attack per round that deals 1d8 + half their Strength modifier piercing damage.",
 			"Stampede": {
 				"trigger": "Continuous",
-				"description": "DESCRIPTION.",
-				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"description": "A tembo deals 2d8 + one and a half times thier Strength modifier when using their tusks as part of a charge."
+				"benefit": { "target": "self", "text": "Gore does 2d8 + Str when part of a charge" },
 				"bonuses": {}
-			},
-			"A tembo deals 2d8 + one and a half times thier Strength modifier when using their tusks as part of a charge."
+			}
 		},
 		"alternateTraits": {}
 	},
@@ -671,13 +665,25 @@
 			"Venerable": "60 years",
 			"Max Age": "60 +2d20 years"
 		},
+		"surnames": {
+			"Ao'Uri": "Maori: World Offspring",
+			"Glossata": "??: Suborder of Lepidoptera",
+			"Kahuku": "Maori: Dark",
+			"Kahu'Kōwhai": "Maori: Yellow Dress",
+			"Kahu'Kura": "Maori: School Uniform",
+			"Mokarakare": "Maori: Lazy",
+			"Pepe'Ma": "Maori: White Baby (Butterfly)",
+			"Pepe'Parahua": "Maori: Dirty Baby",
+			"Pepe'Para'Riki": "Maori: Baby Onion",
+			"Pepe'Pouri": "Maori: Sad Baby"
+		},
 		"male": {
-			"names": [],
+			"names": [ "" ],
 			"height": "3'8\" +2d4 inches (3'10\" - 4.4\")",
 			"weight": "30 lbs. +2d4 lbs. (32 – 38 lbs.)"
 		},
 		"female": {
-			"names": [],
+			"names": [ "" ],
 			"height": "3'6\" +2d4 inches (3'8\" - 4'2\")",
 			"weight": "20 lbs. +2d4 lbs. (22 – 28 lbs.)"
 		},
@@ -692,36 +698,30 @@
 		"languages": ["Common", "Perwhüa"],
 		"bonusLanguages": ["Draconic", "Elvish", "Gnomish", "Kamago", "Risko", "Sylvan"],
 		"traits": {
-
-			
 			"Flight": {
 				"trigger": "Continuous",
-				"description": "DESCRIPTION.",
-				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"description": "Perwhüa have a fly speed of 30 feet with clumsy maneuverability.",
+				"benefit": { "target": "move", "text": "Fly 30 ft. (Clumsy)" },
 				"bonuses": {}
 			},
-			"Perwhüa have a fly speed of 30 feet with clumsy maneuverability.",
 			"Low-Light Vision": {
 				"trigger": "Continuous",
-				"description": "DESCRIPTION.",
-				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"description": "Perwhüa can see twice as far (60 feet) in dim light.",
+				"benefit": { "target": "senses", "text": "Low-Light Vision 60 ft." },
 				"bonuses": {}
 			},
-			"Perwhüa can see twice as far (60 feet) in dim light.",
 			"Slow Speed": {
 				"trigger": "Continuous",
-				"description": "DESCRIPTION.",
-				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"description": "Perwhüa are a slow people and have a base speed of 20 feet, which is never modified by armor or encumbrance.",
+				"benefit": { "target": "move", "text": "Base speed is 20 ft." },
 				"bonuses": {}
 			},
-			"Perwhüa are a slow people and have a base speed of 20 feet, which is never modified by armor or encumbrance.",
 			"Multi-Armed": {
 				"trigger": "Continuous",
-				"description": "DESCRIPTION.",
-				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"description": "Perwhüa have additional arms. They have 1 primary hand, but can wield weapons in their off hands. They have a total of 4 arms."
+				"benefit": { "target": "self", "text": "You have 4 arms instead of 2" },
 				"bonuses": {}
-			},
-			"Perwhüa have additional arms. They have 1 primary hand, but can wield weapons in their off hands. They have a total of 4 arms."
+			}
 		},
 		"alternateTraits": {}
 	},
@@ -737,6 +737,7 @@
 			"Venerable": "60 years",
 			"Max Age": "60 +2d20 years"
 		},
+		"surnames": {},
 		"male": {
 			"names": [],
 			"height": "7'2\" +2d8 inches (7'4\" - 8'6\")",
@@ -796,6 +797,7 @@
 			"Venerable": "500 years",
 			"Max Age": "500 +4d20 years"
 		},
+		"surnames": {},
 		"sexless": {
 			"names": [],
 			"height": "5'6\" +1d12 inches (5'7\" - 6'6\")",
@@ -869,6 +871,7 @@
 			"Venerable": "350 years",
 			"Max Age": "350 +5d100 years"
 		},
+		"surnames": {},
 		"sexless": {
 			"names": [],
 			"height": "7'0\" +2d8 inches (7'2\" - 8'4\")",
@@ -944,7 +947,9 @@
 		"age": {
 			"Adulthood": 100000
 		},
+		"surnames": {},
 		"sexless": {
+			"names": [],
 			"height": "2'8\" +1d4 inches (2'9\" - 3'2\")",
 			"weight": "30 lbs. +1d4×5 lbs. (35 – 55 lbs.)"
 		},
