@@ -1721,7 +1721,6 @@ export default {
     },
     saveMonster() {
       console.log("This", this);
-      console.log("Settings", this.userSettings);
       console.log("Name", this.source.name); // this.title could have CR
       console.log("Basics", this.basics);
       console.log("Inventory", this.inventory);
@@ -1732,6 +1731,7 @@ export default {
       console.log("Actions", this.actions);
       console.log("Skills", this.skills);
       // console.log(this.magic);
+      console.log("Settings", this.userSettings);
       console.log("Notes", this.notes);
     }
   }

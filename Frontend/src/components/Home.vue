@@ -29,30 +29,7 @@
 
 
     <el-row class="center-horz" justify="space-between">
-      <el-col :span="6">
-        <span v-if="user.roles.includes('admin')">
-          <router-link to="/dm-screen" class="nav-link">
-            <el-button type="primary">
-              <g-icon iconSize="24px" iconName="map" /> DM Screen
-            </el-button>
-          </router-link>
-        </span>
-      </el-col>
-
-      <el-col :span="6">
-        <router-link to="/equipment" class="nav-link">
-          <el-button type="primary">
-            <g-icon iconSize="24px" iconName="openScroll" /> Lore (WIP)
-          </el-button>
-        </router-link>
-      </el-col>
-
-      <el-col :span="6">
-        <router-link to="/equipment" class="nav-link">
-          <el-button type="primary">
-            <g-icon iconSize="24px" iconName="lockedBook" /> Rules (WIP)
-          </el-button>
-        </router-link>
+      <el-col :span="8">
         <router-link to="/equipment" class="nav-link">
           <el-button type="primary">
             <g-icon iconSize="24px" iconName="inventory" /> Equipment
@@ -65,7 +42,21 @@
         </router-link>
       </el-col>
 
-      <el-col :span="6">
+      <el-col :span="8">
+        <router-link to="/equipment" class="nav-link">
+          <el-button type="primary">
+            <g-icon iconSize="24px" iconName="openScroll" /> Lore (WIP)
+          </el-button>
+        </router-link>
+
+        <router-link to="/equipment" class="nav-link">
+          <el-button type="primary">
+            <g-icon iconSize="24px" iconName="lockedBook" /> Rules (WIP)
+          </el-button>
+        </router-link>
+      </el-col>
+
+      <el-col :span="8">
         <router-link to="/about" class="nav-link">
           <el-button type="primary">
             <g-icon iconSize="24px" iconName="openBook" /> About
@@ -73,6 +64,56 @@
         </router-link>
       </el-col>
     </el-row>
+
+
+
+    <el-row class="center-horz" justify="space-between">
+      <el-col :span="10">
+        <el-divider> DM <g-icon iconSize="24px" iconName="rolledScroll" /> </el-divider>
+
+        <span v-if="user.roles.includes('storyteller')">
+          <router-link to="/dm-screen" class="nav-link">
+            <el-button type="primary">
+              <g-icon iconSize="24px" iconName="map" /> DM Screen
+            </el-button>
+          </router-link>
+        </span>
+
+        <span v-if="user.roles.includes('storyteller')">
+          <router-link to="/dm-screen" class="nav-link">
+            <el-button type="primary">
+              <g-icon iconSize="24px" iconName="map" /> Your Campaigns
+            </el-button>
+          </router-link>
+        </span>
+      </el-col>
+
+      <el-col :span="10" :offset="4">
+        <el-divider> ADMIN <g-icon iconSize="24px" iconName="rolledScroll" /> </el-divider>
+
+        <span v-if="user.roles.includes('admin')">
+          <router-link to="/user/list" class="nav-link">
+            <el-button type="primary">
+              <g-icon iconSize="24px" iconName="userList" :iconColor="iconColor" /> All Users
+            </el-button>
+          </router-link>
+        </span>
+
+        <span v-if="user.roles.includes('admin')">
+          <router-link :to="{ name: 'character-list' }" class="nav-link">
+            <el-button type="primary">
+              <g-icon iconSize="24px" iconName="userList" :iconColor="iconColor" /> All Characters
+            </el-button>
+          </router-link>
+        </span>
+      </el-col>
+    </el-row>
+
+
+
+
+
+
   </div>
 </template>
 

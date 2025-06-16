@@ -1,61 +1,25 @@
 module.exports = (sequelize, Sequelize) => {
   const Character = sequelize.define("characters", {
-
-/*
-  // TODO: build similar to refactored creature card json
-*/
-
+    // don't technically need to explicitly state id here
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true
     },
-    user_id: {
-      type: Sequelize.INTEGER
-    },
-    // belongsToMany (char through user_characters)
-    // character_id // belongsToMany (db.user through user_characters)
-    // race_id  // belongs to many (char through character_races)
-    // class_id  // belongs to many (char through character_classes)
+    // belongsTo ( user )
+
     name: {
       type: Sequelize.STRING
     },
-    level: {
+    basics: {
       type: Sequelize.JSON,
       defaultValue: {
-        "currentLevel": 1,
-        "favoredClassBonus": {
-          "class_id": 0,
-          "bonus": "+1 HP, Skill, or Galdur per Level"
-        },
-        "classes": [
-          {
-            "class_id": 0,
-            "levels": 1
-          }
-        ]
-      }
-    },
-    abilities: {
-      type: Sequelize.JSON,
-      defaultValue: [
-        { "label": 'Str', "value": 10 },
-        { "label": 'Dex', "value": 10 },
-        { "label": 'Con', "value": 10 },
-        { "label": 'Int', "value": 10 },
-        { "label": 'Wis', "value": 10 },
-        { "label": 'Cha', "value": 10 }
-      ]
-    },
-    feats: {
-      type: Sequelize.JSON
-    },
-    traits: {
-      type: Sequelize.JSON
-    },
-    role_play: {
-      type: Sequelize.JSON,
-      defaultValue: {
-        "alignment": "NG",
+        "cr": 0,
+        "alignment": "N",
+        "environment": "Urban",
+        "size": "Medium",
+        "speed": {},
+        "type": {},
+
         "diety": "",
         "appearance": {
           "gender": "",
@@ -64,14 +28,98 @@ module.exports = (sequelize, Sequelize) => {
           "weight": "",
         },
         "backstory": "When I was, a young boy...",
+        "favoredClassBonus": {
+          "class_id": 0,
+          "bonus": "+1 HP, Skill, or Galdur per Level"
+        }
       }
     },
-    extras: {
+    classes: {
+      type: Sequelize.JSON,
+      defaultValue: {}
+    },
+    abilities: {
+      type: Sequelize.JSON,
+      defaultValue: {}
+    },
+    attributes: {
       type: Sequelize.JSON,
       defaultValue: {
-        "heroPoints": 1,
-        "notes": "Your notes here...",
+        "Str": { "total": 10, "sources": [] }, "StrMod": 0,
+        "Dex": { "total": 10, "sources": [] }, "DexMod": 0,
+        "Con": { "total": 10, "sources": [] }, "ConMod": 0,
+        "Int": { "total": 10, "sources": [] }, "IntMod": 0,
+        "Wis": { "total": 10, "sources": [] }, "WisMod": 0,
+        "Cha": { "total": 10, "sources": [] }, "ChaMod": 0
       }
+    },
+    health: {
+      type: Sequelize.JSON,
+      defaultValue: {}
+    },
+    actions: {
+      type: Sequelize.JSON,
+      defaultValue: {
+        melee: {}, ranged: {}, special: {}
+      }
+    },
+    skills: {
+      type: Sequelize.JSON,
+      defaultValue: {}
+    },
+    magic: {
+      type: Sequelize.JSON,
+      defaultValue: {}
+    },
+    inventory: {
+      type: Sequelize.TEXT('long'),
+      get: function() { return JSON.parse(this.getDataValue('inventory')); },
+      set: function(val) { return this.setDataValue( 'inventory', JSON.stringify(val) ); },
+      defaultValue: function() {
+        let inv = [
+          { 'label': 'Magic Items', 'extras': { 'icon': 'amulet' }, 'children': [
+            { 'label': 'Head', 'extras': { 'capacity': 1 }, 'children': [] },
+            { 'label': 'Headband', 'extras': { 'capacity': 1 }, 'children': [] },
+            { 'label': 'Eyes', 'extras': { 'capacity': 1 }, 'children': [] },
+            { 'label': 'Shoulders', 'extras': { 'capacity': 1 }, 'children': [] },
+            { 'label': 'Neck', 'extras': { 'capacity': 1 }, 'children': [] },
+            { 'label': 'Chest', 'extras': { 'capacity': 1 }, 'children': [] },
+            { 'label': 'Body', 'extras': { 'capacity': 1 }, 'children': [] },
+            { 'label': 'Belt', 'extras': { 'capacity': 1 }, 'children': [] },
+            { 'label': 'Wrists', 'extras': { 'capacity': 1 }, 'children': [] },
+            { 'label': 'Ring 1', 'extras': { 'capacity': 1 }, 'children': [] },
+            { 'label': 'Ring 2', 'extras': { 'capacity': 1 }, 'children': [] },
+            { 'label': 'Feet', 'extras': { 'capacity': 1 }, 'children': [] },
+            { 'label': 'Slotless', 'extras': { 'capacity': 1 }, 'children': [] },
+          ] },
+          { 'label': 'Equipped',  'extras': { 'icon': 'equipment' }, 'children': [
+            { 'label': 'Armor',   'extras': { 'icon': 'armor', 'capacity': 1 }, 'children': [] },
+            { 'label': 'Weapons', 'extras': { 'icon': 'weapons' }, 'children': [
+              { 'label': 'Hands', 'extras': { 'icon': 'abilityPalm', 'capacity': 2 }, 'children': [] },
+              { 'label': 'Back',  'extras': { 'icon': 'swordShield', 'capacity': 2 }, 'children': [] },
+            ] }
+          ] },
+          { 'label': 'Items', 'extras': { 'icon': 'inventory' }, 'children': [
+            { 'label': 'Backpack', 'extras': { 'icon': 'backpack', 'capacity': 50 }, 'children': [] }
+          ] },
+        ];
+        return JSON.stringify(inv);
+      }
+    },
+    userSettings: {
+      type: Sequelize.JSON,
+      defaultValue: {
+        "expandInventory": ['Equipped', 'Armor', 'Weapons', 'Hands', 'Back', 'Items'],
+        "cardTab": "main",
+        "mainSections": [ "defense", "actions", "conditions" ],
+        "heroPoints": 1,
+      }
+    },
+    conditions: {
+      type: Sequelize.JSON
+    },
+    notes: {
+      type: Sequelize.STRING
     }
   });
 

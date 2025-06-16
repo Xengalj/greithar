@@ -10,7 +10,7 @@ const app = express();
 *                           *
 \***************************/
 let isProd = 0
-let reSeed = 0
+let reSeed = 1
 
 if (isProd) { app.use(express.static(path)); }
 
@@ -26,7 +26,6 @@ app.use(express.urlencoded({ extended: true }));
 
 // database
 const db = require("./app/models");
-const Role = db.role;
 // Database Syncing
 if (reSeed) {
   // db.character.drop();
@@ -54,7 +53,7 @@ if (isProd) {
 // routes
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
-// require('./app/routes/character.routes')(app);
+require('./app/routes/character.routes')(app);
 require('./app/routes/data.routes')(app);
 
 // set port, listen for requests
@@ -70,77 +69,96 @@ app.listen(PORT, () => {
 *                           *
 \***************************/
 function initial() {
-  Role.create({ id: 1, name: "admin" });
-  Role.create({ id: 2, name: "storyteller" });
-  Role.create({ id: 3, name: "user" });
+  db.role.create({ id: 1, name: "admin" });
+  db.role.create({ id: 2, name: "storyteller" });
+  db.role.create({ id: 3, name: "user" });
 
+  // crete test user with "user" role
   db.user.create({
     id: 1,
     username: "TrevTest",
     email: "trevor@musson.net",
     password: bcrypt.hashSync("pwd4test", 8)
   })
-    // set test user to have user role
-    .then(user => { user.setRoles([3]) });
+  .then(user => { user.setRoles([3]) });
+
+  // create xen user with all roles
   db.user.create({
     id: 2,
     username: "Xengalj",
     email: "giji4454@gmail.com",
     password: bcrypt.hashSync("Klefki719!", 8)
   })
-    .then(user => {
-      // Set Xen as all rolls
-      user.setRoles([1, 2, 3]);
-    });
+  .then(user => { user.setRoles([1, 2, 3]) });
+
+  // create eric user with all roles
+  db.user.create({
+    id: 3,
+    username: "Eric",
+    email: "eric@awesome.com",
+    password: bcrypt.hashSync("pwd4eric", 8)
+  })
+  .then(user => { user.setRoles([1, 2, 3]) });
 
   db.character.create({
     id: 0,
-    user_id: 2, // belongsToMany (char through user_characters)
     name: "Smelborp",
-    level: {
-      "currentLevel": 1,
-      "favoredClassBonus": {
-        "class_id": 0,
-        "bonus": "+1 HP, Skill, or Galdur per Level"
-      },
-      "characterAbilites": [ {},
-        { "feat": "ex" }
-      ],
-      "classes": [ {},
-        {
-          "class_id": 0,
-          // bloodrager?
-        }
-      ]
-    },
-    stats: {
-      abilities: [
-        { "label": 'Str', "value": 10 },
-        { "label": 'Dex', "value": 10 },
-        { "label": 'Con', "value": 10 },
-        { "label": 'Int', "value": 10 },
-        { "label": 'Wis', "value": 10 },
-        { "label": 'Cha', "value": 10 }
-      ],
-      traits: {},
-    },
-    role_play: {
-      "campaign": "",
-      "alignment": "NG",
-      "diety": "",
-      "appearance": {
-        "gender": "",
-        "age": 21,
-        "height": "",
-        "weight": "",
-      },
-      "backstory": "When I was, a young boy...",
-    },
-    extras: {
-      "heroPoints": 1,
-      "notes": "Your notes here...",
+    attributes: {
+      "Str": { "total": 18, "sources": [] }, "StrMod": 4,
+      "Dex": { "total": 13, "sources": [] }, "DexMod": 1,
+      "Con": { "total": 16, "sources": [] }, "ConMod": 3,
+      "Int": { "total": 3, "sources": [] }, "IntMod": -4,
+      "Wis": { "total": 11, "sources": [] }, "WisMod": 0,
+      "Cha": { "total": 10, "sources": [] }, "ChaMod": -3
     }
-  });
+  })
+  .then(character => { character.setUser(2) });
+  db.character.create({
+    id: 1,
+    name: "Nebtorp",
+    magic: {
+      "race1": {
+        "style": "Spontaneous Arcane",
+        "castingAtr": "Cha",
+        "galdur": { "total": 195, "currOpen": 50, "currReserve": 50 },
+        "casterLevel": 7,
+        "concentration": "10 (CL [7] + Cast Abil [3])        CALC",
+        "spellsPerDay": [ -1, 7, 7, 5 ],
+        "spellsKnown": [
+          [ "arcane mark", "light", "mage hand", "mending", "message", "prestidigitation", "read magic" ],
+          [ "alarm", "grease", "magic missile", "shield", "true strike" ],
+          [ "invisibility", "resist energy", "see invisibility" ],
+          [ "dispel magic",
+            {
+              "Name": "Haste",
+              "Description": "",
+              "Casting Time": "1 standard action",
+              "Components": "V, S, M (a shaving of licorice root)",
+              "Range": "Close          CALC",
+              "Targets": "one creature/level, no two of which can be more than 30 ft. apart",
+              "Duration": "1 round/level",
+              "Saving Throw": "Fortitude negates (harmless)",
+              "Spell Resistance": "yes (harmless)"
+            }
+          ]
+        ],
+      },
+      "race2": {
+        "style": "Spontaneous Arcane",
+        "castingAtr": "Charisma",
+        "casterLevel": 17,
+        "concentration": "20 (CL [17] + Cast Abil [3])  REMOVE",
+        "spellsPerDay": [ -1, -1, -1, -1 ],
+        "spellsKnown": [
+          [ "detect magic" ],
+          [],
+          [ "pyrotechnics" ],
+          [ "suggestion" ]
+        ]
+      }
+    }
+  })
+  .then(character => { character.setUser(2) });
 
 
 }

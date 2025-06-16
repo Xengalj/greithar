@@ -160,8 +160,7 @@ exports.delete = (req, res) => {
     if (!user) { return res.status(404).send({ message: "User not found!" }); }
     let name = user.username;
     user.destroy();
-    res.status(200).send({ message: `${name} registered successfully!` });
-
+    res.status(200).send({ message: `${name} delteted successfully!` });
   })
   .catch(err => { res.status(500).send({ message: err.message }); });
 };

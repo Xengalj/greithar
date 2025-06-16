@@ -127,7 +127,7 @@ const routes = [
     },
     children: [
       {
-        path: "list",
+        path: "list/:id?",
         name: "character-list",
         component: () => import("./components/character/List.vue"),
         meta: {
@@ -157,7 +157,7 @@ const routes = [
       {
         path: "edit/:id",
         name: "character-edit",
-        component: temp,
+        component: () => import("./components/character/Edit.vue"),
         meta: {
           breadcrumb: "Edit Character",
           title: "Edit character",

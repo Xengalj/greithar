@@ -16,7 +16,7 @@
 			"Max Age": "70 +2d20 years"
 		},
 		"surnames": {
-			"Ashcraft": "",
+			"Ashcraft": "Common: Fire Worker",
 			"Challwaq": "Quechua: Fisher",
 			"Heitala": "",
 			"Herrero": "Quechua: Smith",
@@ -35,7 +35,7 @@
 		"female": {
 			"height": "6'6\" +2d10 inches (6'8\" - 8'4\")  (5 - 7 x2)",
 			"weight": "225 lbs. +2d10×5 lbs. (235 – 325 lbs.)",
-			"names": [ "Auka", "Caipa", "Chalco", "Chinpu", "Kucha", "Llo'Que", "Nyusta", "Ophiiphelia", "Pari", "Phoexis", "Qatquil", "Qori", "Rauwa", "Shero", "Talla", "Tamia", "Thiesla", "Uluqu'u", "Wayna" ]
+			"names": [ "Auka", "Caipa", "Chalco", "Chinpu", "Kucha", "Llo'Que", "Nyusta", "Ophiiphelia", "Pari", "Phoexis", "Qatquil", "Qori", "Rauwa", "Shero", "Talla", "Tamia", "Thiesla", "Uluqu'u", "Usqu", "Wayna" ]
 		},
 		"abilityMods": {
 			"Dexterity": 2,
@@ -125,7 +125,7 @@
 			"weight": "120 lbs. +2d4×5 lbs. (130 – 160 lbs.)"
 		},
 		"female": {
-			"names": [ "Aula", "Aurera", "Bleka", "Challa", "Femi", "Elliolis", "Eopi", "Indra", "Kamshi", "Kistra", "Leyla", "Meeka", "Naytu", "Pappi", "Rhoot", "Ronri", "Safira", "Sefu", "Sephyris", "Shafira", "Thiti" ],
+			"names": [ "Aula", "Aurera", "Bleka", "Challa", "Femi", "Elliolis", "Eopi", "Kamshi", "Kistra", "Leyla", "Meeka", "Naytu", "Pappi", "Rhoot", "Ronri", "Safira", "Sefu", "Sephyris", "Shafira", "Thiti" ],
 			"height": "5'3\" +2d8 inches (5'5\" - 6'7\")",
 			"weight": "110 lbs. +2d4×5 lbs. (120 – 150 lbs.)"
 		},
@@ -286,7 +286,7 @@
 			"Venerable": "70 years",
 			"Max Age": "70 +2d20 years"
 		},
-		"Surnames": {
+		"surnames": {
 			"Bergquist": "??: Mountain Quest",
 			"Bikonnen": "??: Two Horn",
 			"Kjellman": "",
@@ -778,7 +778,7 @@
 			"Max Age": "500 +4d20 years"
 		},
 		"surnames": { "": "Gargoyles don't typically have family names and are usually solitary" },
-		"sexless": {
+		"agender": {
 			"names": [ "Aherras", "Delva", "Ezivo", "Fera", "Jodokri", "Reilvex", "Robol", "Saakorum", "Udu", "Zamraaval" ],
 			"height": "5'6\" +1d12 inches (5'7\" - 6'6\")",
 			"weight": "460 lbs. +2d8×10 lbs. (480 – 620 lbs.)"
@@ -856,8 +856,8 @@
 			"Salicaceae": "??: Willow Family - Willow",
 			"Wattieza": "??: Earliest Known Tree"
 		},
-		"sexless": {
-			"names": [ "Aracorn", "Christofern", "Cleaford", "Collinwood", "Forest", "Latreefa", "Oakly", "Trent", "X", "x" ],
+		"agender": {
+			"names": [ "Aracorn", "Christofern", "Cleaford", "Collinwood", "Forest", "Latreefa", "Oakly", "Trent" ],
 			"height": "7'0\" +2d8 inches (7'2\" - 8'4\")",
 			"weight": "675 lbs. +2d10×5 lbs. (385 – 475 lbs.)"
 		},
@@ -920,8 +920,8 @@
 	"Matoran": {
 		"rp": 12,
 		"age": { "Adulthood": 100000 },
-		"surnames": { "": "Gargoyles don't typically have family names and are usually solitary" },
-		"sexless": {
+		"surnames": { "": "Matoran don't have surnames" },
+		"agender": {
 			"names": [],
 			"height": "2'8\" +1d4 inches (2'9\" - 3'2\")",
 			"weight": "30 lbs. +1d4×5 lbs. (35 – 55 lbs.)"
@@ -1562,12 +1562,12 @@
 			"Max Age": "40 +1d20 years"
 		},
 		"male": {
-			"names": [],
+			"names": [ "Boorgub", "Chuffy", "Churkus", "Drubbus", "Gawg", "Ghorg", "Gogmurch", "Irnk", "Kavak", "Mogmurch", "Mogawg", "Nurpus", "Pogus", "Poog", "Ronk", "Rotfoot", "Unk", "Vogun", "Zobmaggle", "Zord" ],
 			"height": "2'8\" +2d4 inches (2'10\" - 3'4\")",
 			"weight": "30 lbs. +2d4 lbs. (32 – 38 lbs.)"
 		},
 		"female": {
-			"names": [],
+			"names": [ "Aka", "Chee", "Fevva", "Geedra", "Goomluga", "Gretcha", "Hoglob", "Janka", "Klongy", "Luckums", "Lupi", "Medge", "Namby", "Olba", "Rempy", "Reta", "Ruxi", "Vruta", "Yalla", "Ziku" ],
 			"height": "2'6\" +2d4 inches (2'8\" - 3'2\")",
 			"weight": "25 lbs. +2d4 lbs. (27 – 33 lbs.)"
 		},
