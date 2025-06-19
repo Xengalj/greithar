@@ -133,7 +133,7 @@ export default {
 
     CharacterService.getAllCharacters(this.listID).then(response => {
       this.characters = JSON.parse(response.characters);
-      console.log(this.characters);
+      // console.log(this.characters);
       this.loading = false;
     })
     .catch(err => { console.error(err); });

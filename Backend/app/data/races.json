@@ -1,8 +1,5 @@
 
 {
-	"Surnames": [ "Fafinski", "Kremar", "Lara'Moor", "Lusardi", "Mlinar", "Puska", "Radloff", "Salanda", "Scorvan", "Tafralian", "Thazel", "Tuggle", "Vilagrana", "Vortal", "Zamora" ],
-
-
 	"Amaru": {
 		"rp": 12,
 		"age": {
@@ -43,7 +40,12 @@
 			"Strength": -2
 		},
 		"size": "Medium",
-		"type": "Humanoid (Lamia)",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Humanoid",
+			"subtypes": [ "Lamia" ]
+		},
 		"speed": 30,
 		"languages": ["Common", "Risko"],
 		"bonusLanguages": ["Draconic", "Dwarven", "Elvish", "Gnomish", "Ignan", "Kamago", "Undercommon"],
@@ -135,7 +137,12 @@
 			"Constitution": -2
 		},
 		"size": "Medium",
-		"type": "Humanoid (Harpy)",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Humanoid",
+			"subtypes": [ "Harpy" ]
+		},
 		"speed": 30,
 		"languages": ["Common"],
 		"bonusLanguages": ["Auran", "Draconic", "Elvish", "Gnomish", "Goblin", "Kamago", "Matoran", "Necriil", "Risko", "Sylvan", "Ulumi"],
@@ -218,7 +225,12 @@
 			"Intelligence": -2
 		},
 		"size": "Medium",
-		"type": "Humanoid (Catfolk)",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Humanoid",
+			"subtypes": [ "Catfolk" ]
+		},
 		"speed": 30,
 		"languages": ["Common"],
 		"bonusLanguages": ["Dwarven", "Elvish", "Gnomish", "Kamago", "Risko", "Sylvan", "Ulumi", "Undercommon"],
@@ -234,7 +246,7 @@
 				"description": "Cæth gain a +4 racial bonus on Diplomacy checks and treat Knowledge (history and local) as class skills. If either is already a class skill, they get a +2 racial bonus instead.",
 				"benefit": { "target": "self", "text": "Gain a +4 to Diplomacy" },
 				"bonuses": {
-					"Curiosity": { "value": 4, "type": "Racial", "targets": [ "diplomacy" ] }
+					"Curiosity": { "value": 4, "type":  "Racial", "targets": [ "diplomacy" ] }
 				}
 			},
 			"Stalker": {
@@ -314,7 +326,12 @@
 			"Wisdom": -2
 		},
 		"size": "Medium",
-		"type": "Humanoid (Faun)",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Humanoid",
+			"subtypes": [ "Faun" ]
+		},
 		"speed": 30,
 		"languages": ["Common"],
 		"bonusLanguages": ["Draconic", "Dwarven", "Gnomish", "Goblin", "Kamago", "Matoran", "Risko", "Terran", "Undercommon"],
@@ -380,8 +397,8 @@
 				"description": "Geiter who are trained for battle from birth can go into a frenzy upon taking damage. This frenzy lasts for 1 minute (10 rounds) and adds a +2 racial bonus to Constitution and Strength, but a -2 to AC.",
 				"benefit": { "target": "senses", "text": "Frenzy (+2 to Con & Str, -2 to AC) for 10 rounds upon taking damage" },
 				"bonuses": {
-					"Frenzy(+)": { "value": 2, "type": "Racial", "targets": [ "Con", "Str" ] },
-					"Frenzy(-)": { "value": -2, "type": "Racial", "targets": [ "totalAC", "touchAC", "flatAC" ] }
+					"Frenzy(+)": { "value": 2, "type":  "Racial", "targets": [ "Con", "Str" ] },
+					"Frenzy(-)": { "value": -2, "type":  "Racial", "targets": [ "totalAC", "touchAC", "flatAC" ] }
 				},
 				"replaces": ["Healthy"]
 			}
@@ -427,7 +444,12 @@
 			"Dexterity": -2
 		},
 		"size": "Medium",
-		"type": "Humanoid (Reptilian)",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Humanoid",
+			"subtypes": [ "Reptilian" ]
+		},
 		"speed": 30,
 		"languages": ["Common", "Kamago"],
 		"bonusLanguages": ["Aquan", "Draconic", "Dwarven", "Elvish", "Gnomish", "Goblin", "Matoran", "Necriil", "Risko", "Undercommon"],
@@ -445,7 +467,7 @@
 				"description": "Kame gain a +2 racial bonus on Knowledge (History) checks and treat it as a class skill.",
 				"benefit": { "target": "self", "text": "+2 Knowledge (History)" },
 				"bonuses": {
-					"Historian": { "value": 2, "type": "Racial", "targets": [ "Knowledge (History)" ] }
+					"Historian": { "value": 2, "type":  "Racial", "targets": [ "Knowledge (History)" ] }
 				}
 			},
 			"Skill Training": {
@@ -519,7 +541,12 @@
 			"Charisma": -2
 		},
 		"size": "Medium",
-		"type": "Humanoid (Human)",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Humanoid",
+			"subtypes": [ "Human" ]
+		},
 		"speed": 30,
 		"languages": ["Common"],
 		"bonusLanguages": ["Kamago", "Risko", "Ulumi", "Undercommon"],
@@ -604,7 +631,12 @@
 			"Charisma": -2
 		},
 		"size": "Large",
-		"type": "Humanoid (Loxodon, Giant)",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Humanoid",
+			"subtypes": [ "Loxodon", "Giant" ]
+		},
 		"speed": 30,
 		"languages": ["Ulumi", "Common"],
 		"bonusLanguages": ["Draconic", "Dwarven", "Giantish", "Kamago", "Risko", "Undercommon"],
@@ -676,7 +708,12 @@
 			"Constitution": -4
 		},
 		"size": "Small",
-		"type": "Fey",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Fey",
+			"subtypes": []
+		},
 		"speed": 20,
 		"languages": ["Common", "Perwhüa"],
 		"bonusLanguages": ["Draconic", "Elvish", "Gnomish", "Kamago", "Risko", "Sylvan"],
@@ -739,7 +776,12 @@
 			"Strength": -4
 		},
 		"size": "Large",
-		"type": "Fey",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Fey",
+			"subtypes": []
+		},
 		"speed": 40,
 		"languages": ["Common"],
 		"bonusLanguages": ["Draconic", "Elvish", "Gnomish", "Necriil", "Risko", "Sylvan"],
@@ -790,7 +832,12 @@
 			"Charisma": -2
 		},
 		"size": "Medium",
-		"type": "Monstrous Humanoid",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Monstrous Humanoid",
+			"subtypes": []
+		},
 		"speed": 30,
 		"languages": ["Undercommon"],
 		"bonusLanguages": ["Common", "Draconic", "Dwarven", "Giantish", "Goblin", "Risko", "Terran"],
@@ -867,7 +914,12 @@
 			"Charisma": -2
 		},
 		"size": "Medium",
-		"type": "Plant",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Plant",
+			"subtypes": []
+		},
 		"speed": 20,
 		"languages": ["Common", "Entish"],
 		"bonusLanguages": ["Dwarven", "Elvish", "Gnomish", "Kamago", "Matoran", "Risko", "Sylvan", "Undercommon"],
@@ -928,7 +980,12 @@
 		},
 		"abilityMods": {},
 		"size": "Small",
-		"type": "Half-Construct",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Half-Construct",
+			"subtypes": []
+		},
 		"speed": 30,
 		"languages": ["Matoran"],
 		"bonusLanguages": ["Aquan", "Auran", "Common", "Dwarven", "Elvish", "Gnomish", "Ignan", "Kamago", "Risko", "Terran", "Ulumi", "Undercommon"],
@@ -1114,7 +1171,12 @@
 			"Charisma": -2
 		},
 		"size": "Medium",
-		"type": "Humanoid (Dwarf)",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Humanoid",
+			"subtypes": [ "Dwarf" ]
+		},
 		"speed": 20,
 		"languages": [ "Common", "Dwarven" ],
 		"bonusLanguages": [ "Giantish", "Gnomish", "Goblin", "Terran", "Ulumi", "Undercommon" ],
@@ -1206,7 +1268,12 @@
 			"Constitution": -2
 		},
 		"size": "Medium",
-		"type": "Humanoid (Elf)",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Humanoid",
+			"subtypes": [ "Elf" ]
+		},
 		"speed": 30,
 		"languages": ["Common", "Elvish"],
 		"bonusLanguages": [ "Celestial", "Draconic", "Gnomish", "Goblin", "Kamago", "Risko", "Sylvan" ],
@@ -1280,7 +1347,12 @@
 			"Strength": -2
 		},
 		"size": "Small",
-		"type": "Humanoid (Gnome)",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Humanoid",
+			"subtypes": [ "Gnome" ]
+		},
 		"speed": 20,
 		"languages": [ "Common", "Gnomish", "Sylvan" ],
 		"bonusLanguages": [ "Draconic", "Dwarven", "Elven", "Giantish", "Goblin", "Risko", "Ulumi" ],
@@ -1372,7 +1444,12 @@
 			"Strength": -2
 		},
 		"size": "Small",
-		"type": "Humanoid (Halfling)",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Humanoid",
+			"subtypes": [ "Halfling" ]
+		},
 		"speed": 20,
 		"languages": [ "Common" ],
 		"bonusLanguages": [ "Dwarven", "Elven", "English", "Gnomish", "Goblin", "Kamago", "Risko" ],
@@ -1442,7 +1519,12 @@
 		},
 		"abilityMods": { "Choose": 2 },
 		"size": "Medium",
-		"type": "Humanoid (Human)",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Humanoid",
+			"subtypes": [ "Human" ]
+		},
 		"speed": 30,
 		"languages": [ "Common" ],
 		"bonusLanguages": [ "Aboleth", "Abyssal", "Aquan", "Auran", "Celestial", "Draconic", "Dwarven", "Elvish", "English", "Entish", "Giantish", "Gnomish", "Goblin", "Ignan", "Infernal", "Kamago", "Matoran", "Necriil", "Perwhüa", "Risko", "Sylvan", "Terran", "Ulumi", "Undercommon" ],
@@ -1502,7 +1584,12 @@
 			"Constitution": -2
 		},
 		"size": "Small",
-		"type": "Humanoid (Reptilian)",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Humanoid",
+			"subtypes": [ "Reptilian" ]
+		},
 		"speed": 30,
 		"languages": [ "Draconic" ],
 		"bonusLanguages": [ "Common", "Dwarven", "Gnomish", "Goblin", "Risko", "Undercommon" ],
@@ -1577,7 +1664,12 @@
 			"Charisma": -2
 		},
 		"size": "Small",
-		"type": "Humanoid (Goblinoid)",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Humanoid",
+			"subtypes": [ "Goblinoid" ]
+		},
 		"speed": 30,
 		"languages": [ "Goblin" ],
 		"bonusLanguages": [ "Common", "Draconic", "Dwarven", "Gnomish", "Risko", "Ulumi" ],
@@ -1638,7 +1730,12 @@
 			"Constitution": 2
 		},
 		"size": "Medium",
-		"type": "Humanoid (Goblinoid)",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Humanoid",
+			"subtypes": [ "Goblinoid" ]
+		},
 		"speed": 30,
 		"languages": [ "Common", "Goblin" ],
 		"bonusLanguages": [ "Draconic", "Dwarven", "Infernal", "Giantish", "Ulumi" ],

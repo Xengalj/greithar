@@ -8,27 +8,8 @@
       Your DM is still the final arbiter of all rules.
     </div>
 
-    <el-divider>
-      <g-icon iconSize="24px" iconName="rolledScroll" />
-    </el-divider>
-
     <el-row class="center-horz" justify="space-between">
-      <el-col :span="6">
-        Campaign
-      </el-col>
-      <el-col :span="6">
-        Lore
-      </el-col>
-      <el-col :span="6">
-        Rules
-      </el-col>
-      <el-col :span="6">
-        Site Info
-      </el-col>
-    </el-row>
-
-
-    <el-row class="center-horz" justify="space-between">
+      <el-divider> <g-icon iconName="rolledScroll" /> </el-divider>
       <el-col :span="8">
         <router-link to="/equipment" class="nav-link">
           <el-button type="primary">
@@ -66,10 +47,9 @@
     </el-row>
 
 
-
     <el-row class="center-horz" justify="space-between">
       <el-col :span="10">
-        <el-divider> DM <g-icon iconSize="24px" iconName="rolledScroll" /> </el-divider>
+        <el-divider> DM <g-icon iconName="lockedBook" /> </el-divider>
 
         <span v-if="user.roles.includes('storyteller')">
           <router-link to="/dm-screen" class="nav-link">
@@ -89,12 +69,12 @@
       </el-col>
 
       <el-col :span="10" :offset="4">
-        <el-divider> ADMIN <g-icon iconSize="24px" iconName="rolledScroll" /> </el-divider>
+        <el-divider> ADMIN <g-icon iconName="userProfile" /> </el-divider>
 
         <span v-if="user.roles.includes('admin')">
           <router-link to="/user/list" class="nav-link">
             <el-button type="primary">
-              <g-icon iconSize="24px" iconName="userList" :iconColor="iconColor" /> All Users
+              <g-icon iconSize="24px" iconName="userList" /> All Users
             </el-button>
           </router-link>
         </span>
@@ -102,16 +82,26 @@
         <span v-if="user.roles.includes('admin')">
           <router-link :to="{ name: 'character-list' }" class="nav-link">
             <el-button type="primary">
-              <g-icon iconSize="24px" iconName="userList" :iconColor="iconColor" /> All Characters
+              <g-icon iconSize="24px" iconName="userList" /> All Characters
             </el-button>
           </router-link>
         </span>
       </el-col>
     </el-row>
 
+    <!-- LOGIN CHECK -->
+    <el-row v-if="!this.user.id" class="center-horz">
+      <el-col>
+        <el-divider> <g-icon iconName="sparkle" /> </el-divider>
 
-
-
+        <h3>Please login to view user details</h3>
+        <router-link to="/dm-screen" class="nav-link">
+          <el-button type="primary">
+            <g-icon iconSize="24px" iconName="login" /> Login
+          </el-button>
+        </router-link>
+      </el-col>
+    </el-row>
 
 
   </div>
@@ -130,7 +120,19 @@ export default {
     };
   },
   mounted() {
-    // console.log(this.$store.state.auth.user);
+    console.log('home', this.user);
+
+    // login check
+    UserService.getUserBoard().then(
+      (response) => {
+        console.log(response);
+      },
+      (error) => {
+        console.error(error);
+        // this.user = {};
+      }
+    );
+
 
     UserService.getPublicContent().then(
       (response) => {
