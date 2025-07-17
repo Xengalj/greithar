@@ -380,11 +380,187 @@
     <el-row id="abilities">
       ABILITIES
       {{ character.abilities }}
+
+      <el-row class="center-horz" :gutter="5">
+        <el-col :span="5">Name</el-col>
+        <el-col :span="14">Description</el-col>
+        <el-col :span="5">
+          Actions
+          <el-popconfirm title="Add New Ability?" icon-color="#626AEF" @confirm="addNewAbility">
+            <template #reference>
+              <el-button type="primary" size="small">New</el-button>
+            </template>
+            <template #actions="{ confirm }">
+              <el-input v-model="abilName" size="small" placeholder="Ability Name" style="margin-bottom:5px;" />
+              <el-button type="primary" size="small" @click="confirm" :disabled="abilName == ''">Yes</el-button>
+            </template>
+          </el-popconfirm>
+        </el-col>
+      </el-row>
+      <el-divider style="margin-top: 5px;" />
+
+      <el-collapse v-model="abilityCollapse">
+        <el-collapse-item v-for="type in abilityTypes" :key="type" :title="type" :name="type">
+          <div v-for="(abil, name) in abilities" :key="name">
+            <el-row v-if="abil.extras.source == type" :gutter="5" style="margin-bottom:5px;">
+              <el-col :span="5">{{ name }}</el-col>
+              <el-col :span="14"> {{ abil.description }} </el-col>
+
+              <!-- ABILITY ACTIONS -->
+              <el-col :span="3">
+                <el-button size="small" style="width:95%; margin: 0;"
+                  :type="abil.extras.active?'primary':'info'"
+                  :disabled="abil.trigger=='Continuous'?true:false"
+                  @click="toggleAbility(name, abil)"
+                >
+                  {{ abil.trigger == "Toggle" ? "Free" : abil.trigger }}
+                </el-button>
+                <el-button size="small" style="width:95%; margin: 0;"
+                  :type="abil.extras.showMain?'primary':'info'"
+                  @click="abilShowMain(name, abil)"
+                >
+                  {{ abil.extras.showMain ? "On Main" : "Just Here" }}
+                </el-button>
+              </el-col>
+              <el-col :span="2" class="center-horz;">
+                <el-button type="info" size="small" @click="editAbility(name, abil)">
+                  <g-icon iconSize="16px" iconColor="#000" iconName="quill" />
+                </el-button>
+                <el-popconfirm title="Are you sure to delete this?">
+                  <template #reference>
+                    <el-button type="danger" size="small">
+                      <g-icon iconSize="16px" iconColor="#000" iconName="trash" />
+                    </el-button>
+                  </template>
+                  <template #actions="">
+                    <el-button type="danger" size="small" @click="deleteAbil(name)">Yes</el-button>
+                  </template>
+                </el-popconfirm>
+              </el-col>
+            </el-row>
+          </div>
+        </el-collapse-item>
+      </el-collapse>
+      <el-dialog v-model="editingAbil" width="800">
+        <g-ability :newAbil="addAbil" :name="abilName" :source="abil" @save-abil="saveAbility"/>
+      </el-dialog>
+      
+
+      
+      
     </el-row>
 
     <el-row id="conditions">
       conditions
       {{ character.conditions }}
+
+      <!--
+
+
+                <el-row :gutter="20">
+            <el-col :span="3">
+              <g-icon iconSize="32px" iconName="dizzyStar" />
+            </el-col>
+            <el-col :span="21">
+              <el-row>
+                <el-col :span="8" :offset="16">
+                  < ! - - Conditions Dropdown - - >
+                  <el-select
+                    v-model="activeConditions"
+                    value-key="name"
+                    multiple
+                    placeholder="Common Conditions"
+                  >
+                    <template #tag>
+                      <el-tag v-for="(condition, index) in activeConditions" :key="condition" effect="dark" closable @close="activeConditions.splice(index, 1)"> {{ condition.name }} </el-tag>
+                    </template>
+                    <el-option v-for="item in conditions" :key="item.name" :label="item.name" :value="item" >
+                      <div class="flex items-center">
+                        <el-tag type="primary" style="margin-right: 8px" size="small" effect="dark" />
+                        <span>{{ item.name }}</span>
+                      </div>
+                    </el-option>
+                    <template #footer>
+                      <el-button v-if="!addingCondition" text bg size="small" @click="addNewContion()"> Add custom condition </el-button>
+                    </template>
+                  </el-select>
+
+                  < ! - - Add New Condition - - >
+                  <el-dialog v-model="addingCondition" title="New Condition" width="800">
+                    <el-row :gutter="10">
+                      <el-col :span="5">
+                        <el-input v-model="newCondition.name" size="small" placeholder="Condition Name" />
+                      </el-col>
+                      <el-col :span="15">
+                        <el-input v-model="newCondition.description" :rows="2" type="textarea" placeholder="Enter condition description" />
+                      </el-col>
+                    </el-row>
+
+                    < ! - - New Condition Bonuses - - >
+                    <el-divider> Bonuses </el-divider>
+                    <el-row class="center-horz" :gutter="5" style="margin-bottom:5px;">
+                      <el-col :span="5"> Name </el-col>
+                      <el-col :span="4"> Value </el-col>
+                      <el-col :span="5"> Targets </el-col>
+                      <el-col :span="5">
+                        <el-button size="small" type="primary" @click="addNewConditionBonus" style="margin-left:5px;"> New Bonus </el-button>
+                      </el-col>
+                    </el-row>
+                    <el-row v-for="(bonus, name) in newCondition.bonuses" :key="name" :gutter="5" style="margin-bottom:5px;">
+                      <el-col :span="5" class="center-horz">
+                        <el-tag type="primary" effect="dark"> {{ name }} </el-tag>
+                      </el-col>
+                      <el-col :span="5"> <el-input-number v-model="bonus.value" size="small" /> </el-col>
+                      <el-col :span="10">
+                        <el-select v-model="bonus.targets" value-key="name" multiple placeholder="Modifier Target" >
+                          <template #tag>
+                            <el-tag v-for="(target, index) in bonus.targets" :key="target" effect="dark" closable @close="bonus.targets.splice(index, 1)"> {{ target }} </el-tag>
+                          </template>
+                          <el-option v-for="target in this.rules.targets" :key="target.label" :label="target.label" :value="target.value" >
+                            <div class="flex items-center">
+                              <el-tag :color="target.color" style="margin-right: 8px" size="small" />
+                              <span :style="{ color: target.color }"> {{ target.label }} </span>
+                            </div>
+                          </el-option>
+                        </el-select>
+                      </el-col>
+                      <el-col :span="2" class="center-horz">
+                        <el-popconfirm title="Are you sure to delete this?">
+                          <template #reference>
+                            <el-button type="danger" circle size="small">
+                              <g-icon iconSize="16px" iconColor="#000" iconName="trash" />
+                            </el-button>
+                          </template>
+                          <template #actions="">
+                            <el-button type="danger" size="small" @click="delete this.newCondition.bonuses[name];"> Yes </el-button>
+                          </template>
+                        </el-popconfirm>
+                      </el-col>
+                    </el-row>
+
+                    <el-divider />
+                    <el-row>
+                      <el-col :span="3" class="addCondition">
+                        <el-button size="small" type="primary" @click="addCondition()">confirm</el-button>
+                        <el-button size="small" @click="newCondition = {}; addingCondition = false;">cancel</el-button>
+                      </el-col>
+                    </el-row>
+                  </el-dialog>
+                </el-col>
+              </el-row>
+
+              <el-row v-for="condition in activeConditions" :key="condition.name">
+                <el-col :span="6" class="center-vert">
+                  {{ condition.name }}
+                </el-col>
+                <el-col :span="18" class="center-vert">
+                  {{ condition.description }}
+                </el-col>
+              </el-row>
+            </el-col>
+          </el-row>
+      
+      -->
     </el-row>
 
 
@@ -464,7 +640,7 @@
 
 
     <el-row id="actions">
-      ACTIONS
+      ACTIONS - ONLY IN VIEW? (copmuted)
       {{ character.actions }}
     </el-row>
 
@@ -571,6 +747,13 @@ export default {
       editingItem: false,
       item: {},
       itemFilter: "",
+
+      abilityCollapse: [],
+      abilityTypes: [ "Basic", "Trait", "Class", "Feat" ],
+      addAbil: false,
+      abilName: "",
+      editingAbil: false,
+      abil: {},
 
       character: {},
 
@@ -902,6 +1085,92 @@ export default {
       console.log('pop up, get levels, show new, etc');
     },
 
+
+
+    /***************************\
+    *                           *
+    *         ABILITIES         *
+    *                           *
+    \***************************/
+    toggleAbility(name, abil) {
+      if (this.activeConditions[name]) {
+        delete this.activeConditions[name];
+        this.actions.special[name].extras.active = false;
+      } else {
+        this.activeConditions[name] = abil;
+        this.actions.special[name].extras.active = true;
+      }
+    },
+    abilShowMain(name, abil) { abil.extras.showMain = abil.extras.showMain ? false : true; },
+    addNewAbility() {
+      this.addAbil = true;
+      this.abil = {
+        trigger: "Standard",
+        description: "",
+        benefit: { target: "Self", text: "" },
+        bonuses: {},
+        extras: { active: true, source: "Feat", showMain: false }
+      };
+      this.editingAbil = true;
+    },
+    saveAbility(abil) {
+      let name = Object.keys(abil)[0];
+      this.abilities[name] = abil[name];
+      this.editingAbil = false;
+    },
+    editAbility(name, ability) {
+      this.addAbil = false;
+      this.abilName = name;
+      this.abil = {};
+      if (!Object.keys(ability).length) {
+        ability = {};
+        ability[name] = {
+          trigger: "Standard",
+          description: "",
+          benefit: { target: "Self", text: "" },
+          bonuses: {},
+          Extras: { active: true, source: "Feat" }
+        };
+      }
+      this.abil = ability;
+      this.editingAbil = true;
+    },
+    deleteAbil(name) {
+      delete this.abilities[name];
+      this.$message({ message: `${name} was removed from abilities`, type: "warning" });
+    },
+
+
+
+    /***************************\
+    *                           *
+    *         CONDITIONS        *
+    *                           *
+    \***************************/
+    addNewContion() {
+      this.addingCondition = true;
+      this.newCondition = {
+        name: "",
+        description: "",
+        bonuses: {}
+      };
+    },
+    addNewConditionBonus() {
+      let name = this.newCondition.name;
+      if (name) {
+        this.newCondition.bonuses[name.concat(" ", Object.keys(this.newCondition.bonuses).length)] = {
+          type: "Condition",
+          value: 0,
+          targets: []
+        };
+      } else {
+        this.$message({ message: "Input Condition Name First", type: "error" });
+      }
+    },
+    addCondition() {
+      this.conditions.push(this.newCondition);
+      this.addingCondition = false;
+    },
 
 
     /***************************\
