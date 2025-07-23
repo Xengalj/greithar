@@ -5,7 +5,7 @@
       <el-col :span="8">
         <h3>
           {{ character.name }}
-          <el-tag effect="dark" type="info" v-if="advanced">
+          <el-tag effect="dark" type="info" v-if="advanced" style="margin-right:10px;">
             ID : {{ character.id }}
           </el-tag>
           <span v-if="character.basics.race && ['male','female','agander'].includes(character.basics.appearance.gender)">
@@ -13,14 +13,8 @@
           </span>
         </h3>
       </el-col>
-
-      <el-col :span="8" style="display: flex; justify-content: space-evenly;">
-      </el-col>
-
-
-
-      <el-col :span="8" style="display: flex; justify-content: space-evenly;">
-        <!-- ADVANCED -->
+      <!-- ADVANCED -->
+      <el-col :span="8" :offset="8" style="display: flex; justify-content: space-evenly;">
         <el-switch v-model="advanced" inline-prompt active-text=" Advanced " inactive-text=" Normal " aria-label="Advanced Mode Switch" />
       </el-col>
     </el-row>
@@ -164,7 +158,7 @@
         </el-row>
       </el-col>
 
-      <!-- Favored Class Bonus & Level Up -->
+      <!-- Favored Class Bonus & Level -->
       <el-col :span="6">
         <el-row>
           <h4> <g-icon iconName="magicSwirl" /> Favored Class Bonus </h4>
@@ -174,7 +168,12 @@
           <el-input v-model="character.basics.favoredClass.bonus" aria-label="Favored Class Bonus Input" />
         </el-row>
         <el-row class="center-horz">
-          <el-col>
+          <el-col :span="12">
+            <el-input v-model="character.basics.cr" aria-label="Character Level" disabled>
+              <template #prepend>Level</template>
+            </el-input>
+          </el-col>
+          <el-col :span="12">
             <el-button type="primary" @click="addLevel()">
               <g-icon iconSize="24px" iconName="sparkle" />
               <span style="padding:5px"> Level Up </span>
@@ -183,18 +182,61 @@
         </el-row>
       </el-col>
     </el-row>
-
-    <!-- Backstory -->
-    <el-row style="margin-bottom:30px;">
+    <!-- Backstory, Settings, & Notes -->
+    <el-row>
       <h4>Backstory</h4>
       <el-input v-model="character.basics.backstory" type="textarea" autosize aria-label="Backstory Textarea" />
     </el-row>
+    <el-row>
+      <h4>Notes</h4>
+      <el-input v-model="character.notes" type="textarea" autosize aria-label="Notes Textarea" />
+    </el-row>
+    <h4>Character Settings</h4>
+    <el-row>
+      <el-col :span="4" class="center-vert"> Hero Points </el-col>
+      <el-col :span="20"> <el-input-number v-model="character.userSettings.heroPoints" :min="0" :max="4" aria-label="Hero Points" /> </el-col>
+    </el-row>
+    <el-row>
+      <el-col :span="4" class="center-vert"> Open Tab </el-col>
+      <el-col :span="20">
+        <el-select v-model="character.userSettings.cardTab" size="small" aria-label="View's Tab Select">
+          <el-option label="Main" value="main" />
+          <el-option label="Items" value="items" />
+          <el-option label="Skills" value="skills" />
+          <el-option label="Abilites" value="abilites" />
+          <el-option label="Magic" value="magic" />
+          <el-option label="Edit" value="edit" />
+        </el-select>
+      </el-col>
+    </el-row>
+    <el-row>
+      <el-col :span="4" class="center-vert"> Open Main Sections </el-col>
+      <el-col :span="20">
+        <el-select v-model="character.userSettings.mainSections" size="small" multiple aria-label="View's main tab open sections">
+          <el-option label="Defense" value="defense" />
+          <el-option label="Actions" value="actions" />
+          <el-option label="Conditions" value="conditions" />
+        </el-select>
+      </el-col>
+    </el-row>
+    <el-row style="margin-bottom:30px;">
+      <el-col :span="4" class="center-vert"> Open Inventory Sections </el-col>
+      <el-col :span="20">
+        <el-select v-model="character.userSettings.expandInventory" size="small" multiple aria-label="Gender Select">
+          <el-option label="Magic Items" value="Magic Items" />
+          <el-option label="Equipped" value="Equipped" />
+          <el-option label="Armor" value="Armor" />
+          <el-option label="Weapons" value="Weapons" />
+          <el-option label="Hands" value="Hands" />
+          <el-option label="Back" value="Back" />
+          <el-option label="Items" value="Items" />
+        </el-select>
+      </el-col>
+    </el-row>
 
-    user settings : {{ character.userSettings }} <br>
-    notes : {{ character.notes }} <br>
 
-    <el-divider id="attributes"> <h4> <g-icon iconSize="32px" iconName="Compass" /> Attributes </h4> </el-divider>
     <!-- ATTRIBUTES (ABILITIES) -->
+    <el-divider id="attributes"> <h4> <g-icon iconSize="32px" iconName="Compass" /> Attributes </h4> </el-divider>
     <el-row v-if="!loading">
       <el-col :span="12" class="center-horz">
         <svg width="225" height="200">
@@ -207,7 +249,7 @@
 
           <el-row :gutter="10">
             <!-- Strength -->
-            <el-col :span="2">Str:</el-col>
+            <el-col :span="2" class="center-vert">Str:</el-col>
             <el-col :span="2">
               <el-badge :max="5" :value="attributes.Str.sources.length" v-if="attributes.Str.sources[0]">
                 <el-tooltip placement="top" effect="light">
@@ -222,7 +264,7 @@
             </el-col>
 
             <!-- Intelligence -->
-            <el-col :span="2" :offset="1">Int:</el-col>
+            <el-col :span="2" :offset="1" class="center-vert">Int:</el-col>
             <el-col :span="2">
               <el-badge :max="5" :value="attributes.Int.sources.length" v-if="attributes.Int.sources[0]">
                 <el-tooltip placement="top" effect="light">
@@ -239,7 +281,7 @@
 
           <el-row :gutter="10">
             <!-- Dexterity -->
-            <el-col :span="2">Dex:</el-col>
+            <el-col :span="2" class="center-vert">Dex:</el-col>
             <el-col :span="2">
               <el-badge :max="5" :value="attributes.Dex.sources.length" v-if="attributes.Dex.sources[0]">
                 <el-tooltip placement="top" effect="light">
@@ -254,7 +296,7 @@
             </el-col>
 
             <!-- Wisdom -->
-            <el-col :span="2" :offset="1">Wis:</el-col>
+            <el-col :span="2" :offset="1" class="center-vert">Wis:</el-col>
             <el-col :span="2">
               <el-badge :max="5" :value="attributes.Wis.sources.length" v-if="attributes.Wis.sources[0]">
                 <el-tooltip placement="top" effect="light">
@@ -271,7 +313,7 @@
 
           <el-row :gutter="10">
             <!-- Constitution -->
-            <el-col :span="2">Con:</el-col>
+            <el-col :span="2" class="center-vert">Con:</el-col>
             <el-col :span="2">
               <el-badge :max="5" :value="attributes.Con.sources.length" v-if="attributes.Con.sources[0]">
                 <el-tooltip placement="top" effect="light">
@@ -286,7 +328,7 @@
             </el-col>
 
             <!-- Charisma -->
-            <el-col :span="2" :offset="1">Cha:</el-col>
+            <el-col :span="2" :offset="1" class="center-vert">Cha:</el-col>
             <el-col :span="2">
               <el-badge :max="5" :value="attributes.Cha.sources.length" v-if="attributes.Cha.sources[0]">
                 <el-tooltip placement="top" effect="light">
@@ -304,7 +346,16 @@
         </div>
       </el-col>
     </el-row>
-    health : {{ character.health }}
+      health : {{ character.health }}
+        {
+          "nonlethal": 0,
+          "total": 212,
+          "sources": [
+          "+17d12",
+          "+102 Con"
+          ]
+        }
+
 
     <!-- CLASSES -->
     <div id="classes"></div>
@@ -367,93 +418,88 @@
           <span v-for="(abilities, level) in cClass.special" :key="level">
             <span v-for="(abil, index) in abilities" :key="index">
               <span v-if="level < cClass.levels">
-                <el-input v-model="character.classes[cName].special[level][index]" style="width: 210px; margin: 2px;" :aria-label="`Class Ability: ${abil}`" />
+                <el-input v-model="character.classes[cName].special[level][index]" class="class-abil" :aria-label="`Class Ability: ${abil}`" disabled>
+                  <template #prepend>Level {{ level }} </template>
+                </el-input>
               </span>
             </span>
           </span>
         </div>
+
       </el-col>
     </el-row>
 
+
+    <!-- ABILITIES -->
     <el-divider> <h4> <g-icon iconSize="32px" iconName="Compass" /> Abilities </h4> </el-divider>
-
-    <el-row id="abilities">
-      ABILITIES
-      {{ character.abilities }}
-
-      <el-row class="center-horz" :gutter="5">
-        <el-col :span="5">Name</el-col>
-        <el-col :span="14">Description</el-col>
-        <el-col :span="5">
-          Actions
-          <el-popconfirm title="Add New Ability?" icon-color="#626AEF" @confirm="addNewAbility">
-            <template #reference>
-              <el-button type="primary" size="small">New</el-button>
-            </template>
-            <template #actions="{ confirm }">
-              <el-input v-model="abilName" size="small" placeholder="Ability Name" style="margin-bottom:5px;" />
-              <el-button type="primary" size="small" @click="confirm" :disabled="abilName == ''">Yes</el-button>
-            </template>
-          </el-popconfirm>
-        </el-col>
-      </el-row>
-      <el-divider style="margin-top: 5px;" />
-
-      <el-collapse v-model="abilityCollapse">
-        <el-collapse-item v-for="type in abilityTypes" :key="type" :title="type" :name="type">
-          <div v-for="(abil, name) in abilities" :key="name">
-            <el-row v-if="abil.extras.source == type" :gutter="5" style="margin-bottom:5px;">
-              <el-col :span="5">{{ name }}</el-col>
-              <el-col :span="14"> {{ abil.description }} </el-col>
-
-              <!-- ABILITY ACTIONS -->
-              <el-col :span="3">
-                <el-button size="small" style="width:95%; margin: 0;"
-                  :type="abil.extras.active?'primary':'info'"
-                  :disabled="abil.trigger=='Continuous'?true:false"
-                  @click="toggleAbility(name, abil)"
-                >
-                  {{ abil.trigger == "Toggle" ? "Free" : abil.trigger }}
-                </el-button>
-                <el-button size="small" style="width:95%; margin: 0;"
-                  :type="abil.extras.showMain?'primary':'info'"
-                  @click="abilShowMain(name, abil)"
-                >
-                  {{ abil.extras.showMain ? "On Main" : "Just Here" }}
-                </el-button>
-              </el-col>
-              <el-col :span="2" class="center-horz;">
-                <el-button type="info" size="small" @click="editAbility(name, abil)">
-                  <g-icon iconSize="16px" iconColor="#000" iconName="quill" />
-                </el-button>
-                <el-popconfirm title="Are you sure to delete this?">
-                  <template #reference>
-                    <el-button type="danger" size="small">
-                      <g-icon iconSize="16px" iconColor="#000" iconName="trash" />
-                    </el-button>
-                  </template>
-                  <template #actions="">
-                    <el-button type="danger" size="small" @click="deleteAbil(name)">Yes</el-button>
-                  </template>
-                </el-popconfirm>
-              </el-col>
-            </el-row>
-          </div>
-        </el-collapse-item>
-      </el-collapse>
-      <el-dialog v-model="editingAbil" width="800">
-        <g-ability :newAbil="addAbil" :name="abilName" :source="abil" @save-abil="saveAbility"/>
-      </el-dialog>
-      
-
-      
-      
+    <el-row class="center-horz" id="abilities" :gutter="5">
+      <el-col :span="5">Name</el-col>
+      <el-col :span="14">Description</el-col>
+      <el-col :span="5">
+        Actions
+        <el-popconfirm title="Add New Ability?" icon-color="#626AEF" @confirm="addNewAbility">
+          <template #reference>
+            <el-button type="primary" size="small">New</el-button>
+          </template>
+          <template #actions="{ confirm }">
+            <el-input v-model="abilName" size="small" placeholder="Ability Name" style="margin-bottom:5px;" />
+            <el-button type="primary" size="small" @click="confirm" :disabled="abilName == ''">Yes</el-button>
+          </template>
+        </el-popconfirm>
+      </el-col>
     </el-row>
+    <el-divider style="margin-top: 5px;" />
+    <el-collapse v-model="abilityCollapse">
+      <el-collapse-item v-for="type in abilityTypes" :key="type" :title="type" :name="type">
+        <div v-for="(abil, name) in abilities" :key="name">
+          <el-row v-if="abil.extras.source == type" :gutter="5" style="margin-bottom:5px;">
+            <el-col :span="5">
+              <el-tag size="small" effect="dark" type="primary"> {{ name }} </el-tag>
+            </el-col>
+            <el-col :span="14"> {{ abil.description }} </el-col>
+
+            <!-- ABILITY ACTIONS -->
+            <el-col :span="3">
+              <el-button size="small" style="width:95%; margin: 0;"
+                :type="abil.extras.active?'primary':'info'"
+                :disabled="abil.trigger=='Continuous'?true:false"
+                @click="toggleAbility(name, abil)"
+              >
+                {{ abil.trigger == "Toggle" ? "Free" : abil.trigger }}
+              </el-button>
+              <el-button size="small" style="width:95%; margin: 0;"
+                :type="abil.extras.showMain?'primary':'info'"
+                @click="abilShowMain(name, abil)"
+              >
+                {{ abil.extras.showMain ? "On Main" : "Just Here" }}
+              </el-button>
+            </el-col>
+            <el-col :span="2" class="center-horz;">
+              <el-button type="info" size="small" @click="editAbility(name, abil)">
+                <g-icon iconSize="16px" iconColor="#000" iconName="quill" />
+              </el-button>
+              <el-popconfirm title="Are you sure to delete this?">
+                <template #reference>
+                  <el-button type="danger" size="small" style="margin:0">
+                    <g-icon iconSize="16px" iconColor="#000" iconName="trash" />
+                  </el-button>
+                </template>
+                <template #actions="">
+                  <el-button type="danger" size="small" @click="deleteAbil(name)">Yes</el-button>
+                </template>
+              </el-popconfirm>
+            </el-col>
+          </el-row>
+        </div>
+      </el-collapse-item>
+    </el-collapse>
+    <el-dialog v-model="editingAbil" width="800">
+      <g-ability :newAbil="addAbil" :name="abilName" :source="abil" @save-abil="saveAbility"/>
+    </el-dialog>
 
     <el-row id="conditions">
       conditions
       {{ character.conditions }}
-
       <!--
 
 
@@ -559,11 +605,9 @@
               </el-row>
             </el-col>
           </el-row>
-      
+
       -->
     </el-row>
-
-
 
 
     <!-- SKILLS -->
@@ -638,18 +682,16 @@
     </div>
 
 
-
     <el-row id="actions">
       ACTIONS - ONLY IN VIEW? (copmuted)
       {{ character.actions }}
     </el-row>
 
-    <el-row id="inventory">
-      INVENTORY
-      {{ character.inventory }}
-    </el-row>
 
-    <el-row>
+    <!-- INVENTORY -->
+    <el-divider> <h4> <g-icon iconSize="32px" iconName="chest" /> Inventory </h4> </el-divider>
+
+    <el-row id="inventory">
       <g-icon iconSize="16px" iconName="treasure" /> COINS
     </el-row>
     <el-divider />
@@ -733,10 +775,11 @@
 import CharacterService from "@/services/character.service";
 import HexGraph from '@/components/template/HexGraph.vue';
 import GItem from '@/components/template/GItem.vue';
+import GAbility from '@/components/template/GAbility.vue';
 
 export default {
   name: "Edit Character",
-  components: { HexGraph, GItem },
+  components: { HexGraph, GItem, GAbility },
   data() {
     return {
       loading: true,
@@ -749,7 +792,7 @@ export default {
       itemFilter: "",
 
       abilityCollapse: [],
-      abilityTypes: [ "Basic", "Trait", "Class", "Feat" ],
+      abilityTypes: [ "Trait", "Class", "Feat", "Other" ],
       addAbil: false,
       abilName: "",
       editingAbil: false,
@@ -760,16 +803,16 @@ export default {
 
       tmpSource: {
         id : 0,
-        name : "Smelborp",
+        name : "Mit'a",
         basics : {
-          "cr": 0,
+          "cr": 10,
           "size": "medium",
-          "race": "Zikaru",
+          "race": "Amaru",
           "type": {
             "name": "humanoid",
             "hd": 0,
             "levels": 0,
-            "subtypes": [ "Human" ]
+            "subtypes": [ "Lamia" ]
           },
           "speed": {
             "base": { "total": 30, "sources": [ "Racial Base" ] },
@@ -778,39 +821,126 @@ export default {
             "fly": { "total": 0, "sources": [] },
             "burrow": { "total": 0, "sources": []  }
           },
-          "alignment": "N",
+          "alignment": "LG",
           "backstory": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum...",
-          "appearance": { "age": 21, "gender": "male", "height": "", "weight": "" },
-          "diety": "",
+          "appearance": { "age": 29, "gender": "male", "height": "7'2\"", "weight": "240 lbs." },
+          "diety": "Lauriss",
           "environment": "Urban",
-          "favoredClass": { "name": "", "bonus": "+1 HP, Skill, or Galdur per Level" }
+          "favoredClass": { "name": "Magus", "bonus": "+1 Galdur per Level" }
         },
         classes : {
-          "warrior": { "levels": 1 },
-          "barbarian": {
-            "levels": 12,
-            "special" : [ [], [ "Fast Movement (Ex)", "Rage (Ex)" ], [ "Rage Power (Ex) (REPLACE)", "Uncanny Dodge (Ex)" ], [ "Trap Sense (Ex)" ], [ "Rage Power (Ex) (REPLACE)" ], [ "Improved Uncanny Dodge (Ex)" ], [ "Rage Power (Ex) (REPLACE)" ], [ "Damage Reduction (Ex)" ], [ "Rage Power (Ex) (REPLACE)" ], [], [ "Rage Power (Ex) (REPLACE)" ], [ "Greater Rage (Ex)" ], [ "Rage Power (Ex) (REPLACE)" ], [], [ "Indomitable Will (Ex)", "Rage Power (Ex) (REPLACE)" ], [], [ "Rage Power (Ex) (REPLACE)" ], [ "Tireless Rage (Ex)" ], [ "Rage Power (Ex) (REPLACE)" ], [], [ "Mighty Rage (Ex)", "Rage Power (Ex) (REPLACE)" ] ] }
-        },
-        abilities : {
-          "Racial Score Modifier": {
-            "trigger": "Continuous",
-            "description": "Humans get a +2 racial bonus to any one ability.",
-            "benefit": "",
-            "bonuses": {
-              "Racial Ability (+)": { "value": 2, "targets": [ "Con" ], "type": "Racial" }
-            },
-            "extras": { "active": true, "showMain": false, "source": "Race" }
+          "magus": {
+            "levels": 10,
+            "special": [ [],
+              [ "Cantrips", "Arcane Pool (Su)", "Spell Combat (Ex)" ], [ "Spellstrike (Su)" ], [ "Magus Arcana (REPLACE)" ], [ "Spell Recall (Su)" ], [ "Bonus Feat (REPLACE)" ],
+              [ "Magus Arcana (REPLACE)" ], [	"Knowledge Pool (Su)", "Medium Armor (Ex)" ], [ "Improved Spell Combat (Ex)" ], [ "Magus Arcana (REPLACE)" ], [ "Fighter Training (Ex)" ],
+              [ "Improved Spell Recall (Su)", "Bonus Feat (REPALCE)" ], [ "Magus Arcana (REPLACE)" ], [ "Heavy Armor (Ex)" ], [ "Greater Spell Combat (Ex)" ], [ "Magus Arcana (REPLACE)" ],
+              [ "Counterstrike (Ex)" ],  [ "Bonus Feat (REPLACE)" ], [ "Magus Arcana (REPLACE)" ], [ "Greater Spell Access (Su)" ], [ "True Magus (Su)" ]
+            ]
           }
         },
-        attributes : {
-          "Str": { "base": 15 },
-          "Dex": { "base": 13 },
-          "Con": { "base": 14 },
-          "Int": { "base": 10 },
-          "Wis": { "base": 12 },
-          "Cha": { "base": 8 },
+        abilities : {
+          "Pyromaniac": {
+            "trigger": "Continuous",
+            "description": "You are treated as 1 level higher when casting spells and abilities with the fire descriptor or that deal fire damage",
+            "benefit": {},
+            "bonuses": {},
+            "extras": { "active": true, "showMain": false, "source": "Trait" },
+          },
+          "Darkvision": {
+            "trigger": "Continuous",
+            "description": "Amaru can see in the dark up to 60 feet",
+            "benefit": { "target": "senses", "text": "Darkvision 60 ft." },
+            "bonuses": {},
+            "extras": { "active": true, "showMain": false, "source": "Trait" }
+          },
+          "Stability": {
+            "trigger": "Continuous",
+            "description": "+4 to CMD when resisting Bull Rush or Trip attempts",
+            "benefit": { "target": "CMD", "text": "+4 vs Trp & Bull Rush" },
+            "bonuses": {},
+            "extras": { "active": true, "showMain": false, "source": "Trait" }
+          },
+          "Prehensile Tail": {
+            "trigger": "Continuous",
+            "description": "You can use your tail to pick up and cary small objects",
+            "benefit": {},
+            "bonuses": {},
+            "extras": { "active": true, "showMain": false, "source": "Trait" }
+          },
+          "Hypnotic Gaze": {
+            "trigger": "Standard",
+            "description": "Can cast Hypnotism once a day for 1 round",
+            "benefit": {},
+            "bonuses": {},
+            "extras": { "active": false, "showMain": true, "source": "Trait" }
+          },
+          "Reactionary": {
+            "trigger": "Continuous",
+            "description": "+2 trait bonus on inititive checks",
+            "benefit": {},
+            "bonuses": {
+              "Reactionary (+)": {
+                "value": 2,
+                "type": "Trait",
+                "targets": [ "init" ]
+              }
+            },
+            "extras": { "active": true, "showMain": false, "source": "Trait" }
+          },
+          "Drake Anatomist": {
+            "trigger": "Continuous",
+            "description": "+1 damage against dragons and +2 Knowledge (arcana) to identify them",
+            "benefit": {},
+            "bonuses": {},
+            "extras": { "active": true, "showMain": false, "source": "Trait" }
+          },
+          "Bladed Magic": {
+            "trigger": "Continuous",
+            "description": "+1 Craft for magic weapons and weapon enhancement from arcane pool lasts for 2 minutes (not 1)",
+            "benefit": {},
+            "bonuses": {},
+            "extras": { "active": true, "showMain": false, "source": "Trait" }
+          },
+          "Spell Combat (Ex)": {
+            "trigger": "Full-Round",
+            "description": "You can make all your attacks at a -2 and also cast a spell with a cast time of 1 Standard Action.",
+            "benefit": {},
+            "bonuses": {
+              "Spell Combat (-)": {
+                "value": -2,
+                "type": "Feat",
+                "targets": [ "rangedAtkBonus", "meleeAtkBonus" ]
+              }
+            },
+            "extras": { "active": true, "showMain": false, "source": "Class" },
+          },
+          "Weapon Finesse": {
+            "trigger": "Continuous",
+            "description": "You may use your Dex instead of Str for attacks made with light weapons, elven curve blades, rapiers, whips, or spiked chains.",
+            "benefit": {},
+            "bonuses": {},
+            "extras": { "active": true, "showMain": false, "source": "Feat" },
+          },
+
+
         },
-        health : {},
+        attributes : {
+          "Str": { "base": 16 },
+          "Dex": { "base": 17 },
+          "Con": { "base": 12 },
+          "Int": { "base": 15 },
+          "Wis": { "base": 10 },
+          "Cha": { "base": 12 },
+        },
+        health : {
+          "nonlethal": 0,
+          "total": 212,
+          "sources": [
+          "+17d12",
+          "+102 Con"
+          ]
+        },
         actions : {
           "melee": {},
           "ranged": {},
@@ -859,9 +989,14 @@ export default {
         magic : {},
         inventory : [ { "label": "Magic Items", "extras": { "icon": "amulet" }, "children": [ { "label": "Head", "extras": { "capacity": 1 }, "children": [] }, { "label": "Headband", "extras": { "capacity": 1 }, "children": [] }, { "label": "Eyes", "extras": { "capacity": 1 }, "children": [] }, { "label": "Shoulders", "extras": { "capacity": 1 }, "children": [] }, { "label": "Neck", "extras": { "capacity": 1 }, "children": [] }, { "label": "Chest", "extras": { "capacity": 1 }, "children": [] }, { "label": "Body", "extras": { "capacity": 1 }, "children": [] }, { "label": "Belt", "extras": { "capacity": 1 }, "children": [] }, { "label": "Wrists", "extras": { "capacity": 1 }, "children": [] }, { "label": "Ring 1", "extras": { "capacity": 1 }, "children": [] }, { "label": "Ring 2", "extras": { "capacity": 1 }, "children": [] }, { "label": "Feet", "extras": { "capacity": 1 }, "children": [] }, { "label": "Slotless", "extras": { "capacity": 1 }, "children": [] } ] }, { "label": "Equipped", "extras": { "icon": "equipment" }, "children": [ { "label": "Armor", "extras": { "icon": "armor", "capacity": 1 }, "children": [] }, { "label": "Weapons", "extras": { "icon": "weapons" }, "children": [ { "label": "Hands", "extras": { "icon": "abilityPalm", "capacity": 2 }, "children": [] }, { "label": "Back", "extras": { "icon": "swordShield", "capacity": 2 }, "children": [] } ] } ] }, { "label": "Items", "extras": { "icon": "inventory" }, "children": [ { "label": "Backpack", "extras": { "icon": "backpack", "capacity": 50 }, "children": [] } ] } ],
 
-        userSettings : { "cardTab": "main", "heroPoints": 1, "mainSections": [ "defense", "actions", "conditions" ], "expandInventory": [ "Equipped", "Armor", "Weapons", "Hands", "Back", "Items" ] },
+        userSettings : {
+          "cardTab": "main",
+          "heroPoints": 1,
+          "mainSections": [ "defense", "actions", "conditions" ],
+          "expandInventory": [ "Equipped", "Armor", "Weapons", "Hands", "Back", "Items" ]
+        },
         conditions : {},
-        notes : {},
+        notes : "",
         userId : 2
       }
 
@@ -880,6 +1015,7 @@ export default {
       if (this.loading) { return {}; }
       let abilities = this.character.abilities;
       for (let actions of Object.entries(this.character.actions)) {
+
         if (actions[0] == "special" || actions[0] == "basic") {
           actions = actions[1];
           for (var action in actions) {
@@ -888,6 +1024,10 @@ export default {
             }
           }
         }
+
+
+
+
       }
       return abilities;
     },
@@ -1084,6 +1224,34 @@ export default {
     addLevel() {
       console.log('pop up, get levels, show new, etc');
     },
+    // updateAbilities() {
+    //   let abilities = this.character.abilities;
+    //   let lvl = this.character.basics.cr;
+    //
+    //   /*
+    //   1. loop on classes
+    //   2. loop on levels
+    //   3. loop on class abilities
+    //   4. if special.name is not in ABILITIES => Add it
+    //   */
+    //   for (const cClass of Object.values(this.character.classes)) {
+    //     cClass.special.forEach((abils, level) => {
+    //       if (level <= lvl) {
+    //         abils.forEach(abil => {
+    //           if ( !Object.keys(abilities).includes(abil) ) {
+    //             abilities[abil] = {
+    //               "trigger": "Continuous",
+    //               "description": "PLEASE UPDATE THIS ENTRY",
+    //               "benefit": {},
+    //               "bonuses": {},
+    //               "extras": { "active": false, "showMain": false, "source": "Class" }
+    //             };
+    //           }
+    //         });
+    //       }
+    //     });
+    //   }
+    // },
 
 
 
@@ -1243,4 +1411,12 @@ h4 { margin: 0; }
 .el-row label { margin: 0; }
 
 .stat-controls > :not(:last-child) { margin-bottom: 20px; }
+
+.class-abil {
+  width: 210px;
+  margin: 2px;
+}
+.class-abil .el-input-group__prepend {
+	padding: 0 10px !important;
+}
 </style>
