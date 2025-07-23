@@ -46,9 +46,9 @@
       </el-col>
     </el-row>
 
-
-    <el-row class="center-horz" justify="space-between">
-      <el-col :span="10">
+    <!-- LOGIN CHECK -->
+    <el-row v-if="this.user.id" class="center-horz" justify="space-between">
+      <el-col :span="11">
         <el-divider> DM <g-icon iconName="lockedBook" /> </el-divider>
 
         <span v-if="user.roles.includes('storyteller')">
@@ -68,7 +68,7 @@
         </span>
       </el-col>
 
-      <el-col :span="10" :offset="4">
+      <el-col :span="11" :offset="2">
         <el-divider> ADMIN <g-icon iconName="userProfile" /> </el-divider>
 
         <span v-if="user.roles.includes('admin')">
@@ -89,20 +89,17 @@
       </el-col>
     </el-row>
 
-    <!-- LOGIN CHECK -->
-    <el-row v-if="!this.user.id" class="center-horz">
+    <el-row v-else class="center-horz">
       <el-col>
         <el-divider> <g-icon iconName="sparkle" /> </el-divider>
-
         <h3>Please login to view user details</h3>
         <router-link to="/dm-screen" class="nav-link">
-          <el-button type="primary">
+          <el-button type="primary" size="large">
             <g-icon iconSize="24px" iconName="login" /> Login
           </el-button>
         </router-link>
       </el-col>
     </el-row>
-
 
   </div>
 </template>
@@ -120,16 +117,17 @@ export default {
     };
   },
   mounted() {
+    let tmp = {};
     console.log('home', this.user);
 
     // login check
     UserService.getUserBoard().then(
-      (response) => {
-        console.log(response);
+      (response) => { tmp = response;
+        console.log(tmp);
       },
       (error) => {
-        console.error(error);
-        // this.user = {};
+        tmp = error;
+        this.user = {};
       }
     );
 
