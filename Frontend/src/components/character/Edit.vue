@@ -349,6 +349,9 @@
       health : {{ character.health }}
         {
           "nonlethal": 0,
+	  "damage": 0,
+
+	  computed: \/
           "total": 212,
           "sources": [
           "+17d12",
@@ -755,6 +758,65 @@
     <el-row id="magic">
       MAGIC
       {{ character.magic }}
+
+
+	Magus  ---------------
+	    Caster Level : 10
+	    Caster Attribute : Int
+	    ( Galdur / Slots )
+
+    	    Spell Slots
+	      Level 1 : [Magic Missile], [xx], [xx]	// [] btn casts spell and disables in list, until rest
+	      Level 2 : [],[]
+
+	    Galdur
+	    	Open Pool # / #
+	    	Reserve Pool # / #
+	    	Extra Pool # / # 	// if have extra	    
+	    -------------------------------
+	    Spells Known		[ Add Spell ]	// accordion
+	    Cantrips		Save DC  []	Concentration []
+	    [Jolt]	[cast] 0 Galdur		Deals 1d3 Shock Damage		1 std	=close (50')	instant		V,S	No Save		No SR
+
+	    Lvl 3		Save DC []	Concen []
+	    [Fireball]	[cast] 4 Galdur		Explooosion (xd6 fire)		1 Std	= long (800')	instant		V,S	Reflex		No SR?
+
+
+
+
+	      <el-tabs
+    v-model="activeName"
+    type="card"
+    class="demo-tabs"
+    @tab-click="handleClick"
+  >
+    <el-tab-pane label="User" name="first">User</el-tab-pane>
+    <el-tab-pane label="Config" name="second">Config</el-tab-pane>
+    <el-tab-pane label="Role" name="third">Role</el-tab-pane>
+    <el-tab-pane label="Task" name="fourth">Task</el-tab-pane>
+  </el-tabs>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue'
+
+import type { TabsPaneContext } from 'element-plus'
+
+const activeName = ref('first')
+
+const handleClick = (tab: TabsPaneContext, event: Event) => {
+  console.log(tab, event)
+}
+
+
+    <el-collapse v-model="activeNames" @change="handleChange">
+      <el-collapse-item title="Consistency" name="1">
+</el-collapse-item>
+</el-collapse>
+	      abilityCollapse: [],
+	    
+
+	    
     </el-row>
 
 
