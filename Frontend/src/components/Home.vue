@@ -93,7 +93,7 @@
       <el-col>
         <el-divider> <g-icon iconName="sparkle" /> </el-divider>
         <h3>Please login to view user details</h3>
-        <router-link to="/dm-screen" class="nav-link">
+        <router-link to="/login" class="nav-link">
           <el-button type="primary" size="large">
             <g-icon iconSize="24px" iconName="login" /> Login
           </el-button>
@@ -126,8 +126,9 @@ export default {
         console.log(tmp);
       },
       (error) => {
-        tmp = error;
+        this.$store.dispatch('auth/logout');
         this.user = {};
+        tmp = error;
       }
     );
 
