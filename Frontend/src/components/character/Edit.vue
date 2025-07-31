@@ -907,15 +907,63 @@
           </el-divider>
         </template>
 
+	[ Add Spell ] // btn like rest on CreatureCard
+	      
         <el-tabs v-model="spellsTab" type="card">
-
           <el-tab-pane
             v-for="(cClass, cName) in character.spells"
             :key="cName"
             :label="capFirsts(cName)"
             :name="cName"
           >
-            {{ cClass }}
+
+	<el-collapse v-model="spellsCollapse">
+          <el-collapse-item v-for="lvl in cClass" :key="lvl" :name="lvl">
+		  <!-- name = cName + lvl -->
+	    <template #title>
+              <el-divider style="max-width:50%">
+		      <el-row>
+			      <el-col :span="6">
+                <h4> <g-icon iconSize="32px" iconName="spellBook" /> Level {{ lvl }} Spells </h4>				      
+				</el-col>
+
+				<el-col :span="8">
+					Save DC : {{ lvl }}
+				</el-col>
+			      <el-col :span="8">
+				      Concentration DC : {{ (lvl * 2) }}
+				</el-col>
+			      
+		      </el-row>
+              </el-divider>
+            </template>
+
+		  
+		  character.spells[cName][lvl][spellName].description
+		  <el-row v-for="(spell, sName) in lvl" :key="sName" :gutter="10">
+			  {{ sName }} : {{ spell }}
+
+				<el-col :span="5">
+					{{ sName }}
+				</el-col>
+			      <el-col :span="8">
+				      <el-button>
+				      Cast for # Galdur
+					      </el-button>
+				</el-col>
+	  			<el-col :span="5">
+					<el-input type="textarea" v-model="spell.description" />
+				</el-col>
+	  			<el-col :span="5">
+				</el-col>
+	  			<el-col :span="5">
+				</el-col>
+			  
+
+			  
+		  </el-row>
+		  <br><br>
+	[Fireball]	[cast] 4 Galdur		Explooosion (xd6 fire)		1 Std	= long (800')	instant		V,S	Reflex		No SR?	  
           </el-tab-pane>
           <el-tab-pane label="Bard" name="bard">
             Bard
@@ -929,7 +977,7 @@
         -------------------------------
         Spells Known		[ Add Spell ]	// accordion
         Cantrips		Save DC  []	Concentration []
-        [Jolt]	[cast] 0 Galdur		Deals 1d3 Shock Damage		1 std	=close (50')	instant		V,S	No Save		No SR
+        [Jolt]	[cast] 0 Galdur		Deals 1d3 Shock Damage	(textarea)	1 std	=close (50')	instant		V,S	No Save		No SR
 
         Lvl 3		Save DC []	Concen []
         [Fireball]	[cast] 4 Galdur		Explooosion (xd6 fire)		1 Std	= long (800')	instant		V,S	Reflex		No SR?
@@ -976,11 +1024,7 @@ export default {
       advanced: false,
       sectionsCollapse: [],
 
-      healthColors: [
-        { color: '#f56c6c', percentage: 30 },
-        { color: '#e6a23c', percentage: 60 },
-        { color: '#5cb87a', percentage: 100 }
-      ],
+      healthColors: [ { color: '#f56c6c', percentage: 30 }, { color: '#e6a23c', percentage: 60 }, { color: '#5cb87a', percentage: 100 } ],
 
       abilityCollapse: [],
       abilityTypes: [ "Trait", "Class", "Feat", "Other" ],
@@ -995,6 +1039,7 @@ export default {
       itemFilter: "",
 
       knownSpellsTab: "",
+      spellsCollcapse: [],
 
 
 
@@ -1004,6 +1049,7 @@ export default {
 
       tmpSource: {
         id : 0,
+        userId : 2,
         name : "Mit'a",
         basics : {
           "cr": 10,
@@ -1029,6 +1075,29 @@ export default {
           "environment": "Urban",
           "favoredClass": { "name": "Magus", "bonus": "+1 Galdur per Level" }
         },
+        notes : "",
+        userSettings : {
+          "cardTab": "main",
+          "heroPoints": 1,
+          "mainSections": [ "defense", "actions", "conditions" ],
+          "expandInventory": [ "Equipped", "Armor", "Weapons", "Hands", "Back", "Items" ]
+        },
+	      
+        attributes : {
+          "Str": { "base": 16 },
+          "Dex": { "base": 17 },
+          "Con": { "base": 12 },
+          "Int": { "base": 15 },
+          "Wis": { "base": 10 },
+          "Cha": { "base": 12 },
+        },
+        health : {
+          "damage": 0,
+          "nonlethal": 0,
+          "total": 212,
+          "sources": [ "+17d12", "+102 Con" ]
+        },
+	      
         classes : {
           "magus": {
             "levels": 10,
@@ -1043,6 +1112,7 @@ export default {
             ]
           }
         },
+	      
         abilities : {
           "Pyromaniac": {
             "trigger": "Continuous",
@@ -1126,31 +1196,9 @@ export default {
             "bonuses": {},
             "extras": { "active": true, "showMain": false, "source": "Feat" },
           },
+        },
+        conditions : {},
 
-
-        },
-        attributes : {
-          "Str": { "base": 16 },
-          "Dex": { "base": 17 },
-          "Con": { "base": 12 },
-          "Int": { "base": 15 },
-          "Wis": { "base": 10 },
-          "Cha": { "base": 12 },
-        },
-        health : {
-          "damage": 0,
-          "nonlethal": 0,
-          "total": 212,
-          "sources": [
-          "+17d12",
-          "+102 Con"
-          ]
-        },
-        actions : {
-          "melee": {},
-          "ranged": {},
-          "special": {}
-        },
         skills : {
           "Acrobatics":                   { "ranks": 0, "class": true, "extras": { "notes": "" } },
           "Bluff":                        { "ranks": 0, "class": false, "extras": { "notes": "" } },
@@ -1195,29 +1243,29 @@ export default {
 
         spells : {
           "magus": [
-            [
+            [ // lvl 0s
+	      { 'Prestidigitation': {
+		      'casts': 0,
+		      'castTime': '1 Standard',
+		      'components': 'V,S',
+		      'target': 'Other',
+		      'range': '10 Ft',
+		      'duration': '1 Hour',
+		      'save': 'Other',
+		      'SR': false,
+		      'description': "You may perform minor tricks like: lift 1 pound, color, clean, or soil 1 cubic foot of items, chill, warm, or flavor 1 pound of nonliving material. No effects persist except moving, cleaning, and soiling."
+	      } },
               { 'jolt': { 'description': 'does a zap' } },
-              { 'Dancing Lights': { 'description': 'Little Orbs follow you around' } }
+              { 'Dancing Lights': { 'description': 'Little Orbs follow you around' } }		    
             ],
-            [
+            [ // lvl 1s
               { 'Shield': { 'description': 'Negates Magic Missile & grants a +4 Shield bonus to AC' } }
             ]
           ],
           "cleric": []
-        },
+        }
+      } // end tmpSource (Mit'a)
 
-        userSettings : {
-          "cardTab": "main",
-          "heroPoints": 1,
-          "mainSections": [ "defense", "actions", "conditions" ],
-          "expandInventory": [ "Equipped", "Armor", "Weapons", "Hands", "Back", "Items" ]
-        },
-        conditions : {},
-        notes : "",
-        userId : 2
-      }
-
-      ,
     };
   },
   computed: {
