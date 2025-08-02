@@ -380,7 +380,6 @@
           </el-divider>
         </template>
 
-        <!-- CLASSES -->
         <div v-for="(cClass, cName) in character.classes" :key="cName">
           <el-divider> <h4> <g-icon iconName="magicSwirl" /> {{ capFirsts(cName) }} </h4> </el-divider>
 
@@ -559,9 +558,6 @@
           {{ this.classes[cName].magic }}
         </div>
       </el-collapse-item>
-
-
-
 
       <!-- ABILITIES -->
       <el-collapse-item name="3">
@@ -749,7 +745,6 @@
         </el-row>
       </el-collapse-item>
 
-
       <!-- SKILLS -->
       <el-collapse-item name="4">
         <template #title>
@@ -827,7 +822,6 @@
         </div>
       </el-collapse-item>
 
-
       <!-- INVENTORY -->
       <el-collapse-item name="5">
         <template #title>
@@ -897,8 +891,6 @@
         </el-dialog>
       </el-collapse-item>
 
-
-
       <!-- SPELLS KNOWN -->
       <el-collapse-item name="6">
         <template #title>
@@ -906,94 +898,118 @@
             <h4> <g-icon iconSize="32px" iconName="spellBook" /> Spells Known </h4>
           </el-divider>
         </template>
+        [ Add Spell ] // btn like rest on CreatureCard
 
-	[ Add Spell ] // btn like rest on CreatureCard
-	      
+        <!--
+        <el-button ref="restBtn" size="large" @click="rest()">
+          <el-tooltip placement="top" effect="light">
+            <g-icon iconSize="20px" iconName="campfire" />
+            <template #content>Rest for 8 Hours</template>
+          </el-tooltip>
+        </el-button>
+        <el-tabs ref="tabs" type="card" v-model="userSettings.cardTab">
+          const scrollbar = this.$refs.tabs.$el.querySelector('.el-tabs__nav-scroll');
+          scrollbar.appendChild(this.$refs.restBtn.$el);
+          this.currHealth = this.source.health.current;
+        -->
+
+
         <el-tabs v-model="spellsTab" type="card">
-          <el-tab-pane
-            v-for="(cClass, cName) in character.spells"
-            :key="cName"
-            :label="capFirsts(cName)"
-            :name="cName"
-          >
+          <el-tab-pane v-for="(cClass, cName) in character.spells" :key="cName" :label="capFirsts(cName)" :name="cName" >
+            <el-collapse v-model="spellsCollapse">
+              <el-collapse-item v-for="(spells, lvl) in cClass" :key="lvl" :name="lvl">
 
-	<el-collapse v-model="spellsCollapse">
-          <el-collapse-item v-for="lvl in cClass" :key="lvl" :name="lvl">
-		  <!-- name = cName + lvl -->
-	    <template #title>
-              <el-divider style="max-width:50%">
-		      <el-row>
-			      <el-col :span="6">
-                <h4> <g-icon iconSize="32px" iconName="spellBook" /> Level {{ lvl }} Spells </h4>				      
-				</el-col>
+                <template #title>
+                  <el-row :gutter="10">
+                    <el-col :span="7">
+                      <el-tag effect="dark"> Level {{ lvl }} Spells </el-tag>
+                    </el-col>
+                    <el-col :span="7">
+                      <el-tooltip placement="top" effect="light">
+                        <el-tag effect="dark" type="info">
+                          Save DC : {{ 10 + lvl + (this.attributes[this.classes[cName].magic.castingAtr].mod) }}
+                        </el-tag>
+                        <template #content>
+                          10
+                          + {{ this.attributes[this.classes[cName].magic.castingAtr].mod }} {{ this.classes[cName].magic.castingAtr }}
+                          + {{ lvl }} Level Spell
+                        </template>
+                      </el-tooltip>
+                    </el-col>
+                    <el-col :span="10">
+                      <el-tooltip placement="top" effect="light">
+                        <el-tag effect="dark" type="info">
+                          Defensive Casting DC : {{ 15 + (lvl * 2) }}
+                        </el-tag>
+                        <template #content>
+                          When casting defensively to avoid an Attack of Opportunity <br>
+                          15 + {{ lvl * 2 }} (Spell Level x 2)
+                        </template>
+                      </el-tooltip>
+                    </el-col>
+                  </el-row>
+                </template>
 
-				<el-col :span="8">
-					Save DC : {{ lvl }}
-				</el-col>
-			      <el-col :span="8">
-				      Concentration DC : {{ (lvl * 2) }}
-				</el-col>
-			      
-		      </el-row>
-              </el-divider>
-            </template>
+                <el-row v-for="(spell, sName) in spells" :key="sName" :gutter="10">
+                  <el-col :span="4" class="center-horz">
+                    <el-popconfirm
+                      hide-icon
+                      :title="`Cast for ${spell.casts} Galdur?`"
+                      confirm-button-text="Yes"
+                      cancel-button-text="No"
+                      @confirm="console.log('yep')"
+                      @cancel="console.log('nnnope')"
+                    >
+                      <template #reference>
+                        <el-button type="warning" plain> {{ sName }} </el-button>
+                      </template>
+                    </el-popconfirm>
+                  </el-col>
 
-		  
-		  character.spells[cName][lvl][spellName].description
-		  <el-row v-for="(spell, sName) in lvl" :key="sName" :gutter="10">
-			  {{ sName }} : {{ spell }}
+                  <el-col :span="8">
+                    <el-input type="textarea" v-model="spell.description" :autosize="{ minRows: 2, maxRows: 4 }" />
+                  </el-col>
 
-				<el-col :span="5">
-					{{ sName }}
-				</el-col>
-			      <el-col :span="8">
-				      <el-button>
-				      Cast for # Galdur
-					      </el-button>
-				</el-col>
-	  			<el-col :span="5">
-					<el-input type="textarea" v-model="spell.description" />
-				</el-col>
-	  			<el-col :span="5">
-				</el-col>
-	  			<el-col :span="5">
-				</el-col>
-			  
+                  <el-col :span="5">
+                    <el-input v-model="spell.components" aria-label="Components">
+                      <template #prepend>Components</template>
+                    </el-input>
+                    <el-input v-model="spell.castTime" aria-label="Casting Time">
+                      <template #prepend>Casting Time</template>
+                    </el-input>
+                    <el-input v-model="spell.duration" aria-label="Duration">
+                      <template #prepend>Duration</template>
+                    </el-input>
+                  </el-col>
 
-			  
-		  </el-row>
-		  <br><br>
-	[Fireball]	[cast] 4 Galdur		Explooosion (xd6 fire)		1 Std	= long (800')	instant		V,S	Reflex		No SR?	  
-          </el-tab-pane>
-          <el-tab-pane label="Bard" name="bard">
-            Bard
+                  <el-col :span="5">
+                    <el-input v-model="spell.target" aria-label="Target">
+                      <template #prepend>Target</template>
+                    </el-input>
+                    <el-input v-model="spell.range" aria-label="Range">
+                      <template #prepend>Range</template>
+                    </el-input>
+                    <el-input v-model="spell.save" aria-label="Save">
+                      <template #prepend>Save</template>
+                    </el-input>
+                  </el-col>
+
+                  <el-col :span="2" class="center-horz">
+                    Spell Resistence
+                    <el-switch
+                    v-model="spell.SR"
+                    inline-prompt
+                    active-text=" Yes SR "
+                    inactive-text=" No SR "
+                    aria-label="Spell Resistence Switch" />
+                  </el-col>
+                </el-row>
+              </el-collapse-item>
+            </el-collapse>
           </el-tab-pane>
         </el-tabs>
-
-<br><br><br>
-
-
-
-        -------------------------------
-        Spells Known		[ Add Spell ]	// accordion
-        Cantrips		Save DC  []	Concentration []
-        [Jolt]	[cast] 0 Galdur		Deals 1d3 Shock Damage	(textarea)	1 std	=close (50')	instant		V,S	No Save		No SR
-
-        Lvl 3		Save DC []	Concen []
-        [Fireball]	[cast] 4 Galdur		Explooosion (xd6 fire)		1 Std	= long (800')	instant		V,S	Reflex		No SR?
-
-
-
-
       </el-collapse-item>
-
-
     </el-collapse>
-
-
-
-
-
 
 
     <!-- FOOTER -->
@@ -1022,7 +1038,7 @@ export default {
     return {
       loading: true,
       advanced: false,
-      sectionsCollapse: [],
+      sectionsCollapse: [ '6' ],
 
       healthColors: [ { color: '#f56c6c', percentage: 30 }, { color: '#e6a23c', percentage: 60 }, { color: '#5cb87a', percentage: 100 } ],
 
@@ -1038,8 +1054,8 @@ export default {
       item: {},
       itemFilter: "",
 
-      knownSpellsTab: "",
-      spellsCollcapse: [],
+      spellsTab: "",
+      spellsCollapse: [],
 
 
 
@@ -1082,7 +1098,7 @@ export default {
           "mainSections": [ "defense", "actions", "conditions" ],
           "expandInventory": [ "Equipped", "Armor", "Weapons", "Hands", "Back", "Items" ]
         },
-	      
+
         attributes : {
           "Str": { "base": 16 },
           "Dex": { "base": 17 },
@@ -1097,7 +1113,7 @@ export default {
           "total": 212,
           "sources": [ "+17d12", "+102 Con" ]
         },
-	      
+
         classes : {
           "magus": {
             "levels": 10,
@@ -1112,7 +1128,7 @@ export default {
             ]
           }
         },
-	      
+
         abilities : {
           "Pyromaniac": {
             "trigger": "Continuous",
@@ -1243,24 +1259,24 @@ export default {
 
         spells : {
           "magus": [
-            [ // lvl 0s
-	      { 'Prestidigitation': {
-		      'casts': 0,
-		      'castTime': '1 Standard',
-		      'components': 'V,S',
-		      'target': 'Other',
-		      'range': '10 Ft',
-		      'duration': '1 Hour',
-		      'save': 'Other',
-		      'SR': false,
-		      'description': "You may perform minor tricks like: lift 1 pound, color, clean, or soil 1 cubic foot of items, chill, warm, or flavor 1 pound of nonliving material. No effects persist except moving, cleaning, and soiling."
-	      } },
-              { 'jolt': { 'description': 'does a zap' } },
-              { 'Dancing Lights': { 'description': 'Little Orbs follow you around' } }		    
-            ],
-            [ // lvl 1s
-              { 'Shield': { 'description': 'Negates Magic Missile & grants a +4 Shield bonus to AC' } }
-            ]
+            {
+              'Prestidigitation': {
+                'casts': 0,
+                'castTime': '1 Standard',
+                'components': 'V,S',
+                'target': 'Other',
+                'range': '10 Ft',
+                'duration': '1 Hour',
+                'save': 'Other',
+                'SR': false,
+                'description': "You may perform minor tricks like: lift 1 pound, color, clean, or soil 1 cubic foot of items, chill, warm, or flavor 1 pound of nonliving material. No effects persist except moving, cleaning, and soiling."
+              },
+              'jolt': { 'description': 'does a zap' },
+              'Dancing Lights': { 'description': 'Little Orbs follow you around' }
+            },
+            {
+              'Shield': { 'description': 'Negates Magic Missile & grants a +4 Shield bonus to AC' }
+            }
           ],
           "cleric": []
         }
@@ -1279,21 +1295,17 @@ export default {
     abilities() {
       if (this.loading) { return {}; }
       let abilities = this.character.abilities;
-      for (let actions of Object.entries(this.character.actions)) {
-
-        if (actions[0] == "special" || actions[0] == "basic") {
-          actions = actions[1];
-          for (var action in actions) {
-            if (!Object.keys(abilities).includes(action)) {
-              abilities[action] = actions[action];
-            }
-          }
-        }
-
-
-
-
-      }
+      // for (let actions of Object.entries(this.character.actions)) {
+      //
+      //   if (actions[0] == "special" || actions[0] == "basic") {
+      //     actions = actions[1];
+      //     for (var action in actions) {
+      //       if (!Object.keys(abilities).includes(action)) {
+      //         abilities[action] = actions[action];
+      //       }
+      //     }
+      //   }
+      // }
       return abilities;
     },
 
