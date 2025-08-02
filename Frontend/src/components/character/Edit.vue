@@ -504,13 +504,13 @@
                   </el-col>
                   <el-col :span="16">
                     <el-progress :text-inside="true" :stroke-width="24"
-                      :percentage=" Math.floor( ( (this.openGaldur.total - cClass.spentOpen) / this.openGaldur.total ) * 100 ) "
+                      :percentage=" Math.floor( ( (this.openGaldur.total - cClass.openSpent) / this.openGaldur.total ) * 100 ) "
                     >
-                      {{ this.openGaldur.total - cClass.spentOpen }} / {{ this.openGaldur.total }}
+                      {{ this.openGaldur.total - cClass.openSpent }} / {{ this.openGaldur.total }} / {{ cClass.openTotal }}
                     </el-progress>
                   </el-col>
                   <el-col :span="4" class="center-horz"  v-if="advanced">
-                    <el-input-number v-model="cClass.spentOpen" :min="0" :max="this.openGaldur.total" aria-label="Spent Open Galdur" />
+                    <el-input-number v-model="cClass.openSpent" :min="0" :max="this.openGaldur.total" aria-label="Spent Open Galdur" />
                   </el-col>
                 </el-row>
 
@@ -520,13 +520,13 @@
                   </el-col>
                   <el-col :span="16">
                     <el-progress :text-inside="true" :stroke-width="24" status="warning"
-                      :percentage=" Math.floor( ( (this.reserveGaldur.total - cClass.spentReserve) / this.reserveGaldur.total ) * 100 ) "
+                      :percentage=" Math.floor( ( (this.reserveGaldur.total - cClass.reserveSpent) / this.reserveGaldur.total ) * 100 ) "
                     >
-                      {{ this.reserveGaldur.total - cClass.spentReserve }} / {{ this.reserveGaldur.total }}
+                      {{ this.reserveGaldur.total - cClass.reserveSpent }} / {{ this.reserveGaldur.total }}
                     </el-progress>
                   </el-col>
                   <el-col :span="4" class="center-horz"  v-if="advanced">
-                    <el-input-number v-model="cClass.spentReserve" :min="0" :max="this.reserveGaldur.total" aria-label="Spent Open Galdur" />
+                    <el-input-number v-model="cClass.reserveSpent" :min="0" :max="this.reserveGaldur.total" aria-label="Spent Reserve Galdur" />
                   </el-col>
                 </el-row>
 
@@ -536,13 +536,13 @@
                   </el-col>
                   <el-col :span="16">
                     <el-progress :text-inside="true" :stroke-width="24" status="warning"
-                      :percentage=" Math.floor( ( (10 - cClass.spentReserve) / 10 ) * 100 ) "
+                      :percentage=" Math.floor( ( (10 - cClass.extraSpent) / 10 ) * 100 ) "
                     >
-                      {{ this.reserveGaldur.total - cClass.spentReserve }} / {{ this.reserveGaldur.total }}
+                      {{ this.reserveGaldur.total - cClass.extraSpent }} / {{ this.reserveGaldur.total }}
                     </el-progress>
                   </el-col>
                   <el-col :span="4" class="center-horz"  v-if="advanced">
-                    <el-input-number v-model="cClass.spentReserve" :min="0" :max="this.reserveGaldur.total" aria-label="Spent Open Galdur" />
+                    <el-input-number v-model="cClass.extraSpent" :min="0" :max="this.reserveGaldur.total" aria-label="Spent Extra Galdur" />
                   </el-col>
                 </el-row>
               </div>
@@ -900,6 +900,29 @@
         </template>
         [ Add Spell ] // btn like rest on CreatureCard
 
+<el-popconfirm title="Learn New Spell?" icon-color="#626AEF" ref="addSpell" @confirm="addSpell">
+  <template #reference>
+    <el-button type="primary" size="small">Add Spell</el-button>
+  </template>
+  <template #actions="{ confirm }">
+    <el-input v-model="newSpellName" size="small" aria-label="New Spell Name">
+      <template #prepend>Name</template>  
+    </el-input>
+    <el-select v-model="newSpellClass" aria-label="New Spell Class">
+      <el-option v-for="(cClass, cName) in this.classes" :key="cName" :label="cName" :value="cName" />
+    </el-select>
+    <el-button type="primary" size="small" @click="confirm" :disabled="newSpellName == ''">Yes</el-button>
+  </template>
+</el-popconfirm>
+<!--
+<el-button size="large" ref="addSpell" @click="addSpell()">
+  <el-tooltip placement="top" effect="light">
+    <g-icon iconSize="20px" iconName="campfire" />
+    <template #content>Rest for 8 Hours</template>
+  </el-tooltip>
+</el-button>
+-->
+
         <!--
         <el-button ref="restBtn" size="large" @click="rest()">
           <el-tooltip placement="top" effect="light">
@@ -908,13 +931,28 @@
           </el-tooltip>
         </el-button>
         <el-tabs ref="tabs" type="card" v-model="userSettings.cardTab">
-          const scrollbar = this.$refs.tabs.$el.querySelector('.el-tabs__nav-scroll');
-          scrollbar.appendChild(this.$refs.restBtn.$el);
-          this.currHealth = this.source.health.current;
+	      
+          const spellTabs = this.$refs.spellsTab.$el.querySelector('.el-tabs__nav-scroll');
+          scrollbar.appendChild(this.$refs.addSpell.$el);
+
+
+	          addSpell() {
+      this.addAbil = true;
+      this.abil = {
+        trigger: "Standard",
+        description: "",
+        benefit: { target: "Self", text: "" },
+        bonuses: {},
+        extras: { active: true, source: "Feat", showMain: false }
+      };
+      this.editingAbil = true;
+    },
+
+	      
         -->
 
 
-        <el-tabs v-model="spellsTab" type="card">
+        <el-tabs v-model="spellsTab" type="card" ref="spellsTab">
           <el-tab-pane v-for="(cClass, cName) in character.spells" :key="cName" :label="capFirsts(cName)" :name="cName" >
             <el-collapse v-model="spellsCollapse">
               <el-collapse-item v-for="(spells, lvl) in cClass" :key="lvl" :name="lvl">
@@ -1055,6 +1093,8 @@ export default {
       itemFilter: "",
 
       spellsTab: "",
+      newSpellName: "",
+      newSpellClass: "",
       spellsCollapse: [],
 
 
@@ -1118,8 +1158,10 @@ export default {
           "magus": {
             "levels": 10,
             "useGaldur": true,
-            "spentOpen": 0,
-            "spentReserve": 0,
+            "openSpent": 0,
+            "openTotal": 20,
+            "reserveSpent": 0,
+            "reserveTotal": 20,
             "special": [ [],
               [ "Cantrips", "Arcane Pool (Su)", "Spell Combat (Ex)" ], [ "Spellstrike (Su)" ], [ "Magus Arcana (REPLACE)" ], [ "Spell Recall (Su)" ], [ "Bonus Feat (REPLACE)" ],
               [ "Magus Arcana (REPLACE)" ], [	"Knowledge Pool (Su)", "Medium Armor (Ex)" ], [ "Improved Spell Combat (Ex)" ], [ "Magus Arcana (REPLACE)" ], [ "Fighter Training (Ex)" ],
@@ -1401,6 +1443,8 @@ export default {
     console.log("races", this.races);
     console.log("classes", this.classes);
 
+const spellTabs = this.$refs.spellsTab.$el.querySelector('.el-tabs__nav-scroll');
+scrollbar.appendChild(this.$refs.addSpell.$el);
 
 
     CharacterService.getCharacter(this.$route.params.id).then(() => {
@@ -1686,8 +1730,31 @@ export default {
       this.$message({ message: `${data.label} was removed from inventory`, type: "warning" });
     },
 
+    /***************************\
+    *                           *
+    *          SPELLS           *
+    *                           *
+    \***************************/
+    addSpell() {
 
-
+let class = this.character.spells[newSpellClass];
+if (class[newSpellName]) {
+  this.$message({ message: `You already know a ${this.newSpellClass} spell called ${this.newSpellName}`, type: "warning" });
+  return;
+} else {
+  class[newSpellName] = {
+    'casts': 0,
+    'castTime': '1 Standard',
+    'components': 'V,S,M/DF',
+    'target': 'Self',
+    'range': 'Close',
+    'duration': 'Instant',
+    'save': 'Ref (half)',
+    'SR': true,
+    'description': ""
+  };
+}
+    },
 
   }
 }
