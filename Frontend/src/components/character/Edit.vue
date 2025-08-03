@@ -1,8 +1,8 @@
-<template>
+<template lang="html">
   <div class="container" v-if="!loading">
 
     <el-row>
-      <el-col :span="8">
+      <el-col :span="16">
         <h3>
           {{ character.name }}
           <el-tag effect="dark" type="info" v-if="advanced" style="margin-right:10px;">
@@ -14,7 +14,7 @@
         </h3>
       </el-col>
       <!-- ADVANCED -->
-      <el-col :span="8" :offset="8" style="display: flex; justify-content: space-evenly;">
+      <el-col :span="8" style="display: flex; justify-content: space-evenly;">
         <el-switch v-model="advanced" inline-prompt active-text=" Advanced " inactive-text=" Normal " aria-label="Advanced Mode Switch" />
       </el-col>
     </el-row>
@@ -450,6 +450,7 @@
             </el-col>
           </el-row>
 
+          <!-- Magic -->
           <el-row v-if="this.classes[cName].magic" :gutter="10">
             <el-col :span="8">
               <el-descriptions :column="1" border >
@@ -476,41 +477,43 @@
                     inline-prompt active-text=" Galdur "
                     inactive-text=" Spell Slots "
                     aria-label="Casting Type Switch" />
+
                   <span v-if="cClass.useGaldur" style="margin-left: 20px;">
-                    {{ this.classes[cName].magic.galdurTotal[cClass.levels] }} Total Galdur
-                  </span>
-                </el-descriptions-item>
-                <el-descriptions-item v-if="cClass.useGaldur">
-                  <template #label>
                     <el-tooltip placement="top" effect="light">
-                      Fatigue
+                      <el-tag effect="dark" type="info">
+                        {{ cumulativeGaldur[cName].total }} Total Galdur
+                      </el-tag>
                       <template #content>
-                        When using points from the reserve pool, you must make a Will Save or become Fatigued, then Exhausted, then fall Unconcious
+                        <span v-for="bonus in cumulativeGaldur[cName].sources" :key="bonus"> {{ bonus+" " }} </span>
                       </template>
                     </el-tooltip>
-                  </template>
-                  DC {
-                    10 + (remaining reserve - total reserve)
-                  }
+                  </span>
                 </el-descriptions-item>
               </el-descriptions>
             </el-col>
 
-            <el-col :span="12" :offset="2">
+            <el-col :span="14" :offset="2">
               <div v-if="cClass.useGaldur">
                 <el-row :gutter="10">
                   <el-col :span="4">
                     <el-tag effect="dark" type="primary"> Open Pool </el-tag>
                   </el-col>
-                  <el-col :span="16">
+                  <el-col :span="8">
                     <el-progress :text-inside="true" :stroke-width="24"
-                      :percentage=" Math.floor( ( (this.openGaldur.total - cClass.openSpent) / this.openGaldur.total ) * 100 ) "
+                      :percentage=" Math.floor( ( (cClass.openTotal - cClass.openSpent) / cClass.openTotal ) * 100 ) "
                     >
-                      {{ this.openGaldur.total - cClass.openSpent }} / {{ this.openGaldur.total }} / {{ cClass.openTotal }}
+                      {{ cClass.openTotal - cClass.openSpent }} / {{ cClass.openTotal }}
                     </el-progress>
                   </el-col>
-                  <el-col :span="4" class="center-horz"  v-if="advanced">
-                    <el-input-number v-model="cClass.openSpent" :min="0" :max="this.openGaldur.total" aria-label="Spent Open Galdur" />
+                  <el-col :span="6" class="center-horz"  v-if="advanced">
+                    <el-tooltip content="Spent Galdur" placement="top" effect="light">
+                      <el-input-number v-model="cClass.openSpent" :min="0" :max="cClass.openTotal" aria-label="Spent Open Galdur" />
+                    </el-tooltip>
+                  </el-col>
+                    <el-col :span="6" class="center-horz"  v-if="advanced">
+                    <el-tooltip content="Total Galdur" placement="top" effect="light">
+                      <el-input-number v-model="cClass.openTotal" aria-label="Total Open Galdur" />
+                    </el-tooltip>
                   </el-col>
                 </el-row>
 
@@ -518,34 +521,44 @@
                   <el-col :span="4">
                     <el-tag effect="dark" type="warning"> Reserve Pool </el-tag>
                   </el-col>
-                  <el-col :span="16">
+                  <el-col :span="8">
                     <el-progress :text-inside="true" :stroke-width="24" status="warning"
-                      :percentage=" Math.floor( ( (this.reserveGaldur.total - cClass.reserveSpent) / this.reserveGaldur.total ) * 100 ) "
+                      :percentage=" Math.floor( ( (cClass.reserveTotal - cClass.reserveSpent) / cClass.reserveTotal ) * 100 ) "
                     >
-                      {{ this.reserveGaldur.total - cClass.reserveSpent }} / {{ this.reserveGaldur.total }}
+                      {{ cClass.reserveTotal - cClass.reserveSpent }} / {{ cClass.reserveTotal }}
                     </el-progress>
                   </el-col>
-                  <el-col :span="4" class="center-horz"  v-if="advanced">
-                    <el-input-number v-model="cClass.reserveSpent" :min="0" :max="this.reserveGaldur.total" aria-label="Spent Reserve Galdur" />
+                  <el-col :span="6" class="center-horz"  v-if="advanced">
+                    <el-tooltip content="Spent Galdur" placement="top" effect="light">
+                      <el-input-number v-model="cClass.reserveSpent" :min="0" :max="cClass.reserveTotal" aria-label="Spent Reserve Galdur" />
+                    </el-tooltip>
+                  </el-col>
+                  <el-col :span="6" class="center-horz"  v-if="advanced">
+                    <el-tooltip content="Total Galdur" placement="top" effect="light">
+                      <el-input-number v-model="cClass.reserveTotal" aria-label="Total Reserve Galdur" />
+                    </el-tooltip>
                   </el-col>
                 </el-row>
 
-                <el-row :gutter="10">
+                <el-row :gutter="10" v-if="this.classes[cName].magic.extraGaldur">
                   <el-col :span="4">
-                    <el-tag effect="dark" type="info"> Domain Pool </el-tag>
+                    <el-tag effect="dark" type="info"> {{ this.classes[cName].magic.extraGaldur.poolName }} </el-tag>
                   </el-col>
-                  <el-col :span="16">
-                    <el-progress :text-inside="true" :stroke-width="24" status="warning"
-                      :percentage=" Math.floor( ( (10 - cClass.extraSpent) / 10 ) * 100 ) "
+                  <el-col :span="8">
+                    <el-progress :text-inside="true" :stroke-width="24" color="#909399"
+                      :percentage=" Math.floor( ( (this.classes[cName].magic.extraGaldur.total[cClass.levels] - cClass.extraSpent) / this.classes[cName].magic.extraGaldur.total[cClass.levels] ) * 100 ) "
                     >
-                      {{ this.reserveGaldur.total - cClass.extraSpent }} / {{ this.reserveGaldur.total }}
+                      {{ this.classes[cName].magic.extraGaldur.total[cClass.levels] - cClass.extraSpent }} / {{ this.classes[cName].magic.extraGaldur.total[cClass.levels] }}
                     </el-progress>
                   </el-col>
-                  <el-col :span="4" class="center-horz"  v-if="advanced">
-                    <el-input-number v-model="cClass.extraSpent" :min="0" :max="this.reserveGaldur.total" aria-label="Spent Extra Galdur" />
+                  <el-col :span="6" class="center-horz"  v-if="advanced">
+                    <el-tooltip content="Spent Galdur" placement="top" effect="light">
+                      <el-input-number v-model="cClass.extraSpent" :min="0" :max="this.classes[cName].magic.extraGaldur.total[cClass.levels]" :aria-label="`Spent ${this.classes[cName].magic.extraGaldur.poolName} Galdur`" />
+                    </el-tooltip>
                   </el-col>
                 </el-row>
               </div>
+
 
               <div v-else>
                 Spell Slots
@@ -556,6 +569,7 @@
           </el-row>
           {{ cClass }} <br> <br>
           {{ this.classes[cName].magic }}
+
         </div>
       </el-collapse-item>
 
@@ -761,21 +775,25 @@
 
         <el-row>
           <el-col :span="5"> <h5> Name (Ability) </h5> </el-col>
-          <el-col :span="1" class="center-horz"> <h5> Ranks </h5> </el-col>
-          <el-col :span="1" class="center-horz">
+          <el-col :span="4" class="center-horz" style="display:flex; justify-content:space-evenly;">
+            <el-tooltip placement="top" effect="light">
+              <g-icon iconSize="24px" iconName="magicSwirl" />
+              <template #content> Class Skill </template>
+            </el-tooltip>
+            <el-tooltip placement="top" effect="light">
+              <g-icon iconSize="24px" iconName="sparkle" />
+              <template #content> Ranks </template>
+            </el-tooltip>
             <el-tooltip placement="top" effect="light">
               <g-icon iconSize="24px" iconName="armor" />
               <template #content> Armor Penalty </template>
             </el-tooltip>
-          </el-col>
-          <el-col :span="1" class="center-horz">
             <el-tooltip placement="top" effect="light">
               <g-icon iconSize="24px" iconName="openBook" />
               <template #content> Background Skill </template>
             </el-tooltip>
           </el-col>
-          <el-col :span="2" class="center-horz"> <h5> Class Skill </h5> </el-col>
-          <el-col :span="11" class="center-horz"> <h5> Extras </h5> </el-col>
+          <el-col :span="9" class="center-horz"> <h5> Notes </h5> </el-col>
         </el-row>
 
         <div v-for="(skill, name) in this.rules.skills" :key="name">
@@ -785,28 +803,28 @@
               <span v-if="['Artistry', 'Craft', 'Lore', 'Perform', 'Profession'].includes(name)"> ({{ character.skills[name].extras.specialty }}) </span>
               ({{ skill.ability }})
             </el-col>
-            <el-col :span="1" class="center-horz">
-              <span v-if="character.skills[name].ranks">
-                {{ character.skills[name].ranks }}
-              </span>
-            </el-col>
-            <el-col :span="1" class="center-horz">
-              <g-icon v-if="skill.armor_pen" iconSize="15px" iconName="armor" />
-            </el-col>
-            <el-col :span="1" class="center-horz">
-              <g-icon v-if="skill.background" iconSize="15px" iconName="openBook" />
-            </el-col>
-            <el-col :span="2" class="center-horz">
-              <el-checkbox v-model="character.skills[name].class" :aria-label="`${name} class skill`" />
+            <el-col :span="4" class="center-horz" style="display:flex; justify-content:space-evenly;">
+              <div style="width:25%">
+                <el-checkbox v-model="character.skills[name].class" :aria-label="`${name} class skill`" />
+              </div>
+              <div style="width:25%">
+                <span v-if="character.skills[name].ranks">
+                  {{ character.skills[name].ranks }}
+                </span>
+              </div>
+              <div style="width:25%">
+                <g-icon v-if="skill.armor_pen" iconSize="15px" iconName="armor" />
+              </div>
+              <div style="width:25%">
+                <g-icon v-if="skill.background" iconSize="15px" iconName="openBook" />
+              </div>
             </el-col>
             <el-col :span="14" class="center-horz">
               <el-row :gutter="10">
-                <el-col :span="18">
-                  <el-input v-model="character.skills[name].extras.notes" :aria-label="`${name} notes`">
-                    <template #prepend>Notes</template>
-                  </el-input>
+                <el-col :span="15">
+                  <el-input type="textarea" v-model="character.skills[name].extras.notes" :autosize="{ minRows: 2, maxRows: 4 }" :aria-label="`${name} notes`" />
                 </el-col>
-                <el-col :span="6">
+                <el-col :span="9">
                   <span v-if="['Artistry', 'Craft', 'Lore', 'Perform', 'Profession'].includes(name)">
                     <el-input v-model="character.skills[name].extras.specialty" :aria-label="`${name} Specialty`">
                       <template #prepend>Specialty</template>
@@ -898,59 +916,23 @@
             <h4> <g-icon iconSize="32px" iconName="spellBook" /> Spells Known </h4>
           </el-divider>
         </template>
-        [ Add Spell ] // btn like rest on CreatureCard
 
-<el-popconfirm title="Learn New Spell?" icon-color="#626AEF" ref="addSpell" @confirm="addSpell">
-  <template #reference>
-    <el-button type="primary" size="small">Add Spell</el-button>
-  </template>
-  <template #actions="{ confirm }">
-    <el-input v-model="newSpellName" size="small" aria-label="New Spell Name">
-      <template #prepend>Name</template>  
-    </el-input>
-    <el-select v-model="newSpellClass" aria-label="New Spell Class">
-      <el-option v-for="(cClass, cName) in this.classes" :key="cName" :label="cName" :value="cName" />
-    </el-select>
-    <el-button type="primary" size="small" @click="confirm" :disabled="newSpellName == ''">Yes</el-button>
-  </template>
-</el-popconfirm>
-<!--
-<el-button size="large" ref="addSpell" @click="addSpell()">
-  <el-tooltip placement="top" effect="light">
-    <g-icon iconSize="20px" iconName="campfire" />
-    <template #content>Rest for 8 Hours</template>
-  </el-tooltip>
-</el-button>
--->
-
-        <!--
-        <el-button ref="restBtn" size="large" @click="rest()">
-          <el-tooltip placement="top" effect="light">
-            <g-icon iconSize="20px" iconName="campfire" />
-            <template #content>Rest for 8 Hours</template>
-          </el-tooltip>
-        </el-button>
-        <el-tabs ref="tabs" type="card" v-model="userSettings.cardTab">
-	      
-          const spellTabs = this.$refs.spellsTab.$el.querySelector('.el-tabs__nav-scroll');
-          scrollbar.appendChild(this.$refs.addSpell.$el);
-
-
-	          addSpell() {
-      this.addAbil = true;
-      this.abil = {
-        trigger: "Standard",
-        description: "",
-        benefit: { target: "Self", text: "" },
-        bonuses: {},
-        extras: { active: true, source: "Feat", showMain: false }
-      };
-      this.editingAbil = true;
-    },
-
-	      
-        -->
-
+        <el-popconfirm title="Learn New Spell?" hide-icon @confirm="addSpell">
+          <template #reference>
+            <el-button type="primary" size="large" ref="addSpell">Add Spell</el-button>
+          </template>
+          <template #actions="{ confirm }">
+            Name: <br>
+            <el-input v-model="this.newSpell.name" size="small" aria-label="New Spell Name" />
+            Level: <br>
+            <el-input-number v-model="this.newSpell.level" :min="0" :max="9" size="small" aria-label="New Spell Level" />
+            Class: <br>
+            <el-select v-model="this.newSpell.class" aria-label="New Spell Class">
+              <el-option v-for="(cClass, cName) in this.classes" :key="cName" :label="cName" :value="cName" />
+            </el-select>
+            <el-button type="primary" size="small" @click="confirm" :disabled="this.newSpell.name == '' || this.newSpell.class == ''">Yes</el-button>
+          </template>
+        </el-popconfirm>
 
         <el-tabs v-model="spellsTab" type="card" ref="spellsTab">
           <el-tab-pane v-for="(cClass, cName) in character.spells" :key="cName" :label="capFirsts(cName)" :name="cName" >
@@ -1005,7 +987,7 @@
                   </el-col>
 
                   <el-col :span="8">
-                    <el-input type="textarea" v-model="spell.description" :autosize="{ minRows: 2, maxRows: 4 }" />
+                    <el-input type="textarea" v-model="spell.description" :autosize="{ minRows: 2, maxRows: 4 }" aria-label="Spell Description" />
                   </el-col>
 
                   <el-col :span="5">
@@ -1040,6 +1022,16 @@
                     active-text=" Yes SR "
                     inactive-text=" No SR "
                     aria-label="Spell Resistence Switch" />
+
+                    <el-popconfirm title="Remove spell from spell list?" hide-icon @confirm="delete spells[sName]">
+                      <template #reference>
+                        <el-button type="danger" size="small">Forget Spell</el-button>
+                      </template>
+                      <template #actions="{ confirm }">
+                        <el-button type="danger" size="small" @click="confirm">Yes</el-button>
+                      </template>
+                    </el-popconfirm>
+
                   </el-col>
                 </el-row>
               </el-collapse-item>
@@ -1052,7 +1044,7 @@
 
     <!-- FOOTER -->
     <div style="text-align: right">
-      <el-button type="primary" @click="saveMonster()"> Save Changes </el-button>
+      <el-button type="primary" @click="saveCharacter()"> Save Changes </el-button>
     </div>
 
     <div v-for="(item, name) in this.tmpSource" :key="name">
@@ -1076,7 +1068,7 @@ export default {
     return {
       loading: true,
       advanced: false,
-      sectionsCollapse: [ '6' ],
+      sectionsCollapse: [ '' ],
 
       healthColors: [ { color: '#f56c6c', percentage: 30 }, { color: '#e6a23c', percentage: 60 }, { color: '#5cb87a', percentage: 100 } ],
 
@@ -1093,8 +1085,11 @@ export default {
       itemFilter: "",
 
       spellsTab: "",
-      newSpellName: "",
-      newSpellClass: "",
+      newSpell: {
+        name: "",
+        level: 0,
+        class: ""
+      },
       spellsCollapse: [],
 
 
@@ -1162,6 +1157,21 @@ export default {
             "openTotal": 20,
             "reserveSpent": 0,
             "reserveTotal": 20,
+            "special": [ [],
+              [ "Cantrips", "Arcane Pool (Su)", "Spell Combat (Ex)" ], [ "Spellstrike (Su)" ], [ "Magus Arcana (REPLACE)" ], [ "Spell Recall (Su)" ], [ "Bonus Feat (REPLACE)" ],
+              [ "Magus Arcana (REPLACE)" ], [	"Knowledge Pool (Su)", "Medium Armor (Ex)" ], [ "Improved Spell Combat (Ex)" ], [ "Magus Arcana (REPLACE)" ], [ "Fighter Training (Ex)" ],
+              [ "Improved Spell Recall (Su)", "Bonus Feat (REPALCE)" ], [ "Magus Arcana (REPLACE)" ], [ "Heavy Armor (Ex)" ], [ "Greater Spell Combat (Ex)" ], [ "Magus Arcana (REPLACE)" ],
+              [ "Counterstrike (Ex)" ],  [ "Bonus Feat (REPLACE)" ], [ "Magus Arcana (REPLACE)" ], [ "Greater Spell Access (Su)" ], [ "True Magus (Su)" ]
+            ]
+          },
+          "cleric": {
+            "levels": 10,
+            "useGaldur": true,
+            "openSpent": 0,
+            "openTotal": 20,
+            "reserveSpent": 0,
+            "reserveTotal": 20,
+            "extraSpent": 0,
             "special": [ [],
               [ "Cantrips", "Arcane Pool (Su)", "Spell Combat (Ex)" ], [ "Spellstrike (Su)" ], [ "Magus Arcana (REPLACE)" ], [ "Spell Recall (Su)" ], [ "Bonus Feat (REPLACE)" ],
               [ "Magus Arcana (REPLACE)" ], [	"Knowledge Pool (Su)", "Medium Armor (Ex)" ], [ "Improved Spell Combat (Ex)" ], [ "Magus Arcana (REPLACE)" ], [ "Fighter Training (Ex)" ],
@@ -1320,7 +1330,10 @@ export default {
               'Shield': { 'description': 'Negates Magic Missile & grants a +4 Shield bonus to AC' }
             }
           ],
-          "cleric": []
+          "cleric": [
+            {},
+            {}
+          ]
         }
       } // end tmpSource (Mit'a)
 
@@ -1437,15 +1450,29 @@ export default {
       return reserve;
     },
 
+    cumulativeGaldur() {
+      let classes = {
+        "magus": { "total": 0, "sources": [] }, "cleric": { "total": 0, "sources": [] }
+      };
+      for (let [cName, cClass] of Object.entries(this.character.classes)) {
+        classes[cName] = { "total": 0, "sources": [] };
+
+        let val = 0;
+        for (let lvl = 0; lvl <= cClass.levels; lvl++) {
+          val = this.classes[cName].magic.galdur[lvl];
+          this.applyBonus(`Level ${lvl}`, val, classes[cName]);
+        }
+        this.bonusLoop(classes[cName], `${cName}Galdur`);
+      } // end class loop
+
+      return classes;
+    }
+
   },
   mounted() {
     console.log("rules", this.rules);
     console.log("races", this.races);
     console.log("classes", this.classes);
-
-const spellTabs = this.$refs.spellsTab.$el.querySelector('.el-tabs__nav-scroll');
-scrollbar.appendChild(this.$refs.addSpell.$el);
-
 
     CharacterService.getCharacter(this.$route.params.id).then(() => {
       // console.log('response:', response);
@@ -1455,7 +1482,11 @@ scrollbar.appendChild(this.$refs.addSpell.$el);
       // Wait until we have rules to load stuff
       while (this.loading) {
         if (this.rules.size) {
-          // this.init();
+          // Put [Add Spell] btn in class spells tabs, wait til refs loaded
+          setTimeout(() => {
+            const spellTabs = this.$refs.spellsTab.$el.querySelector('.el-tabs__nav-scroll');
+            spellTabs.appendChild(this.$refs.addSpell.$el);
+          }, 10);
           this.loading = false;
         }
       }
@@ -1468,10 +1499,6 @@ scrollbar.appendChild(this.$refs.addSpell.$el);
     }
   },
   methods: {
-    init() {
-      console.log('init');
-    },
-
     // Helper Methods
     capFirsts(string) { return string ? string.replace(/(^\w|\s\w)/g, m => m.toUpperCase()) : ""; },
     bonusLoop(object, tString) {
@@ -1522,7 +1549,16 @@ scrollbar.appendChild(this.$refs.addSpell.$el);
         }
       } // End Bonuses Loop
     },
-
+    applyBonus(name, value, obj) {
+      if (value != 0) {
+        let prefix = (value > 0) ? "+" : "";
+        obj.total += value;
+        obj.sources.push(`${prefix}${value} ${name}`);
+      }
+    },
+    saveCharacter() {
+      console.log(this.character);
+    },
 
     // Racial Methods
     onRaceChange() {
@@ -1546,13 +1582,6 @@ scrollbar.appendChild(this.$refs.addSpell.$el);
     *           Class           *
     *                           *
     \***************************/
-    // onClassChange(value, direction) {
-    //   if (direction == "right") {
-    //     console.log(value);
-    //     console.log(this.character.classes);
-    //   }
-    //
-    // },
     addLevel() {
       console.log('pop up, get levels, show new, etc');
     },
@@ -1736,25 +1765,26 @@ scrollbar.appendChild(this.$refs.addSpell.$el);
     *                           *
     \***************************/
     addSpell() {
-
-let class = this.character.spells[newSpellClass];
-if (class[newSpellName]) {
-  this.$message({ message: `You already know a ${this.newSpellClass} spell called ${this.newSpellName}`, type: "warning" });
-  return;
-} else {
-  class[newSpellName] = {
-    'casts': 0,
-    'castTime': '1 Standard',
-    'components': 'V,S,M/DF',
-    'target': 'Self',
-    'range': 'Close',
-    'duration': 'Instant',
-    'save': 'Ref (half)',
-    'SR': true,
-    'description': ""
-  };
-}
+      let cClass = this.character.spells[this.newSpell.class];
+      if (cClass[this.newSpell.level][this.newSpell.name]) {
+        this.$message({ message: `You already know a ${this.newSpell.class} spell called ${this.newSpell.name}`, type: "warning" });
+        return;
+      } else {
+        cClass[this.newSpell.level][this.newSpell.name] = {
+          'casts': 0,
+          'castTime': '1 Standard',
+          'components': 'V,S,M/DF',
+          'target': 'Self',
+          'range': 'Close',
+          'duration': 'Instant',
+          'save': 'Ref (half)',
+          'SR': true,
+          'description': ""
+        };
+        this.newSpell = { name: "", level: 0, class: "" };
+      }
     },
+
 
   }
 }
