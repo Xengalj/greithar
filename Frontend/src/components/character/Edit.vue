@@ -1180,6 +1180,14 @@ export default {
             "openTotal": 20,
             "reserveSpent": 0,
             "reserveTotal": 20,
+            "preparedSpells": [
+              {
+                // name: isCast
+                "Jolt": false,
+                "Prestidigitaion": false
+              },
+              { "Shield": false }
+            ],
             "special": [ [],
               [ "Cantrips", "Arcane Pool (Su)", "Spell Combat (Ex)" ], [ "Spellstrike (Su)" ], [ "Magus Arcana (REPLACE)" ], [ "Spell Recall (Su)" ], [ "Bonus Feat (REPLACE)" ],
               [ "Magus Arcana (REPLACE)" ], [	"Knowledge Pool (Su)", "Medium Armor (Ex)" ], [ "Improved Spell Combat (Ex)" ], [ "Magus Arcana (REPLACE)" ], [ "Fighter Training (Ex)" ],
