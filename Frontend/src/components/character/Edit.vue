@@ -848,8 +848,31 @@
           </el-divider>
         </template>
 
-        <el-row id="inventory">
+        <el-row>
           <g-icon iconSize="16px" iconName="treasure" /> COINS
+          <el-tag>
+            Total (gp) : {{
+              (character.coins.pp * 10)
+              + (character.coins.gp * 1)
+              + (character.coins.sp * 0.1)
+              + (character.coins.cp * 0.01)            
+            }}
+          </el-tag>
+          <br>
+
+          <el-input v-model="character.coins.pp" >
+            <template #prepend>
+              Platinum
+            </template>
+            <template #append>
+              <el-input v-model="character.coins.pp / 50" disabled>
+                <template #suffix> lbs. </tempalte>
+              </el-input>
+            </template>
+          </el-input>
+          
+		
+		
         </el-row>
         <el-divider />
 
@@ -1308,6 +1331,7 @@ export default {
         },
 
         inventory : [ { "label": "Magic Items", "extras": { "icon": "amulet" }, "children": [ { "label": "Head", "extras": { "capacity": 1 }, "children": [] }, { "label": "Headband", "extras": { "capacity": 1 }, "children": [] }, { "label": "Eyes", "extras": { "capacity": 1 }, "children": [] }, { "label": "Shoulders", "extras": { "capacity": 1 }, "children": [] }, { "label": "Neck", "extras": { "capacity": 1 }, "children": [] }, { "label": "Chest", "extras": { "capacity": 1 }, "children": [] }, { "label": "Body", "extras": { "capacity": 1 }, "children": [] }, { "label": "Belt", "extras": { "capacity": 1 }, "children": [] }, { "label": "Wrists", "extras": { "capacity": 1 }, "children": [] }, { "label": "Ring 1", "extras": { "capacity": 1 }, "children": [] }, { "label": "Ring 2", "extras": { "capacity": 1 }, "children": [] }, { "label": "Feet", "extras": { "capacity": 1 }, "children": [] }, { "label": "Slotless", "extras": { "capacity": 1 }, "children": [] } ] }, { "label": "Equipped", "extras": { "icon": "equipment" }, "children": [ { "label": "Armor", "extras": { "icon": "armor", "capacity": 1 }, "children": [] }, { "label": "Weapons", "extras": { "icon": "weapons" }, "children": [ { "label": "Hands", "extras": { "icon": "abilityPalm", "capacity": 2 }, "children": [] }, { "label": "Back", "extras": { "icon": "swordShield", "capacity": 2 }, "children": [] } ] } ] }, { "label": "Items", "extras": { "icon": "inventory" }, "children": [ { "label": "Backpack", "extras": { "icon": "backpack", "capacity": 50 }, "children": [] } ] } ],
+        coins: { "pp": 0, "gp": 152, "sp": 101, "cp": 21 },
 
         spells : {
           "magus": [
