@@ -238,7 +238,7 @@
           </el-divider>
         </template>
 
-        <el-row>
+        <el-row style="padding-top:10px;">
           <el-col :span="12" class="center-horz">
             <svg width="225" height="200">
               <HexGraph :abilities="[attributes.Str.total, attributes.Dex.total, attributes.Con.total, attributes.Int.total, attributes.Wis.total, attributes.Cha.total]"></HexGraph>
@@ -437,10 +437,10 @@
             <el-col :span="14">
               Special Abilities <br>
               <div class="class-abils">
-                <span v-for="(abilities, level) in cClass.special" :key="level">
-                  <span v-for="(abil, index) in abilities" :key="index">
-                    <span v-if="level < cClass.levels">
-                      <el-input v-model="character.classes[cName].special[level][index]" class="class-abil" :aria-label="`Class Ability: ${abil}`" disabled>
+                <span v-for="(abilities, level) in this.classes[cName].special" :key="level">
+                  <span v-if="level > 0 && level < cClass.levels">
+                    <span v-for="(abil, index) in abilities" :key="index">
+                      <el-input v-model="this.classes[cName].special[level][index]" class="class-abil" :aria-label="`Class Ability: ${abil}`" disabled>
                         <template #prepend>Level {{ level }} </template>
                       </el-input>
                     </span>
@@ -559,17 +559,24 @@
                 </el-row>
               </div>
 
-
               <div v-else>
-                Spell Slots
-                Level 1 : [Magic Missile], [xx], [xx]	// [] btn casts spell and disables in list, until rest
-                Level 2 : [],[]
+                <el-row :gutter="10" v-for="(numOfSpells, level) in this.classes[cName].magic.spellsPerDay[cClass.levels]" :key="level">
+                  <el-col :span="2">
+                    Level {{ level }}
+                  </el-col>
+                  <el-col :span="22">
+                    <span v-for="num in numOfSpells" :key="num">
+                      <el-select v-model="cClass.preparedSpells[level][num-1]" style="max-width:33%">
+                        <el-option v-for="(spell, name) in character.spells[cName][level]" :key="name" :label="name" :value="name" >
+                          {{ name }}
+                        </el-option>
+                      </el-select>
+                    </span>
+                  </el-col>
+                </el-row>
               </div>
             </el-col>
           </el-row>
-          {{ cClass }} <br> <br>
-          {{ this.classes[cName].magic }}
-
         </div>
       </el-collapse-item>
 
@@ -646,117 +653,91 @@
           <g-ability :newAbil="addAbil" :name="abilName" :source="abil" @save-abil="saveAbility"/>
         </el-dialog>
 
-        <el-row id="conditions">
-          conditions
-          {{ character.conditions }}
-          <!--
-
-
-                    <el-row :gutter="20">
-                <el-col :span="3">
-                  <g-icon iconSize="32px" iconName="dizzyStar" />
-                </el-col>
-                <el-col :span="21">
-                  <el-row>
-                    <el-col :span="8" :offset="16">
-                      < ! - - Conditions Dropdown - - >
-                      <el-select
-                        v-model="activeConditions"
-                        value-key="name"
-                        multiple
-                        placeholder="Common Conditions"
-                      >
-                        <template #tag>
-                          <el-tag v-for="(condition, index) in activeConditions" :key="condition" effect="dark" closable @close="activeConditions.splice(index, 1)"> {{ condition.name }} </el-tag>
-                        </template>
-                        <el-option v-for="item in conditions" :key="item.name" :label="item.name" :value="item" >
-                          <div class="flex items-center">
-                            <el-tag type="primary" style="margin-right: 8px" size="small" effect="dark" />
-                            <span>{{ item.name }}</span>
-                          </div>
-                        </el-option>
-                        <template #footer>
-                          <el-button v-if="!addingCondition" text bg size="small" @click="addNewContion()"> Add custom condition </el-button>
-                        </template>
-                      </el-select>
-
-                      < ! - - Add New Condition - - >
-                      <el-dialog v-model="addingCondition" title="New Condition" width="800">
-                        <el-row :gutter="10">
-                          <el-col :span="5">
-                            <el-input v-model="newCondition.name" size="small" placeholder="Condition Name" />
-                          </el-col>
-                          <el-col :span="15">
-                            <el-input v-model="newCondition.description" :rows="2" type="textarea" placeholder="Enter condition description" />
-                          </el-col>
-                        </el-row>
-
-                        < ! - - New Condition Bonuses - - >
-                        <el-divider> Bonuses </el-divider>
-                        <el-row class="center-horz" :gutter="5" style="margin-bottom:5px;">
-                          <el-col :span="5"> Name </el-col>
-                          <el-col :span="4"> Value </el-col>
-                          <el-col :span="5"> Targets </el-col>
-                          <el-col :span="5">
-                            <el-button size="small" type="primary" @click="addNewConditionBonus" style="margin-left:5px;"> New Bonus </el-button>
-                          </el-col>
-                        </el-row>
-                        <el-row v-for="(bonus, name) in newCondition.bonuses" :key="name" :gutter="5" style="margin-bottom:5px;">
-                          <el-col :span="5" class="center-horz">
-                            <el-tag type="primary" effect="dark"> {{ name }} </el-tag>
-                          </el-col>
-                          <el-col :span="5"> <el-input-number v-model="bonus.value" size="small" /> </el-col>
-                          <el-col :span="10">
-                            <el-select v-model="bonus.targets" value-key="name" multiple placeholder="Modifier Target" >
-                              <template #tag>
-                                <el-tag v-for="(target, index) in bonus.targets" :key="target" effect="dark" closable @close="bonus.targets.splice(index, 1)"> {{ target }} </el-tag>
-                              </template>
-                              <el-option v-for="target in this.rules.targets" :key="target.label" :label="target.label" :value="target.value" >
-                                <div class="flex items-center">
-                                  <el-tag :color="target.color" style="margin-right: 8px" size="small" />
-                                  <span :style="{ color: target.color }"> {{ target.label }} </span>
-                                </div>
-                              </el-option>
-                            </el-select>
-                          </el-col>
-                          <el-col :span="2" class="center-horz">
-                            <el-popconfirm title="Are you sure to delete this?">
-                              <template #reference>
-                                <el-button type="danger" circle size="small">
-                                  <g-icon iconSize="16px" iconColor="#000" iconName="trash" />
-                                </el-button>
-                              </template>
-                              <template #actions="">
-                                <el-button type="danger" size="small" @click="delete this.newCondition.bonuses[name];"> Yes </el-button>
-                              </template>
-                            </el-popconfirm>
-                          </el-col>
-                        </el-row>
-
-                        <el-divider />
-                        <el-row>
-                          <el-col :span="3" class="addCondition">
-                            <el-button size="small" type="primary" @click="addCondition()">confirm</el-button>
-                            <el-button size="small" @click="newCondition = {}; addingCondition = false;">cancel</el-button>
-                          </el-col>
-                        </el-row>
-                      </el-dialog>
-                    </el-col>
-                  </el-row>
-
-                  <el-row v-for="condition in activeConditions" :key="condition.name">
-                    <el-col :span="6" class="center-vert">
-                      {{ condition.name }}
-                    </el-col>
-                    <el-col :span="18" class="center-vert">
-                      {{ condition.description }}
-                    </el-col>
-                  </el-row>
-                </el-col>
-              </el-row>
-
-          -->
+        <!-- Conditions -->
+        <el-row :gutter="10">
+          <el-col :span="4">
+            <g-icon iconSize="32px" iconName="dizzyStar" /> Conditions
+          </el-col>
+          <el-col :span="8" :offset="12">
+            <el-select v-model="character.conditions" value-key="name" multiple placeholder="Common Conditions">
+              <template #tag>
+                <el-tag v-for="(condition, index) in character.conditions" :key="condition" effect="dark" closable @close="character.conditions.splice(index, 1)"> {{ condition.name }} </el-tag>
+              </template>
+              <el-option v-for="item in conditions" :key="item.name" :label="item.name" :value="item" >
+                <el-tag type="primary" style="margin-right: 8px" size="small" effect="dark"> {{ item.name }} </el-tag>
+              </el-option>
+              <template #footer>
+                <el-button v-if="!addingCondition" text bg size="small" @click="addNewContion()"> Add custom condition </el-button>
+              </template>
+            </el-select>
+          </el-col>
         </el-row>
+        <el-row v-for="condition in character.conditions" :key="condition.name">
+          <el-col :span="6" class="center-vert">
+            <el-tag type="info" size="large" effect="dark"> {{ condition.name }} </el-tag>
+          </el-col>
+          <el-col :span="18" class="center-vert">
+            {{ condition.description }}
+          </el-col>
+        </el-row>
+
+        <!-- Add New Condition -->
+        <el-dialog v-model="addingCondition" title="New Condition" width="800">
+          <el-row :gutter="10">
+            <el-col :span="5">
+              <el-input v-model="newCondition.name" size="small" placeholder="Condition Name" aria-label="condition name" />
+            </el-col>
+            <el-col :span="15">
+              <el-input v-model="newCondition.description" :rows="2" type="textarea" placeholder="Enter condition description" aria-label="Condition Description" />
+            </el-col>
+          </el-row>
+          <!-- New Condition Bonuses -->
+          <el-divider> Bonuses </el-divider>
+          <el-row class="center-horz" :gutter="5" style="margin-bottom:5px;">
+            <el-col :span="5"> Name </el-col>
+            <el-col :span="4"> Value </el-col>
+            <el-col :span="5"> Targets </el-col>
+            <el-col :span="5">
+              <el-button size="small" type="primary" @click="addNewConditionBonus"> New Bonus </el-button>
+            </el-col>
+          </el-row>
+          <el-row v-for="(bonus, name) in newCondition.bonuses" :key="name" :gutter="5" style="margin-bottom:5px;">
+            <el-col :span="5" class="center-horz">
+              <el-tag type="primary" effect="dark"> {{ name }} </el-tag>
+            </el-col>
+            <el-col :span="5"> <el-input-number v-model="bonus.value" size="small" aria-label="bonue value" /> </el-col>
+            <el-col :span="10">
+              <el-select v-model="bonus.targets" value-key="name" multiple placeholder="Modifier Target" >
+                <template #tag>
+                  <el-tag v-for="(target, index) in bonus.targets" :key="target" effect="dark" closable @close="bonus.targets.splice(index, 1)"> {{ target }} </el-tag>
+                </template>
+                <el-option v-for="target in this.rules.targets" :key="target.label" :label="target.label" :value="target.value" >
+                  <div class="flex items-center">
+                    <el-tag :color="target.color" style="margin-right: 8px" size="small" />
+                    <span :style="{ color: target.color }"> {{ target.label }} </span>
+                  </div>
+                </el-option>
+              </el-select>
+            </el-col>
+            <el-col :span="2" class="center-horz">
+              <el-popconfirm title="Are you sure to delete this?">
+                <template #reference>
+                  <el-button type="danger" circle size="small">
+                    <g-icon iconSize="16px" iconColor="#000" iconName="trash" />
+                  </el-button>
+                </template>
+                <template #actions="">
+                  <el-button type="danger" size="small" @click="delete this.newCondition.bonuses[name];"> Yes </el-button>
+                </template>
+              </el-popconfirm>
+            </el-col>
+          </el-row>
+          <el-divider />
+          <el-row>
+            <el-button size="small" type="primary" @click="addCondition()" style="margin-left:auto"> Confirm </el-button>
+            <el-button size="small" type="info" @click="newCondition = {}; addingCondition = false;"> Cancel </el-button>
+          </el-row>
+        </el-dialog>
       </el-collapse-item>
 
       <!-- SKILLS -->
@@ -831,7 +812,11 @@
                     </el-input>
                   </span>
                   <span v-if="name == 'Linguistics'">
-                    languages select
+                    <el-select v-model="character.skills.Linguistics.extras.languages" multiple filterable allow-create default-first-option :reserve-keyword="false">
+                      <el-option v-for="name in races[character.basics.race].languages" :key="name" :label="name" :value="name" >
+                        {{ name }}
+                      </el-option>
+                    </el-select>
                   </span>
                 </el-col>
               </el-row>
@@ -847,32 +832,43 @@
             <h4> <g-icon iconSize="32px" iconName="chest" /> Inventory </h4>
           </el-divider>
         </template>
-
-        <el-row>
-          <g-icon iconSize="16px" iconName="treasure" /> COINS
-          <el-tag>
-            Total (gp) : {{
-              (character.coins.pp * 10)
-              + (character.coins.gp * 1)
-              + (character.coins.sp * 0.1)
-              + (character.coins.cp * 0.01)            
-            }}
-          </el-tag>
-          <br>
-
-          <el-input v-model="character.coins.pp" >
-            <template #prepend>
-              Platinum
-            </template>
-            <template #append>
-              <el-input v-model="character.coins.pp / 50" disabled>
-                <template #suffix> lbs. </tempalte>
-              </el-input>
-            </template>
-          </el-input>
-          
-		
-		
+        <!-- Coins -->
+        <el-row :gutter="10">
+          <el-col :span="8" class="center-vert center-horz">
+            <el-tag size="large" effect="dark" type="primary" >
+              <g-icon iconSize="24px" iconName="treasure" />
+              Total (gp) : {{
+                (character.coins.pp * 10)
+                + (character.coins.gp * 1)
+                + (character.coins.sp * 0.1)
+                + (character.coins.cp * 0.01)
+              }}
+            </el-tag>
+          </el-col>
+          <el-col :span="8">
+            <el-input v-model="character.coins.pp" >
+              <template #prepend> Platinum </template>
+              <template #suffix> Coins </template>
+              <template #append> {{ (character.coins.pp / 50) }} lbs. </template>
+            </el-input>
+            <el-input v-model="character.coins.gp" >
+              <template #prepend> Gold </template>
+              <template #suffix> Coins </template>
+              <template #append> {{ (character.coins.gp / 50) }} lbs. </template>
+            </el-input>
+          </el-col>
+          <el-col :span="8">
+            <el-input v-model="character.coins.sp" >
+              <template #prepend> Silver </template>
+              <template #suffix> Coins </template>
+              <template #append> {{ (character.coins.sp / 50) }} lbs. </template>
+            </el-input>
+            <el-input v-model="character.coins.cp" >
+              <template #prepend> Copper </template>
+              <template #suffix> Coins </template>
+              <template #append> {{ (character.coins.cp / 50) }} lbs. </template>
+            </el-input>
+          </el-col>
         </el-row>
         <el-divider />
 
@@ -957,7 +953,7 @@
           </template>
         </el-popconfirm>
 
-        <el-tabs v-model="spellsTab" type="card" ref="spellsTab">
+        <el-tabs v-model="spellsTab" type="card" ref="spellsTab" style="padding-top:10px;">
           <el-tab-pane v-for="(cClass, cName) in character.spells" :key="cName" :label="capFirsts(cName)" :name="cName" >
             <el-collapse v-model="spellsCollapse">
               <el-collapse-item v-for="(spells, lvl) in cClass" :key="lvl" :name="lvl">
@@ -1102,21 +1098,17 @@ export default {
       editingAbil: false,
       abil: {},
 
+      newCondition: {},
+      addingCondition: false,
+
       addItem: false,
       editingItem: false,
       item: {},
       itemFilter: "",
 
       spellsTab: "",
-      newSpell: {
-        name: "",
-        level: 0,
-        class: ""
-      },
+      newSpell: { name: "", level: 0, class: "" },
       spellsCollapse: [],
-
-
-
 
       character: {},
 
@@ -1156,7 +1148,6 @@ export default {
           "mainSections": [ "defense", "actions", "conditions" ],
           "expandInventory": [ "Equipped", "Armor", "Weapons", "Hands", "Back", "Items" ]
         },
-
         attributes : {
           "Str": { "base": 16 },
           "Dex": { "base": 17 },
@@ -1171,7 +1162,6 @@ export default {
           "total": 212,
           "sources": [ "+17d12", "+102 Con" ]
         },
-
         classes : {
           "magus": {
             "levels": 10,
@@ -1179,39 +1169,19 @@ export default {
             "openSpent": 0,
             "openTotal": 20,
             "reserveSpent": 0,
-            "reserveTotal": 20,
-            "preparedSpells": [
-              {
-                // name: isCast
-                "Jolt": false,
-                "Prestidigitaion": false
-              },
-              { "Shield": false }
-            ],
-            "special": [ [],
-              [ "Cantrips", "Arcane Pool (Su)", "Spell Combat (Ex)" ], [ "Spellstrike (Su)" ], [ "Magus Arcana (REPLACE)" ], [ "Spell Recall (Su)" ], [ "Bonus Feat (REPLACE)" ],
-              [ "Magus Arcana (REPLACE)" ], [	"Knowledge Pool (Su)", "Medium Armor (Ex)" ], [ "Improved Spell Combat (Ex)" ], [ "Magus Arcana (REPLACE)" ], [ "Fighter Training (Ex)" ],
-              [ "Improved Spell Recall (Su)", "Bonus Feat (REPALCE)" ], [ "Magus Arcana (REPLACE)" ], [ "Heavy Armor (Ex)" ], [ "Greater Spell Combat (Ex)" ], [ "Magus Arcana (REPLACE)" ],
-              [ "Counterstrike (Ex)" ],  [ "Bonus Feat (REPLACE)" ], [ "Magus Arcana (REPLACE)" ], [ "Greater Spell Access (Su)" ], [ "True Magus (Su)" ]
-            ]
+            "reserveTotal": 20
           },
           "cleric": {
             "levels": 10,
-            "useGaldur": true,
+            "useGaldur": false,
             "openSpent": 0,
             "openTotal": 20,
             "reserveSpent": 0,
             "reserveTotal": 20,
             "extraSpent": 0,
-            "special": [ [],
-              [ "Cantrips", "Arcane Pool (Su)", "Spell Combat (Ex)" ], [ "Spellstrike (Su)" ], [ "Magus Arcana (REPLACE)" ], [ "Spell Recall (Su)" ], [ "Bonus Feat (REPLACE)" ],
-              [ "Magus Arcana (REPLACE)" ], [	"Knowledge Pool (Su)", "Medium Armor (Ex)" ], [ "Improved Spell Combat (Ex)" ], [ "Magus Arcana (REPLACE)" ], [ "Fighter Training (Ex)" ],
-              [ "Improved Spell Recall (Su)", "Bonus Feat (REPALCE)" ], [ "Magus Arcana (REPLACE)" ], [ "Heavy Armor (Ex)" ], [ "Greater Spell Combat (Ex)" ], [ "Magus Arcana (REPLACE)" ],
-              [ "Counterstrike (Ex)" ],  [ "Bonus Feat (REPLACE)" ], [ "Magus Arcana (REPLACE)" ], [ "Greater Spell Access (Su)" ], [ "True Magus (Su)" ]
-            ]
+            "preparedSpells": [ [ "Prestidigitaion", "Jolt" ], [], [], [], [], [] ],
           }
         },
-
         abilities : {
           "Pyromaniac": {
             "trigger": "Continuous",
@@ -1297,7 +1267,6 @@ export default {
           },
         },
         conditions : {},
-
         skills : {
           "Acrobatics":                   { "ranks": 0, "class": true, "extras": { "notes": "" } },
           "Bluff":                        { "ranks": 0, "class": false, "extras": { "notes": "" } },
@@ -1337,10 +1306,8 @@ export default {
           "Profession":                   { "ranks": 0, "class": false, "extras": { "notes":  "", "specialty": "" } },
           "Sleight of Hand":              { "ranks": 0, "class": false, "extras": { "notes": "" }  }
         },
-
         inventory : [ { "label": "Magic Items", "extras": { "icon": "amulet" }, "children": [ { "label": "Head", "extras": { "capacity": 1 }, "children": [] }, { "label": "Headband", "extras": { "capacity": 1 }, "children": [] }, { "label": "Eyes", "extras": { "capacity": 1 }, "children": [] }, { "label": "Shoulders", "extras": { "capacity": 1 }, "children": [] }, { "label": "Neck", "extras": { "capacity": 1 }, "children": [] }, { "label": "Chest", "extras": { "capacity": 1 }, "children": [] }, { "label": "Body", "extras": { "capacity": 1 }, "children": [] }, { "label": "Belt", "extras": { "capacity": 1 }, "children": [] }, { "label": "Wrists", "extras": { "capacity": 1 }, "children": [] }, { "label": "Ring 1", "extras": { "capacity": 1 }, "children": [] }, { "label": "Ring 2", "extras": { "capacity": 1 }, "children": [] }, { "label": "Feet", "extras": { "capacity": 1 }, "children": [] }, { "label": "Slotless", "extras": { "capacity": 1 }, "children": [] } ] }, { "label": "Equipped", "extras": { "icon": "equipment" }, "children": [ { "label": "Armor", "extras": { "icon": "armor", "capacity": 1 }, "children": [] }, { "label": "Weapons", "extras": { "icon": "weapons" }, "children": [ { "label": "Hands", "extras": { "icon": "abilityPalm", "capacity": 2 }, "children": [] }, { "label": "Back", "extras": { "icon": "swordShield", "capacity": 2 }, "children": [] } ] } ] }, { "label": "Items", "extras": { "icon": "inventory" }, "children": [ { "label": "Backpack", "extras": { "icon": "backpack", "capacity": 50 }, "children": [] } ] } ],
         coins: { "pp": 0, "gp": 152, "sp": 101, "cp": 21 },
-
         spells : {
           "magus": [
             {
@@ -1355,16 +1322,32 @@ export default {
                 'SR': false,
                 'description': "You may perform minor tricks like: lift 1 pound, color, clean, or soil 1 cubic foot of items, chill, warm, or flavor 1 pound of nonliving material. No effects persist except moving, cleaning, and soiling."
               },
-              'jolt': { 'description': 'does a zap' },
-              'Dancing Lights': { 'description': 'Little Orbs follow you around' }
+              'Jolt': { 'casts': 0, 'castTime': '1 Standard', 'components': 'V,S', 'target': 'Other', 'range': '10 Ft', 'duration': '1 Hour', 'save': 'Other', 'SR': false, 'description': 'does a zap' },
+              'Dancing Lights': { 'casts': 0, 'castTime': '1 Standard', 'components': 'V,S', 'target': 'Other', 'range': '10 Ft', 'duration': '1 Hour', 'save': 'Other', 'SR': false, 'description': 'Little Orbs follow you around' }
             },
             {
-              'Shield': { 'description': 'Negates Magic Missile & grants a +4 Shield bonus to AC' }
+              'Shield': { 'casts': 0, 'castTime': '1 Standard', 'components': 'V,S', 'target': 'Other', 'range': '10 Ft', 'duration': '1 Hour', 'save': 'Other', 'SR': false, 'description': 'Negates Magic Missile & grants a +4 Shield bonus to AC' }
             }
           ],
           "cleric": [
-            {},
-            {}
+            {
+              'Prestidigitation': {
+                'casts': 0,
+                'castTime': '1 Standard',
+                'components': 'V,S',
+                'target': 'Other',
+                'range': '10 Ft',
+                'duration': '1 Hour',
+                'save': 'Other',
+                'SR': false,
+                'description': "You may perform minor tricks like: lift 1 pound, color, clean, or soil 1 cubic foot of items, chill, warm, or flavor 1 pound of nonliving material. No effects persist except moving, cleaning, and soiling."
+              },
+              'Jolt': { 'casts': 0, 'castTime': '1 Standard', 'components': 'V,S', 'target': 'Other', 'range': '10 Ft', 'duration': '1 Hour', 'save': 'Other', 'SR': false, 'description': 'does a zap' },
+              'Dancing Lights': { 'casts': 0, 'castTime': '1 Standard', 'components': 'V,S', 'target': 'Other', 'range': '10 Ft', 'duration': '1 Hour', 'save': 'Other', 'SR': false, 'description': 'Little Orbs follow you around' }
+            },
+            {
+              'Shield': { 'casts': 0, 'castTime': '1 Standard', 'components': 'V,S', 'target': 'Other', 'range': '10 Ft', 'duration': '1 Hour', 'save': 'Other', 'SR': false, 'description': 'Negates Magic Missile & grants a +4 Shield bonus to AC' }
+            }
           ]
         }
       } // end tmpSource (Mit'a)
@@ -1378,26 +1361,11 @@ export default {
     equipment() { return this.$store.state.data.equipment; },
     conditions() { return this.$store.state.data.conditions; },
 
+    activeConditions() { return this.character.conditions; },
     inventory() { return this.character.inventory; },
-    abilities() {
-      if (this.loading) { return {}; }
-      let abilities = this.character.abilities;
-      // for (let actions of Object.entries(this.character.actions)) {
-      //
-      //   if (actions[0] == "special" || actions[0] == "basic") {
-      //     actions = actions[1];
-      //     for (var action in actions) {
-      //       if (!Object.keys(abilities).includes(action)) {
-      //         abilities[action] = actions[action];
-      //       }
-      //     }
-      //   }
-      // }
-      return abilities;
-    },
+    abilities() { return this.character.abilities; },
 
-
-    // USES: <data>activeConditions, inventory, abilities
+    // USES: activeConditions, inventory, abilities
     bonuses() {
       let bonuses = {};
       if (this.loading) { return bonuses; }
@@ -1411,13 +1379,13 @@ export default {
         }
       }
       // Add conditions
-      // for (const condition in this.activeConditions) {
-      //   if (this.activeConditions[condition].bonuses) {
-      //     for (const [name, bonus] of Object.entries(this.activeConditions[condition].bonuses)) {
-      //       bonuses[name] = bonus;
-      //     }
-      //   }
-      // }
+      for (const condition in this.activeConditions) {
+        if (this.activeConditions[condition].bonuses) {
+          for (const [name, bonus] of Object.entries(this.activeConditions[condition].bonuses)) {
+            bonuses[name] = bonus;
+          }
+        }
+      }
       // Armor
       let item = this.inventory[1].children[0].children[0];
       if (item) {
@@ -1470,25 +1438,13 @@ export default {
       }
       return attributes;
     },
-
-    openGaldur() {
-      let open = {};
-      open.total = 20;
-      return open;
-    },
-    reserveGaldur() {
-      let reserve = {};
-      reserve.total = 20;
-      return reserve;
-    },
-
+    // USES: bonusLoop(bonuses)
     cumulativeGaldur() {
       let classes = {
         "magus": { "total": 0, "sources": [] }, "cleric": { "total": 0, "sources": [] }
       };
       for (let [cName, cClass] of Object.entries(this.character.classes)) {
         classes[cName] = { "total": 0, "sources": [] };
-
         let val = 0;
         for (let lvl = 0; lvl <= cClass.levels; lvl++) {
           val = this.classes[cName].magic.galdur[lvl];
@@ -1617,36 +1573,6 @@ export default {
     addLevel() {
       console.log('pop up, get levels, show new, etc');
     },
-    // updateAbilities() {
-    //   let abilities = this.character.abilities;
-    //   let lvl = this.character.basics.cr;
-    //
-    //   /*
-    //   1. loop on classes
-    //   2. loop on levels
-    //   3. loop on class abilities
-    //   4. if special.name is not in ABILITIES => Add it
-    //   */
-    //   for (const cClass of Object.values(this.character.classes)) {
-    //     cClass.special.forEach((abils, level) => {
-    //       if (level <= lvl) {
-    //         abils.forEach(abil => {
-    //           if ( !Object.keys(abilities).includes(abil) ) {
-    //             abilities[abil] = {
-    //               "trigger": "Continuous",
-    //               "description": "PLEASE UPDATE THIS ENTRY",
-    //               "benefit": {},
-    //               "bonuses": {},
-    //               "extras": { "active": false, "showMain": false, "source": "Class" }
-    //             };
-    //           }
-    //         });
-    //       }
-    //     });
-    //   }
-    // },
-
-
 
     /***************************\
     *                           *
@@ -1701,8 +1627,6 @@ export default {
       this.$message({ message: `${name} was removed from abilities`, type: "warning" });
     },
 
-
-
     /***************************\
     *                           *
     *         CONDITIONS        *
@@ -1732,7 +1656,6 @@ export default {
       this.conditions.push(this.newCondition);
       this.addingCondition = false;
     },
-
 
     /***************************\
     *                           *
@@ -1830,14 +1753,9 @@ h4 { margin: 0; }
 .stat-controls > :not(:last-child) { margin-bottom: 20px; }
 
 .class-abil {
-  width: 210px;
+  width: 48%;
   margin: 2px;
 }
-.class-abil .el-input-group__prepend {
-	padding: 0 10px !important;
-}
-
-.stat-controls .el-progress-bar__inner {
-  text-align: center;
-}
+.class-abil .el-input-group__prepend { padding: 0 10px !important; }
+.el-progress-bar__inner { text-align: center; }
 </style>

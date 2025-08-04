@@ -79,7 +79,7 @@
 <script>
 export default {
   name: 'g-item',
-  emits: ['saveItem'],
+  emits: ['save-item'],
   props: {
     source: { type: Object },
     newItem: { type: Boolean }
