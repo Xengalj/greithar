@@ -166,10 +166,21 @@
               </el-input>
             </el-col>
             <el-col :span="12">
-              <el-button type="primary" @click="addLevel()">
-                <g-icon iconSize="24px" iconName="sparkle" />
-                <span style="padding:5px"> Level Up </span>
-              </el-button>
+
+              <el-popconfirm title="Choose a class" @confirm="openLevelDialog" hide-icon :hide-after="1000">
+                <template #reference>
+                  <el-button type="primary">
+                    <g-icon iconSize="24px" iconName="sparkle" />
+                    <span style="padding:5px"> Level Up </span>
+                  </el-button>
+                </template>
+                <template #actions="{ confirm }">
+                  <el-select v-model="newLevel.class" aria-label="New Level Class" style="margin-bottom:5px">
+                    <el-option v-for="(cClass, cName) in this.classes" :key="cName" :label="capFirsts(cName)" :value="cName" />
+                  </el-select>
+                  <el-button type="primary" size="small" @click="confirm" :disabled="newLevel.class == ''"> Go! </el-button>
+                </template>
+              </el-popconfirm>
             </el-col>
           </el-row>
         </el-col>
@@ -593,7 +604,7 @@
           <el-col :span="14">Description</el-col>
           <el-col :span="5">
             Actions
-            <el-popconfirm title="Add New Ability?" icon-color="#626AEF" @confirm="addNewAbility">
+            <el-popconfirm title="Add New Ability?" @confirm="addNewAbility" hide-icon>
               <template #reference>
                 <el-button type="primary" size="small">New</el-button>
               </template>
@@ -754,53 +765,63 @@
           </el-col>
         </el-row>
 
-        <el-row>
-          <el-col :span="5"> <h5> Name (Ability) </h5> </el-col>
+        <el-row :gutter="10" style="margin-bottom:5px; border-bottom:1px solid grey">
+          <el-col :span="5" class="center-vert"> <h5> Name (Ability) </h5> </el-col>
           <el-col :span="4" class="center-horz" style="display:flex; justify-content:space-evenly;">
-            <el-tooltip placement="top" effect="light">
-              <g-icon iconSize="24px" iconName="magicSwirl" />
-              <template #content> Class Skill </template>
-            </el-tooltip>
-            <el-tooltip placement="top" effect="light">
-              <g-icon iconSize="24px" iconName="sparkle" />
-              <template #content> Ranks </template>
-            </el-tooltip>
-            <el-tooltip placement="top" effect="light">
-              <g-icon iconSize="24px" iconName="armor" />
-              <template #content> Armor Penalty </template>
-            </el-tooltip>
-            <el-tooltip placement="top" effect="light">
-              <g-icon iconSize="24px" iconName="openBook" />
-              <template #content> Background Skill </template>
-            </el-tooltip>
+            <div style="width:25%">
+              <el-tooltip placement="top" effect="light">
+                <g-icon iconSize="28px" iconName="sparkle" />
+                <template #content> Ranks </template>
+              </el-tooltip>
+            </div>
+            <div style="width:25%">
+              <el-tooltip placement="top" effect="light">
+                <g-icon iconSize="28px" iconName="magicSwirl" />
+                <template #content> Class Skill </template>
+              </el-tooltip>
+            </div>
+            <div style="width:25%">
+              <el-tooltip placement="top" effect="light">
+                <g-icon iconSize="28px" iconName="armor" />
+                <template #content> Armor Penalty </template>
+              </el-tooltip>
+            </div>
+            <div style="width:25%">
+              <el-tooltip placement="top" effect="light">
+                <g-icon iconSize="28px" iconName="openBook" />
+                <template #content> Background Skill </template>
+              </el-tooltip>
+            </div>
           </el-col>
-          <el-col :span="9" class="center-horz"> <h5> Notes </h5> </el-col>
+          <el-col :span="9" class="center-horz center-vert"> <h5> Notes </h5> </el-col>
         </el-row>
 
         <div v-for="(skill, name) in this.rules.skills" :key="name">
           <el-row style="margin-bottom:5px; border-bottom:1px solid grey">
-            <el-col :span="5">
+            <el-col :span="5" class="center-vert">
               {{ name }}
               <span v-if="['Artistry', 'Craft', 'Lore', 'Perform', 'Profession'].includes(name)"> ({{ character.skills[name].extras.specialty }}) </span>
               ({{ skill.ability }})
             </el-col>
             <el-col :span="4" class="center-horz" style="display:flex; justify-content:space-evenly;">
-              <div style="width:25%">
-                <el-checkbox v-model="character.skills[name].class" :aria-label="`${name} class skill`" />
-              </div>
-              <div style="width:25%">
+              <div style="width:25%" class="center-vert">
                 <span v-if="character.skills[name].ranks">
-                  {{ character.skills[name].ranks }}
+                  <el-tag :effect="character.skills[name].ranks ? 'dark' : 'plain'">
+                    {{ character.skills[name].ranks }}
+                  </el-tag>
                 </span>
               </div>
-              <div style="width:25%">
-                <g-icon v-if="skill.armor_pen" iconSize="15px" iconName="armor" />
+              <div style="width:25%" class="center-vert">
+                <g-icon v-if="character.skills[name].class" iconSize="20px" iconName="magicSwirl" />
               </div>
-              <div style="width:25%">
-                <g-icon v-if="skill.background" iconSize="15px" iconName="openBook" />
+              <div style="width:25%" class="center-vert">
+                <g-icon v-if="skill.armor_pen" iconSize="20px" iconName="armor" />
+              </div>
+              <div style="width:25%" class="center-vert">
+                <g-icon v-if="skill.background" iconSize="20px" iconName="openBook" />
               </div>
             </el-col>
-            <el-col :span="14" class="center-horz">
+            <el-col :offset="1" :span="14" class="center-horz">
               <el-row :gutter="10">
                 <el-col :span="15">
                   <el-input type="textarea" v-model="character.skills[name].extras.notes" :autosize="{ minRows: 2, maxRows: 4 }" :aria-label="`${name} notes`" />
@@ -936,7 +957,7 @@
           </el-divider>
         </template>
 
-        <el-popconfirm title="Learn New Spell?" hide-icon @confirm="addSpell">
+        <el-popconfirm title="Learn New Spell?" @confirm="addSpell" hide-icon :hide-after="1000">
           <template #reference>
             <el-button type="primary" size="large" ref="addSpell">Add Spell</el-button>
           </template>
@@ -992,12 +1013,12 @@
                 <el-row v-for="(spell, sName) in spells" :key="sName" :gutter="10">
                   <el-col :span="4" class="center-horz">
                     <el-popconfirm
-                      hide-icon
                       :title="`Cast for ${spell.casts} Galdur?`"
                       confirm-button-text="Yes"
                       cancel-button-text="No"
                       @confirm="console.log('yep')"
                       @cancel="console.log('nnnope')"
+                      hide-icon
                     >
                       <template #reference>
                         <el-button type="warning" plain> {{ sName }} </el-button>
@@ -1042,7 +1063,7 @@
                     inactive-text=" No SR "
                     aria-label="Spell Resistence Switch" />
 
-                    <el-popconfirm title="Remove spell from spell list?" hide-icon @confirm="delete spells[sName]">
+                    <el-popconfirm title="Remove spell from spell list?" @confirm="delete spells[sName]" hide-icon>
                       <template #reference>
                         <el-button type="danger" size="small">Forget Spell</el-button>
                       </template>
@@ -1066,6 +1087,183 @@
       <el-button type="primary" @click="saveCharacter()"> Save Changes </el-button>
     </div>
 
+    <!-- LEVEL UP DIALOG -->
+    <el-dialog v-model="addingLevel" width="800">
+      <h2> <g-icon iconName="magicSwirl" />
+        Level Up - Level {{ newLevel.level }} {{ capFirsts(newLevel.class) }}
+      </h2>
+
+      <!-- New Abilites -->
+      <div v-if="classes[newLevel.class].special">
+        <el-divider style="max-width:50%"> <h3> Abilities </h3> </el-divider>
+        <el-row :gutter="10" v-for="ability in newLevel.abilites" :key="ability">
+          <el-col :span="10">
+            <el-input v-model="ability.name" :aria-label="`Class Ability: ${ability}`">
+              <template #prepend> Name </template>
+            </el-input>
+          </el-col>
+          <el-col :span="13">
+            <el-input type="textarea" v-model="ability.description" :autosize="{ minRows: 2, maxRows: 4 }" aria-label="Ability Description" placeholder="Enter ability description" />
+          </el-col>
+        </el-row>
+      </div>
+
+      <!-- New Magic -->
+      <div v-if="classes[newLevel.class].magic">
+        <el-divider style="max-width:50%"> <h3> Magic </h3> </el-divider>
+        <el-row :gutter="10">
+          <el-col :span="8">
+            <el-descriptions :column="1" border >
+              <el-descriptions-item>
+                <template #label> Casting Style </template>
+                {{ classes[newLevel.class].magic.style }}
+              </el-descriptions-item>
+              <el-descriptions-item>
+                <template #label> Casting Attribute </template>
+                {{ classes[newLevel.class].magic.castingAtr }}
+              </el-descriptions-item>
+              <el-descriptions-item>
+                <template #label>
+                  {{ character.classes[newLevel.class].useGaldur ? "Additional Galdur" : "Total Spell Slots" }}
+                </template>
+                {{
+                  character.classes[newLevel.class].useGaldur ?
+                  classes[newLevel.class].magic.galdur[newLevel.level] :
+                  classes[newLevel.class].magic.spellsPerDay[newLevel.level]
+                }}
+              </el-descriptions-item>
+            </el-descriptions>
+            <div class="center-horz" style="margin-top:10px">
+              <div v-if="classes[newLevel.class].magic.spellsKnown">
+                <span v-if="newLevel.level == 1 && classes[newLevel.class].magic.spellsKnown.byLevel[newLevel.level]">
+                  Add
+                  <span v-for="(num, index) in classes[newLevel.class].magic.spellsKnown.byLevel[newLevel.level]" :key="index">
+                    {{ num }} level {{ index }}s{{ classes[newLevel.class].magic.spellsKnown.byLevel[newLevel.level].length-1 > index ? ', and ' : '' }}
+                  </span>
+                </span>
+                <span v-else-if="newLevel.level == 1 && classes[newLevel.class].magic.spellsKnown.starting">
+                  Add {{ classes[newLevel.class].magic.spellsKnown.starting }} 1
+                </span>
+                <span v-else-if="classes[newLevel.class].magic.spellsKnown.preLevel">
+                  Add {{ classes[newLevel.class].magic.spellsKnown.perLevel }} 2
+                </span>
+              </div>
+              <el-button type="primary"  ref="addSpell" @click="newLevel.newSpells.push({ 'name': '', 'level': 0, 'class': this.newLevel.class })">
+                Add Spell
+              </el-button>
+            </div>
+          </el-col>
+          <el-col :span="16">
+            <el-row :gutter="10" v-for="(spell, index) in newLevel.newSpells" :key="index">
+              <el-col :offset="2" :span="6">
+                <el-tooltip placement="top" content="Spell Level">
+                  <el-input-number v-model="spell.level" :min="0" :max="9" size="small" aria-label="New Spell Level" />
+                </el-tooltip>
+              </el-col>
+              <el-col :span="14">
+                <el-input v-model="spell.name" size="small" aria-label="New Spell Name">
+                  <template #prepend> Name </template>
+                </el-input>
+              </el-col>
+              <el-col :span="1">
+                <el-popconfirm title="Remove spell from spell list?" @confirm="newLevel.newSpells.splice(index, 1)" hide-icon>
+                  <template #reference>
+                    <el-button type="danger" size="small" circle>
+                      <g-icon iconSize="16px" iconColor="#000" iconName="trash" />
+                    </el-button>
+                  </template>
+                  <template #actions="{ confirm }">
+                    <el-button type="danger" size="small" @click="confirm">Yes</el-button>
+                  </template>
+                </el-popconfirm>
+              </el-col>
+            </el-row>
+          </el-col>
+        </el-row>
+      </div>
+
+      <!-- New Skills -->
+      <div>
+        <el-divider style="max-width:50%"> <h3> Skills </h3> </el-divider>
+        <div v-if="newLevel.level == 1">
+          Class Skills:
+          <el-tag size="small" effect="dark" type="primary" v-for="skill in classes[newLevel.class].skills" :key="skill" style="margin-left:5px;">{{ skill }}</el-tag>
+        </div>
+        <el-row :gutter="10" class="center-vert" style="margin-bottom:5px; border-bottom:1px solid grey">
+          <el-col :span="6" class="center-vert"> <h5> Name (Ability) </h5> </el-col>
+          <el-col :span="4" class="center-horz" style="display:flex; justify-content:space-evenly;">
+            <el-tooltip placement="top" effect="light">
+              <g-icon iconSize="24px" iconName="magicSwirl" />
+              <template #content> Class Skill </template>
+            </el-tooltip>
+            <el-tooltip placement="top" effect="light">
+              <g-icon iconSize="24px" iconName="armor" />
+              <template #content> Armor Penalty </template>
+            </el-tooltip>
+            <el-tooltip placement="top" effect="light">
+              <g-icon iconSize="24px" iconName="openBook" />
+              <template #content> Background Skill </template>
+            </el-tooltip>
+          </el-col>
+          <el-col :offset="2" :span="10" :style=" (newRanks > (classes[newLevel.class].ranks + attributes.Int.mod)) || (backgroundRanks > 2) ? 'color:red' : ''">
+            <el-row :gutter="10">
+              <el-col :span="4" class="center-vert">
+                <el-tooltip placement="top" effect="light">
+                  <g-icon iconSize="24px" iconName="sparkle" />
+                  <template #content> Current Ranks </template>
+                </el-tooltip>
+              </el-col>
+              <el-col :span="10" class="center-horz center-vert">
+                {{ newRanks }} / {{ classes[newLevel.class].ranks + attributes.Int.mod }} New Ranks
+              </el-col>
+              <el-col :span="10" class="center-horz">
+                {{ backgroundRanks }} / 2 New Background Ranks
+              </el-col>
+            </el-row>
+          </el-col>
+        </el-row>
+        <el-row :gutter="10" v-for="(skill, name) in this.rules.skills" :key="name" style="margin-bottom:5px; border-bottom:1px solid grey">
+          <el-col :span="6">
+            {{ name }}
+            <span v-if="['Artistry', 'Craft', 'Lore', 'Perform', 'Profession'].includes(name)"> ({{ character.skills[name].extras.specialty }}) </span>
+            ({{ skill.ability }})
+          </el-col>
+          <el-col :span="4" class="center-horz" style="display:flex; justify-content:space-evenly;">
+            <div style="width:33%">
+              <g-icon v-if="character.skills[name].class" iconSize="20px" iconName="magicSwirl" />
+            </div>
+            <div style="width:33%">
+              <g-icon v-if="skill.armor_pen" iconSize="20px" iconName="armor" />
+            </div>
+            <div style="width:33%">
+              <g-icon v-if="skill.background" iconSize="20px" iconName="openBook" />
+            </div>
+          </el-col>
+          <el-col :offset="2" :span="10">
+            <el-row :gutter="10">
+              <el-col :span="4">
+                <el-tag :effect="character.skills[name].ranks ? 'dark' : 'plain'">
+                  {{ character.skills[name].ranks }}
+                </el-tag>
+              </el-col>
+              <el-col :span="10">
+                <el-input-number v-model="newLevel.skills[name].newRanks" :min="0" :max="newLevel.level" size="small" aria-label="New Ranks" />
+              </el-col>
+              <el-col :span="10">
+                <el-input-number v-model="newLevel.skills[name].backgroundRanks" :min="0" :max="2" size="small" aria-label="New Background Ranks" v-if="skill.background" />
+              </el-col>
+            </el-row>
+          </el-col>
+        </el-row>
+      </div>
+
+      <el-row style="flex-direction:row-reverse">
+        <el-button type="primary" @click="addLevel()" :disabled=" (newRanks > (classes[newLevel.class].ranks + attributes.Int.mod)) || (backgroundRanks > 2) ">
+          Confirm Level Up
+        </el-button>
+      </el-row>
+    </el-dialog>
+
     <div v-for="(item, name) in this.tmpSource" :key="name">
       {{ name }} : {{ item }}
       <br><br>
@@ -1088,6 +1286,9 @@ export default {
       loading: true,
       advanced: false,
       sectionsCollapse: [ '' ],
+      addingLevel: false,
+
+      newLevel: { class: '' },
 
       healthColors: [ { color: '#f56c6c', percentage: 30 }, { color: '#e6a23c', percentage: 60 }, { color: '#5cb87a', percentage: 100 } ],
 
@@ -1170,16 +1371,6 @@ export default {
             "openTotal": 20,
             "reserveSpent": 0,
             "reserveTotal": 20
-          },
-          "cleric": {
-            "levels": 10,
-            "useGaldur": false,
-            "openSpent": 0,
-            "openTotal": 20,
-            "reserveSpent": 0,
-            "reserveTotal": 20,
-            "extraSpent": 0,
-            "preparedSpells": [ [ "Prestidigitaion", "Jolt" ], [], [], [], [], [] ],
           }
         },
         abilities : {
@@ -1328,26 +1519,6 @@ export default {
             {
               'Shield': { 'casts': 0, 'castTime': '1 Standard', 'components': 'V,S', 'target': 'Other', 'range': '10 Ft', 'duration': '1 Hour', 'save': 'Other', 'SR': false, 'description': 'Negates Magic Missile & grants a +4 Shield bonus to AC' }
             }
-          ],
-          "cleric": [
-            {
-              'Prestidigitation': {
-                'casts': 0,
-                'castTime': '1 Standard',
-                'components': 'V,S',
-                'target': 'Other',
-                'range': '10 Ft',
-                'duration': '1 Hour',
-                'save': 'Other',
-                'SR': false,
-                'description': "You may perform minor tricks like: lift 1 pound, color, clean, or soil 1 cubic foot of items, chill, warm, or flavor 1 pound of nonliving material. No effects persist except moving, cleaning, and soiling."
-              },
-              'Jolt': { 'casts': 0, 'castTime': '1 Standard', 'components': 'V,S', 'target': 'Other', 'range': '10 Ft', 'duration': '1 Hour', 'save': 'Other', 'SR': false, 'description': 'does a zap' },
-              'Dancing Lights': { 'casts': 0, 'castTime': '1 Standard', 'components': 'V,S', 'target': 'Other', 'range': '10 Ft', 'duration': '1 Hour', 'save': 'Other', 'SR': false, 'description': 'Little Orbs follow you around' }
-            },
-            {
-              'Shield': { 'casts': 0, 'castTime': '1 Standard', 'components': 'V,S', 'target': 'Other', 'range': '10 Ft', 'duration': '1 Hour', 'save': 'Other', 'SR': false, 'description': 'Negates Magic Missile & grants a +4 Shield bonus to AC' }
-            }
           ]
         }
       } // end tmpSource (Mit'a)
@@ -1454,7 +1625,22 @@ export default {
       } // end class loop
 
       return classes;
-    }
+    },
+
+    newRanks() {
+      let ranks = 0;
+      for (let skill of Object.values(this.newLevel.skills)) {
+        ranks += skill.newRanks;
+      }
+      return ranks;
+    },
+    backgroundRanks() {
+      let ranks = 0;
+      for (let skill of Object.values(this.newLevel.skills)) {
+        if (skill.backgroundRanks) { ranks += skill.backgroundRanks }
+      }
+      return ranks;
+    },
 
   },
   mounted() {
@@ -1570,8 +1756,97 @@ export default {
     *           Class           *
     *                           *
     \***************************/
+    openLevelDialog() {
+      let lvl = {
+        "class": this.newLevel.class,
+        "level": this.character.classes[this.newLevel.class] ? this.character.classes[this.newLevel.class].levels + 1 : 1,
+        "skills": {},
+        "abilites": [],
+        "newSpells": [],
+      };
+
+      // skills
+      for (let [name, skill] of Object.entries(this.rules.skills)) {
+        if ( this.classes[lvl.class].skills.includes(name) ) {
+          this.character.skills[name].class = true;
+        }
+        let newSkill = { 'newRanks': 0 };
+        if (skill.background) {
+          newSkill.backgroundRanks = 0;
+        }
+        lvl.skills[name] = newSkill;
+      }
+
+      // abilities
+      this.classes[lvl.class].special[lvl.level].forEach(abil => {
+        let newAbil = { 'name': abil, 'description': "" };
+        lvl.abilites.push(newAbil);
+      });
+
+      // magic
+      if (this.classes[lvl.class].magic) {
+        if (lvl.level != 1) {
+          let newSpellNum = this.classes[lvl.class].magic.spellsKnown.perLevel.match(/\d+/)[0]
+          for (let i = 0; i < newSpellNum; i++) {
+            lvl.newSpells.push({ "name": '', "level": 0, "class": lvl.class });
+          }
+        } else {
+          this.character.classes[this.newLevel.class] = { 'useGaldur': false };
+        }
+      }
+
+      this.newLevel = lvl;
+      this.addingLevel = true;
+    },
     addLevel() {
-      console.log('pop up, get levels, show new, etc');
+      let toon = this.character;
+      console.log('newLevel:', this.newLevel);
+      console.log('char:', toon);
+
+      // New Abilites
+      this.newLevel.abilites.forEach(newAbil => {
+        toon.abilities[newAbil.name] = {
+          "trigger": "Continuous",
+          "description": newAbil.description,
+          "benefit": {},
+          "bonuses": {},
+          "extras": { "active": true, "showMain": false, "source": "Class" },
+        }
+      });
+
+      // Class
+      let cClass = toon.classes[this.newLevel.class];
+      cClass.levels = this.newLevel.level;
+
+      if ( this.classes[this.newLevel.class].magic ) {
+        cClass.useGaldur = cClass.useGaldur ? cClass.useGaldur : true;
+        cClass.openSpent = cClass.openSpent ? cClass.openSpent : 0;
+        cClass.reserveSpent = cClass.reserveSpent ? cClass.reserveSpent : 0;
+        cClass.openTotal = Math.floor( this.classes[this.newLevel.class].magic.galdurTotal[this.newLevel.level] / 2 );
+        cClass.reserveTotal = Math.ceil( this.classes[this.newLevel.class].magic.galdurTotal[this.newLevel.level] / 2 );
+        cClass.preparedSpells = this.classes[this.newLevel.class].magic.spellsPerDay[this.newLevel.level];
+
+        this.newLevel.newSpells.forEach(spell => {
+          if ( !toon.spells[spell.class][spell.level] ) { toon.spells[spell.class][spell.level] = {}; }
+          toon.spells[spell.class][spell.level][spell.name] = {
+            'SR': false, '​​​​​​castTime': "", '​​​​​​casts': 0, '​​​​​​components': "V,S", '​​​​​​description': "", '​​​​​​duration': "", '​​​​​​range': "", 'save': "", 'target': ""
+          }
+        });
+      }
+
+      // New Skills
+      for (let [name, skill] of Object.entries(this.newLevel.skills)) {
+        if (skill.newRanks) {
+          toon.skills[name].ranks += skill.newRanks;
+        }
+        if (skill.backgroundRanks) {
+          toon.skills[name].ranks += skill.backgroundRanks;
+        }
+      }
+
+      this.character.basics.cr++;
+      this.addingLevel = false;
+
     },
 
     /***************************\
