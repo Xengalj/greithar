@@ -8,7 +8,7 @@
           <el-tag effect="dark" type="info" v-if="advanced" style="margin-right:10px;">
             ID : {{ character.id }}
           </el-tag>
-          <span v-if="character.basics.race && ['male','female','agander'].includes(character.basics.appearance.gender)">
+          <span v-if="character.basics.race && ['male','female','agander'].includes(character.basics.appearance.gender) && advanced">
             <el-button type="primary" @click="genRandomName()"> Random Name! </el-button>
           </span>
         </h3>
@@ -40,7 +40,7 @@
                     <el-tag size="small" effect="dark" type="info" style="margin-left:5px;" v-for="subtype in character.basics.type.subtypes" :key="subtype"> {{ subtype }} </el-tag>
                   </span>
                 </template>
-                <el-option v-for="(race, name) in this.races" :key="name" :label="name" :value="name">
+                <el-option v-for="(race, name) in races" :key="name" :label="name" :value="name">
                   <span style="float: left">{{ name }}</span>
                   <span style="float: right">
                     <el-tag size="small" effect="dark" type="primary">{{ capFirsts(race.type.name) }}</el-tag>
@@ -55,9 +55,9 @@
               </div>
               <div v-else>
                 <el-select v-model="character.basics.appearance.gender" size="small" aria-label="Gender Select">
-                  <el-option v-if="this.races[character.basics.race].male" label="Male" value="male" />
-                  <el-option v-if="this.races[character.basics.race].female" label="Female" value="female" />
-                  <el-option v-if="this.races[character.basics.race].agender" label="Agender" value="agender" />
+                  <el-option v-if="races[character.basics.race].male" label="Male" value="male" />
+                  <el-option v-if="races[character.basics.race].female" label="Female" value="female" />
+                  <el-option v-if="races[character.basics.race].agender" label="Agender" value="agender" />
                 </el-select>
               </div>
             </el-col>
@@ -74,7 +74,7 @@
               <el-input v-model="character.basics.size" disabled aria-label="Size Display">
                 <template #suffix>
                   <span style="float: right; color: var(--el-text-color-secondary); font-size: 13px;">
-                    Space: {{ this.rules.size[character.basics.size].space }}
+                    Space: {{ rules.size[character.basics.size].space }}
                   </span>
                 </template>
               </el-input>
@@ -104,7 +104,7 @@
                   <template #prepend>Age</template>
                 </el-input>
                 <template #content>
-                  <span v-for="(range, name) in this.races[character.basics.race].age" :key="name">
+                  <span v-for="(range, name) in races[character.basics.race].age" :key="name">
                     {{ name }} : {{ range }} <br>
                   </span>
                 </template>
@@ -118,7 +118,7 @@
                 </el-input>
                 <template #content>
                   <span v-if="['male','female','agander'].includes(character.basics.appearance.gender)">
-                    {{ this.races[character.basics.race][character.basics.appearance.gender].height }}
+                    {{ races[character.basics.race][character.basics.appearance.gender].height }}
                   </span>
                   <span v-else>Choose within reason</span>
                 </template>
@@ -141,7 +141,7 @@
                 </el-input>
                 <template #content>
                   <span v-if="['male','female','agander'].includes(character.basics.appearance.gender)">
-                    {{ this.races[character.basics.race][character.basics.appearance.gender].weight }}
+                    {{ races[character.basics.race][character.basics.appearance.gender].weight }}
                   </span>
                   <span v-else>Choose within reason</span>
                 </template>
@@ -155,7 +155,7 @@
           <el-row>
             <h4> <g-icon iconName="magicSwirl" /> Favored Class Bonus </h4>
             <el-select v-model="character.basics.favoredClass.name" aria-label="Favored Class Select">
-              <el-option v-for="(cClass, cName) in this.classes" :key="cName" :label="cName" :value="cName" />
+              <el-option v-for="(cClass, cName) in classes" :key="cName" :label="cName" :value="cName" />
             </el-select>
             <el-input v-model="character.basics.favoredClass.bonus" aria-label="Favored Class Bonus Input" />
           </el-row>
@@ -176,7 +176,7 @@
                 </template>
                 <template #actions="{ confirm }">
                   <el-select v-model="newLevel.class" aria-label="New Level Class" style="margin-bottom:5px">
-                    <el-option v-for="(cClass, cName) in this.classes" :key="cName" :label="capFirsts(cName)" :value="cName" />
+                    <el-option v-for="(cClass, cName) in classes" :key="cName" :label="capFirsts(cName)" :value="cName" />
                   </el-select>
                   <el-button type="primary" size="small" @click="confirm" :disabled="newLevel.class == ''"> Go! </el-button>
                 </template>
@@ -403,43 +403,43 @@
                 </el-descriptions-item>
                 <el-descriptions-item>
                   <template #label> HD </template>
-                  {{ cClass.levels }}d{{ this.classes[cName].hd }}
+                  {{ cClass.levels }}d{{ classes[cName].hd }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                   <template #label> Fort </template>
-                  +{{ Math.floor(cClass.levels * this.classes[cName].fort.mult) + this.classes[cName].fort.bonus }}
+                  +{{ Math.floor(cClass.levels * classes[cName].fort.mult) + classes[cName].fort.bonus }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                   <template #label> Reflex </template>
-                  +{{ Math.floor(cClass.levels * this.classes[cName].ref.mult) + this.classes[cName].ref.bonus }}
+                  +{{ Math.floor(cClass.levels * classes[cName].ref.mult) + classes[cName].ref.bonus }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                   <template #label> Will </template>
-                  +{{ Math.floor(cClass.levels * this.classes[cName].will.mult) + this.classes[cName].will.bonus }}
+                  +{{ Math.floor(cClass.levels * classes[cName].will.mult) + classes[cName].will.bonus }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                   <template #label> Ranks </template>
-                  {{ cClass.levels * this.classes[cName].ranks }}
+                  {{ cClass.levels * classes[cName].ranks }}
                 </el-descriptions-item>
               </el-descriptions>
             </el-col>
 
             <el-col :span="6">
-              <div v-if="this.classes[cName].alignment.length < 9">
+              <div v-if="classes[cName].alignment.length < 9">
                 Allowed Alignments <br>
-                <el-tag size="small" effect="dark" type="primary" v-for="name in this.classes[cName].alignment" :key="name" style="margin-left:10px;">
+                <el-tag size="small" effect="dark" type="primary" v-for="name in classes[cName].alignment" :key="name" style="margin-left:10px;">
                   {{ name }}
                 </el-tag>
               </div>
               <div>
                 Class Skills <br>
-                <el-tag size="small" effect="dark" type="primary" v-for="name in this.classes[cName].skills" :key="name" style="margin-left:10px;">
+                <el-tag size="small" effect="dark" type="primary" v-for="name in classes[cName].skills" :key="name" style="margin-left:10px;">
                   {{ name }}
                 </el-tag>
               </div>
               <div>
                 Proficiencies <br>
-                <el-tag size="small" effect="dark" type="primary" v-for="item in this.classes[cName].proficiency" :key="item" style="margin-left:10px;">
+                <el-tag size="small" effect="dark" type="primary" v-for="item in classes[cName].proficiency" :key="item" style="margin-left:10px;">
                   {{ item }}
                 </el-tag>
               </div>
@@ -448,21 +448,22 @@
             <el-col :span="14">
               Special Abilities <br>
               <div class="class-abils">
-                <span v-for="(abilities, level) in this.classes[cName].special" :key="level">
-                  <span v-if="level > 0 && level < cClass.levels">
+                <span v-for="(abilities, level) in classes[cName].special" :key="level">
+                  <span v-if="level > 0 && level <= cClass.levels">
                     <span v-for="(abil, index) in abilities" :key="index">
-                      <el-input v-model="this.classes[cName].special[level][index]" class="class-abil" :aria-label="`Class Ability: ${abil}`" disabled>
+                      <el-input v-model="classes[cName].special[level][index]" class="class-abil" :aria-label="`Class Ability: ${abil}`" disabled>
                         <template #prepend>Level {{ level }} </template>
                       </el-input>
                     </span>
                   </span>
                 </span>
+
               </div>
             </el-col>
           </el-row>
 
           <!-- Magic -->
-          <el-row v-if="this.classes[cName].magic" :gutter="10">
+          <el-row v-if="classes[cName].magic" :gutter="10">
             <el-col :span="8">
               <el-descriptions :column="1" border >
                 <el-descriptions-item>
@@ -479,7 +480,7 @@
                 </el-descriptions-item>
                 <el-descriptions-item>
                   <template #label> Spells Per Level </template>
-                  {{ this.classes[cName].magic.spellsKnown.perLevel }}
+                  {{ classes[cName].magic.spellsKnown.perLevel }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                   <template #label> Galdur / <br> Spell Slots </template>
@@ -551,27 +552,27 @@
                   </el-col>
                 </el-row>
 
-                <el-row :gutter="10" v-if="this.classes[cName].magic.extraGaldur">
+                <el-row :gutter="10" v-if="classes[cName].magic.extraGaldur">
                   <el-col :span="4">
-                    <el-tag effect="dark" type="info"> {{ this.classes[cName].magic.extraGaldur.poolName }} </el-tag>
+                    <el-tag effect="dark" type="info"> {{ classes[cName].magic.extraGaldur.poolName }} </el-tag>
                   </el-col>
                   <el-col :span="8">
                     <el-progress :text-inside="true" :stroke-width="24" color="#909399"
-                      :percentage=" Math.floor( ( (this.classes[cName].magic.extraGaldur.total[cClass.levels] - cClass.extraSpent) / this.classes[cName].magic.extraGaldur.total[cClass.levels] ) * 100 ) "
+                      :percentage=" Math.floor( ( (classes[cName].magic.extraGaldur.total[cClass.levels] - cClass.extraSpent) / classes[cName].magic.extraGaldur.total[cClass.levels] ) * 100 ) "
                     >
-                      {{ this.classes[cName].magic.extraGaldur.total[cClass.levels] - cClass.extraSpent }} / {{ this.classes[cName].magic.extraGaldur.total[cClass.levels] }}
+                      {{ classes[cName].magic.extraGaldur.total[cClass.levels] - cClass.extraSpent }} / {{ classes[cName].magic.extraGaldur.total[cClass.levels] }}
                     </el-progress>
                   </el-col>
                   <el-col :span="6" class="center-horz"  v-if="advanced">
                     <el-tooltip content="Spent Galdur" placement="top" effect="light">
-                      <el-input-number v-model="cClass.extraSpent" :min="0" :max="this.classes[cName].magic.extraGaldur.total[cClass.levels]" :aria-label="`Spent ${this.classes[cName].magic.extraGaldur.poolName} Galdur`" />
+                      <el-input-number v-model="cClass.extraSpent" :min="0" :max="classes[cName].magic.extraGaldur.total[cClass.levels]" :aria-label="`Spent ${classes[cName].magic.extraGaldur.poolName} Galdur`" />
                     </el-tooltip>
                   </el-col>
                 </el-row>
               </div>
 
-              <div v-else>
-                <el-row :gutter="10" v-for="(numOfSpells, level) in this.classes[cName].magic.spellsPerDay[cClass.levels]" :key="level">
+              <div v-else-if="classes[cName].magic.style.includes('Prepared')">
+                <el-row :gutter="10" v-for="(numOfSpells, level) in classes[cName].magic.spellsPerDay[cClass.levels]" :key="level">
                   <el-col :span="2">
                     Level {{ level }}
                   </el-col>
@@ -722,7 +723,7 @@
                 <template #tag>
                   <el-tag v-for="(target, index) in bonus.targets" :key="target" effect="dark" closable @close="bonus.targets.splice(index, 1)"> {{ target }} </el-tag>
                 </template>
-                <el-option v-for="target in this.rules.targets" :key="target.label" :label="target.label" :value="target.value" >
+                <el-option v-for="target in rules.targets" :key="target.label" :label="target.label" :value="target.value" >
                   <div class="flex items-center">
                     <el-tag :color="target.color" style="margin-right: 8px" size="small" />
                     <span :style="{ color: target.color }"> {{ target.label }} </span>
@@ -738,7 +739,7 @@
                   </el-button>
                 </template>
                 <template #actions="">
-                  <el-button type="danger" size="small" @click="delete this.newCondition.bonuses[name];"> Yes </el-button>
+                  <el-button type="danger" size="small" @click="delete newCondition.bonuses[name];"> Yes </el-button>
                 </template>
               </el-popconfirm>
             </el-col>
@@ -796,7 +797,7 @@
           <el-col :span="9" class="center-horz center-vert"> <h5> Notes </h5> </el-col>
         </el-row>
 
-        <div v-for="(skill, name) in this.rules.skills" :key="name">
+        <div v-for="(skill, name) in rules.skills" :key="name">
           <el-row style="margin-bottom:5px; border-bottom:1px solid grey">
             <el-col :span="5" class="center-vert">
               {{ name }}
@@ -826,7 +827,7 @@
                 <el-col :span="15">
                   <el-input type="textarea" v-model="character.skills[name].extras.notes" :autosize="{ minRows: 2, maxRows: 4 }" :aria-label="`${name} notes`" />
                 </el-col>
-                <el-col :span="9">
+                <el-col :span="9" class="center-vert">
                   <span v-if="['Artistry', 'Craft', 'Lore', 'Perform', 'Profession'].includes(name)">
                     <el-input v-model="character.skills[name].extras.specialty" :aria-label="`${name} Specialty`">
                       <template #prepend>Specialty</template>
@@ -963,14 +964,14 @@
           </template>
           <template #actions="{ confirm }">
             Name: <br>
-            <el-input v-model="this.newSpell.name" size="small" aria-label="New Spell Name" />
+            <el-input v-model="newSpell.name" size="small" aria-label="New Spell Name" />
             Level: <br>
-            <el-input-number v-model="this.newSpell.level" :min="0" :max="9" size="small" aria-label="New Spell Level" />
+            <el-input-number v-model="newSpell.level" :min="0" :max="9" size="small" aria-label="New Spell Level" />
             Class: <br>
-            <el-select v-model="this.newSpell.class" aria-label="New Spell Class">
-              <el-option v-for="(cClass, cName) in this.classes" :key="cName" :label="cName" :value="cName" />
+            <el-select v-model="newSpell.class" aria-label="New Spell Class">
+              <el-option v-for="(cClass, cName) in character.classes" :key="cName" :label="cName" :value="cName" />
             </el-select>
-            <el-button type="primary" size="small" @click="confirm" :disabled="this.newSpell.name == '' || this.newSpell.class == ''">Yes</el-button>
+            <el-button type="primary" size="small" @click="confirm" :disabled="newSpell.name == '' || newSpell.class == ''">Yes</el-button>
           </template>
         </el-popconfirm>
 
@@ -987,11 +988,11 @@
                     <el-col :span="7">
                       <el-tooltip placement="top" effect="light">
                         <el-tag effect="dark" type="info">
-                          Save DC : {{ 10 + lvl + (this.attributes[this.classes[cName].magic.castingAtr].mod) }}
+                          Save DC : {{ 10 + lvl + (attributes[classes[cName].magic.castingAtr].mod) }}
                         </el-tag>
                         <template #content>
                           10
-                          + {{ this.attributes[this.classes[cName].magic.castingAtr].mod }} {{ this.classes[cName].magic.castingAtr }}
+                          + {{ attributes[classes[cName].magic.castingAtr].mod }} {{ classes[cName].magic.castingAtr }}
                           + {{ lvl }} Level Spell
                         </template>
                       </el-tooltip>
@@ -1123,11 +1124,19 @@
                 {{ classes[newLevel.class].magic.castingAtr }}
               </el-descriptions-item>
               <el-descriptions-item>
+                <template #label> Galdur / <br> Spell Slots </template>
+                <el-switch
+                  v-model="newLevel.useGaldur"
+                  inline-prompt active-text=" Galdur "
+                  inactive-text=" Spell Slots "
+                  aria-label="Casting Type Switch" />
+              </el-descriptions-item>
+              <el-descriptions-item>
                 <template #label>
-                  {{ character.classes[newLevel.class].useGaldur ? "Additional Galdur" : "Total Spell Slots" }}
+                  {{ newLevel.useGaldur ? "Additional Galdur" : "Total Spell Slots" }}
                 </template>
                 {{
-                  character.classes[newLevel.class].useGaldur ?
+                  newLevel.useGaldur ?
                   classes[newLevel.class].magic.galdur[newLevel.level] :
                   classes[newLevel.class].magic.spellsPerDay[newLevel.level]
                 }}
@@ -1135,7 +1144,10 @@
             </el-descriptions>
             <div class="center-horz" style="margin-top:10px">
               <div v-if="classes[newLevel.class].magic.spellsKnown">
-                <span v-if="newLevel.level == 1 && classes[newLevel.class].magic.spellsKnown.byLevel[newLevel.level]">
+                <span v-if="classes[newLevel.class].magic.spellsKnown.total">
+                  {{ classes[newLevel.class].magic.spellsKnown.total }}
+                </span>
+                <span v-else-if="newLevel.level == 1 && classes[newLevel.class].magic.spellsKnown.byLevel[newLevel.level]">
                   Add
                   <span v-for="(num, index) in classes[newLevel.class].magic.spellsKnown.byLevel[newLevel.level]" :key="index">
                     {{ num }} level {{ index }}s{{ classes[newLevel.class].magic.spellsKnown.byLevel[newLevel.level].length-1 > index ? ', and ' : '' }}
@@ -1144,11 +1156,11 @@
                 <span v-else-if="newLevel.level == 1 && classes[newLevel.class].magic.spellsKnown.starting">
                   Add {{ classes[newLevel.class].magic.spellsKnown.starting }} 1
                 </span>
-                <span v-else-if="classes[newLevel.class].magic.spellsKnown.preLevel">
+                <span v-else-if="classes[newLevel.class].magic.spellsKnown.perLevel">
                   Add {{ classes[newLevel.class].magic.spellsKnown.perLevel }} 2
                 </span>
               </div>
-              <el-button type="primary"  ref="addSpell" @click="newLevel.newSpells.push({ 'name': '', 'level': 0, 'class': this.newLevel.class })">
+              <el-button type="primary"  ref="addSpell" @click="newLevel.newSpells.push({ 'name': '', 'level': 0, 'class': newLevel.class })">
                 Add Spell
               </el-button>
             </div>
@@ -1222,7 +1234,7 @@
             </el-row>
           </el-col>
         </el-row>
-        <el-row :gutter="10" v-for="(skill, name) in this.rules.skills" :key="name" style="margin-bottom:5px; border-bottom:1px solid grey">
+        <el-row :gutter="10" v-for="(skill, name) in rules.skills" :key="name" style="margin-bottom:5px; border-bottom:1px solid grey">
           <el-col :span="6">
             {{ name }}
             <span v-if="['Artistry', 'Craft', 'Lore', 'Perform', 'Profession'].includes(name)"> ({{ character.skills[name].extras.specialty }}) </span>
@@ -1247,7 +1259,7 @@
                 </el-tag>
               </el-col>
               <el-col :span="10">
-                <el-input-number v-model="newLevel.skills[name].newRanks" :min="0" :max="newLevel.level" size="small" aria-label="New Ranks" />
+                <el-input-number v-model="newLevel.skills[name].newRanks" :min="0" :max="character.basics.cr+1" size="small" aria-label="New Ranks" />
               </el-col>
               <el-col :span="10">
                 <el-input-number v-model="newLevel.skills[name].backgroundRanks" :min="0" :max="2" size="small" aria-label="New Background Ranks" v-if="skill.background" />
@@ -1258,13 +1270,21 @@
       </div>
 
       <el-row style="flex-direction:row-reverse">
-        <el-button type="primary" @click="addLevel()" :disabled=" (newRanks > (classes[newLevel.class].ranks + attributes.Int.mod)) || (backgroundRanks > 2) ">
+        <el-button
+          type="primary"
+          @click="addLevel()"
+          :disabled="
+          (newRanks == 0) ||
+          (newRanks > (classes[newLevel.class].ranks + attributes.Int.mod)) ||
+          (backgroundRanks > 2) ||
+          (backgroundRanks == 0)
+        ">
           Confirm Level Up
         </el-button>
       </el-row>
     </el-dialog>
 
-    <div v-for="(item, name) in this.tmpSource" :key="name">
+    <div v-for="(item, name) in tmpSource" :key="name">
       {{ name }} : {{ item }}
       <br><br>
     </div>
@@ -1611,10 +1631,9 @@ export default {
     },
     // USES: bonusLoop(bonuses)
     cumulativeGaldur() {
-      let classes = {
-        "magus": { "total": 0, "sources": [] }, "cleric": { "total": 0, "sources": [] }
-      };
+      let classes = {};
       for (let [cName, cClass] of Object.entries(this.character.classes)) {
+        if (!cClass.useGaldur) { continue; }
         classes[cName] = { "total": 0, "sources": [] };
         let val = 0;
         for (let lvl = 0; lvl <= cClass.levels; lvl++) {
@@ -1732,12 +1751,29 @@ export default {
     },
     saveCharacter() {
       console.log(this.character);
+
+
+
+
     },
 
     // Racial Methods
     onRaceChange() {
       let basics = this.character.basics;
       basics.type = this.races[basics.race].type;
+      basics.speed.base.total = this.races[basics.race].speed;
+      basics.size = this.races[basics.race].size;
+      // replace racial traits
+      for (const [name, trait] of Object.entries(this.character.abilities)) {
+        if (trait.extras.source == "Race") {
+          delete this.character.abilities[name];
+        }
+      }
+      for (const [name, trait] of Object.entries(this.races[basics.race].traits)) {
+        console.log(name, trait);
+        this.character.abilities[name] = trait;
+        this.character.abilities[name].extras = { "active": true, "showMain": false, "source": "Race" };
+      }
     },
     genRandomName() {
       let fNames, surnames, rand = 0;
@@ -1751,11 +1787,7 @@ export default {
       this.character.name += Object.keys(surnames)[rand];
     },
 
-    /***************************\
-    *                           *
-    *           Class           *
-    *                           *
-    \***************************/
+    // Class Methods
     openLevelDialog() {
       let lvl = {
         "class": this.newLevel.class,
@@ -1763,6 +1795,7 @@ export default {
         "skills": {},
         "abilites": [],
         "newSpells": [],
+        "useGaldur": false
       };
 
       // skills
@@ -1790,8 +1823,6 @@ export default {
           for (let i = 0; i < newSpellNum; i++) {
             lvl.newSpells.push({ "name": '', "level": 0, "class": lvl.class });
           }
-        } else {
-          this.character.classes[this.newLevel.class] = { 'useGaldur': false };
         }
       }
 
@@ -1800,9 +1831,6 @@ export default {
     },
     addLevel() {
       let toon = this.character;
-      console.log('newLevel:', this.newLevel);
-      console.log('char:', toon);
-
       // New Abilites
       this.newLevel.abilites.forEach(newAbil => {
         toon.abilities[newAbil.name] = {
@@ -1815,20 +1843,26 @@ export default {
       });
 
       // Class
-      let cClass = toon.classes[this.newLevel.class];
+      let source = this.classes[this.newLevel.class];
+      if ( !this.character.classes[this.newLevel.class] ) {this.character.classes[this.newLevel.class] = {}; }
+      let cClass = this.character.classes[this.newLevel.class];
       cClass.levels = this.newLevel.level;
 
-      if ( this.classes[this.newLevel.class].magic ) {
+      this.character.health.total += (this.newLevel.level == 1) ? source.hd : source.hd / 2;
+
+      if ( source.magic ) {
         cClass.useGaldur = cClass.useGaldur ? cClass.useGaldur : true;
         cClass.openSpent = cClass.openSpent ? cClass.openSpent : 0;
         cClass.reserveSpent = cClass.reserveSpent ? cClass.reserveSpent : 0;
-        cClass.openTotal = Math.floor( this.classes[this.newLevel.class].magic.galdurTotal[this.newLevel.level] / 2 );
-        cClass.reserveTotal = Math.ceil( this.classes[this.newLevel.class].magic.galdurTotal[this.newLevel.level] / 2 );
-        cClass.preparedSpells = this.classes[this.newLevel.class].magic.spellsPerDay[this.newLevel.level];
+        cClass.openTotal = Math.floor( source.magic.galdurTotal[this.newLevel.level] / 2 );
+        cClass.reserveTotal = Math.ceil( source.magic.galdurTotal[this.newLevel.level] / 2 );
+        cClass.preparedSpells = source.magic.spellsPerDay[this.newLevel.level];
 
+        // Even if no spells were added at level up, create teh spot for em
+        if ( !this.character.spells[this.newLevel.class] ) { this.character.spells[this.newLevel.class] = []; }
         this.newLevel.newSpells.forEach(spell => {
-          if ( !toon.spells[spell.class][spell.level] ) { toon.spells[spell.class][spell.level] = {}; }
-          toon.spells[spell.class][spell.level][spell.name] = {
+          if ( !this.character.spells[spell.class][spell.level] ) { this.character.spells[spell.class][spell.level] = {}; }
+          this.character.spells[spell.class][spell.level][spell.name] = {
             'SR': false, '​​​​​​castTime': "", '​​​​​​casts': 0, '​​​​​​components': "V,S", '​​​​​​description': "", '​​​​​​duration': "", '​​​​​​range': "", 'save': "", 'target': ""
           }
         });
@@ -1846,7 +1880,6 @@ export default {
 
       this.character.basics.cr++;
       this.addingLevel = false;
-
     },
 
     /***************************\
@@ -1996,6 +2029,8 @@ export default {
     \***************************/
     addSpell() {
       let cClass = this.character.spells[this.newSpell.class];
+
+      if ( !cClass[this.newSpell.level] ) { cClass[this.newSpell.level] = {}; }
       if (cClass[this.newSpell.level][this.newSpell.name]) {
         this.$message({ message: `You already know a ${this.newSpell.class} spell called ${this.newSpell.name}`, type: "warning" });
         return;
@@ -2014,7 +2049,6 @@ export default {
         this.newSpell = { name: "", level: 0, class: "" };
       }
     },
-
 
   }
 }

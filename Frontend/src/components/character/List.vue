@@ -1,45 +1,49 @@
 <template>
   <div class="container">
 
-    <el-table v-loading="loading" :data="characters" style="width: 100%" height="200">
-      <el-table-column prop="id" label="ID" width="40" fixed />
-      <el-table-column prop="name" label="Name" width="120" fixed />
-      <el-table-column prop="user.username" label="User" width="120" v-if="!listID" />
+    <el-row :gutter="10" style="margin-bottom:20px">
+      <el-col :span="12">
+        <el-input v-model="charNameFilter" placeholder="Character Name" aria-label="Character Name Filter" @input="searchByName" >
+          <template #prepend>
+            <g-icon iconSize="20px" iconName="search" />
+          </template>
+        </el-input>
+      </el-col>
 
-      <el-table-column prop="basics" label="Basics">
+      <el-col :span="4">
+        <el-button type="success" @click="this.$router.push({ name: 'character-create'})"> New Char </el-button>
+      </el-col>
+
+      <el-col :span="4">
+        <el-switch v-model="advanced" inline-prompt active-text=" Advanced " inactive-text=" Normal " aria-label="Advanced Mode Switch" />
+      </el-col>
+
+      <el-button type="warning" @click="clearFilter">reset all filters</el-button>
+
+    </el-row>
+
+
+    <el-table v-loading="loading" :data="characters" style="width: 100%" max-height="800" id="characterTable">
+      <el-table-column prop="id" label="ID" width="40" v-if="advanced" fixed />
+      <el-table-column label="Name" width="200" sortable fixed >
         <template #default="scope">
-          {{ scope.row.basics.appearance.age }} yr
-          {{ scope.row.basics.alignment }}
-          {{ scope.row.basics.type }}
-          {{ scope.row.basics.appearance.gender }}
+          <el-tag effect="dark"> {{ scope.row.name }} </el-tag>
         </template>
       </el-table-column>
-
-      <el-table-column prop="classes" label="Class">
+      <el-table-column prop="user.username" label="User" width="120" sortable v-if="!listID" />
+      <el-table-column prop="basics.appearance.age" label="Age" width="80" sortable />
+      <el-table-column prop="basics.race" label="Race" sortable />
+      <el-table-column prop="classes" label="Class" sortable>
         <template #default="scope">
-          {{ scope.row.classes }}
-          <!-- class.name (subclass.name) -->
+          <el-tag effect="dark">
+            Level
+            <span v-for="(cClass, cName) in scope.row.classes" :key="cName">
+              {{ cClass.levels }} {{ cName }}
+            </span>
+          </el-tag>
         </template>
       </el-table-column>
-
-      <el-table-column prop="attributes" label="Abilities">
-        <template #default="scope">
-          <el-row>
-            <el-col :span="12">
-              Str: {{ scope.row.attributes.Str.total}} <br>
-              Dex: {{ scope.row.attributes.Dex.total}} <br>
-              Con: {{ scope.row.attributes.Con.total}}
-            </el-col>
-            <el-col :span="12">
-              Int: {{ scope.row.attributes.Int.total}} <br>
-              Wis: {{ scope.row.attributes.Wis.total}} <br>
-              Cha: {{ scope.row.attributes.Cha.total}}
-            </el-col>
-          </el-row>
-        </template>
-      </el-table-column>
-
-      <el-table-column label="Actions" width="145px;">
+      <el-table-column label="Actions" width="150">
         <template #default="scope">
           <el-row class="row-bg" justify="space-between">
             <el-button type="primary" circle @click="viewCharacter(scope.row.id)">
@@ -61,7 +65,6 @@
           </el-row>
          </template>
        </el-table-column>
-
     </el-table>
 
 <!--
@@ -82,28 +85,7 @@
       </div>
     -->
 
-    <div v-if="!this.loading">
-      <div v-for="toon in this.characters" :key="toon.id">
-        <div v-for="item in toon" :key="item">
-          {{ item }}
-        </div>
-        <br>
-
-      </div>
-    </div>
   </div>
-
-
-  <el-switch v-model="value1">
-    <template #active-action>
-      <span class="custom-active-action">T</span>
-    </template>
-    <template #inactive-action>
-      <span class="custom-inactive-action">F</span>
-    </template>
-  </el-switch>
-
-
 </template>
 
 <script>
@@ -119,21 +101,24 @@ export default {
   data() {
     return {
       loading: true,
+      advanced: false,
       listID: this.$route.params.id,
-      characters: [],
 
-      value1: false
+      // filters
+      charNameFilter: "",
+
+
+      characters: [],
     }
   },
 
   mounted() {
-    if (!this.currentUser) { this.$router.push('/login'); }
-
+    // if (!this.currentUser) { this.$router.push('/login'); }
     console.log(`listID: ${this.listID}`);
 
     CharacterService.getAllCharacters(this.listID).then(response => {
       this.characters = JSON.parse(response.characters);
-      // console.log(this.characters);
+console.log(this.characters);
       this.loading = false;
     })
     .catch(err => { console.error(err); });
@@ -150,6 +135,47 @@ export default {
     },
     deleteCharacter(id) {
       console.log(id);
+    },
+
+    /***************************\
+    *                           *
+    *          FILTERS          *
+    *                           *
+    \***************************/
+    clearFilter() {
+      this.charNameFilter = "";
+      this.searchByName("");
+    },
+
+    // HIDES non-matching rows (display: none)
+    searchByName(filter) {
+      let table, tr, td, i, txtValue;
+      filter = filter.toUpperCase();
+      table = document.getElementById("characterTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    },
+    usernameFilter() {
+      console.log('update :)');
+      // const filterHandler = (
+      //   value: string,
+      //   row: User,
+      //   column: TableColumnCtx<User>
+      // ) => {
+      //   const property = column['property']
+      //   return row[property] === value
+      // }
+
     }
 
   }

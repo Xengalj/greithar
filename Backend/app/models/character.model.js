@@ -14,24 +14,44 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.JSON,
       defaultValue: {
         "cr": 0,
-        "alignment": "N",
-        "environment": "Urban",
-        "size": "Medium",
-        "speed": {},
+        "size": "medium",
+        "race": "",
         "type": {},
-
-        "diety": "",
+        "speed": {},
+        "alignment": "N",
         "appearance": {
           "gender": "",
           "age": 21,
           "height": "",
           "weight": "",
         },
+        "environment": "Urban",
         "backstory": "When I was, a young boy...",
+        "diety": "",
         "favoredClassBonus": {
           "class_id": 0,
           "bonus": "+1 HP, Skill, or Galdur per Level"
         }
+      }
+    },
+    attributes: {
+      type: Sequelize.JSON,
+      defaultValue: {
+        "Str": { "base": 10 },
+        "Dex": { "base": 10 },
+        "Con": { "base": 10 },
+        "Int": { "base": 10 },
+        "Wis": { "base": 10 },
+        "Cha": { "base": 10 }
+      }
+    },
+    health: {
+      type: Sequelize.JSON,
+      defaultValue: {
+        "damage": 0,
+        "nonlethal": 0,
+        "total": 0,
+        "sources": []
       }
     },
     classes: {
@@ -42,34 +62,22 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.JSON,
       defaultValue: {}
     },
-    attributes: {
-      type: Sequelize.JSON,
-      defaultValue: {
-        "Str": { "total": 10, "sources": [] }, "StrMod": 0,
-        "Dex": { "total": 10, "sources": [] }, "DexMod": 0,
-        "Con": { "total": 10, "sources": [] }, "ConMod": 0,
-        "Int": { "total": 10, "sources": [] }, "IntMod": 0,
-        "Wis": { "total": 10, "sources": [] }, "WisMod": 0,
-        "Cha": { "total": 10, "sources": [] }, "ChaMod": 0
-      }
-    },
-    health: {
+    conditions: {
       type: Sequelize.JSON,
       defaultValue: {}
-    },
-    actions: {
-      type: Sequelize.JSON,
-      defaultValue: {
-        melee: {}, ranged: {}, special: {}
-      }
     },
     skills: {
       type: Sequelize.JSON,
       defaultValue: {}
     },
-    magic: {
+    coins: {
       type: Sequelize.JSON,
-      defaultValue: {}
+      defaultValue: {
+        "pp": 0,
+        "gp": 0,
+        "sp": 0,
+        "cp": 0
+      }
     },
     inventory: {
       type: Sequelize.TEXT('long'),
@@ -106,13 +114,17 @@ module.exports = (sequelize, Sequelize) => {
         return JSON.stringify(inv);
       }
     },
+    spells: {
+      type: Sequelize.JSON,
+      defaultValue: {}
+    },
     userSettings: {
       type: Sequelize.JSON,
       defaultValue: {
-        "expandInventory": ['Equipped', 'Armor', 'Weapons', 'Hands', 'Back', 'Items'],
+        "heroPoints": 1,
         "cardTab": "main",
         "mainSections": [ "defense", "actions", "conditions" ],
-        "heroPoints": 1,
+        "expandInventory": ['Equipped', 'Armor', 'Weapons', 'Hands', 'Back', 'Items'],
       }
     },
     conditions: {
