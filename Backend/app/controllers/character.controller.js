@@ -13,9 +13,16 @@ exports.create = (req, res) => {
 
   Character.create({
     name: req.body.name,
-    json: req.body.json,
     basics: req.body.basics,
-    magic: req.body.magic,
+    attributes: req.body.attributes,
+    health: req.body.health,
+    classes: req.body.classses,
+    abilities: req.body.abilites,
+    conditions: req.body.conditions,
+    skills: req.body.skills,
+    coins: req.body.coins,
+    inventory: req.body.inventory,
+    spells: req.body.spells,
     userSettings: req.body.userSettings
   })
   .then(character => {
