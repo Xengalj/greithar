@@ -7,10 +7,18 @@ class CharacterService {
   createCharacter(character) {
     return axios.post(API_URL + 'create',
      {
+      userId: character.user_id,
       name: character.name,
-      json: character.json,
       basics: character.basics,
-      magic: character.magic,
+      attributes: character.attributes,
+      health: character.health,
+      classes: character.classses,
+      abilities: character.abilites,
+      conditions: character.conditions,
+      skills: character.skills,
+      coins: character.coins,
+      inventory: character.inventory,
+      spells: character.spells,
       userSettings: character.userSettings
     },
     { headers: authHeader() })
@@ -47,10 +55,18 @@ class CharacterService {
     return axios.post(API_URL + 'update',
     {
       id: character.id,
+      userId: character.user_id,
       name: character.name,
-      json: character.json,
       basics: character.basics,
-      magic: character.magic,
+      attributes: character.attributes,
+      health: character.health,
+      classes: character.classses,
+      abilities: character.abilites,
+      conditions: character.conditions,
+      skills: character.skills,
+      coins: character.coins,
+      inventory: character.inventory,
+      spells: character.spells,
       userSettings: character.userSettings
     },
     { headers: authHeader() })
