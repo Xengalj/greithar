@@ -11,6 +11,18 @@ const Op = db.Sequelize.Op;
 exports.create = (req, res) => {
   res.status(200).send("Server Character Created");
 
+  // only let users create their own, or admins create for others
+  let isAdmin = false;
+  User.findByPk(req.userId).then(user => {
+    user.getRoles().then(roles => {
+      for (let i = 0; i < roles.length; i++) {
+        if (roles[i].name === "admin") { isAdmin = true; }
+      }
+    });
+  });
+  let UID = req.userID;
+  if (isAdmin) { UID = req.body.userId; }
+
   Character.create({
     name: req.body.name,
     basics: req.body.basics,
@@ -27,7 +39,7 @@ exports.create = (req, res) => {
   })
   .then(character => {
     // set owner
-    campaign.setUser(req.userId)
+    campaign.setUser(UID)
     .then(() => {
       res.status(201).send({ message: `${character.name} created successfully!` });
     })
@@ -125,7 +137,9 @@ exports.update = (req, res) => {
   .then(character => {
     if (!character) { return res.status(404).send({ message: "Character not found!" }); }
 
-    // if (isAdmin || req.userId != character.user.id) {
+    if (isAdmin || req.userId == character.user_id) {
+      // TODO: character.user_id, or whatever the var is gonna be
+      
       // set values to be updated
       for (const [key, value] of Object.entries(req.body)) {
         console.log(`${key}: ${value}`);
@@ -133,9 +147,9 @@ exports.update = (req, res) => {
       }
       character.save();
       res.status(200).send({ character });
-    // } else {
-    //   res.status(403).send({ message: `You do not have permissions to delete this character` });
-    // } RELEASE AFTER CONFIRMING character.user.id exists
+    } else {
+      res.status(403).send({ message: `You do not have permissions to delete this character` });
+    }
   })
   .catch(err => {
     // error finding character
@@ -163,10 +177,10 @@ exports.delete = (req, res) => {
   Character.findOne({ where: { id: req.body.id }, include: User })
   .then(character => {
     if (!character) { return res.status(404).send({ message: "Character not found!" }); }
-    if (isAdmin || req.userId != character.user.id) {
+    if (isAdmin || req.userId == character.user_id) {
       character.destroy();
       res.status(200).send("Character deleted");
-    } else {
+      } else {
       res.status(403).send({ message: `You do not have permissions to delete this character` });
     }
   })
