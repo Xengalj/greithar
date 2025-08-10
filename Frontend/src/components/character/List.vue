@@ -11,7 +11,7 @@
       </el-col>
 
       <el-col :span="4">
-        <el-button type="success" @click="this.$router.push({ name: 'character-create'})"> New Char </el-button>
+        <el-button type="success" @click="createCharacter" v-loading="loading"> New Char </el-button>
       </el-col>
 
       <el-col :span="4">
@@ -94,9 +94,7 @@ import CharacterService from "@/services/character.service";
 export default {
   name: "List Characters",
   computed: {
-    currentUser() {
-      return this.$store.state.auth.user;
-    }
+    currentUser() { return this.$store.state.auth.user; }
   },
   data() {
     return {
@@ -106,7 +104,6 @@ export default {
 
       // filters
       charNameFilter: "",
-
 
       characters: [],
     }
@@ -125,6 +122,16 @@ console.log(this.characters);
   },
 
   methods: {
+    createCharacter() {
+      this.loading = true;
+      CharacterService.createCharacter()
+      .then(response => {
+        console.log(response);
+        let id = response.character.id;
+        this.$router.push({ name: 'character-edit', params: { id: id } });
+      })
+      .catch(err => { console.error(err); });
+    },
     viewCharacter(id) {
       console.log(id);
       this.$router.push({ name: 'character-view', params: { id: id } });
