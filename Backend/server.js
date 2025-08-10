@@ -100,8 +100,11 @@ function initial() {
   })
   .then(user => { user.setRoles([1, 2, 3]) });
 
+  db.character.create()
+  .then(character => { character.setUser(2) });
+  
   db.character.create({
-    id: 0,
+    id: 1,
     name: "Smelborp",
     basics : {
       "cr": 1,
