@@ -4,22 +4,22 @@ import authHeader from './auth-header';
 const API_URL = 'http://localhost:8080/api/character/';
 
 class CharacterService {
-  createCharacter(character) {
+  createCharacter() {
     return axios.post(API_URL + 'create',
      {
-      userId: character.user_id,
-      name: character.name,
-      basics: character.basics,
-      attributes: character.attributes,
-      health: character.health,
-      classes: character.classses,
-      abilities: character.abilites,
-      conditions: character.conditions,
-      skills: character.skills,
-      coins: character.coins,
-      inventory: character.inventory,
-      spells: character.spells,
-      userSettings: character.userSettings
+      // userId: character.user_id,
+      // name: character.name,
+      // basics: character.basics,
+      // attributes: character.attributes,
+      // health: character.health,
+      // classes: character.classses,
+      // abilities: character.abilites,
+      // conditions: character.conditions,
+      // skills: character.skills,
+      // coins: character.coins,
+      // inventory: character.inventory,
+      // spells: character.spells,
+      // userSettings: character.userSettings
     },
     { headers: authHeader() })
     .then(response => { return response.data; })
