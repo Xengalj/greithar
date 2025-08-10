@@ -500,7 +500,7 @@
                     v-model="cClass.useGaldur"
                     inline-prompt active-text=" Galdur "
                     inactive-text=" Spell Slots "
-                    aria-label="Casting Type Switch" />
+                    aria-label="Casting Style Switch" />
 
                   <span v-if="cClass.useGaldur" style="margin-left: 20px;">
                     <el-tooltip placement="top" effect="light">
@@ -590,7 +590,7 @@
                   </el-col>
                   <el-col :span="22">
                     <span v-for="num in numOfSpells" :key="num">
-                      <el-select v-model="cClass.preparedSpells[level][num-1]" style="max-width:33%">
+                      <el-select v-model="cClass.preparedSpells[level][num-1]" style="max-width:33%" "aria-label="`Prepared Spell Select for Level ${level} Number ${num}`">
                         <el-option v-for="(spell, name) in character.spells[cName][level]" :key="name" :label="name" :value="name" >
                           {{ name }}
                         </el-option>
@@ -622,8 +622,8 @@
                 <el-button type="primary" size="small">New</el-button>
               </template>
               <template #actions="{ confirm }">
-                <el-input v-model="abilName" size="small" placeholder="Ability Name" style="margin-bottom:5px;" />
-                <el-button type="primary" size="small" @click="confirm" :disabled="abilName == ''">Yes</el-button>
+                <el-input v-model="abilName" size="small" placeholder="Ability Name" style="margin-bottom:5px;" aria-label="New Ability Name" />
+                <el-button type="primary" size="small" @click="confirm" :disabled="abilName == ''" aria-label="Create New Ability">Yes</el-button>
               </template>
             </el-popconfirm>
           </el-col>
@@ -683,7 +683,7 @@
             <g-icon iconSize="32px" iconName="dizzyStar" /> Conditions
           </el-col>
           <el-col :span="8" :offset="12">
-            <el-select v-model="character.conditions" value-key="name" multiple placeholder="Common Conditions">
+            <el-select v-model="character.conditions" value-key="name" multiple placeholder="Common Conditions" aria-label="Conditions Select">
               <template #tag>
                 <el-tag v-for="(condition, index) in character.conditions" :key="condition" effect="dark" closable @close="character.conditions.splice(index, 1)"> {{ condition.name }} </el-tag>
               </template>
@@ -709,7 +709,7 @@
         <el-dialog v-model="addingCondition" title="New Condition" width="800">
           <el-row :gutter="10">
             <el-col :span="5">
-              <el-input v-model="newCondition.name" size="small" placeholder="Condition Name" aria-label="condition name" />
+              <el-input v-model="newCondition.name" size="small" placeholder="Condition Name" aria-label="Condition Name" />
             </el-col>
             <el-col :span="15">
               <el-input v-model="newCondition.description" :rows="2" type="textarea" placeholder="Enter condition description" aria-label="Condition Description" />
@@ -731,7 +731,7 @@
             </el-col>
             <el-col :span="5"> <el-input-number v-model="bonus.value" size="small" aria-label="bonue value" /> </el-col>
             <el-col :span="10">
-              <el-select v-model="bonus.targets" value-key="name" multiple placeholder="Modifier Target" >
+              <el-select v-model="bonus.targets" value-key="name" multiple placeholder="Modifier Target" aria-label="bonus targets">
                 <template #tag>
                   <el-tag v-for="(target, index) in bonus.targets" :key="target" effect="dark" closable @close="bonus.targets.splice(index, 1)"> {{ target }} </el-tag>
                 </template>
@@ -846,7 +846,7 @@
                     </el-input>
                   </span>
                   <span v-if="name == 'Linguistics'">
-                    <el-select v-model="character.skills.Linguistics.extras.languages" multiple filterable allow-create default-first-option :reserve-keyword="false">
+                    <el-select v-model="character.skills.Linguistics.extras.languages" multiple filterable allow-create default-first-option :reserve-keyword="false" aria-label="Languages Select">
                       <el-option v-for="name in races[character.basics.race].languages" :key="name" :label="name" :value="name" >
                         {{ name }}
                       </el-option>
@@ -880,24 +880,24 @@
             </el-tag>
           </el-col>
           <el-col :span="8">
-            <el-input v-model="character.coins.pp" >
+            <el-input v-model="character.coins.pp" aria-label="Platinum Pieces Input" >
               <template #prepend> Platinum </template>
               <template #suffix> Coins </template>
               <template #append> {{ (character.coins.pp / 50) }} lbs. </template>
             </el-input>
-            <el-input v-model="character.coins.gp" >
+            <el-input v-model="character.coins.gp" aria-label="Gold Pieces Input" >
               <template #prepend> Gold </template>
               <template #suffix> Coins </template>
               <template #append> {{ (character.coins.gp / 50) }} lbs. </template>
             </el-input>
           </el-col>
           <el-col :span="8">
-            <el-input v-model="character.coins.sp" >
+            <el-input v-model="character.coins.sp" aria-label="Silver Pieces Input" >
               <template #prepend> Silver </template>
               <template #suffix> Coins </template>
               <template #append> {{ (character.coins.sp / 50) }} lbs. </template>
             </el-input>
-            <el-input v-model="character.coins.cp" >
+            <el-input v-model="character.coins.cp" aria-label="Copper Pieces Input" >
               <template #prepend> Copper </template>
               <template #suffix> Coins </template>
               <template #append> {{ (character.coins.cp / 50) }} lbs. </template>
@@ -908,7 +908,7 @@
 
         <el-row :gutter="10">
           <el-col :span="20">
-            <el-input v-model="itemFilter" class="w-60 mb-2" placeholder="Item Search" />
+            <el-input v-model="itemFilter" class="w-60 mb-2" placeholder="Item Search" aria-label="Item Search" />
           </el-col>
           <el-col :span="4">
             <el-button type="primary" @click="editItem({}); addItem=true;">Add Item</el-button>
