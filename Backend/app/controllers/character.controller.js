@@ -8,43 +8,17 @@ const Op = db.Sequelize.Op;
 *     CHARACTER CREATE      *
 *                           *
 \***************************/
+// Creates a blank character, to then be edited
+// sets user to whoever created the char, and admins can update later
 exports.create = (req, res) => {
-  res.status(200).send("Server Character Created");
-
-  // only let users create their own, or admins create for others
-  let isAdmin = false;
-  User.findByPk(req.userId).then(user => {
-    user.getRoles().then(roles => {
-      for (let i = 0; i < roles.length; i++) {
-        if (roles[i].name === "admin") { isAdmin = true; }
-      }
-    });
-  });
-  let UID = req.userID;
-  if (isAdmin) { UID = req.body.userId; }
-
-  Character.create({
-    name: req.body.name,
-    basics: req.body.basics,
-    attributes: req.body.attributes,
-    health: req.body.health,
-    classes: req.body.classses,
-    abilities: req.body.abilites,
-    conditions: req.body.conditions,
-    skills: req.body.skills,
-    coins: req.body.coins,
-    inventory: req.body.inventory,
-    spells: req.body.spells,
-    userSettings: req.body.userSettings
-  })
+  Character.create({})
   .then(character => {
-    // set owner
-    campaign.setUser(UID)
+    character.setUser(req.userID)
     .then(() => {
       res.status(201).send({ message: `${character.name} created successfully!` });
     })
     .catch(err => {
-      // error setting user / owner
+      // error setting user / player
       res.status(500).send({ message: err.message });
     });
   })
