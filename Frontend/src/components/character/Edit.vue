@@ -1,8 +1,9 @@
 <template lang="html">
-  <div class="container" v-if="!loading">
+    <div class="container" v-loading="loading">
+    <!-- v-if="!loading" -->
 
     <el-row>
-      <el-col :span="16">
+      <el-col :span="12">
         <h3>
           {{ character.name }}
           <el-tag effect="dark" type="info" v-if="advanced" style="margin-right:10px;">
@@ -13,8 +14,19 @@
           </span>
         </h3>
       </el-col>
+      <el-col :span="1"> <span v-if="advanced"> User: </span> </el-col>
+      <el-col :span="4">
+        <el-select v-model="character.userId" size="small" placeholder="Choose User" aria-label="User Select" v-if="advanced">
+          <template #label="{ label }">
+            <span>{{ label }}</span>
+          </template>
+          <el-option v-for="user in users" :key="user.id" :label="user.username" :value="user.id">
+            <span>{{ user.username }}</span>
+          </el-option>
+        </el-select>
+      </el-col>
       <!-- ADVANCED -->
-      <el-col :span="8" style="display: flex; justify-content: space-evenly;">
+      <el-col :offset="1" :span="6" style="display: flex; justify-content: space-evenly;">
         <el-switch v-model="advanced" inline-prompt active-text=" Advanced " inactive-text=" Normal " aria-label="Advanced Mode Switch" />
       </el-col>
     </el-row>
@@ -1293,6 +1305,7 @@
 </template>
 
 <script>
+import UserService from "@/services/user.service";
 import CharacterService from "@/services/character.service";
 import HexGraph from '@/components/template/HexGraph.vue';
 import GItem from '@/components/template/GItem.vue';
@@ -1306,11 +1319,11 @@ export default {
       loading: true,
       advanced: false,
       sectionsCollapse: [ '' ],
-      addingLevel: false,
-
-      newLevel: { class: '' },
-
+      users: {},
       healthColors: [ { color: '#f56c6c', percentage: 30 }, { color: '#e6a23c', percentage: 60 }, { color: '#5cb87a', percentage: 100 } ],
+      
+      addingLevel: false,
+      newLevel: { class: '' },
 
       abilityCollapse: [],
       abilityTypes: [ "Trait", "Class", "Feat", "Other" ],
@@ -1667,29 +1680,25 @@ export default {
     console.log("races", this.races);
     console.log("classes", this.classes);
 
-    CharacterService.getCharacter(this.$route.params.id).then(() => {
-      // console.log('response:', response);
+    UserService.getAllUsers()
+    .then(response => { this.users = response.data.map((user) => { return {'username': user.username, 'id': user.id} } ); })
+    .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
+
+    CharacterService.getCharacter(this.$route.params.id).then((response) => {
+      console.log('response:', response);
       // this.character = response.character[0];
       this.character = this.tmpSource;
 
-      // Wait until we have rules to load stuff
-      while (this.loading) {
-        if (this.rules.size) {
-          // Put [Add Spell] btn in class spells tabs, wait til refs loaded
-          setTimeout(() => {
-            const spellTabs = this.$refs.spellsTab.$el.querySelector('.el-tabs__nav-scroll');
-            spellTabs.appendChild(this.$refs.addSpell.$el);
-          }, 10);
-          this.loading = false;
-        }
-      }
+      if (!this.rules.size) { this.$router.push("/"); }
+      // Put [Add Spell] btn in class spells tabs
+      const spellTabs = this.$refs.spellsTab.$el.querySelector('.el-tabs__nav-scroll');
+      spellTabs.appendChild(this.$refs.addSpell.$el);
+      this.loading = false;
     })
-    .catch(err => { console.error(err); });
+    .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
   },
   watch: {
-    itemFilter(val) {
-      this.$refs.tree.filter(val);
-    }
+    itemFilter(val) { this.$refs.tree.filter(val); }
   },
   methods: {
     // Helper Methods
@@ -1703,7 +1712,6 @@ export default {
       let prefix = "";
 
       for (let [name, bonus] of Object.entries(this.bonuses)) {
-            // console.log(name, bonus);
         prefix = (bonus.value > 0) ? "+" : "";
         if (Object.keys(this.rules.bonuses).includes(bonus.type)) {
           // If the bonus type doesn't stack
@@ -1751,6 +1759,21 @@ export default {
     },
     saveCharacter() {
       console.log(this.character);
+
+
+
+
+
+    CharacterService.updateCharacter(this.character)
+    .then((response) => {
+      console.log('response:', response);
+    })
+    .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
+
+
+
+
+      
 
 
 
