@@ -1,21 +1,19 @@
 module.exports = (sequelize, Sequelize) => {
   const Character = sequelize.define("characters", {
     // don't technically need to explicitly state id here
-    id: {
-      type: Sequelize.INTEGER,
-      primaryKey: true
-    },
+    // primaryKey of id is auto made
     // belongsTo ( user )
 
     name: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
+      defaultValue: "Toonicus Nuva"
     },
     basics: {
       type: Sequelize.JSON,
       defaultValue: {
         "cr": 0,
         "size": "medium",
-        "race": "",
+        "race": "Avaar",
         "type": {},
         "speed": {},
         "alignment": "N",

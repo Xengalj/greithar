@@ -102,9 +102,8 @@ function initial() {
 
   db.character.create()
   .then(character => { character.setUser(2) });
-  
+
   db.character.create({
-    id: 1,
     name: "Smelborp",
     basics : {
       "cr": 1,

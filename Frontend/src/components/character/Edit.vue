@@ -1,12 +1,12 @@
 <template lang="html">
-    <div class="container" v-loading="loading">
-    <!-- v-if="!loading" -->
+  <div class="container" v-if="!loading" >
 
+    <!-- NAME & ADVANCED -->
     <el-row>
       <el-col :span="12">
         <h3>
           {{ character.name }}
-          <el-tag effect="dark" type="info" v-if="advanced" style="margin-right:10px;">
+          <el-tag v-if="advanced" effect="dark" type="info" style="margin-right:10px;">
             ID : {{ character.id }}
           </el-tag>
           <span v-if="character.basics.race && ['male','female','agander'].includes(character.basics.appearance.gender) && advanced">
@@ -16,7 +16,7 @@
       </el-col>
       <el-col :span="1"> <span v-if="advanced"> User: </span> </el-col>
       <el-col :span="4">
-        <el-select v-model="character.userId" size="small" placeholder="Choose User" aria-label="User Select" v-if="advanced">
+        <el-select v-if="advanced" v-model="character.userId" size="small" placeholder="Choose User" aria-label="User Select">
           <template #label="{ label }">
             <span>{{ label }}</span>
           </template>
@@ -25,7 +25,6 @@
           </el-option>
         </el-select>
       </el-col>
-      <!-- ADVANCED -->
       <el-col :offset="1" :span="6" style="display: flex; justify-content: space-evenly;">
         <el-switch v-model="advanced" inline-prompt active-text=" Advanced " inactive-text=" Normal " aria-label="Advanced Mode Switch" />
       </el-col>
@@ -44,12 +43,12 @@
             </el-col>
             <!-- Race / Type (subtype) -->
             <el-col :span="8">
-              <el-select v-model="character.basics.race" size="small" placeholder="Choose Race" @change="onRaceChange()" aria-label="Race Select">
+              <el-select v-model="character.basics.race" @change="onRaceChange()" size="small" placeholder="Choose Race" aria-label="Race Select">
                 <template #label="{ label }">
                   <span style="float: left">{{ label }}</span>
                   <span style="float: right">
                     <el-tag size="small" effect="dark" type="primary">{{ capFirsts(character.basics.type.name) }}</el-tag>
-                    <el-tag size="small" effect="dark" type="info" style="margin-left:5px;" v-for="subtype in character.basics.type.subtypes" :key="subtype"> {{ subtype }} </el-tag>
+                    <el-tag v-for="subtype in character.basics.type.subtypes" :key="subtype" size="small" effect="dark" type="info" style="margin-left:5px;"> {{ subtype }} </el-tag>
                   </span>
                 </template>
                 <el-option v-for="(race, name) in races" :key="name" :label="name" :value="name">
@@ -115,7 +114,7 @@
                 <el-input v-model="character.basics.appearance.age" :min="1" aria-label="Age Input">
                   <template #prepend>Age</template>
                 </el-input>
-                <template #content>
+                <template #content v-if="character.basics.race">
                   <span v-for="(range, name) in races[character.basics.race].age" :key="name">
                     {{ name }} : {{ range }} <br>
                   </span>
@@ -590,7 +589,7 @@
                   </el-col>
                   <el-col :span="22">
                     <span v-for="num in numOfSpells" :key="num">
-                      <el-select v-model="cClass.preparedSpells[level][num-1]" style="max-width:33%" "aria-label="`Prepared Spell Select for Level ${level} Number ${num}`">
+                      <el-select v-model="cClass.preparedSpells[level][num-1]" style="max-width:33%" aria-label="`Prepared Spell Select for Level ${level} Number ${num}`">
                         <el-option v-for="(spell, name) in character.spells[cName][level]" :key="name" :label="name" :value="name" >
                           {{ name }}
                         </el-option>
@@ -1116,7 +1115,7 @@
             </el-input>
           </el-col>
           <el-col :span="13">
-            <el-input type="textarea" v-model="ability.description" :autosize="{ minRows: 2, maxRows: 4 }" aria-label="Ability Description" placeholder="Enter ability description" />
+            <el-input v-model="ability.description" type="textarea" :autosize="{ minRows: 2, maxRows: 4 }" placeholder="Enter ability description" aria-label="Ability Description"/>
           </el-col>
         </el-row>
       </div>
@@ -1172,7 +1171,7 @@
                   Add {{ classes[newLevel.class].magic.spellsKnown.perLevel }} 2
                 </span>
               </div>
-              <el-button type="primary"  ref="addSpell" @click="newLevel.newSpells.push({ 'name': '', 'level': 0, 'class': newLevel.class })">
+              <el-button @click="newLevel.newSpells.push({ 'name': '', 'level': 0, 'class': newLevel.class })" type="primary"  ref="addSpell">
                 Add Spell
               </el-button>
             </div>
@@ -1211,7 +1210,7 @@
         <el-divider style="max-width:50%"> <h3> Skills </h3> </el-divider>
         <div v-if="newLevel.level == 1">
           Class Skills:
-          <el-tag size="small" effect="dark" type="primary" v-for="skill in classes[newLevel.class].skills" :key="skill" style="margin-left:5px;">{{ skill }}</el-tag>
+          <el-tag v-for="skill in classes[newLevel.class].skills" :key="skill" size="small" effect="dark" type="primary" style="margin-left:5px;">{{ skill }}</el-tag>
         </div>
         <el-row :gutter="10" class="center-vert" style="margin-bottom:5px; border-bottom:1px solid grey">
           <el-col :span="6" class="center-vert"> <h5> Name (Ability) </h5> </el-col>
@@ -1274,7 +1273,7 @@
                 <el-input-number v-model="newLevel.skills[name].newRanks" :min="0" :max="character.basics.cr+1" size="small" aria-label="New Ranks" />
               </el-col>
               <el-col :span="10">
-                <el-input-number v-model="newLevel.skills[name].backgroundRanks" :min="0" :max="2" size="small" aria-label="New Background Ranks" v-if="skill.background" />
+                <el-input-number v-if="skill.background" v-model="newLevel.skills[name].backgroundRanks" :min="0" :max="2" size="small" aria-label="New Background Ranks" />
               </el-col>
             </el-row>
           </el-col>
@@ -1321,12 +1320,12 @@ export default {
       sectionsCollapse: [ '' ],
       users: {},
       healthColors: [ { color: '#f56c6c', percentage: 30 }, { color: '#e6a23c', percentage: 60 }, { color: '#5cb87a', percentage: 100 } ],
-      
+
       addingLevel: false,
       newLevel: { class: '' },
 
       abilityCollapse: [],
-      abilityTypes: [ "Trait", "Class", "Feat", "Other" ],
+      abilityTypes: [ "Race", "Trait", "Class", "Feat", "Other" ],
       addAbil: false,
       abilName: "",
       editingAbil: false,
@@ -1690,9 +1689,11 @@ export default {
       this.character = this.tmpSource;
 
       if (!this.rules.size) { this.$router.push("/"); }
-      // Put [Add Spell] btn in class spells tabs
-      const spellTabs = this.$refs.spellsTab.$el.querySelector('.el-tabs__nav-scroll');
-      spellTabs.appendChild(this.$refs.addSpell.$el);
+      // Put [Add Spell] btn in class spells tabs, wait til refs loaded
+      setTimeout(() => {
+        const spellTabs = this.$refs.spellsTab.$el.querySelector('.el-tabs__nav-scroll');
+        spellTabs.appendChild(this.$refs.addSpell.$el);
+      }, 10);
       this.loading = false;
     })
     .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
@@ -1773,7 +1774,7 @@ export default {
 
 
 
-      
+
 
 
 
@@ -1853,10 +1854,9 @@ export default {
       this.addingLevel = true;
     },
     addLevel() {
-      let toon = this.character;
       // New Abilites
       this.newLevel.abilites.forEach(newAbil => {
-        toon.abilities[newAbil.name] = {
+        this.character.abilities[newAbil.name] = {
           "trigger": "Continuous",
           "description": newAbil.description,
           "benefit": {},
@@ -1894,10 +1894,10 @@ export default {
       // New Skills
       for (let [name, skill] of Object.entries(this.newLevel.skills)) {
         if (skill.newRanks) {
-          toon.skills[name].ranks += skill.newRanks;
+          this.character.skills[name].ranks += skill.newRanks;
         }
         if (skill.backgroundRanks) {
-          toon.skills[name].ranks += skill.backgroundRanks;
+          this.character.skills[name].ranks += skill.backgroundRanks;
         }
       }
 

@@ -3,29 +3,22 @@
 
     <el-row :gutter="10" style="margin-bottom:20px">
       <el-col :span="12">
-        <el-input v-model="charNameFilter" placeholder="Character Name" aria-label="Character Name Filter" @input="searchByName" >
+        <el-input v-model="charNameFilter" placeholder="Character Name" id="nameFilter" aria-label="Character Name Filter" @input="searchByName" >
           <template #prepend>
             <g-icon iconSize="20px" iconName="search" />
           </template>
         </el-input>
       </el-col>
-
-      <el-col :span="4">
+      <el-col :span="3">
+        <el-button type="warning" @click="clearFilter">Reset name filter</el-button>
+      </el-col>
+      <el-col :offset="6" :span="3">
         <el-button type="success" @click="createCharacter" v-loading="loading"> New Char </el-button>
       </el-col>
-
-      <el-col :span="4">
-        <el-switch v-model="advanced" inline-prompt active-text=" Advanced " inactive-text=" Normal " aria-label="Advanced Mode Switch" />
-      </el-col>
-
-      <el-button type="warning" @click="clearFilter">reset all filters</el-button>
-
     </el-row>
 
-
-    <el-table v-loading="loading" :data="characters" style="width: 100%" max-height="800" id="characterTable">
-      <el-table-column prop="id" label="ID" width="40" v-if="advanced" fixed />
-      <el-table-column label="Name" width="200" sortable fixed >
+    <el-table v-loading="loading" :data="characters" max-height="600" id="characterTable">
+      <el-table-column prop="name" label="Name" width="200" sortable fixed >
         <template #default="scope">
           <el-tag effect="dark"> {{ scope.row.name }} </el-tag>
         </template>
@@ -52,14 +45,14 @@
             <el-button type="primary" circle @click="editCharacter(scope.row.id)">
               <g-icon iconSize="24px" iconColor="#000" iconName="quill" />
             </el-button>
-            <el-popconfirm title="Are you sure to delete this?">
+            <el-popconfirm :title="`Delete ${scope.row.name}?`">
               <template #reference>
                 <el-button type="danger" circle>
                   <g-icon iconSize="24px" iconColor="#000" iconName="trash" />
                 </el-button>
               </template>
               <template #actions="">
-                <el-button type="danger" size="small" @click="deleteCharacter(scope.row.id)"> Yes </el-button>
+                <el-button type="danger" size="small" @click="deleteCharacter(scope.row.id, scope.$index)"> Yes </el-button>
               </template>
             </el-popconfirm>
           </el-row>
@@ -67,23 +60,19 @@
        </el-table-column>
     </el-table>
 
-<!--
-    <div class="demo-pagination-block">
-        <div class="demonstration">All combined</div>
-        <el-pagination
-          v-model:current-page="currentPage4"
-          v-model:page-size="pageSize4"
-          :page-sizes="[100, 200, 300, 400]"
-          :size="size"
-          :disabled="disabled"
-          :background="background"
-          layout="total, sizes, prev, pager, next, jumper"
-          :total="400"
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-        />
-      </div>
-    -->
+    <div class="char-pager">
+      <el-pagination
+        v-model:current-page="currentPage"
+        v-model:page-size="pageSize"
+        :page-sizes="[10, 25, 50, 100]"
+        :background="true"
+        layout="sizes, prev, pager, next, jumper, total"
+        :total="totalToons"
+        @current-change="loadCharacters"
+        @size-change="loadCharacters"
+        hide-on-single-page
+      />
+    </div>
 
   </div>
 </template>
@@ -100,48 +89,60 @@ export default {
     return {
       loading: true,
       advanced: false,
-      listID: this.$route.params.id,
+      listID: this.$route.params.id, // user id
 
       // filters
       charNameFilter: "",
 
+      // pagination
+      currentPage: 1,
+      pageSize: 10,
+
       characters: [],
+      totalToons: 0,
     }
   },
 
   mounted() {
     // if (!this.currentUser) { this.$router.push('/login'); }
     console.log(`listID: ${this.listID}`);
-
-    CharacterService.getAllCharacters(this.listID).then(response => {
-      this.characters = JSON.parse(response.characters);
-console.log(this.characters);
-      this.loading = false;
-    })
-    .catch(err => { console.error(err); });
+    this.loadCharacters();
   },
 
   methods: {
+    loadCharacters() {
+      let offset = this.pageSize * (this.currentPage-1);
+      CharacterService.getAllCharacters(this.listID, offset, this.pageSize)
+      .then(response => {
+        let tmp = JSON.parse(response.characters);
+        this.totalToons = tmp.count;
+        this.characters = tmp.rows;
+        this.loading = false;
+      })
+      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
+    },
     createCharacter() {
       this.loading = true;
       CharacterService.createCharacter()
       .then(response => {
-        console.log(response);
         let id = response.character.id;
         this.$router.push({ name: 'character-edit', params: { id: id } });
       })
-      .catch(err => { console.error(err); });
+      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
     },
     viewCharacter(id) {
-      console.log(id);
       this.$router.push({ name: 'character-view', params: { id: id } });
     },
     editCharacter(id) {
-      console.log(id);
       this.$router.push({ name: 'character-edit', params: { id: id } });
     },
-    deleteCharacter(id) {
-      console.log(id);
+    deleteCharacter(id, rowIndex) {
+      CharacterService.deleteCharacter(id)
+      .then(response => {
+        this.$message({ message: response, type: 'warning' });
+        this.characters.splice(rowIndex, 1);
+      })
+      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
     },
 
     /***************************\
@@ -171,20 +172,18 @@ console.log(this.characters);
           }
         }
       }
-    },
-    usernameFilter() {
-      console.log('update :)');
-      // const filterHandler = (
-      //   value: string,
-      //   row: User,
-      //   column: TableColumnCtx<User>
-      // ) => {
-      //   const property = column['property']
-      //   return row[property] === value
-      // }
-
     }
-
   }
 };
 </script>
+<style media="screen">
+.char-pager {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+
+}
+.char-pager .el-pagination button .el-icon {
+display: flex;
+}
+</style>

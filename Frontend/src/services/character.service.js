@@ -5,22 +5,7 @@ const API_URL = 'http://localhost:8080/api/character/';
 
 class CharacterService {
   createCharacter() {
-    return axios.post(API_URL + 'create',
-     {
-      // userId: character.user_id,
-      // name: character.name,
-      // basics: character.basics,
-      // attributes: character.attributes,
-      // health: character.health,
-      // classes: character.classses,
-      // abilities: character.abilites,
-      // conditions: character.conditions,
-      // skills: character.skills,
-      // coins: character.coins,
-      // inventory: character.inventory,
-      // spells: character.spells,
-      // userSettings: character.userSettings
-    },
+    return axios.post(API_URL + 'create', {},
     { headers: authHeader() })
     .then(response => { return response.data; })
     .catch(err => { return err; });
@@ -35,16 +20,23 @@ class CharacterService {
   }
 
   // Get a list of all characters or a list of characters the user has
-  getAllCharacters(user_id) {
+  getAllCharacters(user_id, offset, limit) {
     if (user_id) {
       return axios.post(API_URL + 'read',
-      { user_id: user_id },
+      {
+        user_id: user_id,
+        offset: offset,
+        limit: limit
+      },
       { headers: authHeader() })
       .then(response => { return response.data; })
       .catch(err => { return err; });
     } else {
       return axios.post(API_URL + 'read',
-      { /*post data*/ },
+      {
+        offset: offset,
+        limit: limit
+      },
       { headers: authHeader() })
       .then(response => { return response.data; })
       .catch(err => { return err; });

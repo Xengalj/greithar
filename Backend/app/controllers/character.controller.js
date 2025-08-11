@@ -15,7 +15,7 @@ exports.create = (req, res) => {
   .then(character => {
     character.setUser(req.userID)
     .then(() => {
-      res.status(201).send({ message: `${character.name} created successfully!` });
+      res.status(201).send({ character: character });
     })
     .catch(err => {
       // error setting user / player
@@ -61,24 +61,11 @@ exports.read = (req, res) => {
 
   // get all characters
   } else {
-    // TODO: Pagination
-      // findaAndCountAll //pagination
-      /*
-      const { count, rows } = await Project.findAndCountAll({
-        where: {
-          title: {
-            [Op.like]: 'foo%',
-          },
-        },
-        offset: 10,
-        limit: 2,
-      });
-
-      console.log(count);
-      console.log(rows);
-      */
-
-    Character.findAll({ include: User })
+    Character.findAndCountAll({
+      include: User,
+      offset: req.body.offset,
+      limit: req.body.limit
+    })
     .then(characters => {
       if (!characters) { return res.status(404).send({ message: "No characters found!" }); }
       res.status(200).send({ characters: JSON.stringify(characters) });
@@ -87,6 +74,9 @@ exports.read = (req, res) => {
       // error getting characters
       res.status(500).send({ message: err.message });
     });
+
+
+
   }
 };
 
@@ -104,30 +94,29 @@ exports.update = (req, res) => {
       for (let i = 0; i < roles.length; i++) {
         if (roles[i].name === "admin") { isAdmin = true; }
       }
+
+      Character.findOne({ where: { id: req.body.id }, include: User })
+      .then(character => {
+        if (!character) { return res.status(404).send({ message: "Character not found!" }); }
+
+        if (isAdmin || req.userId == character.userId) {
+          // set values to be updated
+          for (const [key, value] of Object.entries(req.body)) {
+            console.log(`${key}: ${value}`);
+            character.key = value;
+          }
+          character.save();
+          res.status(200).send({ character });
+        } else {
+          res.status(403).send({ message: `You do not have permissions to delete this character` });
+        }
+      })
+      .catch(err => {
+        // error finding character
+        res.status(500).send({ message: err.message });
+      });
+
     });
-  });
-
-  Character.findOne({ where: { id: req.body.id }, include: User })
-  .then(character => {
-    if (!character) { return res.status(404).send({ message: "Character not found!" }); }
-
-    if (isAdmin || req.userId == character.user_id) {
-      // TODO: character.user_id, or whatever the var is gonna be
-      
-      // set values to be updated
-      for (const [key, value] of Object.entries(req.body)) {
-        console.log(`${key}: ${value}`);
-        character.key = value;
-      }
-      character.save();
-      res.status(200).send({ character });
-    } else {
-      res.status(403).send({ message: `You do not have permissions to delete this character` });
-    }
-  })
-  .catch(err => {
-    // error finding character
-    res.status(500).send({ message: err.message });
   });
 };
 
@@ -143,23 +132,26 @@ exports.delete = (req, res) => {
   User.findByPk(req.userId).then(user => {
     user.getRoles().then(roles => {
       for (let i = 0; i < roles.length; i++) {
-        if (roles[i].name === "admin") { isAdmin = true; }
+        if (roles[i].name == "admin") { isAdmin = true; }
       }
+
+      // Do the deleting
+      Character.findOne({ where: { id: req.body.id }, include: User })
+      .then(character => {
+        if (!character) { return res.status(404).send({ message: "Character not found!" }); }
+        if (isAdmin || req.userId == character.userId) {
+          character.destroy();
+          res.status(200).send("Character deleted");
+        } else {
+          res.status(403).send({ message: `You do not have permissions to delete this character` });
+        }
+      })
+      .catch(err => {
+        // error finding character
+        res.status(500).send({ message: err.message });
+      });
+
     });
   });
 
-  Character.findOne({ where: { id: req.body.id }, include: User })
-  .then(character => {
-    if (!character) { return res.status(404).send({ message: "Character not found!" }); }
-    if (isAdmin || req.userId == character.user_id) {
-      character.destroy();
-      res.status(200).send("Character deleted");
-      } else {
-      res.status(403).send({ message: `You do not have permissions to delete this character` });
-    }
-  })
-  .catch(err => {
-    // error finding character
-    res.status(500).send({ message: err.message });
-  });
 }

@@ -105,6 +105,5 @@ footer {
 .el-icon.el-popconfirm__icon,
 .el-icon.el-message__icon,
 .el-icon.el-message__closeBtn {
-  font-size: 28px;
   width: 28px;
 }
