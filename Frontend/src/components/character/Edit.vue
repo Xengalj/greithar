@@ -16,7 +16,7 @@
       </el-col>
       <el-col :span="1"> <span v-if="advanced"> User: </span> </el-col>
       <el-col :span="4">
-        <el-select v-if="advanced" v-model="character.user.id" size="small" placeholder="Choose User" aria-label="User Select">
+        <el-select v-if="advanced && $store.state.auth.user.roles.includes('admin')" v-model="character.user.id" size="small" placeholder="Choose User" aria-label="User Select">
           <template #label="{ label }">
             <span>{{ label }}</span>
           </template>
@@ -196,62 +196,9 @@
           </el-row>
         </el-col>
       </el-row>
-
-      <!-- Backstory, Settings, & Notes -->
-      <el-row>
-        <h4>Backstory</h4>
-        <el-input v-model="character.basics.backstory" type="textarea" autosize aria-label="Backstory Textarea" />
-      </el-row>
-      <el-row>
-        <h4>Notes</h4>
-        <el-input v-model="character.notes" type="textarea" autosize aria-label="Notes Textarea" />
-      </el-row>
-      <h4>Character Settings</h4>
-      <el-row>
-        <el-col :span="4" class="center-vert"> Hero Points </el-col>
-        <el-col :span="20"> <el-input-number v-model="character.userSettings.heroPoints" :min="0" :max="4" aria-label="Hero Points" /> </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="4" class="center-vert"> Open Tab </el-col>
-        <el-col :span="20">
-          <el-select v-model="character.userSettings.cardTab" size="small" aria-label="View's Tab Select">
-            <el-option label="Main" value="main" />
-            <el-option label="Items" value="items" />
-            <el-option label="Skills" value="skills" />
-            <el-option label="Abilites" value="abilites" />
-            <el-option label="Magic" value="magic" />
-            <el-option label="Edit" value="edit" />
-          </el-select>
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="4" class="center-vert"> Open Main Sections </el-col>
-        <el-col :span="20">
-          <el-select v-model="character.userSettings.mainSections" size="small" multiple aria-label="View's main tab open sections">
-            <el-option label="Defense" value="defense" />
-            <el-option label="Actions" value="actions" />
-            <el-option label="Conditions" value="conditions" />
-          </el-select>
-        </el-col>
-      </el-row>
-      <el-row style="margin-bottom:30px;">
-        <el-col :span="4" class="center-vert"> Open Inventory Sections </el-col>
-        <el-col :span="20">
-          <el-select v-model="character.userSettings.expandInventory" size="small" multiple aria-label="Gender Select">
-            <el-option label="Magic Items" value="Magic Items" />
-            <el-option label="Equipped" value="Equipped" />
-            <el-option label="Armor" value="Armor" />
-            <el-option label="Weapons" value="Weapons" />
-            <el-option label="Hands" value="Hands" />
-            <el-option label="Back" value="Back" />
-            <el-option label="Items" value="Items" />
-          </el-select>
-        </el-col>
-      </el-row>
     </div>
 
     <el-collapse v-model="sectionsCollapse" v-if="!loading">
-
       <!-- ATTRIBUTES (ABILITIES) -->
       <el-collapse-item name="1">
         <template #title>
@@ -842,7 +789,7 @@
             <el-col :offset="1" :span="14" class="center-horz">
               <el-row :gutter="10">
                 <el-col :span="15">
-                  <el-input type="textarea" v-model="character.skills[name].extras.notes" :autosize="{ minRows: 2, maxRows: 4 }" :aria-label="`${name} notes`" />
+                  <el-input type="textarea" v-model="character.skills[name].extras.notes" :autosize="{ minRows: 1, maxRows: 4 }" :aria-label="`${name} notes`" />
                 </el-col>
                 <el-col :span="9" class="center-vert">
                   <span v-if="['Artistry', 'Craft', 'Lore', 'Perform', 'Profession'].includes(name)">
@@ -1097,8 +1044,69 @@
           </el-tab-pane>
         </el-tabs>
       </el-collapse-item>
-    </el-collapse>
 
+      <!-- CHARACTER EXTRAS -->
+      <el-collapse-item name="7">
+        <template #title>
+          <el-divider style="max-width:50%">
+            <h4> <g-icon iconSize="32px" iconName="openScroll" /> Extras </h4>
+          </el-divider>
+        </template>
+        <el-row>
+          <el-col :span="4" class="center-vert"> Hero Points </el-col>
+          <el-col :span="20"> <el-input-number v-model="character.userSettings.heroPoints" :min="0" :max="4" aria-label="Hero Points" /> </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="4" class="center-vert"> Open Tab </el-col>
+          <el-col :span="20">
+            <el-select v-model="character.userSettings.cardTab" size="small" aria-label="View's Tab Select">
+              <el-option label="Main" value="main" />
+              <el-option label="Items" value="items" />
+              <el-option label="Skills" value="skills" />
+              <el-option label="Abilites" value="abilites" />
+              <el-option label="Magic" value="magic" />
+              <el-option label="Edit" value="edit" />
+            </el-select>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="4" class="center-vert"> Open Main Sections </el-col>
+          <el-col :span="20">
+            <el-select v-model="character.userSettings.mainSections" size="small" multiple aria-label="View's main tab open sections">
+              <el-option label="Defense" value="defense" />
+              <el-option label="Actions" value="actions" />
+              <el-option label="Conditions" value="conditions" />
+            </el-select>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="4" class="center-vert"> Open Inventory Sections </el-col>
+          <el-col :span="20">
+            <el-select v-model="character.userSettings.expandInventory" size="small" multiple aria-label="Gender Select">
+              <el-option label="Magic Items" value="Magic Items" />
+              <el-option label="Equipped" value="Equipped" />
+              <el-option label="Armor" value="Armor" />
+              <el-option label="Weapons" value="Weapons" />
+              <el-option label="Hands" value="Hands" />
+              <el-option label="Back" value="Back" />
+              <el-option label="Items" value="Items" />
+            </el-select>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="4" class="center-vert"> Backstory </el-col>
+          <el-col :span="20">
+            <el-input v-model="character.basics.backstory" type="textarea" autosize aria-label="Backstory Textarea" />
+          </el-col>
+        </el-row>
+        <el-row style="margin-bottom:30px;">
+          <el-col :span="4" class="center-vert"> Notes </el-col>
+          <el-col :span="20">
+            <el-input v-model="character.notes" type="textarea" autosize aria-label="Notes Textarea" />
+          </el-col>
+        </el-row>
+      </el-collapse-item>
+    </el-collapse>
 
     <!-- FOOTER -->
     <div style="text-align: right; margin-top: 10px;">
@@ -1302,12 +1310,12 @@
       </el-row>
     </el-dialog>
 
-  <!--
+    <!--
     <div v-for="(item, name) in this.character" :key="name">
       {{ name }} : {{ item }}
       <br><br>
     </div>
-  -->
+    -->
 
   </div>
 </template>

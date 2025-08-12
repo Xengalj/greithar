@@ -104,6 +104,7 @@ exports.update = (req, res) => {
           for (const [key, value] of Object.entries(req.body)) {
             console.log(`${key}: ${value}`);
             if (key == "id") { continue; }
+            if (isAdmin && key == "user") { character.setUser(value.id); }
             character[key] = value;
           }
           character.save();

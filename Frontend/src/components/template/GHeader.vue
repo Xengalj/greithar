@@ -10,6 +10,7 @@
 
     <div class="menu-container">
       <!-- Search -->
+      <!--
       <div class="nav-search">
         <el-input v-model="input" placeholder="Search" >
           <template #prefix>
@@ -17,7 +18,7 @@
           </template>
         </el-input>
       </div>
-
+      -->
 
       <el-menu class="el-menu dark" mode="horizontal" ellipsis >
         <!-- User Links -->
@@ -116,8 +117,6 @@
             </router-link>
           </el-menu-item>
 
-
-
         </el-menu-item-group>
 
 
@@ -155,6 +154,7 @@
 
 <script>
 export default {
+  name: 'g-header',
   data() {
     return {
       input: "",
