@@ -100,10 +100,15 @@ export default {
 
       characters: [],
       totalToons: 0,
+
+      // TODO:
+      debug: true,
+      isAdmin: this.currentUser
     }
   },
 
   mounted() {
+    console.log(this.currentUser);
     // if (!this.currentUser) { this.$router.push('/login'); }
     console.log(`listID: ${this.listID}`);
     this.loadCharacters();
@@ -122,11 +127,16 @@ export default {
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
     },
     createCharacter() {
-      this.loading = true;
+      // this.loading = true;
       CharacterService.createCharacter()
       .then(response => {
-        let id = response.character.id;
-        this.$router.push({ name: 'character-edit', params: { id: id } });
+        if (this.debug) {
+          console.log(response);
+          this.loadCharacters();
+        } else {
+          let id = response.character.id;
+          this.$router.push({ name: 'character-edit', params: { id: id } });
+        }
       })
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
     },

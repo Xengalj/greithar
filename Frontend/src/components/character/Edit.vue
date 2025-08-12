@@ -16,7 +16,7 @@
       </el-col>
       <el-col :span="1"> <span v-if="advanced"> User: </span> </el-col>
       <el-col :span="4">
-        <el-select v-if="advanced" v-model="character.userId" size="small" placeholder="Choose User" aria-label="User Select">
+        <el-select v-if="advanced" v-model="character.user.id" size="small" placeholder="Choose User" aria-label="User Select">
           <template #label="{ label }">
             <span>{{ label }}</span>
           </template>
@@ -380,12 +380,13 @@
               <el-row>
                 <el-col :span="24">
                   <el-progress
+                    v-if="character.health.total > 0"
                     :percentage="Math.floor(((character.health.total-character.health.damage)/character.health.total)*100)"
                     :color="healthColors"
                     :text-inside="true"
                     :stroke-width="24"
                   >
-                  {{ character.health.total-character.health.damage }} / {{ character.health.total }}
+                    {{ character.health.total-character.health.damage }} / {{ character.health.total }}
                   </el-progress>
                 </el-col>
               </el-row>
@@ -824,7 +825,12 @@
                 </span>
               </div>
               <div style="width:25%" class="center-vert">
-                <g-icon v-if="character.skills[name].class" iconSize="20px" iconName="magicSwirl" />
+                <span v-if="advanced">
+                  <el-checkbox v-model="character.skills[name].class" size="large" aria-label="Class Skill Checkbox" />
+                </span>
+                <span v-else>
+                  <g-icon v-if="character.skills[name].class" iconSize="20px" iconName="magicSwirl" />
+                </span>
               </div>
               <div style="width:25%" class="center-vert">
                 <g-icon v-if="skill.armor_pen" iconSize="20px" iconName="armor" />
@@ -1095,7 +1101,8 @@
 
 
     <!-- FOOTER -->
-    <div style="text-align: right">
+    <div style="text-align: right; margin-top: 10px;">
+      <el-button type="warning" @click="$router.push({ name: 'character-list' })">Back to All Characters </el-button>
       <el-button type="primary" @click="saveCharacter()"> Save Changes </el-button>
     </div>
 
@@ -1273,7 +1280,7 @@
                 <el-input-number v-model="newLevel.skills[name].newRanks" :min="0" :max="character.basics.cr+1" size="small" aria-label="New Ranks" />
               </el-col>
               <el-col :span="10">
-                <el-input-number v-if="skill.background" v-model="newLevel.skills[name].backgroundRanks" :min="0" :max="2" size="small" aria-label="New Background Ranks" />
+                <el-input-number v-if="skill.background" v-model="newLevel.skills[name].backgroundRanks" :min="0" :max="Math.min(2, character.basics.cr+1)" size="small" aria-label="New Background Ranks" />
               </el-col>
             </el-row>
           </el-col>
@@ -1295,10 +1302,12 @@
       </el-row>
     </el-dialog>
 
-    <div v-for="(item, name) in tmpSource" :key="name">
+  <!--
+    <div v-for="(item, name) in this.character" :key="name">
       {{ name }} : {{ item }}
       <br><br>
     </div>
+  -->
 
   </div>
 </template>
@@ -1316,7 +1325,7 @@ export default {
   data() {
     return {
       loading: true,
-      advanced: false,
+      advanced: this.$store.state.auth.user.roles.includes('admin'),
       sectionsCollapse: [ '' ],
       users: {},
       healthColors: [ { color: '#f56c6c', percentage: 30 }, { color: '#e6a23c', percentage: 60 }, { color: '#5cb87a', percentage: 100 } ],
@@ -1344,217 +1353,6 @@ export default {
       spellsCollapse: [],
 
       character: {},
-
-
-      tmpSource: {
-        id : 0,
-        userId : 2,
-        name : "Mit'a",
-        basics : {
-          "cr": 10,
-          "size": "medium",
-          "race": "Amaru",
-          "type": {
-            "name": "humanoid",
-            "hd": 0,
-            "levels": 0,
-            "subtypes": [ "Lamia" ]
-          },
-          "speed": {
-            "base": { "total": 30, "sources": [ "Racial Base" ] },
-            "swim": { "total": 0, "sources": [] },
-            "climb": { "total": 0, "sources": [] },
-            "fly": { "total": 0, "sources": [] },
-            "burrow": { "total": 0, "sources": []  }
-          },
-          "alignment": "LG",
-          "backstory": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum...",
-          "appearance": { "age": 29, "gender": "male", "height": "7'2\"", "weight": "240 lbs." },
-          "diety": "Lauriss",
-          "environment": "Urban",
-          "favoredClass": { "name": "Magus", "bonus": "+1 Galdur per Level" }
-        },
-        notes : "",
-        userSettings : {
-          "cardTab": "main",
-          "heroPoints": 1,
-          "mainSections": [ "defense", "actions", "conditions" ],
-          "expandInventory": [ "Equipped", "Armor", "Weapons", "Hands", "Back", "Items" ]
-        },
-        attributes : {
-          "Str": { "base": 16 },
-          "Dex": { "base": 17 },
-          "Con": { "base": 12 },
-          "Int": { "base": 15 },
-          "Wis": { "base": 10 },
-          "Cha": { "base": 12 },
-        },
-        health : {
-          "damage": 0,
-          "nonlethal": 0,
-          "total": 212,
-          "sources": [ "+17d12", "+102 Con" ]
-        },
-        classes : {
-          "magus": {
-            "levels": 10,
-            "useGaldur": true,
-            "openSpent": 0,
-            "openTotal": 20,
-            "reserveSpent": 0,
-            "reserveTotal": 20
-          }
-        },
-        abilities : {
-          "Pyromaniac": {
-            "trigger": "Continuous",
-            "description": "You are treated as 1 level higher when casting spells and abilities with the fire descriptor or that deal fire damage",
-            "benefit": {},
-            "bonuses": {},
-            "extras": { "active": true, "showMain": false, "source": "Trait" },
-          },
-          "Darkvision": {
-            "trigger": "Continuous",
-            "description": "Amaru can see in the dark up to 60 feet",
-            "benefit": { "target": "senses", "text": "Darkvision 60 ft." },
-            "bonuses": {},
-            "extras": { "active": true, "showMain": false, "source": "Trait" }
-          },
-          "Stability": {
-            "trigger": "Continuous",
-            "description": "+4 to CMD when resisting Bull Rush or Trip attempts",
-            "benefit": { "target": "CMD", "text": "+4 vs Trp & Bull Rush" },
-            "bonuses": {},
-            "extras": { "active": true, "showMain": false, "source": "Trait" }
-          },
-          "Prehensile Tail": {
-            "trigger": "Continuous",
-            "description": "You can use your tail to pick up and cary small objects",
-            "benefit": {},
-            "bonuses": {},
-            "extras": { "active": true, "showMain": false, "source": "Trait" }
-          },
-          "Hypnotic Gaze": {
-            "trigger": "Standard",
-            "description": "Can cast Hypnotism once a day for 1 round",
-            "benefit": {},
-            "bonuses": {},
-            "extras": { "active": false, "showMain": true, "source": "Trait" }
-          },
-          "Reactionary": {
-            "trigger": "Continuous",
-            "description": "+2 trait bonus on inititive checks",
-            "benefit": {},
-            "bonuses": {
-              "Reactionary (+)": {
-                "value": 2,
-                "type": "Trait",
-                "targets": [ "init" ]
-              }
-            },
-            "extras": { "active": true, "showMain": false, "source": "Trait" }
-          },
-          "Drake Anatomist": {
-            "trigger": "Continuous",
-            "description": "+1 damage against dragons and +2 Knowledge (arcana) to identify them",
-            "benefit": {},
-            "bonuses": {},
-            "extras": { "active": true, "showMain": false, "source": "Trait" }
-          },
-          "Bladed Magic": {
-            "trigger": "Continuous",
-            "description": "+1 Craft for magic weapons and weapon enhancement from arcane pool lasts for 2 minutes (not 1)",
-            "benefit": {},
-            "bonuses": {},
-            "extras": { "active": true, "showMain": false, "source": "Trait" }
-          },
-          "Spell Combat (Ex)": {
-            "trigger": "Full-Round",
-            "description": "You can make all your attacks at a -2 and also cast a spell with a cast time of 1 Standard Action.",
-            "benefit": {},
-            "bonuses": {
-              "Spell Combat (-)": {
-                "value": -2,
-                "type": "Feat",
-                "targets": [ "rangedAtkBonus", "meleeAtkBonus" ]
-              }
-            },
-            "extras": { "active": true, "showMain": false, "source": "Class" },
-          },
-          "Weapon Finesse": {
-            "trigger": "Continuous",
-            "description": "You may use your Dex instead of Str for attacks made with light weapons, elven curve blades, rapiers, whips, or spiked chains.",
-            "benefit": {},
-            "bonuses": {},
-            "extras": { "active": true, "showMain": false, "source": "Feat" },
-          },
-        },
-        conditions : {},
-        skills : {
-          "Acrobatics":                   { "ranks": 0, "class": true, "extras": { "notes": "" } },
-          "Bluff":                        { "ranks": 0, "class": false, "extras": { "notes": "" } },
-          "Climb":                        { "ranks": 0, "class": false, "extras": { "notes": "" } },
-          "Diplomacy":                    { "ranks": 0, "class": false, "extras": { "notes": "" } },
-          "Disable Device":               { "ranks": 0, "class": false, "extras": { "notes": "" } },
-          "Disguise":                     { "ranks": 0, "class": false, "extras": { "notes": "" } },
-          "Escape Artist":                { "ranks": 0, "class": false, "extras": { "notes": "" } },
-          "Fly":                          { "ranks": 0, "class": false, "extras": { "notes": "" } },
-          "Heal":                         { "ranks": 0, "class": false, "extras": { "notes": "" } },
-          "Intimidate":                   { "ranks": 4, "class": true, "extras": { "notes": "Std to demoralize" } },
-          "Knowledge (arcana)":           { "ranks": 0, "class": false, "extras": { "notes": "" } },
-          "Knowledge (dungeoneering)":    { "ranks": 0, "class": false, "extras": { "notes": "" } },
-          "Knowledge (local)":            { "ranks": 0, "class": false, "extras": { "notes": "" } },
-          "Knowledge (nature)":           { "ranks": 0, "class": false, "extras": { "notes": "" } },
-          "Knowledge (planes)":           { "ranks": 0, "class": false, "extras": { "notes": "" } },
-          "Knowledge (religion)":         { "ranks": 0, "class": false, "extras": { "notes": "" } },
-          "Perception":                   { "ranks": 0, "class": false, "extras": { "notes": "" } },
-          "Ride":                         { "ranks": 0, "class": false, "extras": { "notes": "" } },
-          "Sense Motive":                 { "ranks": 0, "class": false, "extras": { "notes": "" } },
-          "Spellcraft":                   { "ranks": 0, "class": false, "extras": { "notes": "" } },
-          "Stealth":                      { "ranks": 0, "class": false, "extras": { "notes": "" } },
-          "Survival":                     { "ranks": 0, "class": false, "extras": { "notes": "" } },
-          "Swim":                         { "ranks": 0, "class": false, "extras": { "notes": "" } },
-          "Use Magic Device":             { "ranks": 0, "class": false, "extras": { "notes": "" } },
-          "Appraise":                     { "ranks": 0, "class": false, "extras": { "notes": "" } },
-          "Artistry":                     { "ranks": 0, "class": false, "extras": { "notes": "", "specialty": "" } },
-          "Craft":                        { "ranks": 0, "class": false, "extras": { "notes": "", "specialty": "" } },
-          "Handle Animal":                { "ranks": 0, "class": false, "extras": { "notes": "" } },
-          "Knowledge (engineering)":      { "ranks": 0, "class": false, "extras": { "notes": "" } },
-          "Knowledge (geography)":        { "ranks": 0, "class": false, "extras": { "notes": "" } },
-          "Knowledge (history)":          { "ranks": 0, "class": false, "extras": { "notes": "" } },
-          "Knowledge (nobility)":         { "ranks": 0, "class": false, "extras": { "notes": "" } },
-          "Linguistics":                  { "ranks": 0, "class": false, "extras": { "notes": "", "languages": [ "Common", "Risko" ] } },
-          "Lore":                         { "ranks": 0, "class": false, "extras": { "notes":  "", "specialty": "" } },
-          "Perform":                      { "ranks": 0, "class": false, "extras": { "notes":  "", "specialty": "" } },
-          "Profession":                   { "ranks": 0, "class": false, "extras": { "notes":  "", "specialty": "" } },
-          "Sleight of Hand":              { "ranks": 0, "class": false, "extras": { "notes": "" }  }
-        },
-        inventory : [ { "label": "Magic Items", "extras": { "icon": "amulet" }, "children": [ { "label": "Head", "extras": { "capacity": 1 }, "children": [] }, { "label": "Headband", "extras": { "capacity": 1 }, "children": [] }, { "label": "Eyes", "extras": { "capacity": 1 }, "children": [] }, { "label": "Shoulders", "extras": { "capacity": 1 }, "children": [] }, { "label": "Neck", "extras": { "capacity": 1 }, "children": [] }, { "label": "Chest", "extras": { "capacity": 1 }, "children": [] }, { "label": "Body", "extras": { "capacity": 1 }, "children": [] }, { "label": "Belt", "extras": { "capacity": 1 }, "children": [] }, { "label": "Wrists", "extras": { "capacity": 1 }, "children": [] }, { "label": "Ring 1", "extras": { "capacity": 1 }, "children": [] }, { "label": "Ring 2", "extras": { "capacity": 1 }, "children": [] }, { "label": "Feet", "extras": { "capacity": 1 }, "children": [] }, { "label": "Slotless", "extras": { "capacity": 1 }, "children": [] } ] }, { "label": "Equipped", "extras": { "icon": "equipment" }, "children": [ { "label": "Armor", "extras": { "icon": "armor", "capacity": 1 }, "children": [] }, { "label": "Weapons", "extras": { "icon": "weapons" }, "children": [ { "label": "Hands", "extras": { "icon": "abilityPalm", "capacity": 2 }, "children": [] }, { "label": "Back", "extras": { "icon": "swordShield", "capacity": 2 }, "children": [] } ] } ] }, { "label": "Items", "extras": { "icon": "inventory" }, "children": [ { "label": "Backpack", "extras": { "icon": "backpack", "capacity": 50 }, "children": [] } ] } ],
-        coins: { "pp": 0, "gp": 152, "sp": 101, "cp": 21 },
-        spells : {
-          "magus": [
-            {
-              'Prestidigitation': {
-                'casts': 0,
-                'castTime': '1 Standard',
-                'components': 'V,S',
-                'target': 'Other',
-                'range': '10 Ft',
-                'duration': '1 Hour',
-                'save': 'Other',
-                'SR': false,
-                'description': "You may perform minor tricks like: lift 1 pound, color, clean, or soil 1 cubic foot of items, chill, warm, or flavor 1 pound of nonliving material. No effects persist except moving, cleaning, and soiling."
-              },
-              'Jolt': { 'casts': 0, 'castTime': '1 Standard', 'components': 'V,S', 'target': 'Other', 'range': '10 Ft', 'duration': '1 Hour', 'save': 'Other', 'SR': false, 'description': 'does a zap' },
-              'Dancing Lights': { 'casts': 0, 'castTime': '1 Standard', 'components': 'V,S', 'target': 'Other', 'range': '10 Ft', 'duration': '1 Hour', 'save': 'Other', 'SR': false, 'description': 'Little Orbs follow you around' }
-            },
-            {
-              'Shield': { 'casts': 0, 'castTime': '1 Standard', 'components': 'V,S', 'target': 'Other', 'range': '10 Ft', 'duration': '1 Hour', 'save': 'Other', 'SR': false, 'description': 'Negates Magic Missile & grants a +4 Shield bonus to AC' }
-            }
-          ]
-        }
-      } // end tmpSource (Mit'a)
-
     };
   },
   computed: {
@@ -1675,28 +1473,24 @@ export default {
 
   },
   mounted() {
-    console.log("rules", this.rules);
-    console.log("races", this.races);
-    console.log("classes", this.classes);
-
+if (!this.rules.size) { this.$router.push("/"); }
     UserService.getAllUsers()
     .then(response => { this.users = response.data.map((user) => { return {'username': user.username, 'id': user.id} } ); })
     .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
 
-    CharacterService.getCharacter(this.$route.params.id).then((response) => {
-      console.log('response:', response);
-      // this.character = response.character[0];
-      this.character = this.tmpSource;
-
-      if (!this.rules.size) { this.$router.push("/"); }
-      // Put [Add Spell] btn in class spells tabs, wait til refs loaded
-      setTimeout(() => {
-        const spellTabs = this.$refs.spellsTab.$el.querySelector('.el-tabs__nav-scroll');
-        spellTabs.appendChild(this.$refs.addSpell.$el);
-      }, 10);
+    CharacterService.getCharacter(this.$route.params.id)
+    .then((response) => {
+console.log(response);
+      this.character = response.character[0];
+      this.character.user = {};
       this.loading = false;
     })
-    .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
+    .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
+    .finally(() => {
+      // Put [Add Spell] btn in class spells tabs, wait til refs loaded
+      const spellTabs = this.$refs.spellsTab.$el.querySelector('.el-tabs__nav-scroll');
+      spellTabs.appendChild(this.$refs.addSpell.$el);
+    });
   },
   watch: {
     itemFilter(val) { this.$refs.tree.filter(val); }
@@ -1758,26 +1552,14 @@ export default {
         obj.sources.push(`${prefix}${value} ${name}`);
       }
     },
+
     saveCharacter() {
-      console.log(this.character);
-
-
-
-
-
-    CharacterService.updateCharacter(this.character)
-    .then((response) => {
-      console.log('response:', response);
-    })
-    .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
-
-
-
-
-
-
-
-
+      CharacterService.updateCharacter(this.character)
+      .then((response) => {
+        console.log('response:', response);
+        // window.location.reload();
+      })
+      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
 
     },
 

@@ -47,9 +47,10 @@ class CharacterService {
     return axios.post(API_URL + 'update',
     {
       id: character.id,
-      userId: character.user_id,
       name: character.name,
       basics: character.basics,
+      notes: character.notes,
+      userSettings: character.userSettings,
       attributes: character.attributes,
       health: character.health,
       classes: character.classses,
@@ -59,7 +60,8 @@ class CharacterService {
       coins: character.coins,
       inventory: character.inventory,
       spells: character.spells,
-      userSettings: character.userSettings
+
+      user: { id: character.user.id }
     },
     { headers: authHeader() })
     .then(response => { return response.data; })

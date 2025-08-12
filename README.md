@@ -86,6 +86,10 @@ node server.js
 - [ ] use <el-drawer> for equipment and things in builder
 - [ ] implement Rule & Lore pages
 
-- [ ] Get Backend MYSQL running not in Laragon?
 - [x] Deploy built files to backend
 - [ ] get "greithar.com" on cloudflare
+
+- [ ] [Owlbear Context Menu](https://docs.owlbear.rodeo/extensions/tutorial-initiative-tracker/implement-the-context-menu-item/)
+- [ ] [Owlbear Player](https://docs.owlbear.rodeo/extensions/apis/player/)
+- [ ] [Obsidian](https://obsidian.md/)
+- [ ] [Leaflet](https://github.com/javalent/obsidian-leaflet) (maps for obsidian)

@@ -11,7 +11,7 @@ const Op = db.Sequelize.Op;
 // Creates a blank character, to then be edited
 // sets user to whoever created the char, and admins can update later
 exports.create = (req, res) => {
-  Character.create({})
+  Character.create()
   .then(character => {
     character.setUser(req.userID)
     .then(() => {
@@ -87,7 +87,6 @@ exports.read = (req, res) => {
 \***************************/
 // Updates a character, given by character_id
 exports.update = (req, res) => {
-  // only let users edit their own, or admins edit any
   let isAdmin = false;
   User.findByPk(req.userId).then(user => {
     user.getRoles().then(roles => {
@@ -99,13 +98,16 @@ exports.update = (req, res) => {
       .then(character => {
         if (!character) { return res.status(404).send({ message: "Character not found!" }); }
 
-        if (isAdmin || req.userId == character.userId) {
+        // only let users edit their own, or admins edit any
+        if (isAdmin || character.user.id == req.user.id) {
           // set values to be updated
           for (const [key, value] of Object.entries(req.body)) {
             console.log(`${key}: ${value}`);
-            character.key = value;
+            if (key == "id") { continue; }
+            character[key] = value;
           }
           character.save();
+
           res.status(200).send({ character });
         } else {
           res.status(403).send({ message: `You do not have permissions to delete this character` });
