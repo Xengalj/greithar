@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="container" v-if="!loading" >
+  <div v-if="!loading" class="container">
 
     <!-- NAME & ADVANCED -->
     <el-row>
@@ -94,14 +94,12 @@
             <el-col :span="8">
               <span v-for="(mode, name) in character.basics.speed" :key="name">
                 <span v-if="mode.total">
-                  <el-badge :value="mode.sources.length" :max="5">
-                    <el-tooltip placement="top" effect="light">
-                      <el-tag size="large" effect="dark" type="info" style="margin-left:5px;"> {{ capFirsts(name) }}: {{ mode.total }} ft. </el-tag>
-                      <template #content>
-                        <span v-for="bonus in mode.sources" :key="bonus"> {{ bonus+" " }} </span>
-                      </template>
-                    </el-tooltip>
-                  </el-badge>
+                  <el-tooltip placement="top" effect="light">
+                    <el-tag size="large" effect="dark" type="info" style="margin-left:5px;"> {{ capFirsts(name) }}: {{ mode.total }} ft. </el-tag>
+                    <template #content>
+                      <span v-for="bonus in mode.sources" :key="bonus"> {{ bonus+" " }} </span>
+                    </template>
+                  </el-tooltip>
                 </span>
               </span>
             </el-col>
@@ -219,28 +217,30 @@
               <el-row :gutter="10">
                 <!-- Strength -->
                 <el-col :span="2" class="center-vert">Str:</el-col>
-                <el-col :span="2">
+                <el-col :span="3">
                   <el-badge :max="5" :value="attributes.Str.sources.length" v-if="attributes.Str.sources[0]">
                     <el-tooltip placement="top" effect="light">
                       <el-tag size="large" effect="dark" type="primary">{{attributes.Str.total}}</el-tag>
                       <template #content> <span v-for="bonus in attributes.Str.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
                     </el-tooltip>
                   </el-badge>
-                  <el-tag size="large" effect="dark" type="primary" v-else>{{attributes.Str.total}}</el-tag>
+                  <el-tag size="large" effect="dark" type="info" v-else>{{attributes.Str.total}}</el-tag>
+                  <el-tag size="small" effect="dark" type="primary">{{ Math.floor((attributes.Str.total-10)/2) }}</el-tag>
                 </el-col>
                 <el-col :span="6">
                   <el-input-number v-model="character.attributes.Str.base" :min="1" aria-label="Base Strength Input" />
                 </el-col>
                 <!-- Intelligence -->
                 <el-col :span="2" :offset="1" class="center-vert">Int:</el-col>
-                <el-col :span="2">
+                <el-col :span="3">
                   <el-badge :max="5" :value="attributes.Int.sources.length" v-if="attributes.Int.sources[0]">
                     <el-tooltip placement="top" effect="light">
                       <el-tag size="large" effect="dark" type="primary">{{attributes.Int.total}}</el-tag>
                       <template #content> <span v-for="bonus in attributes.Int.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
                     </el-tooltip>
                   </el-badge>
-                  <el-tag size="large" effect="dark" type="primary" v-else>{{attributes.Int.total}}</el-tag>
+                  <el-tag size="large" effect="dark" type="info" v-else>{{attributes.Int.total}}</el-tag>
+                  <el-tag size="small" effect="dark" type="primary">{{ Math.floor((attributes.Int.total-10)/2) }}</el-tag>
                 </el-col>
                 <el-col :span="6">
                   <el-input-number v-model="character.attributes.Int.base" :min="1" aria-label="Base Intelligence Input" />
@@ -250,28 +250,30 @@
               <el-row :gutter="10">
                 <!-- Dexterity -->
                 <el-col :span="2" class="center-vert">Dex:</el-col>
-                <el-col :span="2">
+                <el-col :span="3">
                   <el-badge :max="5" :value="attributes.Dex.sources.length" v-if="attributes.Dex.sources[0]">
                     <el-tooltip placement="top" effect="light">
                       <el-tag size="large" effect="dark" type="primary">{{attributes.Dex.total}}</el-tag>
                       <template #content> <span v-for="bonus in attributes.Dex.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
                     </el-tooltip>
                   </el-badge>
-                  <el-tag size="large" effect="dark" type="primary" v-else>{{attributes.Dex.total}}</el-tag>
+                  <el-tag size="large" effect="dark" type="info" v-else>{{attributes.Dex.total}}</el-tag>
+                  <el-tag size="small" effect="dark" type="primary">{{ Math.floor((attributes.Dex.total-10)/2) }}</el-tag>
                 </el-col>
                 <el-col :span="6">
                   <el-input-number v-model="character.attributes.Dex.base" :min="1" aria-label="Base Dexterity Input" />
                 </el-col>
                 <!-- Wisdom -->
                 <el-col :span="2" :offset="1" class="center-vert">Wis:</el-col>
-                <el-col :span="2">
+                <el-col :span="3">
                   <el-badge :max="5" :value="attributes.Wis.sources.length" v-if="attributes.Wis.sources[0]">
                     <el-tooltip placement="top" effect="light">
                       <el-tag size="large" effect="dark" type="primary">{{attributes.Wis.total}}</el-tag>
                       <template #content> <span v-for="bonus in attributes.Wis.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
                     </el-tooltip>
                   </el-badge>
-                  <el-tag size="large" effect="dark" type="primary" v-else>{{attributes.Wis.total}}</el-tag>
+                  <el-tag size="large" effect="dark" type="info" v-else>{{attributes.Wis.total}}</el-tag>
+                  <el-tag size="small" effect="dark" type="primary">{{ Math.floor((attributes.Wis.total-10)/2) }}</el-tag>
                 </el-col>
                 <el-col :span="6">
                   <el-input-number v-model="character.attributes.Wis.base" :min="1" aria-label="Base Wisdom Input" />
@@ -281,28 +283,30 @@
               <el-row :gutter="10">
                 <!-- Constitution -->
                 <el-col :span="2" class="center-vert">Con:</el-col>
-                <el-col :span="2">
+                <el-col :span="3">
                   <el-badge :max="5" :value="attributes.Con.sources.length" v-if="attributes.Con.sources[0]">
                     <el-tooltip placement="top" effect="light">
                       <el-tag size="large" effect="dark" type="primary">{{attributes.Con.total}}</el-tag>
                       <template #content> <span v-for="bonus in attributes.Con.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
                     </el-tooltip>
                   </el-badge>
-                  <el-tag size="large" effect="dark" type="primary" v-else>{{attributes.Con.total}}</el-tag>
+                  <el-tag size="large" effect="dark" type="info" v-else>{{attributes.Con.total}}</el-tag>
+                  <el-tag size="small" effect="dark" type="primary">{{ Math.floor((attributes.Con.total-10)/2) }}</el-tag>
                 </el-col>
                 <el-col :span="6">
                   <el-input-number v-model="character.attributes.Con.base" :min="1" aria-label="Base Constitution Input" />
                 </el-col>
                 <!-- Charisma -->
                 <el-col :span="2" :offset="1" class="center-vert">Cha:</el-col>
-                <el-col :span="2">
+                <el-col :span="3">
                   <el-badge :max="5" :value="attributes.Cha.sources.length" v-if="attributes.Cha.sources[0]">
                     <el-tooltip placement="top" effect="light">
                       <el-tag size="large" effect="dark" type="primary">{{attributes.Cha.total}}</el-tag>
                       <template #content> <span v-for="bonus in attributes.Cha.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
                     </el-tooltip>
                   </el-badge>
-                  <el-tag size="large" effect="dark" type="primary" v-else>{{attributes.Cha.total}}</el-tag>
+                  <el-tag size="large" effect="dark" type="info" v-else>{{attributes.Cha.total}}</el-tag>
+                  <el-tag size="small" effect="dark" type="primary">{{ Math.floor((attributes.Cha.total-10)/2) }}</el-tag>
                 </el-col>
                 <el-col :span="6">
                   <el-input-number v-model="character.attributes.Cha.base" :min="1" aria-label="Base Charisma Input" />
@@ -311,13 +315,13 @@
 
               <!-- Health -->
               <el-row :gutter="10">
-                <el-col :span="4" class="center-horz">
+                <el-col :span="5" class="center-horz">
                   <el-tag size="large" effect="dark" type="danger"> Damage </el-tag>
                 </el-col>
                 <el-col :span="6">
                   <el-input-number v-model="character.health.damage" :min="0" :max="character.health.total + attributes.Con.total" aria-label="Current Damage" />
                 </el-col>
-                <el-col :span="4" :offset="1" class="center-horz">
+                <el-col :offset="1" :span="5" class="center-horz">
                   <el-tag size="large" effect="dark" type="warning"> Nonleathal </el-tag>
                 </el-col>
                 <el-col :span="6">
@@ -1490,7 +1494,6 @@ if (!this.rules.size) { this.$router.push("/"); }
     .then((response) => {
 console.log(response);
       this.character = response.character[0];
-      this.character.user = {};
       this.loading = false;
     })
     .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })

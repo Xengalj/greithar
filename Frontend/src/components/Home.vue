@@ -116,19 +116,28 @@ export default {
       user: this.$store.state.auth.user
     };
   },
+  computed:{
+    rules() { return this.$store.state.data.rules; },
+    races() { return this.$store.state.data.races; },
+    classes() { return this.$store.state.data.classes; },
+    equipment() { return this.$store.state.data.equipment; },
+  },
   mounted() {
-    let tmp = {};
-    console.log('home', this.user);
+    console.log('home -> user', this.user);
+    console.log('rules', this.rules);
+    console.log('races', this.races);
+    console.log('classes', this.classes);
+    console.log('equipment', this.equipment);
 
     // login check
     UserService.getUserBoard().then(
-      (response) => { tmp = response;
-        console.log(tmp);
+      (response) => {
+        console.log(response);
       },
       (error) => {
-        this.$store.dispatch('auth/logout');
+        console.error(error);
         this.user = {};
-        tmp = error;
+        this.$store.dispatch('auth/logout');
       }
     );
 

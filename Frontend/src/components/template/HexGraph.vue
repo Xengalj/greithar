@@ -7,7 +7,9 @@
       v-for="(stat, i) in labels"
       :key="i"
       :x="stat.x"
-      :y="stat.y">{{stat.label}}: {{ Math.floor((abilities[i] - 10) / 2) }}</text>
+      :y="stat.y">
+      {{stat.label}}: {{ abilities[i] }}
+    </text>
   </g>
 </template>
 
@@ -42,9 +44,6 @@ export default {
         { label: 'Cha', x: 0, y: 52 }
       ]
     }
-  },
-  mounted() {
-    // console.log(this.abilities);
   }
 }
 

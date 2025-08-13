@@ -107,7 +107,7 @@
       </el-row>
       <el-row>
         <el-col :span="4" class="center-vert center-horz"> <g-icon iconSize="24px" icon-name="sparkle"/> </el-col>
-        <el-col :span="20" class="center-vert"> XP : {{ basics.cr }} </el-col>
+        <el-col :span="20" class="center-vert"> XP : {{ this.rules.experience[basics.cr] }} </el-col>
       </el-row>
     </el-col>
   </el-row>
