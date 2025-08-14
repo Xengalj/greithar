@@ -1079,7 +1079,7 @@
             <el-select v-model="character.userSettings.mainSections" size="small" multiple aria-label="View's main tab open sections">
               <el-option label="Defense" value="defense" />
               <el-option label="Actions" value="actions" />
-              <el-option label="Conditions" value="conditions" />
+              <el-option label="Resources" value="resources" />
             </el-select>
           </el-col>
         </el-row>
@@ -1375,7 +1375,7 @@ export default {
     conditions() { return this.$store.state.data.conditions; },
 
     activeConditions() { return this.character.conditions; },
-    inventory() { return this.character.inventory; },
+    // inventory() { return this.character.inventory; },
     abilities() { return this.character.abilities; },
 
     // USES: activeConditions, inventory, abilities
@@ -1400,7 +1400,7 @@ export default {
         }
       }
       // Armor
-      let item = this.inventory[1].children[0].children[0];
+      let item = this.character.inventory[1].children[0].children[0];
       if (item) {
         bonuses[item.label] = {};
         bonuses[item.label].type = "Armor";
@@ -1408,7 +1408,7 @@ export default {
         bonuses[item.label].value = item.value["AC Bonus"];
       }
       // Shields          For items in equipment . equipped . hands
-      for (const item of this.inventory[1].children[1].children[0].children) {
+      for (const item of this.character.inventory[1].children[1].children[0].children) {
         if (item.value.Proficiency == "Shields") {
           bonuses[item.label] = {};
           bonuses[item.label].type = "Shield";
@@ -1417,7 +1417,7 @@ export default {
         }
       }
       // Magic Items        For items in equipment . (slotted) Magic Items
-      for (const slot of this.inventory[0].children) {
+      for (const slot of this.character.inventory[0].children) {
         for (const item of slot.children) {
           if (item.bonuses) {
             for (const [name, bonus] of Object.entries(item.bonuses)) {
