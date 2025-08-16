@@ -1469,7 +1469,7 @@ export default {
 
   },
   mounted() {
-    if (!this.rules) { this.$router.push("/"); }
+if (!this.rules) { this.$router.push("/"); }
 
     CharacterService.getCharacter(this.$route.params.id)
     .then((response) => {
@@ -1477,8 +1477,8 @@ console.log('response', response);
       this.character = response.character[0];
       document.getElementsByClassName('title')[0].innerHTML = this.character.name;
 
-
       this.character.userSettings.cardTab = 'Main';
+
 
       this.loading = false;
     })

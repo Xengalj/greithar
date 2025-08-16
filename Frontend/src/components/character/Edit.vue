@@ -175,7 +175,6 @@
               </el-input>
             </el-col>
             <el-col :span="12">
-
               <el-popconfirm title="Choose a class" @confirm="openLevelDialog" hide-icon :hide-after="1000">
                 <template #reference>
                   <el-button type="primary">
@@ -581,6 +580,8 @@
         </el-row>
         <el-divider style="margin-top: 5px;" />
         <el-collapse v-model="abilityCollapse">
+
+          <!-- Abilites -->
           <el-collapse-item v-for="type in abilityTypes" :key="type" :title="type" :name="type">
             <div v-for="(abil, name) in abilities" :key="name">
               <el-row v-if="abil.extras.source == type" :gutter="5" style="margin-bottom:5px;">
@@ -588,8 +589,6 @@
                   <el-tag size="small" effect="dark" type="primary"> {{ name }} </el-tag>
                 </el-col>
                 <el-col :span="14"> {{ abil.description }} </el-col>
-
-                <!-- ABILITY ACTIONS -->
                 <el-col :span="3">
                   <el-button size="small" style="width:95%; margin: 0;"
                     :type="abil.extras.active?'primary':'info'"
@@ -623,96 +622,195 @@
               </el-row>
             </div>
           </el-collapse-item>
+
+          <!-- Attacks -->
+          <el-collapse-item name="atacks">
+            <template #title>
+              <g-icon iconSize="32px" iconName="swordShield" /> Special Attacks
+            </template>
+            <el-row :gutter="10" justify="space-between">
+              <el-col :span="16">
+                This section is for any extra attacks you may have like natural bite attacks or other unique damage dealling abilites
+              </el-col>
+              <el-col :span="3">
+                <el-popconfirm title="Add New Attack?" @confirm="addNewAttack" hide-icon>
+                  <template #reference>
+                    <el-button type="primary" size="small">New</el-button>
+                  </template>
+                  <template #actions="{ confirm }">
+                    <el-tooltip content="Number of Attacks" effect="light" placement="top">
+                      <el-input-number v-model="atkNum" :min="1" size="small" style="margin-bottom:5px" aria-label="Number of Attacks" />
+                    </el-tooltip>
+                    <el-input v-model="atkName" size="small" style="margin-bottom:5px;" placeholder="Attack Name" aria-label="New Attack Name" />
+                    <el-button @click="confirm" :disabled="atkName == ''" type="primary" size="small" aria-label="Create New Attack">Yes</el-button>
+                  </template>
+                </el-popconfirm>
+              </el-col>
+            </el-row>
+            <el-divider />
+            <el-row v-for="(atk, name) in character.attacks" :key="name" :gutter="10">
+              <el-col :span="2" class="center-horz">
+                <el-tag size="large" effect="dark" type="primary">
+                  {{ atk.atkNum > 1 ? atkNum : '' }}  {{ name }}
+                </el-tag> <br><br><br>
+                <el-popconfirm title="Are you sure to delete this?">
+                  <template #reference>
+                    <el-button type="danger" size="small" style="margin:0">
+                      <g-icon iconSize="16px" iconColor="#000" iconName="trash" />
+                    </el-button>
+                  </template>
+                  <template #actions="">
+                    <el-button type="danger" size="small" @click="delete character.attacks[name]; this.$message({ message: `${name} was removed from attacks`, type: 'warning' });">Yes</el-button>
+                  </template>
+                </el-popconfirm>
+              </el-col>
+              <el-col :span="7">
+                <span v-for="(dmg, size) in atk.Damage" :key="size">
+                  <el-input v-model="atk.Damage[size]" size="small" :aria-label="`Attack Damage Size ${size}`" style="max-width: 45%; margin: 5px;">
+                    <template #prepend> {{ size }} </template>
+                  </el-input>
+                </span>
+              </el-col>
+              <el-col :span="4">
+                <el-select v-model="atk['Damage Type']" size="small" multiple aria-label="Damage Types Select">
+                  <el-option v-for="type in this.rules['Damage Types'].Weapon" :key="type.label" :label="type.label" :value="type.label">
+                    <el-tag color="#E63415" style="margin-right: 8px" size="small" />
+                    <span style="color:#E63415"> {{ type.label }} </span>
+                  </el-option>
+                  <el-option v-for="type in this.rules['Damage Types'].Energy" :key="type.label" :label="type.label" :value="type.label">
+                    <el-tag color="#42d4f4" style="margin-right: 8px" size="small" />
+                    <span style="color:#42d4f4"> {{ type.label }} </span>
+                  </el-option>
+                  <el-option v-for="type in this.rules['Damage Types'].Aligned" :key="type.label" :label="type.label" :value="type.label">
+                    <el-tag color="#FFDE0A" style="margin-right: 8px" size="small" />
+                    <span style="color:#FFDE0A"> {{ type.label }} </span>
+                  </el-option>
+                  <el-option v-for="type in this.rules['Damage Types'].Misc" :key="type.label" :label="type.label" :value="type.label">
+                    <el-tag color="#3cb44b" style="margin-right: 8px" size="small" />
+                    <span style="color:#3cb44b"> {{ type.label }} </span>
+                  </el-option>
+                  <el-option v-for="type in this.rules['Damage Types'].Substance" :key="type.label" :label="type.label" :value="type.label">
+                    <el-tag color="#FF6600" style="margin-right: 8px" size="small" />
+                    <span style="color:#FF6600"> {{ type.label }} </span>
+                  </el-option>
+                </el-select>
+              </el-col>
+              <el-col :span="4">
+                <el-input v-model="atk.Critical" size="small" aria-label="Attack Critical">
+                  <template #prepend> Crit </template>
+                </el-input>
+                <el-input v-model="atk.Range" size="small" aria-label="Additional Attack Reach" style="margin-top:10px">
+                  <template #prepend> Reach </template>
+                </el-input>
+                <el-input v-model="atk.Proficiency" size="small" aria-label="Attack Proficiency" style="margin-top:10px">
+                  <template #prepend> Proficiency </template>
+                </el-input>
+                <el-input v-model="atk.Category" size="small" aria-label="Attack Group" style="margin-top:10px">
+                  <template #prepend> Group </template>
+                </el-input>
+              </el-col>
+              <el-col :span="7">
+                Extras
+                <el-input v-model="atk.extras" size="small" type="textarea" :autosize="{ minRows: 3, maxRows: 4 }" aria-label="Attack Extras" />
+              </el-col>
+            </el-row>
+          </el-collapse-item>
+
+          <!-- Resources -->
+          <el-collapse-item name="resources">
+            <template #title>
+              <g-icon iconSize="32px" iconName="star" /> Resources
+            </template>
+            <el-row :gutter="10" justify="space-between">
+              <el-col :span="16">
+                This section is for any resources your character may use, like rounds of rage, or a Monk's Ki pool
+              </el-col>
+              <el-col :span="3">
+                <el-popconfirm title="Add New Attack?" @confirm="addNewResource" hide-icon>
+                  <template #reference>
+                    <el-button type="primary" size="small">New</el-button>
+                  </template>
+                  <template #actions="{ confirm }">
+                    <el-input v-model="resourceName" size="small" style="margin-bottom:5px;" placeholder="Resource Name" aria-label="New Resource Name" />
+                    <el-button @click="confirm" :disabled="resourceName == ''" type="primary" size="small" aria-label="Create New Resource">Yes</el-button>
+                  </template>
+                </el-popconfirm>
+              </el-col>
+            </el-row>
+            <el-divider />
+            <el-row v-for="(res, name) in character.resources" :key="name" :gutter="10" align="middle">
+              <el-col :span="2" class="center-horz">
+                <el-tag size="large" effect="dark" type="primary">
+                  {{ name }}
+                </el-tag>
+              </el-col>
+              <el-col :span="3">
+                <el-tooltip :content="`Remaining ${name}`" effect="light" placement="top">
+                  <el-input-number v-model="res.left" :min="0" size="small" :aria-label="`${name} Remaining`" />
+                </el-tooltip>
+              </el-col>
+              <el-col :span="3">
+                <el-tooltip :content="`Total ${name}`" effect="light" placement="top">
+                  <el-input-number v-model="res.total" :min="1" size="small" :aria-label="`${name} Total`" />
+                </el-tooltip>
+              </el-col>
+              <el-col :span="4">
+                <el-input v-model="res.units" size="small" :aria-label="`${name} Units`">
+                  <template #prepend> Units </template>
+                </el-input>
+              </el-col>
+              <el-col :span="8">
+                <el-input v-model="res.notes" size="small" type="textarea" :autosize="{ minRows: 3, maxRows: 4 }" aria-label="`${name} Notes`" />
+              </el-col>
+              <el-col :offset="1" :span="2" class="center-horz;">
+                <el-popconfirm title="Are you sure to delete this?">
+                  <template #reference>
+                    <el-button type="danger" size="small" style="margin:0">
+                      <g-icon iconSize="16px" iconColor="#000" iconName="trash" />
+                    </el-button>
+                  </template>
+                  <template #actions="">
+                    <el-button type="danger" size="small" @click="delete character.resources[name]; this.$message({ message: `${name} was removed from resources`, type: 'warning' });">Yes</el-button>
+                  </template>
+                </el-popconfirm>
+              </el-col>
+            </el-row>
+          </el-collapse-item>
+
+          <!-- Conditions -->
+          <el-collapse-item name="conditions">
+            <template #title>
+              <g-icon iconSize="32px" iconName="dizzyStar" /> Conditions
+            </template>
+            <el-row :gutter="10" justify="space-between">
+              <el-col :span="8">
+                The current conditions affecting you
+              </el-col>
+              <el-col :span="8">
+                <el-select v-model="character.conditions" value-key="name" multiple placeholder="Common Conditions" aria-label="Conditions Select">
+                  <template #tag>
+                    <el-tag v-for="(condition, index) in character.conditions" :key="condition" effect="dark" closable @close="character.conditions.splice(index, 1)"> {{ condition.name }} </el-tag>
+                  </template>
+                  <el-option v-for="item in conditions" :key="item.name" :label="item.name" :value="item" >
+                    <el-tag type="primary" style="margin-right: 8px" size="small" effect="dark"> {{ item.name }} </el-tag>
+                  </el-option>
+                  <template #footer>
+                    <el-button v-if="!addingCondition" text bg size="small" @click="addNewContion()"> Add custom condition </el-button>
+                  </template>
+                </el-select>
+              </el-col>
+            </el-row>
+            <el-divider />
+            <el-row v-for="condition in character.conditions" :key="condition.name">
+              <el-col :span="6" class="center-vert">
+                <el-tag type="info" size="large" effect="dark"> {{ condition.name }} </el-tag>
+              </el-col>
+              <el-col :span="18" class="center-vert">
+                {{ condition.description }}
+              </el-col>
+            </el-row>
+          </el-collapse-item>
         </el-collapse>
-        <el-dialog v-model="editingAbil" width="800">
-          <g-ability :newAbil="addAbil" :name="abilName" :source="abil" @save-abil="saveAbility"/>
-        </el-dialog>
-
-        <!-- Conditions -->
-        <el-row :gutter="10">
-          <el-col :span="4">
-            <g-icon iconSize="32px" iconName="dizzyStar" /> Conditions
-          </el-col>
-          <el-col :span="8" :offset="12">
-            <el-select v-model="character.conditions" value-key="name" multiple placeholder="Common Conditions" aria-label="Conditions Select">
-              <template #tag>
-                <el-tag v-for="(condition, index) in character.conditions" :key="condition" effect="dark" closable @close="character.conditions.splice(index, 1)"> {{ condition.name }} </el-tag>
-              </template>
-              <el-option v-for="item in conditions" :key="item.name" :label="item.name" :value="item" >
-                <el-tag type="primary" style="margin-right: 8px" size="small" effect="dark"> {{ item.name }} </el-tag>
-              </el-option>
-              <template #footer>
-                <el-button v-if="!addingCondition" text bg size="small" @click="addNewContion()"> Add custom condition </el-button>
-              </template>
-            </el-select>
-          </el-col>
-        </el-row>
-        <el-row v-for="condition in character.conditions" :key="condition.name">
-          <el-col :span="6" class="center-vert">
-            <el-tag type="info" size="large" effect="dark"> {{ condition.name }} </el-tag>
-          </el-col>
-          <el-col :span="18" class="center-vert">
-            {{ condition.description }}
-          </el-col>
-        </el-row>
-
-        <!-- Add New Condition -->
-        <el-dialog v-model="addingCondition" title="New Condition" width="800">
-          <el-row :gutter="10">
-            <el-col :span="5">
-              <el-input v-model="newCondition.name" size="small" placeholder="Condition Name" aria-label="Condition Name" />
-            </el-col>
-            <el-col :span="15">
-              <el-input v-model="newCondition.description" :rows="2" type="textarea" placeholder="Enter condition description" aria-label="Condition Description" />
-            </el-col>
-          </el-row>
-          <!-- New Condition Bonuses -->
-          <el-divider> Bonuses </el-divider>
-          <el-row class="center-horz" :gutter="5" style="margin-bottom:5px;">
-            <el-col :span="5"> Name </el-col>
-            <el-col :span="4"> Value </el-col>
-            <el-col :span="5"> Targets </el-col>
-            <el-col :span="5">
-              <el-button size="small" type="primary" @click="addNewConditionBonus"> New Bonus </el-button>
-            </el-col>
-          </el-row>
-          <el-row v-for="(bonus, name) in newCondition.bonuses" :key="name" :gutter="5" style="margin-bottom:5px;">
-            <el-col :span="5" class="center-horz">
-              <el-tag type="primary" effect="dark"> {{ name }} </el-tag>
-            </el-col>
-            <el-col :span="5"> <el-input-number v-model="bonus.value" size="small" aria-label="bonue value" /> </el-col>
-            <el-col :span="10">
-              <el-select v-model="bonus.targets" value-key="name" multiple placeholder="Modifier Target" aria-label="bonus targets">
-                <template #tag>
-                  <el-tag v-for="(target, index) in bonus.targets" :key="target" effect="dark" closable @close="bonus.targets.splice(index, 1)"> {{ target }} </el-tag>
-                </template>
-                <el-option v-for="target in rules.targets" :key="target.label" :label="target.label" :value="target.value" >
-                  <div class="flex items-center">
-                    <el-tag :color="target.color" style="margin-right: 8px" size="small" />
-                    <span :style="{ color: target.color }"> {{ target.label }} </span>
-                  </div>
-                </el-option>
-              </el-select>
-            </el-col>
-            <el-col :span="2" class="center-horz">
-              <el-popconfirm title="Are you sure to delete this?">
-                <template #reference>
-                  <el-button type="danger" circle size="small">
-                    <g-icon iconSize="16px" iconColor="#000" iconName="trash" />
-                  </el-button>
-                </template>
-                <template #actions="">
-                  <el-button type="danger" size="small" @click="delete newCondition.bonuses[name];"> Yes </el-button>
-                </template>
-              </el-popconfirm>
-            </el-col>
-          </el-row>
-          <el-divider />
-          <el-row>
-            <el-button size="small" type="primary" @click="addCondition()" style="margin-left:auto"> Confirm </el-button>
-            <el-button size="small" type="info" @click="newCondition = {}; addingCondition = false;"> Cancel </el-button>
-          </el-row>
-        </el-dialog>
       </el-collapse-item>
 
       <!-- SKILLS -->
@@ -913,9 +1011,6 @@
             </div>
           </template>
         </el-tree>
-        <el-dialog v-model="editingItem" width="800">
-          <g-item :source="item" :newItem="addItem" @save-item="saveItem"/>
-        </el-dialog>
       </el-collapse-item>
 
       <!-- SPELLS KNOWN -->
@@ -1314,6 +1409,75 @@
       </el-row>
     </el-dialog>
 
+    <!-- EDIT ITEM DIALOG -->
+    <el-dialog v-model="editingItem" width="800">
+      <g-item :source="item" :newItem="addItem" @save-item="saveItem"/>
+    </el-dialog>
+
+    <!-- EDIT ABILITY DIALOG -->
+    <el-dialog v-model="editingAbil" width="800">
+      <g-ability :newAbil="addAbil" :name="abilName" :source="abil" @save-abil="saveAbility"/>
+    </el-dialog>
+
+    <!-- ADD NEW CONDITION DIALOG -->
+    <el-dialog v-model="addingCondition" title="New Condition" width="800">
+      <el-row :gutter="10">
+        <el-col :span="5">
+          <el-input v-model="newCondition.name" size="small" placeholder="Condition Name" aria-label="Condition Name" />
+        </el-col>
+        <el-col :span="15">
+          <el-input v-model="newCondition.description" :rows="2" type="textarea" placeholder="Enter condition description" aria-label="Condition Description" />
+        </el-col>
+      </el-row>
+      <!-- New Condition Bonuses -->
+      <el-divider> Bonuses </el-divider>
+      <el-row class="center-horz" :gutter="5" style="margin-bottom:5px;">
+        <el-col :span="5"> Name </el-col>
+        <el-col :span="4"> Value </el-col>
+        <el-col :span="5"> Targets </el-col>
+        <el-col :span="5">
+          <el-button size="small" type="primary" @click="addNewConditionBonus"> New Bonus </el-button>
+        </el-col>
+      </el-row>
+      <el-row v-for="(bonus, name) in newCondition.bonuses" :key="name" :gutter="5" style="margin-bottom:5px;">
+        <el-col :span="5" class="center-horz">
+          <el-tag type="primary" effect="dark"> {{ name }} </el-tag>
+        </el-col>
+        <el-col :span="5"> <el-input-number v-model="bonus.value" size="small" aria-label="bonue value" /> </el-col>
+        <el-col :span="10">
+          <el-select v-model="bonus.targets" value-key="name" multiple placeholder="Modifier Target" aria-label="bonus targets">
+            <template #tag>
+              <el-tag v-for="(target, index) in bonus.targets" :key="target" effect="dark" closable @close="bonus.targets.splice(index, 1)"> {{ target }} </el-tag>
+            </template>
+            <el-option v-for="target in rules.targets" :key="target.label" :label="target.label" :value="target.value" >
+              <div class="flex items-center">
+                <el-tag :color="target.color" style="margin-right: 8px" size="small" />
+                <span :style="{ color: target.color }"> {{ target.label }} </span>
+              </div>
+            </el-option>
+          </el-select>
+        </el-col>
+        <el-col :span="2" class="center-horz">
+          <el-popconfirm title="Are you sure to delete this?">
+            <template #reference>
+              <el-button type="danger" circle size="small">
+                <g-icon iconSize="16px" iconColor="#000" iconName="trash" />
+              </el-button>
+            </template>
+            <template #actions="">
+              <el-button type="danger" size="small" @click="delete newCondition.bonuses[name];"> Yes </el-button>
+            </template>
+          </el-popconfirm>
+        </el-col>
+      </el-row>
+      <el-divider />
+      <el-row>
+        <el-button size="small" type="primary" @click="addCondition()" style="margin-left:auto"> Confirm </el-button>
+        <el-button size="small" type="info" @click="newCondition = {}; addingCondition = false;"> Cancel </el-button>
+      </el-row>
+    </el-dialog>
+
+
     <!--
     <div v-for="(item, name) in this.character" :key="name">
       {{ name }} : {{ item }}
@@ -1351,6 +1515,11 @@ export default {
       abilName: "",
       editingAbil: false,
       abil: {},
+
+      atkName: "",
+      atkNum: 0,
+
+      resourceName: "",
 
       newCondition: {},
       addingCondition: false,
@@ -1704,13 +1873,15 @@ console.log(response);
     *                           *
     \***************************/
     toggleAbility(name, abil) {
-      if (this.activeConditions[name]) {
-        delete this.activeConditions[name];
-        this.actions.special[name].extras.active = false;
-      } else {
-        this.activeConditions[name] = abil;
-        this.actions.special[name].extras.active = true;
-      }
+      console.log(name, abil);
+      // TODO: FIX
+      // if (this.activeConditions[name]) {
+      //   delete this.activeConditions[name];
+      //   this.actions.special[name].extras.active = false;
+      // } else {
+      //   this.activeConditions[name] = abil;
+      //   this.actions.special[name].extras.active = true;
+      // }
     },
     abilShowMain(name, abil) { abil.extras.showMain = abil.extras.showMain ? false : true; },
     addNewAbility() {
@@ -1750,6 +1921,29 @@ console.log(response);
       delete this.abilities[name];
       this.$message({ message: `${name} was removed from abilities`, type: "warning" });
     },
+
+    addNewAttack() {
+      this.character.attacks[this.atkName] = {
+        atkNum: this.atkNum,
+        extras: "",
+        "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "2d8",  "colossal": "4d6"  },
+        "Critical": "20/x2",
+        "Range": 0,
+        "Damage Type": [ "Piercing" ],
+        "Proficiency": "Natural",
+        "Category": "Primary"
+      };
+    },
+    addNewResource() {
+      this.character.resources[this.resourceName] = {
+        units: 'rounds',
+        left: 1,
+        total: 1,
+        notes: 'Notes'
+      };
+    },
+
+
 
     /***************************\
     *                           *
@@ -1883,4 +2077,8 @@ h4 { margin: 0; }
 }
 .class-abil .el-input-group__prepend { padding: 0 10px !important; }
 .el-progress-bar__inner { text-align: center; }
+
+.el-input-number span {
+  font-size: 24px;
+}
 </style>

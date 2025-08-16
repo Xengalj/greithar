@@ -75,6 +75,7 @@ const routes = [
   {
     path: "/user",
     name: "user",
+    redirect: { name: 'user-list' },
     meta: {
       breadcrumb: "User",
       title: "User",
@@ -121,6 +122,7 @@ const routes = [
   {
     path: "/character",
     name: "character",
+    redirect: { name: 'character-list' },
     meta: {
       breadcrumb: "Character",
       title: "Character",

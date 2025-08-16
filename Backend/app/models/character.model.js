@@ -80,6 +80,14 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.JSON,
       defaultValue: {}
     },
+    attacks: {
+      type: Sequelize.JSON,
+      defaultValue: {}
+    },
+    resources: {
+      type: Sequelize.JSON,
+      defaultValue: {}
+    },
     skills: {
       type: Sequelize.JSON,
       defaultValue: {
