@@ -290,188 +290,98 @@
           <!-- Actions -->
           <el-collapse-item name="actions">
             <template #title> <g-icon iconName="swordShield" /> Actions </template>
-
-
-            <!-- <el-row :gutter="20" justify="space-evenly"> -->
-            <el-row :gutter="20">
-
-
-              <el-col :span="21">
-                <!-- Melee Attacks -->
-                <el-row v-if="Object.keys(actions.melee).length > 0">
-                  <el-col :span="5">Melee</el-col>
-                  <el-col :span="3">To Hit</el-col>
-                  <el-col :span="6">Dmage</el-col>
-                  <el-col :span="3">Range</el-col>
-                </el-row>
-                <el-row v-for="(action, name) in actions.melee" :key="name">
-                  <el-col :span="5" class="center-vert">
-                    <g-icon iconSize="20px" iconName="meleeSword" />
-                    <span v-if="action.NatAtkNum">{{ action.NatAtkNum }} </span>
-                    {{ name }}
-                  </el-col>
-                  <!-- Atk Bonus(es) -->
-                  <el-col :span="3" class="center-vert">
-                    <el-tooltip placement="top" effect="light">
-                      <span> <span v-if="action.atkBonus.total >= 0">+</span>{{ action.atkBonus.total }} &nbsp; </span>
-                      <template #content>
-                        <span v-for="bonus in action.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
-                      </template>
-                    </el-tooltip>
-                    <el-tooltip placement="top" effect="light" v-if="bab>5 && !action.extras['Natural Attack']">
-                      <span><span v-if="action.atkBonus.total-5 >= 0">+</span>{{ action.atkBonus.total-5 }} &nbsp; </span>
-                      <template #content>
-                        <span v-for="bonus in action.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
-                        <span> -5 Subsequent Attack </span>
-                      </template>
-                    </el-tooltip>
-                    <el-tooltip placement="top" effect="light" v-if="bab>10 && !action.extras['Natural Attack']">
-                      <span><span v-if="action.atkBonus.total-10 >= 0">+</span>{{ action.atkBonus.total-10 }} &nbsp; </span>
-                      <template #content>
-                        <span v-for="bonus in action.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
-                        <span> -10 Subsequent Attack </span>
-                      </template>
-                    </el-tooltip>
-                    <el-tooltip placement="top" effect="light" v-if="bab>15 && !action.extras['Natural Attack']">
-                      <span><span v-if="action.atkBonus.total-15 >= 0">+</span>{{ action.atkBonus.total-15 }} &nbsp; </span>
-                      <template #content>
-                        <span v-for="bonus in action.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
-                        <span> -15 Subsequent Attack </span>
-                      </template>
-                    </el-tooltip>
-                  </el-col>
-                  <!-- Damage, Range, & Extras -->
-                  <el-col :span="6" class="center-vert">
-                    {{ action.dmgDie }}
-                    <el-tooltip placement="top" effect="light">
-                      +{{ action.dmgBonus.total }}
-                      <template #content>
-                        <span v-for="bonus in action.dmgBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
-                      </template>
-                    </el-tooltip>
-                    ( <span v-if="action.crit.range<20">{{ action.crit.range }}-</span>20 {{ action.crit.mult }} )
-                  </el-col>
-                  <el-col :span="3" class="center-vert">
-                    <span v-if="action.range"> {{ action.range }} </span>
-                  </el-col>
-                  <el-col :span="6" class="center-vert">
-                    <div v-if="Object.values(action.extras).length">
-                      <el-collapse>
-                        <el-collapse-item title="" name="1">
-                          <template #title> <g-icon iconName="star" iconSize="20" /> Extras </template>
-                          <ul>
-                            <li v-for="(item, name) in action.extras" :key="name">
-                              <span v-if="name == 'masterwork'"> {{ name }} </span>
-                              <!-- <span v-else-if="name == 'Natural Attack'"> {{ name }} </span> -->
-                              <span v-else> {{ name }} : {{ item }} </span>
-                            </li>
-                          </ul>
-                        </el-collapse-item>
-                      </el-collapse>
-                    </div>
-                  </el-col>
-                </el-row>
-
-                <!-- Ranged Attacks -->
-                <!-- <el-row v-if="Object.keys(actions.ranged).length > 0">
-                  <el-divider />
-                  <el-col :span="5">Ranged</el-col>
-                  <el-col :span="3">To Hit</el-col>
-                  <el-col :span="6">Dmage</el-col>
-                  <el-col :span="3">Range</el-col>
-                </el-row>
-                <el-row v-for="(action, name) in actions.ranged" :key="name">
-                  <el-col :span="5" class="center-vert">
-                    <g-icon iconSize="20px" iconName="rangedBow" />
-                    <span v-if="action.NatAtkNum">{{ action.NatAtkNum }} </span>
-                    {{ name }}
-                  </el-col>
-                  Atk Bonus(es)
-                  <el-col :span="3" class="center-vert">
-                    <el-tooltip placement="top" effect="light">
-                      <span> <span v-if="action.atkBonus.total >= 0">+</span>{{ action.atkBonus.total }} &nbsp; </span>
-                      <template #content>
-                        <span v-for="bonus in action.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
-                      </template>
-                    </el-tooltip>
-                    <el-tooltip placement="top" effect="light" v-if="bab>5 && !action.extras['Natural Attack']">
-                      <span><span v-if="action.atkBonus.total-5 >= 0">+</span>{{ action.atkBonus.total-5 }} &nbsp; </span>
-                      <template #content>
-                        <span v-for="bonus in action.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
-                        <span> -5 Subsequent Attack </span>
-                      </template>
-                    </el-tooltip>
-                    <el-tooltip placement="top" effect="light" v-if="bab>10 && !action.extras['Natural Attack']">
-                      <span><span v-if="action.atkBonus.total-10 >= 0">+</span>{{ action.atkBonus.total-10 }} &nbsp; </span>
-                      <template #content>
-                        <span v-for="bonus in action.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
-                        <span> -10 Subsequent Attack </span>
-                      </template>
-                    </el-tooltip>
-                    <el-tooltip placement="top" effect="light" v-if="bab>15 && !action.extras['Natural Attack']">
-                      <span><span v-if="action.atkBonus.total-15 >= 0">+</span>{{ action.atkBonus.total-15 }} &nbsp; </span>
-                      <template #content>
-                        <span v-for="bonus in action.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
-                        <span> -15 Subsequent Attack </span>
-                      </template>
-                    </el-tooltip>
-                  </el-col>
-                  Damage, Range, Extras
-                  <el-col :span="6" class="center-vert">
-                    {{ action.dmgDie }}
-                    <el-tooltip placement="top" effect="light" v-if="action.dmgBonus.total">
-                      +{{ action.dmgBonus.total }}
-                      <template #content>
-                        <span v-for="bonus in action.dmgBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
-                      </template>
-                    </el-tooltip>
-                    ( <span v-if="action.crit.range<20">{{ action.crit.range }}-</span>20 {{ action.crit.mult }} )
-                  </el-col>
-                  <el-col :span="3" class="center-vert">
-                    <span v-if="action.range"> {{ action.range }} </span>
-                  </el-col>
-                  <el-col :span="6" class="center-vert">
-                    <div v-if="Object.values(action.extras).length">
-                      <el-collapse>
-                        <el-collapse-item title="" name="1">
-                          <template #title> <g-icon iconName="star" iconSize="20" /> Extras </template>
-                          <ul>
-                            <li v-for="(item, name) in action.extras" :key="name">
-                              <span v-if="name == 'masterwork'"> {{ name }} </span>
-                              <span v-else> {{ name }} : {{ item }} </span>
-                            </li>
-                          </ul>
-                        </el-collapse-item>
-                      </el-collapse>
-                    </div>
-                  </el-col>
-                </el-row> -->
-
-                <!-- Special Actions -->
-                <!-- <el-row v-if="Object.keys(actions.special).length > 0">
-                  <el-divider />
-                  <el-col :span="6">Special</el-col>
-                  <el-col :span="4" class="center-horz">Action</el-col>
-                  <el-col :span="8">Effects</el-col>
-                  <el-col :span="6"><el-tag size="small" effect="dark" type="primary">CMB +{{ cmb.total }}</el-tag></el-col>
-                </el-row>
-                <el-row v-for="(action, name) in actions.special" :key="name" :gutter="2">
-                    <el-col :span="6" class="center-vert" v-if="action.extras.showMain == true" >
-                      <g-icon iconSize="20px" iconName="abilityPalm" />
-                      {{ name }}
+            <el-tree
+              :data="actions"
+              draggable
+              render-after-expand
+              node-key="label"
+              :default-expanded-keys="[ 'Melee', 'Ranged', 'Special' ]"
+              :allow-drag="allowDrag"
+              :allow-drop="allowDrop"
+            >
+              <template #default="{ data }">
+                <el-col :span="1">
+                  <g-icon iconSize="20px" v-if="data.extras && data.extras.icon" :iconName="data.extras.icon" />
+                  <span v-else> • </span>
+                </el-col>
+                <el-col :span="3">
+                  <el-tooltip v-if="data.value" placement="left" effect="light">
+                    <el-tag size="small" effect="dark" type="primary"> {{ data.label }} </el-tag>
+                    <template #content>
+                      {{ data.value.trigger }}
+                    </template>
+                  </el-tooltip>
+                  <span v-else> {{ data.label }} </span>
+                </el-col>
+                <!-- Attack Bonus (To Hit) -->
+                <el-col v-if="data.value" :span="2">
+                  <el-row :gutter="10">
+                    <el-col :span="6">
+                      <el-tooltip placement="top" effect="light">
+                        <span> {{ data.value.atkBonus.total }} </span>
+                        <template #content>
+                          <span v-for="bonus in data.value.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
+                        </template>
+                      </el-tooltip>
                     </el-col>
-                    <el-col :span="4" class="center-vert center-horz" v-if="action.extras.showMain == true" >
-                      <el-button :type=" (action.extras.active) ? 'primary' : 'info'" size="small" @click="toggleAbility(name, action)">{{ action.trigger == "Toggle" ? "Free" : action.trigger }}</el-button>
+                    <el-col :span="6">
+                      <el-tooltip v-if="bab>5 && !data.value.extras['Natural Attack']" placement="top" effect="light">
+                        <span> {{ data.value.atkBonus.total-5 }} </span>
+                        <template #content>
+                          <span v-for="bonus in data.value.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
+                          <span> -5 Subsequent Attack </span>
+                        </template>
+                      </el-tooltip>
                     </el-col>
-                    <el-col :span="14" class="center-vert" v-if="action.extras.showMain == true" >
-                      {{ action.benefit.text }}
+                    <el-col :span="6">
+                      <el-tooltip v-if="bab>10 && !data.value.extras['Natural Attack']" placement="top" effect="light">
+                        <span> {{ data.value.atkBonus.total-10 }} </span>
+                        <template #content>
+                          <span v-for="bonus in data.value.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
+                          <span> -10 Subsequent Attack </span>
+                        </template>
+                      </el-tooltip>
                     </el-col>
-                  </el-row> -->
-              </el-col>
-            </el-row>
-
-
-
+                    <el-col :span="6">
+                      <el-tooltip v-if="bab>15 && !data.value.extras['Natural Attack']" placement="top" effect="light">
+                        <span> {{ data.value.atkBonus.total-15 }} </span>
+                        <template #content>
+                          <span v-for="bonus in data.value.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
+                          <span> -15 Subsequent Attack </span>
+                        </template>
+                      </el-tooltip>
+                    </el-col>
+                  </el-row>
+                </el-col>
+                <!-- Damage -->
+                <el-col v-if="data.value" :offset="1" :span="3">
+                  {{ data.value.damage[character.basics.size] }}
+                  <el-tooltip v-if="data.value.dmgBonus.total" placement="top" effect="light">
+                    {{ data.value.dmgBonus.total }}
+                    <template #content>
+                      <span v-for="bonus in data.value.dmgBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
+                    </template>
+                  </el-tooltip>
+                  ( <span v-if="data.value.crit.range<20">{{ data.value.crit.range }}-</span>20 {{ data.value.crit.mult }} )
+                </el-col>
+                <!-- Range -->
+                <el-col v-if="data.value" :span="2">
+                  <span v-if="data.value.Range"> {{ data.value.Range }} </span>
+                </el-col>
+                <!-- Notes -->
+                <el-col v-if="data.value" :span="2">
+                  <el-tooltip v-if="data.value.extras.Notes.length > 0" placement="left" effect="light">
+                    Notes
+                    <template #content>
+                      <span v-for="(note, index) in data.value.extras.Notes" :key="note">
+                        {{ note }}
+                        <span v-if="index < data.value.extras.Notes.length-1"> & </span>
+                      </span>
+                    </template>
+                  </el-tooltip>
+                </el-col>
+              </template>
+            </el-tree>
           </el-collapse-item>
 
           <!-- Resources -->
@@ -484,7 +394,15 @@
                   el-progress w/ [-][+] btns
                 }}}
 
-          </el-collapse-item>
+              </el-collapse-item>
+
+
+
+
+
+
+
+
         </el-collapse>
       </el-tab-pane>
 
@@ -582,9 +500,6 @@
             </div>
           </template>
         </el-tree>
-        <el-dialog v-model="editingItem" width="800">
-          <g-item :source="item" :newItem="addItem" @save-item="saveItem"/>
-        </el-dialog>
       </el-tab-pane>
 
       <!-- Skills -->
@@ -884,6 +799,11 @@
       </el-tab-pane>
     </el-tabs>
 
+
+
+    <el-dialog v-model="editingItem" width="800">
+      <g-item :source="item" :newItem="addItem" @save-item="saveItem"/>
+    </el-dialog>
 
     <el-divider />
     <div v-for="(item, name) in this.character" :key="name">
@@ -1204,6 +1124,7 @@ export default {
         bab += classBAB * cClass.levels;
       }
       bab = Math.floor(bab);
+bab = 20;
       return bab;
     },
 
@@ -1369,9 +1290,124 @@ export default {
           newAtk.extras = (weapon.value.Extras) ? weapon.value.Extras : [];
           // console.log(`${NatAtkNum>1 ? NatAtkNum : ""} ${name} +${newAtk.atkBonus.total} (${newAtk.dmgDie}+${newAtk.dmgBonus.total} /${atk.Critical})`);
           actions[type][weapon.label] = newAtk;
-        }
+        } // End Weapons loop
 
-      return actions;
+
+        let temp = [
+          { "label": "Melee", "extras": { "icon": "meleeSword", "capacity": 50 }, "children": [
+
+            { "label": "Longsword", "value": {
+              "Damage": { fine: "1d2", diminuitive: "1d3", tiny: "1d4", medium: "1d6" },
+              "Critical": "19/x2",
+              "Range": 0,
+              "Damage Type": [ "Slashing" ],
+              "Proficiency": "Martial",
+              "Category": "One-Handed",
+              "Description": "This sword is about 3½ feet in length.",
+              "atkNum": 1,
+              "abilOverride": "",
+              "trigger": "Standard",
+
+              damage: { fine: "1d2", diminuitive: "1d3", tiny: "1d4", medium: "1d6" },
+              atkBonus: {
+                total: '+5',
+                sources: [ "+1 BAB", "+4 Str" ]
+              },
+              dmgBonus: {
+                total: '+4',
+                sources: [ "+4 Str" ]
+              },
+              crit: { range: 19, mult: 'x2' },
+              extras: { Masterwork: true, Enhancement: 0, Notes: [] }
+
+            } },
+            { "label": "Bite", "value": {
+              "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "2d8",  "colossal": "4d6"  },
+              "Critical": "20/x2",
+              "Damage Type": [ "Bludgeoning", "Piercing", "Slashing" ],
+              "Proficiency": "Natural",
+              "Category": "Primary",
+              "Description": "This sword is about 3½ feet in length.",
+              "Extras": { Masterwork: true, Enhancement: 0, Notes: [] },
+              "abilOverride": "",
+              "atkNum": 1,
+
+              "Range": 0,
+              "trigger": "Standard",
+              atkBonus: {
+                total: '+5',
+                sources: [ "+1 BAB", "+4 Str" ]
+              },
+              damage: { fine: "1d2", diminuitive: "1d3", tiny: "1d4", medium: "1d6" },
+              dmgBonus: {
+                total: '+4',
+                sources: [ "+4 Str" ]
+              },
+              crit: { range: 20, mult: 'x2' },
+              extras: { Masterwork: true, Enhancement: 0, Notes: [ 'Primary Natural Attack', 'Poison', 'Grab' ], 'Natural Attack': true }
+            } }
+          ] },
+          { "label": "Ranged", "extras": { "icon": "rangedBow", "capacity": 50 }, "children": [
+
+            { "label": "Electrical Jolt", "value": {
+              // "Damage": {  "fine": "4d6",  "diminuitive": "4d6",  "tiny": "4d6",  "small": "4d6",  "medium": "4d6",  "large": "4d6",  "huge": "4d6",  "gargantuan": "4d6",  "colossal": "4d6"  },
+              "Critical": "20/x2",
+              "Range": 60,
+              "Damage Type": [ "Shock" ],
+              "Proficiency": "Natural",
+              "Category": "Ranged",
+              "Description": "A death worm can fire a jolt of electricity from its mouth as a standard action.",
+              "Extras": { Notes: [] },
+              "atkNum": 1,
+              "abilOverride": "",
+              "trigger": "Standard",
+
+              atkBonus: {
+                total: '+7',
+                sources: [ "+1 BAB", "+4 Str" ]
+              },
+              damage: { fine: "1d2", diminuitive: "1d3", tiny: "1d4", medium: "1d6" },
+              dmgBonus: {
+                total: '+4',
+                sources: [ "+4 Str" ]
+              },
+              crit: { range: 20, mult: 'x2' },
+              extras: { Masterwork: true, Enhancement: 0, Notes: [] }
+            } }
+          ] },
+          { "label": "Special", "extras": { "icon": "abilityPalm", "capacity": 50 }, "children": [
+
+            { "label": "Breath Weapon", "value": {
+              // "Damage": {  "fine": "8d6",  "diminuitive": "8d6",  "tiny": "8d6",  "small": "8d6",  "medium": "8d6",  "large": "8d6",  "huge": "8d6",  "gargantuan": "8d6",  "colossal": "8d6"  },
+              "Critical": "20/x2",
+              "Range": 30,
+              "Damage Type": [ "Acid" ],
+              "Proficiency": "Natural",
+              "Category": "Special",
+              "Description": "A 30 ft line of acid spews forth (DC [10 + 1/2 breathing creature’s racial HD + breathing creature’s Con modifier]; for half, usable once every 1d4 rounds).",
+              "Extras": { Notes: [], DC: "10 + 0.5*HD + ConMod" },
+              "atkNum": 1,
+              "abilOverride": "",
+              "trigger": "Standard",
+
+              atkBonus: {
+                total: '+5',
+                sources: [ "+1 BAB", "+4 Str" ]
+              },
+              damage: { fine: "1d2", diminuitive: "1d3", tiny: "1d4", medium: "1d6" },
+              dmgBonus: {
+                total: '+4',
+                sources: [ "+4 Str" ]
+              },
+              crit: { range: 20, mult: 'x2' },
+              extras: { Masterwork: true, Enhancement: 0, Notes: [] }
+            } }
+          ] }
+        ];
+
+        return temp;
+
+      // return actions;
     },
 
 
