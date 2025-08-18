@@ -1132,299 +1132,243 @@ bab = 20;
 // TODO:
     // USES: basics, inventory, bab, bonusLoop(bonuses), attributes
     actions() {
-      let actions = { melee: {}, ranged: {}, special: {} };
-      // let NatAtkNum = 0;
+
+      let character = {
+        attacks: {
+          "Longsword": {
+            atkNum: 1,
+            "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "2d8",  "colossal": "4d6"  },
+            "Critical": "20/x2",
+            "Range": 0,
+            "Damage Type": [ "Slashing" ],
+            abilOverride: "",
+            trigger: "Standard",
+
+            "Proficiency": "Natural",
+            "Category": "Primary"
+          }
+        }
+      };
+
+      let actions = [
+        { "label": "Melee", "extras": { "icon": "meleeSword", "capacity": 50 }, "children": [
+          { "label": "Bite", "value": {
+            "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "2d8",  "colossal": "4d6"  },
+            "Critical": "20/x2",
+            "Damage Type": [ "Bludgeoning", "Piercing", "Slashing" ],
+            "Proficiency": "Natural",
+            "Category": "Primary",
+            "Description": "This sword is about 3½ feet in length.",
+            "Extras": { Masterwork: true, Enhancement: 0, Notes: [] },
+            "abilOverride": "",
+            "atkNum": 1,
+
+            "Range": 0,
+            "trigger": "Standard",
+            atkBonus: {
+              total: '+5',
+              sources: [ "+1 BAB", "+4 Str" ]
+            },
+            damage: { fine: "1d2", diminuitive: "1d3", tiny: "1d4", medium: "1d6" },
+            dmgBonus: {
+              total: '+4',
+              sources: [ "+4 Str" ]
+            },
+            crit: { range: 20, mult: 'x2' },
+            extras: { Masterwork: true, Enhancement: 0, Notes: [ 'Primary Natural Attack', 'Poison', 'Grab' ], 'Natural Attack': true }
+          } }
+        ] },
+        { "label": "Ranged", "extras": { "icon": "rangedBow", "capacity": 50 }, "children": [] },
+        { "label": "Special", "extras": { "icon": "abilityPalm", "capacity": 50 }, "children": [] }
+      ];
+      let NatAtkNum = 0;
 
       for (const [name, abil] of Object.entries(this.abilities)) {
         if (abil.extras.showMain) {
-          actions.special[name] = abil;
+          console.log(name, abil);
+          actions[2].children.push({
+            "label": name, "value": abil
+          });
         }
       }
 
-      // for (let type of Object.entries(this.source.actions)) {
-      //   type = type[0];
+      for (const [name, atk] of Object.entries(character.attacks)) {
+        console.log(name, atk);
 
-        // for (const [name, atk] of Object.entries(this.source.actions[type])) {
-        //   if (type == 'special' || type == 'basic') { continue; }
-        //   // skip special and basics, they are done in prev loop
-        //
-        //   // TODO: split nat atk num from nat atk name (2 wings)
-        //
-        //     let newAtk = {
-        //       dmgBonus: { "total": 0, "sources": [] },
-        //       atkBonus: { "total": 0, "sources": [] }
-        //     };
-        //
-        //     NatAtkNum += (atk.Proficiency == "Natural" && Object.keys(this.rules.natural_attacks).includes(name)) ? 1 : 0;
-        //     this.applyBonus("BAB", this.bab, newAtk.atkBonus);
-        //     this.applyBonus("Size", this.basics.sizeStats["ac / atk"], newAtk.atkBonus);
-        //
-        //     // Add AbilMod to atkBonus
-        //     if (atk.category == "Ranged" || type == "ranged") {
-        //       this.applyBonus("Dex", this.attributes.DexMod, newAtk.atkBonus);
-        //     } else if (atk.Category == "Secondary") {
-        //       this.applyBonus("Str", this.attributes.StrMod - 5, newAtk.atkBonus);
-        //     } else {
-        //       this.applyBonus("Str", this.attributes.StrMod, newAtk.atkBonus);
-        //     }
-        //
-        //     // Add AbilMod to dmgBonus
-        //     if (!Object.keys(this.rules.natural_attacks).includes(name)) {
-        //       // Fake Natural Attack, like Death Worm's Electrical Jolt
-        //       // They get no bonuses to DMG
-        //     } else if (atk.Category == "Secondary") {
-        //       this.applyBonus("Str", (this.attributes.StrMod / 2), newAtk.dmgBonus);
-        //     } else {
-        //       this.applyBonus("Str", this.attributes.StrMod, newAtk.dmgBonus);
-        //     }
-        //
-        //     // Add Active Bonuses
-        //     this.bonusLoop(newAtk.atkBonus, type.concat("AtkBonus"));
-        //     this.bonusLoop(newAtk.dmgBonus, type.concat("DmgBonus"));
-        //
-        //     if (NatAtkNum>1) { newAtk.atkNum = NatAtkNum; }
-        //     newAtk.dmgDie = atk.Damage[this.basics.size];
-        //     newAtk.crit = {};
-        //     newAtk.crit.range = atk.Critical.split("/")[0];
-        //     newAtk.crit.mult = atk.Critical.split("/")[1];
-        //     newAtk.extras = (atk.Extras) ? atk.Extras : [];
-        //     actions[type][name] = newAtk;
-        //
-        //   } // End Action Loop
-        // } // End Action Types Loop
-
-        // if (NatAtkNum == 1) {
-        //   console.log('Extra Strength to Nat Attack');
-        //   for (const atk of Object.values(actions.melee)) {
-        //     this.applyBonus("Str", (this.attributes.StrMod / 2), atk.dmgBonus);
-        //   }
-        // }
-
-        // Weapon Actions
-        let mainHand = this.inventory[1].children[1].children[0].children[0];
-        let offHand = this.inventory[1].children[1].children[0].children[1];
-
-        for (const weapon of this.inventory[1].children[1].children[0].children) {
-          // this.inventory[ equipped ].children[ weapons ].children[ hands ].children
-
-          // If the wielded item is not a weapon or inproperly equipped, skip
-          if (!weapon.value.Damage) { continue; }
-          if (weapon.value.Group.includes("Bows") || weapon.value.Category == "Two-Handed"){
-            if (weapon.label != mainHand.label || offHand != undefined) {
-              continue;
-            }
+        let newAtk = {
+          "label": name,
+          "value": {
+            trigger: atk["trigger"],
+            atkNum: atk["atkNum"],
+            atkBonus: { "total": 0, "sources": [] },
+            damage: atk["Damage"][this.character.basics.size],
+            dmgBonus: { "total": 0, "sources": [] },
+            damageType: atk["Damage Type"],
+            critical: {
+              range: atk["Critical"].split("/")[0],
+              mult: atk["Critical"].split("/")[1]
+            },
+            notes: atk["Extras"]["Notes"]
           }
+        };
 
-          let type = (weapon.value.Category == "Ranged" || weapon.value.Group.includes("Thrown")) ? "ranged" : "melee";
-          let newAtk = { dmgBonus: { "total": 0, "sources": [] }, atkBonus: { "total": 0, "sources": [] } };
+        NatAtkNum += (atk.Proficiency == "Natural" && Object.keys(this.rules.natural_attacks).includes(name)) ? 1 : 0;
+        this.applyBonus("BAB", this.bab, newAtk.value.atkBonus);
+        this.applyBonus("Size", this.sizeStats["ac / atk"], newAtk.value.atkBonus);
 
-          this.applyBonus("BAB", this.bab, newAtk.atkBonus);
-          this.applyBonus("Size", this.basics.sizeStats["ac / atk"], newAtk.atkBonus);
-          // Add mwk or magic enhancements to atk bonus
-          if (weapon.value.Extras["Enhancement"] > 0) {
-            this.applyBonus("Magic Enhancement", weapon.value.Extras["Enhancement"], newAtk.atkBonus);
-            this.applyBonus("Magic Enhancement", weapon.value.Extras["Enhancement"], newAtk.dmgBonus);
-          } else if (weapon.value.Extras["Masterwork"]) {
-            this.applyBonus("Masterwork", 1, newAtk.atkBonus);
+        // Add AbilMod to atkBonus
+        if (atk.abilOverride) {
+          console.log('Abil Override', atk.abilOverride);
+
+        } else if (atk.category == "Ranged") {
+          this.applyBonus("Dex", this.attributes.Dex.mod, newAtk.value.atkBonus);
+        } else if (atk.Category == "Secondary") {
+          this.applyBonus("Str", this.attributes.Str.mod - 5, newAtk.value.atkBonus);
+        } else {
+          this.applyBonus("Str", this.attributes.Str.mod, newAtk.value.atkBonus);
+        }
+
+        // Add AbilMod to dmgBonus
+            // TODO: add dmgAbilOverride
+        if (!Object.keys(this.rules.natural_attacks).includes(name)) {
+        // Fake Natural Attack, like Death Worm's Electrical Jolt
+        // They get no bonuses to DMG
+        } else if (atk.Category == "Secondary") {
+          this.applyBonus("Str", (this.attributes.Str.mod / 2), newAtk.value.dmgBonus);
+        } else {
+          this.applyBonus("Str", this.attributes.Str.mod, newAtk.value.dmgBonus);
+        }
+        
+        // Add Active Bonuses
+        this.bonusLoop(newAtk.atkBonus, "MeleeAtkBonus");
+        this.bonusLoop(newAtk.atkBonus, "RangedAtkBonus");
+        this.bonusLoop(newAtk.atkBonus, "SpecialAtkBonus");
+        this.bonusLoop(newAtk.dmgBonus, "MeleeDmgBonus");
+        this.bonusLoop(newAtk.dmgBonus, "RangedDmgBonus");
+        this.bonusLoop(newAtk.dmgBonus, "SpecialDmgBonus");
+
+        actions[2]["children"].push(newAtk);
+      } // End character.attacks loop
+
+      // Weapon Actions
+      let mainHand = this.inventory[1].children[1].children[0].children[0];
+      let offHand = this.inventory[1].children[1].children[0].children[1];
+
+      for (const weapon of this.inventory[1].children[1].children[0].children) {
+        // this.inventory[ equipped ].children[ weapons ].children[ hands ].children
+
+        // If the wielded item is not a weapon or inproperly equipped, skip
+        if (!weapon.value.Damage) { continue; }
+        if (weapon.value.Group.includes("Bows") || weapon.value.Category == "Two-Handed"){
+          if (weapon.label != mainHand.label || offHand != undefined) {
+            continue;
           }
+        }
 
-          // Add AbilMod to atkBonus
-          if (type == "ranged" || weapon.value.Extras.Notes?.includes("DexBonus")) {
-            // use DexBonus for weapon finesse
-            this.applyBonus("Dex", this.attributes.DexMod, newAtk.atkBonus);
-          } else {
-            this.applyBonus("Str", this.attributes.StrMod, newAtk.atkBonus);
+        let type = (weapon.value.Category == "Ranged" || weapon.value.Group.includes("Thrown")) ? "Ranged" : "Melee";
+        let newAtk = {
+          "label": weapon.label,
+          "value": {
+            trigger: atk["trigger"],
+            atkNum: atk["atkNum"],
+            atkBonus: { "total": 0, "sources": [] },
+            damage: weapon.value["Damage"][this.character.basics.size],
+            dmgBonus: { "total": 0, "sources": [] },
+            damageType: atk["Damage Type"],
+            critical: {
+              range: atk["Critical"].split("/")[0],
+              mult: atk["Critical"].split("/")[1]
+            },
+            notes: atk["Extras"]["Notes"]
           }
+        };
 
-          // Add AbilMod to dmgBonus
-          if (weapon.value.Extras.Notes.includes("DexDamage")) {
-            this.applyBonus("Dex", this.attributes.DexMod, newAtk.dmgBonus);
+        newAtk.crit = {};
+        newAtk.crit.range = weapon.value.Critical.split("/")[0];
+        newAtk.crit.mult = weapon.value.Critical.split("/")[1];
+        newAtk.extras = (weapon.value.Extras) ? weapon.value.Extras : [];
 
-          } else if ( weapon.value.Group.includes("Thrown") ||
-            (weapon.value.Group.includes("Bows") && this.attributes.StrMod < 0) ||
-            (weapon.value.Group.includes("Bows") && name.includes("Composite")) ) {
-              // BOW && THROWN STR MOD
-              this.applyBonus("Str", this.attributes.StrMod, newAtk.dmgBonus);
+        this.applyBonus("BAB", this.bab, newAtk.atkBonus);
+        this.applyBonus("Size", this.basics.sizeStats["ac / atk"], newAtk.atkBonus);
+        // Add mwk or magic enhancements to atk bonus
+        if (weapon.value.Extras["Enhancement"] > 0) {
+          this.applyBonus("Magic Enhancement", weapon.value.Extras["Enhancement"], newAtk.atkBonus);
+          this.applyBonus("Magic Enhancement", weapon.value.Extras["Enhancement"], newAtk.dmgBonus);
+        } else if (weapon.value.Extras["Masterwork"]) {
+          this.applyBonus("Masterwork", 1, newAtk.atkBonus);
+        }
 
-          } else if ( type == "melee"){
-            if (weapon.label == mainHand.label) {
-              // Main Hand
-              if (offHand == undefined && (weapon.value.Category == "One-Handed" || weapon.value.Category == "Two-Handed")) {
-                // if using two hands (off-hand empty)
-                this.applyBonus("Str", Math.floor(this.attributes.StrMod * 1.5), newAtk.dmgBonus);
-              } else {
-                // ie, main and shield
-                this.applyBonus("Str", this.attributes.StrMod, newAtk.dmgBonus);
-              }
+        // Add AbilMod to atkBonus
+        // TODO: update to use abilOVerrides
+        if (type == "Ranged" || weapon.value.Extras.Notes?.includes("DexBonus")) {
+          // use DexBonus for weapon finesse
+          this.applyBonus("Dex", this.attributes.DexMod, newAtk.atkBonus);
+        } else {
+          this.applyBonus("Str", this.attributes.StrMod, newAtk.atkBonus);
+        }
 
+        // Add AbilMod to dmgBonus
+        if (weapon.value.Extras.Notes.includes("DexDamage")) {
+          this.applyBonus("Dex", this.attributes.DexMod, newAtk.dmgBonus);
+
+        } else if ( weapon.value.Group.includes("Thrown") ||
+          (weapon.value.Group.includes("Bows") && this.attributes.StrMod < 0) ||
+          (weapon.value.Group.includes("Bows") && name.includes("Composite")) ) {
+            // BOW && THROWN STR MOD
+            this.applyBonus("Str", this.attributes.StrMod, newAtk.dmgBonus);
+
+        } else if ( type == "Melee"){
+          if (weapon.label == mainHand.label) {
+            // Main Hand
+            if (offHand == undefined && (weapon.value.Category == "One-Handed" || weapon.value.Category == "Two-Handed")) {
+              // if using two hands (off-hand empty)
+              this.applyBonus("Str", Math.floor(this.attributes.StrMod * 1.5), newAtk.dmgBonus);
             } else {
-              // Off Hand
-              if (weapon.value.Category == "Light" || weapon.value.Category == "One-Handed") {
-                this.applyBonus("Str", Math.floor(this.attributes.StrMod / 2), newAtk.dmgBonus);
-              }
+              // ie, main and shield
+              this.applyBonus("Str", this.attributes.StrMod, newAtk.dmgBonus);
+            }
+
+          } else {
+            // Off Hand
+            if (weapon.value.Category == "Light" || weapon.value.Category == "One-Handed") {
+              this.applyBonus("Str", Math.floor(this.attributes.StrMod / 2), newAtk.dmgBonus);
             }
           }
+        }
 
-          // Dual Wield penalties done in abilities -> bonuses
-          /*
-          penalties to AtkBonus, during a full-round atk
-          light & feat      { main -2  off -2 }
-          two-weapon feat   { main -4  off -4 }
-          off hand light    { main -4  off -8 }
-          normal            { main -6  off -10}
-          */
+        // Dual Wield penalties done in abilities -> bonuses
+        /*
+        penalties to AtkBonus, during a full-round atk
+        light & feat      { main -2  off -2 }
+        two-weapon feat   { main -4  off -4 }
+        off hand light    { main -4  off -8 }
+        normal            { main -6  off -10}
+        */
 
-          // Weapon Specific Bonuses (like for Weapon Focus)
-          this.bonusLoop(newAtk.atkBonus, weapon.label.concat("AtkBonus"));
-          this.bonusLoop(newAtk.dmgBonus, weapon.label.concat("DmgBonus"));
+        // Weapon Specific Bonuses (like for Weapon Focus)
+        this.bonusLoop(newAtk.atkBonus, weapon.label.concat("AtkBonus"));
+        this.bonusLoop(newAtk.dmgBonus, weapon.label.concat("DmgBonus"));
 
-          this.bonusLoop(newAtk.atkBonus, type.concat("AtkBonus"));
-          this.bonusLoop(newAtk.dmgBonus, type.concat("DmgBonus"));
+        // Add Active Bonuses
+        this.bonusLoop(newAtk.atkBonus, type.concat("AtkBonus"));
+        this.bonusLoop(newAtk.dmgBonus, type.concat("DmgBonus"));
 
-          // TODO: change wpn dmg die back to obj based on size, to allow size changing
-          // newAtk.dmgDie = weapon.value.Damage;
-          newAtk.dmgDie = weapon.value.Damage[this.basics.size];
-          newAtk.crit = {};
-          newAtk.crit.range = weapon.value.Critical.split("/")[0];
-          newAtk.crit.mult = weapon.value.Critical.split("/")[1];
-          newAtk.extras = (weapon.value.Extras) ? weapon.value.Extras : [];
-          // console.log(`${NatAtkNum>1 ? NatAtkNum : ""} ${name} +${newAtk.atkBonus.total} (${newAtk.dmgDie}+${newAtk.dmgBonus.total} /${atk.Critical})`);
-          actions[type][weapon.label] = newAtk;
-        } // End Weapons loop
+        type = (type == 'Melee') ? 0 : 1;
+        actions[type].children.push(newAtk);
+      } // End Weapons loop
 
+      // totalAtks > 1, dont add str to nat atk
+      if (NatAtkNum == 1) {
+        console.log('Extra Strength to Nat Attack');
+        for (const atk of Object.values(actions.melee)) {
+          console.log(atk);
+          // only apply to nat atk, if only atk including weapon atks
+          this.applyBonus("Str", (this.attributes.StrMod / 2), atk.dmgBonus);
+        }
+      }
 
-        let temp = [
-          { "label": "Melee", "extras": { "icon": "meleeSword", "capacity": 50 }, "children": [
-
-            { "label": "Longsword", "value": {
-              "Damage": { fine: "1d2", diminuitive: "1d3", tiny: "1d4", medium: "1d6" },
-              "Critical": "19/x2",
-              "Range": 0,
-              "Damage Type": [ "Slashing" ],
-              "Proficiency": "Martial",
-              "Category": "One-Handed",
-              "Description": "This sword is about 3½ feet in length.",
-              "atkNum": 1,
-              "abilOverride": "",
-              "trigger": "Standard",
-
-              damage: { fine: "1d2", diminuitive: "1d3", tiny: "1d4", medium: "1d6" },
-              atkBonus: {
-                total: '+5',
-                sources: [ "+1 BAB", "+4 Str" ]
-              },
-              dmgBonus: {
-                total: '+4',
-                sources: [ "+4 Str" ]
-              },
-              crit: { range: 19, mult: 'x2' },
-              extras: { Masterwork: true, Enhancement: 0, Notes: [] }
-
-            } },
-            { "label": "Bite", "value": {
-              "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "2d8",  "colossal": "4d6"  },
-              "Critical": "20/x2",
-              "Damage Type": [ "Bludgeoning", "Piercing", "Slashing" ],
-              "Proficiency": "Natural",
-              "Category": "Primary",
-              "Description": "This sword is about 3½ feet in length.",
-              "Extras": { Masterwork: true, Enhancement: 0, Notes: [] },
-              "abilOverride": "",
-              "atkNum": 1,
-
-              "Range": 0,
-              "trigger": "Standard",
-              atkBonus: {
-                total: '+5',
-                sources: [ "+1 BAB", "+4 Str" ]
-              },
-              damage: { fine: "1d2", diminuitive: "1d3", tiny: "1d4", medium: "1d6" },
-              dmgBonus: {
-                total: '+4',
-                sources: [ "+4 Str" ]
-              },
-              crit: { range: 20, mult: 'x2' },
-              extras: { Masterwork: true, Enhancement: 0, Notes: [ 'Primary Natural Attack', 'Poison', 'Grab' ], 'Natural Attack': true }
-            } }
-          ] },
-          { "label": "Ranged", "extras": { "icon": "rangedBow", "capacity": 50 }, "children": [
-
-            { "label": "Electrical Jolt", "value": {
-              // "Damage": {  "fine": "4d6",  "diminuitive": "4d6",  "tiny": "4d6",  "small": "4d6",  "medium": "4d6",  "large": "4d6",  "huge": "4d6",  "gargantuan": "4d6",  "colossal": "4d6"  },
-              "Critical": "20/x2",
-              "Range": 60,
-              "Damage Type": [ "Shock" ],
-              "Proficiency": "Natural",
-              "Category": "Ranged",
-              "Description": "A death worm can fire a jolt of electricity from its mouth as a standard action.",
-              "Extras": { Notes: [] },
-              "atkNum": 1,
-              "abilOverride": "",
-              "trigger": "Standard",
-
-              atkBonus: {
-                total: '+7',
-                sources: [ "+1 BAB", "+4 Str" ]
-              },
-              damage: { fine: "1d2", diminuitive: "1d3", tiny: "1d4", medium: "1d6" },
-              dmgBonus: {
-                total: '+4',
-                sources: [ "+4 Str" ]
-              },
-              crit: { range: 20, mult: 'x2' },
-              extras: { Masterwork: true, Enhancement: 0, Notes: [] }
-            } }
-          ] },
-          { "label": "Special", "extras": { "icon": "abilityPalm", "capacity": 50 }, "children": [
-
-            { "label": "Breath Weapon", "value": {
-              // "Damage": {  "fine": "8d6",  "diminuitive": "8d6",  "tiny": "8d6",  "small": "8d6",  "medium": "8d6",  "large": "8d6",  "huge": "8d6",  "gargantuan": "8d6",  "colossal": "8d6"  },
-              "Critical": "20/x2",
-              "Range": 30,
-              "Damage Type": [ "Acid" ],
-              "Proficiency": "Natural",
-              "Category": "Special",
-              "Description": "A 30 ft line of acid spews forth (DC [10 + 1/2 breathing creature’s racial HD + breathing creature’s Con modifier]; for half, usable once every 1d4 rounds).",
-              "Extras": { Notes: [], DC: "10 + 0.5*HD + ConMod" },
-              "atkNum": 1,
-              "abilOverride": "",
-              "trigger": "Standard",
-
-              atkBonus: {
-                total: '+5',
-                sources: [ "+1 BAB", "+4 Str" ]
-              },
-              damage: { fine: "1d2", diminuitive: "1d3", tiny: "1d4", medium: "1d6" },
-              dmgBonus: {
-                total: '+4',
-                sources: [ "+4 Str" ]
-              },
-              crit: { range: 20, mult: 'x2' },
-              extras: { Masterwork: true, Enhancement: 0, Notes: [] }
-            } }
-          ] }
-        ];
-
-        return temp;
-
-      // return actions;
+      return actions;
     },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
