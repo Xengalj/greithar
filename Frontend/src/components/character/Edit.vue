@@ -974,7 +974,7 @@
           draggable
           render-after-expand
           node-key="label"
-          :default-expanded-keys="character.userSettings.expandInventory"
+          :default-expanded-keys="character.settings.expandInventory"
           :filter-node-method="filterNode"
           :allow-drag="allowDrag"
           :allow-drop="allowDrop"
@@ -1153,12 +1153,12 @@
         </template>
         <el-row>
           <el-col :span="4" class="center-vert"> Hero Points </el-col>
-          <el-col :span="20"> <el-input-number v-model="character.userSettings.heroPoints" :min="0" :max="4" aria-label="Hero Points" /> </el-col>
+          <el-col :span="20"> <el-input-number v-model="character.settings.heroPoints" :min="0" :max="4" aria-label="Hero Points" /> </el-col>
         </el-row>
         <el-row>
           <el-col :span="4" class="center-vert"> Open Tab </el-col>
           <el-col :span="20">
-            <el-select v-model="character.userSettings.cardTab" size="small" aria-label="View's Tab Select">
+            <el-select v-model="character.settings.cardTab" size="small" aria-label="View's Tab Select">
               <el-option label="Main" value="main" />
               <el-option label="Items" value="items" />
               <el-option label="Skills" value="skills" />
@@ -1171,7 +1171,7 @@
         <el-row>
           <el-col :span="4" class="center-vert"> Open Main Sections </el-col>
           <el-col :span="20">
-            <el-select v-model="character.userSettings.mainSections" size="small" multiple aria-label="View's main tab open sections">
+            <el-select v-model="character.settings.mainSections" size="small" multiple aria-label="View's main tab open sections">
               <el-option label="Defense" value="defense" />
               <el-option label="Actions" value="actions" />
               <el-option label="Resources" value="resources" />
@@ -1181,7 +1181,7 @@
         <el-row>
           <el-col :span="4" class="center-vert"> Open Inventory Sections </el-col>
           <el-col :span="20">
-            <el-select v-model="character.userSettings.expandInventory" size="small" multiple aria-label="Gender Select">
+            <el-select v-model="character.settings.expandInventory" size="small" multiple aria-label="Gender Select">
               <el-option label="Magic Items" value="Magic Items" />
               <el-option label="Equipped" value="Equipped" />
               <el-option label="Armor" value="Armor" />
@@ -1932,6 +1932,26 @@ console.log(response);
         "Damage Type": [ "Piercing" ],
         "Proficiency": "Natural",
         "Category": "Primary"
+
+        /*
+
+
+        "Bite": {
+          "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "2d8",  "colossal": "4d6"  },
+          "Critical": "20/x2",
+          "Range": 0,
+          "Damage Type": [ "Piercing" ],
+          "Proficiency": "Natural",
+          "Category": "Primary",
+
+          atkNum: 1,
+          atkAbilOverride: "",
+          dmgAbilOverride: "",
+          trigger: "Standard",
+          extras: {}
+        }
+
+        */
       };
     },
     addNewResource() {

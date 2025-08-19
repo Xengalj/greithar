@@ -79,8 +79,6 @@
       <el-col :span="12">
         <div class="center-horz">
           <g-icon iconSize="128px" :icon-name="character.basics.type.name" :key="character.basics.type.name"/>
-          <br>
-          {{ character.basics }}
         </div>
         <el-row>
           <el-col :span="4" class="center-vert center-horz">
@@ -115,13 +113,42 @@
           </el-col>
         </el-row>
         <el-row>
-          <el-col :span="4" class="center-vert center-horz"> <g-icon iconSize="24px" icon-name="forest"/> </el-col>
-          <el-col :span="20" class="center-vert"> {{ character.basics.environment }} </el-col>
+          <el-col :span="4" class="center-vert center-horz">
+            <span v-if="character.userSettings.isNPC">
+              <g-icon iconSize="24px" icon-name="forest"/>
+            </span>
+            <span v-else>
+              <g-icon iconSize="24px" icon-name="openScroll"/>
+            </span>
+          </el-col>
+          <el-col :span="20" class="center-vert">
+            <span v-if="character.userSettings.isNPC">
+              {{ character.basics.environment }}
+            </span>
+            <span v-else>
+              {{ character.basics.appearance.age }} years old, {{ character.basics.appearance.height }}, {{ character.basics.appearance.weight }}
+            </span>
+          </el-col>
         </el-row>
         <el-row>
-          <el-col :span="4" class="center-vert center-horz"> <g-icon iconSize="24px" icon-name="sparkle"/> </el-col>
-          <el-col :span="20" class="center-vert"> XP : {{ this.rules.experience[character.basics.cr] }} </el-col>
+          <el-col :span="4" class="center-vert center-horz">
+            <span v-if="character.userSettings.isNPC">
+              <g-icon iconSize="24px" icon-name="sparkle"/>
+            </span>
+            <span v-else>
+              <g-icon iconSize="24px" icon-name="moon"/>
+            </span>
+          </el-col>
+          <el-col :span="20" class="center-vert">
+            <span v-if="character.userSettings.isNPC">
+              XP : {{ this.rules.experience[character.basics.cr] }}
+            </span>
+            <span v-else>
+              Diety : {{ character.basics.diety }}
+            </span>
+          </el-col>
         </el-row>
+
       </el-col>
     </el-row>
 
@@ -143,10 +170,10 @@
           <el-collapse-item name="defense">
             <template #title> <g-icon iconName="armor" /> Defense </template>
 
-            <el-row :gutter="10" justify="space-evenly">
+            <el-row :gutter="10" >
               <!-- HEALTH -->
-              <el-col :span="6">
-                <el-row :gutter="10">
+              <el-col :span="10">
+                <el-row :gutter="10" style="margin-bottom:10px">
                   <el-col :span="22">
                     <el-tooltip placement="top" effect="light">
                       <el-progress
@@ -162,8 +189,8 @@
                       </template>
                     </el-tooltip>
                   </el-col>
-                </el-row>   <br>
-                <el-row :gutter="10" >
+                </el-row>
+                <el-row :gutter="10" style="margin-bottom:5px">
                   <el-col :span="10" class="center-horz">
                     <el-tag size="large" effect="dark" type="danger"> Damage </el-tag>
                   </el-col>
@@ -182,15 +209,7 @@
               </el-col>
 
               <!-- AC & Stabilize -->
-              <el-col :span="3">
-                <el-tooltip v-if="character.health.damage > character.health.total" placement="top" effect="light">
-                  <el-tag effect="dark" type="danger">
-                    Stabilize (DC 10) : {{ attributes.Con.mod + (character.health.total-character.health.damage) }}
-                  </el-tag>
-                  <template #content>
-                    ConMod: {{ attributes.Con.mod }} + Current Health: {{ (character.health.total-character.health.damage) }}
-                  </template>
-                </el-tooltip>   <br>
+              <el-col :span="5">
                 <el-tooltip placement="top" effect="light">
                   AC: {{ ac.total.total }}
                   <template #content>
@@ -208,11 +227,19 @@
                   <template #content>
                     <span v-for="bonus in ac.flat.sources" :key="bonus"> {{ bonus+" " }} </span>
                   </template>
+                </el-tooltip>   <br>
+                <el-tooltip v-if="character.health.damage > character.health.total" placement="top" effect="light">
+                  <el-tag effect="dark" type="danger">
+                    Stabilize (DC 10) : {{ attributes.Con.mod + (character.health.total-character.health.damage) }}
+                  </el-tag>
+                  <template #content>
+                    ConMod: {{ attributes.Con.mod }} + Current Health: {{ (character.health.total-character.health.damage) }}
+                  </template>
                 </el-tooltip>
               </el-col>
 
               <!-- CMD & Saves -->
-              <el-col :span="2">
+              <el-col :span="4">
                 <el-tooltip placement="top" effect="light">
                   CMD: {{ cmd.total }}
                   <template #content>
@@ -240,7 +267,7 @@
               </el-col>
 
               <!-- Init, Speed, Senses -->
-              <el-col :span="4">
+              <el-col :span="5">
                 <el-tooltip placement="top" effect="light">
                   Init: {{ init.total > 0 ? "+" : "" }}{{ init.total }}
                   <template #content>
@@ -300,11 +327,11 @@
               :allow-drop="allowDrop"
             >
               <template #default="{ data }">
-                <el-col :span="1">
+                <el-col :span="1" class="center-horz">
                   <g-icon iconSize="20px" v-if="data.extras && data.extras.icon" :iconName="data.extras.icon" />
                   <span v-else> • </span>
                 </el-col>
-                <el-col :span="3">
+                <el-col :span="5">
                   <el-tooltip v-if="data.value" placement="left" effect="light">
                     <el-tag size="small" effect="dark" type="primary"> {{ data.label }} </el-tag>
                     <template #content>
@@ -314,19 +341,19 @@
                   <span v-else> {{ data.label }} </span>
                 </el-col>
                 <!-- Attack Bonus (To Hit) -->
-                <el-col v-if="data.value" :span="2">
-                  <el-row :gutter="10">
+                <el-col v-if="data.value" :span="3">
+                  <el-row :gutter="10" class="center-horz">
                     <el-col :span="6">
                       <el-tooltip placement="top" effect="light">
-                        <span> {{ data.value.atkBonus.total }} </span>
+                        <span> <span v-if="data.value.atkBonus.total >= 0">+</span>{{ data.value.atkBonus.total }} </span>
                         <template #content>
                           <span v-for="bonus in data.value.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
                         </template>
                       </el-tooltip>
                     </el-col>
                     <el-col :span="6">
-                      <el-tooltip v-if="bab>5 && !data.value.extras['Natural Attack']" placement="top" effect="light">
-                        <span> {{ data.value.atkBonus.total-5 }} </span>
+                      <el-tooltip v-if="bab>5 && !data.value.extras.naturalAtk" placement="top" effect="light">
+                        <span> <span v-if="data.value.atkBonus.total >= 0">+</span>{{ data.value.atkBonus.total-5 }} </span>
                         <template #content>
                           <span v-for="bonus in data.value.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
                           <span> -5 Subsequent Attack </span>
@@ -334,8 +361,8 @@
                       </el-tooltip>
                     </el-col>
                     <el-col :span="6">
-                      <el-tooltip v-if="bab>10 && !data.value.extras['Natural Attack']" placement="top" effect="light">
-                        <span> {{ data.value.atkBonus.total-10 }} </span>
+                      <el-tooltip v-if="bab>10 && !data.value.extras.naturalAtk" placement="top" effect="light">
+                        <span> <span v-if="data.value.atkBonus.total >= 0">+</span>{{ data.value.atkBonus.total-10 }} </span>
                         <template #content>
                           <span v-for="bonus in data.value.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
                           <span> -10 Subsequent Attack </span>
@@ -343,8 +370,8 @@
                       </el-tooltip>
                     </el-col>
                     <el-col :span="6">
-                      <el-tooltip v-if="bab>15 && !data.value.extras['Natural Attack']" placement="top" effect="light">
-                        <span> {{ data.value.atkBonus.total-15 }} </span>
+                      <el-tooltip v-if="bab>15 && !data.value.extras.naturalAtk" placement="top" effect="light">
+                        <span> <span v-if="data.value.atkBonus.total >= 0">+</span>{{ data.value.atkBonus.total-15 }} </span>
                         <template #content>
                           <span v-for="bonus in data.value.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
                           <span> -15 Subsequent Attack </span>
@@ -354,29 +381,46 @@
                   </el-row>
                 </el-col>
                 <!-- Damage -->
-                <el-col v-if="data.value" :offset="1" :span="3">
-                  {{ data.value.damage[character.basics.size] }}
-                  <el-tooltip v-if="data.value.dmgBonus.total" placement="top" effect="light">
-                    {{ data.value.dmgBonus.total }}
+                <el-col v-if="data.value" :offset="1" :span="2">
+                  <el-tag type="danger" effect="dark" size="small">
+                    {{ data.value.damage[character.basics.size] }}
+                    <el-tooltip v-if="data.value.dmgBonus.total" placement="top" effect="light">
+                      <span> <span v-if="data.value.dmgBonus.total >= 0">+</span>{{ data.value.dmgBonus.total }} </span>
+                      <template #content>
+                        <span v-for="bonus in data.value.dmgBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
+                      </template>
+                    </el-tooltip>
+                  </el-tag>
+                </el-col>
+                <!-- Damage Types -->
+                <el-col v-if="data.value" :span="4">
+                  <el-tag v-for="type in data.value.damageTypes" :key="type.value" size="small" effect="dark" type="info" style="margin-left:5px">
+                    <span :style="`color:${type.color}`">
+                      {{ type.label }}
+                    </span>
+                  </el-tag>
+                </el-col>
+                <!-- Crit -->
+                <el-col v-if="data.value" :span="2" class="center-horz">
+                  <el-tooltip placement="top" effect="light">
+                    <span>
+                      (<span v-if="data.value.crit.range<20">{{ data.value.crit.range }}-</span>20 {{ data.value.crit.mult }})
+                    </span>
                     <template #content>
-                      <span v-for="bonus in data.value.dmgBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
+                      Crit Range and Multiplyer
                     </template>
                   </el-tooltip>
-                  ( <span v-if="data.value.crit.range<20">{{ data.value.crit.range }}-</span>20 {{ data.value.crit.mult }} )
                 </el-col>
                 <!-- Range -->
                 <el-col v-if="data.value" :span="2">
-                  <span v-if="data.value.Range"> {{ data.value.Range }} </span>
+                  <span v-if="data.value.range"> {{ data.value.range }} ft. </span>
                 </el-col>
                 <!-- Notes -->
                 <el-col v-if="data.value" :span="2">
-                  <el-tooltip v-if="data.value.extras.Notes.length > 0" placement="left" effect="light">
-                    Notes
+                  <el-tooltip v-if="data.value.extras.notes" placement="left" effect="light">
+                    <el-tag size="small" effect="dark" type="primary"> Notes </el-tag>
                     <template #content>
-                      <span v-for="(note, index) in data.value.extras.Notes" :key="note">
-                        {{ note }}
-                        <span v-if="index < data.value.extras.Notes.length-1"> & </span>
-                      </span>
+                      {{ data.value.extras.notes }}
                     </template>
                   </el-tooltip>
                 </el-col>
@@ -789,13 +833,6 @@
         </el-row>
 
 
-
-
-
-
-
-
-
       </el-tab-pane>
     </el-tabs>
 
@@ -873,15 +910,18 @@ export default {
       if (this.loading) { return bonuses; }
 
       // Add feats and other abilities to bonuses
-      for (const ability in this.abilities) {
-        if (this.abilities[ability].extras.active && this.abilities[ability].bonuses) {
-          for (const [name, bonus] of Object.entries(this.abilities[ability].bonuses)) {
+      for (const ability of Object.values(this.abilities)) {
+        if (ability.extras.active && Object.keys(ability.bonuses).length>0) {
+          console.log(ability);
+          for (const [name, bonus] of Object.entries(ability.bonuses)) {
             bonuses[name] = bonus;
           }
         }
       }
       // Add conditions
+      console.log(this.activeConditions);
       for (const condition in this.activeConditions) {
+        console.log(condition);
         if (this.activeConditions[condition].bonuses) {
           for (const [name, bonus] of Object.entries(this.activeConditions[condition].bonuses)) {
             bonuses[name] = bonus;
@@ -918,7 +958,7 @@ export default {
           }
         }
       } // end magic items
-      // console.log("BONUSES", bonuses);
+      console.log("BONUSES", bonuses);
       return bonuses;
     },
 
@@ -1067,11 +1107,11 @@ export default {
     speed() {
       let speed = {};
       speed = this.character.basics.speed;
-      this.bonusLoop(speed.speed, "baseSpeed");
-      this.bonusLoop(speed.burrow, "burrowSpeed");
-      this.bonusLoop(speed.climb, "climbSpeed");
-      this.bonusLoop(speed.fly, "flySpeed");
-      this.bonusLoop(speed.swim, "swimSpeed");
+      this.bonusLoop(speed.base, "base");
+      this.bonusLoop(speed.burrow, "burrow");
+      this.bonusLoop(speed.climb, "climb");
+      this.bonusLoop(speed.fly, "fly");
+      this.bonusLoop(speed.swim, "swim");
       Object.values(this.abilities).forEach(abil => {
         if (abil.benefit && abil.benefit.target == "speed") {
           speed.push(abil.benefit.text);
@@ -1124,68 +1164,55 @@ export default {
         bab += classBAB * cClass.levels;
       }
       bab = Math.floor(bab);
-bab = 20;
       return bab;
     },
 
 
-// TODO:
     // USES: basics, inventory, bab, bonusLoop(bonuses), attributes
     actions() {
 
       let character = {
         attacks: {
-          "Longsword": {
-            atkNum: 1,
+          // "Zap": {
+          //   "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "2d8",  "colossal": "4d6"  },
+          //   "Critical": "20/x2",
+          //   "Range": 60,
+          //   "Damage Type": [ "Slashing" ],
+          //   "Proficiency": "Natural",
+          //   "Category": "Special",
+          //
+          //   atkNum: 1,
+          //   atkAbilOverride: "Dex",
+          //   dmgAbilOverride: "",
+          //   trigger: "Standard",
+          //   extras: {}
+          // },
+          "Bite": {
             "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "2d8",  "colossal": "4d6"  },
             "Critical": "20/x2",
             "Range": 0,
-            "Damage Type": [ "Slashing" ],
-            abilOverride: "",
-            trigger: "Standard",
-
+            "Damage Type": [ "Piercing" ],
             "Proficiency": "Natural",
-            "Category": "Primary"
+            "Category": "Primary",
+
+            atkNum: 1,
+            atkAbilOverride: "",
+            dmgAbilOverride: "",
+            trigger: "Standard",
+            extras: {}
           }
         }
       };
 
       let actions = [
-        { "label": "Melee", "extras": { "icon": "meleeSword", "capacity": 50 }, "children": [
-          { "label": "Bite", "value": {
-            "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "2d8",  "colossal": "4d6"  },
-            "Critical": "20/x2",
-            "Damage Type": [ "Bludgeoning", "Piercing", "Slashing" ],
-            "Proficiency": "Natural",
-            "Category": "Primary",
-            "Description": "This sword is about 3½ feet in length.",
-            "Extras": { Masterwork: true, Enhancement: 0, Notes: [] },
-            "abilOverride": "",
-            "atkNum": 1,
-
-            "Range": 0,
-            "trigger": "Standard",
-            atkBonus: {
-              total: '+5',
-              sources: [ "+1 BAB", "+4 Str" ]
-            },
-            damage: { fine: "1d2", diminuitive: "1d3", tiny: "1d4", medium: "1d6" },
-            dmgBonus: {
-              total: '+4',
-              sources: [ "+4 Str" ]
-            },
-            crit: { range: 20, mult: 'x2' },
-            extras: { Masterwork: true, Enhancement: 0, Notes: [ 'Primary Natural Attack', 'Poison', 'Grab' ], 'Natural Attack': true }
-          } }
-        ] },
+        { "label": "Melee", "extras": { "icon": "meleeSword", "capacity": 50 }, "children": [] },
         { "label": "Ranged", "extras": { "icon": "rangedBow", "capacity": 50 }, "children": [] },
         { "label": "Special", "extras": { "icon": "abilityPalm", "capacity": 50 }, "children": [] }
       ];
-      let NatAtkNum = 0;
 
+      // Abilities, like cleave, into 'special actions'
       for (const [name, abil] of Object.entries(this.abilities)) {
         if (abil.extras.showMain) {
-          console.log(name, abil);
           actions[2].children.push({
             "label": name, "value": abil
           });
@@ -1193,44 +1220,47 @@ bab = 20;
       }
 
       for (const [name, atk] of Object.entries(character.attacks)) {
-        console.log(name, atk);
-
         let newAtk = {
           "label": name,
           "value": {
             trigger: atk["trigger"],
             atkNum: atk["atkNum"],
             atkBonus: { "total": 0, "sources": [] },
-            damage: atk["Damage"][this.character.basics.size],
+            damage: atk["Damage"],
             dmgBonus: { "total": 0, "sources": [] },
-            damageType: atk["Damage Type"],
-            critical: {
+            damageTypes: [],
+            crit: {
               range: atk["Critical"].split("/")[0],
               mult: atk["Critical"].split("/")[1]
             },
-            notes: atk["Extras"]["Notes"]
+            range: atk["Range"],
+            extras: {
+              naturalAtk: true,
+              notes: atk.extras.notes
+            }
           }
         };
 
-        NatAtkNum += (atk.Proficiency == "Natural" && Object.keys(this.rules.natural_attacks).includes(name)) ? 1 : 0;
+        // ATTACK BONUS
         this.applyBonus("BAB", this.bab, newAtk.value.atkBonus);
         this.applyBonus("Size", this.sizeStats["ac / atk"], newAtk.value.atkBonus);
-
         // Add AbilMod to atkBonus
-        if (atk.abilOverride) {
-          console.log('Abil Override', atk.abilOverride);
-
+        if (atk.atkAbilOverride) {
+          this.applyBonus(atk.atkAbilOverride, this.attributes[atk.atkAbilOverride].mod, newAtk.value.atkBonus);
         } else if (atk.category == "Ranged") {
           this.applyBonus("Dex", this.attributes.Dex.mod, newAtk.value.atkBonus);
         } else if (atk.Category == "Secondary") {
+          // all nat atks when using weapons too
           this.applyBonus("Str", this.attributes.Str.mod - 5, newAtk.value.atkBonus);
         } else {
           this.applyBonus("Str", this.attributes.Str.mod, newAtk.value.atkBonus);
         }
 
+        // DAMAGE BONUS
         // Add AbilMod to dmgBonus
-            // TODO: add dmgAbilOverride
-        if (!Object.keys(this.rules.natural_attacks).includes(name)) {
+        if (atk.dmgAbilOverride) {
+          this.applyBonus(atk.dmgAbilOverride, this.attributes[atk.dmgAbilOverride].mod, newAtk.value.atkBonus);
+        } else if (!Object.keys(this.rules.natural_attacks).includes(name)) {
         // Fake Natural Attack, like Death Worm's Electrical Jolt
         // They get no bonuses to DMG
         } else if (atk.Category == "Secondary") {
@@ -1238,135 +1268,150 @@ bab = 20;
         } else {
           this.applyBonus("Str", this.attributes.Str.mod, newAtk.value.dmgBonus);
         }
-        
-        // Add Active Bonuses
-        this.bonusLoop(newAtk.atkBonus, "MeleeAtkBonus");
-        this.bonusLoop(newAtk.atkBonus, "RangedAtkBonus");
-        this.bonusLoop(newAtk.atkBonus, "SpecialAtkBonus");
-        this.bonusLoop(newAtk.dmgBonus, "MeleeDmgBonus");
-        this.bonusLoop(newAtk.dmgBonus, "RangedDmgBonus");
-        this.bonusLoop(newAtk.dmgBonus, "SpecialDmgBonus");
 
+        // Add Active Bonuses
+        this.bonusLoop(newAtk.value.atkBonus, "MeleeAtkBonus");
+        this.bonusLoop(newAtk.value.dmgBonus, "MeleeDmgBonus");
+        this.bonusLoop(newAtk.value.atkBonus, "RangedAtkBonus");
+        this.bonusLoop(newAtk.value.dmgBonus, "RangedDmgBonus");
+        this.bonusLoop(newAtk.value.atkBonus, "SpecialAtkBonus");
+        this.bonusLoop(newAtk.value.dmgBonus, "SpecialDmgBonus");
+
+        // set damage types
+        for (const category of Object.values(this.rules["Damage Types"])) {
+          for (const cType of Object.values(category)) {
+            atk["Damage Type"].forEach(aType => {
+              if (aType == cType.value) {
+                newAtk.value.damageTypes.push(cType);
+              }
+            });
+          }
+        }
         actions[2]["children"].push(newAtk);
       } // End character.attacks loop
 
       // Weapon Actions
-      let mainHand = this.inventory[1].children[1].children[0].children[0];
-      let offHand = this.inventory[1].children[1].children[0].children[1];
+      // let mainHand = this.inventory[1].children[1].children[0].children[0];
+      // let offHand = this.inventory[1].children[1].children[0].children[1];
+      //
+      // for (const weapon of this.inventory[1].children[1].children[0].children) {
+      //   // this.inventory[ equipped ].children[ weapons ].children[ hands ].children
+      //   console.log(weapon);
+      //   // If the wielded item is not a weapon or inproperly equipped, skip
+      //   if (!weapon.value.Damage) { continue; }
+      //   if (weapon.value.Group.includes("Bows") || weapon.value.Category == "Two-Handed"){
+      //     if (weapon.label != mainHand.label || offHand != undefined) {
+      //       continue;
+      //     }
+      //   }
+      //
+      //   let type = (weapon.value.Category == "Ranged" || weapon.value.Group.includes("Thrown")) ? "Ranged" : "Melee";
+      //   let newAtk = {
+      //     "label": weapon.label,
+      //     "value": {
+      //       trigger: "Standard",
+      //       atkNum: 1,
+      //       atkBonus: { "total": 0, "sources": [] },
+      //       damage: weapon.value["Damage"][this.character.basics.size],
+      //       dmgBonus: { "total": 0, "sources": [] },
+      //       damageType: weapon.value["Damage Type"],
+      //       critical: {
+      //         range: weapon.value["Critical"].split("/")[0],
+      //         mult: weapon.value["Critical"].split("/")[1]
+      //       },
+      //       notes: weapon.value["Extras"]["Notes"]
+      //     }
+      //   };
+      //
+      //   newAtk.crit = {};
+      //   newAtk.crit.range = weapon.value.Critical.split("/")[0];
+      //   newAtk.crit.mult = weapon.value.Critical.split("/")[1];
+      //   newAtk.extras = (weapon.value.Extras) ? weapon.value.Extras : [];
+      //
+      //   this.applyBonus("BAB", this.bab, newAtk.atkBonus);
+      //   this.applyBonus("Size", this.basics.sizeStats["ac / atk"], newAtk.atkBonus);
+      //   // Add mwk or magic enhancements to atk bonus
+      //   if (weapon.value.Extras["Enhancement"] > 0) {
+      //     this.applyBonus("Magic Enhancement", weapon.value.Extras["Enhancement"], newAtk.atkBonus);
+      //     this.applyBonus("Magic Enhancement", weapon.value.Extras["Enhancement"], newAtk.dmgBonus);
+      //   } else if (weapon.value.Extras["Masterwork"]) {
+      //     this.applyBonus("Masterwork", 1, newAtk.atkBonus);
+      //   }
+      //
+      //   // Add AbilMod to atkBonus
+      //   // TODO: update to use abilOVerrides
+      //   if (type == "Ranged" || weapon.value.Extras.Notes?.includes("DexBonus")) {
+      //     // use DexBonus for weapon finesse
+      //     this.applyBonus("Dex", this.attributes.DexMod, newAtk.atkBonus);
+      //   } else {
+      //     this.applyBonus("Str", this.attributes.StrMod, newAtk.atkBonus);
+      //   }
+      //
+      //   // Add AbilMod to dmgBonus
+      //   if (weapon.value.Extras.Notes.includes("DexDamage")) {
+      //     this.applyBonus("Dex", this.attributes.DexMod, newAtk.dmgBonus);
+      //
+      //   } else if ( weapon.value.Group.includes("Thrown") ||
+      //     (weapon.value.Group.includes("Bows") && this.attributes.StrMod < 0) ||
+      //     (weapon.value.Group.includes("Bows") && name.includes("Composite")) ) {
+      //       // BOW && THROWN STR MOD
+      //       this.applyBonus("Str", this.attributes.StrMod, newAtk.dmgBonus);
+      //
+      //   } else if ( type == "Melee"){
+      //     if (weapon.label == mainHand.label) {
+      //       // Main Hand
+      //       if (offHand == undefined && (weapon.value.Category == "One-Handed" || weapon.value.Category == "Two-Handed")) {
+      //         // if using two hands (off-hand empty)
+      //         this.applyBonus("Str", Math.floor(this.attributes.StrMod * 1.5), newAtk.dmgBonus);
+      //       } else {
+      //         // ie, main and shield
+      //         this.applyBonus("Str", this.attributes.StrMod, newAtk.dmgBonus);
+      //       }
+      //
+      //     } else {
+      //       // Off Hand
+      //       if (weapon.value.Category == "Light" || weapon.value.Category == "One-Handed") {
+      //         this.applyBonus("Str", Math.floor(this.attributes.StrMod / 2), newAtk.dmgBonus);
+      //       }
+      //     }
+      //   }
+      //
+      //   // Dual Wield penalties done in abilities -> bonuses
+      //   /*
+      //   penalties to AtkBonus, during a full-round atk
+      //   light & feat      { main -2  off -2 }
+      //   two-weapon feat   { main -4  off -4 }
+      //   off hand light    { main -4  off -8 }
+      //   normal            { main -6  off -10}
+      //   */
+      //
+      //   // Weapon Specific Bonuses (like for Weapon Focus)
+      //   this.bonusLoop(newAtk.atkBonus, weapon.label.concat("AtkBonus"));
+      //   this.bonusLoop(newAtk.dmgBonus, weapon.label.concat("DmgBonus"));
+      //
+      //   // Add Active Bonuses
+      //   this.bonusLoop(newAtk.atkBonus, type.concat("AtkBonus"));
+      //   this.bonusLoop(newAtk.dmgBonus, type.concat("DmgBonus"));
+      //
+      //   type = (type == 'Melee') ? 0 : 1;
+      //   actions[type].children.push(newAtk);
+      // } // End Weapons loop
 
-      for (const weapon of this.inventory[1].children[1].children[0].children) {
-        // this.inventory[ equipped ].children[ weapons ].children[ hands ].children
-
-        // If the wielded item is not a weapon or inproperly equipped, skip
-        if (!weapon.value.Damage) { continue; }
-        if (weapon.value.Group.includes("Bows") || weapon.value.Category == "Two-Handed"){
-          if (weapon.label != mainHand.label || offHand != undefined) {
-            continue;
-          }
-        }
-
-        let type = (weapon.value.Category == "Ranged" || weapon.value.Group.includes("Thrown")) ? "Ranged" : "Melee";
-        let newAtk = {
-          "label": weapon.label,
-          "value": {
-            trigger: atk["trigger"],
-            atkNum: atk["atkNum"],
-            atkBonus: { "total": 0, "sources": [] },
-            damage: weapon.value["Damage"][this.character.basics.size],
-            dmgBonus: { "total": 0, "sources": [] },
-            damageType: atk["Damage Type"],
-            critical: {
-              range: atk["Critical"].split("/")[0],
-              mult: atk["Critical"].split("/")[1]
-            },
-            notes: atk["Extras"]["Notes"]
-          }
-        };
-
-        newAtk.crit = {};
-        newAtk.crit.range = weapon.value.Critical.split("/")[0];
-        newAtk.crit.mult = weapon.value.Critical.split("/")[1];
-        newAtk.extras = (weapon.value.Extras) ? weapon.value.Extras : [];
-
-        this.applyBonus("BAB", this.bab, newAtk.atkBonus);
-        this.applyBonus("Size", this.basics.sizeStats["ac / atk"], newAtk.atkBonus);
-        // Add mwk or magic enhancements to atk bonus
-        if (weapon.value.Extras["Enhancement"] > 0) {
-          this.applyBonus("Magic Enhancement", weapon.value.Extras["Enhancement"], newAtk.atkBonus);
-          this.applyBonus("Magic Enhancement", weapon.value.Extras["Enhancement"], newAtk.dmgBonus);
-        } else if (weapon.value.Extras["Masterwork"]) {
-          this.applyBonus("Masterwork", 1, newAtk.atkBonus);
-        }
-
-        // Add AbilMod to atkBonus
-        // TODO: update to use abilOVerrides
-        if (type == "Ranged" || weapon.value.Extras.Notes?.includes("DexBonus")) {
-          // use DexBonus for weapon finesse
-          this.applyBonus("Dex", this.attributes.DexMod, newAtk.atkBonus);
-        } else {
-          this.applyBonus("Str", this.attributes.StrMod, newAtk.atkBonus);
-        }
-
-        // Add AbilMod to dmgBonus
-        if (weapon.value.Extras.Notes.includes("DexDamage")) {
-          this.applyBonus("Dex", this.attributes.DexMod, newAtk.dmgBonus);
-
-        } else if ( weapon.value.Group.includes("Thrown") ||
-          (weapon.value.Group.includes("Bows") && this.attributes.StrMod < 0) ||
-          (weapon.value.Group.includes("Bows") && name.includes("Composite")) ) {
-            // BOW && THROWN STR MOD
-            this.applyBonus("Str", this.attributes.StrMod, newAtk.dmgBonus);
-
-        } else if ( type == "Melee"){
-          if (weapon.label == mainHand.label) {
-            // Main Hand
-            if (offHand == undefined && (weapon.value.Category == "One-Handed" || weapon.value.Category == "Two-Handed")) {
-              // if using two hands (off-hand empty)
-              this.applyBonus("Str", Math.floor(this.attributes.StrMod * 1.5), newAtk.dmgBonus);
-            } else {
-              // ie, main and shield
-              this.applyBonus("Str", this.attributes.StrMod, newAtk.dmgBonus);
-            }
-
-          } else {
-            // Off Hand
-            if (weapon.value.Category == "Light" || weapon.value.Category == "One-Handed") {
-              this.applyBonus("Str", Math.floor(this.attributes.StrMod / 2), newAtk.dmgBonus);
-            }
-          }
-        }
-
-        // Dual Wield penalties done in abilities -> bonuses
-        /*
-        penalties to AtkBonus, during a full-round atk
-        light & feat      { main -2  off -2 }
-        two-weapon feat   { main -4  off -4 }
-        off hand light    { main -4  off -8 }
-        normal            { main -6  off -10}
-        */
-
-        // Weapon Specific Bonuses (like for Weapon Focus)
-        this.bonusLoop(newAtk.atkBonus, weapon.label.concat("AtkBonus"));
-        this.bonusLoop(newAtk.dmgBonus, weapon.label.concat("DmgBonus"));
-
-        // Add Active Bonuses
-        this.bonusLoop(newAtk.atkBonus, type.concat("AtkBonus"));
-        this.bonusLoop(newAtk.dmgBonus, type.concat("DmgBonus"));
-
-        type = (type == 'Melee') ? 0 : 1;
-        actions[type].children.push(newAtk);
-      } // End Weapons loop
-
-      // totalAtks > 1, dont add str to nat atk
-      if (NatAtkNum == 1) {
-        console.log('Extra Strength to Nat Attack');
-        for (const atk of Object.values(actions.melee)) {
-          console.log(atk);
-          // only apply to nat atk, if only atk including weapon atks
-          this.applyBonus("Str", (this.attributes.StrMod / 2), atk.dmgBonus);
+      // If only 1 Primary Natural Attack (no other atks), add 0.5 * Str
+      let sum = actions[0].children.length + actions[1].children.length + actions[2].children.length;
+      if ( sum == 1 ) {
+        if (actions[0].children.length) {
+          this.applyBonus("Str", (this.attributes.Str.mod / 2), actions[0].children[0].value.dmgBonus);
+        } else if (actions[1].children.length) {
+          this.applyBonus("Str", (this.attributes.Str.mod / 2), actions[1].children[0].value.dmgBonus);
+        } else if (actions[2].children.length) {
+          this.applyBonus("Str * 1.5", (this.attributes.Str.mod / 2), actions[2].children[0].value.dmgBonus);
         }
       }
 
+
+
+      console.log(actions);
       return actions;
     },
 
@@ -1458,6 +1503,7 @@ console.log('response', response);
       document.getElementsByClassName('title')[0].innerHTML = this.character.name;
 
       this.character.userSettings.cardTab = 'Main';
+      this.character.userSettings.isNPC = false;
 
 
       this.loading = false;

@@ -39,15 +39,6 @@ module.exports = (sequelize, Sequelize) => {
     notes: {
       type: Sequelize.STRING
     },
-    userSettings: {
-      type: Sequelize.JSON,
-      defaultValue: {
-        "heroPoints": 1,
-        "cardTab": "main",
-        "mainSections": [ "defense", "actions", "conditions" ],
-        "expandInventory": ['Equipped', 'Armor', 'Weapons', 'Hands', 'Back', 'Items'],
-      }
-    },
     attributes: {
       type: Sequelize.JSON,
       defaultValue: {
@@ -178,6 +169,17 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.JSON,
       defaultValue: {}
     },
+    settings: {
+      type: Sequelize.JSON,
+      defaultValue: {
+        "isNPC": false,
+        "heroPoints": 1,
+        "cardTab": "main",
+        "mainSections": [ "defense", "actions", "conditions" ],
+        "expandInventory": ['Equipped', 'Armor', 'Weapons', 'Hands', 'Back', 'Items'],
+      }
+    },
+
   });
 
   return Character;
