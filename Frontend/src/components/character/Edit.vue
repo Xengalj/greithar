@@ -759,6 +759,31 @@
                   <template #prepend> Units </template>
                 </el-input>
               </el-col>
+
+              <!-- <el-color-picker v-model="color" show-alpha :predefine="predefineColors" />
+             </template>
+
+             <script lang="ts" setup>
+             import { ref } from 'vue'
+
+             const color = ref('rgba(255, 69, 0, 0.68)')
+             const predefineColors = ref([
+               '#ff4500',
+               '#ff8c00',
+               '#ffd700',
+               '#90ee90',
+               '#00ced1',
+               '#1e90ff',
+               '#c71585',
+               'rgba(255, 69, 0, 0.68)',
+               'rgb(255, 120, 0)',
+               'hsv(51, 100, 98)',
+               'hsva(120, 40, 94, 0.5)',
+               'hsl(181, 100%, 37%)',
+               'hsla(209, 100%, 56%, 0.73)',
+               '#c7158577', -->
+
+
               <el-col :span="8">
                 <el-input v-model="res.notes" size="small" type="textarea" :autosize="{ minRows: 3, maxRows: 4 }" aria-label="`${name} Notes`" />
               </el-col>
@@ -1159,12 +1184,12 @@
           <el-col :span="4" class="center-vert"> Open Tab </el-col>
           <el-col :span="20">
             <el-select v-model="character.settings.cardTab" size="small" aria-label="View's Tab Select">
-              <el-option label="Main" value="main" />
-              <el-option label="Items" value="items" />
-              <el-option label="Skills" value="skills" />
-              <el-option label="Abilites" value="abilites" />
-              <el-option label="Magic" value="magic" />
-              <el-option label="Edit" value="edit" />
+              <el-option label="Main" value="Main" />
+              <el-option label="Items" value="Items" />
+              <el-option label="Skills" value="Skills" />
+              <el-option label="Abilites" value="Abilites" />
+              <el-option label="Magic" value="Magic" />
+              <el-option label="Edit" value="Edit" />
             </el-select>
           </el-col>
         </el-row>

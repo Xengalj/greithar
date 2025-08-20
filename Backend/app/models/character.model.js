@@ -174,8 +174,8 @@ module.exports = (sequelize, Sequelize) => {
       defaultValue: {
         "isNPC": false,
         "heroPoints": 1,
-        "cardTab": "main",
-        "mainSections": [ "defense", "actions", "conditions" ],
+        "cardTab": "Main",
+        "mainSections": [ "defense", "actions", "resources" ],
         "expandInventory": ['Equipped', 'Armor', 'Weapons', 'Hands', 'Back', 'Items'],
       }
     },

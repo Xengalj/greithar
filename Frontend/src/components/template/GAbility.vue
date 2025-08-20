@@ -30,7 +30,7 @@
       </el-col>
 
       <el-col :span="14">
-        <div class="center-horz"> Benefit </div>
+        <div class="center-horz"> Short Text </div>
         <el-input v-model="ability.benefit.text" placeholder="Text on Main Tab">
           <template #prepend> Text </template>
         </el-input>
@@ -98,34 +98,40 @@
           </template>
         </el-popconfirm>
       </el-col>
-
     </el-row>
 
     <el-divider>Extras</el-divider>
-    <div style="margin-bottom:25px;">
-      <el-row v-for="(value, prop) in ability.extras" :key="prop" :gutter="5">
-        <el-col :span="6" style="text-align:right"> {{ prop }} </el-col>
-        <el-col :span="18">
-          <el-checkbox v-if="prop == 'active'" v-model="ability.extras[prop]" style="margin:0;"/>
-          <el-checkbox v-if="prop == 'showMain'" v-model="ability.extras[prop]" style="margin:0;"/>
-          <el-input v-else-if="prop == 'source'" v-model="ability.extras[prop]" placeholder="What kind of ability is this" />
-          <div v-else> {{ value }} </div>
-        </el-col>
-      </el-row>
-    </div>
+    <el-row :gutter="5" style="margin-bottom:10px">
+      <el-col :span="6">
+        <el-checkbox v-model="ability.extras.active">Is this ability active?</el-checkbox>
+        <el-checkbox v-model="ability.extras.showMain">Show this ability on the main tab?</el-checkbox>
+      </el-col>
 
-    <div v-if="advanced">
-      OBJECT CODE
-      <div v-for="(item, name) in ability" :key="name">
-        {{ name }} : {{ item }}
-      </div>
-    </div>
+      <el-col :span="6">
+        <el-select v-model="ability.extras.source" label="Size" aria-label="Ablity Source Select">
+          <el-option v-for="type in selects.abilityTypes" :key="type" :label="type" :value="type" />
+        </el-select>
+      </el-col>
 
-    <div>
-      <el-button type="info" @click="advanced = advanced ? false : true;"> Toggle Advanced Mode </el-button>
-      <el-button type="warning" @click="reset()"> Reset </el-button>
-      <el-button v-if="newAbil" type="primary" @click="saveAbil()"> Save </el-button>
-    </div>
+      <el-col :offset="1" :span="11">
+        <div class="center-horz">
+          <el-switch v-model="advanced" inline-prompt active-text=" Advanced " inactive-text=" Normal " aria-label="Advanced Mode Switch" />
+        </div>
+        <div v-if="advanced">
+          OBJECT CODE:
+          <div v-for="(item, name) in ability" :key="name">
+            {{ name }} : {{ item }}
+          </div>
+        </div>
+      </el-col>
+    </el-row>
+
+    <el-row>
+      <el-col :offset="19" :span="5">
+        <el-button @click="reset()" type="warning"> Reset </el-button>
+        <el-button @click="saveAbil()" type="primary"> Save </el-button>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -134,7 +140,6 @@ export default {
   name: 'g-ability',
   emits: ['saveAbil'],
   props: {
-    newAbil: { type: Boolean },
     name: { type: String },
     source: { type: Object }
   },
@@ -142,7 +147,7 @@ export default {
     return {
       original: { name: "", text: "" },
       newBonusName: "",
-      advanced: false,
+      advanced: this.$store.state.auth.user.roles.includes('admin'),
       customTarget: "",
       selects: {
         "trigger": [
@@ -154,6 +159,7 @@ export default {
           { "color": "#4167F0", "label": "Immediate",   "value": "Immediate" },
           { "color": "#911eb4", "label": "Free",        "value": "Free" }
         ],
+        "abilityTypes": [ "Race", "Trait", "Class", "Feat", "Other" ],
         "targets": []
       },
     }
