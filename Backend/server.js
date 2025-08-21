@@ -10,7 +10,7 @@ const app = express();
 *                           *
 \***************************/
 let isProd = 0
-let reSeed = 1
+let reSeed = 0
 
 if (isProd) { app.use(express.static(path)); }
 

@@ -759,31 +759,9 @@
                   <template #prepend> Units </template>
                 </el-input>
               </el-col>
-
-              <!-- <el-color-picker v-model="color" show-alpha :predefine="predefineColors" />
-             </template>
-
-             <script lang="ts" setup>
-             import { ref } from 'vue'
-
-             const color = ref('rgba(255, 69, 0, 0.68)')
-             const predefineColors = ref([
-               '#ff4500',
-               '#ff8c00',
-               '#ffd700',
-               '#90ee90',
-               '#00ced1',
-               '#1e90ff',
-               '#c71585',
-               'rgba(255, 69, 0, 0.68)',
-               'rgb(255, 120, 0)',
-               'hsv(51, 100, 98)',
-               'hsva(120, 40, 94, 0.5)',
-               'hsl(181, 100%, 37%)',
-               'hsla(209, 100%, 56%, 0.73)',
-               '#c7158577', -->
-
-
+              <el-col :span="1">
+                <el-color-picker v-model="res.color" :predefine="[ '#4167F0', '#FFDE0A', '#E63415', '#bfef45', '#ADD8E6', '#42d4f4', '#E63415', '#911eb4', '#f032e6', '#71797E' ]" />
+              </el-col>
               <el-col :span="8">
                 <el-input v-model="res.notes" size="small" type="textarea" :autosize="{ minRows: 3, maxRows: 4 }" aria-label="`${name} Notes`" />
               </el-col>
@@ -1178,7 +1156,10 @@
         </template>
         <el-row>
           <el-col :span="4" class="center-vert"> Hero Points </el-col>
-          <el-col :span="20"> <el-input-number v-model="character.settings.heroPoints" :min="0" :max="4" aria-label="Hero Points" /> </el-col>
+          <el-col :span="5"> <el-input-number v-model="character.settings.heroPoints" :min="0" :max="4" aria-label="Hero Points" /> </el-col>
+          <el-col v-if="advanced" :offset="13" :span="2" class="center-horz">
+            <el-switch v-model="character.settings.isNPC" inline-prompt active-text=" NPC " inactive-text=" PLAYER " aria-label="Player / NPC Switch" />
+          </el-col>
         </el-row>
         <el-row>
           <el-col :span="4" class="center-vert"> Open Tab </el-col>
@@ -1188,7 +1169,7 @@
               <el-option label="Items" value="Items" />
               <el-option label="Skills" value="Skills" />
               <el-option label="Abilites" value="Abilites" />
-              <el-option label="Magic" value="Magic" />
+              <el-option label="Spells" value="Spells" />
               <el-option label="Edit" value="Edit" />
             </el-select>
           </el-col>
@@ -1409,10 +1390,10 @@
                 </el-tag>
               </el-col>
               <el-col :span="10">
-                <el-input-number v-model="newLevel.skills[name].newRanks" :min="0" :max="character.basics.cr+1" size="small" aria-label="New Ranks" />
+                <el-input-number v-model="newLevel.skills[name].newRanks" :min="0" :max="character.basics.cr+1-character.skills[name].ranks-newLevel.skills[name].backgroundRanks" size="small" aria-label="New Ranks" />
               </el-col>
               <el-col :span="10">
-                <el-input-number v-if="skill.background" v-model="newLevel.skills[name].backgroundRanks" :min="0" :max="Math.min(2, character.basics.cr+1)" size="small" aria-label="New Background Ranks" />
+                <el-input-number v-if="skill.background" v-model="newLevel.skills[name].backgroundRanks" :min="0" :max="Math.min(2, character.basics.cr+1-character.skills[name].ranks-newLevel.skills[name].newRanks)" size="small" aria-label="New Background Ranks" />
               </el-col>
             </el-row>
           </el-col>
@@ -1501,14 +1482,6 @@
         <el-button size="small" type="info" @click="newCondition = {}; addingCondition = false;"> Cancel </el-button>
       </el-row>
     </el-dialog>
-
-
-    <!--
-    <div v-for="(item, name) in this.character" :key="name">
-      {{ name }} : {{ item }}
-      <br><br>
-    </div>
-    -->
 
   </div>
 </template>
@@ -1679,14 +1652,14 @@ export default {
 
   },
   mounted() {
-if (!this.rules.size) { this.$router.push("/"); }
+    if (!this.rules.size) { this.$router.push("/"); }
     UserService.getAllUsers()
     .then(response => { this.users = response.data.map((user) => { return {'username': user.username, 'id': user.id} } ); })
     .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
 
     CharacterService.getCharacter(this.$route.params.id)
     .then((response) => {
-console.log(response);
+      console.log(response);
       this.character = response.character[0];
       this.loading = false;
     })
@@ -1757,15 +1730,10 @@ console.log(response);
         obj.sources.push(`${prefix}${value} ${name}`);
       }
     },
-
     saveCharacter() {
       CharacterService.updateCharacter(this.character)
-      .then((response) => {
-        console.log('response:', response);
-        // window.location.reload();
-      })
+      .then((response) => { this.$message({ message: `${response.name} updated`, type: 'success', }); })
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
-
     },
 
     // Racial Methods
@@ -1806,7 +1774,7 @@ console.log(response);
         "skills": {},
         "abilites": [],
         "newSpells": [],
-        "useGaldur": false
+        "useGaldur": this.character.classes[this.newLevel.class] ? this.character.classes[this.newLevel.class].useGaldur : false,
       };
 
       // skills
@@ -1830,9 +1798,13 @@ console.log(response);
       // magic
       if (this.classes[lvl.class].magic) {
         if (lvl.level != 1) {
-          let newSpellNum = this.classes[lvl.class].magic.spellsKnown.perLevel.match(/\d+/)[0]
-          for (let i = 0; i < newSpellNum; i++) {
-            lvl.newSpells.push({ "name": '', "level": 0, "class": lvl.class });
+          let newSpellArr = this.classes[lvl.class].magic.spellsKnown.byLevel[lvl.level];
+          for (let level = 0; level < newSpellArr.length; level++) {
+            let lvlNum = newSpellArr[level] - Object.keys(this.character.spells[lvl.class][level]).length;
+            for (let j = 0; j < lvlNum; j++) {
+              lvl.newSpells.push({ "name": '', "level": level, "class": lvl.class });
+            }
+
           }
         }
       }
@@ -1866,14 +1838,32 @@ console.log(response);
         cClass.reserveSpent = cClass.reserveSpent ? cClass.reserveSpent : 0;
         cClass.openTotal = Math.floor( source.magic.galdurTotal[this.newLevel.level] / 2 );
         cClass.reserveTotal = Math.ceil( source.magic.galdurTotal[this.newLevel.level] / 2 );
-        cClass.preparedSpells = source.magic.spellsPerDay[this.newLevel.level];
+        cClass.spellsPerDay = source.magic.spellsPerDay[this.newLevel.level];
 
-        // Even if no spells were added at level up, create teh spot for em
+        if (source.magic.style.includes('Prepared')) {
+          cClass.preparedSpells = [];
+          source.magic.spellsPerDay[this.newLevel.level].forEach((spells, level) => {
+            cClass.preparedSpells[level] = [];
+            for (let i = 0; i < spells; i++) {
+              cClass.preparedSpells[level].push([]);
+            }
+          });
+        }
+
+        // Even if no spells were added at level up, create the spot for em
         if ( !this.character.spells[this.newLevel.class] ) { this.character.spells[this.newLevel.class] = []; }
         this.newLevel.newSpells.forEach(spell => {
           if ( !this.character.spells[spell.class][spell.level] ) { this.character.spells[spell.class][spell.level] = {}; }
           this.character.spells[spell.class][spell.level][spell.name] = {
-            'SR': false, '​​​​​​castTime': "", '​​​​​​casts': 0, '​​​​​​components': "V,S", '​​​​​​description': "", '​​​​​​duration': "", '​​​​​​range': "", 'save': "", 'target': ""
+            "SR": false,
+            "castTime": "",
+            "casts": 0,
+            "components": "V,S",
+            "description": "",
+            "duration": "",
+            "range": "",
+            "save": "",
+            "target": ""
           }
         });
       }
@@ -1898,15 +1888,13 @@ console.log(response);
     *                           *
     \***************************/
     toggleAbility(name, abil) {
-      console.log(name, abil);
-      // TODO: FIX
-      // if (this.activeConditions[name]) {
-      //   delete this.activeConditions[name];
-      //   this.actions.special[name].extras.active = false;
-      // } else {
-      //   this.activeConditions[name] = abil;
-      //   this.actions.special[name].extras.active = true;
-      // }
+      if (this.activeConditions[name]) {
+        delete this.activeConditions[name];
+        this.actions.special[name].extras.active = false;
+      } else {
+        this.activeConditions[name] = abil;
+        this.actions.special[name].extras.active = true;
+      }
     },
     abilShowMain(name, abil) { abil.extras.showMain = abil.extras.showMain ? false : true; },
     addNewAbility() {
@@ -1957,26 +1945,6 @@ console.log(response);
         "Damage Type": [ "Piercing" ],
         "Proficiency": "Natural",
         "Category": "Primary"
-
-        /*
-
-
-        "Bite": {
-          "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "2d8",  "colossal": "4d6"  },
-          "Critical": "20/x2",
-          "Range": 0,
-          "Damage Type": [ "Piercing" ],
-          "Proficiency": "Natural",
-          "Category": "Primary",
-
-          atkNum: 1,
-          atkAbilOverride: "",
-          dmgAbilOverride: "",
-          trigger: "Standard",
-          extras: {}
-        }
-
-        */
       };
     },
     addNewResource() {
@@ -1987,8 +1955,6 @@ console.log(response);
         notes: 'Notes'
       };
     },
-
-
 
     /***************************\
     *                           *

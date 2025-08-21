@@ -29,9 +29,12 @@
       <el-table-column prop="classes" label="Class" sortable>
         <template #default="scope">
           <el-tag effect="dark">
-            Level
-            <span v-for="(cClass, cName) in scope.row.classes" :key="cName">
-              {{ cClass.levels }} {{ cName }}
+            <span v-if="Object.keys(scope.row.classes).length == 0"> Level 0 </span>
+            <span v-for="(cClass, cName, index) in scope.row.classes" :key="cName">
+              {{ capFirsts(cName) }} {{ cClass.levels }}
+              <span v-if="index < Object.keys(scope.row.classes).length-1">
+                /
+              </span>
             </span>
           </el-tag>
         </template>
@@ -115,6 +118,8 @@ export default {
   },
 
   methods: {
+    capFirsts(string) { return string ? string.replace(/(^\w|\s\w)/g, m => m.toUpperCase()) : ""; },
+
     loadCharacters() {
       let offset = this.pageSize * (this.currentPage-1);
       CharacterService.getAllCharacters(this.listID, offset, this.pageSize)
