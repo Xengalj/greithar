@@ -839,6 +839,7 @@
                       <el-tag effect="dark"> Level {{ lvl }} Spells </el-tag>
                     </el-col>
                     <el-col :span="7">
+
                       <el-tooltip placement="top" effect="light">
                         <el-tag effect="dark" type="info">
                           Save DC : {{ 10 + lvl + (attributes[classes[cName].magic.castingAtr].mod) }}
@@ -849,6 +850,7 @@
                           + {{ lvl }} Level Spell
                         </template>
                       </el-tooltip>
+
                     </el-col>
                     <el-col :span="10">
                       <el-tooltip placement="top" effect="light">
@@ -867,10 +869,12 @@
                 <el-row v-for="(spell, sName) in spells" :key="sName" :gutter="10" align="middle" style="margin-bottom:15px;">
                   <el-col :span="4" class="center-horz">
                     <el-popconfirm
-                      :title="`Cast for ${spell.casts} Galdur?`"
+                      :title="`Cast for ${spellCost} Galdur?`"
+@show="spellPop(spell, lvl, cName)"
+
+                      @confirm="castGSpell(spell, cName)"
                       confirm-button-text="Yes"
                       cancel-button-text="No"
-                      @confirm="castSpell(spell)"
                       hide-icon
                     >
                     <template #reference>
@@ -1101,6 +1105,7 @@ export default {
       spellTabs: "",
       newSpell: { name: "", level: 0, class: "" },
       spellsCollapse: [],
+      spellCost: "",
 
       character: {},
 
@@ -1830,14 +1835,20 @@ export default {
     },
 
     rest() {
-      console.log('RESTING');
       this.character.health.damage = 0;
       this.character.health.nonlethal = 0;
+      // reset resources like rage
       for (const res of Object.values(this.character.resources)) {
         res.left = res.total;
       }
-
       // reset spells
+      for (const cClass of Object.values(this.character.spells)) {
+        for (const spellLevel of Object.values(cClass)) {
+          for (const spell of Object.values(spellLevel)) {
+            spell.casts = 0;
+          }
+        }
+      }
 
       this.$message({ message: "Resting for 8 hours", type: "success" });
     },
@@ -2000,8 +2011,29 @@ export default {
       }
     },
 
-    castSpell(spell) {
-      console.log(spell);
+    spellPop(spell, level, cName) {
+      let cost = 1 + level;
+      // Spontaneous = casts * 1
+      // Prepared    = casts * spell level
+      let mult = this.classes[cName].magic.style.includes('Spontaneous') ? 1 : level;
+      cost += (mult * spell.casts);
+      this.spellCost = cost;
+    },
+
+    castGSpell(spell, cName) {
+      console.log(`Cast spell`, this.spellCost);
+
+      let open = this.character.classes[cName].openTotal;
+      let reserve = this.character.classes[cName].reserveTotal;
+
+
+      let remain = this.character.classes[cName].openTotal - this.spellCost;
+      console.log(remain);
+
+      // subract open galdur
+      // subtarct reserve galdur
+
+      spell.casts++;
     },
 
   }
