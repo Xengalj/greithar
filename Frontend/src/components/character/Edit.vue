@@ -474,14 +474,14 @@
                   </el-col>
                   <el-col :span="8">
                     <el-progress :text-inside="true" :stroke-width="24"
-                      :percentage=" Math.floor( ( (cClass.openTotal - cClass.openSpent) / cClass.openTotal ) * 100 ) "
+                      :percentage=" Math.floor( ( cClass.openRemaining / cClass.openTotal ) * 100 ) "
                     >
-                      {{ cClass.openTotal - cClass.openSpent }} / {{ cClass.openTotal }}
+                      {{ cClass.openRemaining }} / {{ cClass.openTotal }}
                     </el-progress>
                   </el-col>
                   <el-col :span="6" class="center-horz"  v-if="advanced">
-                    <el-tooltip content="Spent Galdur" placement="top" effect="light">
-                      <el-input-number v-model="cClass.openSpent" :min="0" :max="cClass.openTotal" aria-label="Spent Open Galdur" />
+                    <el-tooltip content="Remaining Galdur" placement="top" effect="light">
+                      <el-input-number v-model="cClass.openRemaining" :min="0" :max="cClass.openTotal" aria-label="Remaining Open Galdur" />
                     </el-tooltip>
                   </el-col>
                     <el-col :span="6" class="center-horz"  v-if="advanced">
@@ -497,14 +497,14 @@
                   </el-col>
                   <el-col :span="8">
                     <el-progress :text-inside="true" :stroke-width="24" status="warning"
-                      :percentage=" Math.floor( ( (cClass.reserveTotal - cClass.reserveSpent) / cClass.reserveTotal ) * 100 ) "
+                      :percentage=" Math.floor( ( cClass.reserveRemaining / cClass.reserveTotal ) * 100 ) "
                     >
-                      {{ cClass.reserveTotal - cClass.reserveSpent }} / {{ cClass.reserveTotal }}
+                      {{ cClass.reserveRemaining }} / {{ cClass.reserveTotal }}
                     </el-progress>
                   </el-col>
                   <el-col :span="6" class="center-horz"  v-if="advanced">
-                    <el-tooltip content="Spent Galdur" placement="top" effect="light">
-                      <el-input-number v-model="cClass.reserveSpent" :min="0" :max="cClass.reserveTotal" aria-label="Spent Reserve Galdur" />
+                    <el-tooltip content="Remaining Galdur" placement="top" effect="light">
+                      <el-input-number v-model="cClass.reserveRemaining" :min="0" :max="cClass.reserveTotal" aria-label="Remaining Reserve Galdur" />
                     </el-tooltip>
                   </el-col>
                   <el-col :span="6" class="center-horz"  v-if="advanced">
@@ -520,14 +520,14 @@
                   </el-col>
                   <el-col :span="8">
                     <el-progress :text-inside="true" :stroke-width="24" color="#909399"
-                      :percentage=" Math.floor( ( (classes[cName].magic.extraGaldur.total[cClass.levels] - cClass.extraSpent) / classes[cName].magic.extraGaldur.total[cClass.levels] ) * 100 ) "
+                      :percentage=" Math.floor( ( cClass.extraRemaining / classes[cName].magic.extraGaldur.total[cClass.levels] ) * 100 ) "
                     >
-                      {{ classes[cName].magic.extraGaldur.total[cClass.levels] - cClass.extraSpent }} / {{ classes[cName].magic.extraGaldur.total[cClass.levels] }}
+                      {{ cClass.extraRemaining }} / {{ classes[cName].magic.extraGaldur.total[cClass.levels] }}
                     </el-progress>
                   </el-col>
                   <el-col :span="6" class="center-horz"  v-if="advanced">
-                    <el-tooltip content="Spent Galdur" placement="top" effect="light">
-                      <el-input-number v-model="cClass.extraSpent" :min="0" :max="classes[cName].magic.extraGaldur.total[cClass.levels]" :aria-label="`Spent ${classes[cName].magic.extraGaldur.poolName} Galdur`" />
+                    <el-tooltip content="Remaining Galdur" placement="top" effect="light">
+                      <el-input-number v-model="cClass.extraRemaining" :min="0" :max="classes[cName].magic.extraGaldur.total[cClass.levels]" :aria-label="`Remaining ${classes[cName].magic.extraGaldur.poolName} Galdur`" />
                     </el-tooltip>
                   </el-col>
                 </el-row>
@@ -1834,10 +1834,17 @@ export default {
 
       if ( source.magic ) {
         cClass.useGaldur = cClass.useGaldur ? cClass.useGaldur : true;
-        cClass.openSpent = cClass.openSpent ? cClass.openSpent : 0;
-        cClass.reserveSpent = cClass.reserveSpent ? cClass.reserveSpent : 0;
         cClass.openTotal = Math.floor( source.magic.galdurTotal[this.newLevel.level] / 2 );
+        cClass.openRemaining = cClass.openRemaining ? cClass.openRemaining : cClass.openTotal;
+
         cClass.reserveTotal = Math.ceil( source.magic.galdurTotal[this.newLevel.level] / 2 );
+        cClass.reserveRemaining = cClass.reserveRemaining ? cClass.reserveRemaining : cClass.reserveTotal;
+
+        if (source.magic.extraGaldur) {
+          cClass.extraTotal = source.magic.extraGaldur.total[cClass.levels];
+          cClass.extraRemaining = cClass.extraRemaining ? cClass.extraRemaining : source.magic.extraGaldur.total;
+        }
+
         cClass.spellsPerDay = source.magic.spellsPerDay[this.newLevel.level];
 
         if (source.magic.style.includes('Prepared')) {
