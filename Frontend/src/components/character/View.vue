@@ -848,6 +848,43 @@
 
 
 
+                            <el-collapse v-model="spellsCollapse">
+              <el-collapse-item v-for="(spells, lvl) in cClass" :key="lvl" :name="lvl">
+
+                <template #title>
+                  <el-row :gutter="10">
+                    <el-col :span="7">
+                      <el-tag effect="dark"> Level {{ lvl }} Spells </el-tag>
+                    </el-col>
+                    <el-col :span="7">
+                      <el-tooltip placement="top" effect="light">
+                        <el-tag effect="dark" type="info">
+                          Save DC : {{ 10 + lvl + (attributes[classes[cName].magic.castingAtr].mod) }}
+                        </el-tag>
+                        <template #content>
+                          10
+                          + {{ attributes[classes[cName].magic.castingAtr].mod }} {{ classes[cName].magic.castingAtr }}
+                          + {{ lvl }} Level Spell
+                        </template>
+                      </el-tooltip>
+                    </el-col>
+                    <el-col :span="10">
+                      <el-tooltip placement="top" effect="light">
+                        <el-tag effect="dark" type="info">
+                          Defensive Casting DC : {{ 15 + (lvl * 2) }}
+                        </el-tag>
+                        <template #content>
+                          Cast defensively to avoid an Attack of Opportunity <br>
+                          15 + {{ lvl * 2 }} (Spell Level x 2)
+                        </template>
+                      </el-tooltip>
+                    </el-col>
+                  </el-row>
+                </template>
+
+                
+
+
                                   <el-row :gutter="10">
                     <el-col :span="7">
                       <el-tag effect="dark"> Level {{ lvl }} Spells </el-tag>
@@ -997,6 +1034,8 @@
                   </el-col>
                   <el-col :span="2" class="center-horz">
                     <el-tag effect="dark"> {{ spell.SR ? 'Yes' : 'No' }} SR </el-tag>
+                    <br />
+                    MetaMagic dropdown
                   </el-col>
                 </el-row>
               </el-collapse-item>
