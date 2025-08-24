@@ -765,13 +765,11 @@
             <el-button type="primary" size="small" @click="confirm" :disabled="newSpell.name == '' || newSpell.class == ''">Yes</el-button>
           </template>
         </el-popconfirm>
-
         <el-tabs v-model="spellTabs" type="card" ref="spellTabs" style="padding-top:10px;">
           <el-tab-pane v-for="(cClass, cName) in character.spells" :key="cName" :label="capFirsts(cName)" :name="cName" >
 
             <el-row :gutter="10" style="margin-bottom:10px" align="middle">
               <el-col :span="12">
-
                 <div v-if="character.classes[cName].useGaldur">
                   <el-row :gutter="10">
                     <el-col :span="5">
@@ -804,7 +802,6 @@
                     </el-col>
                   </el-row>
                 </div>
-
                 <div v-else-if="classes[cName].magic.style.includes('Spontaneous')">
                   spellsPerDay
                   {{ cName }} : {{ character.classes[cName] }}
@@ -823,233 +820,197 @@
               </el-col>
             </el-row>
 
-
-
-
-
-            
             <!-- Prepared Spell List -->
             <div v-if="classes[cName].magic.style.includes('Prepared') && !character.classes[cName].useGaldur">
-              PREPARED SPELL SLOTS
+              <el-collapse v-model="spellsCollapse">
 
-              <el-row :gutter="10" v-for="(level, index) in cClass.preparedSpells" :key="index">
-                <el-col :span="2">
-                  Level {{ level }}
-                </el-col>
-                <el-col :span="22">
-                  <span v-for="num in numOfSpells" :key="num">
-                    <el-select v-model="cClass.preparedSpells[level][num-1]" style="max-width:33%" aria-label="`Prepared Spell Select for Level ${level} Number ${num}`">
-                      <el-option v-for="(spell, name) in character.spells[cName][level]" :key="name" :label="name" :value="name" >
-                        {{ name }}
-                      </el-option>
-                    </el-select>
-                  </span>
-                </el-col>
+                <el-collapse-item v-for="(spells, lvl) in character.classes[cName].preparedSpells" :key="lvl" :name="lvl">
+                  <template #title>
+                    <el-row :gutter="10">
+                      <el-col :span="7">
+                        <el-tag effect="dark"> Level {{ lvl }} Spells </el-tag>
+                      </el-col>
+                      <el-col :span="7">
+                        <el-tooltip placement="top" effect="light">
+                          <el-tag effect="dark" type="info">
+                            Save DC : {{ 10 + lvl + (attributes[classes[cName].magic.castingAtr].mod) }}
+                          </el-tag>
+                          <template #content>
+                            10
+                            + {{ attributes[classes[cName].magic.castingAtr].mod }} {{ classes[cName].magic.castingAtr }}
+                            + {{ lvl }} Level Spell
+                          </template>
+                        </el-tooltip>
+                      </el-col>
+                      <el-col :span="10">
+                        <el-tooltip placement="top" effect="light">
+                          <el-tag effect="dark" type="info">
+                            Defensive Casting DC : {{ 15 + (lvl * 2) }}
+                          </el-tag>
+                          <template #content>
+                            Cast defensively to avoid an Attack of Opportunity <br>
+                            15 + {{ lvl * 2 }} (Spell Level x 2)
+                          </template>
+                        </el-tooltip>
+                      </el-col>
+                    </el-row>
+                  </template>
 
-
-
-                            <el-collapse v-model="spellsCollapse">
-              <el-collapse-item v-for="(spells, lvl) in cClass" :key="lvl" :name="lvl">
-
-                <template #title>
-                  <el-row :gutter="10">
-                    <el-col :span="7">
-                      <el-tag effect="dark"> Level {{ lvl }} Spells </el-tag>
-                    </el-col>
-                    <el-col :span="7">
-                      <el-tooltip placement="top" effect="light">
-                        <el-tag effect="dark" type="info">
-                          Save DC : {{ 10 + lvl + (attributes[classes[cName].magic.castingAtr].mod) }}
-                        </el-tag>
-                        <template #content>
-                          10
-                          + {{ attributes[classes[cName].magic.castingAtr].mod }} {{ classes[cName].magic.castingAtr }}
-                          + {{ lvl }} Level Spell
+                  <el-row v-for="(spell, index) in spells" :key="index" :gutter="10" align="middle" style="margin-bottom:15px;">
+                    <el-col :span="4" class="center-horz">
+                      <el-popconfirm :title="`Cast ${spell}`"
+                      @confirm="castPSpell(cName, lvl, spell, index)" hide-icon>
+                        <template #reference>
+                          <el-button :ref="`${spell}-${index}`" type="primary" plain>
+                            <!-- :disabled="lvl != 0 && character.spells[cName][lvl][spell].casts >= 1" -->
+                            {{ spell }} : {{ character.spells[cName][lvl][spell].casts }}
+                          </el-button>
                         </template>
-                      </el-tooltip>
-                    </el-col>
-                    <el-col :span="10">
-                      <el-tooltip placement="top" effect="light">
-                        <el-tag effect="dark" type="info">
-                          Defensive Casting DC : {{ 15 + (lvl * 2) }}
-                        </el-tag>
-                        <template #content>
-                          Cast defensively to avoid an Attack of Opportunity <br>
-                          15 + {{ lvl * 2 }} (Spell Level x 2)
+                        <template #actions="{ confirm }">
+                          <el-button @click="confirm" size="small" type="primary">
+                            Yes
+                          </el-button>
                         </template>
-                      </el-tooltip>
+                      </el-popconfirm>
+                    </el-col>
+                    <el-col :span="8">
+                      <el-input v-model="character.spells[cName][lvl][spell].description" :autosize="{ minRows: 2, maxRows: 4 }" :aria-label="`${spell} Spell Description`" type="textarea" />
+                    </el-col>
+                    <el-col :span="5">
+                      <el-input v-model="character.spells[cName][lvl][spell].components" aria-label="Components">
+                        <template #prepend>Components</template>
+                      </el-input>
+                      <el-input v-model="character.spells[cName][lvl][spell].castTime" aria-label="Casting Time">
+                        <template #prepend>Casting Time</template>
+                      </el-input>
+                      <el-input v-model="character.spells[cName][lvl][spell].duration" aria-label="Duration">
+                        <template #prepend>Duration</template>
+                      </el-input>
+                    </el-col>
+                    <el-col :span="5">
+                      <el-input v-model="character.spells[cName][lvl][spell].target" aria-label="Target">
+                        <template #prepend>Target</template>
+                      </el-input>
+                      <el-input v-model="character.spells[cName][lvl][spell].range" aria-label="Range">
+                        <template #prepend>Range</template>
+                      </el-input>
+                      <el-input v-model="character.spells[cName][lvl][spell].save" aria-label="Save">
+                        <template #prepend>Save</template>
+                      </el-input>
+                    </el-col>
+                    <el-col :span="2" class="center-horz">
+                      <el-tag effect="dark"> {{ character.spells[cName][lvl][spell].SR ? 'Yes' : 'No' }} SR </el-tag>
                     </el-col>
                   </el-row>
-                </template>
-
-                
-
-
-                                  <el-row :gutter="10">
-                    <el-col :span="7">
-                      <el-tag effect="dark"> Level {{ lvl }} Spells </el-tag>
-                    </el-col>
-                    <el-col :span="7">
-                      <el-tooltip placement="top" effect="light">
-                        <el-tag effect="dark" type="info">
-                          Save DC : {{ 10 + lvl + (attributes[classes[cName].magic.castingAtr].mod) }}
-                        </el-tag>
-                        <template #content>
-                          10
-                          + {{ attributes[classes[cName].magic.castingAtr].mod }} {{ classes[cName].magic.castingAtr }}
-                          + {{ lvl }} Level Spell
-                        </template>
-                      </el-tooltip>
-                    </el-col>
-                    <el-col :span="10">
-                      <el-tooltip placement="top" effect="light">
-                        <el-tag effect="dark" type="info">
-                          Defensive Casting DC : {{ 15 + (lvl * 2) }}
-                        </el-tag>
-                        <template #content>
-                          Cast defensively to avoid an Attack of Opportunity <br>
-                          15 + {{ lvl * 2 }} (Spell Level x 2)
-                        </template>
-                      </el-tooltip>
-                    </el-col>
-                  </el-row>
-                </template>
-
-                <el-row v-for="(spell, sName) in spells" :key="sName" :gutter="10" align="middle" style="margin-bottom:15px;">
-                  <el-col :span="4" class="center-horz">
-                    <el-popover @show="spellPop(spell, lvl, cName)" trigger="click">
-                      <template #reference>
-                        <el-button
-                          :type="(character.classes[cName].openRemaining > 0) ? 'primary' : 'warning'"
-                          :disabled="( (character.classes[cName].reserveRemaining - this.spellCost) < 0 ) ||
-                                     ( (lvl==0) && (character.classes[cName].reserveRemaining==0) )"
-                          plain>
-                          {{ sName }}
-
-                
-
-
-                
-              </el-row>
+                </el-collapse-item>
+              </el-collapse>
             </div>
 
-
-
-
-
-            
             <!-- Spontaneous & Galdur Spell List -->
-            <el-collapse v-model="spellsCollapse">
-              <el-collapse-item v-for="(spells, lvl) in cClass" :key="lvl" :name="lvl">
+            <div v-else>
+              <el-collapse v-model="spellsCollapse">
+                <el-collapse-item v-for="(spells, lvl) in cClass" :key="lvl" :name="lvl">
 
-                <template #title>
-                  <el-row :gutter="10">
-                    <el-col :span="7">
-                      <el-tag effect="dark"> Level {{ lvl }} Spells </el-tag>
-                    </el-col>
-                    <el-col :span="7">
-                      <el-tooltip placement="top" effect="light">
-                        <el-tag effect="dark" type="info">
-                          Save DC : {{ 10 + lvl + (attributes[classes[cName].magic.castingAtr].mod) }}
-                        </el-tag>
-                        <template #content>
-                          10
-                          + {{ attributes[classes[cName].magic.castingAtr].mod }} {{ classes[cName].magic.castingAtr }}
-                          + {{ lvl }} Level Spell
+                  <template #title>
+                    <el-row :gutter="10">
+                      <el-col :span="7">
+                        <el-tag effect="dark"> Level {{ lvl }} Spells </el-tag>
+                      </el-col>
+                      <el-col :span="7">
+                        <el-tooltip placement="top" effect="light">
+                          <el-tag effect="dark" type="info">
+                            Save DC : {{ 10 + lvl + (attributes[classes[cName].magic.castingAtr].mod) }}
+                          </el-tag>
+                          <template #content>
+                            10
+                            + {{ attributes[classes[cName].magic.castingAtr].mod }} {{ classes[cName].magic.castingAtr }}
+                            + {{ lvl }} Level Spell
+                          </template>
+                        </el-tooltip>
+                      </el-col>
+                      <el-col :span="10">
+                        <el-tooltip placement="top" effect="light">
+                          <el-tag effect="dark" type="info">
+                            Defensive Casting DC : {{ 15 + (lvl * 2) }}
+                          </el-tag>
+                          <template #content>
+                            Cast defensively to avoid an Attack of Opportunity <br>
+                            15 + {{ lvl * 2 }} (Spell Level x 2)
+                          </template>
+                        </el-tooltip>
+                      </el-col>
+                    </el-row>
+                  </template>
+
+                  <el-row v-for="(spell, sName) in spells" :key="sName" :gutter="10" align="middle" style="margin-bottom:15px;">
+                    <el-col :span="4" class="center-horz">
+                      <el-popover @show="spellPop(spell, lvl, cName)" trigger="click">
+                        <template #reference>
+                          <el-button plain
+                            :disabled="( (character.classes[cName].reserveRemaining - this.spellCost) < 0 ) ||
+                            ( (lvl==0) && (character.classes[cName].reserveRemaining==0) )"
+                            :type="(character.classes[cName].openRemaining > 0) ? 'primary' : 'warning'">
+                            {{ sName }}
+                          </el-button>
                         </template>
-                      </el-tooltip>
-                    </el-col>
-                    <el-col :span="10">
-                      <el-tooltip placement="top" effect="light">
-                        <el-tag effect="dark" type="info">
-                          Defensive Casting DC : {{ 15 + (lvl * 2) }}
-                        </el-tag>
-                        <template #content>
-                          Cast defensively to avoid an Attack of Opportunity <br>
-                          15 + {{ lvl * 2 }} (Spell Level x 2)
+                        <template #default>
+                          <el-row>
+                            {{ `Cast for ${spellCost} Galdur?` }}
+                          </el-row>
+                          <el-row v-if="(character.classes[cName].openRemaining - this.spellCost) <= 0">
+                            <el-tooltip placement="top" effect="light">
+                              <el-tag type="warning">
+                                {{ `Will Save (DC ${this.gFatigue})` }}
+                              </el-tag>
+                              <template #content>
+                                Will : {{ saves.will.total > 0 ? "+" : "" }}{{ saves.will.total }}
+                              </template>
+                            </el-tooltip>
+                          </el-row>
+                          <el-row justify="end">
+                            <el-button @click="castGSpell(sName, spell, lvl, cName)" type="primary" size="small"> Yes </el-button>
+                          </el-row>
                         </template>
-                      </el-tooltip>
+                      </el-popover>
+                    </el-col>
+                    <el-col :span="8">
+                      <el-input v-model="spell.description" :autosize="{ minRows: 2, maxRows: 4 }" :aria-label="`${sName} Spell Description`"  type="textarea" />
+                    </el-col>
+                    <el-col :span="5">
+                      <el-input v-model="spell.components" aria-label="Components">
+                        <template #prepend>Components</template>
+                      </el-input>
+                      <el-input v-model="spell.castTime" aria-label="Casting Time">
+                        <template #prepend>Casting Time</template>
+                      </el-input>
+                      <el-input v-model="spell.duration" aria-label="Duration">
+                        <template #prepend>Duration</template>
+                      </el-input>
+                    </el-col>
+                    <el-col :span="5">
+                      <el-input v-model="spell.target" aria-label="Target">
+                        <template #prepend>Target</template>
+                      </el-input>
+                      <el-input v-model="spell.range" aria-label="Range">
+                        <template #prepend>Range</template>
+                      </el-input>
+                      <el-input v-model="spell.save" aria-label="Save">
+                        <template #prepend>Save</template>
+                      </el-input>
+                    </el-col>
+                    <el-col :span="2" class="center-horz">
+                      <el-tag effect="dark"> {{ spell.SR ? 'Yes' : 'No' }} SR </el-tag>
+                      <!--
+                      MetaMagic dropdown
+                      <el-select v-model="character.basics.size" label="Size">
+                        <el-option v-for="size in Object.keys(rules.size)" :key="size" :label="capFirsts(size)" :value="size" />
+                      </el-select>
+                      -->
                     </el-col>
                   </el-row>
-                </template>
-
-                <el-row v-for="(spell, sName) in spells" :key="sName" :gutter="10" align="middle" style="margin-bottom:15px;">
-                  <el-col :span="4" class="center-horz">
-                    <el-popover @show="spellPop(spell, lvl, cName)" trigger="click">
-                      <template #reference>
-                        <el-button
-                          :type="(character.classes[cName].openRemaining > 0) ? 'primary' : 'warning'"
-                          :disabled="( (character.classes[cName].reserveRemaining - this.spellCost) < 0 ) ||
-                                     ( (lvl==0) && (character.classes[cName].reserveRemaining==0) )"
-                          plain>
-                          {{ sName }}
-                        </el-button>
-                      </template>
-                      <template #default>
-                        <el-row>
-                          {{ `Cast for ${spellCost} Galdur?` }}
-                        </el-row>
-
-                        <el-row v-if="(character.classes[cName].openRemaining - this.spellCost) <= 0">
-                          <el-tooltip placement="top" effect="light">
-                            <el-tag type="warning">
-                              {{ `Will Save (DC ${this.gFatigue})` }}
-                            </el-tag>
-                            <template #content>
-                              Will : {{ saves.will.total > 0 ? "+" : "" }}{{ saves.will.total }}
-                            </template>
-                          </el-tooltip>
-                        </el-row>
-                        <el-row justify="end">
-                          <el-button @click="castGSpell(sName, spell, lvl, cName)" type="primary" size="small"> Yes </el-button>
-                        </el-row>
-                      </template>
-                    </el-popover>
-                  </el-col>
-
-                  <el-col :span="8">
-                    <el-input type="textarea" v-model="spell.description" :autosize="{ minRows: 2, maxRows: 4 }" :aria-label="`${sName} Spell Description`" />
-                  </el-col>
-                  <el-col :span="5">
-                    <el-input v-model="spell.components" aria-label="Components">
-                      <template #prepend>Components</template>
-                    </el-input>
-                    <el-input v-model="spell.castTime" aria-label="Casting Time">
-                      <template #prepend>Casting Time</template>
-                    </el-input>
-                    <el-input v-model="spell.duration" aria-label="Duration">
-                      <template #prepend>Duration</template>
-                    </el-input>
-                  </el-col>
-                  <el-col :span="5">
-                    <el-input v-model="spell.target" aria-label="Target">
-                      <template #prepend>Target</template>
-                    </el-input>
-                    <el-input v-model="spell.range" aria-label="Range">
-                      <template #prepend>Range</template>
-                    </el-input>
-                    <el-input v-model="spell.save" aria-label="Save">
-                      <template #prepend>Save</template>
-                    </el-input>
-                  </el-col>
-                  <el-col :span="2" class="center-horz">
-                    <el-tag effect="dark"> {{ spell.SR ? 'Yes' : 'No' }} SR </el-tag>
-                    <br />
-                    MetaMagic dropdown
-                  </el-col>
-                </el-row>
-              </el-collapse-item>
-            </el-collapse>
-
-
-
-
-
-
-
-
-
-
+                </el-collapse-item>
+              </el-collapse>
+            </div>
           </el-tab-pane>
         </el-tabs>
       </el-tab-pane>
@@ -1767,22 +1728,12 @@ export default {
       return classes;
     },
 
-    // // USES: bonusLoop(bonuses)
-    // cumulativeGaldur() {
-    //   let classes = {};
-    //   for (let [cName, cClass] of Object.entries(this.character.classes)) {
-    //     if (!cClass.useGaldur) { continue; }
-    //     classes[cName] = { "total": 0, "sources": [] };
-    //     let val = 0;
-    //     for (let lvl = 0; lvl <= cClass.levels; lvl++) {
-    //       val = this.classes[cName].magic.galdur[lvl];
-    //       this.applyBonus(`Level ${lvl}`, val, classes[cName]);
-    //     }
-    //     this.bonusLoop(classes[cName], `${cName}Galdur`);
-    //   } // end class loop
-    //
-    //   return classes;
-    // }
+    // USES: abilites
+    // metaMagics() {
+    //   let metas = [];
+    //   console.log(this.abilities);
+    //   return metas;
+    // },
 
   },
   mounted() {
@@ -1793,6 +1744,9 @@ export default {
       console.log('response', response);
       this.character = response.character[0];
       document.getElementsByClassName('title')[0].innerHTML = this.character.name;
+      this.spellTabs = Object.keys(this.character.spells)[0];
+
+      this.disabledCastPSPells();
 
       this.character.attacks = {
         "Zap": {
@@ -1963,6 +1917,8 @@ export default {
       this.$message({ message: "Resting for 8 hours", type: "success" });
     },
     saveCharacter() {
+      // TODO: remove cast preped spells
+
       CharacterService.updateCharacter(this.character)
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
     },
@@ -2120,7 +2076,6 @@ export default {
         this.newSpell = { name: "", level: 0, class: "" };
       }
     },
-
     spellPop(spell, level, cName) {
       if (level == 0) {
         this.spellCost = 0;
@@ -2136,7 +2091,6 @@ export default {
         }
       }
     },
-
     castGSpell(sName, spell, level, cName) {
       if (level == 0) {
         console.log('casting cantrip');
@@ -2155,9 +2109,51 @@ export default {
         this.$message({ message: `You do not have enough Galdur to cast ${sName}`, type: "error" });
         return;
       }
-      
+
       spell.casts++;
       this.spellPop(spell, level, cName);
+    },
+
+    castPSpell(cName, level, spell, index) {
+      if (level == 0) { return; }
+
+      let btn = this.$refs[`${spell}-${index}`][0].$el;
+      btn.setAttribute('disabled', true);
+      btn.classList.add('is-disabled');
+
+      this.character.spells[cName][level][spell].casts++;
+      //
+      // if (preps <= this.character.spells[cName][level][spell].casts) {
+      //   let btn = "EL BTN"
+      // }
+    },
+    disabledCastPSPells() {
+      let btn = "EL BTN";
+      for (const [cName, cClass] of Object.entries( this.character.classes )) {
+        console.log(cName, cClass);
+        if (cClass.preparedSpells) {
+
+          cClass.preparedSpells.forEach((spells, level) => {
+            console.log(level, spells);
+
+            spells.forEach(spell => {
+              let preps = spells.filter(name => name === spell).length;
+              console.log(btn, preps);
+              for (let i = 0; i < 10; i++) {
+                if ( this.$refs[`${spell}-${i}`] && preps == i) {
+                  btn = this.$refs[`${spell}-${i}`][0].$el;
+                  btn.setAttribute('disabled', true);
+                  btn.classList.add('is-disabled');
+                } else {
+                  break;
+                }
+
+              }
+            });
+
+          });
+        }
+      }
     },
 
   }

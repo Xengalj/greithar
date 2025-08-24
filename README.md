@@ -93,3 +93,5 @@ node server.js
 - [ ] [Owlbear Player](https://docs.owlbear.rodeo/extensions/apis/player/)
 - [ ] [Obsidian](https://obsidian.md/)
 - [ ] [Leaflet](https://github.com/javalent/obsidian-leaflet) (maps for obsidian)
+
+- [ ] MetaMagic Spells
