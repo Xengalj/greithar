@@ -1000,12 +1000,12 @@
                     </el-col>
                     <el-col :span="2" class="center-horz">
                       <el-tag effect="dark"> {{ spell.SR ? 'Yes' : 'No' }} SR </el-tag>
-                      <!--
-                      MetaMagic dropdown
-                      <el-select v-model="character.basics.size" label="Size">
-                        <el-option v-for="size in Object.keys(rules.size)" :key="size" :label="capFirsts(size)" :value="size" />
+                      
+                      <br /> MetaMagic dropdown <br />
+                      <el-select v-model="metamagic" label="Metamagic">
+                        <el-option v-for="meta in metaMagics" :key="meta.name" :label="capFirsts(meta.name)" :value="meta" />
                       </el-select>
-                      -->
+                      
                     </el-col>
                   </el-row>
                 </el-collapse-item>
@@ -1177,6 +1177,7 @@ export default {
       spellsCollapse: [],
       spellCost: "",
       gFatigue: "",
+      metamagic: {},
 
       character: {},
 
@@ -1729,11 +1730,100 @@ export default {
     },
 
     // USES: abilites
-    // metaMagics() {
-    //   let metas = [];
-    //   console.log(this.abilities);
-    //   return metas;
-    // },
+    metaMagics() {
+      let knownMetas = [];
+      let metas = [
+        { "name": "Apocalyptic Spell", "increase": 1 },
+        { "name": "Aquatic Spell", "increase": 1 },
+        { "name": "Benthic Spell", "increase": 1 },
+        { "name": "Blissful Spell", "increase": 1 },
+        { "name": "Bouncing Spell", "increase": 1 },
+        { "name": "Brackish Spell", "increase": 0 },
+        { "name": "Brisk Spell", "increase": 0 },
+        { "name": "Cherry Blossom Spell", "increase": 3 },
+        { "name": "Coaxing Spell", "increase": 2 },
+        { "name": "Concussive Spell", "increase": 2 },
+        { "name": "Conditional Spell", "increase": 1 },
+        { "name": "Consecrate Spell", "increase": 2 },
+        { "name": "Contagious Spell", "increase": 2 },
+        { "name": "Contingent Spell", "increase": 2 },
+        { "name": "Crypt Spell", "increase": 1 },
+        { "name": "Dazing Spell", "increase": 3 },
+        { "name": "Delayed Spell", "increase": 1 },
+        { "name": "Disruptive Spell", "increase": 1 },
+        { "name": "Echoing Spell", "increase": 3 },
+        { "name": "Eclipsed Spell", "increase": 0 },
+        { "name": "Ectoplasmic Spell", "increase": 1 },
+        { "name": "Elemental Spell", "increase": 1 },
+        { "name": "Empower Spell", "increase": 2 },
+        { "name": "Encouraging Spell", "increase": 1 },
+        { "name": "Enlarge Spell", "increase": 1 },
+        { "name": "Extend Spell", "increase": 1 },
+        { "name": "Familiar Spell", "increase": 3 },
+        { "name": "Fearsome Spell", "increase": 2 },
+        { "name": "Flaring Spell", "increase": 1 },
+        { "name": "Fleeting Spell", "increase": 0 },
+        { "name": "Focused Spell", "increase": 1 },
+        { "name": "Furious Spell", "increase": 1 },
+        { "name": "Heighten Spell", "increase": "Lvl Choosen" },
+        { "name": "Intensified Spell", "increase": 1 },
+        { "name": "Intuitive Spell", "increase": 1 },
+        { "name": "Jinxed Spell", "increase": 1 },
+        { "name": "Latent Curse", "increase":	1 },
+        { "name": "Lingering Spell", "increase":	1 },
+        { "name": "Logical Spell", "increase":	1 },
+        { "name": "Maximize Spell", "increase":	3 },
+        { "name": "Merciful Spell", "increase":	0 },
+        { "name": "Murky Spell", "increase": 0 },
+        { "name": "Persistent Spell", "increase":	2 },
+        { "name": "Piercing Spell", "increase":	1 },
+        { "name": "Quicken Spell", "increase": 4 },
+        { "name": "Reach Spell", "increase": "1 / 2 / 3" },
+        { "name": "Rime Spell", "increase": 1 },
+        { "name": "Scarring Spell", "increase": 1 },
+        { "name": "Scouting Summons", "increase": 2 },
+        { "name": "Seeking Spell", "increase": 2 },
+        { "name": "Selective Spell", "increase": 1 },
+        { "name": "Shadow Grasp", "increase": 1 },
+        { "name": "Sickening Spell", "increase": 2 },
+        { "name": "Silent Spell", "increase": 1 },
+        { "name": "Snuffing Spell", "increase": 2 },
+        { "name": "Solar Spell", "increase": 1 },
+        { "name": "Solid Shadows", "increase": 1 },
+        { "name": "Still Spell", "increase": 1 },
+        { "name": "Steam Spell", "increase": 0 },
+        { "name": "Studied Spell", "increase": 2 },
+        { "name": "Stygian Spell", "increase": 2 },
+        { "name": "Stylized Spell", "increase": 1 },
+        { "name": "Tenacious Spell", "increase": 1 },
+        { "name": "Tenebrous Spell", "increase": 0 },
+        { "name": "Thanatopic Spell", "increase": 2 },
+        { "name": "Threatening Illusion", "increase": 1 },
+        { "name": "Threnodic Spell", "increase": 2 },
+        { "name": "Thundering Spell", "increase": 2 },
+        { "name": "Toppling Spell", "increase": 1 },
+        { "name": "Toxic Spell", "increase": 1 },
+        { "name": "Traumatic Spell", "increase": 2 },
+        { "name": "Trick Spell", "increase": 1 },
+        { "name": "Tumultuous Spell", "increase": 1 },
+        { "name": "Umbral Spell", "increase": 2 },
+        { "name": "Vast Spell", "increase": 1 },
+        { "name": "Verdant Spell", "increase": 2 },
+        { "name": "Widen Spell", "increase": 3 },
+        { "name": "Yai-Mimic Spell", "increase": 3 },
+      ];
+      
+      console.log(this.abilities);
+      for (const name of Object.keys(this.abilities)) {
+        metas.foreach( meta => {
+          console.log(name, name);
+          if (meta.name == name) {
+            knownMetas.push(meta);
+          }
+        });
+      }      
+      return metas;
+    },
 
   },
   mounted() {
