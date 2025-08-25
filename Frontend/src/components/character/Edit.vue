@@ -540,7 +540,7 @@
                   </el-col>
                   <el-col :span="22">
                     <span v-for="num in numOfSpells" :key="num">
-                      <el-select v-model="cClass.preparedSpells[level][num-1]" style="max-width:33%" aria-label="`Prepared Spell Select for Level ${level} Number ${num}`">
+                      <el-select v-model="cClass.preparedSpells[level][num-1]" :aria-label="`Prepared Spell Select for Level ${level} Number ${num}`" filterable allow-create style="max-width:33%">
                         <el-option v-for="(spell, name) in character.spells[cName][level]" :key="name" :label="name" :value="name" >
                           {{ name }}
                         </el-option>
