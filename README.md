@@ -82,7 +82,7 @@ node server.js
 
 - [ ] add campaigns & encounters
 
-- [ ] add Player/NPC builder/advancer
+- [x] add Player/NPC builder/advancer
 - [ ] use <el-drawer> for equipment and things in builder
 - [ ] implement Rule & Lore pages
 
@@ -94,4 +94,5 @@ node server.js
 - [ ] [Obsidian](https://obsidian.md/)
 - [ ] [Leaflet](https://github.com/javalent/obsidian-leaflet) (maps for obsidian)
 
-- [ ] MetaMagic Spells
+- [x] MetaMagic Spells
+- [ ] upload a file (character img) [link](https://serversideup.net/uploading-files-vuejs-axios/)

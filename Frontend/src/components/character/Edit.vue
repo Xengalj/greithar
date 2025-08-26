@@ -175,7 +175,7 @@
               </el-input>
             </el-col>
             <el-col :span="12">
-              <el-popconfirm title="Choose a class" @confirm="openLevelDialog" hide-icon :hide-after="1000">
+              <el-popconfirm title="Choose a class" @confirm="openLevelDialog" hide-icon :hide-after="2000">
                 <template #reference>
                   <el-button type="primary">
                     <g-icon iconSize="24px" iconName="sparkle" />
@@ -443,6 +443,7 @@
                 <el-descriptions-item>
                   <template #label> Spells Per Level </template>
                   {{ classes[cName].magic.spellsKnown.perLevel }}
+                  {{ classes[cName].magic.spellsKnown.byLevel[cClass.levels] }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                   <template #label> Galdur / <br> Spell Slots </template>
@@ -549,6 +550,26 @@
                   </el-col>
                 </el-row>
               </div>
+
+              <div v-else>
+                <el-row :gutter="10" v-for="(numOfSpells, level) in classes[cName].magic.spellsPerDay[cClass.levels]" :key="level">
+                  <el-col :span="4">
+                    <el-tag effect="dark" type="primary">
+                      Level {{ level }}
+                     </el-tag>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-progress :percentage=" Math.floor( ( cClass.remainingCasts[level] / (numOfSpells == '∞' ? 1 : numOfSpells) ) * 100 ) " :text-inside="true" :stroke-width="24">
+                      {{ cClass.remainingCasts[level] }} / {{ numOfSpells }}
+                    </el-progress>
+                  </el-col>
+                  <el-col :span="6" v-if="advanced && level > 0" class="center-horz">
+                    <el-tooltip content="Remaining Spells Today" placement="top" effect="light">
+                      <el-input-number v-model="cClass.remainingCasts[level]" :min="0" :max="numOfSpells" aria-label="Remaining Spells Today" />
+                    </el-tooltip>
+                  </el-col>
+                </el-row>
+              </div>
             </el-col>
           </el-row>
         </div>
@@ -558,7 +579,7 @@
       <el-collapse-item name="3">
         <template #title>
           <el-divider style="max-width:50%">
-            <h4> <g-icon iconSize="32px" iconName="abilityPalm" /> Abilites </h4>
+            <h4> <g-icon iconSize="32px" iconName="abilityPalm" /> Abilities </h4>
           </el-divider>
         </template>
 
@@ -581,7 +602,7 @@
         <el-divider style="margin-top: 5px;" />
         <el-collapse v-model="abilityCollapse">
 
-          <!-- Abilites -->
+          <!-- abilities -->
           <el-collapse-item v-for="type in abilityTypes" :key="type" :title="type" :name="type">
             <div v-for="(abil, name) in abilities" :key="name">
               <el-row v-if="abil.extras.source == type" :gutter="5" style="margin-bottom:5px;">
@@ -630,7 +651,7 @@
             </template>
             <el-row :gutter="10" justify="space-between">
               <el-col :span="16">
-                This section is for any extra attacks you may have like natural bite attacks or other unique damage dealling abilites
+                This section is for any extra attacks you may have like natural bite attacks or other unique damage dealling abilities
               </el-col>
               <el-col :span="3">
                 <el-popconfirm title="Add New Attack?" @confirm="addNewAttack" hide-icon>
@@ -1168,7 +1189,7 @@
               <el-option label="Main" value="Main" />
               <el-option label="Items" value="Items" />
               <el-option label="Skills" value="Skills" />
-              <el-option label="Abilites" value="Abilites" />
+              <el-option label="abilities" value="abilities" />
               <el-option label="Spells" value="Spells" />
               <el-option label="Edit" value="Edit" />
             </el-select>
@@ -1225,10 +1246,10 @@
         Level Up - Level {{ newLevel.level }} {{ capFirsts(newLevel.class) }}
       </h2>
 
-      <!-- New Abilites -->
-      <div v-if="classes[newLevel.class].special">
+      <!-- New Abilities -->
+      <div v-if="newLevel.abilities.length > 0">
         <el-divider style="max-width:50%"> <h3> Abilities </h3> </el-divider>
-        <el-row :gutter="10" v-for="ability in newLevel.abilites" :key="ability">
+        <el-row :gutter="10" v-for="ability in newLevel.abilities" :key="ability">
           <el-col :span="10">
             <el-input v-model="ability.name" :aria-label="`Class Ability: ${ability}`">
               <template #prepend> Name </template>
@@ -1348,7 +1369,7 @@
               <template #content> Background Skill </template>
             </el-tooltip>
           </el-col>
-          <el-col :offset="2" :span="10" :style=" (newRanks > (classes[newLevel.class].ranks + attributes.Int.mod)) || (backgroundRanks > 2) ? 'color:red' : ''">
+          <el-col :offset="2" :span="10" :style=" (newRanks > Math.max(1, classes[newLevel.class].ranks + attributes.Int.mod)) || (backgroundRanks > 2) ? 'color:red' : ''">
             <el-row :gutter="10">
               <el-col :span="4" class="center-vert">
                 <el-tooltip placement="top" effect="light">
@@ -1357,7 +1378,7 @@
                 </el-tooltip>
               </el-col>
               <el-col :span="10" class="center-horz center-vert">
-                {{ newRanks }} / {{ classes[newLevel.class].ranks + attributes.Int.mod }} New Ranks
+                {{ newRanks }} / {{ Math.max(1, classes[newLevel.class].ranks + attributes.Int.mod) }} New Ranks
               </el-col>
               <el-col :span="10" class="center-horz">
                 {{ backgroundRanks }} / 2 New Background Ranks
@@ -1406,7 +1427,7 @@
           @click="addLevel()"
           :disabled="
           (newRanks == 0) ||
-          (newRanks > (classes[newLevel.class].ranks + attributes.Int.mod)) ||
+          (newRanks > Math.max(1, classes[newLevel.class].ranks + attributes.Int.mod)) ||
           (backgroundRanks > 2) ||
           (backgroundRanks == 0)
         ">
@@ -1732,7 +1753,7 @@ export default {
     },
     saveCharacter() {
       CharacterService.updateCharacter(this.character)
-      .then((response) => { this.$message({ message: `${response.name} updated`, type: 'success', }); })
+      .then((response) => { this.$message({ message: `${response.character.name} updated`, type: 'success', }); })
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
     },
 
@@ -1772,7 +1793,7 @@ export default {
         "class": this.newLevel.class,
         "level": this.character.classes[this.newLevel.class] ? this.character.classes[this.newLevel.class].levels + 1 : 1,
         "skills": {},
-        "abilites": [],
+        "abilities": [],
         "newSpells": [],
         "useGaldur": this.character.classes[this.newLevel.class] ? this.character.classes[this.newLevel.class].useGaldur : false,
       };
@@ -1792,7 +1813,7 @@ export default {
       // abilities
       this.classes[lvl.class].special[lvl.level].forEach(abil => {
         let newAbil = { 'name': abil, 'description': "" };
-        lvl.abilites.push(newAbil);
+        lvl.abilities.push(newAbil);
       });
 
       // magic
@@ -1813,8 +1834,8 @@ export default {
       this.addingLevel = true;
     },
     addLevel() {
-      // New Abilites
-      this.newLevel.abilites.forEach(newAbil => {
+      // New abilities
+      this.newLevel.abilities.forEach(newAbil => {
         this.character.abilities[newAbil.name] = {
           "trigger": "Continuous",
           "description": newAbil.description,
@@ -1855,6 +1876,9 @@ export default {
               cClass.preparedSpells[level].push([]);
             }
           });
+        } else if (source.magic.style.includes('Spontaneous')) {
+          cClass.remainingCasts = Array.from(cClass.spellsPerDay);
+          cClass.remainingCasts[0] = 1;
         }
 
         // Even if no spells were added at level up, create the spot for em
