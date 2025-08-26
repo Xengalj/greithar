@@ -51,7 +51,8 @@ You may also build the front end into the back end.
 npm run build
 ```
 
-This will build the frontend files into a new `/views` dir in the backend.
+> This will build the frontend files into a new `/views` dir in the backend.
+
 2. Then open a cmd prompt in `Greithar/Backend` and run the following
 ```sh
 node server.js
