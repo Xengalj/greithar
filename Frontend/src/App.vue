@@ -2,7 +2,7 @@
   <div class="common-layout">
     <el-container>
       <el-header>
-        <Header/>
+        <g-header/>
       </el-header>
       <el-container class="wrapper">
         <el-main class="main">
@@ -16,11 +16,11 @@
 
 <script>
 import '@/styles/index.css';
-import Header from './components/template/Header.vue'
+import GHeader from './components/template/GHeader.vue'
 
 export default {
   name: "App",
-  components: { Header },
+  components: { GHeader },
   computed: {
     pageTitle() {
       return this.$route.meta.title;

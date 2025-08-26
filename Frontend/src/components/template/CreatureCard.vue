@@ -107,13 +107,13 @@
       </el-row>
       <el-row>
         <el-col :span="4" class="center-vert center-horz"> <g-icon iconSize="24px" icon-name="sparkle"/> </el-col>
-        <el-col :span="20" class="center-vert"> XP : {{ basics.cr }} </el-col>
+        <el-col :span="20" class="center-vert"> XP : {{ this.rules.experience[basics.cr] }} </el-col>
       </el-row>
     </el-col>
   </el-row>
 
   <!-- Content Tabs -->
-  <el-button ref="restBtn" size="large" @click="rest()">
+  <el-button ref="restBtn" size="large" @click="rest()" style="width:40px;">
     <el-tooltip placement="top" effect="light">
       <g-icon iconSize="20px" iconName="campfire" />
       <template #content>Rest for 8 Hours</template>
@@ -121,7 +121,9 @@
   </el-button>
   <el-tabs ref="tabs" type="card" v-model="userSettings.cardTab">
     <!-- Main -->
-    <el-tab-pane label="Main" name="Main">
+    <el-tab-pane name="Main">
+      <template #label> <g-icon iconSize="20px" iconName="compass" /> Main </template>
+
       <el-collapse v-model="userSettings.mainSections">
         <!-- Defense -->
         <el-collapse-item title="Defense" name="defense">
@@ -529,7 +531,9 @@
     </el-tab-pane>
 
     <!-- Items -->
-    <el-tab-pane label="Items" name="Items">
+    <el-tab-pane name="Items">
+      <template #label> <g-icon iconSize="20px" iconName="chest" /> Items </template>
+
       <el-row>
         <g-icon iconSize="16px" iconName="treasure" /> COINS
       </el-row>
@@ -592,7 +596,9 @@
     </el-tab-pane>
 
     <!-- Skills -->
-    <el-tab-pane label="Skills" name="Skills">
+    <el-tab-pane name="Skills">
+      <template #label> <g-icon iconSize="20px" iconName="sparkle" /> Skills </template>
+
       <el-row v-if="skills.Linguistics && skills.Linguistics.extras">
         <el-col :span="3"> Languages: </el-col>
         <el-col :span="21">
@@ -638,7 +644,8 @@
     </el-tab-pane>
 
     <!-- Abilities -->
-    <el-tab-pane label="Abilities" name="Abilities">
+    <el-tab-pane name="Abilities">
+      <template #label> <g-icon iconSize="20px" iconName="abilityPalm" /> Abilites </template>
 
       pools (arcana, ki, bardic inspiration, rage rounds, etc) <br />
       for (class in classes) {
@@ -714,7 +721,9 @@
     </el-tab-pane>
 
     <!-- Magic -->
-    <el-tab-pane label="Magic" name="Magic">
+    <el-tab-pane name="Spells">
+      <template #label> <g-icon iconSize="20px" iconName="spellBook" /> Spells </template>
+
       <el-row :gutter="20">
         <el-col :span="3">
           <g-icon iconSize="32px" iconName="rolledScroll" />
@@ -769,7 +778,9 @@
     </el-tab-pane>
 
     <!-- Edit -->
-    <el-tab-pane label="Edit" name="Edit">
+    <el-tab-pane name="Edit">
+      <template #label> <g-icon iconSize="20px" iconName="quill" /> Edit </template>
+
       <el-row :gutter="5" style="margin-bottom:5px;">
         <el-col :span="12">
           <el-row :gutter="5" style="margin-bottom:5px;">
@@ -1721,7 +1732,6 @@ export default {
     },
     saveMonster() {
       console.log("This", this);
-      console.log("Settings", this.userSettings);
       console.log("Name", this.source.name); // this.title could have CR
       console.log("Basics", this.basics);
       console.log("Inventory", this.inventory);
@@ -1732,6 +1742,7 @@ export default {
       console.log("Actions", this.actions);
       console.log("Skills", this.skills);
       // console.log(this.magic);
+      console.log("Settings", this.userSettings);
       console.log("Notes", this.notes);
     }
   }

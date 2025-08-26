@@ -32,6 +32,7 @@
   --color-secondary-600:  #66b3b3;
 
   /* --el-color-primary:  #1a8d8d !important; */
+  --el-color-info: var(--color-surface-300);
 }
 
 
@@ -104,6 +105,5 @@ footer {
 .el-icon.el-popconfirm__icon,
 .el-icon.el-message__icon,
 .el-icon.el-message__closeBtn {
-  font-size: 28px;
   width: 28px;
 }

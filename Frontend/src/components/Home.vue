@@ -8,51 +8,9 @@
       Your DM is still the final arbiter of all rules.
     </div>
 
-    <el-divider>
-      <g-icon iconSize="24px" iconName="rolledScroll" />
-    </el-divider>
-
     <el-row class="center-horz" justify="space-between">
-      <el-col :span="6">
-        Campaign
-      </el-col>
-      <el-col :span="6">
-        Lore
-      </el-col>
-      <el-col :span="6">
-        Rules
-      </el-col>
-      <el-col :span="6">
-        Site Info
-      </el-col>
-    </el-row>
-
-
-    <el-row class="center-horz" justify="space-between">
-      <el-col :span="6">
-        <span v-if="user.roles.includes('admin')">
-          <router-link to="/dm-screen" class="nav-link">
-            <el-button type="primary">
-              <g-icon iconSize="24px" iconName="map" /> DM Screen
-            </el-button>
-          </router-link>
-        </span>
-      </el-col>
-
-      <el-col :span="6">
-        <router-link to="/equipment" class="nav-link">
-          <el-button type="primary">
-            <g-icon iconSize="24px" iconName="openScroll" /> Lore (WIP)
-          </el-button>
-        </router-link>
-      </el-col>
-
-      <el-col :span="6">
-        <router-link to="/equipment" class="nav-link">
-          <el-button type="primary">
-            <g-icon iconSize="24px" iconName="lockedBook" /> Rules (WIP)
-          </el-button>
-        </router-link>
+      <el-divider> <g-icon iconName="rolledScroll" /> </el-divider>
+      <el-col :span="8">
         <router-link to="/equipment" class="nav-link">
           <el-button type="primary">
             <g-icon iconSize="24px" iconName="inventory" /> Equipment
@@ -65,7 +23,21 @@
         </router-link>
       </el-col>
 
-      <el-col :span="6">
+      <el-col :span="8">
+        <router-link to="/equipment" class="nav-link">
+          <el-button type="primary">
+            <g-icon iconSize="24px" iconName="openScroll" /> Lore (WIP)
+          </el-button>
+        </router-link>
+
+        <router-link to="/equipment" class="nav-link">
+          <el-button type="primary">
+            <g-icon iconSize="24px" iconName="lockedBook" /> Rules (WIP)
+          </el-button>
+        </router-link>
+      </el-col>
+
+      <el-col :span="8">
         <router-link to="/about" class="nav-link">
           <el-button type="primary">
             <g-icon iconSize="24px" iconName="openBook" /> About
@@ -73,6 +45,62 @@
         </router-link>
       </el-col>
     </el-row>
+
+    <!-- LOGIN CHECK -->
+    <el-row v-if="this.user.id" class="center-horz" justify="space-between">
+      <el-col :span="11">
+        <el-divider> DM <g-icon iconName="lockedBook" /> </el-divider>
+
+        <span v-if="user.roles.includes('storyteller')">
+          <router-link to="/dm-screen" class="nav-link">
+            <el-button type="primary">
+              <g-icon iconSize="24px" iconName="map" /> DM Screen
+            </el-button>
+          </router-link>
+        </span>
+
+        <span v-if="user.roles.includes('storyteller')">
+          <router-link to="/dm-screen" class="nav-link">
+            <el-button type="primary">
+              <g-icon iconSize="24px" iconName="map" /> Your Campaigns
+            </el-button>
+          </router-link>
+        </span>
+      </el-col>
+
+      <el-col :span="11" :offset="2">
+        <el-divider> ADMIN <g-icon iconName="userProfile" /> </el-divider>
+
+        <span v-if="user.roles.includes('admin')">
+          <router-link to="/user/list" class="nav-link">
+            <el-button type="primary">
+              <g-icon iconSize="24px" iconName="userList" /> All Users
+            </el-button>
+          </router-link>
+        </span>
+
+        <span v-if="user.roles.includes('admin')">
+          <router-link :to="{ name: 'character-list' }" class="nav-link">
+            <el-button type="primary">
+              <g-icon iconSize="24px" iconName="userList" /> All Characters
+            </el-button>
+          </router-link>
+        </span>
+      </el-col>
+    </el-row>
+
+    <el-row v-else class="center-horz">
+      <el-col>
+        <el-divider> <g-icon iconName="sparkle" /> </el-divider>
+        <h3>Please login to view user details</h3>
+        <router-link to="/login" class="nav-link">
+          <el-button type="primary" size="large">
+            <g-icon iconSize="24px" iconName="login" /> Login
+          </el-button>
+        </router-link>
+      </el-col>
+    </el-row>
+
   </div>
 </template>
 
@@ -88,8 +116,31 @@ export default {
       user: this.$store.state.auth.user
     };
   },
+  computed:{
+    rules() { return this.$store.state.data.rules; },
+    races() { return this.$store.state.data.races; },
+    classes() { return this.$store.state.data.classes; },
+    equipment() { return this.$store.state.data.equipment; },
+  },
   mounted() {
-    // console.log(this.$store.state.auth.user);
+    console.log('home -> user', this.user);
+    console.log('rules', this.rules);
+    console.log('races', this.races);
+    console.log('classes', this.classes);
+    console.log('equipment', this.equipment);
+
+    // login check
+    UserService.getUserBoard().then(
+      (response) => {
+        console.log(response);
+      },
+      (error) => {
+        console.error(error);
+        this.user = {};
+        this.$store.dispatch('auth/logout');
+      }
+    );
+
 
     UserService.getPublicContent().then(
       (response) => {

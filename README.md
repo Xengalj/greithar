@@ -51,7 +51,8 @@ You may also build the front end into the back end.
 npm run build
 ```
 
-This will build the frontend files into a new `/views` dir in the backend.
+> This will build the frontend files into a new `/views` dir in the backend.
+
 2. Then open a cmd prompt in `Greithar/Backend` and run the following
 ```sh
 node server.js
@@ -82,10 +83,17 @@ node server.js
 
 - [ ] add campaigns & encounters
 
-- [ ] add Player/NPC builder/advancer
+- [x] add Player/NPC builder/advancer
 - [ ] use <el-drawer> for equipment and things in builder
 - [ ] implement Rule & Lore pages
 
-- [ ] Get Backend MYSQL running not in Laragon?
 - [x] Deploy built files to backend
 - [ ] get "greithar.com" on cloudflare
+
+- [ ] [Owlbear Context Menu](https://docs.owlbear.rodeo/extensions/tutorial-initiative-tracker/implement-the-context-menu-item/)
+- [ ] [Owlbear Player](https://docs.owlbear.rodeo/extensions/apis/player/)
+- [ ] [Obsidian](https://obsidian.md/)
+- [ ] [Leaflet](https://github.com/javalent/obsidian-leaflet) (maps for obsidian)
+
+- [x] MetaMagic Spells
+- [ ] upload a file (character img) [link](https://serversideup.net/uploading-files-vuejs-axios/)

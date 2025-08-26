@@ -1,4 +1,75 @@
 <template>
+
+  <el-row>
+    <el-col :span="4" class="center-horz">
+      Random Name Generator
+      <el-select v-model="tempName.race" size="small" placeholder="Choose Race">
+        <el-option v-for="(race, name) in races" :key="name" :label="name" :value="name" />
+      </el-select>
+    </el-col>
+    <el-col :span="8">
+      <div v-if="tempName.race">
+        Gender (♀, ♂, ⚨ First Names)
+        <el-select v-model="tempName.gender" size="small" placeholder="Choose Gender">
+          <el-option v-if="races[tempName.race].female" key="female" label="♀ female" value="female" />
+          <el-option v-if="races[tempName.race].male" key="male" label="♂ male" value="male" />
+          <!-- <el-option v-if="races[tempName.race].sexless" key="agender" label="⚨ agender" value="agender" /> -->
+          <el-option v-if="races[tempName.race].agender" key="agender" label="⚨ agender" value="agender" />
+        </el-select>
+      </div>
+    </el-col>
+    <el-col :span="10">
+      <div v-if="tempName.gender">
+        <el-button type="primary" @click="genRandomName()"> Random Name! </el-button>
+        {{ tempName.fName }} {{ tempName.surname }} ( {{ tempName.gender }} {{ tempName.race }} )
+      </div>
+    </el-col>
+  </el-row>
+  <br><br>
+
+  <!--
+  <el-divider />
+  <el-row v-for="(race, name) in this.races" :key="name">
+    <el-col :span="4"> {{ name }} </el-col>
+    <el-col :span="8">
+      <el-row>
+        <el-col :span="8">
+          <div v-if="race.female">
+            <el-row v-for="name in race.female.names" :key="name">
+              <el-col> {{ name }} </el-col>
+            </el-row>
+          </div>
+        </el-col>
+        <el-col :span="8">
+          <div v-if="race.male">
+            <el-row v-for="name in race.male.names" :key="name">
+              <el-col> {{ name }} </el-col>
+            </el-row>
+          </div>
+        </el-col>
+        <el-col :span="8">
+          <div v-if="race.agender">
+            <el-row v-for="name in race.agender.names" :key="name">
+              <el-col> {{ name }} </el-col>
+            </el-row>
+          </div>
+        </el-col>
+      </el-row>
+    </el-col>
+    <el-col :span="8">
+      <el-row v-for="(info, name) in race.surnames" :key="name">
+        <el-col :span="12">
+          {{ name }}
+        </el-col>
+        <el-col :span="12">
+          {{ info }}
+        </el-col>
+      </el-row>
+    </el-col>
+    <el-divider />
+  </el-row>
+  -->
+
   <el-button type="primary" circle @click="monsterOpen('Skeletal Champion')">
     <g-icon iconSize="24px" iconName="undead" />
   </el-button>
@@ -18,6 +89,8 @@
     <g-icon iconSize="24px" iconName="dragon" />
   </el-button>
 
+  <br><br><br>
+
   <el-dialog width="700" v-model="monsterVisible" :before-close="monsterClose">
     <CreatureCard :source="creature"></CreatureCard>
     <template #footer>
@@ -28,10 +101,17 @@
     </template>
   </el-dialog>
 
-  <p v-for="(icon, name, index) in icons" :key="index">
-    <strong>{{ name }}</strong>
-    <g-icon :iconName="name" />
-  </p>
+  <el-row>
+    <div v-for="(icon, name, index) in icons" :key="index" class="center-horz" style="margin: 5px;">
+      <el-button size="large" type="primary" circle>
+        <g-icon iconSize="24px" :iconName="name" />
+      </el-button>
+      <br>
+      {{ name }}
+    </div>
+  </el-row>
+
+
 </template>
 
 <script>
@@ -52,6 +132,7 @@ export default {
 
       monsterVisible: false,
       creature: {},
+      tempName: {},
 
     }
   },
@@ -83,16 +164,19 @@ export default {
     );
   },
   mounted() {
-    if (this.equipment) {
+    // Wait until we have data (like 500 ms?)
+    if (this.conditions) {
+      console.log(this.races);
+
       // this.monsterOpen("Skeletal Champion");
-      this.monsterOpen("Adult Red Dragon");
+      // this.monsterOpen("Adult Red Dragon");
       // this.monsterOpen("Death Worm");
       // this.monsterOpen("Ochre Jelly");
 
       // console.log(this.actions);
       // console.log(this.conditions);
-
     }
+
   },
   methods: {
     monsterOpen(name) {
@@ -694,6 +778,17 @@ export default {
       this.monsterVisible = false;
     },
 
+    genRandomName() {
+      let fNames, surnames, rand = 0;
+
+      fNames = this.races[this.tempName.race][this.tempName.gender].names;
+      rand = Math.floor(Math.random() * fNames.length);
+      this.tempName.fName = fNames[rand];
+
+      surnames = this.races[this.tempName.race].surnames;
+      rand = Math.floor(Math.random() * Object.keys(surnames).length);
+      this.tempName.surname = Object.keys(surnames)[rand];
+    }
 
     // End Methods
   }

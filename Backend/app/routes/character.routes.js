@@ -12,25 +12,25 @@ module.exports = function(app) {
 
   app.post(
     "/api/character/create",
-    [authJwt.verifyToken],    
+    [ authJwt.verifyToken ],
     controller.create
   );
 
   app.post(
     "/api/character/read",
-    [authJwt.verifyToken],
+    [ authJwt.verifyToken ],
     controller.read
   );
-  
+
   app.post(
     "/api/character/update",
-    [authJwt.verifyToken],
+    [ authJwt.verifyToken ],
     controller.update
   );
 
-  app.get(
+  app.post(
     "/api/character/delete",
-    [authJwt.verifyToken],
+    [ authJwt.verifyToken ],
     controller.delete
   );
 };

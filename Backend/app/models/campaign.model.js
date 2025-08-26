@@ -8,5 +8,9 @@ module.exports = (sequelize, Sequelize) => {
     }
   });
 
+  // hasOne ( user )    = owner
+  // hasMany ( encounters )
+  // hasMany ( characters )
+
   return Campaign;
 };

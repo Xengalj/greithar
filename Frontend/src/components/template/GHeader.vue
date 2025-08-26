@@ -10,6 +10,7 @@
 
     <div class="menu-container">
       <!-- Search -->
+      <!--
       <div class="nav-search">
         <el-input v-model="input" placeholder="Search" >
           <template #prefix>
@@ -17,7 +18,7 @@
           </template>
         </el-input>
       </div>
-
+      -->
 
       <el-menu class="el-menu dark" mode="horizontal" ellipsis >
         <!-- User Links -->
@@ -41,8 +42,7 @@
 
           <el-menu-item index="characters">
             <!-- /character/list/ <user_id> -->
-            <!-- <router-link :to="{ name: 'character-list', params: { id: currentUser.id } }" class="nav-link"> -->
-            <router-link :to="{ name: 'character-list' }" class="nav-link">
+            <router-link :to="{ name: 'character-list', params: { id: currentUser.id } }" class="nav-link">
               <g-icon iconSize="24px" iconName="userList" :iconColor="iconColor" /> Your Characters
             </router-link>
           </el-menu-item>
@@ -109,6 +109,14 @@
               <g-icon iconSize="24px" iconName="userList" :iconColor="iconColor" /> Users
             </router-link>
           </el-menu-item>
+
+          <el-menu-item index="characters">
+            <!-- /character/list/ -->
+            <router-link :to="{ name: 'character-list' }" class="nav-link">
+              <g-icon iconSize="24px" iconName="userList" :iconColor="iconColor" /> All Characters
+            </router-link>
+          </el-menu-item>
+
         </el-menu-item-group>
 
 
@@ -146,6 +154,7 @@
 
 <script>
 export default {
+  name: 'g-header',
   data() {
     return {
       input: "",

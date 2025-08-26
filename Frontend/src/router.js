@@ -75,6 +75,7 @@ const routes = [
   {
     path: "/user",
     name: "user",
+    redirect: { name: 'user-list' },
     meta: {
       breadcrumb: "User",
       title: "User",
@@ -121,13 +122,14 @@ const routes = [
   {
     path: "/character",
     name: "character",
+    redirect: { name: 'character-list' },
     meta: {
       breadcrumb: "Character",
       title: "Character",
     },
     children: [
       {
-        path: "list",
+        path: "list/:id?",
         name: "character-list",
         component: () => import("./components/character/List.vue"),
         meta: {
@@ -135,15 +137,15 @@ const routes = [
           title: "Character List",
         }
       },
-      {
-        path: "create",
-        name: "character-create",
-        component: () => import("./components/character/Create.vue"),
-        meta: {
-          breadcrumb: "Create Character",
-          title: "Create Character",
-        }
-      },
+      // {
+      //   path: "create",
+      //   name: "character-create",
+      //   component: () => import("./components/character/Create.vue"),
+      //   meta: {
+      //     breadcrumb: "Create Character",
+      //     title: "Create Character",
+      //   }
+      // },
       {
         // load hero from $store, after /profile
         path: "view/:id",
@@ -157,7 +159,7 @@ const routes = [
       {
         path: "edit/:id",
         name: "character-edit",
-        component: temp,
+        component: () => import("./components/character/Edit.vue"),
         meta: {
           breadcrumb: "Edit Character",
           title: "Edit character",

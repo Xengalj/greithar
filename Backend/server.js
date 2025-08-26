@@ -26,7 +26,6 @@ app.use(express.urlencoded({ extended: true }));
 
 // database
 const db = require("./app/models");
-const Role = db.role;
 // Database Syncing
 if (reSeed) {
   // db.character.drop();
@@ -54,7 +53,7 @@ if (isProd) {
 // routes
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
-// require('./app/routes/character.routes')(app);
+require('./app/routes/character.routes')(app);
 require('./app/routes/data.routes')(app);
 
 // set port, listen for requests
@@ -70,77 +69,76 @@ app.listen(PORT, () => {
 *                           *
 \***************************/
 function initial() {
-  Role.create({ id: 1, name: "admin" });
-  Role.create({ id: 2, name: "storyteller" });
-  Role.create({ id: 3, name: "user" });
+  db.role.create({ id: 1, name: "admin" });
+  db.role.create({ id: 2, name: "storyteller" });
+  db.role.create({ id: 3, name: "user" });
 
+  // crete test user with "user" role
   db.user.create({
     id: 1,
     username: "TrevTest",
     email: "trevor@musson.net",
     password: bcrypt.hashSync("pwd4test", 8)
   })
-    // set test user to have user role
-    .then(user => { user.setRoles([3]) });
+  .then(user => { user.setRoles([3]) });
+
+  // create xen user with all roles
   db.user.create({
     id: 2,
     username: "Xengalj",
     email: "giji4454@gmail.com",
     password: bcrypt.hashSync("Klefki719!", 8)
   })
-    .then(user => {
-      // Set Xen as all rolls
-      user.setRoles([1, 2, 3]);
-    });
+  .then(user => { user.setRoles([1, 2, 3]) });
+
+  // create eric user with all roles
+  db.user.create({
+    id: 3,
+    username: "Eric",
+    email: "eric@awesome.com",
+    password: bcrypt.hashSync("pwd4eric", 8)
+  })
+  .then(user => { user.setRoles([1, 2, 3]) });
+
+  db.character.create()
+  .then(character => { character.setUser(2) });
 
   db.character.create({
-    id: 0,
-    user_id: 2, // belongsToMany (char through user_characters)
     name: "Smelborp",
-    level: {
-      "currentLevel": 1,
-      "favoredClassBonus": {
-        "class_id": 0,
-        "bonus": "+1 HP, Skill, or Galdur per Level"
+    basics : {
+      "cr": 0,
+      "size": "medium",
+      "race": "Zikaru",
+      "type": {
+        "name": "humanoid",
+        "hd": 0,
+        "levels": 0,
+        "subtypes": [ "human" ]
       },
-      "characterAbilites": [ {},
-        { "feat": "ex" }
-      ],
-      "classes": [ {},
-        {
-          "class_id": 0,
-          // bloodrager?
-        }
-      ]
-    },
-    stats: {
-      abilities: [
-        { "label": 'Str', "value": 10 },
-        { "label": 'Dex', "value": 10 },
-        { "label": 'Con', "value": 10 },
-        { "label": 'Int', "value": 10 },
-        { "label": 'Wis', "value": 10 },
-        { "label": 'Cha', "value": 10 }
-      ],
-      traits: {},
-    },
-    role_play: {
-      "campaign": "",
-      "alignment": "NG",
-      "diety": "",
-      "appearance": {
-        "gender": "",
-        "age": 21,
-        "height": "",
-        "weight": "",
+      "speed": {
+        "base": { "total": 30, "sources": [ "Racial Base" ] },
+        "swim": { "total": 0, "sources": [] },
+        "climb": { "total": 0, "sources": [] },
+        "fly": { "total": 0, "sources": [] },
+        "burrow": { "total": 0, "sources": []  }
       },
-      "backstory": "When I was, a young boy...",
+      "alignment": "CG",
+      "backstory": "ITS SMELBORP",
+      "appearance": { "age": 27, "gender": "male", "height": "7'2\"", "weight": "240 lbs." },
+      "diety": "Thor",
+      "environment": "Mountains",
+      "favoredClass": { "name": "Barbarian", "bonus": "+1 HP per Level" }
     },
-    extras: {
-      "heroPoints": 1,
-      "notes": "Your notes here...",
+    attributes: {
+      "Str": { "base": 18 },
+      "Dex": { "base": 13 },
+      "Con": { "base": 16 },
+      "Int": { "base": 6 },
+      "Wis": { "base": 11 },
+      "Cha": { "base": 10 }
     }
-  });
+  })
+  .then(character => { character.setUser(2) });
 
 
 }

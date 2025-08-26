@@ -454,5 +454,22 @@
     "prerequisites": [ "Ability to aquire a new familiar" ],
     "benefit": { "target": "self", "text": "Your familiar is stronger than most" },
     "bonuses": {}
+  },
+
+  "Equipment Trick": {
+    "type": "General",
+    "trigger": "Continuous",
+    "description": "TOMBSTONE.",
+    "prerequisites": [ "UNKNOWN" ],
+    "benefit": { "target": "self", "text": "HELP" },
+    "bonuses": {}
+  },
+  "Expanded Arcana": {
+    "type": "General",
+    "trigger": "Continuous",
+    "description": "When choosing a familiar, you may choose a more powerful creature from those listed (on the wiki).",
+    "prerequisites": [ "Spontaneous spells (bard)" ],
+    "benefit": { "target": "self", "text": "You get an extra spell or spells?" },
+    "bonuses": {}
   }
 }
