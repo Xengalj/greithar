@@ -1236,8 +1236,8 @@
 
     <!-- FOOTER -->
     <div style="text-align: right; margin-top: 10px;">
-      <el-button type="warning" @click="$router.push({ name: 'character-list' })">Back to All Characters </el-button>
-      <el-button type="primary" @click="saveCharacter()"> Save Changes </el-button>
+      <el-button @click="$router.push({ name: 'character-list' })" type="warning" plain>Back to All Characters </el-button>
+      <el-button @click="saveCharacter()" type="primary"> Save Changes </el-button>
     </div>
 
     <!-- LEVEL UP DIALOG -->

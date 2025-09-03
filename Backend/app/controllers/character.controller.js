@@ -37,7 +37,7 @@ exports.create = (req, res) => {
 exports.read = (req, res) => {
   // get specific character
   if (req.body.character_id) {
-    Character.findAll({ where: { id: req.body.character_id }, include: User })
+    Character.findOne({ where: { id: req.body.character_id }, include: User })
     .then(character => {
       if (!character) { return res.status(404).send({ message: "Character not found!" }); }
       res.status(200).send({ character: character });
@@ -49,10 +49,10 @@ exports.read = (req, res) => {
 
   // get user's characters
   } else if (req.body.user_id) {
-    Character.findAll({ where: { userId: req.body.user_id }, include: User })
-    .then(character => {
-      if (!character) { return res.status(404).send({ message: "Character not found!" }); }
-      res.status(200).send({ character: character });
+    Character.findAll({ where: { userId: req.body.user_id } })
+    .then(characters => {
+      if (!characters) { return res.status(404).send({ message: "No characters found!" }); }
+      res.status(200).send({ characters: characters });
     })
     .catch(err => {
       // error getting character

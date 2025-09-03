@@ -17,7 +17,12 @@
       </el-col>
     </el-row>
 
-    <el-table v-loading="loading" :data="characters" max-height="600" id="characterTable">
+    <el-table
+      v-loading="loading"
+      :data="characters"
+      max-height="600"
+      id="characterTable"
+    >
       <el-table-column prop="name" label="Name" width="200" sortable fixed >
         <template #default="scope">
           <el-tag effect="dark"> {{ scope.row.name }} </el-tag>
@@ -39,23 +44,23 @@
           </el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="Actions" width="150">
+      <el-table-column label="Actions" width="130" fixed="right">
         <template #default="scope">
           <el-row class="row-bg" justify="space-between">
-            <el-button type="primary" circle @click="viewCharacter(scope.row.id)">
+            <el-button @click="viewCharacter(scope.row.id)" type="primary" style="margin:0" circle>
               <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
             </el-button>
-            <el-button type="primary" circle @click="editCharacter(scope.row.id)">
+            <el-button @click="editCharacter(scope.row.id)" type="primary" style="margin:0" circle>
               <g-icon iconSize="24px" iconColor="#000" iconName="quill" />
             </el-button>
             <el-popconfirm :title="`Delete ${scope.row.name}?`">
               <template #reference>
-                <el-button type="danger" circle>
+                <el-button type="danger" style="margin:0" circle>
                   <g-icon iconSize="24px" iconColor="#000" iconName="trash" />
                 </el-button>
               </template>
               <template #actions="">
-                <el-button type="danger" size="small" @click="deleteCharacter(scope.row.id, scope.$index)"> Yes </el-button>
+                <el-button @click="deleteCharacter(scope.row.id, scope.$index)" type="danger" size="small"> Yes </el-button>
               </template>
             </el-popconfirm>
           </el-row>

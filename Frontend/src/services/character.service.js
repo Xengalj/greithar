@@ -24,9 +24,7 @@ class CharacterService {
     if (user_id) {
       return axios.post(API_URL + 'read',
       {
-        user_id: user_id,
-        offset: offset,
-        limit: limit
+        user_id: user_id
       },
       { headers: authHeader() })
       .then(response => { return response.data; })

@@ -1,28 +1,33 @@
 <template lang="html">
   <div class="container">
 
-    <el-card class="user-card">
+    <el-card v-if="!loading" class="user-card">
       <template #header>
-        <div class="card-header">
-          <span><strong>{{ user.username }}'s'</strong> Profile</span>
-          <el-button type="primary" :onclick="editUser">
-            <g-icon iconName="quill" iconSize="25" style="margin-right: 5px;" /> Edit
-          </el-button>
-        </div>
+        <el-row justify="space-evenly" align="middle">
+          <el-col :xs="8" :span="12">
+            <strong>{{ user.username }}'s'</strong> Profile
+          </el-col>
+          <el-col :span="8">
+            <el-button type="primary" :onclick="editUser">
+              <g-icon iconName="quill" iconSize="25" style="margin-right: 5px;" /> Edit
+            </el-button>
+          </el-col>
+        </el-row>
       </template>
 
-      <el-form :model="user" label-width="auto">
-        <el-form-item label="Email" prop="email">
+      <el-descriptions :column="1" border >
+        <el-descriptions-item>
+          <template #label> Email </template>
           <el-input v-model="user.email" disabled />
-        </el-form-item>
-        <el-form-item label="Roles">
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label> Roles </template>
           <el-select v-model="user.roles" prop="roles" multiple disabled >
             <el-option v-for="role in user.roles" :key="role" :label="role" :value="role" />
           </el-select>
-        </el-form-item>
-
-        <el-divider> Colors </el-divider>
-        <el-form-item label="Darkmode">
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label> Darkmode </template>
           <el-switch v-model="user.usermeta.darkmode" disabled>
             <template #active-action>
               <span class="custom-active-action">T</span>
@@ -31,93 +36,101 @@
               <span class="custom-inactive-action">F</span>
             </template>
           </el-switch>
-        </el-form-item>
-        <el-form-item label="Favorite Color">
+        </el-descriptions-item>
+        <el-descriptions-item>
+          <template #label> Favorite Color </template>
           <div class="color-display"></div>
-        </el-form-item>
+        </el-descriptions-item>
+      </el-descriptions>
 
-        <el-divider> Hero </el-divider>
-        <el-form-item label="Character Name" prop="heroName">
-          <el-input v-model="user.usermeta.hero.name" disabled />
-        </el-form-item>
-        <el-form-item label="Classes">
-          <el-select v-model="user.usermeta.hero.classes" prop="heroClasses" multiple disabled placeholder="" >
-            <el-option v-for="item in user.usermeta.hero.classes" :key="item" :label="item" :value="item" />
-          </el-select>
-        </el-form-item>
-      </el-form>
+      <el-divider> Hero </el-divider>
+      <el-row :gutter="10" align="middle">
+        <el-col :span="4">
+          <el-button type="primary" circle @click="viewCharacter(hero.id)">
+            <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
+          </el-button>
+        </el-col>
+        <el-col :span="20">
+          <el-input v-model="hero.name" aria-label="Character Name" disabled>
+            <template #prepend> Name </template>
+          </el-input>
+          <el-tag v-for="(cClass, cName) in hero.classes" :key="cName" effect="dark" style="margin-right: 5px;">
+            {{ capFirsts(cName) }} {{ cClass.levels }}
+          </el-tag>
+        </el-col>
+      </el-row>
+
     </el-card>
-
   </div>
 </template>
 
 <script>
 import UserService from "@/services/user.service";
+import CharacterService from "@/services/character.service";
 
 export default {
   name: "View User",
   data() {
     return {
-      user: {
-        roles: [],
-        usermeta: {
-          hero: {
-            classes: []
-          }
-        }
-      }
+      loading: true,
+      hero: {},
+      user: {},
     };
   },
   computed: {
-    currentUser() {
-      return this.$store.state.auth.user;
-    }
+    currentUser() { return this.$store.state.auth.user; }
   },
-
   mounted() {
     if (this.currentUser.roles.includes("admin")) {
       UserService.getUser(this.$route.params.id)
       .then(response => {
-        for(const [key, value] of Object.entries(response.data)) {
-          if (key == "roles") {
-            for (const role of value) {
-              this.user['roles'].push(role.name);
-            }
-          } else {
-            this.user[key] = value;
-          }
+
+        this.user = Object.create(response.data);
+        this.user.roles = [];
+        for (let role of response.data.roles) {
+          this.user.roles.push(role.name);
         }
+
       })
-      .catch(err => {
-        this.$message({ message: err, type: 'error', });
-        console.error(err);
-      });
+      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
+      .finally(() => {
+        CharacterService.getCharacter(this.user.usermeta.hero)
+        .then(response => {
+          console.log(response.character);
+          this.hero = response.character;
+        })
+        .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
+        .finally(() => { this.loading = false; });
+      }); // End getUser
 
     // If user is not an admin, get logged in user's data
     } else {
       UserService.getUser(this.currentUser.id)
       .then(response => {
-        for(const [key, value] of Object.entries(response.data)) {
-          if (key == "roles") {
-            for (let role of value) {
-              this.user['roles'].push(role.name);
-            }
-          } else {
-            this.user[key] = value;
-          }
+        this.user = Object.create(response.data);
+        this.user.roles = [];
+        for (let role of response.data.roles) {
+          this.user.roles.push(role.name);
         }
+
       })
-      .catch(err => {
-        this.$message({ message: err, type: 'error', });
-        console.error(err);
-      });
+      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
+      .finally(() => {
+        CharacterService.getCharacter(this.user.usermeta.hero)
+        .then(response => {
+          console.log(response.character);
+          this.hero = response.character;
+        })
+        .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
+        .finally(() => { this.loading = false; });
+      }); // End getUser
     }
   },
 
   methods: {
-    editUser() {
-      this.$router.push({ name: 'user-edit', params: { id: this.user.id } });
-    }
+    capFirsts(string) { return string ? string.replace(/(^\w|\s\w)/g, m => m.toUpperCase()) : ""; },
+    editUser() { this.$router.push({ name: 'user-edit', params: { id: this.user.id } }); },
+    viewCharacter(id) { this.$router.push({ name: 'character-view', params: { id: id } }); },
   }
 }
 </script>

@@ -1581,7 +1581,7 @@ export default {
       return bab;
     },
 
-// TODO: weapon actions
+    // TODO: weapon actions
     // USES: basics, inventory, bab, bonusLoop(bonuses), attributes
     actions() {
       let actions = [
