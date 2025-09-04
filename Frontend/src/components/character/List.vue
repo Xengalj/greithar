@@ -1,19 +1,21 @@
 <template>
   <div class="container">
 
-    <el-row :gutter="10" style="margin-bottom:20px">
-      <el-col :span="12">
-        <el-input v-model="charNameFilter" placeholder="Character Name" id="nameFilter" aria-label="Character Name Filter" @input="searchByName" >
+    <el-row :gutter="10" justify="space-between" style="margin-bottom:20px">
+      <el-col :xs="24" :span="12">
+        <el-input v-model="charNameFilter" @input="searchByName" id="nameFilter" placeholder="Character Name" aria-label="Character Name Filter" style="margin-bottom:5px">
           <template #prepend>
             <g-icon iconSize="20px" iconName="search" />
           </template>
+          <template #append>
+            <el-button type="warning" @click="clearFilter"> Reset </el-button>
+          </template>
         </el-input>
       </el-col>
-      <el-col :span="3">
-        <el-button type="warning" @click="clearFilter">Reset name filter</el-button>
-      </el-col>
-      <el-col :offset="6" :span="3">
-        <el-button type="success" @click="createCharacter" v-loading="loading"> New Char </el-button>
+      <el-col :offset="8" :span="3">
+        <el-button @click="createCharacter" plain>
+          <g-icon iconSize="24px" iconName="userAdd" style="margin-right: 5px;" /> New
+        </el-button>
       </el-col>
     </el-row>
 
@@ -22,24 +24,19 @@
       :data="characters"
       max-height="600"
       id="characterTable"
+      stripe
     >
-      <el-table-column prop="name" label="Name" width="200" sortable fixed >
-        <template #default="scope">
-          <el-tag effect="dark"> {{ scope.row.name }} </el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column prop="user.username" label="User" width="120" sortable v-if="!listID" />
-      <el-table-column prop="basics.appearance.age" label="Age" width="80" sortable />
+      <el-table-column prop="name" label="Name" min-width="100" sortable />
+      <el-table-column prop="user.username" label="User" sortable v-if="!userID" />
+      <el-table-column prop="basics.appearance.age" label="Age" sortable />
       <el-table-column prop="basics.race" label="Race" sortable />
-      <el-table-column prop="classes" label="Class" sortable>
+      <el-table-column prop="classes" label="Class" min-width="90" sortable>
         <template #default="scope">
           <el-tag effect="dark">
             <span v-if="Object.keys(scope.row.classes).length == 0"> Level 0 </span>
             <span v-for="(cClass, cName, index) in scope.row.classes" :key="cName">
               {{ capFirsts(cName) }} {{ cClass.levels }}
-              <span v-if="index < Object.keys(scope.row.classes).length-1">
-                /
-              </span>
+              <span v-if="index < Object.keys(scope.row.classes).length-1"> / </span>
             </span>
           </el-tag>
         </template>
@@ -68,19 +65,33 @@
        </el-table-column>
     </el-table>
 
-    <div class="char-pager">
-      <el-pagination
-        v-model:current-page="currentPage"
-        v-model:page-size="pageSize"
-        :page-sizes="[10, 25, 50, 100]"
-        :background="true"
-        layout="sizes, prev, pager, next, jumper, total"
-        :total="totalToons"
-        @current-change="loadCharacters"
-        @size-change="loadCharacters"
-        hide-on-single-page
-      />
-    </div>
+    <el-row justify="center" class="char-pager">
+      <el-col :xs="19" :span="0">
+        <el-pagination
+          v-model:current-page="currentPage"
+          v-model:page-size="pageSize"
+          :background="true"
+          layout="prev, pager, next, total"
+          :total="totalToons"
+          @current-change="loadCharacters"
+          @size-change="loadCharacters"
+          hide-on-single-page
+        />
+      </el-col>
+      <el-col :xs="0"  :span="11">
+        <el-pagination
+          v-model:current-page="currentPage"
+          v-model:page-size="pageSize"
+          :page-sizes="[10, 25, 50, 100]"
+          :background="true"
+          layout="sizes, prev, pager, next, jumper, total"
+          :total="totalToons"
+          @current-change="loadCharacters"
+          @size-change="loadCharacters"
+          hide-on-single-page
+        />
+      </el-col>
+    </el-row>
 
   </div>
 </template>
@@ -97,7 +108,7 @@ export default {
     return {
       loading: true,
       advanced: false,
-      listID: this.$route.params.id, // user id
+      userID: this.$route.params.id, // user id
 
       // filters
       charNameFilter: "",
@@ -105,20 +116,16 @@ export default {
       // pagination
       currentPage: 1,
       pageSize: 10,
-
-      characters: [],
       totalToons: 0,
 
-      // TODO:
-      debug: true,
-      isAdmin: this.currentUser
+      characters: [],
     }
   },
 
   mounted() {
-    console.log(this.currentUser);
-    // if (!this.currentUser) { this.$router.push('/login'); }
-    console.log(`listID: ${this.listID}`);
+    if (!this.currentUser.roles.includes("admin")) {
+      this.userID = this.currentUser.id;
+    }
     this.loadCharacters();
   },
 
@@ -127,7 +134,7 @@ export default {
 
     loadCharacters() {
       let offset = this.pageSize * (this.currentPage-1);
-      CharacterService.getAllCharacters(this.listID, offset, this.pageSize)
+      CharacterService.getAllCharacters(this.userID, offset, this.pageSize)
       .then(response => {
         let tmp = JSON.parse(response.characters);
         this.totalToons = tmp.count;
@@ -140,28 +147,16 @@ export default {
       // this.loading = true;
       CharacterService.createCharacter()
       .then(response => {
-        if (this.debug) {
-          console.log(response);
-          this.loadCharacters();
-        } else {
-          let id = response.character.id;
-          this.$router.push({ name: 'character-edit', params: { id: id } });
-        }
+        let id = response.character.id;
+        this.$router.push({ name: 'character-edit', params: { id: id } });
       })
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
     },
-    viewCharacter(id) {
-      this.$router.push({ name: 'character-view', params: { id: id } });
-    },
-    editCharacter(id) {
-      this.$router.push({ name: 'character-edit', params: { id: id } });
-    },
+    viewCharacter(id) { this.$router.push({ name: 'character-view', params: { id: id } }); },
+    editCharacter(id) { this.$router.push({ name: 'character-edit', params: { id: id } }); },
     deleteCharacter(id, rowIndex) {
       CharacterService.deleteCharacter(id)
-      .then(response => {
-        this.$message({ message: response, type: 'warning' });
-        this.characters.splice(rowIndex, 1);
-      })
+      .then(response => { this.$message({ message: response, type: 'warning' }); this.characters.splice(rowIndex, 1); })
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
     },
 
@@ -170,11 +165,6 @@ export default {
     *          FILTERS          *
     *                           *
     \***************************/
-    clearFilter() {
-      this.charNameFilter = "";
-      this.searchByName("");
-    },
-
     // HIDES non-matching rows (display: none)
     searchByName(filter) {
       let table, tr, td, i, txtValue;
@@ -192,18 +182,17 @@ export default {
           }
         }
       }
-    }
+    },
+    clearFilter() { this.charNameFilter = ""; this.searchByName(""); }
+
   }
 };
 </script>
 <style media="screen">
 .char-pager {
-  display: flex;
-  justify-content: center;
   margin-top: 10px;
-
 }
 .char-pager .el-pagination button .el-icon {
-display: flex;
+  display: flex;
 }
 </style>

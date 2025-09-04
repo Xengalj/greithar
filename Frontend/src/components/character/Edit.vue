@@ -1681,7 +1681,7 @@ export default {
     CharacterService.getCharacter(this.$route.params.id)
     .then((response) => {
       console.log(response);
-      this.character = response.character[0];
+      this.character = response.character;
       this.loading = false;
     })
     .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })

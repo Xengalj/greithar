@@ -1952,7 +1952,7 @@ export default {
     CharacterService.getCharacter(this.$route.params.id)
     .then((response) => {
       // console.log('response', response);
-      this.character = response.character[0];
+      this.character = response.character;
       document.getElementsByClassName('title')[0].innerHTML = this.character.name;
       this.spellTabs = Object.keys(this.character.spells)[0];
 
