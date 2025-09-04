@@ -1682,6 +1682,7 @@ export default {
     .then((response) => {
       console.log(response);
       this.character = response.character;
+      if (!this.character.user) { this.character.user = {} }
       this.loading = false;
     })
     .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })

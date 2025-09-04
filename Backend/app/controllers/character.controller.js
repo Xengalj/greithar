@@ -42,22 +42,20 @@ exports.read = (req, res) => {
       if (!character) { return res.status(404).send({ message: "Character not found!" }); }
       res.status(200).send({ character: character });
     })
-    .catch(err => {
-      // error getting character
-      res.status(500).send({ message: err.message });
-    });
+    .catch(err => { res.status(500).send({ message: err.message }); });
 
   // get user's characters
   } else if (req.body.user_id) {
-    Character.findAll({ where: { userId: req.body.user_id } })
+    Character.findAndCountAll({
+      where: { userId: req.body.user_id },
+      offset: req.body.offset,
+      limit: req.body.limit
+    })
     .then(characters => {
       if (!characters) { return res.status(404).send({ message: "No characters found!" }); }
-      res.status(200).send({ characters: characters });
+      res.status(200).send({ characters: JSON.stringify(characters) });
     })
-    .catch(err => {
-      // error getting character
-      res.status(500).send({ message: err.message });
-    });
+    .catch(err => { res.status(500).send({ message: err.message }); });
 
   // get all characters
   } else {
@@ -70,13 +68,7 @@ exports.read = (req, res) => {
       if (!characters) { return res.status(404).send({ message: "No characters found!" }); }
       res.status(200).send({ characters: JSON.stringify(characters) });
     })
-    .catch(err => {
-      // error getting characters
-      res.status(500).send({ message: err.message });
-    });
-
-
-
+    .catch(err => { res.status(500).send({ message: err.message }); });
   }
 };
 
@@ -114,11 +106,7 @@ exports.update = (req, res) => {
           res.status(403).send({ message: `You do not have permissions to delete this character` });
         }
       })
-      .catch(err => {
-        // error finding character
-        res.status(500).send({ message: err.message });
-      });
-
+      .catch(err => { res.status(500).send({ message: err.message }); });
     });
   });
 };
@@ -149,11 +137,7 @@ exports.delete = (req, res) => {
           res.status(403).send({ message: `You do not have permissions to delete this character` });
         }
       })
-      .catch(err => {
-        // error finding character
-        res.status(500).send({ message: err.message });
-      });
-
+      .catch(err => { res.status(500).send({ message: err.message }); });
     });
   });
 

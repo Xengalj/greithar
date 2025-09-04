@@ -5,7 +5,7 @@
       <template #header>
         <el-row justify="space-evenly" align="middle">
           <el-col :xs="8" :span="12">
-            <strong>{{ user.username }}'s'</strong> Profile
+            <strong>{{ user.username }}'s</strong> Profile
           </el-col>
           <el-col :span="8">
             <el-button type="primary" :onclick="editUser">
@@ -44,7 +44,7 @@
       </el-descriptions>
 
       <el-divider> Hero </el-divider>
-      <el-row :gutter="10" align="middle">
+      <el-row v-if="hero" :gutter="10" align="middle">
         <el-col :span="4">
           <el-button type="primary" circle @click="viewCharacter(hero.id)">
             <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
@@ -58,6 +58,9 @@
             {{ capFirsts(cName) }} {{ cClass.levels }}
           </el-tag>
         </el-col>
+      </el-row>
+      <el-row v-else justify="center">
+        Please select a character while editing
       </el-row>
 
     </el-card>

@@ -16,7 +16,7 @@
             <g-icon iconSize="24px" iconName="inventory" /> Equipment
           </el-button>
         </router-link>
-        <router-link to="/beastiary" class="nav-link">
+        <router-link v-if="this.user" to="/beastiary" class="nav-link">
           <el-button type="primary">
             <g-icon iconSize="24px" iconName="dragon" /> Beastiary
           </el-button>
@@ -47,7 +47,7 @@
     </el-row>
 
     <!-- LOGIN CHECK -->
-    <el-row v-if="this.user.id" class="center-horz" justify="space-between">
+    <el-row v-if="this.user" class="center-horz" justify="space-between">
       <el-col :span="11">
         <el-divider> DM <g-icon iconName="lockedBook" /> </el-divider>
 
@@ -105,8 +105,6 @@
 </template>
 
 <script>
-import UserService from "@/services/user.service";
-
 export default {
   name: "Home",
   data() {
@@ -125,37 +123,6 @@ export default {
   mounted() {
     console.log('home -> user', this.user);
     console.log('rules', this.rules);
-    console.log('races', this.races);
-    console.log('classes', this.classes);
-    console.log('equipment', this.equipment);
-
-    // login check
-    UserService.getUserBoard().then(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.error(error);
-        this.user = {};
-        this.$store.dispatch('auth/logout');
-      }
-    );
-
-
-    UserService.getPublicContent().then(
-      (response) => {
-        this.content = response.data;
-        this.content = localStorage.getItem('encounter');
-      },
-      (error) => {
-        this.content =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-      }
-    );
   },
 };
 </script>

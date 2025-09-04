@@ -56,7 +56,7 @@ class UserService {
       user_id: user.id,
       username: user.username,
       email: user.email,
-      password: user.password,
+      // password: user.password,
       roles: user.roles,
       usermeta: user.usermeta
     },

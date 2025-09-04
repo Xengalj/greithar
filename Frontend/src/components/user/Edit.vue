@@ -151,6 +151,10 @@ export default {
             let html = document.getElementsByTagName("html")[0];
             html.setAttribute("class", theme);
 
+            // Update user in store
+            this.$store.dispatch("auth/login", this.user)
+            .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
+
             this.$router.push({ name: 'user-view', params: { id: this.currentUser.id } });
           })
           .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
