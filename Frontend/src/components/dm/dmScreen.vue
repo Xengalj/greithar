@@ -77,8 +77,6 @@ import DataService from "@/services/data.service";
 import CreatureCard from '@/components/template/CreatureCard.vue'
 const icons = require('@/components/template/svgPaths.json');
 
-import OBR from "@owlbear-rodeo/sdk";
-
 export default {
   name: "DM Screen",
   components: {
@@ -125,7 +123,7 @@ export default {
     );
   },
   mounted() {
-    // if (!this.rules.size) { this.$router.push("/"); }
+    if (!this.rules.size) { this.$router.push("/"); }
 
     // Wait until we have data (like 500 ms?)
     if (this.conditions) {
@@ -135,49 +133,6 @@ export default {
       // this.monsterOpen("Adult Red Dragon");
       // this.monsterOpen("Death Worm");
       // this.monsterOpen("Ochre Jelly");
-
-      OBR.scene.items.onChange(
-        (items) => {
-          items.forEach(item => {
-            if ( item.layer === "CHARACTER" && item.name === "Lillian" ) {
-              console.log(item.name);
-
-              let toon = item.metadata["com.bitperfect-software.hp-tracker/data"];
-              console.log(toon);
-
-            }
-          });
-        }
-      ); // End OBR onChange
-
-
-
-
-
-
-
-/*
-Hide selected items when clicking a context menu item
-
-OBR.contextMenu.create({
-id: "rodeo.owlbear.example",
-icons: [
-{
-icon: "icon.svg",
-label: "Example",
-},
-],
-onClick(context) {
-OBR.scene.items.updateItems(context.items, (items) => {
-for (let item of items) {
-item.visible = false;
-}
-});
-},
-});
-*/
-
-
     }
 
   },

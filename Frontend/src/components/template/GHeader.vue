@@ -216,7 +216,8 @@ export default {
 <style>
 .top-bar {
   height: 80px;
-  border-bottom: 2px solid var(--el-menu-border-color);
+  border-bottom: 4px solid var(--el-color-primary);
+  background-color: var(--el-bg-color-page);
 }
 .site-title {
   font-size: 40px;

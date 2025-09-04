@@ -1271,6 +1271,7 @@ import CharacterService from "@/services/character.service";
 import HexGraph from '@/components/template/HexGraph.vue';
 import GItem from '@/components/template/GItem.vue';
 import GAbility from '@/components/template/GAbility.vue';
+import OBR from "@owlbear-rodeo/sdk";
 
 export default {
   name: "View Character",
@@ -2001,7 +2002,45 @@ export default {
       // Put Add Spell btn in class spells tabs, wait til refs loaded
       const spellTabs = this.$refs.spellTabs.$el.querySelector('.el-tabs__nav-scroll');
       spellTabs.appendChild(this.$refs.addSpell.$el);
-    });
+
+      // Link up Owlbear Rodeo :)
+      OBR.onReady(() => {
+        OBR.scene.items.onChange(
+          (items) => {
+            items.forEach(item => {
+              if ( item.layer === "CHARACTER" && item.name === "Lillian" ) {
+                console.log(item.name);
+                let toon = item.metadata["com.bitperfect-software.hp-tracker/data"];
+                console.log(toon);
+              }
+
+            });
+          }
+        ); // End OBR onChange
+      });
+      /*
+      Hide selected items when clicking a context menu item
+
+      OBR.contextMenu.create({
+      id: "rodeo.owlbear.example",
+      icons: [
+      {
+      icon: "icon.svg",
+      label: "Example",
+      },
+      ],
+      onClick(context) {
+      OBR.scene.items.updateItems(context.items, (items) => {
+      for (let item of items) {
+      item.visible = false;
+      }
+      });
+      },
+      });
+      */
+
+
+    }); // end getCharacter .finally()
 
 
   },
