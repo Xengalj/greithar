@@ -1236,8 +1236,8 @@
 
     <!-- FOOTER -->
     <div style="text-align: right; margin-top: 10px;">
-      <el-button type="warning" @click="$router.push({ name: 'character-list' })">Back to All Characters </el-button>
-      <el-button type="primary" @click="saveCharacter()"> Save Changes </el-button>
+      <el-button @click="$router.push({ name: 'character-list' })" type="warning" plain>Back to All Characters </el-button>
+      <el-button @click="saveCharacter()" type="primary"> Save Changes </el-button>
     </div>
 
     <!-- LEVEL UP DIALOG -->
@@ -1681,7 +1681,8 @@ export default {
     CharacterService.getCharacter(this.$route.params.id)
     .then((response) => {
       console.log(response);
-      this.character = response.character[0];
+      this.character = response.character;
+      if (!this.character.user) { this.character.user = {} }
       this.loading = false;
     })
     .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })

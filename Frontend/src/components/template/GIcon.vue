@@ -27,7 +27,7 @@ export default {
     },
     iconColor: {
       type: String,
-      default: '#BBB'
+      default: '#CCC'
     },
     iconName: {
       type: String,

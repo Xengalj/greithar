@@ -12,10 +12,24 @@ const app = express();
 let isProd = 1
 let reSeed = 0
 
-if (isProd) { app.use(express.static(path)); }
-
-let corsOptions = { origin: "http://localhost:8081" };
+let corsOptions = { origin: [ "https://www.owlbear.rodeo", "http://localhost:8081/" ] };
 app.use(cors(corsOptions));
+
+// Networking stuff from Eric
+app.use((req, res, next) => {
+  res.setHeader('X-Frame-Options', 'ALLOWALL');
+
+  res.setHeader('Content-Security-Policy',
+    "default-src 'self' https://www.owlbear.rodeo/; " +
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.owlbear.rodeo/; " +
+    "style-src 'self' 'unsafe-inline' https://www.owlbear.rodeo/; " +
+    "frame-ancestors https://www.owlbear.rodeo/;"
+  );
+
+  next();
+});
+
+
 
 // parse requests of content-type - application/json
 app.use(express.json());
@@ -23,6 +37,7 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
+if (isProd) { app.use(express.static(path)); }
 
 // database
 const db = require("./app/models");

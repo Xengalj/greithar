@@ -36,19 +36,15 @@
 }
 
 
-/*    https://colorffy.com/dark-theme-generator
+/*
+  https://colorffy.com/dark-theme-generator
 Dark/Mixed - 100: For body background color
-
-
 Dark/Mixed - 200: For cards background color
-
 Dark/Mixed - 300: For chips buttons, dropdowns background color
-
 Dark/Mixed - 400: For sidebars, navbar background color
-
 Dark/Mixed - 500: For modal, dialogs background color
-
-Dark/Mixed - 600: For on background texts color */
+Dark/Mixed - 600: For on background texts color
+*/
 
 
 /***************************\
@@ -82,9 +78,9 @@ body a:hover {
 *          LAYOUT           *
 *                           *
 \***************************/
-.flex-grow {
+/* .flex-grow {
   flex-grow: 1;
-}
+} */
 .main {
   height: calc(100vh - 120px);
 }
@@ -100,10 +96,10 @@ footer {
 .center-vert { align-content: center; }
 .text-right { text-align: right; }
 
-#app .el-icon,
+/* #app .el-icon,
 #app .el-icon.el-dialog__close,
 .el-icon.el-popconfirm__icon,
 .el-icon.el-message__icon,
 .el-icon.el-message__closeBtn {
   width: 28px;
-}
+} */

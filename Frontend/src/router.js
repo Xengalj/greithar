@@ -137,15 +137,6 @@ const routes = [
           title: "Character List",
         }
       },
-      // {
-      //   path: "create",
-      //   name: "character-create",
-      //   component: () => import("./components/character/Create.vue"),
-      //   meta: {
-      //     breadcrumb: "Create Character",
-      //     title: "Create Character",
-      //   }
-      // },
       {
         // load hero from $store, after /profile
         path: "view/:id",

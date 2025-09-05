@@ -27,49 +27,6 @@
   </el-row>
   <br><br>
 
-  <!--
-  <el-divider />
-  <el-row v-for="(race, name) in this.races" :key="name">
-    <el-col :span="4"> {{ name }} </el-col>
-    <el-col :span="8">
-      <el-row>
-        <el-col :span="8">
-          <div v-if="race.female">
-            <el-row v-for="name in race.female.names" :key="name">
-              <el-col> {{ name }} </el-col>
-            </el-row>
-          </div>
-        </el-col>
-        <el-col :span="8">
-          <div v-if="race.male">
-            <el-row v-for="name in race.male.names" :key="name">
-              <el-col> {{ name }} </el-col>
-            </el-row>
-          </div>
-        </el-col>
-        <el-col :span="8">
-          <div v-if="race.agender">
-            <el-row v-for="name in race.agender.names" :key="name">
-              <el-col> {{ name }} </el-col>
-            </el-row>
-          </div>
-        </el-col>
-      </el-row>
-    </el-col>
-    <el-col :span="8">
-      <el-row v-for="(info, name) in race.surnames" :key="name">
-        <el-col :span="12">
-          {{ name }}
-        </el-col>
-        <el-col :span="12">
-          {{ info }}
-        </el-col>
-      </el-row>
-    </el-col>
-    <el-divider />
-  </el-row>
-  -->
-
   <el-button type="primary" circle @click="monsterOpen('Skeletal Champion')">
     <g-icon iconSize="24px" iconName="undead" />
   </el-button>
@@ -134,6 +91,8 @@ export default {
       creature: {},
       tempName: {},
 
+      OBRToon: {}
+
     }
   },
   computed: {
@@ -164,17 +123,16 @@ export default {
     );
   },
   mounted() {
+    if (!this.rules.size) { this.$router.push("/"); }
+
     // Wait until we have data (like 500 ms?)
     if (this.conditions) {
-      console.log(this.races);
+      console.log('Races', this.races);
 
       // this.monsterOpen("Skeletal Champion");
       // this.monsterOpen("Adult Red Dragon");
       // this.monsterOpen("Death Worm");
       // this.monsterOpen("Ochre Jelly");
-
-      // console.log(this.actions);
-      // console.log(this.conditions);
     }
 
   },
