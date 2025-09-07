@@ -84,24 +84,50 @@ exports.read = (req, res) => {
 *        USER UPDATE        *
 *                           *
 \***************************/
-exports.update = (req, res) => {
+exports.update = async (req, res) => {
   let editSelf = (req.userId == req.body.user_id) ? true : false;
 
   let isAdmin = false;
-  User.findByPk(req.userId).then(user => {
+  console.log('before adminCheck');
+  await User.findByPk(req.userId).then(user => {
     user.getRoles().then(roles => {
       for (let i = 0; i < roles.length; i++) {
         if (roles[i].name === "admin") {
           isAdmin = true;
+          console.log("is Admin");
         }
       }
     });
   });
+  console.log('isAdmin:', isAdmin);
+
+
+  
 
   // Find the given user by user_id
-  User.findOne({ where: { id: req.body.user_id } })
+  User.findOne({ where: { id: req.body.user_id }, include: Roles })
   .then(user => {
     if (!user) { return res.status(404).send({ message: "User not found!" }); }
+    console.log(user);
+    console.log(user.Roles);
+
+    /*
+        // only let users edit their own, or admins edit any
+        if (isAdmin || character.user.id == req.user.id) {
+          // set values to be updated
+          for (const [key, value] of Object.entries(req.body)) {
+            console.log(`${key}: ${value}`);
+            if (key == "id") { continue; }
+            if (isAdmin && key == "user") { character.setUser(value.id); }
+            character[key] = value;
+          }
+          character.save();
+
+          res.status(200).send({ character });
+        } else {
+          res.status(403).send({ message: `You do not have permissions to delete this character` });
+        }
+    */
 
     // get user's current roles
     let authorities = [];
