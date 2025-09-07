@@ -65,6 +65,17 @@ class UserService {
     .catch(err => { return err; });
   }
 
+  updatePassword(user) {
+    return axios.post(API_URL + 'update',
+    {
+      user_id: user.id,
+      password: user.password
+    },
+    { headers: authHeader() })
+    .then(response => { return response.data; })
+    .catch(err => { return err; });
+  }
+
   deleteUser(id) {
     return axios.post(API_URL + 'delete',
     { user_id: id },
