@@ -1,7 +1,8 @@
 import axios from 'axios';
 import authHeader from './auth-header';
-// import settings from '../main.js'
-const API_URL = 'http://localhost:8080/api/data/';
+import settings from '../../../config.js'; // in backend when deployed
+
+const API_URL = settings().isProd ? settings().serverURL.concat('/data/') : 'http://localhost:8080/api/data/';
 
 class DataService {
   getAdminBoard() {

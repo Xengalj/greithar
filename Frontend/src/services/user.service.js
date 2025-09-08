@@ -1,26 +1,8 @@
 import axios from 'axios';
 import authHeader from './auth-header';
+import settings from '../../../config.js'; // in backend when deployed
 
-/*
-import serverURL from '../../server.js'; // in backend when deployed
-../../server.js;
-../Backend/app/views
-backed/svere.js
-
-console.log(serverURL);
-
-
-OR
-
-
-import serverURL from '../../settings'; // settings.js, next to vue.config
-    in settings.js
-export const serverURL = ''; // TODO : Add Server Addres Here
-
-
-const API_URL = serverURL ? serverURL.concat('/user/') : 'http://localhost:8080/api/user/';
-*/
-const API_URL = 'http://localhost:8080/api/user/';
+const API_URL = settings().isProd ? settings().serverURL.concat('/user/') : 'http://localhost:8080/api/user/';
 
 class UserService {
   getPublicContent() {
