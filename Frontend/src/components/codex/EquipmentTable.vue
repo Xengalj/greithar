@@ -1,6 +1,90 @@
 <template lang="html">
+
+  <el-row :gutter="10" justify="center" style="margin-bottom:10px">
+    <el-col :xs="22" :sm="12" :md="6">
+      <el-input v-model="nameSearch" @input="searchByName" aria-label="Item Name">
+        <template #prepend>
+          <g-icon iconSize="20px" iconName="search" />
+          Search
+        </template>
+      </el-input>
+    </el-col>
+    <el-col :xs="0" :sm="4" :md="3">
+      <el-button @click="randomItem" type="primary">Random Item</el-button>
+    </el-col>
+  </el-row>
+  <el-row justify="center">
+    <el-col :xs="12" :span="0">
+      <el-button @click="randomItem" type="primary">Random Item</el-button>
+    </el-col>
+  </el-row>
+
+  <!-- FILTERS -->
+  <el-row :gutter="10" justify="center" style="margin-bottom:10px">
+    <el-col :xs="22" :span="6">
+
+
+      <el-select
+        v-for="(filter, key) in tableFilters" :key="key"
+        v-model="filterValue[key]"
+        value-key="label"
+        multiple
+        :placeholder="`Select ${key}`"
+        style="width: 240px"
+        v-on:change="filterTable()"
+      >
+        <template #tag>
+          <el-tag v-for="(item, name) in filterValue[key]" effect="dark" :color="item.color" :key="name" >
+            {{ item.label }}
+          </el-tag>
+        </template>
+        <el-option v-for="item in filter" :key="item.label" :label="item.label" :value="item" >
+          <div class="flex items-center">
+            <el-tag :color="item.color" style="margin-right: 8px" size="small" />
+            <span :style="{ color: item.color }">{{ item.label }}</span>
+          </div>
+        </el-option>
+        <template #footer>
+          <el-button v-if="!isAdding" text bg size="small" @click="isAdding=true"> Add an option </el-button>
+          <template v-else>
+            <div style="display: flex;">
+              <el-color-picker v-model="newOption.color" size="small" :teleported="false" />
+              <el-input v-model="newOption.value" class="option-input" placeholder="Enter option name" size="small" style="width:75%; margin-left: 5px;"/>
+              <el-button type="primary" size="small" style="margin-left: 5px;" @click="onConfirm(key)">confirm</el-button>
+              <el-button size="small" @click="newOption = {}; isAdding = false;">cancel</el-button>
+            </div>
+          </template>
+        </template>
+      </el-select>
+
+
+
+
+    </el-col>
+
+    <el-col :xs="0" :span="3">
+      <el-button @click="clearFilter" type="warning">Reset</el-button>
+      <el-tag v-if="displayedRows" size="large" effect="dark" type="primary">{{ displayedRows }} Results</el-tag>
+    </el-col>
+  </el-row>
+
+  <el-row justify="center">
+    <el-col :xs="12" :span="0">
+      <el-button @click="clearFilter" type="warning">Reset</el-button>
+      <el-tag v-if="displayedRows" size="large" effect="dark" type="primary">{{ displayedRows }} Results</el-tag>
+    </el-col>
+  </el-row>
+
+
+
+
+
+
+
+
+
   <div class="filter-row">
-    <input type="text" id="searchName" placeholder="Search by name.." title="Type in a name" v-on:keyup="searchByName()" >
+    <!-- <input type="text" id="searchName" placeholder="Search by name.." title="Type in a name" v-on:keyup="searchByName()" > -->
 
     <el-select
       v-for="(filter, key) in tableFilters" :key="key"
@@ -35,9 +119,7 @@
       </template>
     </el-select>
 
-    <el-button @click="clearFilter">Reset</el-button>
-    <el-tag v-if="displayedRows" size="large" effect="dark" type="primary">{{ displayedRows }} Results</el-tag>
-    <el-button @click="randomItem">Random Item</el-button>
+
   </div>
 
   <table :id="id" class="g-table">
@@ -127,12 +209,35 @@ export default {
         { value: '#ffd8b1', label: 'Apricot' },
         { value: '#aaffc3', label: 'Mint' },
         { value: '#dcbeff', label: 'Lavender' }
-      ]
+      ],
+
+
+      nameSearch: "",
 
     }
   },
 
   methods: {
+    searchByName() {
+      let filter, table, tr, td, i, txtValue;
+      filter = this.nameSearch.toUpperCase();
+      table = document.getElementById(this.id);
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    },
+
+
+
     sortTable(sortStr) {
       let table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
       table = document.getElementById("equipmentTable");
@@ -214,24 +319,6 @@ export default {
       }
     },
 
-    searchByName() {
-      let input, filter, table, tr, td, i, txtValue;
-      input = document.getElementById("searchName");
-      filter = input.value.toUpperCase();
-      table = document.getElementById(this.id);
-      tr = table.getElementsByTagName("tr");
-      for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[0];
-        if (td) {
-          txtValue = td.textContent || td.innerText;
-          if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            tr[i].style.display = "";
-          } else {
-            tr[i].style.display = "none";
-          }
-        }
-      }
-    },
 
     // Add filter dropdown option
     onConfirm(filter) {

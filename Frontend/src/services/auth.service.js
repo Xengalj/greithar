@@ -1,7 +1,7 @@
 import axios from 'axios';
-import settings from '../../../config.js'; // in backend when deployed
+import settings from '/../config.js';
 
-const API_URL = settings().isProd ? settings().serverURL.concat('/auth/') : 'http://localhost:8080/api/auth/';
+const API_URL = settings.isProd ? settings.serverURL.concat('/auth/') : 'http://localhost:8080/api/auth/';
 
 class AuthService {
   login(user) {

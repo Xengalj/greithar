@@ -1,19 +1,7 @@
 import axios from 'axios';
 import authHeader from './auth-header';
+import settings from '/../config.js';
 
-// import settings from '../../../config.js'; // in backend when deployed
-import settings from '/config.js'; // in backend when deployed
-// const API_URL = settings().isProd ? settings().serverURL.concat('/user/') : 'http://localhost:8080/api/user/';
-console.log(settings()); // root test, if good, don't need below
-
-// let settings = {};
-// import("/config.js")
-// // import('../../../config.js')
-// .then((config) => {
-//   console.log(config);
-//   console.log(config());
-//   settings = config();
-// });
 const API_URL = settings.isProd ? settings.serverURL.concat('/user/') : 'http://localhost:8080/api/user/';
 
 class UserService {

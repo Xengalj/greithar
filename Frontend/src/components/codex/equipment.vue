@@ -1,8 +1,6 @@
 <template>
   <div style="margin: 25px;">
 
-    <el-row>{{ rules }}</el-row>
-
     <div class="hero-section">
       Select Item Type
       <el-select
@@ -52,7 +50,6 @@ export default {
       },
       selectedType: { label: "Weapons", color: "#4167F0" },
 
-      rules: {}
     };
   },
 
@@ -70,12 +67,6 @@ export default {
 
       switch (this.selectedType.label) {
         case "Armor":
-          this.rules = {
-            "Light Armor Speed": "x1 ft.",
-            "Medium Armor Speed": "x0.66 ft.",
-            "Heavy Armor Speed": "x0.66 ft & run is x3 not x4"
-          };
-
           this.tableFilters = {
             "Proficiency": {
               "Light":        { color: "#1EC79D", label: "Light" },
@@ -86,9 +77,6 @@ export default {
           break;
 
         case "Shields":
-          this.rules = {
-            "Shield Bash": "You must have martial proficiency to make a shield bash, and doing so causes you to lose your AC bonus from your shield for a turn."
-          };
           this.tableFilters = {
             "Group": {
               "Light Blades": { color: '#FF6600', label: 'Light Blades' },
@@ -101,9 +89,6 @@ export default {
           break;
 
         case "Weapons":
-          this.rules = {
-            "Proficiency": "If do not have proficiency with a weapon, you take a -4 on Attack Rolls to hit."
-          };
           this.tableFilters = {
             "Damage Type": {
               "Slashing":     { color: "#E63415", label: "Slashing" },
@@ -146,7 +131,6 @@ export default {
           break;
 
         case "Materials":
-          this.rules = {};
           this.tableFilters = {
             "Type": {
               "Metal":        { color: "#71797E", label: "Metal" },
@@ -158,7 +142,6 @@ export default {
           break;
 
         case "Goods and Services":
-          this.rules = {};
           this.tableFilters = {
             "Category": {
               "Adventuring Gear":
@@ -196,5 +179,6 @@ export default {
   .hero-section {
     color: #CCC;
     text-align: center;
+    margin-bottom: 20px;
   }
 </style>
