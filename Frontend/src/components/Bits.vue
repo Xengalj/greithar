@@ -1,38 +1,63 @@
 <template>
   <div class="container">
-
     <!--
       Splits:
       XS : Phone : 360px
       sm : Tablet : 800px
       LG : Laptop : >
     -->
-
     <el-row :gutter="10" justify="center" align="middle">
-      <div v-for="(icon, name, index) in icons" :key="index" class="center-horz" style="margin: 5px;">
-        <el-button size="large" type="primary" circle>
-          <g-icon iconSize="24px" :iconName="name" />
-        </el-button>
-        <br>
-        {{ name }}
-      </div>
-    </el-row>
-    <el-divider />
-
-    <el-row>
-      <el-col :xs="22" :sm="12" :md="6">
-        <el-input v-model="nameSearch" @input="searchByName" aria-label="Item Name">
-          <template #prepend>
-            <g-icon iconSize="20px" iconName="search" />
-            Search
-          </template>
-        </el-input>
+      <el-col :xs="24" :sm="12" :md="6">
       </el-col>
     </el-row>
 
+    <g-icon iconName="d20" iconSize="24px" iconColor="#CCC" />
 
-    <el-tag :color="item.color" type="info" size="small" effect="dark" />
+    <el-divider />
+    
+    <el-button @click="onClickEvent" size="large" type="primary" circle>
+      CONTENT
+    </el-button>
+    <el-button v-loading="loading">Test 2</el-button>
 
+    <el-input v-model="inputString" @input="onChangeEvent" aria-label="inputName">
+      <template #prepend>
+        BEFORE BOX
+      </template>
+      <template #prefix>
+        INSIDE START
+      </template>
+      <template #append>
+        INSIDE END
+      </template>
+      <template #suffix>
+        AFETR BOX
+      </template>
+    </el-input>
+
+    <el-input type="textarea" v-model="inputString" :autosize="{ minRows: 1, maxRows: 4 }" aria-label="textAreaName" />
+    
+    <el-input-number v-model="inputNumber" :min="0" :max="10" @change="onChangeEvent" aria-label="inputNumberName" />
+    
+    <!-- value-key needed for objects, not arrays -->
+    <el-select v-model="selectArray/Object" value-key="objectKey" placeholder="placeholderName" aria-label="selectName" multiple>
+      <template #tag>
+        <el-tag v-for="(item, index) in selectArray/Object" :key="index" @close="closeEvent" effect="dark" closable>
+          {{ selectArray/Object.name }} 
+        </el-tag>
+      </template>
+      <el-option v-for="item in optionsObject" :key="item.name" :label="item.name" :value="item" >
+        OPTION TAG
+      </el-option>
+      <template #footer>
+        FOOTER CONTENT
+        <el-button v-if="!addingCondition" text bg size="small" @click="addNewContion()"> Add custom condition </el-button>
+      </template>
+    </el-select>
+
+    <el-tag size="small" effect="dark" type="primary" color="#FFAA00">
+      CONTENT
+    <el-tag/>
 
     <el-tooltip placement="top" effect="light">
       HOVER HERE
@@ -40,13 +65,23 @@
         STUFF IN POP-UP
       </template>
     </el-tooltip>
-
-
-
+    
+    <el-popconfirm title="MAIN QUESTION / CONTENT" @confirm="onConfirmEvent" hide-icon>
+      <template #reference>
+        <el-button type="primary" size="small">
+          OPEN POP BUTTON
+        </el-button>
+      </template>
+      <template #actions="{ confirm }">
+        POP CONTENT
+        <el-button @click="confirm" type="primary" size="small" aria-label="buttonName">
+          CONFIRM
+        </el-button>
+      </template>
+    </el-popconfirm>
 
   </div>
 </template>
-
 <script>
 const icons = require('@/components/template/svgPaths.json');
 
@@ -54,6 +89,8 @@ export default {
   name: "Bits",
   data() {
     return {
+      loading: true,
+      
       colors: [
         { value: '#E63415', label: 'Red' },
         { value: '#FF6600', label: 'Orange' },
