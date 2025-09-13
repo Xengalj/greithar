@@ -27,7 +27,6 @@
 </template>
 
 <script>
-// import DataService from "@/services/data.service";
 import EquipmentTable from "./EquipmentTable.vue";
 
 export default {
@@ -35,7 +34,7 @@ export default {
   components: { EquipmentTable },
   data() {
     return {
-      equipment: {}, // equipment JSON from server
+      // equipment: {}, // equipment JSON from server
 
       tableName: "equipmentTable",
       tableData: {},
@@ -52,16 +51,15 @@ export default {
 
     };
   },
-
-  created() {
-    this.getEquipment();
+  computed: {
+    equipment() { return this.$store.state.data.equipment; },
+  },
+  mounted() {
+    if (!this.equipment) { this.$router.push("/"); }
+    this.loading = true;
+    this.tableUpdate();
   },
   methods: {
-    getEquipment() {
-      this.loading = true;
-      this.equipment = this.$store.state.data.equipment;
-      this.tableUpdate();
-    },
     tableUpdate() {
       this.tableData = this.equipment[this.selectedType.label] ? this.equipment[this.selectedType.label] : {};
 

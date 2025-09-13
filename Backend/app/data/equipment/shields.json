@@ -5,6 +5,12 @@
     "Penalty": -1,
     "Spell Failure": "5%",
 
+    "Damage": {},
+    "Critical": "",
+    "Damage Type": [],
+    "Category": "",
+    "Group": [],
+
     "Cost": 5,
     "Weight": 5,
     "Description": "This small metal shield is worn strapped to your forearm to allow you to still wield a weapon with that hand.",

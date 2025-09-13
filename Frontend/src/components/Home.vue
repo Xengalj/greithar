@@ -2,12 +2,6 @@
   <div class="container">
 
     <h3>Welcome to Greiðar!</h3>
-    <!--
-      Splits:
-      XS : Phone : 360px
-      sm : Tablet : 800px
-      LG : Laptop : >
-    -->
 
     <div>
       This site was built by Xengalj to help facilitate games run with Pathfinder First Edition. This site is meant to be used for quick refrences and to help sort through the huge amounts of data with sortable tables. That being said, not all rules have been included here to help streamline the site.
