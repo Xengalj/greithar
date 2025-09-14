@@ -176,7 +176,7 @@ const routes = [
   {
     path: "/equipment",
     name: "Equipment",
-    component: () => import("./components/codex/equipment.vue"),
+    component: () => import("./components/codex/Equipment.vue"),
     meta: {
       breadcrumb: "Equipment",
       title: "Equipment"

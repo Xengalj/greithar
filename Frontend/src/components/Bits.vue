@@ -14,7 +14,7 @@
     <g-icon iconName="d20" iconSize="24px" iconColor="#CCC" />
 
     <el-divider />
-    
+
     <el-button @click="onClickEvent" size="large" type="primary" circle>
       CONTENT
     </el-button>
@@ -36,14 +36,14 @@
     </el-input>
 
     <el-input type="textarea" v-model="inputString" :autosize="{ minRows: 1, maxRows: 4 }" aria-label="textAreaName" />
-    
+
     <el-input-number v-model="inputNumber" :min="0" :max="10" @change="onChangeEvent" aria-label="inputNumberName" />
-    
+
     <!-- value-key needed for objects, not arrays -->
     <el-select v-model="selectArray/Object" value-key="objectKey" placeholder="placeholderName" aria-label="selectName" multiple>
       <template #tag>
         <el-tag v-for="(item, index) in selectArray/Object" :key="index" @close="closeEvent" effect="dark" closable>
-          {{ selectArray/Object.name }} 
+          {{ selectArray/Object.name }}
         </el-tag>
       </template>
       <el-option v-for="item in optionsObject" :key="item.name" :label="item.name" :value="item" >
@@ -65,7 +65,7 @@
         STUFF IN POP-UP
       </template>
     </el-tooltip>
-    
+
     <el-popconfirm title="MAIN QUESTION / CONTENT" @confirm="onConfirmEvent" hide-icon>
       <template #reference>
         <el-button type="primary" size="small">
@@ -90,7 +90,7 @@ export default {
   data() {
     return {
       loading: true,
-      
+
       colors: [
         { value: '#E63415', label: 'Red' },
         { value: '#FF6600', label: 'Orange' },
@@ -116,6 +116,15 @@ export default {
   },
   mounted() {
     this.$message({ message: "Resting for 8 hours", type: "success" });
+
+    /***************************\
+    *                           *
+    *          HELPERS          *
+    *                           *
+    \***************************/
+    // for (let [key, value] of Object.entries(OBJECT)) {}
+
+
   },
 };
 </script>

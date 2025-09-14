@@ -59,7 +59,7 @@
   </el-row>
 
 
-  <table :id="id" class="g-table">
+  <table v-loading="loading" :id="id" class="g-table">
     <tr>
       <th v-for="item in tableCols" :key="item" @click="sortTable(item)">
         {{ item }}
@@ -177,8 +177,10 @@ export default {
 
 
     sortTable(sortStr) {
-      this.$loading({text:'Loading'});
+      this.loading = true;
+      // this.$loading({text:'Loading'});
 
+      console.log(sortStr);
       this.switchRows(sortStr);
     },
 
@@ -261,6 +263,7 @@ export default {
           }
         }
       }
+      this.loaded = false;
     },
 
 
