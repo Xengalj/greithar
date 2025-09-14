@@ -1,5 +1,8 @@
 <template lang="html">
 
+
+  TOMBSTONE
+
   <el-row
     :gutter="10"
     justify="center"

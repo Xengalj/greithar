@@ -104,8 +104,8 @@ export default {
     this.original = JSON.stringify(this.source);
   },
   computed: {
-    rules() { return this.$store.state.data.rules; },
-    equipment() { return this.$store.state.data.equipment; },
+    rules() { return JSON.parse(localStorage.getItem('rules')); },
+    equipment() { return JSON.parse(localStorage.getItem('equipment')); },
     item() { return this.source; }
   },
   methods: {

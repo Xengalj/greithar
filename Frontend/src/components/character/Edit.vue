@@ -1556,11 +1556,13 @@ export default {
     };
   },
   computed: {
-    rules() { return this.$store.state.data.rules; },
-    races() { return this.$store.state.data.races; },
-    classes() { return this.$store.state.data.classes; },
-    equipment() { return this.$store.state.data.equipment; },
-    conditions() { return this.$store.state.data.conditions; },
+    rules() { return JSON.parse(localStorage.getItem('rules')); },
+    races() { return JSON.parse(localStorage.getItem('races')); },
+    classes() { return JSON.parse(localStorage.getItem('classes')); },
+    equipment() { return JSON.parse(localStorage.getItem('equipment')); },
+    feats() { return JSON.parse(localStorage.getItem('feats')); },
+    actions() { return JSON.parse(localStorage.getItem('actions')); },
+    conditions() { return JSON.parse(localStorage.getItem('conditions')); },
 
     activeConditions() { return this.character.conditions; },
     // inventory() { return this.character.inventory; },
@@ -1673,6 +1675,9 @@ export default {
 
   },
   mounted() {
+
+    // TODO: Feats and Default Actions stuff
+
     if (!this.rules.size) { this.$router.push("/"); }
     UserService.getAllUsers()
     .then(response => { this.users = response.data.map((user) => { return {'username': user.username, 'id': user.id} } ); })

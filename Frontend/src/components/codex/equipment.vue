@@ -100,16 +100,17 @@
               </ul>
             </el-collapse-item>
 
-            <el-collapse-item name="Actions">
+            <el-collapse-item name="Actions" class="center-horz">
               <template #title> <g-icon iconName="abilityPalm" /> Actions </template>
-
-              ADD TO CHAR
-              <el-button @click="onClickEvent" size="large" type="primary" circle>
-                CONTENT
-              </el-button>
-
+              <el-tooltip placement="left" effect="light">
+                <el-button @click="addToToon(scope.row)" size="large" type="primary" circle>
+                  <g-icon iconName="inventory" iconSize="24px"  />
+                </el-button>
+                <template #content>
+                  Add to Character
+                </template>
+              </el-tooltip>
             </el-collapse-item>
-
           </el-collapse>
 
           <div v-else>
@@ -119,8 +120,13 @@
         </template>
       </el-table-column>
     </el-table>
-
   </div>
+
+  <!-- Edit Item Dialog -->
+  <el-dialog v-model="toonUse" width="800">
+    <g-item :source="toonItem" :newItem="false" @save-item="saveItem"/>
+  </el-dialog>
+
 </template>
 
 <script>
@@ -128,11 +134,6 @@ export default {
   name: "Equipment",
   data() {
     return {
-      tableCols: [], // Array of table headers
-      tableData: [],
-      nameSearch: "",
-      tableFilters: {},
-
       equipmentTypes: {
         "Armor":              { color: "#4167F0", label: "Armor" },
         "Shields":            { color: "#14CCCC", label: "Shields" },
@@ -141,15 +142,20 @@ export default {
         "Goods and Services": { color: "#FFDE0A", label: "Goods and Services" }
       },
       selectedType: { label: "Weapons", color: "#FF6600" },
+
+      tableCols: [], // Array of table headers
+      tableData: [],
+      nameSearch: "",
+      tableFilters: {},
+
+      toonUse: false,
+      toonItem: {},
     };
   },
   computed: {
-    equipment() { return this.$store.state.data.equipment; },
+    equipment() { return JSON.parse(localStorage.getItem('equipment')); },
   },
   mounted() {
-    console.log(this.equipment.Armor);
-    // if (!this.equipment) { this.$router.push("/"); }
-    if (!this.equipment["Armor"]) { this.$router.push("/"); }
     this.tableUpdate();
   },
   methods: {
@@ -271,6 +277,19 @@ export default {
 
     clearFilters() {
       this.$refs.equipTable.clearFilter();
+    },
+
+    addToToon(item) {
+      console.log(item);
+
+      this.toonUse = true;
+
+
+    },
+    saveItem(item) {
+      console.log(item);
+      // this.character.inventory[2].children.push(item);
+      // this.editingItem = false;
     },
 
 

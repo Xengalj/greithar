@@ -104,13 +104,13 @@ export default {
       // console.log(this.$store.state.auth);
       return user;
     },
-    rules() { return this.$store.state.data.rules; },
-    races() { return this.$store.state.data.races; },
-    classes() { return this.$store.state.data.classes; },
-    equipment() { return this.$store.state.data.equipment; },
-    feats() { return this.$store.state.data.feats; },
-    actions() { return this.$store.state.data.actions; },
-    conditions() { return this.$store.state.data.conditions; },
+    rules() { return JSON.parse(localStorage.getItem('rules')); },
+    races() { return JSON.parse(localStorage.getItem('races')); },
+    classes() { return JSON.parse(localStorage.getItem('classes')); },
+    equipment() { return JSON.parse(localStorage.getItem('equipment')); },
+    feats() { return JSON.parse(localStorage.getItem('feats')); },
+    actions() { return JSON.parse(localStorage.getItem('actions')); },
+    conditions() { return JSON.parse(localStorage.getItem('conditions')); },
   },
   created() {
     UserService.getAdminBoard().then(

@@ -176,8 +176,7 @@ export default {
     }
   },
   computed: {
-    rules() { return this.$store.state.data.rules; },
-    equipment() { return this.$store.state.data.equipment; },
+    rules() { return JSON.parse(localStorage.getItem('rules')); },
     ability() { return this.source; }
   },
   methods: {
