@@ -130,7 +130,7 @@ export default {
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
       .finally(() => {
         CharacterService.getAllCharacters(this.user.id)
-        .then(response => { this.characters = response.characters; })
+        .then(response => { this.characters = JSON.parse(response.characters).rows; })
         .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
         .finally(() => { this.loading = false; });
       }); // End getUser

@@ -1,7 +1,0 @@
-export default function settings() {
-  return {
-    serverURL: "https://greithar.mqt.dev",
-    isProd: 0,
-    reSeed: 0
-  }
-}

@@ -10,9 +10,9 @@ const app = express();
 *                           *
 \***************************/
 
-const settings = require('../config.js'); // in backend when deployed
-let isProd = settings.default().isProd;
-let reSeed = settings.default().reSeed;
+const settings = require('../config.json'); // in backend when deployed
+let isProd = settings.isProd;
+let reSeed = settings.reSeed;
 
 let corsOptions = { origin: [ "https://www.owlbear.rodeo", "http://localhost:8081" ] };
 app.use(cors(corsOptions));
