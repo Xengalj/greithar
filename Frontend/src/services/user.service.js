@@ -60,7 +60,6 @@ class UserService {
       user_id: user.id,
       username: user.username,
       email: user.email,
-      // password: user.password,
       roles: user.roles,
       usermeta: user.usermeta
     },
@@ -69,16 +68,15 @@ class UserService {
     .catch(err => { return err; });
   }
 
-  updatePassword(user) {
-    console.log(user);
-    // return axios.post(API_URL + 'updatePass',
-    // {
-    //   user_id: user.id,
-    //   password: user.password
-    // },
-    // { headers: authHeader() })
-    // .then(response => { return response.data; })
-    // .catch(err => { return err; });
+  updatePassword(userID, newPass) {
+    return axios.post(API_URL + 'updatePass',
+    {
+      user_id: userID,
+      password: newPass
+    },
+    { headers: authHeader() })
+    .then(response => { return response.data; })
+    .catch(err => { return err; });
   }
 
   deleteUser(id) {

@@ -87,7 +87,6 @@ export default {
     if (this.currentUser.roles.includes("admin")) {
       UserService.getUser(this.$route.params.id)
       .then(response => {
-
         this.user = Object.create(response.data);
         this.user.roles = [];
         for (let role of response.data.roles) {
@@ -98,11 +97,8 @@ export default {
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
       .finally(() => {
         CharacterService.getCharacter(this.user.usermeta.hero)
-        .then(response => {
-          console.log(response.character);
-          this.hero = response.character;
-        })
-        .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
+        .then(response => { this.hero = response.character; })
+        .catch(err => { console.error(err); })
         .finally(() => { this.loading = false; });
       }); // End getUser
 

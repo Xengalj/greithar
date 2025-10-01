@@ -2,11 +2,12 @@ const fs = require('fs');
 const Papa = require('papaparse');
 
 const db = require("../models");
+const config = require("../config/auth.config");
 const User = db.user;
 const Role = db.role;
 const Op = db.Sequelize.Op; // operators for where clause
 
-// var jwt = require("jsonwebtoken");
+var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 
 /***************************\
@@ -86,93 +87,86 @@ exports.read = (req, res) => {
 \***************************/
 exports.update = async (req, res) => {
   let editSelf = (req.userId == req.body.user_id) ? true : false;
-
   let isAdmin = false;
-  console.log('before adminCheck');
-  await User.findByPk(req.userId).then(user => {
-    user.getRoles().then(roles => {
-      for (let i = 0; i < roles.length; i++) {
-        if (roles[i].name === "admin") {
-          isAdmin = true;
-          console.log("is Admin");
-        }
-      }
-    });
-  });
-  console.log('isAdmin:', isAdmin);
-
-
-  
 
   // Find the given user by user_id
-  User.findOne({ where: { id: req.body.user_id }, include: Roles })
+  User.findOne({ where: { id: req.body.user_id }, include: [{ model: Role }] })
+  .then(user => {
+    let authorities = [];
+    if (!user) { return res.status(404).send({ message: "User not found!" }); }
+    // isAdmin Check & log prev roles
+    user.roles.forEach(role => {
+      authorities.push(role.dataValues.name);
+      if (role.dataValues.name === "admin") {
+        isAdmin = true;
+      }
+    });
+    if (!editSelf || !isAdmin) { return res.status(403).send({ message: "You do not have permission to edit this user" }); }
+
+    const token = jwt.sign(
+      { id: user.id }, config.secret,
+      { algorithm: 'HS256', allowInsecureKeySizes: true,
+      expiresIn: 86400, // 24 hours
+    });
+
+    let newContent = {
+      username: req.body.username ? req.body.username : user.username,
+      email: req.body.email ? req.body.email : user.email,
+      usermeta: req.body.usermeta ? req.body.usermeta : user.usermeta,
+      roles: (isAdmin && req.body.roles) ? req.body.roles : authorities
+    };
+
+    // update user with new info
+    user.update({
+      username: newContent.username,
+      email: newContent.email,
+      usermeta: newContent.usermeta
+    })
+    .then(user => {
+
+      // Update roles
+      Role.findAll({ where: { name: { [Op.or]: newContent.roles } } })
+      .then(roles => {
+        user.setRoles(roles);
+        // return new user info
+        res.status(200).send({
+          id: user.id,
+          username: user.username,
+          email: user.email,
+          usermeta: user.usermeta,
+          roles: roles,
+          token: token
+        });
+      });
+    })
+    .catch(err => { res.status(500).send({ message: err.message }); }); // user update catch
+  })
+  .catch(err => { res.status(500).send({ message: err.message }); }); // user find catch
+};
+
+exports.updatePass = async (req, res) => {
+  let editSelf = (req.userId == req.body.user_id) ? true : false;
+  let isAdmin = false;
+
+  // Find the given user by user_id
+  User.findOne({ where: { id: req.body.user_id }, include: [{ model: Role }] })
   .then(user => {
     if (!user) { return res.status(404).send({ message: "User not found!" }); }
-    console.log(user);
-    console.log(user.Roles);
-
-    /*
-        // only let users edit their own, or admins edit any
-        if (isAdmin || character.user.id == req.user.id) {
-          // set values to be updated
-          for (const [key, value] of Object.entries(req.body)) {
-            console.log(`${key}: ${value}`);
-            if (key == "id") { continue; }
-            if (isAdmin && key == "user") { character.setUser(value.id); }
-            character[key] = value;
-          }
-          character.save();
-
-          res.status(200).send({ character });
-        } else {
-          res.status(403).send({ message: `You do not have permissions to delete this character` });
-        }
-    */
-
-    // get user's current roles
-    let authorities = [];
-    user.getRoles()
-    .then(roles => {
-      for (let i = 0; i < roles.length; i++) {
-        authorities.push(roles[i].name);
+    // isAdmin Check
+    user.roles.forEach(role => {
+      if (role.dataValues.name === "admin") {
+        isAdmin = true;
       }
-
-      let newContent = {
-        username: req.body.username ? req.body.username : user.username,
-        password: (editSelf && req.body.password) ? bcrypt.hashSync(req.body.password, 8) : user.password,
-        email: req.body.email ? req.body.email : user.email,
-        usermeta: req.body.usermeta ? req.body.usermeta : user.usermeta,
-        roles: (isAdmin && req.body.roles) ? req.body.roles : authorities
-      };
-
-      // update user with new info
-      user.update({
-        username: newContent.username,
-        password: newContent.password,
-        email: newContent.email,
-        usermeta: newContent.usermeta
-      })
-      .then(user => {
-        // Update roles
-        Role.findAll({ where: { name: { [Op.or]: newContent.roles } } })
-        .then(roles => {
-          user.setRoles(roles);
-
-          // return new user info
-          res.status(200).send({
-            id: user.id,
-            username: user.username,
-            email: user.email,
-            usermeta: user.usermeta,
-            roles: roles,
-          });
-        });
-      })
-      .catch(err => { res.status(500).send({ message: err.message }); });
+    });
+    if (!editSelf || !isAdmin) { return res.status(403).send({ message: "You do not have permission to edit this user" }); }
+    // update user password
+    user.update({
+      password: bcrypt.hashSync(req.body.password, 8)
     })
+    .then(user => { res.status(200).send({ message: `${user.username}'s password updated successfully!` }); })
     .catch(err => { res.status(500).send({ message: err.message }); });
   })
-  .catch(err => { res.status(500).send({ message: err.message }); });
+  .catch(err => { res.status(500).send({ message: err.message }); }); // user find catch
 };
 
 /***************************\

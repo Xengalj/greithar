@@ -38,6 +38,14 @@ module.exports = function(app) {
     ],
     controller.update
   );
+  app.post(
+    "/api/user/updatePass",
+    [
+      authJwt.verifyToken,
+      authJwt.isSelfOrAdmin
+    ],
+    controller.updatePass
+  );
 
   app.post(
     "/api/user/delete",
