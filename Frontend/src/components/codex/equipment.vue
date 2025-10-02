@@ -126,45 +126,24 @@
   <el-dialog v-model="toonEdit" width="750">
     <g-item :source="toonItem" :newItem="true" @save-item="saveItem"/>
   </el-dialog>
-  <el-dialog v-model="toonList" width="750">
-
-    {{ toonItem }}
-    <br><br>
-
-    {{ userToons }}
-
-    <!--
-    <select class="" name="">
-      for toon in userToons
-    </select>
-
-
-
+  <el-dialog v-model="toonList" width="500">
+    <h3> Add to which character? </h3>
     <el-select
-      v-model="selectedType"
-      value-key="label"
+      v-model="chosenToon"
+      value-key="name"
       style="width: 240px"
-      v-on:change="tableUpdate()"
     >
-      <el-option v-for="item in equipmentTypes" :key="item.label" :label="item.label" :value="item" >
+      <el-option v-for="toon in userToons" :key="toon.name" :label="toon.name" :value="toon" >
         <div class="flex items-center">
-          <el-tag :color="item.color" style="margin-right: 8px" size="small" />
-          <span :style="{ color: item.color }">{{ item.label }}</span>
+          <span>{{ toon.name }}</span>
         </div>
       </el-option>
     </el-select>
-
-
-
-   -->
-
     <el-row justify="end">
-      <el-button size="small" type="warning" @click="reset()"> Reset </el-button>
-      <el-button size="small" type="primary" @click="addToToon()"> Save </el-button>
+      <el-button size="small" type="warning" @click="toonEdit = false; toonList = false;"> Cancel </el-button>
+      <el-button size="small" type="success" @click="addToToon()"> Confirm </el-button>
     </el-row>
-
   </el-dialog>
-
 
 </template>
 
@@ -195,7 +174,7 @@ export default {
       toonEdit: false,
       toonList: false,
       userToons: [],
-      chosenToon: '',
+      chosenToon: {},
     };
   },
   computed: {
@@ -335,7 +314,6 @@ export default {
     \***************************/
     editForToon(item) {
       this.toonItem = { label: item.Name, value: {} }
-
       for (const [key, val] of Object.entries(item)) {
         if (key != 'Name') {
           this.toonItem.value[key] = val;
@@ -343,40 +321,27 @@ export default {
       }
       this.toonItem.value.Extras.Masterwork = false;
       this.toonItem.value.Extras.Enhancement = 0;
-
       this.toonEdit = true;
     },
     saveItem(item) {
-      console.log(item);
       this.toonItem = item;
-
-      CharacterService.getAllCharacters(this.currentUser.id, 0, 100)
+      CharacterService.getAllCharacters(this.currentUser.id, 0, null)
       .then(response => {
-        let tmp = JSON.parse(response.characters);
-        console.log(tmp);
-        // tmp.rows.forEach(toon => {
-        //   this.userToons.push
-        // });
-        this.userToons = tmp.rows;
+        this.userToons = JSON.parse(response.characters).rows;
+        this.toonList = true;
       })
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
-
-      this.toonList = true;
-
-      // this.character.inventory[2].children.push(item);
-      // this.editingItem = false;
     },
     addToToon() {
-
-      console.log(this.chosenToon);
-      console.log(this.toonItem);
-
-      // add toonItem to chosenToon
-      // in backpack
-
+      // add toonItem to chosenToon in backpack
+      this.chosenToon.inventory[2].children.push(this.toonItem);
+      // update toon
+      CharacterService.updateCharacter(this.chosenToon)
+      .then((response) => { this.$message({ message: `Added ${this.toonItem.label} to ${response.character.name}`, type: 'success', }); })
+      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
+      this.toonEdit = false;
+      this.toonList = false;
     },
-
-
   }
 };
 </script>

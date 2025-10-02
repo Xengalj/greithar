@@ -67,7 +67,7 @@ class CharacterService {
       inventory: character.inventory,
       spells: character.spells,
 
-      user: { id: character.user.id }
+      user: { id: character.userId }
     },
     { headers: authHeader() })
     .then(response => { return response.data; })
