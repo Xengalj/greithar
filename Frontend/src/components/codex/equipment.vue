@@ -103,7 +103,7 @@
             <el-collapse-item name="Actions" class="center-horz">
               <template #title> <g-icon iconName="abilityPalm" /> Actions </template>
               <el-tooltip placement="left" effect="light">
-                <el-button @click="addToToon(scope.row)" size="large" type="primary" circle>
+                <el-button @click="editForToon(scope.row)" size="large" type="primary" circle>
                   <g-icon iconName="inventory" iconSize="24px"  />
                 </el-button>
                 <template #content>
@@ -122,16 +122,59 @@
     </el-table>
   </div>
 
-  <!-- Edit Item Dialog -->
-  <el-dialog v-model="toonUse" width="800">
-    <g-item :source="toonItem" :newItem="false" @save-item="saveItem"/>
+  <!-- Add Item Dialogs -->
+  <el-dialog v-model="toonEdit" width="750">
+    <g-item :source="toonItem" :newItem="true" @save-item="saveItem"/>
   </el-dialog>
+  <el-dialog v-model="toonList" width="750">
+
+    {{ toonItem }}
+    <br><br>
+
+    {{ userToons }}
+
+    <!--
+    <select class="" name="">
+      for toon in userToons
+    </select>
+
+
+
+    <el-select
+      v-model="selectedType"
+      value-key="label"
+      style="width: 240px"
+      v-on:change="tableUpdate()"
+    >
+      <el-option v-for="item in equipmentTypes" :key="item.label" :label="item.label" :value="item" >
+        <div class="flex items-center">
+          <el-tag :color="item.color" style="margin-right: 8px" size="small" />
+          <span :style="{ color: item.color }">{{ item.label }}</span>
+        </div>
+      </el-option>
+    </el-select>
+
+
+
+   -->
+
+    <el-row justify="end">
+      <el-button size="small" type="warning" @click="reset()"> Reset </el-button>
+      <el-button size="small" type="primary" @click="addToToon()"> Save </el-button>
+    </el-row>
+
+  </el-dialog>
+
 
 </template>
 
 <script>
+import GItem from '@/components/template/GItem.vue';
+import CharacterService from "@/services/character.service";
+
 export default {
   name: "Equipment",
+  components: { GItem },
   data() {
     return {
       equipmentTypes: {
@@ -148,17 +191,27 @@ export default {
       nameSearch: "",
       tableFilters: {},
 
-      toonUse: false,
       toonItem: {},
+      toonEdit: false,
+      toonList: false,
+      userToons: [],
+      chosenToon: '',
     };
   },
   computed: {
+    currentUser() { return this.$store.state.auth.user; },
     equipment() { return JSON.parse(localStorage.getItem('equipment')); },
   },
   mounted() {
     this.tableUpdate();
   },
   methods: {
+    /***************************\
+    *                           *
+    *          FILTERS          *
+    *                           *
+    \***************************/
+    clearFilters() { this.$refs.equipTable.clearFilter(); },
     // displays table based on item type select
     tableUpdate() {
       this.tableData = [];
@@ -265,7 +318,6 @@ export default {
           this.tableFilters = {};
       }
     },
-
     // Filters a given row with the value (more options shows more results)
     filterHandler(value, row, column) {
       const prop = column['property'];
@@ -275,21 +327,53 @@ export default {
       return row[prop] === value
     },
 
-    clearFilters() {
-      this.$refs.equipTable.clearFilter();
-    },
 
-    addToToon(item) {
-      console.log(item);
+    /***************************\
+    *                           *
+    *        ADD TO TOON        *
+    *                           *
+    \***************************/
+    editForToon(item) {
+      this.toonItem = { label: item.Name, value: {} }
 
-      this.toonUse = true;
+      for (const [key, val] of Object.entries(item)) {
+        if (key != 'Name') {
+          this.toonItem.value[key] = val;
+        }
+      }
+      this.toonItem.value.Extras.Masterwork = false;
+      this.toonItem.value.Extras.Enhancement = 0;
 
-
+      this.toonEdit = true;
     },
     saveItem(item) {
       console.log(item);
+      this.toonItem = item;
+
+      CharacterService.getAllCharacters(this.currentUser.id, 0, 100)
+      .then(response => {
+        let tmp = JSON.parse(response.characters);
+        console.log(tmp);
+        // tmp.rows.forEach(toon => {
+        //   this.userToons.push
+        // });
+        this.userToons = tmp.rows;
+      })
+      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
+
+      this.toonList = true;
+
       // this.character.inventory[2].children.push(item);
       // this.editingItem = false;
+    },
+    addToToon() {
+
+      console.log(this.chosenToon);
+      console.log(this.toonItem);
+
+      // add toonItem to chosenToon
+      // in backpack
+
     },
 
 

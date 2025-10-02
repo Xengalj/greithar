@@ -123,6 +123,7 @@ export default {
     *                           *
     \***************************/
     // for (let [key, value] of Object.entries(OBJECT)) {}
+    // capFirsts(string) { return string ? string.replace(/(^\w|\s\w)/g, m => m.toUpperCase()) : ""; },
 
 
   },
