@@ -2306,8 +2306,9 @@ export default {
       }
     },
     saveItem(item) {
-      this.character.inventory[2].children.push(item);
-      this.editingItem = false;
+      console.log(item);
+      // this.character.inventory[2].children.push(item);
+      // this.editingItem = false;
     },
     editItem(item) {
       if (!Object.keys(item).length) {

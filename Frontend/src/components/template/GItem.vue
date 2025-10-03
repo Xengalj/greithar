@@ -140,12 +140,6 @@
         </div>
       </el-col>
     </el-row>
-
-
-
-
-
-
   </div>
 
   <el-row justify="end">
@@ -174,6 +168,7 @@ export default {
     }
   },
   mounted() {
+    console.log(this.source);
     this.selects["Damage Type"] = this.rules["Damage Types"].Weapon;
     this.selects.Group = this.rules["Weapon Groups"];
     this.selects.targets = this.rules.targets;
