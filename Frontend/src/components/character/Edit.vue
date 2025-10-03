@@ -731,9 +731,37 @@
                 </el-input>
               </el-col>
               <el-col :span="7">
-                Extras
+                Extras {{ atk.extras }}
                 <el-input v-model="atk.extras" size="small" type="textarea" :autosize="{ minRows: 3, maxRows: 4 }" aria-label="Attack Extras" />
               </el-col>
+
+              <!--
+              <div>
+                <el-divider> Extras </el-divider>
+                <el-row v-for="(value, prop) in item.value.Extras" :key="prop" :gutter="5">
+                  <el-col :span="6"> {{ prop }} </el-col>
+                  <el-col :span="18">
+                    <el-checkbox v-if="prop == 'Masterwork'" v-model="item.value.Extras[prop]" style="margin:0;" aria-label="Is Item Masterwork?" />
+                    <el-input-number v-if="prop == 'Enhancement'" v-model="item.value.Extras[prop]" aria-label="Is Item Magic?" />
+                    <div v-if="prop == 'Notes'">
+                      <el-input
+                        v-for="(note, index) in item.value.Extras[prop]" :key="index"
+                        v-model="item.value.Extras[prop][index]"
+                        :aria-label="`Item Note ${index}`"
+                        placeholder="New Note"
+                      >
+                        <template #append>
+                          <el-button @click="deleteNote(index)" style="display: flex;">
+                            <g-icon iconSize="16px" iconColor="#f56c6c" iconName="trash" />
+                          </el-button>
+                        </template>
+                      </el-input>
+                      <el-button size="small" type="primary" @click="addNote()"> Add Note </el-button>
+                    </div>
+                  </el-col>
+                </el-row>
+              </div>
+             -->
             </el-row>
           </el-collapse-item>
 
@@ -989,7 +1017,7 @@
             <el-input v-model="itemFilter" class="w-60 mb-2" placeholder="Item Search" aria-label="Item Search" />
           </el-col>
           <el-col :span="4">
-            <el-button type="primary" @click="editItem({}); addItem=true;">Add Item</el-button>
+            <el-button type="primary" @click="editItem({})">Add Item</el-button>
           </el-col>
         </el-row>
         <el-tree
@@ -1438,7 +1466,7 @@
 
     <!-- EDIT ITEM DIALOG -->
     <el-dialog v-model="editingItem" width="800">
-      <g-item :source="item" :newItem="addItem" @save-item="saveItem"/>
+      <g-item :source="item" @save-item="saveItem"/>
     </el-dialog>
 
     <!-- EDIT ABILITY DIALOG -->
@@ -1543,7 +1571,6 @@ export default {
       newCondition: {},
       addingCondition: false,
 
-      addItem: false,
       editingItem: false,
       item: {},
       itemFilter: "",
@@ -2055,7 +2082,6 @@ export default {
       this.editingItem = false;
     },
     editItem(item) {
-      this.addItem = false;
       if (!Object.keys(item).length) {
         item = {
           label: "",

@@ -85,33 +85,72 @@
   <!-- Item Extras -->
   <div>
     <el-divider> Extras </el-divider>
-    <el-row v-for="(value, prop) in item.value.Extras" :key="prop" :gutter="5">
-      <el-col :span="6"> {{ prop }} </el-col>
-      <el-col :span="18">
-        <el-checkbox v-if="prop == 'Masterwork'" v-model="item.value.Extras[prop]" style="margin:0;" aria-label="Is Item Masterwork?" />
-        <el-input-number v-if="prop == 'Enhancement'" v-model="item.value.Extras[prop]" aria-label="Is Item Magic?" />
-        <div v-if="prop == 'Notes'">
-          <el-input
-            v-for="(note, index) in item.value.Extras[prop]" :key="index"
-            v-model="item.value.Extras[prop][index]"
-            :aria-label="`Item Note ${index}`"
-            placeholder="New Note"
-          >
-            <template #append>
-              <el-button @click="deleteNote(index)" style="display: flex;">
+
+    <el-row :gutter="10">
+      <el-col :span="12">
+        <div class="center-horz"> Notes </div>
+        <el-input
+          v-for="(note, index) in item.value.Extras.Notes" :key="index"
+          v-model="item.value.Extras.Notes[index]"
+          :aria-label="`Item Note ${index}`"
+          placeholder="New Note"
+        >
+          <template #append>
+            <el-button @click="deleteNote(index)" style="display: flex;">
+              <g-icon iconSize="16px" iconColor="#f56c6c" iconName="trash" />
+            </el-button>
+          </template>
+        </el-input>
+        <div class="center-horz">
+          <el-button size="small" type="info" @click="addNote()"> Add Note </el-button>
+        </div>
+      </el-col>
+
+      <el-col :span="12">
+        <div class="center-horz">
+          <el-switch v-model="advanced" inline-prompt active-text=" Advanced " inactive-text=" Normal " aria-label="Advanced Mode Switch" />
+        </div>
+
+        <div v-if="advanced">
+          <el-row v-for="(value, prop) in item.value.Extras" :key="prop" :gutter="5" justify="end">
+            <el-col :span="6" v-if="prop != 'Notes'"> {{ prop }} </el-col>
+            <el-col :span="14">
+              <el-checkbox v-if="prop == 'Masterwork'" v-model="item.value.Extras[prop]" style="margin:0;" aria-label="Is Item Masterwork?" />
+              <el-input-number v-else-if="prop == 'Enhancement'" v-model="item.value.Extras[prop]" size="small" aria-label="Is Item Magic?" />
+              <el-input v-else-if="prop != 'Notes'" v-model="item.value.Extras[prop]" :aria-label="`${capFirsts(prop)} Input`" />
+            </el-col>
+            <el-col v-if="prop != 'Notes'" :span="2">
+              <el-button @click="deleteExtraProperty(prop)" circle>
                 <g-icon iconSize="16px" iconColor="#f56c6c" iconName="trash" />
               </el-button>
-            </template>
-          </el-input>
-          <el-button size="small" type="primary" @click="addNote()"> Add Note </el-button>
+            </el-col>
+          </el-row>
+
+          <div class="center-horz">
+            <el-popconfirm title="Add New Property?" @confirm="addExtraProperty" hide-icon>
+              <template #reference>
+                <el-button size="small" type="info"> Add Property </el-button>
+              </template>
+              <template #actions="{ confirm }">
+                <el-input v-model="propName" size="small" placeholder="Property Name" style="margin-bottom:5px;" aria-label="New Property Name" />
+                <el-button type="success" size="small" @click="confirm" :disabled="propName == ''"> Yes </el-button>
+              </template>
+            </el-popconfirm>
+          </div>
         </div>
       </el-col>
     </el-row>
+
+
+
+
+
+
   </div>
 
   <el-row justify="end">
     <el-button size="small" type="warning" @click="reset()"> Reset </el-button>
-    <el-button v-if="newItem" size="small" type="primary" @click="saveItem()"> Save </el-button>
+    <el-button size="small" type="primary" @click="saveItem()"> Save </el-button>
   </el-row>
 </template>
 
@@ -120,11 +159,11 @@ export default {
   name: 'g-item',
   emits: ['save-item'],
   props: {
-    source: { type: Object },
-    newItem: { type: Boolean }
+    source: { type: Object }
   },
   data() {
     return {
+      advanced: this.$store.state.auth.user.roles.includes('admin'),
       original: {},
       selects: {
         "Damage Type": [],
@@ -151,11 +190,12 @@ export default {
   methods: {
     capFirsts(string) { return string ? string.replace(/(^\w|\s\w)/g, m => m.toUpperCase()) : ""; },
 
+    addProperty() { this.item.value[this.propName] = ''; this.propName = ''; },
+    deleteProperty(property) { delete this.item.value[property]; },
     addNote() { this.item.value.Extras['Notes'].push(''); },
     deleteNote(index) { this.item.value.Extras['Notes'].splice(index, 1); },
-
-    addProperty() { this.item.value[this.propName] = ''; },
-    deleteProperty(property) { delete this.item.value[property]; },
+    addExtraProperty() { this.item.value.Extras[this.propName] = ''; this.propName = ''; },
+    deleteExtraProperty(property) { delete this.item.value.Extras[property]; },
 
     saveItem() { this.$emit('save-item', this.item); },
     reset() {

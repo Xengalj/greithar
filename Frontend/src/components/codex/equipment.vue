@@ -124,7 +124,7 @@
 
   <!-- Add Item Dialogs -->
   <el-dialog v-model="toonEdit" width="750">
-    <g-item :source="toonItem" :newItem="true" @save-item="saveItem"/>
+    <g-item :source="toonItem" @save-item="saveItem"/>
   </el-dialog>
   <el-dialog v-model="toonList" width="500">
     <h3> Add to which character? </h3>
