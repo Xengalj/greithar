@@ -2309,6 +2309,11 @@ export default {
       console.log(item);
       // this.character.inventory[2].children.push(item);
       // this.editingItem = false;
+// TODO : add ammounts to items and ammount managment
+      /*
+treeRef.value!.getNode({ [key] 'label' : item.label })
+      
+      */
     },
     editItem(item) {
       if (!Object.keys(item).length) {
