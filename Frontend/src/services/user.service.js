@@ -1,7 +1,11 @@
 import axios from 'axios';
 import authHeader from './auth-header';
-
-const API_URL = 'http://localhost:8080/api/user/';
+// Dynamic Settings Import
+let API_URL = 'http://localhost:8080/api/user/';
+import("/../config.json").then(module => {
+  let settings = module.default;
+  if (settings.isProd) { API_URL = settings.serverURL.concat('/user/'); }
+}).catch(err => { console.error(err); });
 
 class UserService {
   getPublicContent() {
@@ -56,9 +60,19 @@ class UserService {
       user_id: user.id,
       username: user.username,
       email: user.email,
-      // password: user.password,
       roles: user.roles,
       usermeta: user.usermeta
+    },
+    { headers: authHeader() })
+    .then(response => { return response.data; })
+    .catch(err => { return err; });
+  }
+
+  updatePassword(userID, newPass) {
+    return axios.post(API_URL + 'updatePass',
+    {
+      user_id: userID,
+      password: newPass
     },
     { headers: authHeader() })
     .then(response => { return response.data; })

@@ -9,26 +9,29 @@ const app = express();
 *       SETUP VARS          *
 *                           *
 \***************************/
-let isProd = 1
-let reSeed = 0
 
-let corsOptions = { origin: [ "https://www.owlbear.rodeo", "http://localhost:8081/" ] };
+const settings = require('../config.json'); // in backend when deployed
+let isProd = settings.isProd;
+let reSeed = settings.reSeed;
+
+let corsOptions = { origin: [ "https://www.owlbear.rodeo", "http://localhost:8081" ] };
 app.use(cors(corsOptions));
 
 // Networking stuff from Eric
-app.use((req, res, next) => {
-  res.setHeader('X-Frame-Options', 'ALLOWALL');
+if (isProd) {
+  app.use((req, res, next) => {
+      res.setHeader('X-Frame-Options', 'ALLOWALL');
 
-  res.setHeader('Content-Security-Policy',
-    "default-src 'self' https://www.owlbear.rodeo/; " +
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.owlbear.rodeo/; " +
-    "style-src 'self' 'unsafe-inline' https://www.owlbear.rodeo/; " +
-    "frame-ancestors https://www.owlbear.rodeo/;"
-  );
+      res.setHeader('Content-Security-Policy',
+        "default-src 'self' https://www.owlbear.rodeo/; " +
+        "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.owlbear.rodeo/; " +
+        "style-src 'self' 'unsafe-inline' https://www.owlbear.rodeo/; " +
+        "frame-ancestors https://www.owlbear.rodeo/;"
+      );
 
-  next();
-});
-
+      next();
+    });
+}
 
 
 // parse requests of content-type - application/json
@@ -36,6 +39,7 @@ app.use(express.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
+
 
 if (isProd) { app.use(express.static(path)); }
 

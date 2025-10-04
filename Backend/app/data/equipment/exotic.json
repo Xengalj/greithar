@@ -2143,27 +2143,6 @@
       ]
     }
   },
-  "Crossbow Bolts": {
-    "Damage": {  "fine": "0",  "diminuitive": "1",  "tiny": "1d2",  "small": "1d3",  "medium": "1d4",  "large": "1d6",  "huge": "1d8",  "gargantuan": "2d6",  "colossal": "3d6"  },
-    "Critical": "20/x2",
-    "Range": 0,
-    "Damage Type": [ "Piercing" ],
-
-    "Proficiency": "Martial",
-    "Category": "Ammunition",
-    "Group": [ "" ],
-
-    "Cost": 0.1,
-    "Weight": 0.1,
-    "Description": "Typically shorter than an arrow, a crossbow bolt is a dart-like projectile.",
-    "Extras": {
-      "Notes": [
-        "You may use a crossbow bolt as a melee weapon, taking a -4 on attack rolls.",
-        "Bolts usually come in a case or quiver that holds 10 (price & weight listed for 1 bolt).",
-        "Bolts for a repeating crossbow come in a case of 5 (each bolt costs and weighs 0.2)."
-      ]
-    }
-  },
   "Little Starstones": {
  		"Damage": {  "fine": "0",  "diminuitive": "0",  "tiny": "0",  "small": "1",  "medium": "1",  "large": "1d2",  "huge": "1d3",  "gargantuan": "1d4",  "colossal": "1d6"  },
     "Critical": "0",

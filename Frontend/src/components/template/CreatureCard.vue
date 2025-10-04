@@ -591,7 +591,7 @@
         </template>
       </el-tree>
       <el-dialog v-model="editingItem" width="800">
-        <g-item :source="item" :newItem="addItem" @save-item="saveItem"/>
+        <g-item :source="item" @save-item="saveItem"/>
       </el-dialog>
     </el-tab-pane>
 

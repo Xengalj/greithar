@@ -1,6 +1,10 @@
 import axios from 'axios';
-
-const API_URL = 'http://localhost:8080/api/auth/';
+// Dynamic Settings Import
+let API_URL = 'http://localhost:8080/api/auth/';
+import("/../config.json").then(module => {
+  let settings = module.default;
+  if (settings.isProd) { API_URL = settings.serverURL.concat('/auth/'); }
+}).catch(err => { console.error(err); });
 
 class AuthService {
   login(user) {

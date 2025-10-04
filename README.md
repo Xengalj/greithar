@@ -58,6 +58,16 @@ npm run build
 node server.js
 ```
 
+### SSL (Server)
+On the server run:
+
+`certbot -d greithar.mqt.dev --manual --preferred-challenges dns certonly`
+
+This command will output a TXT record to add to the DNS server. Add the associated TXT record in Namecheap and wait a few minutes. Check propagation with Google, note other DNS servers don't respect the TTL but Certbot will check with Google first.
+
+After verifying the record, restart apache with `service apache2 restart`. Certbot should already place the new key files in the old location, so not server configuration changes should be required.
+
+
 
 ## Helpful Links
 - [Vue Components Examples](https://vuejs.org/examples/#markdown).
@@ -74,7 +84,7 @@ node server.js
 
 
 ## ToDo
-- [ ] Check user timeout, get redirect working
+- [x] Check user timeout, get redirect working
 - [x] Get icons to update dynamically
 - [x] get table filtering working in bestiary
 - [ ] refactor CreatureCard to use a single nice storable JSON
@@ -85,15 +95,19 @@ node server.js
 
 - [x] add Player/NPC builder/advancer
 - [ ] use <el-drawer> for equipment and things in builder
+- [ ] items -> encumbrance and compute carry weight
+- [ ] items -> total up gold value
+- [ ] REFACTOR to display on mobile & tablet
+
+
 - [ ] implement Rule & Lore pages
+- [ ] [WikiJS](https://js.wiki/)
 
 - [x] Deploy built files to backend
 - [ ] get "greithar.com" on cloudflare
 
 - [ ] [Owlbear Context Menu](https://docs.owlbear.rodeo/extensions/tutorial-initiative-tracker/implement-the-context-menu-item/)
 - [ ] [Owlbear Player](https://docs.owlbear.rodeo/extensions/apis/player/)
-- [ ] [Obsidian](https://obsidian.md/)
-- [ ] [Leaflet](https://github.com/javalent/obsidian-leaflet) (maps for obsidian)
 
 - [x] MetaMagic Spells
 - [ ] upload a file (character img) [link](https://serversideup.net/uploading-files-vuejs-axios/)

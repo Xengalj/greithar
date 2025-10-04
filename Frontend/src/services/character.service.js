@@ -1,7 +1,11 @@
 import axios from 'axios';
 import authHeader from './auth-header';
-
-const API_URL = 'http://localhost:8080/api/character/';
+// Dynamic Settings Import
+let API_URL = 'http://localhost:8080/api/character/';
+import("/../config.json").then(module => {
+  let settings = module.default;
+  if (settings.isProd) { API_URL = settings.serverURL.concat('/character/'); }
+}).catch(err => { console.error(err); });
 
 class CharacterService {
   createCharacter() {
@@ -63,7 +67,7 @@ class CharacterService {
       inventory: character.inventory,
       spells: character.spells,
 
-      user: { id: character.user.id }
+      user: { id: character.userId }
     },
     { headers: authHeader() })
     .then(response => { return response.data; })

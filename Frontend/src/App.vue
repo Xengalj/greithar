@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import DataService from "@/services/data.service";
 import '@/styles/index.css';
 import GHeader from './components/template/GHeader.vue'
 
@@ -39,10 +40,30 @@ export default {
   },
 
   mounted() {
-    this.$store.dispatch('data/init'); // Init the data jsons from back end
+    // this.$store.dispatch('data/init'); // Init the data jsons from back end
+    DataService.getRules().then( response => {
+      localStorage.setItem('rules', JSON.stringify(response));
+    } );
+    DataService.getRaces().then( response => {
+      localStorage.setItem('races', JSON.stringify(response));
+    } );
+    DataService.getClasses().then( response => {
+      localStorage.setItem('classes', JSON.stringify(response));
+    } );
+    DataService.getFeats().then( response => {
+      localStorage.setItem('feats', JSON.stringify(response));
+    } );
+    DataService.getEquipment().then( response => {
+      localStorage.setItem('equipment', JSON.stringify(response));
+    } );
+    DataService.getActionsAndConditions().then( response => {
+      localStorage.setItem('actions', JSON.stringify(response.actions));
+      localStorage.setItem('conditions', JSON.stringify(response.conditions));
+    } );
+
 
     if (this.currentUser) {
-      console.log(this.currentUser);
+      // console.log(this.currentUser);
 
       this.usermeta.faveColor = "--el-color-primary: " + this.currentUser.usermeta.faveColor + " !important";
       document.documentElement.style.cssText = this.usermeta.faveColor;

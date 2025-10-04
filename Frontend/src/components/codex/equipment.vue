@@ -1,7 +1,5 @@
 <template>
-  <div style="margin: 25px;">
-
-    <el-row>{{ rules }}</el-row>
+  <div style="margin: 0 2%">
 
     <div class="hero-section">
       Select Item Type
@@ -20,29 +18,144 @@
       </el-select>
     </div>
 
-    <equipment-table
-      :id="tableName"
-      :data="tableData"
-      :filters="tableFilters"
-    />
+    <el-row :gutter="10" justify="center">
+      <el-col :xs="24" :sm="12" :md="12" style="margin-bottom:10px">
+        <el-input v-model="nameSearch" aria-label="Item Name">
+          <template #prepend> <g-icon iconSize="20px" iconName="search" /> Search </template>
+        </el-input>
+      </el-col>
+      <el-col :xs="10" :sm="4" :md="2" style="margin-bottom:10px">
+        <el-button @click="clearFilters" type="warning"> Reset Filters </el-button>
+      </el-col>
+    </el-row>
+
+    <el-table
+      ref="equipTable"
+       :data="tableData.filter(data => !nameSearch || data.Name.toLowerCase().includes(nameSearch.toLowerCase()))"
+      :default-sort="{ prop: 'name', order: 'ascending' }"
+      table-layout="auto"
+      height="700"
+      stripe
+      sort-change="console.log('sorted')"
+    >
+      <el-table-column
+        v-for="col in tableCols"
+        :key="col"
+        :prop="col"
+        :label="col"
+        :fixed="col == 'Name' ? 'left' : false"
+        :sortable="['Name', 'Critical', 'Range', 'Cost', 'Weight'].includes(col) ? true : false"
+        :filters="tableFilters[col]"
+        :filter-method="Object.keys(tableFilters).includes(col) ? filterHandler : null"
+      >
+        <template #default="scope">
+
+          <div v-if="col == 'Damage'">
+            <div>Small: {{ scope.row[col].small }}</div>
+            <div>Medium: {{ scope.row[col].medium }}</div>
+            <el-collapse>
+              <el-collapse-item name="damages">
+                <template #title> <g-icon iconName="weapons" /> Sizes </template>
+                <div v-for="(dmg, name) in scope.row[col]" :key="name"> {{ name }} : {{ dmg }} </div>
+              </el-collapse-item>
+            </el-collapse>
+          </div>
+
+
+          <div v-else-if="col == 'Range' && scope.row[col] > 0">
+            <el-tooltip placement="top" effect="light">
+              {{ scope.row[col] }} ft
+              <template #content>
+                Range Increment
+              </template>
+            </el-tooltip>
+          </div>
+
+          <div v-else-if="Array.isArray(scope.row[col])">
+            <el-tag v-for="item in scope.row[col]" :key="item" effect="dark" style="margin-right:5px" > {{ item }} </el-tag>
+          </div>
+          <div v-else-if="col == 'Cost'">
+            <el-tag color="#FFDE0A" style="color:black; border:none;">
+              {{ scope.row[col] }} gp
+            </el-tag>
+          </div>
+          <div v-else-if="col == 'Weight'">
+            <el-tag type="info" effect="dark">
+              {{ scope.row[col] }} lbs
+            </el-tag>
+          </div>
+
+          <el-collapse v-else-if="col == 'Description'">
+            <el-collapse-item name="Desc">
+              <template #title> <g-icon iconName="openBook" /> Desc </template>
+              {{ scope.row[col] }}
+            </el-collapse-item>
+          </el-collapse>
+
+          <el-collapse v-else-if="col == 'Extras'">
+            <el-collapse-item v-for="(extra, name) in scope.row[col]" :key="name" :name="name">
+              <template #title> <g-icon iconName="star" /> {{ name }} </template>
+              <ul v-if="Array.isArray(extra)">
+                <li v-for="item in extra" :key="item"> {{ item }} </li>
+              </ul>
+            </el-collapse-item>
+
+            <el-collapse-item name="Actions" class="center-horz">
+              <template #title> <g-icon iconName="abilityPalm" /> Actions </template>
+              <el-tooltip placement="left" effect="light">
+                <el-button @click="editForToon(scope.row)" size="large" type="primary" circle>
+                  <g-icon iconName="inventory" iconSize="24px"  />
+                </el-button>
+                <template #content>
+                  Add to Character
+                </template>
+              </el-tooltip>
+            </el-collapse-item>
+          </el-collapse>
+
+          <div v-else>
+            {{ scope.row[col] }}
+          </div>
+
+        </template>
+      </el-table-column>
+    </el-table>
   </div>
+
+  <!-- Add Item Dialogs -->
+  <el-dialog v-model="toonEdit" width="750">
+    <g-item :source="toonItem" @save-item="saveItem"/>
+  </el-dialog>
+  <el-dialog v-model="toonList" width="500">
+    <h3> Add to which character? </h3>
+    <el-select
+      v-model="chosenToon"
+      value-key="name"
+      style="width: 240px"
+    >
+      <el-option v-for="toon in userToons" :key="toon.name" :label="toon.name" :value="toon" >
+        <div class="flex items-center">
+          <span>{{ toon.name }}</span>
+        </div>
+      </el-option>
+    </el-select>
+    <el-row justify="end">
+      <el-button size="small" type="warning" @click="toonEdit = false; toonList = false;"> Cancel </el-button>
+      <el-button size="small" type="success" @click="addToToon()"> Confirm </el-button>
+    </el-row>
+  </el-dialog>
+
 </template>
 
 <script>
-// import DataService from "@/services/data.service";
-import EquipmentTable from "./EquipmentTable.vue";
+import GItem from '@/components/template/GItem.vue';
+import CharacterService from "@/services/character.service";
 
 export default {
   name: "Equipment",
-  components: { EquipmentTable },
+  components: { GItem },
   data() {
     return {
-      equipment: {}, // equipment JSON from server
-
-      tableName: "equipmentTable",
-      tableData: {},
-      tableFilters: {},
-
       equipmentTypes: {
         "Armor":              { color: "#4167F0", label: "Armor" },
         "Shields":            { color: "#14CCCC", label: "Shields" },
@@ -50,136 +163,132 @@ export default {
         "Materials":          { color: "#71797E", label: "Materials" },
         "Goods and Services": { color: "#FFDE0A", label: "Goods and Services" }
       },
-      selectedType: { label: "Weapons", color: "#4167F0" },
+      selectedType: { label: "Weapons", color: "#FF6600" },
 
-      rules: {}
+      tableCols: [], // Array of table headers
+      tableData: [],
+      nameSearch: "",
+      tableFilters: {},
+
+      toonItem: {},
+      toonEdit: false,
+      toonList: false,
+      userToons: [],
+      chosenToon: {},
     };
   },
-
-  created() {
-    this.getEquipment();
+  computed: {
+    currentUser() { return this.$store.state.auth.user; },
+    equipment() { return JSON.parse(localStorage.getItem('equipment')); },
+  },
+  mounted() {
+    this.tableUpdate();
   },
   methods: {
-    getEquipment() {
-      this.loading = true;
-      this.equipment = this.$store.state.data.equipment;
-      this.tableUpdate();
-    },
+    /***************************\
+    *                           *
+    *          FILTERS          *
+    *                           *
+    \***************************/
+    clearFilters() { this.$refs.equipTable.clearFilter(); },
+    // displays table based on item type select
     tableUpdate() {
-      this.tableData = this.equipment[this.selectedType.label] ? this.equipment[this.selectedType.label] : {};
+      this.tableData = [];
+      for (let [name, item] of Object.entries( this.equipment[this.selectedType.label] )) {
+        item.Name = name;
+        this.tableData.push(item);
+      }
+      this.tableCols = Object.keys(Object.values(this.tableData)[0]);
 
       switch (this.selectedType.label) {
         case "Armor":
-          this.rules = {
-            "Light Armor Speed": "x1 ft.",
-            "Medium Armor Speed": "x0.66 ft.",
-            "Heavy Armor Speed": "x0.66 ft & run is x3 not x4"
-          };
-
           this.tableFilters = {
-            "Proficiency": {
-              "Light":        { color: "#1EC79D", label: "Light" },
-              "Medium":       { color: "#FFDE0A", label: "Medium" },
-              "Heavy":        { color: "#E63415", label: "Heavy" },
-            }
+            "Proficiency": [
+              { text: "Light",        value: "Light" },
+              { text: "Medium",       value: "Medium" },
+              { text: "Heavy",        value: "Heavy" },
+            ]
           };
           break;
 
         case "Shields":
-          this.rules = {
-            "Shield Bash": "You must have martial proficiency to make a shield bash, and doing so causes you to lose your AC bonus from your shield for a turn."
-          };
           this.tableFilters = {
-            "Group": {
-              "Light Blades": { color: '#FF6600', label: 'Light Blades' },
-              "Heavy Blades": { color: '#FFDE0A', label: 'Heavy Blades' },
-              "Close":        { color: '#4167F0', label: 'Close' },
-              "Thrown":       { color: '#aaffc3', label: 'Thrown' },
-              "Tribal":       { color: '#dcbeff', label: 'Tribal' }
-            }
+            "Group": [
+              { text: "Light Blades", value: 'Light Blades' },
+              { text: "Heavy Blades", value: 'Heavy Blades' },
+              { text: "Close",        value: 'Close' },
+              { text: "Thrown",       value: 'Thrown' },
+              { text: "Tribal",       value: 'Tribal' }
+            ]
           };
           break;
 
         case "Weapons":
-          this.rules = {
-            "Proficiency": "If do not have proficiency with a weapon, you take a -4 on Attack Rolls to hit."
-          };
           this.tableFilters = {
-            "Damage Type": {
-              "Slashing":     { color: "#E63415", label: "Slashing" },
-              "Piercing":     { color: "#FFDE0A", label: "Piercing" },
-              "Bludgeoning":  { color: "#4167F0", label: "Bludgeoning" }
-            },
-            "Proficiency": {
-              "Simple":       { color: "#1EC79D", label: "Simple" },
-              "Martial":      { color: "#FFDE0A", label: "Martial" },
-              "Exotic":       { color: "#E63415", label: "Exotic" },
-              "Natural":      { color: "#bfef45", label: "Natural" }
-            },
-            "Category": {
-              "Unarmed":      { color: "#E63415", label: "Unarmed" },
-              "Light":        { color: "#FF6600", label: "Light" },
-              "One-Handed":   { color: "#FFDE0A", label: "One-Handed" },
-              "Two-Handed":   { color: "#1EC79D", label: "Two-Handed" },
-              "Ranged":       { color: "#4167F0", label: "Ranged" },
-              "Ammunition":   { color: "#6222C9", label: "Ammunition" },
-              "Primary":      { color: "#42d4f4", label: "Primary" },
-              "Secondary":    { color: "#dcbeff", label: "Secondary" }
-            },
-            "Group": {
-              "Axes":         { color: '#E63415', label: 'Axes' },
-              "Light Blades": { color: '#FF6600', label: 'Light Blades' },
-              "Heavy Blades": { color: '#FFDE0A', label: 'Heavy Blades' },
-              "Bows":         { color: '#3cb44b', label: 'Bows' },
-              "Close":        { color: '#4167F0', label: 'Close' },
-              "Crossbows":    { color: '#911eb4', label: 'Crossbows' },
-              "Double":       { color: '#800000', label: 'Double' },
-              "Flails":       { color: '#bfef45', label: 'Flails' },
-              "Hammers":      { color: '#1EC79D', label: 'Hammers' },
-              "Monk":         { color: '#42d4f4', label: 'Monk' },
-              "Polearms":     { color: '#f032e6', label: 'Polearms' },
-              "Spears":       { color: '#ffd8b1', label: 'Spears' },
-              "Thrown":       { color: '#aaffc3', label: 'Thrown' },
-              "Tribal":       { color: '#dcbeff', label: 'Tribal' }
-            }
+            "Damage Type": [
+              { text: "Slashing",     value: "Slashing" },
+              { text: "Piercing",     value: "Piercing" },
+              { text: "Bludgeoning",  value: "Bludgeoning" }
+            ],
+            "Proficiency": [
+              { text: "Simple",       value: "Simple" },
+              { text: "Martial",      value: "Martial" },
+              { text: "Exotic",       value: "Exotic" },
+              { text: "Natural",      value: "Natural" }
+            ],
+            "Category": [
+              { text: "Unarmed",      value: "Unarmed" },
+              { text: "Light",        value: "Light" },
+              { text: "One-Handed",   value: "One-Handed" },
+              { text: "Two-Handed",   value: "Two-Handed" },
+              { text: "Ranged",       value: "Ranged" },
+              { text: "Ammunition",   value: "Ammunition" },
+              { text: "Primary",      value: "Primary" },
+              { text: "Secondary",    value: "Secondary" }
+            ],
+            "Group": [
+              { text: "Axes",         value: 'Axes' },
+              { text: "Light Blades", value: 'Light Blades' },
+              { text: "Heavy Blades", value: 'Heavy Blades' },
+              { text: "Bows",         value: 'Bows' },
+              { text: "Close",        value: 'Close' },
+              { text: "Crossbows",    value: 'Crossbows' },
+              { text: "Double",       value: 'Double' },
+              { text: "Flails",       value: 'Flails' },
+              { text: "Hammers",      value: 'Hammers' },
+              { text: "Monk",         value: 'Monk' },
+              { text: "Polearms",     value: 'Polearms' },
+              { text: "Spears",       value: 'Spears' },
+              { text: "Thrown",       value: 'Thrown' },
+              { text: "Tribal",       value: 'Tribal' }
+            ]
           };
           break;
 
         case "Materials":
-          this.rules = {};
           this.tableFilters = {
-            "Type": {
-              "Metal":        { color: "#71797E", label: "Metal" },
-              "Textile":      { color: "#42d4f4", label: "Textile" },
-              "Stone":        { color: "#dcbeff", label: "Stone" },
-              "Organic":      { color: "#ffd8b1", label: "Organic" }
-            }
+            "Type": [
+              { text: "Metal",        value: "Metal" },
+              { text: "Textile",      value: "Textile" },
+              { text: "Stone",        value: "Stone" },
+              { text: "Organic",      value: "Organic" }
+            ]
           };
           break;
 
         case "Goods and Services":
-          this.rules = {};
           this.tableFilters = {
-            "Category": {
-              "Adventuring Gear":
-                              { color: "#E63415", label: "Adventuring Gear" },
-              "Alchemical Creations":
-                              { color: "#FF6600", label: "Alchemical Creations" },
-              "Animals & Animal Gear":
-                              { color: "#FFDE0A", label: "Animals & Animal Gear" },
-              "Books & Writing":
-                              { color: "#3cb44b", label: "Books & Writing" },
-              "Clothing & Containers":
-                              { color: "#4167F0", label: "Clothing & Containers" },
-              "Furniture, Trade Goods & Vehicles":
-                              { color: "#911eb4", label: "Furniture, Trade Goods & Vehicles" },
-              "Hirelings, Servants & Services":
-                              { color: "#800000", label: "Hirelings, Servants & Services" },
-              "Locks, Keys, Tools & Kits":
-                              { color: "#bfef45", label: "Locks, Keys, Tools & Kits" },
-              "Religious Items, Toys & Games":
-                              { color: "#1EC79D", label: "Religious Items, Toys & Games" }
-            }
+            "Category": [
+              { text: "Adventuring Gear", value: "Adventuring Gear" },
+              { text: "Alchemical Creations", value: "Alchemical Creations" },
+              { text: "Animals & Animal Gear", value: "Animals & Animal Gear" },
+              { text: "Books & Writing", value: "Books & Writing" },
+              { text: "Clothing & Containers", value: "Clothing & Containers" },
+              { text: "Furniture, Trade Goods & Vehicles", value: "Furniture, Trade Goods & Vehicles" },
+              { text: "Hirelings, Servants & Services", value: "Hirelings, Servants & Services" },
+              { text: "Locks, Keys, Tools & Kits", value: "Locks, Keys, Tools & Kits" },
+              { text: "Religious Items, Toys & Games", value: "Religious Items, Toys & Games" }
+            ]
           };
           break;
 
@@ -187,8 +296,53 @@ export default {
           this.tableData = {};
           this.tableFilters = {};
       }
-      this.loading = false;
-    }
+    },
+    // Filters a given row with the value (more options shows more results)
+    filterHandler(value, row, column) {
+      const prop = column['property'];
+      if (Array.isArray(row[prop])) {
+        return row[prop].includes(value);
+      }
+      return row[prop] === value
+    },
+
+
+    /***************************\
+    *                           *
+    *        ADD TO TOON        *
+    *                           *
+    \***************************/
+    editForToon(item) {
+      this.toonItem = { label: item.Name, value: {} }
+      for (const [key, val] of Object.entries(item)) {
+        if (key != 'Name') {
+          this.toonItem.value[key] = val;
+        }
+      }
+      this.toonItem.value.Extras.Masterwork = false;
+      this.toonItem.value.Extras.Enhancement = 0;
+      this.toonItem.value.Ammount = 1;
+      this.toonEdit = true;
+    },
+    saveItem(item) {
+      this.toonItem = item;
+      CharacterService.getAllCharacters(this.currentUser.id, 0, null)
+      .then(response => {
+        this.userToons = JSON.parse(response.characters).rows;
+        this.toonList = true;
+      })
+      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
+    },
+    addToToon() {
+      // add toonItem to chosenToon in backpack
+      this.chosenToon.inventory[2].children.push(this.toonItem);
+      // update toon
+      CharacterService.updateCharacter(this.chosenToon)
+      .then((response) => { this.$message({ message: `Added ${this.toonItem.label} to ${response.character.name}`, type: 'success', }); })
+      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
+      this.toonEdit = false;
+      this.toonList = false;
+    },
   }
 };
 </script>
@@ -196,5 +350,6 @@ export default {
   .hero-section {
     color: #CCC;
     text-align: center;
+    margin-bottom: 10px;
   }
 </style>

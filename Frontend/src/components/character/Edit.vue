@@ -731,9 +731,26 @@
                 </el-input>
               </el-col>
               <el-col :span="7">
-                Extras
-                <el-input v-model="atk.extras" size="small" type="textarea" :autosize="{ minRows: 3, maxRows: 4 }" aria-label="Attack Extras" />
+                Extras {{ atk.Extras }}
+
+                <el-row v-for="(extra, index) in atk.Extras" :key="index" :gutter="5">
+                  <el-col :span="24">
+                    <el-input
+                      v-model="atk.Extras[index]"
+                      :aria-label="`Extra ${index+1} Input`"
+                    >
+                      <template #append>
+                        <el-button @click="deleteAtkExtra(name, index)" style="display: flex;">
+                          <g-icon iconSize="16px" iconColor="#f56c6c" iconName="trash" />
+                        </el-button>
+                      </template>
+                    </el-input>
+                  </el-col>
+                </el-row>
+                <el-button size="small" type="primary" @click="addAtkExtra(name)"> Add Note </el-button>
               </el-col>
+
+
             </el-row>
           </el-collapse-item>
 
@@ -989,7 +1006,7 @@
             <el-input v-model="itemFilter" class="w-60 mb-2" placeholder="Item Search" aria-label="Item Search" />
           </el-col>
           <el-col :span="4">
-            <el-button type="primary" @click="editItem({}); addItem=true;">Add Item</el-button>
+            <el-button type="primary" @click="editItem({})">Add Item</el-button>
           </el-col>
         </el-row>
         <el-tree
@@ -1014,6 +1031,9 @@
             </el-col>
             <el-col :span="3">
               <span v-if="data.value"> {{ data.value.Weight }} lbs. </span>
+            </el-col>
+            <el-col :span="3">
+              <el-input-number v-if="data.value" v-model="data.value.Ammount" :min="0" size="small" aria-label="Number of Items" />
             </el-col>
             <div class="custom-tree-node" v-if="data.value">
               <!-- Edit Item (in modal component) -->
@@ -1438,7 +1458,7 @@
 
     <!-- EDIT ITEM DIALOG -->
     <el-dialog v-model="editingItem" width="800">
-      <g-item :source="item" :newItem="addItem" @save-item="saveItem"/>
+      <g-item :source="item" @save-item="saveItem"/>
     </el-dialog>
 
     <!-- EDIT ABILITY DIALOG -->
@@ -1543,7 +1563,6 @@ export default {
       newCondition: {},
       addingCondition: false,
 
-      addItem: false,
       editingItem: false,
       item: {},
       itemFilter: "",
@@ -1556,11 +1575,13 @@ export default {
     };
   },
   computed: {
-    rules() { return this.$store.state.data.rules; },
-    races() { return this.$store.state.data.races; },
-    classes() { return this.$store.state.data.classes; },
-    equipment() { return this.$store.state.data.equipment; },
-    conditions() { return this.$store.state.data.conditions; },
+    rules() { return JSON.parse(localStorage.getItem('rules')); },
+    races() { return JSON.parse(localStorage.getItem('races')); },
+    classes() { return JSON.parse(localStorage.getItem('classes')); },
+    equipment() { return JSON.parse(localStorage.getItem('equipment')); },
+    feats() { return JSON.parse(localStorage.getItem('feats')); },
+    actions() { return JSON.parse(localStorage.getItem('actions')); },
+    conditions() { return JSON.parse(localStorage.getItem('conditions')); },
 
     activeConditions() { return this.character.conditions; },
     // inventory() { return this.character.inventory; },
@@ -1673,6 +1694,9 @@ export default {
 
   },
   mounted() {
+
+    // TODO: Feats and Default Actions stuff
+
     if (!this.rules.size) { this.$router.push("/"); }
     UserService.getAllUsers()
     .then(response => { this.users = response.data.map((user) => { return {'username': user.username, 'id': user.id} } ); })
@@ -1970,15 +1994,17 @@ export default {
     addNewAttack() {
       this.character.attacks[this.atkName] = {
         atkNum: this.atkNum,
-        extras: "",
         "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "2d8",  "colossal": "4d6"  },
         "Critical": "20/x2",
         "Range": 0,
         "Damage Type": [ "Piercing" ],
         "Proficiency": "Natural",
-        "Category": "Primary"
+        "Category": "Primary",
+        "Extras": [],
       };
     },
+    addAtkExtra(atkName) { this.character.attacks[atkName].Extras.push('New Note'); },
+    deleteAtkExtra(atkName, index) { this.character.attacks[atkName].Extras.splice(index, 1); },
     addNewResource() {
       this.character.resources[this.resourceName] = {
         units: 'rounds',
@@ -2046,11 +2072,14 @@ export default {
       }
     },
     saveItem(item) {
-      this.character.inventory[2].children.push(item);
+      if (this.$refs['tree'].getNode(item.label)) {
+        this.$message({ message: `${item.label} Updated`, type: "success" });
+      } else {
+        this.character.inventory[2].children.push(item);
+      }
       this.editingItem = false;
     },
     editItem(item) {
-      this.addItem = false;
       if (!Object.keys(item).length) {
         item = {
           label: "",
@@ -2058,9 +2087,8 @@ export default {
             Description: "",
             Cost: 0,
             Weight: 0,
-            Extras: {
-              Notes: []
-            }
+            Ammount: 1,
+            Extras: { Notes: [] }
           }
         };
       }

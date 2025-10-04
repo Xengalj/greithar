@@ -1,80 +1,123 @@
 <template lang="html">
-  <div class="filter-row">
-    <input type="text" id="searchName" placeholder="Search by name.." title="Type in a name" v-on:keyup="searchByName()" >
 
-    <el-select
-      v-for="(filter, key) in tableFilters" :key="key"
-      v-model="filterValue[key]"
-      value-key="label"
-      multiple
-      :placeholder="`Select ${key}`"
-      style="width: 240px"
-      v-on:change="filterTable()"
-    >
-      <template #tag>
-        <el-tag v-for="(item, name) in filterValue[key]" effect="dark" :color="item.color" :key="name" >
-          {{ item.label }}
-        </el-tag>
-      </template>
-      <el-option v-for="item in filter" :key="item.label" :label="item.label" :value="item" >
-        <div class="flex items-center">
-          <el-tag :color="item.color" style="margin-right: 8px" size="small" />
-          <span :style="{ color: item.color }">{{ item.label }}</span>
-        </div>
-      </el-option>
-      <template #footer>
-        <el-button v-if="!isAdding" text bg size="small" @click="isAdding=true"> Add an option </el-button>
-        <template v-else>
-          <div style="display: flex;">
-            <el-color-picker v-model="newOption.color" size="small" :teleported="false" />
-            <el-input v-model="newOption.value" class="option-input" placeholder="Enter option name" size="small" style="width:75%; margin-left: 5px;"/>
-            <el-button type="primary" size="small" style="margin-left: 5px;" @click="onConfirm(key)">confirm</el-button>
-            <el-button size="small" @click="newOption = {}; isAdding = false;">cancel</el-button>
-          </div>
+
+  TOMBSTONE
+
+  <el-row
+    :gutter="10"
+    justify="center"
+    align="middle"
+    class="center-horz"
+  >
+    <!-- SEARCH -->
+    <el-col :xs="24" :sm="18" :md="12" style="margin-bottom:10px">
+      <el-input v-model="nameSearch" @input="searchByName" aria-label="Item Name">
+        <template #prepend> <g-icon iconSize="20px" iconName="search" /> Search </template>
+      </el-input>
+    </el-col>
+
+    <!-- FILTERS -->
+    <el-col :xs="24" :sm="18" :md="18" style="margin-bottom:10px">
+      <el-select
+        v-for="(filter, key) in tableFilters" :key="key"
+        v-model="filterValue[key]"
+        :placeholder="`Select ${key}`"
+        v-on:change="filterTable()"
+        value-key="label"
+        multiple
+        style="width: 240px"
+      >
+        <template #tag>
+          <el-tag v-for="(item, name) in filterValue[key]" effect="dark" :color="item.color" :key="name" >
+            {{ item.label }}
+          </el-tag>
         </template>
-      </template>
-    </el-select>
+        <el-option v-for="item in filter" :key="item.label" :label="item.label" :value="item" >
+          <div class="flex items-center">
+            <el-tag :color="item.color" style="margin-right: 8px" size="small" />
+            <span :style="{ color: item.color }">{{ item.label }}</span>
+          </div>
+        </el-option>
+        <template #footer>
+          <el-button v-if="!isAdding" text bg size="small" @click="isAdding=true"> Add an option </el-button>
+          <template v-else>
+            <div style="display: flex;">
+              <el-color-picker v-model="newOption.color" size="small" :teleported="false" />
+              <el-input v-model="newOption.value" class="option-input" placeholder="Enter option name" size="small" style="width:75%; margin-left: 5px;"/>
+              <el-button type="primary" size="small" style="margin-left: 5px;" @click="onConfirm(key)">confirm</el-button>
+              <el-button size="small" @click="newOption = {}; isAdding = false;">cancel</el-button>
+            </div>
+          </template>
+        </template>
+      </el-select>
+    </el-col>
 
-    <el-button @click="clearFilter">Reset</el-button>
-    <el-tag v-if="displayedRows" size="large" effect="dark" type="primary">{{ displayedRows }} Results</el-tag>
-    <el-button @click="randomItem">Random Item</el-button>
-  </div>
+    <el-col :xs="24" :sm="12" :md="6" style="margin-bottom:10px">
+      <div style="display:flex; justify-content: space-evenly;">
+        <el-button @click="clearFilter" type="warning">Reset</el-button>
+        <el-tag size="large" effect="dark" type="info" v-if="displayedRows"> <span style="font-size:14px"> {{ displayedRows }} Results </span> </el-tag>
+        <el-button @click="randomItem" type="primary"> Random Item </el-button>
+      </div>
+    </el-col>
+  </el-row>
 
-  <table :id="id" class="g-table">
+
+  <table v-loading="loading" :id="id" class="g-table">
     <tr>
       <th v-for="item in tableCols" :key="item" @click="sortTable(item)">
         {{ item }}
       </th>
     </tr>
+
     <tr v-for="(item, name) in data" :key="name">
       <td name="Name">{{ name }}</td>
+
       <td v-for="(prop, key) in item" :key="key" :name="key">
 
-        <div v-if="Array.isArray(prop)">
-          <el-collapse v-if="key == 'Special' && prop[0] ">
-            <el-collapse-item title="" name="1">
-              <template #title> <g-icon iconName="star" /> Extras </template>
-              <ul>
-                <li v-for="item in prop" :key="item"> {{ item }} </li>
-              </ul>
-            </el-collapse-item>
-          </el-collapse>
-
-          <ul v-else>
-            <li v-for="item in prop" :key="item"> {{ item }} </li>
-          </ul>
-        </div>
-
-        <div v-else-if="typeof prop === 'object'">
+        <div v-if="key == 'Damage'">
           <div>Small: {{ prop.small }}</div>
           <div>Medium: {{ prop.medium }}</div>
+          <el-collapse>
+            <el-collapse-item name="damages">
+              <template #title> <g-icon iconName="weapons" /> Sizes </template>
+              <div v-for="(dmg, name) in prop" :key="name"> {{ name }} : {{ dmg }} </div>
+            </el-collapse-item>
+          </el-collapse>
         </div>
 
-        <div v-else>
-          <div>
-            <span> {{ prop }} </span>
-          </div>
+        <div v-else-if="key == 'Range' && prop > 0">
+          <el-tooltip placement="top" effect="light">
+            {{ prop }} ft
+            <template #content>
+              Range Increment
+            </template>
+          </el-tooltip>
         </div>
+
+        <div v-else-if="Array.isArray(prop)">
+          <el-tag v-for="item in prop" :key="item" effect="dark" > {{ item }} </el-tag>
+        </div>
+        <div v-else-if="key == 'Cost'">
+          <el-tag color="#FFDE0A" style="color:black; border:none;">
+            {{ prop }} gp
+          </el-tag>
+        </div>
+        <div v-else-if="key == 'Weight'">
+          <el-tag type="info" effect="dark">
+            {{ prop }} lbs
+          </el-tag>
+        </div>
+
+        <el-collapse v-else-if="key == 'Extras'">
+          <el-collapse-item v-for="(extra, name) in prop" :key="name" :name="name">
+            <template #title> <g-icon iconName="star" /> {{ name }} </template>
+            <ul v-if="Array.isArray(extra)">
+              <li v-for="item in extra" :key="item"> {{ item }} </li>
+            </ul>
+          </el-collapse-item>
+        </el-collapse>
+
+        <div v-else> {{ prop }} </div>
 
       </td>
     </tr>
@@ -92,7 +135,7 @@ export default {
   },
   computed: {
     tableFilters() {
-      // console.log(this.filters);
+      console.log('filters', this.filters);
       return this.filters;
     },
     tableCols() {
@@ -102,38 +145,49 @@ export default {
   },
   data() {
     return {
+      loading: false,
       filterValue: {},
+      displayedRows: 0,
+      nameSearch: "",
       isAdding: false,  // Adding a new filter option
       newOption: {},    // The new filter option to add
-      displayedRows: 0,
-
-      colors: [
-        { value: '#E63415', label: 'Red' },
-        { value: '#FF6600', label: 'Orange' },
-        { value: '#FFDE0A', label: 'Yellow' },
-
-        { value: '#3cb44b', label: 'Green' },
-        { value: '#4167F0', label: 'Blue' },
-        { value: '#911eb4', label: 'Purple' },
-
-        { value: '#800000', label: 'Maroon' },
-        { value: '#bfef45', label: 'Lime' },
-        { value: '#1EC79D', label: 'Teal' },
-
-        { value: '#42d4f4', label: 'Cyan' },
-        { value: '#000075', label: 'Navy' },
-        { value: '#f032e6', label: 'Magenta' },
-
-        { value: '#ffd8b1', label: 'Apricot' },
-        { value: '#aaffc3', label: 'Mint' },
-        { value: '#dcbeff', label: 'Lavender' }
-      ]
 
     }
   },
-
+  // mounted() {
+  //   this.$message({ message: "Resting for 8 hours", type: "success" });
+  //
+  // },
   methods: {
+    searchByName() {
+      let filter, table, tr, td, i, txtValue;
+      filter = this.nameSearch.toUpperCase();
+      table = document.getElementById(this.id);
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    },
+
+
+
     sortTable(sortStr) {
+      this.loading = true;
+      // this.$loading({text:'Loading'});
+
+      console.log(sortStr);
+      this.switchRows(sortStr);
+    },
+
+    switchRows(sortStr) {
       let table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
       table = document.getElementById("equipmentTable");
       switching = true;
@@ -177,7 +231,7 @@ export default {
               }
             }
 
-          // if we are sorting by number
+            // if we are sorting by number
           } else {
             /*check if the two rows should switch place,
             based on the direction, asc or desc:*/
@@ -212,26 +266,9 @@ export default {
           }
         }
       }
+      this.loaded = false;
     },
 
-    searchByName() {
-      let input, filter, table, tr, td, i, txtValue;
-      input = document.getElementById("searchName");
-      filter = input.value.toUpperCase();
-      table = document.getElementById(this.id);
-      tr = table.getElementsByTagName("tr");
-      for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[0];
-        if (td) {
-          txtValue = td.textContent || td.innerText;
-          if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            tr[i].style.display = "";
-          } else {
-            tr[i].style.display = "none";
-          }
-        }
-      }
-    },
 
     // Add filter dropdown option
     onConfirm(filter) {
@@ -293,6 +330,7 @@ export default {
       }
     },
 
+    // Scrolls to random item of filtered / displayed items
     randomItem() {
       let rows = document.getElementById("equipmentTable").rows;
       let valid = [];

@@ -1,7 +1,11 @@
 import axios from 'axios';
 import authHeader from './auth-header';
-// import settings from '../main.js'
-const API_URL = 'http://localhost:8080/api/data/';
+// Dynamic Settings Import
+let API_URL = 'http://localhost:8080/api/data/';
+import("/../config.json").then(module => {
+  let settings = module.default;
+  if (settings.isProd) { API_URL = settings.serverURL.concat('/data/'); }
+}).catch(err => { console.error(err); });
 
 class DataService {
   getAdminBoard() {

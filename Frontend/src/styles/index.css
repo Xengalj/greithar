@@ -96,10 +96,11 @@ footer {
 .center-vert { align-content: center; }
 .text-right { text-align: right; }
 
-/* #app .el-icon,
+#app .el-icon,
 #app .el-icon.el-dialog__close,
 .el-icon.el-popconfirm__icon,
 .el-icon.el-message__icon,
-.el-icon.el-message__closeBtn {
-  width: 28px;
-} */
+.el-icon.el-message__closeBtn
+{
+  width: auto;
+}

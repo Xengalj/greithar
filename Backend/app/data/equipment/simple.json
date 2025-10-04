@@ -799,7 +799,9 @@
     "Extras": {
       "Notes": [
         "The given weapon stats are for a single bolt, and using it as a melee weapon.",
-        "When using the bolt as a melee weapon, treat it as a light improvised weapon, with a -4 to attack rolls."
+        "When using the bolt as a melee weapon, treat it as a light improvised weapon, with a -4 to attack rolls.",
+        "Bolts usually come in a case or quiver that holds 10 (price & weight listed for 1 bolt).",
+        "Bolts for a repeating crossbow come in a case of 5 (each bolt costs and weighs 0.2)."
       ]
     }
   },

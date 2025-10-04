@@ -148,9 +148,23 @@
             </span>
           </el-col>
         </el-row>
-        <div style="margin-top:25px; text-align:center">
-          <el-button @click="saveCharacter()" type="primary" round> Save Changes </el-button>
-        </div>
+
+        <el-row :gutter="10" justify="center" align="middle">
+          <el-col :xs="24" :span="6" class="center-horz">
+            <el-button @click="saveCharacter()" type="primary" round> Save Changes </el-button>
+          </el-col>
+          <el-col :xs="24" :span="2" class="center-horz">
+            <el-tooltip placement="top" effect="light">
+              <el-button @click="this.$router.push({ name: 'character-edit', params: { id: character.id } })" type="info" style="margin:0" circle>
+                <g-icon iconSize="24px" iconColor="#000" iconName="quill" />
+              </el-button>
+              <template #content>
+                Edit Character
+              </template>
+            </el-tooltip>
+          </el-col>
+        </el-row>
+
       </el-col>
     </el-row>
 
@@ -514,7 +528,7 @@
             <el-input v-model="itemFilter" class="w-60 mb-2" placeholder="Item Search" aria-label="Item Search" />
           </el-col>
           <el-col :span="4">
-            <el-button type="primary" @click="editItem({}); addItem=true;">Add Item</el-button>
+            <el-button type="primary" @click="editItem({})">Add Item</el-button>
           </el-col>
         </el-row>
         <el-tree
@@ -539,6 +553,9 @@
             </el-col>
             <el-col :span="3">
               <span v-if="data.value"> {{ data.value.Weight }} lbs. </span>
+            </el-col>
+            <el-col :span="3">
+              <el-input-number v-if="data.value" v-model="data.value.Ammount" :min="0" size="small" aria-label="Number of Items" />
             </el-col>
             <div class="custom-tree-node" v-if="data.value">
               <!-- Edit Item (in modal component) -->
@@ -1186,17 +1203,17 @@
 
 
     <!-- Edit Item Dialog -->
-    <el-dialog v-model="editingItem" width="800">
-      <g-item :source="item" :newItem="addItem" @save-item="saveItem"/>
+    <el-dialog v-model="editingItem" width="750">
+      <g-item :source="item" @save-item="saveItem"/>
     </el-dialog>
 
     <!-- Edit Ablity Dialog -->
-    <el-dialog v-model="editingAbil" width="800">
+    <el-dialog v-model="editingAbil" width="750">
       <g-ability :name="abilName" :source="abil" @save-abil="saveAbility"/>
     </el-dialog>
 
     <!-- Add New Condition Dialog -->
-    <el-dialog v-model="addingCondition" title="New Condition" width="800">
+    <el-dialog v-model="addingCondition" title="New Condition" width="750">
       <el-row :gutter="10">
         <el-col :span="5">
           <el-input v-model="newCondition.name" size="small" placeholder="Condition Name" aria-label="Condition Name" />
@@ -1292,7 +1309,6 @@ export default {
       newCondition: {},
       addingCondition: false,
 
-      addItem: false,
       editingItem: false,
       item: {},
       itemFilter: "",
@@ -1309,11 +1325,11 @@ export default {
     };
   },
   computed:{
-    rules() { return this.$store.state.data.rules; },
-    races() { return this.$store.state.data.races; },
-    classes() { return this.$store.state.data.classes; },
-    equipment() { return this.$store.state.data.equipment; },
-    conditions() { return this.$store.state.data.conditions; },
+    rules() { return JSON.parse(localStorage.getItem('rules')); },
+    races() { return JSON.parse(localStorage.getItem('races')); },
+    classes() { return JSON.parse(localStorage.getItem('classes')); },
+    equipment() { return JSON.parse(localStorage.getItem('equipment')); },
+    conditions() { return JSON.parse(localStorage.getItem('conditions')); },
 
     activeConditions() { return this.character.conditions; },
     inventory() { return this.character.inventory; },
@@ -1591,6 +1607,11 @@ export default {
         { "label": "Special", "extras": { "icon": "abilityPalm", "capacity": 50 }, "children": [] }
       ];
 
+      /***************************\
+      *                           *
+      *      Special Actions      *
+      *                           *
+      \***************************/
       // Abilities, like cleave, into 'special actions'
       for (const [name, abil] of Object.entries(this.abilities)) {
         if (abil.extras.showMain) {
@@ -1671,112 +1692,128 @@ export default {
         actions[2]["children"].push(newAtk);
       } // End character.attacks loop
 
+      /***************************\
+      *                           *
+      *      Weapon Actions       *
+      *                           *
+      \***************************/
+
       // Weapon Actions
-      // let mainHand = this.inventory[1].children[1].children[0].children[0];
-      // let offHand = this.inventory[1].children[1].children[0].children[1];
-      //
-      // for (const weapon of this.inventory[1].children[1].children[0].children) {
-      //   // this.inventory[ equipped ].children[ weapons ].children[ hands ].children
-      //   console.log(weapon);
-      //   // If the wielded item is not a weapon or inproperly equipped, skip
-      //   if (!weapon.value.Damage) { continue; }
-      //   if (weapon.value.Group.includes("Bows") || weapon.value.Category == "Two-Handed"){
-      //     if (weapon.label != mainHand.label || offHand != undefined) {
-      //       continue;
-      //     }
-      //   }
-      //
-      //   let type = (weapon.value.Category == "Ranged" || weapon.value.Group.includes("Thrown")) ? "Ranged" : "Melee";
-      //   let newAtk = {
-      //     "label": weapon.label,
-      //     "value": {
-      //       trigger: "Standard",
-      //       atkNum: 1,
-      //       atkBonus: { "total": 0, "sources": [] },
-      //       damage: weapon.value["Damage"][this.character.basics.size],
-      //       dmgBonus: { "total": 0, "sources": [] },
-      //       damageType: weapon.value["Damage Type"],
-      //       critical: {
-      //         range: weapon.value["Critical"].split("/")[0],
-      //         mult: weapon.value["Critical"].split("/")[1]
-      //       },
-      //       notes: weapon.value["Extras"]["Notes"]
-      //     }
-      //   };
-      //
-      //   newAtk.crit = {};
-      //   newAtk.crit.range = weapon.value.Critical.split("/")[0];
-      //   newAtk.crit.mult = weapon.value.Critical.split("/")[1];
-      //   newAtk.extras = (weapon.value.Extras) ? weapon.value.Extras : [];
-      //
-      //   this.applyBonus("BAB", this.bab, newAtk.atkBonus);
-      //   this.applyBonus("Size", this.basics.sizeStats["ac / atk"], newAtk.atkBonus);
-      //   // Add mwk or magic enhancements to atk bonus
-      //   if (weapon.value.Extras["Enhancement"] > 0) {
-      //     this.applyBonus("Magic Enhancement", weapon.value.Extras["Enhancement"], newAtk.atkBonus);
-      //     this.applyBonus("Magic Enhancement", weapon.value.Extras["Enhancement"], newAtk.dmgBonus);
-      //   } else if (weapon.value.Extras["Masterwork"]) {
-      //     this.applyBonus("Masterwork", 1, newAtk.atkBonus);
-      //   }
-      //
-      //   // Add AbilMod to atkBonus
-      //   --- --- update to use abilOVerrides
-      //   if (type == "Ranged" || weapon.value.Extras.Notes?.includes("DexBonus")) {
-      //     // use DexBonus for weapon finesse
-      //     this.applyBonus("Dex", this.attributes.DexMod, newAtk.atkBonus);
-      //   } else {
-      //     this.applyBonus("Str", this.attributes.StrMod, newAtk.atkBonus);
-      //   }
-      //
-      //   // Add AbilMod to dmgBonus
-      //   if (weapon.value.Extras.Notes.includes("DexDamage")) {
-      //     this.applyBonus("Dex", this.attributes.DexMod, newAtk.dmgBonus);
-      //
-      //   } else if ( weapon.value.Group.includes("Thrown") ||
-      //     (weapon.value.Group.includes("Bows") && this.attributes.StrMod < 0) ||
-      //     (weapon.value.Group.includes("Bows") && name.includes("Composite")) ) {
-      //       // BOW && THROWN STR MOD
-      //       this.applyBonus("Str", this.attributes.StrMod, newAtk.dmgBonus);
-      //
-      //   } else if ( type == "Melee"){
-      //     if (weapon.label == mainHand.label) {
-      //       // Main Hand
-      //       if (offHand == undefined && (weapon.value.Category == "One-Handed" || weapon.value.Category == "Two-Handed")) {
-      //         // if using two hands (off-hand empty)
-      //         this.applyBonus("Str", Math.floor(this.attributes.StrMod * 1.5), newAtk.dmgBonus);
-      //       } else {
-      //         // ie, main and shield
-      //         this.applyBonus("Str", this.attributes.StrMod, newAtk.dmgBonus);
-      //       }
-      //
-      //     } else {
-      //       // Off Hand
-      //       if (weapon.value.Category == "Light" || weapon.value.Category == "One-Handed") {
-      //         this.applyBonus("Str", Math.floor(this.attributes.StrMod / 2), newAtk.dmgBonus);
-      //       }
-      //     }
-      //   }
-      //
-      //   // Dual Wield penalties done in abilities -> bonuses
-      //   /*
-      //   penalties to AtkBonus, during a full-round atk
-      //   light & feat      { main -2  off -2 }
-      //   two-weapon feat   { main -4  off -4 }
-      //   off hand light    { main -4  off -8 }
-      //   normal            { main -6  off -10}
-      //   */
-      //
-      //   // Weapon Specific Bonuses (like for Weapon Focus)
-      //   this.bonusLoop(newAtk.atkBonus, weapon.label.concat("AtkBonus"));
-      //   this.bonusLoop(newAtk.dmgBonus, weapon.label.concat("DmgBonus"));
-      //
-      //   // Add Active Bonuses
-      //   this.bonusLoop(newAtk.atkBonus, type.concat("AtkBonus"));
-      //   this.bonusLoop(newAtk.dmgBonus, type.concat("DmgBonus"));
-      //
-      //   type = (type == 'Melee') ? 0 : 1;
-      //   actions[type].children.push(newAtk);
-      // } // End Weapons loop
+      let mainHand = this.inventory[1].children[1].children[0].children[0];
+      let offHand = this.inventory[1].children[1].children[0].children[1];
+
+      for (const weapon of this.inventory[1].children[1].children[0].children) {
+        // this.inventory[ equipped ].children[ weapons ].children[ hands ].children
+        // If the wielded item is not a weapon or inproperly equipped, skip
+        if (!weapon.value.Damage) { continue; }
+        if (weapon.value.Group.includes("Bows") || weapon.value.Category == "Two-Handed"){
+          if (weapon.label != mainHand.label || offHand != undefined) {
+            continue;
+          }
+        }
+
+        let type = (weapon.value.Category == "Ranged" || weapon.value.Group.includes("Thrown")) ? "Ranged" : "Melee";
+        let newAtk = {
+          "label": weapon.label,
+          "value": {
+            trigger: "Standard",
+            atkNum: 1,
+            atkBonus: { "total": 0, "sources": [] },
+            damage: weapon.value["Damage"],
+            dmgBonus: { "total": 0, "sources": [] },
+            damageTypes: [],
+            crit: {
+              range: weapon.value["Critical"].split("/")[0],
+              mult: weapon.value["Critical"].split("/")[1]
+            },
+            // notes: weapon.value["Extras"]["Notes"]
+          }
+        };
+
+        newAtk.value.crit = {};
+        newAtk.value.crit.range = weapon.value.Critical.split("/")[0];
+        newAtk.value.crit.mult = weapon.value.Critical.split("/")[1];
+        newAtk.value.extras = (weapon.value.Extras) ? weapon.value.Extras : [];
+
+        this.applyBonus("BAB", this.bab, newAtk.value.atkBonus);
+        this.applyBonus("Size", this.sizeStats["ac / atk"], newAtk.value.atkBonus);
+        // Add mwk or magic enhancements to atk bonus
+        if (weapon.value.Extras["Enhancement"] > 0) {
+          this.applyBonus("Magic Enhancement", weapon.value.Extras["Enhancement"], newAtk.value.atkBonus);
+          this.applyBonus("Magic Enhancement", weapon.value.Extras["Enhancement"], newAtk.value.dmgBonus);
+        } else if (weapon.value.Extras["Masterwork"]) {
+          this.applyBonus("Masterwork", 1, newAtk.value.atkBonus);
+        }
+
+        // Add AbilMod to atkBonus
+        if (weapon.value.Extras.atkAbilOverride) {
+          this.applyBonus(weapon.value.Extras.atkAbilOverride, this.attributes[weapon.value.Extras.atkAbilOverride].mod, newAtk.value.atkBonus);
+        } else if (type == "Ranged") {
+          this.applyBonus("Dex", this.attributes.Dex.mod, newAtk.value.atkBonus);
+        } else {
+          this.applyBonus("Str", this.attributes.Str.mod, newAtk.value.atkBonus);
+        }
+
+        // Add AbilMod to dmgBonus
+        if (weapon.value.Extras.dmgAbilOverride) {
+          this.applyBonus(weapon.value.Extras.dmgAbilOverride, this.attributes[weapon.value.Extras.dmgAbilOverride].mod, newAtk.value.dmgBonus);
+
+        } else if ( weapon.value.Group.includes("Thrown") ||
+          (weapon.value.Group.includes("Bows") && this.attributes.Str.mod < 0) ||
+          (weapon.value.Group.includes("Bows") && name.includes("Composite")) ) {
+            // BOW && THROWN STR MOD
+            this.applyBonus("Str", this.attributes.Str.mod, newAtk.value.dmgBonus);
+
+        } else if ( type == "Melee"){
+          if (weapon.label == mainHand.label) {
+            // Main Hand
+            if (offHand == undefined && (weapon.value.Category == "One-Handed" || weapon.value.Category == "Two-Handed")) {
+              // if using two hands (off-hand empty)
+              this.applyBonus("Str", Math.floor(this.attributes.Str.mod * 1.5), newAtk.value.dmgBonus);
+            } else {
+              // ie, main and shield
+              this.applyBonus("Str", this.attributes.Str.mod, newAtk.value.dmgBonus);
+            }
+
+          } else {
+            // Off Hand
+            if (weapon.value.Category == "Light" || weapon.value.Category == "One-Handed") {
+              this.applyBonus("Str", Math.floor(this.attributes.Str.mod / 2), newAtk.value.dmgBonus);
+            }
+          }
+        }
+
+        // Dual Wield penalties done in abilities -> bonuses
+        /*
+        penalties to AtkBonus, during a full-round atk
+        light & feat      { main -2  off -2 }
+        two-weapon feat   { main -4  off -4 }
+        off hand light    { main -4  off -8 }
+        normal            { main -6  off -10}
+        */
+
+        // Weapon Specific Bonuses (like for Weapon Focus)
+        this.bonusLoop(newAtk.value.atkBonus, weapon.label.concat("AtkBonus"));
+        this.bonusLoop(newAtk.value.dmgBonus, weapon.label.concat("DmgBonus"));
+
+        // Add Active Bonuses
+        this.bonusLoop(newAtk.value.atkBonus, type.concat("AtkBonus"));
+        this.bonusLoop(newAtk.value.dmgBonus, type.concat("DmgBonus"));
+
+        // set damage types
+        for (const category of Object.values(this.rules["Damage Types"])) {
+          for (const cType of Object.values(category)) {
+            weapon.value["Damage Type"].forEach(aType => {
+              if (aType == cType.value) {
+                newAtk.value.damageTypes.push(cType);
+              }
+            });
+          }
+        }
+
+        type = (type == 'Melee') ? 0 : 1;
+        actions[type].children.push(newAtk);
+      } // End Weapons loop
 
       // If only 1 Primary Natural Attack (no other atks), add 0.5 * Str
       let sum = actions[0].children.length + actions[1].children.length + actions[2].children.length;
@@ -1790,9 +1827,6 @@ export default {
         }
       }
 
-
-
-      // console.log(actions);
       return actions;
     },
 
@@ -1952,7 +1986,7 @@ export default {
 
     CharacterService.getCharacter(this.$route.params.id)
     .then((response) => {
-      // console.log('response', response);
+      console.log('response', response);
       this.character = response.character;
       document.getElementsByClassName('title')[0].innerHTML = this.character.name;
       this.spellTabs = Object.keys(this.character.spells)[0];
@@ -2275,11 +2309,17 @@ export default {
       }
     },
     saveItem(item) {
-      this.character.inventory[2].children.push(item);
+      // console.log(item);
+      // console.log( this.$refs['tree'].getNode(item.label) );
+
+      if (this.$refs['tree'].getNode(item.label)) {
+        this.$message({ message: `${item.label} Updated`, type: "success" });
+      } else {
+        this.character.inventory[2].children.push(item);
+      }
       this.editingItem = false;
     },
     editItem(item) {
-      this.addItem = false;
       if (!Object.keys(item).length) {
         item = {
           label: "",
@@ -2287,6 +2327,7 @@ export default {
             Description: "",
             Cost: 0,
             Weight: 0,
+            Ammount: 1,
             Extras: { Notes: [] }
           }
         };
@@ -2307,6 +2348,7 @@ export default {
     *          SPELLS           *
     *                           *
     \***************************/
+    // Add a spell to spells known (by class)
     addSpell() {
       let cClass = this.character.spells[this.newSpell.class];
 
@@ -2329,6 +2371,7 @@ export default {
         this.newSpell = { name: "", level: 0, class: "" };
       }
     },
+    // Add info into the spell popOver
     spellPop(spell, level, cName) {
       if (level == 0) {
         this.spellCost = 0;
@@ -2347,6 +2390,7 @@ export default {
         }
       }
     },
+    // Galdur Spells
     castGSpell(sName, spell, level, cName) {
       if (level == 0 && !this.metamagic.increase) {
         return;
@@ -2371,7 +2415,7 @@ export default {
       this.metamagic = {};
       this.spellPop(spell, level, cName);
     },
-
+    // Prepared Spells
     castPSpell(cName, level, spell, index) {
       if (level == 0) { return; }
       let btn = this.$refs[`${spell}-${index}`][0].$el;
@@ -2403,7 +2447,7 @@ export default {
         }
       }
     },
-
+    // Spontaneous Spells
     castSSpell(cName, level) {
       if (this.metamagic && this.metamagic.increase) { level += this.metamagic.increase; }
       if (level > 0) { this.character.classes[cName].remainingCasts[level] --; }
