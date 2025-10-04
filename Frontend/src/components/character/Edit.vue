@@ -1043,6 +1043,9 @@
             <el-col :span="3">
               <span v-if="data.value"> {{ data.value.Weight }} lbs. </span>
             </el-col>
+            <el-col :span="3">
+              <el-input-number v-if="data.value" v-model="data.value.Ammount" :min="0" size="small" aria-label="Number of Items" />
+            </el-col>
             <div class="custom-tree-node" v-if="data.value">
               <!-- Edit Item (in modal component) -->
               <el-button type="info" circle size="small" @click="editItem(data)">
@@ -2078,7 +2081,11 @@ export default {
       }
     },
     saveItem(item) {
-      this.character.inventory[2].children.push(item);
+      if (this.$refs['tree'].getNode(item.label)) {
+        this.$message({ message: `${item.label} Updated`, type: "success" });
+      } else {
+        this.character.inventory[2].children.push(item);
+      }
       this.editingItem = false;
     },
     editItem(item) {
@@ -2089,9 +2096,8 @@ export default {
             Description: "",
             Cost: 0,
             Weight: 0,
-            Extras: {
-              Notes: []
-            }
+            Ammount: 1,
+            Extras: { Notes: [] }
           }
         };
       }

@@ -554,6 +554,9 @@
             <el-col :span="3">
               <span v-if="data.value"> {{ data.value.Weight }} lbs. </span>
             </el-col>
+            <el-col :span="3">
+              <el-input-number v-if="data.value" v-model="data.value.Ammount" :min="0" size="small" aria-label="Number of Items" />
+            </el-col>
             <div class="custom-tree-node" v-if="data.value">
               <!-- Edit Item (in modal component) -->
               <el-button type="info" circle size="small" @click="editItem(data)">
@@ -2306,14 +2309,15 @@ export default {
       }
     },
     saveItem(item) {
-      console.log(item);
-      // this.character.inventory[2].children.push(item);
-      // this.editingItem = false;
-// TODO : add ammounts to items and ammount managment
-      /*
-treeRef.value!.getNode({ [key] 'label' : item.label })
-      
-      */
+      // console.log(item);
+      // console.log( this.$refs['tree'].getNode(item.label) );
+
+      if (this.$refs['tree'].getNode(item.label)) {
+        this.$message({ message: `${item.label} Updated`, type: "success" });
+      } else {
+        this.character.inventory[2].children.push(item);
+      }
+      this.editingItem = false;
     },
     editItem(item) {
       if (!Object.keys(item).length) {
@@ -2323,6 +2327,7 @@ treeRef.value!.getNode({ [key] 'label' : item.label })
             Description: "",
             Cost: 0,
             Weight: 0,
+            Ammount: 1,
             Extras: { Notes: [] }
           }
         };

@@ -31,7 +31,7 @@
   <div>
     <el-divider> Specifics </el-divider>
     <div v-for="(value, prop) in item.value" :key="prop">
-      <div v-if="!['Description', 'Cost', 'Weight', 'Extras', 'Damage'].includes(prop)">
+      <div v-if="!['Description', 'Cost', 'Weight', 'Extras', 'Damage', 'Ammount'].includes(prop)">
         <el-row :gutter="5" justify="center">
           <el-col :span="4"> {{ prop }} </el-col>
           <el-col :span="12">
@@ -168,7 +168,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this.source);
     this.selects["Damage Type"] = this.rules["Damage Types"].Weapon;
     this.selects.Group = this.rules["Weapon Groups"];
     this.selects.targets = this.rules.targets;

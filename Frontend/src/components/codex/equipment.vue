@@ -321,6 +321,7 @@ export default {
       }
       this.toonItem.value.Extras.Masterwork = false;
       this.toonItem.value.Extras.Enhancement = 0;
+      this.toonItem.value.Ammount = 1;
       this.toonEdit = true;
     },
     saveItem(item) {
