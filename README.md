@@ -95,6 +95,11 @@ After verifying the record, restart apache with `service apache2 restart`. Certb
 
 - [x] add Player/NPC builder/advancer
 - [ ] use <el-drawer> for equipment and things in builder
+- [ ] items -> encumbrance and compute carry weight
+- [ ] items -> total up gold value
+- [ ] REFACTOR to display on mobile & tablet
+
+
 - [ ] implement Rule & Lore pages
 - [ ] [WikiJS](https://js.wiki/)
 
