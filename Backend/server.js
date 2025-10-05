@@ -12,6 +12,7 @@ const app = express();
 
 const settings = require('../config.json'); // in backend when deployed
 let isProd = settings.isProd;
+let isStaging = settings.isStaging;
 let reSeed = settings.reSeed;
 
 let corsOptions = { origin: [ "https://www.owlbear.rodeo", "http://localhost:8081" ] };
@@ -41,7 +42,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-if (isProd) { app.use(express.static(path)); }
+if (isProd || isStaging) { app.use(express.static(path)); }
 
 // database
 const db = require("./app/models");
