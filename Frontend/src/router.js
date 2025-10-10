@@ -47,7 +47,7 @@ const routes = [
     path: "/dm-screen",
     name: "dm-screen",
     // lazy-loaded
-    component: () => import("./components/dm/dmScreen.vue"),
+    component: () => import("./components/dm/DMScreen.vue"),
     meta: {
       breadcrumb: "DM Screen",
       title: "DM Screen",
@@ -58,7 +58,7 @@ const routes = [
     path: "/admin",
     name: "admin",
     // lazy-loaded
-    component: () => import("./components/dm/dmScreen.vue"),
+    component: () => import("./components/dm/DMScreen.vue"),
     meta: {
       breadcrumb: "Admin",
       title: "Admin",
@@ -167,7 +167,7 @@ const routes = [
   {
     path: "/beastiary",
     name: "Beastiary",
-    component: () => import("./components/codex/beastiary.vue"),
+    component: () => import("./components/codex/Beastiary.vue"),
     meta: {
       breadcrumb: "Beastiary",
       title: "Beastiary"
