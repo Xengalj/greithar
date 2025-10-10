@@ -1,6 +1,8 @@
 # Greithar
 
 This is my site for Pathfinder.
+May 16th 2024 - October 5th 2025  -  Alpha build
+October 5th 2025 - XX
 
 
 ## Technical Setup

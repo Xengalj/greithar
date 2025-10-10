@@ -2,11 +2,11 @@ import axios from 'axios';
 import authHeader from './auth-header';
 // Dynamic Settings Import
 let API_URL = 'http://localhost:8080/api/user/';
-import("/../config.json").then(module => {
+import("../../../config.json").then(module => {
   let settings = module.default;
   console.log(settings);
   if (settings.isProd) {
-    API_URL = settings.serverURL.concat('/user/');
+    API_URL = settings.serverURL.concat('/api/user/');
     console.log(API_URL);
   }
 }).catch(err => { console.error(err); });

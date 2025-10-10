@@ -10,7 +10,7 @@ const app = express();
 *                           *
 \***************************/
 
-const settings = require('../config.json'); // in backend when deployed
+const settings = require('./config.json'); // in backend when deployed
 let isProd = settings.isProd;
 let isStaging = settings.isStaging;
 let reSeed = settings.reSeed;
