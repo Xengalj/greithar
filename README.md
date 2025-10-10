@@ -60,6 +60,18 @@ npm run build
 node server.js
 ```
 
+OR
+
+2. Run the following if using a service
+```sh
+systemctl restart greithar.service
+```
+
+> After launching the server, if reSeed was set to 1 set it back to 0. This is important. If reSeed is not reset, you will run the risk of nuking the database should the server (and thus greithar.service) restart.
+
+
+
+
 ### SSL (Server)
 On the server run:
 
