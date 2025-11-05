@@ -1398,9 +1398,42 @@ export default {
       }
 
       // Other Items
-      for (let item0 of Object.values(this.inventory[2].children)) {
-        console.log(item0.label, item0);
-      }
+      console.log('Items');
+      for (let item of Object.values(this.inventory[2].children)) {
+        console.log(item.label, item); // backpack
+
+        if (item.children) {
+          for (let child of Object.values(item.children)) {
+            console.log(child.label, child); // holding
+
+            if (child.children) {
+              for (let item of Object.values(child.children)) {
+                console.log(item.label, item); // sash
+
+                if (item.children) {
+                  for (let child of Object.values(item.children)) {
+                    console.log(child.label, child); // backpack
+
+                    if (child.children) {
+                      for (let item of Object.values(child.children)) {
+                        console.log(item.label, item); // kettle
+                      }
+                    }
+
+                    console.log(child.label);
+                  } // end child container 3
+                }
+
+                console.log(item.label);
+              } // end child container 2
+            }
+
+            console.log(child.label);
+          } // end child container 1
+        }
+
+        console.log(item.label);
+      } // end main container
 
 
 
