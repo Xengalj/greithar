@@ -1,168 +1,208 @@
 {
 	"Personal Kit": {
-		"cost": 6,
-		"weight": 15,
-		"group": "Kits",
-		"description": "This pack contains the  an adventure inside a leather backpack.",
-		"items": ["Backpack", "Bedroll", "Blanket", "Belt Pouch", "Mess Kit", "Waterskin", "Soap", "Hemp Rope (50 ft)"]
+		"Cost": 6,
+		"Weight": 15,
+		"Category": "Kits",
+		"Description": "This pack contains the basics for a light adventure inside a leather backpack.",
+		"Extras": { "Notes": [ "Contains a Backpack, Bedroll, Blanket, Belt Pouch, Mess Kit, Waterskin, Soap, Hemp Rope (50 ft)" ] }
 	},
 	"Camp Supplies": {
-		"cost": 6,
-		"weight": 10,
-		"group": "Kits",
-		"description": "This pack contains everything you would need for a camping adventure inside a burlap sack.",
-		"items": ["Burlap Sack", "Flint & Steel", "Torches x5", "Signal Whistle", "Whetstone", "Sweing Needle", "Thread (50 ft)", "Iron Pot", "Brass Knife", "Fish Hooks"]
+		"Cost": 6,
+		"Weight": 10,
+		"Category": "Kits",
+		"Description": "This pack contains everything you would need for a camping adventure inside a burlap sack.",
+		"Extras": { "Notes": [ "Contains a Burlap Sack, Flint & Steel, Torches x5, Signal Whistle, Whetstone, Sweing Needle, Thread (50 ft), Iron Pot, Brass Knife, Fish Hooks" ] }
 	},
 	"Mess": {
-		"cost": 0.2,
-		"weight": 1,
-		"group": "Kits",
-		"description": "This kit includes a plate, bowl, cup, fork, knife, and spoon, made of wood, horn, or tin. Each item has a handle or small hole, and can be tied together using the included leather cord.",
-		"items": []
+		"Cost": 0.2,
+		"Weight": 1,
+		"Category": "Kits",
+		"Description": "This kit includes a plate, bowl, cup, fork, knife, and spoon, made of wood, horn, or tin. Each item has a handle or small hole, and can be tied together using the included leather cord.",
+		"Extras": { "Notes": [ "" ] }
 	},
 
 
 	"Backpack": {
-		"cost": 2,
-		"weight": 2,
-		"group": "Containers",
-		"description": "This leather knapsack has one large pocket that closes with a buckled strap and holds about 2 cubic feet of material. Some may have one or more smaller pockets on the sides."
+		"Cost": 2,
+		"Weight": 2,
+		"Category": "Containers",
+		"Description": "This leather knapsack has one large pocket that closes with a buckled strap and holds about 2 cubic feet of material. Some may have one or more smaller pockets on the sides.",
+		"Extras": { "icon": "backpack", "capacity": 20, "children": [], "Notes": [] }
 	},
 	"Masterwork Backpack": {
-		"cost": 50,
-		"weight": 4,
-		"group": "Containers",
-		"description": "This backpack has numerous pockets and hooks for storing items that might be needed while adventuring. Like a common backpack, it can hold about 2 cubic feet of material in its main container. When wearing a masterwork backpack, treat your Strength score as +1 higher than normal when calculating your carrying capacity.",
-		"special": [ "Treat your Stregth as 1 higher for carry capacity" ]
+		"Cost": 50,
+		"Weight": 4,
+		"Category": "Containers",
+		"Description": "This backpack has numerous pockets and hooks for storing items that might be needed while adventuring. Like a common backpack, it can hold about 2 cubic feet of material in its main container. When wearing a masterwork backpack, treat your Strength score as +1 higher than normal when calculating your carrying capacity.",
+		"Extras": { "icon": "backpack", "capacity": 20, "children": [], "Notes": [ "Treat your Stregth as 1 higher for carry capacity" ] }
 	},
 	"Weaponrack Backpack": {
-		"cost": 25,
-		"weight": 5,
-		"group": "Containers",
-		"description": "This leather backpack includes a small weapons rack and allies adjacent to you can retrieve a weapon from the rack as a move action without provoking attacks of opportunity, as if they were simply drawing a weapon. Like a normal backpack, it can hold 2 cubic feet of material in its main compartment."
+		"Cost": 25,
+		"Weight": 5,
+		"Category": "Containers",
+		"Description": "This leather backpack includes a small weapons rack and allies adjacent to you can retrieve a weapon from the rack as a move action without provoking attacks of opportunity, as if they were simply drawing a weapon. Like a normal backpack, it can hold 2 cubic feet of material in its main compartment.",
+		"Extras": { "icon": "backpack", "capacity": 20, "children": [], "Notes": [] }
 	},
 	"Waterproof Bag": {
-		"cost": 0.5,
-		"weight": 0.5,
-		"group": "Containers",
-		"description": "This leather sack sealed with tar or pitch keeps delicate items from being ruined by water. Items kept inside remain relatively dry, making the bag ideal for carrying maps, scrolls, spellbooks, and the like, although the bag is not impervious and can only be completely immersed for 10 rounds before enough water seeps in to ruin such items."
+		"Cost": 0.5,
+		"Weight": 0.5,
+		"Category": "Containers",
+		"Description": "This leather sack sealed with tar or pitch keeps delicate items from being ruined by water. Items kept inside remain relatively dry, making the bag ideal for carrying maps, scrolls, spellbooks, and the like, although the bag is not impervious and can only be completely immersed for 10 rounds before enough water seeps in to ruin such items.",
+		"Extras": { "icon": "sack", "capacity": 6, "children": [], "Notes": [] }
 	},
 	"Adventurer’s Sash": {
-		"cost": 20,
-		"weight": 3,
-		"group": "Containers",
-		"description": "This bandolier has six pouches along its length that can be opened or closed with a move action (you may leave them open). You may store additional items in the satchel and the whole sash can be doffed as a move action."
+		"Cost": 20,
+		"Weight": 3,
+		"Category": "Containers",
+		"Description": "This bandolier has six pouches along its length that can be opened or closed with a move action (you may leave them open). You may store additional items in the satchel and the whole sash can be doffed as a move action.",
+		"Extras": { "icon": "sack", "capacity": 6, "children": [], "Notes": [] }
 	},
 	"Spell Component Pouch": {
-		"cost": 5,
-		"weight": 2,
-		"group": "Containers",
-		"description": "A spellcaster with a spell component pouch is assumed to have all the material components and focuses needed for spellcasting, except for those components that have a specific cost, divine focuses, and focuses that wouldn’t fit in a pouch."
+		"Cost": 5,
+		"Weight": 2,
+		"Category": "Containers",
+		"Description": "A spellcaster with a spell component pouch is assumed to have all the material components and focuses needed for spellcasting, except for those components that have a specific cost, divine focuses, and focuses that wouldn’t fit in a pouch.",
+		"Extras": { "icon": "sack", "capacity": 50, "children": [], "Notes": [] }
 	},
 	"Waist Pouch": {
-		"cost": 0.5,
-		"weight": 0.5,
-		"group": "Containers",
-		"description": "This leather pack is supported by two straps that can be loosened or tightened to fit most body types. It can be adjusted to any facing along its wearer’s waist. The pack can store up to 1/2 cubic foot of material"
+		"Cost": 0.5,
+		"Weight": 0.5,
+		"Category": "Containers",
+		"Description": "This leather pack is supported by two straps that can be loosened or tightened to fit most body types. It can be adjusted to any facing along its wearer’s waist. The pack can store up to 1/2 cubic foot of material",
+		"Extras": { "icon": "sack", "capacity": 2, "children": [], "Notes": [] }
 	},
 	"Sack": {
-		"cost": 0.1,
-		"weight": 0.5,
-		"group": "Containers",
-		"description": "A sack is a cloth bag that weighs 1/2 lb. empty and holds 1 cubic ft. or 60 lbs. of contents full."
+		"Cost": 0.1,
+		"Weight": 0.5,
+		"Category": "Containers",
+		"Description": "A sack is a cloth bag that weighs 1/2 lb. empty and holds 1 cubic ft. or 60 lbs. of contents full.",
+		"Extras": { "icon": "sack", "capacity": 10, "children": [], "Notes": [] }
 	},
 	"Familiar Satchel": {
-		"cost": 25,
-		"weight": 6,
-		"group": "Containers",
-		"description": "This armored case provides total cover to any Tiny or smaller creature contained within it. It includes air holes (which can be plugged with cork stoppers if you need to go underwater) and two receptacles for food and water."
+		"Cost": 25,
+		"Weight": 6,
+		"Category": "Containers",
+		"Description": "This armored case provides total cover to any Tiny or smaller creature contained within it. It includes air holes (which can be plugged with cork stoppers if you need to go underwater) and two receptacles for food and water.",
+		"Extras": { "icon": "sack", "capacity": 3, "children": [], "Notes": [] }
 	},
 	"Waterskin": {
-		"cost": 1,
-		"weight": 4,
-		"group": "Containers",
-		"description": "A water or wineskin holds 1/2 gallon of liquid and weighs 4 lb when full (weighs 0.1 lbs empty)."
+		"Cost": 1,
+		"Weight": 4,
+		"Category": "Containers",
+		"Description": "A water or wineskin holds 1/2 gallon of liquid and weighs 4 lb when full (weighs 0.1 lbs empty).",
+		"Extras": { "Notes": [] }
 	},
 
-	
+
 	"Barrel": {
-		"cost": 2,
-		"weight": 30,
-		"group": "Containers",
-		"description": "A common barrel is constructed of wood with metal ring reinforcements and holds 10 cubic ft. or 650 lb. of materials. A barrel filled with liquid holds about 75 gallons."
+		"Cost": 2,
+		"Weight": 30,
+		"Category": "Containers",
+		"Description": "A common barrel is constructed of wood with metal ring reinforcements and holds 10 cubic ft. or 650 lb. of materials. A barrel filled with liquid holds about 75 gallons.",
+		"Extras": { "icon": "chest", "capacity": 100, "children": [], "Notes": [] }
 	},
 	"Scroll Box": {
-		"cost": 5,
-		"weight": 1,
-		"group": "Containers",
-		"description": "This water tight wooden box easily holds 10 scrolls and has small clips or bookmarks for easier indexing. Retrieving a scroll from a held scroll box is a move action that provokes AoOs."
+		"Cost": 5,
+		"Weight": 1,
+		"Category": "Containers",
+		"Description": "This water tight wooden box easily holds 10 scrolls and has small clips or bookmarks for easier indexing. Retrieving a scroll from a held scroll box is a move action that provokes AoOs.",
+		"Extras": { "icon": "chest", "capacity": 10, "children": [], "Notes": [] }
 	},
 
 
 	"Small Chest": {
-		"cost": 2,
-		"weight": 25,
-		"group": "Containers",
-		"description": "This common wooden chest is small and includes a simple lock (2 cubic feet, 1 hit point, break DC 17)."
+		"Cost": 2,
+		"Weight": 25,
+		"Category": "Containers",
+		"Description": "This common wooden chest is small and includes a simple lock (2 cubic feet, 1 hit point, break DC 17).",
+		"Extras": { "icon": "chest", "capacity": 20, "children": [], "Notes": [] }
 	},
 	"Medium Chest": {
-		"cost": 5,
-		"weight": 50,
-		"group": "Containers",
-		"description": "This common wooden chest is medium and includes a simple lock (4 cubic feet, 15 hp, break DC 23)."
+		"Cost": 5,
+		"Weight": 50,
+		"Category": "Containers",
+		"Description": "This common wooden chest is medium and includes a simple lock (4 cubic feet, 15 hp, break DC 23).",
+		"Extras": { "icon": "chest", "capacity": 40, "children": [], "Notes": [] }
 	},
 	"Large Chest": {
-		"cost": 10,
-		"weight": 75,
-		"group": "Containers",
-		"description": "This common wooden chest is large and includes a simple lock (6 cubic feet, 30 hit points, break DC 29)."
+		"Cost": 10,
+		"Weight": 75,
+		"Category": "Containers",
+		"Description": "This common wooden chest is large and includes a simple lock (6 cubic feet, 30 hit points, break DC 29).",
+		"Extras": { "icon": "chest", "capacity": 60, "children": [], "Notes": [] }
 	},
 	"Huge Chest": {
-		"cost": 25,
-		"weight": 100,
-		"group": "Containers",
-		"description": "This common wooden chest is huge and includes a simple lock (8 cubic feet, 50 hit points, break DC 35)."
+		"Cost": 25,
+		"Weight": 100,
+		"Category": "Containers",
+		"Description": "This common wooden chest is huge and includes a simple lock (8 cubic feet, 50 hit points, break DC 35).",
+		"Extras": { "icon": "chest", "capacity": 80, "children": [], "Notes": [] }
 	},
 
 	"Minor Bag of Holding": {
-		"cost": 1000,
-		"weight": 3,
-		"group": "Containers",
-		"description": "This appears to be a common cloth sack about 2 feet by 4 feet in size, but it opens into a nondimensional space. Regardless of what is put into the bag, it weighs a fixed Amount.",
-		"special": [ "Capacity: 50 lbs.", "Retrieving a specific item from a bag of holding is a move action, unless the bag contains more than an ordinary backpack would hold, in which case retrieving a specific item is a full-round action" ]		
+		"Cost": 1000,
+		"Weight": 3,
+		"Category": "Containers",
+		"Description": "This appears to be a common cloth sack about 2 feet by 4 feet in size, but it opens into a nondimensional space.",
+		"Extras": { "icon": "bag", "capacity": 10, "children": [], "Notes": [
+			"It can carry up to 50 lbs of stuff, but always weighs 3 lbs.",
+			"Retrieving a specific item from a bag of holding is a move action, unless the bag contains more than an ordinary backpack would hold, in which case retrieving a specific item is a full-round action."
+			]
+		}
 	},
 	"Handy Haversack": {
-		"cost": 2000,
-		"weight": 15,
-		"group": "Containers",
-		"description": "A backpack of this sort appears to be well made, well used, and quite ordinary, but it is in fact magical. This bag can hold a total of 120 lbs, always weighs 5 pounds, and you may retrieve any item without provoking an Attack of Opportunity."
+		"Cost": 2000,
+		"Weight": 15,
+		"Category": "Containers",
+		"Description": "A backpack of this sort appears to be well made, well used, and quite ordinary, but it is in fact magical.",
+		"Extras": { "icon": "bag", "capacity": 20, "children": [], "Notes": [
+			"It can carry up to 120 lbs of stuff, but always weighs 5 lbs.",
+			"You may retrieve any item without provoking an Attack of Opportunity."
+			]
+		}
 	},
 	"Bag of Holding I": {
-		"cost": 2500,
-		"weight": 15,
-		"group": "Containers",
-		"description": "This appears to be a common cloth sack about 2 feet by 4 feet in size, but it opens into a nondimensional space. Regardless of what is put into the bag, it weighs a fixed Amount.",
-		"special": [ "Capacity: 250 lbs.", "Retrieving a specific item from a bag of holding is a move action, unless the bag contains more than an ordinary backpack would hold, in which case retrieving a specific item is a full-round action" ]
+		"Cost": 2500,
+		"Weight": 15,
+		"Category": "Containers",
+		"Description": "This appears to be a common cloth sack about 2 feet by 4 feet in size, but it opens into a nondimensional space.",
+		"Extras": { "icon": "bag", "capacity": 25, "children": [], "Notes": [
+			"It can carry up to 250 lbs of stuff, but always weighs 15 lbs.",
+			"Retrieving a specific item from a bag of holding is a move action, unless the bag contains more than an ordinary backpack would hold, in which case retrieving a specific item is a full-round action."
+			]
+		}
 	},
 	"Bag of Holding II": {
-		"cost": 5000,
-		"weight": 25,
-		"group": "Containers",
-		"description": "This appears to be a common cloth sack about 2 feet by 4 feet in size, but it opens into a nondimensional space. Regardless of what is put into the bag, it weighs a fixed Amount.",
-		"special": [ "Capacity: 500 lbs.", "Retrieving a specific item from a bag of holding is a move action, unless the bag contains more than an ordinary backpack would hold, in which case retrieving a specific item is a full-round action" ]
+		"Cost": 5000,
+		"Weight": 25,
+		"Category": "Containers",
+		"Description": "This appears to be a common cloth sack about 2 feet by 4 feet in size, but it opens into a nondimensional space.",
+		"Extras": { "icon": "bag", "capacity": 40, "children": [], "Notes": [
+			"It can carry up to 500 lbs of stuff, but always weighs 25 lbs.",
+			"Retrieving a specific item from a bag of holding is a move action, unless the bag contains more than an ordinary backpack would hold, in which case retrieving a specific item is a full-round action."
+			]
+		}
 	},
 	"Bag of Holding III": {
-		"cost": 7400,
-		"weight": 35,
-		"group": "Containers",
-		"description": "This appears to be a common cloth sack about 2 feet by 4 feet in size, but it opens into a nondimensional space. Regardless of what is put into the bag, it weighs a fixed Amount.",
-		"special": [ "Capacity: 1000 lbs.", "Retrieving a specific item from a bag of holding is a move action, unless the bag contains more than an ordinary backpack would hold, in which case retrieving a specific item is a full-round action" ]
+		"Cost": 7400,
+		"Weight": 35,
+		"Category": "Containers",
+		"Description": "This appears to be a common cloth sack about 2 feet by 4 feet in size, but it opens into a nondimensional space.",
+		"Extras": { "icon": "bag", "capacity": 50, "children": [], "Notes": [
+			"It can carry up to 1000 lbs of stuff, but always weighs 35 lbs.",
+			"Retrieving a specific item from a bag of holding is a move action, unless the bag contains more than an ordinary backpack would hold, in which case retrieving a specific item is a full-round action."
+			]
+		}
 	},
 	"Bag of Holding IV": {
-		"cost": 10000,
-		"weight": 60,
-		"group": "Containers",
-		"description": "This appears to be a common cloth sack about 2 feet by 4 feet in size, but it opens into a nondimensional space. Regardless of what is put into the bag, it weighs a fixed Amount.",
-		"special": [ "Capacity: 1500 lbs.", "Retrieving a specific item from a bag of holding is a move action, unless the bag contains more than an ordinary backpack would hold, in which case retrieving a specific item is a full-round action" ]
+		"Cost": 10000,
+		"Weight": 60,
+		"Category": "Containers",
+		"Description": "This appears to be a common cloth sack about 2 feet by 4 feet in size, but it opens into a nondimensional space.",
+		"Extras": { "icon": "bag", "capacity": 100, "children": [], "Notes": [
+			"It can carry up to 1500 lbs of stuff, but always weighs 60 lbs.",
+			"Retrieving a specific item from a bag of holding is a move action, unless the bag contains more than an ordinary backpack would hold, in which case retrieving a specific item is a full-round action."
+			]
+		}
 	}
 }

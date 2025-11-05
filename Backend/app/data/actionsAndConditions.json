@@ -30,7 +30,7 @@
     },
 
 
-    
+
     "Aid Another": {
       "trigger": "Standard",
       "description": "Make an attack roll vs AC 10, if you hit, you assist an ally with an attack, their defense, or a particular skill.",
@@ -139,7 +139,7 @@
         "Charge Atk": {
           "type": "Action",
           "value": 2,
-          "targets": [ "meleeAtkBonus" ]
+          "targets": [ "MeleeAtkBonus" ]
         },
         "Charge AC": {
           "type": "Action",
@@ -236,7 +236,7 @@
         "Dazzled": {
           "type": "Condition",
           "value": -1,
-          "targets": [ "meleeAtkBonus", "rangedAtkBonus" ]
+          "targets": [ "MeleeAtkBonus", "RangedAtkBonus" ]
         }
       }
     },
@@ -268,7 +268,7 @@
         "Entangled Atk": {
           "type": "Condition",
           "value": -2,
-          "targets": [ "meleeAtkBonus", "rangedAtkBonus" ]
+          "targets": [ "MeleeAtkBonus", "RangedAtkBonus" ]
         },
         "Entangled Dex": {
           "type": "Condition",
@@ -322,7 +322,7 @@
         "Defesive Atk": {
           "type": "Condition",
           "value": -4,
-          "targets": [ "meleeAtkBonus", "rangedAtkBonus" ]
+          "targets": [ "MeleeAtkBonus", "RangedAtkBonus" ]
         }
       }
     },
@@ -333,7 +333,7 @@
         "Frightened": {
           "type": "Condition",
           "value": -2,
-          "targets": [ "meleeAtkBonus", "rangedAtkBonus", "fort", "ref", "will", "skills" ]
+          "targets": [ "MeleeAtkBonus", "RangedAtkBonus", "fort", "ref", "will", "skills" ]
         }
       }
     },
@@ -349,7 +349,7 @@
         "Grappled Atk": {
           "type": "Condition",
           "value": -2,
-          "targets": [ "meleeAtkBonus", "rangedAtkBonus" ]
+          "targets": [ "MeleeAtkBonus", "RangedAtkBonus" ]
         }
       }
     },
@@ -371,7 +371,7 @@
         "Invisible": {
           "type": "Condition",
           "value": 2,
-          "targets": [ "meleeAtkBonus", "rangedAtkBonus" ]
+          "targets": [ "MeleeAtkBonus", "RangedAtkBonus" ]
         }
       }
     },
@@ -426,7 +426,7 @@
         "Prone": {
           "type": "Condition",
           "value": -4,
-          "targets": [ "meleeAtkBonus" ]
+          "targets": [ "MeleeAtkBonus" ]
         }
       }
     },
@@ -437,7 +437,7 @@
         "Shaken": {
           "type": "Condition",
           "value": -2,
-          "targets": [ "meleeAtkBonus", "rangedAtkBonus", "fort", "ref", "will", "skills" ]
+          "targets": [ "MeleeAtkBonus", "RangedAtkBonus", "fort", "ref", "will", "skills" ]
         }
       }
     },
@@ -448,7 +448,7 @@
         "Sickened": {
           "type": "Condition",
           "value": -2,
-          "targets": [ "meleeAtkBonus", "rangedAtkBonus", "meleeDmgBonus", "rangedDmgBonus", "fort", "ref", "will", "skills" ]
+          "targets": [ "MeleeAtkBonus", "RangedAtkBonus", "MeleeDmgBonus", "RangedDmgBonus", "fort", "ref", "will", "skills" ]
         }
       }
     },

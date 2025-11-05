@@ -86,7 +86,7 @@ module.exports = function(app) {
   *         EQUIPMENT         *
   *                           *
   \***************************/
-
+  // Does not include alchemy or common right now
   app.post(
     "/api/data/equipment/read",
     (req, res) => {

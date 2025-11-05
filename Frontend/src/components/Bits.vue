@@ -136,6 +136,20 @@ export default {
 
     */
 
+    /***************************\
+    *                           *
+    *           IDEAS           *
+    *                           *
+    \***************************/
+    /*
+    - Remove redundant grey abil totals
+    - add view btn to edit toon
+    -
+
+
+    */
+
+
   },
 };
 </script>

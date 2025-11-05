@@ -159,7 +159,9 @@ module.exports = (sequelize, Sequelize) => {
             ] }
           ] },
           { 'label': 'Items',        'extras': { 'icon': 'inventory' }, 'children': [
-            { 'label': 'Backpack',   'extras': { 'icon': 'backpack', 'capacity': 50 }, 'children': [] }
+            { 'label': 'Backpack',   'extras': { 'icon': 'backpack', 'capacity': 20 }, 'children': [], 'value':
+              { 'Cost': 2, 'Weight': 2, 'Description': "This leather knapsack has one large pocket that closes with a buckled strap and holds about 2 cubic feet of material. Some may have one or more smaller pockets on the sides." }
+            }
           ] },
         ];
         return JSON.stringify(inv);

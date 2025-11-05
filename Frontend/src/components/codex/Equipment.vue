@@ -31,7 +31,7 @@
 
     <el-table
       ref="equipTable"
-       :data="tableData.filter(data => !nameSearch || data.Name.toLowerCase().includes(nameSearch.toLowerCase()))"
+      :data="tableData.filter(data => !nameSearch || data.Name.toLowerCase().includes(nameSearch.toLowerCase()))"
       :default-sort="{ prop: 'name', order: 'ascending' }"
       table-layout="auto"
       height="700"
@@ -93,10 +93,10 @@
           </el-collapse>
 
           <el-collapse v-else-if="col == 'Extras'">
-            <el-collapse-item v-for="(extra, name) in scope.row[col]" :key="name" :name="name">
-              <template #title> <g-icon iconName="star" /> {{ name }} </template>
-              <ul v-if="Array.isArray(extra)">
-                <li v-for="item in extra" :key="item"> {{ item }} </li>
+            <el-collapse-item v-if="scope.row[col].Notes.length" name="Notes" class="center-horz">
+              <template #title> <g-icon iconName="star" /> Notes </template>
+              <ul>
+                <li v-for="(note, index) in scope.row[col].Notes" :key="index"> {{ note }} </li>
               </ul>
             </el-collapse-item>
 
@@ -157,13 +157,13 @@ export default {
   data() {
     return {
       equipmentTypes: {
-        "Armor":              { color: "#4167F0", label: "Armor" },
-        "Shields":            { color: "#14CCCC", label: "Shields" },
-        "Weapons":            { color: "#FF6600", label: "Weapons" },
-        "Materials":          { color: "#71797E", label: "Materials" },
-        "Goods and Services": { color: "#FFDE0A", label: "Goods and Services" }
+        "Armor":      { color: "#4167F0", label: "Armor" },
+        "Shields":    { color: "#14CCCC", label: "Shields" },
+        "Weapons":    { color: "#FF6600", label: "Weapons" },
+        "Materials":  { color: "#71797E", label: "Materials" },
+        "Goods":      { color: "#FFDE0A", label: "Goods" }
       },
-      selectedType: { label: "Weapons", color: "#FF6600" },
+      selectedType: { label: "" },
 
       tableCols: [], // Array of table headers
       tableData: [],
@@ -183,6 +183,7 @@ export default {
   },
   mounted() {
     this.tableUpdate();
+    // console.log(this.equipment);
   },
   methods: {
     /***************************\
@@ -194,11 +195,14 @@ export default {
     // displays table based on item type select
     tableUpdate() {
       this.tableData = [];
-      for (let [name, item] of Object.entries( this.equipment[this.selectedType.label] )) {
-        item.Name = name;
-        this.tableData.push(item);
+
+      if (this.selectedType.label) {
+        for (let [name, item] of Object.entries( this.equipment[this.selectedType.label] )) {
+          item.Name = name;
+          this.tableData.push(item);
+        }
+        this.tableCols = Object.keys(Object.values(this.tableData)[0]);
       }
-      this.tableCols = Object.keys(Object.values(this.tableData)[0]);
 
       switch (this.selectedType.label) {
         case "Armor":
@@ -276,25 +280,22 @@ export default {
           };
           break;
 
-        case "Goods and Services":
+        case "Goods":
           this.tableFilters = {
             "Category": [
-              { text: "Adventuring Gear", value: "Adventuring Gear" },
-              { text: "Alchemical Creations", value: "Alchemical Creations" },
-              { text: "Animals & Animal Gear", value: "Animals & Animal Gear" },
-              { text: "Books & Writing", value: "Books & Writing" },
-              { text: "Clothing & Containers", value: "Clothing & Containers" },
-              { text: "Furniture, Trade Goods & Vehicles", value: "Furniture, Trade Goods & Vehicles" },
-              { text: "Hirelings, Servants & Services", value: "Hirelings, Servants & Services" },
-              { text: "Locks, Keys, Tools & Kits", value: "Locks, Keys, Tools & Kits" },
-              { text: "Religious Items, Toys & Games", value: "Religious Items, Toys & Games" }
+              { text: "Animals",      value: "Animals" },
+              { text: "Containers",   value: "Containers" },
+              { text: "Food",         value: "Food" },
+              { text: "Kits",         value: "Kits" },
+              { text: "Light",        value: "Light" },
+              { text: "Services",     value: "Services" },
+              { text: "Sleep",        value: "Sleep" },
+              { text: "Tools",        value: "Tools" },
+              { text: "Transport",    value: "Transport" },
+              { text: "Vehicles",     value: "Vehicles" }
             ]
           };
           break;
-
-        default:
-          this.tableData = {};
-          this.tableFilters = {};
       }
     },
     // Filters a given row with the value (more options shows more results)
@@ -334,14 +335,36 @@ export default {
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
     },
     addToToon() {
-      // add toonItem to chosenToon in backpack
-      this.chosenToon.inventory[2].children.push(this.toonItem);
+      let newItem = this.toonItem;
+
+      if (this.toonItem.value.Category == "Containers") {
+        newItem = {
+          label: this.toonItem.label,
+          extras: {
+            icon: this.toonItem.value.Extras.icon,
+            capacity: this.toonItem.value.Extras.capacity
+          },
+          children: [],
+          value: {
+            Cost: this.toonItem.value.Cost,
+            Weight: this.toonItem.value.Weight,
+            Description: this.toonItem.value.Description
+          }
+        };
+      }
+
+      // add toonItem to chosenToon in items
+      this.chosenToon.inventory[2].children.push(newItem);
+      this.chosenToon.user = { "id": this.chosenToon.userId };
       // update toon
       CharacterService.updateCharacter(this.chosenToon)
-      .then((response) => { this.$message({ message: `Added ${this.toonItem.label} to ${response.character.name}`, type: 'success', }); })
+      .then((response) => { this.$message({ message: `Added ${newItem.label} to ${response.character.name}`, type: 'success', }); })
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
       this.toonEdit = false;
       this.toonList = false;
+      setTimeout(function () {
+        this.toonItem = {};
+      }, 10);
     },
   }
 };

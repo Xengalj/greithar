@@ -1,454 +1,573 @@
 {
   "Light Horse": {
-    "cost": 75,
-    "weight": 900,
-    "description": "These horses can be ridden, but often serve as porters or carriage horses.",
+    "Cost": 75,
+    "Weight": 900,
+    "Description": "These horses can be ridden, but often serve as porters or carriage horses.",
     "Category": "Animals",
-    "Special": [ "Riding" ]
+    "Extras": {
+      "Notes": [ "Riding" ]
+    }
   },
   "Combat Trained Light Horse": {
-    "cost": 110,
-    "weight": 1200,
-    "description": "These light warhorses are bred for war and are favored by fast and light cavalry, scouts, and daredevil knights.",
+    "Cost": 110,
+    "Weight": 1200,
+    "Description": "These light warhorses are bred for war and are favored by fast and light cavalry, scouts, and daredevil knights.",
     "Category": "Animals",
-    "Special": [ "Riding" ]
+    "Extras": {
+      "Notes": [ "Riding" ]
+    }
   },
   "Heavy Horse": {
-    "cost": 200,
-    "weight": 2000,
-    "description": "These horses are often used as portage animals, pulling significant loads across great distances.",
+    "Cost": 200,
+    "Weight": 2000,
+    "Description": "These horses are often used as portage animals, pulling significant loads across great distances.",
     "Category": "Animals",
-    "Special": [ "Riding" ]
+    "Extras": {
+      "Notes": [ "Riding" ]
+    }
   },
   "Combat Trained Heavy Horse": {
-    "cost": 300,
-    "weight": 3000,
-    "description": "Heavy warhorses are bred and trained for war. They are often are outfitted with heavy barding, but fight just as fiercely even without the armor.",
+    "Cost": 300,
+    "Weight": 3000,
+    "Description": "Heavy warhorses are bred and trained for war. They are often are outfitted with heavy barding, but fight just as fiercely even without the armor.",
     "Category": "Animals",
-    "Special": [ "Riding" ]
+    "Extras": {
+      "Notes": [ "Riding" ]
+    }
   },
   "Pony": {
-    "cost": 30,
-    "weight": 800,
-    "description": "These creatures are typically used for carting goods along narrow mountain trails or as steeds for young or Small riders.",
+    "Cost": 30,
+    "Weight": 800,
+    "Description": "These creatures are typically used for carting goods along narrow mountain trails or as steeds for young or Small riders.",
     "Category": "Animals",
-    "Special": [ "Riding" ]
+    "Extras": {
+      "Notes": [ "Riding" ]
+    }
   },
   "Combat Trained Pony": {
-    "cost": 45,
-    "weight": 900,
-    "description": "Ponies can be trained for war just as effectively as their larger, more mature brethren. Such steeds often serve Small riders that expect to face battle.",
+    "Cost": 45,
+    "Weight": 900,
+    "Description": "Ponies can be trained for war just as effectively as their larger, more mature brethren. Such steeds often serve Small riders that expect to face battle.",
     "Category": "Animals",
-    "Special": [ "Riding" ]
+    "Extras": {
+      "Notes": [ "Riding" ]
+    }
   },
   "Aurochs": {
-    "cost": 300,
-    "weight": 1750,
-    "description": "",
+    "Cost": 300,
+    "Weight": 1750,
+    "Description": "",
     "Category": "Animals",
-    "Special": [ "Riding" ]
+    "Extras": {
+      "Notes": [ "Riding" ]
+    }
   },
   "Axe Beak": {
-    "cost": 1000,
-    "weight": 500,
-    "description": "These Large avian predators are sometimes used as hunting animals but are prized as mounts.",
+    "Cost": 1000,
+    "Weight": 500,
+    "Description": "These Large avian predators are sometimes used as hunting animals but are prized as mounts.",
     "Category": "Animals",
-    "Special": [ "Riding" ]
+    "Extras": {
+      "Notes": [ "Riding" ]
+    }
   },
   "Elk": {
-    "cost": 100,
-    "weight": 600,
-    "description": "Elk dwell in open forest and forest-edge habitats, grazing on grasses and sedges and browsing higher-growing plants, leaves, twigs and bark. Male elk have large, blood- and nerve-filled antlers, which they routinely shed each year as weather warms-up.",
+    "Cost": 100,
+    "Weight": 600,
+    "Description": "Elk dwell in open forest and forest-edge habitats, grazing on grasses and sedges and browsing higher-growing plants, leaves, twigs and bark. Male elk have large, blood- and nerve-filled antlers, which they routinely shed each year as weather warms-up.",
     "Category": "Animals",
-    "Special": [ "Riding" ]
+    "Extras": {
+      "Notes": [ "Riding" ]
+    }
   },
   "Giant Chameleon": {
-    "cost": 225,
-    "weight": 160,
-    "description": "These large lizards have the ability to shift the pigments in their skin to match their surroundings.",
+    "Cost": 225,
+    "Weight": 160,
+    "Description": "These large lizards have the ability to shift the pigments in their skin to match their surroundings.",
     "Category": "Animals",
-    "Special": [ "Riding" ]
+    "Extras": {
+      "Notes": [ "Riding" ]
+    }
   },
   "Giant Owl": {
-    "cost": 6000,
-    "weight": 500,
-    "description": "The noble giant owl roosts in the tallest trees or in high caves near its forest home. No mere animals, giant owls pride themselves as intellectuals and keen judges of character.",
+    "Cost": 6000,
+    "Weight": 500,
+    "Description": "The noble giant owl roosts in the tallest trees or in high caves near its forest home. No mere animals, giant owls pride themselves as intellectuals and keen judges of character.",
     "Category": "Animals",
-    "Special": [ "Riding" ]
+    "Extras": {
+      "Notes": [ "Riding" ]
+    }
   },
   "Manta Ray": {
-    "cost": 25,
-    "weight": 3600,
-    "description": "The giant oceanic manta ray can grow up to a maximum of 30 ft in length and to a disc size of 23 ft across, though 15 feet is more common.",
+    "Cost": 25,
+    "Weight": 3600,
+    "Description": "The giant oceanic manta ray can grow up to a maximum of 30 ft in length and to a disc size of 23 ft across, though 15 feet is more common.",
     "Category": "Animals",
-    "Special": [ "Riding" ]
+    "Extras": {
+      "Notes": [ "Riding" ]
+    }
   },
   "Ram": {
-    "cost": 25,
-    "weight": 300,
-    "description": "Rams are mountain-dwelling herd animals noted for their prominent horns. Standing at only 3 feet tall, they are only suited as mounts for smaller creatures.",
+    "Cost": 25,
+    "Weight": 300,
+    "Description": "Rams are mountain-dwelling herd animals noted for their prominent horns. Standing at only 3 feet tall, they are only suited as mounts for smaller creatures.",
     "Category": "Animals",
-    "Special": [ "Riding" ]
+    "Extras": {
+      "Notes": [ "Riding" ]
+    }
   },
   "Riding Gecko": {
-    "cost": 300,
-    "weight": 1200,
-    "description": "Larger than even what is commonly referred to as a giant gecko, these mammoth lizards have been specifically bred to be used as mounts. Prized for their ability to run along cave ceilings and sheer walls, they require exotic saddles to ride.",
+    "Cost": 300,
+    "Weight": 1200,
+    "Description": "Larger than even what is commonly referred to as a giant gecko, these mammoth lizards have been specifically bred to be used as mounts. Prized for their ability to run along cave ceilings and sheer walls, they require exotic saddles to ride.",
     "Category": "Animals",
-    "Special": [ "Riding" ]
+    "Extras": {
+      "Notes": [ "Riding" ]
+    }
   },
   "Woolly Mamoth": {
-    "cost": 3000,
-    "weight": 13228,
-    "description": "These hairy pachyderms are sometimes used as mounts and living siege engines. As if these mounts weren’t intimidating enough, they are sometimes outfitted with spiked metal barding and tusk blades.",
+    "Cost": 3000,
+    "Weight": 13228,
+    "Description": "These hairy pachyderms are sometimes used as mounts and living siege engines. As if these mounts weren’t intimidating enough, they are sometimes outfitted with spiked metal barding and tusk blades.",
     "Category": "Animals",
-    "Special": [ "Riding" ]
+    "Extras": {
+      "Notes": [ "Riding" ]
+    }
   },
 
-  
+
   "Bat": {
-    "cost": 5,
-    "weight": 1,
-    "description": "Bats are Diminutive nocturnal rodent fliers that eat insects and fruit. They rely primarily on sound to navigate rather than sight.",
+    "Cost": 5,
+    "Weight": 1,
+    "Description": "Bats are Diminutive nocturnal rodent fliers that eat insects and fruit. They rely primarily on sound to navigate rather than sight.",
     "Category": "Animals",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Cat": {
-    "cost": 0.03,
-    "weight": 8,
-    "description": "These Tiny animals are often kept as pets or familiars. Though small, they are excellent hunters; grain farmers usually keep cats as pest control in crop storage areas. Stray cats occupy most cities—finding a free cat should pose little challenge.",
+    "Cost": 0.03,
+    "Weight": 8,
+    "Description": "These Tiny animals are often kept as pets or familiars. Though small, they are excellent hunters; grain farmers usually keep cats as pest control in crop storage areas. Stray cats occupy most cities—finding a free cat should pose little challenge.",
     "Category": "Animals",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Cattle": {
-    "cost": 50,
-    "weight": 1500,
-    "description": "Cattle are kept for milk and meat, and used as beasts of burden. A bull is used primarily for mating. Other males are castrated and become oxen, which are used to carry loads and plow fields.",
+    "Cost": 50,
+    "Weight": 1500,
+    "Description": "Cattle are kept for milk and meat, and used as beasts of burden. A bull is used primarily for mating. Other males are castrated and become oxen, which are used to carry loads and plow fields.",
     "Category": "Animals",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Dog": {
-    "cost": 25,
-    "weight": 25,
-    "description": "This Small, combat-trained dog is bred for battle; breeders favor strength, a thick body, and a low center of gravity. Guard dogs are sold in most large cities and some cultures use them for sport fighting or in some armies’ special infantry.",
+    "Cost": 25,
+    "Weight": 25,
+    "Description": "This Small, combat-trained dog is bred for battle; breeders favor strength, a thick body, and a low center of gravity. Guard dogs are sold in most large cities and some cultures use them for sport fighting or in some armies’ special infantry.",
     "Category": "Animals",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Donkey": {
-    "cost": 8,
-    "weight": 700,
-    "description": "Donkeys and mules are stolid in the face of danger, hardy, surefooted, and capable of carrying heavy loads over vast distances. Unlike a horse, a donkey or mule is willing (though not eager) to enter dungeons and other strange or threatening places. Donkeys and mules have the same statistics as ponies.",
+    "Cost": 8,
+    "Weight": 700,
+    "Description": "Donkeys and mules are stolid in the face of danger, hardy, surefooted, and capable of carrying heavy loads over vast distances. Unlike a horse, a donkey or mule is willing (though not eager) to enter dungeons and other strange or threatening places. Donkeys and mules have the same statistics as ponies.",
     "Category": "Animals",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Fox": {
-    "cost": 8,
-    "weight": 12,
-    "description": "These quick and wily carnivores can be difficult to train, but often make excellent familiars. Many humanoid communities see these canines as a menace to their farming fowl, and some use dogs to track them during recreational hunts.",
+    "Cost": 8,
+    "Weight": 12,
+    "Description": "These quick and wily carnivores can be difficult to train, but often make excellent familiars. Many humanoid communities see these canines as a menace to their farming fowl, and some use dogs to track them during recreational hunts.",
     "Category": "Animals",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Goat": {
-    "cost": 6,
-    "weight": 50,
-    "description": "As an agricultural animal, goats provide milk, meat, hair, and hide, and they are sometimes used to clear fields of weeds and shrubbery. Some spellcasters bond with them as familiars.",
+    "Cost": 6,
+    "Weight": 50,
+    "Description": "As an agricultural animal, goats provide milk, meat, hair, and hide, and they are sometimes used to clear fields of weeds and shrubbery. Some spellcasters bond with them as familiars.",
     "Category": "Animals",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Hedgehog": {
-    "cost": 5,
-    "weight": 3,
-    "description": "These spiny mammals roll into a ball when threatened. They are sometimes kept as pets and are favored by some wizards as familiars.",
+    "Cost": 5,
+    "Weight": 3,
+    "Description": "These spiny mammals roll into a ball when threatened. They are sometimes kept as pets and are favored by some wizards as familiars.",
     "Category": "Animals",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Monkey": {
-    "cost": 12,
-    "weight": 6,
-    "description": "These tiny animals are herbivorous and can most often be found in warm forests and jungles. Monkeys can grasp and carry objects that weigh under a pound. Trained “familiar capuchins” can sometimes be purchased.",
+    "Cost": 12,
+    "Weight": 6,
+    "Description": "These tiny animals are herbivorous and can most often be found in warm forests and jungles. Monkeys can grasp and carry objects that weigh under a pound. Trained “familiar capuchins” can sometimes be purchased.",
     "Category": "Animals",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Otter": {
-    "cost": 20,
-    "weight": 10,
-    "description": "These playful water mammals are either used as familiars or trained to perform tricks as pets. They are surprisingly intelligent, and have been known to use rocks as simple tools, such as for opening the shells of mollusks.",
+    "Cost": 20,
+    "Weight": 10,
+    "Description": "These playful water mammals are either used as familiars or trained to perform tricks as pets. They are surprisingly intelligent, and have been known to use rocks as simple tools, such as for opening the shells of mollusks.",
     "Category": "Animals",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Pig": {
-    "cost": 10,
-    "weight": 200,
-    "description": "Domesticated pigs are the descendants of wild boars, and are raised for their meat and hide, being among the most versatile and common farm animals.",
+    "Cost": 10,
+    "Weight": 200,
+    "Description": "Domesticated pigs are the descendants of wild boars, and are raised for their meat and hide, being among the most versatile and common farm animals.",
     "Category": "Animals",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Rabbit": {
-    "cost": 2,
-    "weight": 3,
-    "description": "Rabbits are often raised or hunted for their meat and skins, though some people keep the skittish mammals as pets. Though they are often confused with hares, rabbits are distinctly different in that they make their homes in burrows beneath the ground, and they are usually smaller than hares. Rabbits have the same statistics as rats.",
+    "Cost": 2,
+    "Weight": 3,
+    "Description": "Rabbits are often raised or hunted for their meat and skins, though some people keep the skittish mammals as pets. Though they are often confused with hares, rabbits are distinctly different in that they make their homes in burrows beneath the ground, and they are usually smaller than hares. Rabbits have the same statistics as rats.",
     "Category": "Animals",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Raccoon": {
-    "cost": 5,
-    "weight": 7,
-    "description": "These nocturnal hunter-scavengers are found primarily in forested terrains, and are noted for their domino mask-like visages, highly dexterous forepaws (which they rely on for their hyper-sensitive sense of touch), and the strangely anthropomorphic tendency to “wash” their food in water before eating it. Raccoons are sometimes kept as pets and used by some spellcasters as familiars.",
+    "Cost": 5,
+    "Weight": 7,
+    "Description": "These nocturnal hunter-scavengers are found primarily in forested terrains, and are noted for their domino mask-like visages, highly dexterous forepaws (which they rely on for their hyper-sensitive sense of touch), and the strangely anthropomorphic tendency to “wash” their food in water before eating it. Raccoons are sometimes kept as pets and used by some spellcasters as familiars.",
     "Category": "Animals",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Rat": {
-    "cost": 0.01,
-    "weight": 1,
-    "description": "These tiny rodents live everywhere and eat nearly anything. Despite having a reputation as disease-ridden scavengers, domesticated rats are clean, loyal creatures that make excellent familiars.",
+    "Cost": 0.01,
+    "Weight": 1,
+    "Description": "These tiny rodents live everywhere and eat nearly anything. Despite having a reputation as disease-ridden scavengers, domesticated rats are clean, loyal creatures that make excellent familiars.",
     "Category": "Animals",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Sheep": {
-    "cost": 20,
-    "weight": 150,
-    "description": "These livestock animals are kept for their fur, meat, and hide, and can be found in virtually any civilized settlement. They are especially prized in colder environs, where their wool and hide can be used to make durable and highly insulated clothing. Sheep have the same statistics as goats .",
+    "Cost": 20,
+    "Weight": 150,
+    "Description": "These livestock animals are kept for their fur, meat, and hide, and can be found in virtually any civilized settlement. They are especially prized in colder environs, where their wool and hide can be used to make durable and highly insulated clothing. Sheep have the same statistics as goats .",
     "Category": "Animals",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
-
-
   "Canary": {
-    "cost": 0.04,
-    "weight": 0.56,
-    "description": "These Diminutive birds usually have bright feathers and sing pleasantly. More pragmatically, they are also used in mines to detect bad air, as their small bodies are more sensitive to such things; the warning they provide gives humanoids a chance to escape before succumbing to the danger.",
+    "Cost": 0.04,
+    "Weight": 0.56,
+    "Description": "These Diminutive birds usually have bright feathers and sing pleasantly. More pragmatically, they are also used in mines to detect bad air, as their small bodies are more sensitive to such things; the warning they provide gives humanoids a chance to escape before succumbing to the danger.",
     "Category": "Animals",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Chicken": {
-    "cost": 1,
-    "weight": 6,
-    "description": "These domesticated birds are not capable of long distance flights, and are raised for their eggs and meat. Male chickens are kept for mating and occasionally blood sport.",
+    "Cost": 1,
+    "Weight": 6,
+    "Description": "These domesticated birds are not capable of long distance flights, and are raised for their eggs and meat. Male chickens are kept for mating and occasionally blood sport.",
     "Category": "Animals",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Duck": {
-    "cost": 2,
-    "weight": 3,
-    "description": "Farm ducks are used for eggs, meat, and down, while wild ducks are hunted for meat. Ducks have the same statistics as ravens.",
+    "Cost": 2,
+    "Weight": 3,
+    "Description": "Farm ducks are used for eggs, meat, and down, while wild ducks are hunted for meat. Ducks have the same statistics as ravens.",
     "Category": "Animals",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Falcon": {
-    "cost": 40,
-    "weight": 2,
-    "description": "This Tiny, long-winged hawk is a popular hunting bird for nobility. Falcons are technically a subset of hawks but are considered more “noble.” Ownership is denied to commoners in many nations with hierarchical monarchies.",
+    "Cost": 40,
+    "Weight": 2,
+    "Description": "This Tiny, long-winged hawk is a popular hunting bird for nobility. Falcons are technically a subset of hawks but are considered more “noble.” Ownership is denied to commoners in many nations with hierarchical monarchies.",
     "Category": "Animals",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Hawk": {
-    "cost": 18,
-    "weight": 2,
-    "description": "This Tiny, short-winged raptor is a popular hunting bird, but is utilized more often by lower nobility than by commoners without titles. Hawks are known for their sharp eyesight and powerful aerial dives.",
+    "Cost": 18,
+    "Weight": 2,
+    "Description": "This Tiny, short-winged raptor is a popular hunting bird, but is utilized more often by lower nobility than by commoners without titles. Hawks are known for their sharp eyesight and powerful aerial dives.",
     "Category": "Animals",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Owl": {
-    "cost": 10,
-    "weight": 2,
-    "description": "These Tiny birds of prey are mainly nocturnal and are known for their keen eyes and near-silent flight. Owls eat small animals and insects, and can be found in nearly any environment. Some farmers create owl homes near fields and barns to control rodent populations. The smartest owls make excellent familiars.",
+    "Cost": 10,
+    "Weight": 2,
+    "Description": "These Tiny birds of prey are mainly nocturnal and are known for their keen eyes and near-silent flight. Owls eat small animals and insects, and can be found in nearly any environment. Some farmers create owl homes near fields and barns to control rodent populations. The smartest owls make excellent familiars.",
     "Category": "Animals",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Parrot": {
-    "cost": 50,
-    "weight": 4,
-    "description": "These colorful and intelligent birds can be trained to mimic humanoid voices. They are often kept as pets by the wealthy and those who live in the tropical climates they favor. Parrots have the same statistics as ravens.",
+    "Cost": 50,
+    "Weight": 4,
+    "Description": "These colorful and intelligent birds can be trained to mimic humanoid voices. They are often kept as pets by the wealthy and those who live in the tropical climates they favor. Parrots have the same statistics as ravens.",
     "Category": "Animals",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Raven": {
-    "cost": 2,
-    "weight": 3,
-    "description": "These Tiny birds are known for their intelligence, and even play games with each other in the wild. They eat insects and can be found in surprisingly varied habitats.",
+    "Cost": 2,
+    "Weight": 3,
+    "Description": "These Tiny birds are known for their intelligence, and even play games with each other in the wild. They eat insects and can be found in surprisingly varied habitats.",
     "Category": "Animals",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
-
-
   "Lizard": {
-    "cost": 0.05,
-    "weight": 0.125,
-    "description": "These Tiny cold-blooded animals can be found in all warm regions and are often quite colorful. They eat insects and have the ability to walk up walls and hang upside down. Varieties of more intelligent lizards are often selected by wizards as familiars.",
+    "Cost": 0.05,
+    "Weight": 0.125,
+    "Description": "These Tiny cold-blooded animals can be found in all warm regions and are often quite colorful. They eat insects and have the ability to walk up walls and hang upside down. Varieties of more intelligent lizards are often selected by wizards as familiars.",
     "Category": "Animals",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Viper": {
-    "cost": 5,
-    "weight": 0.625,
-    "description": "This tiny reptile eats small animals and can be found in most temperate and warm environments. The bite is painful but not especially dangerous to the average adventurer.",
+    "Cost": 5,
+    "Weight": 0.625,
+    "Description": "This tiny reptile eats small animals and can be found in most temperate and warm environments. The bite is painful but not especially dangerous to the average adventurer.",
     "Category": "Animals",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Turtle": {
-    "cost": 3,
-    "weight": 4,
-    "description": "These reptiles have bony shells that they can retreat into. They are sometimes kept as pets and used as familiars, and in some places their flesh is eaten or used as an ingredient in medicines.",
+    "Cost": 3,
+    "Weight": 4,
+    "Description": "These reptiles have bony shells that they can retreat into. They are sometimes kept as pets and used as familiars, and in some places their flesh is eaten or used as an ingredient in medicines.",
     "Category": "Animals",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
-
-
   "House Centipede": {
-    "cost": 0.01,
-    "weight": 0.1875,
-    "description": "These creatures come in many forms, from the lighter-colored 20-legged variety to the darker 300-legged variety. Typically, these arthropods are what pass for pets in the slums, but the young and eccentric often search for the best specimens to serve as familiars. Centipedes employed as familiars have an Intelligence score and lose the mindless trait.",
+    "Cost": 0.01,
+    "Weight": 0.1875,
+    "Description": "These creatures come in many forms, from the lighter-colored 20-legged variety to the darker 300-legged variety. Typically, these arthropods are what pass for pets in the slums, but the young and eccentric often search for the best specimens to serve as familiars. Centipedes employed as familiars have an Intelligence score and lose the mindless trait.",
     "Category": "Animals",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Crab": {
-    "cost": 20,
-    "weight": 6,
-    "description": "Aquatic spellcasters often find large ocean crabs to be agreeable familiars. Without the bond of a familiar, however, these crustacean’s lack of intelligence makes them dull pets.",
+    "Cost": 20,
+    "Weight": 6,
+    "Description": "Aquatic spellcasters often find large ocean crabs to be agreeable familiars. Without the bond of a familiar, however, these crustacean’s lack of intelligence makes them dull pets.",
     "Category": "Animals",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Octopus": {
-    "cost": 25,
-    "weight": 2,
-    "description": "These cunning animals can be employed as familiars by aquatic spellcasters. If they are kept is pets, they must be kept in water, as they cannot survive out of it.",
+    "Cost": 25,
+    "Weight": 2,
+    "Description": "These cunning animals can be employed as familiars by aquatic spellcasters. If they are kept is pets, they must be kept in water, as they cannot survive out of it.",
     "Category": "Animals",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Scorpion": {
-    "cost": 15,
-    "weight": 0.5625,
-    "description": "Typically found in forested areas, these Tiny scorpions sport pincers too small to be dangerous to anything larger than an insect, but they still possess a poisonous stinger. Sometimes they are kept as pets or serve as familiars. Greensting scorpions employed as familiars have an Intelligence score and lose the mindless trait.",
+    "Cost": 15,
+    "Weight": 0.5625,
+    "Description": "Typically found in forested areas, these Tiny scorpions sport pincers too small to be dangerous to anything larger than an insect, but they still possess a poisonous stinger. Sometimes they are kept as pets or serve as familiars. Greensting scorpions employed as familiars have an Intelligence score and lose the mindless trait.",
     "Category": "Animals",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Spider": {
-    "cost": 25,
-    "weight": 0.5,
-    "description": "These Tiny spiders have red bodies and black legs. They are hunting spiders, so they do not cast webs, though they are poisonous.",
+    "Cost": 25,
+    "Weight": 0.5,
+    "Description": "These Tiny spiders have red bodies and black legs. They are hunting spiders, so they do not cast webs, though they are poisonous.",
     "Category": "Animals",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
 
 
   "Bit and Bridle": {
-    "cost": 2,
-    "weight": 1,
-    "description": "A bridle is a piece of equipment used to direct a horse. The bridle includes both the headstall that holds a bit that goes in the mouth of a horse, and the reins that are attached to the bit.",
+    "Cost": 2,
+    "Weight": 1,
+    "Description": "A bridle is a piece of equipment used to direct a horse. The bridle includes both the headstall that holds a bit that goes in the mouth of a horse, and the reins that are attached to the bit.",
     "Category": "Tools",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Dandy Brush": {
-    "cost": 0.2,
-    "weight": 2,
-    "description": "This hard-bristled tool has a handle that slips over the wearer’s hand, and is used by animal breeders, owners, and grooms to brush the animals in their care, loosening dirt and detritus from the creatures’ coats and stimulating the skin so it produces the natural oils that keep them healthy and clean.",
+    "Cost": 0.2,
+    "Weight": 2,
+    "Description": "This hard-bristled tool has a handle that slips over the wearer’s hand, and is used by animal breeders, owners, and grooms to brush the animals in their care, loosening dirt and detritus from the creatures’ coats and stimulating the skin so it produces the natural oils that keep them healthy and clean.",
     "Category": "Tools",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Falconry Gauntlet": {
-    "cost": 10,
-    "weight": 1,
-    "description": "This gauntlet, made from layers of thick leather, is worn on the falconer’s off hand to give a falcon a place to stand before and after a hunt. The gauntlet also has a tassel and a ring attached to the falcon’s tether.",
+    "Cost": 10,
+    "Weight": 1,
+    "Description": "This gauntlet, made from layers of thick leather, is worn on the falconer’s off hand to give a falcon a place to stand before and after a hunt. The gauntlet also has a tassel and a ring attached to the falcon’s tether.",
     "Category": "Tools",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Herbivore Feed": {
-    "cost": 0.05,
-    "weight": 10,
-    "description": "Horses, donkeys, mules, and ponies can graze to sustain themselves, but providing feed for them is better. Listed price and weight is for 1 day of feed, usually as hay.",
+    "Cost": 0.05,
+    "Weight": 10,
+    "Description": "Horses, donkeys, mules, and ponies can graze to sustain themselves, but providing feed for them is better. Listed price and weight is for 1 day of feed, usually as hay.",
     "Category": "Food",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Bird Feed": {
-    "cost": 0.05,
-    "weight": 0.5,
-    "description": "This mixture of seed and dead insects is suitable food for small birds such as ravens, crows, and chickens. Birds of prey such as falcons, hawks, and owls can also sustain themselves on bird feed, though they typically require at least two servings per day. Larger avian creatures such as axe beaks and griffons require larger portions of meat, and cannot survive on bird feed alone.",
+    "Cost": 0.05,
+    "Weight": 0.5,
+    "Description": "This mixture of seed and dead insects is suitable food for small birds such as ravens, crows, and chickens. Birds of prey such as falcons, hawks, and owls can also sustain themselves on bird feed, though they typically require at least two servings per day. Larger avian creatures such as axe beaks and griffons require larger portions of meat, and cannot survive on bird feed alone.",
     "Category": "Food",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Carnivore Feed": {
-    "cost": 0.05,
-    "weight": 5,
-    "description": "Consisting of various kinds of raw meat that have been jerked, smoked, or salted for preservation, a day’s worth of carnivore feed is adequate food for any Small or Medium meat-eating animal such as a tiger, bear, or dog. Larger carnivores might require up to 2 to 4 days’ worth of carnivore feed per day.",
+    "Cost": 0.05,
+    "Weight": 5,
+    "Description": "Consisting of various kinds of raw meat that have been jerked, smoked, or salted for preservation, a day’s worth of carnivore feed is adequate food for any Small or Medium meat-eating animal such as a tiger, bear, or dog. Larger carnivores might require up to 2 to 4 days’ worth of carnivore feed per day.",
     "Category": "Food",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Harness": {
-    "cost": 2,
-    "weight": 2,
-    "description": "This leather or hemp harness allows a holder to restrain and control a domesticated animal. A harness is standard equipment for anyone trying to teach an animal tricks with the Handle Animal skill. Ready-made harnesses are available in most markets for common domesticated animals such as cats, dogs, horses, and oxen, but harnesses can be made for nearly any creature.",
+    "Cost": 2,
+    "Weight": 2,
+    "Description": "This leather or hemp harness allows a holder to restrain and control a domesticated animal. A harness is standard equipment for anyone trying to teach an animal tricks with the Handle Animal skill. Ready-made harnesses are available in most markets for common domesticated animals such as cats, dogs, horses, and oxen, but harnesses can be made for nearly any creature.",
     "Category": "Tools",
-    "Special": [ "If tailored to a specific animal, it costs 1 gp more, and grants a +2 bonus on Handle Animall checks made with an appropriate animal wearing it." ]
+    "Extras": {
+      "Notes": [ "If tailored to a specific animal, it costs 1 gp more, and grants a +2 bonus on Handle Animall checks made with an appropriate animal wearing it." ]
+    }
   },
   "Whet Bone": {
-    "cost": 0.1,
-    "weight": 2,
-    "description": "This hardened mixture of animal marrow and minerals is shaped into a long bone. When chewed upon by a creature for no fewer than 15 minutes, a whet bone grants the creature a +1 bonus on its next damage roll the first time it hits with a bite attack. This only works on non-magical bite attacks.",
+    "Cost": 0.1,
+    "Weight": 2,
+    "Description": "This hardened mixture of animal marrow and minerals is shaped into a long bone. When chewed upon by a creature for no fewer than 15 minutes, a whet bone grants the creature a +1 bonus on its next damage roll the first time it hits with a bite attack. This only works on non-magical bite attacks.",
     "Category": "Tools",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
-  
   "Howdah": {
-    "cost": 500,
-    "weight": 250,
-    "description": "This wooden platform is tied like a saddle to a Huge creature’s back. The platform is 10 feet square and enclosed by a low wall and sometimes a roof. The howdah has room for four Medium creatures (usually armed with bows or longspears), or two Medium creatures and a light ballista or light catapult. Occupants of the howdah have cover against attackers from below and are considered mounted for the purposes of making attacks.",
+    "Cost": 500,
+    "Weight": 250,
+    "Description": "This wooden platform is tied like a saddle to a Huge creature’s back. The platform is 10 feet square and enclosed by a low wall and sometimes a roof. The howdah has room for four Medium creatures (usually armed with bows or longspears), or two Medium creatures and a light ballista or light catapult. Occupants of the howdah have cover against attackers from below and are considered mounted for the purposes of making attacks.",
     "Category": "Transport",
-    "Special": [ "Cover" ]
+    "Extras": {
+      "Notes": [ "Cover" ]
+    }
   },
   "Riding Saddle": {
-    "cost": 10,
-    "weight": 25,
-    "description": "Riding saddles are the most pervasive type of riding equipment. If the rider is knocked unconscious while in a riding saddle, he has a 50% chance to stay in the saddle.",
+    "Cost": 10,
+    "Weight": 25,
+    "Description": "Riding saddles are the most pervasive type of riding equipment. If the rider is knocked unconscious while in a riding saddle, he has a 50% chance to stay in the saddle.",
     "Category": "Transport",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Military Saddle": {
-    "cost": 20,
-    "weight": 30,
-    "description": "A military-style saddle braces the rider, providing a +2 circumstance bonus on Ride checks related to staying in the saddle. If the rider is knocked unconscious while in a military saddle, he has a 75% chance to stay in the saddle.",
+    "Cost": 20,
+    "Weight": 30,
+    "Description": "A military-style saddle braces the rider, providing a +2 circumstance bonus on Ride checks related to staying in the saddle. If the rider is knocked unconscious while in a military saddle, he has a 75% chance to stay in the saddle.",
     "Category": "Transport",
-    "Special": [ "+2 circumstance bonus to ride checks" ]
+    "Extras": {
+      "Notes": [ "+2 circumstance bonus to ride checks" ]
+    }
   },
   "Pack Saddle": {
-    "cost": 5,
-    "weight": 15,
-    "description": "A pack saddle holds gear and supplies, but not a rider. It holds as much gear as the mount can carry.",
+    "Cost": 5,
+    "Weight": 15,
+    "Description": "A pack saddle holds gear and supplies, but not a rider. It holds as much gear as the mount can carry.",
     "Category": "Transport",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Exotic Riding Saddle": {
-    "cost": 30,
-    "weight": 30,
-    "description": "Riding saddles are the most pervasive type of riding equipment. If the rider is knocked unconscious while in a riding saddle, he has a 50% chance to stay in the saddle.",
+    "Cost": 30,
+    "Weight": 30,
+    "Description": "Riding saddles are the most pervasive type of riding equipment. If the rider is knocked unconscious while in a riding saddle, he has a 50% chance to stay in the saddle.",
     "Category": "Transport",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Exotic Military Saddle": {
-    "cost": 60,
-    "weight": 40,
-    "description": "A military-style saddle braces the rider, providing a +2 circumstance bonus on Ride checks related to staying in the saddle. If the rider is knocked unconscious while in a military saddle, he has a 75% chance to stay in the saddle.",
+    "Cost": 60,
+    "Weight": 40,
+    "Description": "A military-style saddle braces the rider, providing a +2 circumstance bonus on Ride checks related to staying in the saddle. If the rider is knocked unconscious while in a military saddle, he has a 75% chance to stay in the saddle.",
     "Category": "Transport",
-    "Special": [ "+2 circumstance bonus to ride checks" ]
+    "Extras": {
+      "Notes": [ "+2 circumstance bonus to ride checks" ]
+    }
   },
   "Exotic Pack Saddle": {
-    "cost": 15,
-    "weight": 20,
-    "description": "A pack saddle holds gear and supplies, but not a rider. It holds as much gear as the mount can carry.",
+    "Cost": 15,
+    "Weight": 20,
+    "Description": "A pack saddle holds gear and supplies, but not a rider. It holds as much gear as the mount can carry.",
     "Category": "Transport",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Saddlebags": {
-    "cost": 4,
-    "weight": 8,
-    "description": "These sturdy, weatherproof bags are draped over a saddle to add extra carrying capacity. Each side of a saddlebag can typically carry 20 pounds of items that can fit in the bags. Saddlebags do not increase the amount of weight a mount can carry; they merely give riders a place to stow their equipment.",
+    "Cost": 4,
+    "Weight": 8,
+    "Description": "These sturdy, weatherproof bags are draped over a saddle to add extra carrying capacity. Each side of a saddlebag can typically carry 20 pounds of items that can fit in the bags. Saddlebags do not increase the amount of weight a mount can carry; they merely give riders a place to stow their equipment.",
     "Category": "Containers",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   },
   "Stabling": {
-    "cost": 0.5,
-    "weight": 0,
-    "description": "This is the amount it costs to stable a single creature that is Large or smaller for one day, at a typical stable or hostler. Particularly fancy stables may cost more, and larger or more exotic creatures cost double.",
+    "Cost": 0.5,
+    "Weight": 0,
+    "Description": "This is the amount it costs to stable a single creature that is Large or smaller for one day, at a typical stable or hostler. Particularly fancy stables may cost more, and larger or more exotic creatures cost double.",
     "Category": "Services",
-    "Special": [ "" ]
+    "Extras": {
+      "Notes": []
+    }
   }
 }

@@ -1,158 +1,217 @@
 {
 	"Cart": {
 		"Cost": 15,
-		"weight": 0,
-		"group": "Vehicles",
-		"description": "This two-wheeled vehicle can be drawn by a single horse or other beast of burden, and is often used to transport goods across short distances. It comes with a harness.",
-		"special": [ "Passage 1 cp per mile" ]
+		"Weight": 0,
+		"Category": "Vehicles",
+		"Description": "This two-wheeled vehicle can be drawn by a single horse or other beast of burden, and is often used to transport goods across short distances. It comes with a harness.",
+		"Extras": {
+			"Notes": [ "Passage 1 cp per mile" ]
+		}
 	},
 	"Light Wagon": {
 		"Cost": 50,
-		"weight": 0,
-		"group": "Vehicles",
-		"description": "Wagons of this type are most commonly employed by farmers and craftsmen transporting their goods short distances or by vendors in and around cities. A light wagon carries up to 1,000 pounds of cargo and requires two Medium creatures or one Large creature to pull it.",
-		"special": [ "Passage 2 cp per mile" ]
+		"Weight": 0,
+		"Category": "Vehicles",
+		"Description": "Wagons of this type are most commonly employed by farmers and craftsmen transporting their goods short distances or by vendors in and around cities. A light wagon carries up to 1,000 pounds of cargo and requires two Medium creatures or one Large creature to pull it.",
+		"Extras": {
+			"Notes": [ "Passage 2 cp per mile" ]
+		}
 	},
 	"Medium Wagon": {
 		"Cost": 75,
-		"weight": 0,
-		"group": "Vehicles",
-		"description": "Wagons of this type are typically employed for heavy duty work, often in agricultural, mining, or construction settings. A medium wagon can carry up to 2,000 pounds of cargo and requires four Medium or two Large creatures to pull it.",
-		"special": [ "Passage 2 cp per mile" ]
+		"Weight": 0,
+		"Category": "Vehicles",
+		"Description": "Wagons of this type are typically employed for heavy duty work, often in agricultural, mining, or construction settings. A medium wagon can carry up to 2,000 pounds of cargo and requires four Medium or two Large creatures to pull it.",
+		"Extras": {
+			"Notes": [ "Passage 2 cp per mile" ]
+		}
 	},
 	"Heavy Wagon": {
 		"Cost": 100,
-		"weight": 0,
-		"group": "Vehicles",
-		"description": "Wagons of this type are large, four-wheeled vehicles primarily used in caravans to transport goods over long stretches of territory. A heavy wagon carries up to 4,000 pounds of cargo, and is pulled by either eight Medium creatures or four Large creatures.",
-		"special": [ "Passage 3 cp per mile" ]
+		"Weight": 0,
+		"Category": "Vehicles",
+		"Description": "Wagons of this type are large, four-wheeled vehicles primarily used in caravans to transport goods over long stretches of territory. A heavy wagon carries up to 4,000 pounds of cargo, and is pulled by either eight Medium creatures or four Large creatures.",
+		"Extras": {
+			"Notes": [ "Passage 3 cp per mile" ]
+		}
 	},
 	"Carriage": {
 		"Cost": 100,
-		"weight": 0,
-		"group": "Vehicles",
-		"description": "This four-wheeled vehicle can transport as many as four people within an enclosed cab, plus two drivers. In general, two horses (or other beasts of burden) draw it. A carriage comes with the harness needed to pull it.",
-		"special": [ "Passage 3 cp per mile" ]
+		"Weight": 0,
+		"Category": "Vehicles",
+		"Description": "This four-wheeled vehicle can transport as many as four people within an enclosed cab, plus two drivers. In general, two horses (or other beasts of burden) draw it. A carriage comes with the harness needed to pull it.",
+		"Extras": {
+			"Notes": [ "Passage 3 cp per mile" ]
+		}
 	},
 
 
 	"Raft": {
 		"Cost": 0,
-		"weight": 0,
-		"group": "Vehicles",
-		"description": "The most basic and primitive type of watercraft, a raft is a simple, flat boat with no hull, often made of logs lashed together. It typically uses two to four oars for propulsion.",
-		"special": [ "Passage 1 cp per mile" ]
+		"Weight": 0,
+		"Category": "Vehicles",
+		"Description": "The most basic and primitive type of watercraft, a raft is a simple, flat boat with no hull, often made of logs lashed together. It typically uses two to four oars for propulsion.",
+		"Extras": {
+			"Notes": [ "Passage 1 cp per mile" ]
+		}
 	},
 	"Rowboat": {
 		"Cost": 50,
-		"weight": 0,
-		"group": "Vehicles",
-		"description": "This 8- to 12-foot-long boat with two oars holds two or three Medium passengers, and is either carried on the deck of a larger ship or moored to a dock onshore. A rowboat moves about 1-1/2 miles per hour.",
-		"special": [ "Passage 2 cp per mile" ]
+		"Weight": 0,
+		"Category": "Vehicles",
+		"Description": "This 8- to 12-foot-long boat with two oars holds two or three Medium passengers, and is either carried on the deck of a larger ship or moored to a dock onshore. A rowboat moves about 1-1/2 miles per hour.",
+		"Extras": {
+			"Notes": [ "Passage 2 cp per mile" ]
+		}
 	},
 	"Keelboat": {
 		"Cost": 3000,
-		"weight": 0,
-		"group": "Vehicles",
-		"description": "This 50- to 75-foot-long ship is 15 to 20 feet wide and has a dozen oars to supplement its single mast with a square sail. It requires a crew of 8 to 15 to sail and can carry 40 to 50 tons of cargo or 100 soldiers. It can make sea voyages, as well as sail down rivers (thanks to its flat bottom). It moves about 1 mile per hour.",
-		"special": [ "Passage 10 cp (1 sp) per mile" ]
+		"Weight": 0,
+		"Category": "Vehicles",
+		"Description": "This 50- to 75-foot-long ship is 15 to 20 feet wide and has a dozen oars to supplement its single mast with a square sail. It requires a crew of 8 to 15 to sail and can carry 40 to 50 tons of cargo or 100 soldiers. It can make sea voyages, as well as sail down rivers (thanks to its flat bottom). It moves about 1 mile per hour.",
+		"Extras": {
+			"Notes": [ "Passage 10 cp (1 sp) per mile"]
+		}
 	},
 	"Longship": {
 		"Cost": 10000,
-		"weight": 0,
-		"group": "Vehicles",
-		"description": "This 75-foot-long ship with 40 oars requires a total crew of 50. It has a single mast and a square sail, and it can carry 50 tons of cargo or 120 soldiers. A longship can make sea voyages. It moves about 3 miles per hour when being rowed or under sail.",
-		"special": [ "Passage 5 cp per mile" ]
+		"Weight": 0,
+		"Category": "Vehicles",
+		"Description": "This 75-foot-long ship with 40 oars requires a total crew of 50. It has a single mast and a square sail, and it can carry 50 tons of cargo or 120 soldiers. A longship can make sea voyages. It moves about 3 miles per hour when being rowed or under sail.",
+		"Extras": {
+			"Notes": [ "Passage 5 cp per mile" ]
+		}
 	},
 	"Sailing Ship": {
 		"Cost": 10000,
-		"weight": 0,
-		"group": "Vehicles",
-		"description": "This large, seaworthy ship is 75 to 90 feet long, 20 feet wide, and has a crew of 20. It can carry 150 tons of cargo. It has square sails on its two masts and can make sea voyages. It moves about 2 miles per hour.",
-		"special": [ "Passage 20 cp (2 sp) per mile" ]
+		"Weight": 0,
+		"Category": "Vehicles",
+		"Description": "This large, seaworthy ship is 75 to 90 feet long, 20 feet wide, and has a crew of 20. It can carry 150 tons of cargo. It has square sails on its two masts and can make sea voyages. It moves about 2 miles per hour.",
+		"Extras": {
+			"Notes": [ "Passage 20 cp (2 sp) per mile" ]
+		}
 	},
 
 
 	"Road Toll": {
 		"Cost": 0.01,
-		"weight": 0,
-		"group": "Services",
-		"description": "This is a toll commonly assessed to travelers either on a road or seeking entry into a city or town."
+		"Weight": 0,
+		"Category": "Services",
+		"Description": "This is a toll commonly assessed to travelers either on a road or seeking entry into a city or town.",
+		"Extras": {
+			"Notes": []
+		}
 	},
 	"Poor Inn Stay": {
 		"Cost": 0.2,
-		"weight": 0,
-		"group": "Services",
-		"description": "Accommodations at an inn amount to a place on the floor near the hearth."
+		"Weight": 0,
+		"Category": "Services",
+		"Description": "Accommodations at an inn amount to a place on the floor near the hearth.",
+		"Extras": {
+			"Notes": []
+		}
 	},
 	"Common Inn Stay": {
 		"Cost": 0.5,
-		"weight": 0,
-		"group": "Services",
-		"description": "Accommodations consist of a place on a raised, heated floor, the use of a blanket and a pillow."
+		"Weight": 0,
+		"Category": "Services",
+		"Description": "Accommodations consist of a place on a raised, heated floor, the use of a blanket and a pillow.",
+		"Extras": {
+			"Notes": []
+		}
 	},
 	"Good Inn Stay": {
 		"Cost": 2,
-		"weight": 0,
-		"group": "Services",
-		"description": "Accommodations consist of a small, private room with one bed, some amenities, and a covered chamber pot in the corner."
+		"Weight": 0,
+		"Category": "Services",
+		"Description": "Accommodations consist of a small, private room with one bed, some amenities, and a covered chamber pot in the corner.",
+		"Extras": {
+			"Notes": []
+		}
 	},
 	"Small Inn Sutie": {
 		"Cost": 4,
-		"weight": 0,
-		"group": "Services",
-		"description": "A small suite includes a fireplace and good lock on the outer door."
+		"Weight": 0,
+		"Category": "Services",
+		"Description": "A small suite includes a fireplace and good lock on the outer door.",
+		"Extras": {
+			"Notes": []
+		}
 	},
 	"Average Inn Sutie": {
 		"Cost": 16,
-		"weight": 0,
-		"group": "Services",
-		"description": "An average suite includes a fireplace, a superior lock on the door, and either two bedrooms or one larger bedroom."
+		"Weight": 0,
+		"Category": "Services",
+		"Description": "An average suite includes a fireplace, a superior lock on the door, and either two bedrooms or one larger bedroom.",
+		"Extras": {
+			"Notes": []
+		}
 	},
 	"Luxurious Inn Sutie": {
 		"Cost": 32,
-		"weight": 0,
-		"group": "Services",
-		"description": "A luxurious suite includes a fireplace, a superior lock on the outer door, and two large or three or four smaller bedrooms, plus servants on call to clean, cook, help with dressing, or send messages."
+		"Weight": 0,
+		"Category": "Services",
+		"Description": "A luxurious suite includes a fireplace, a superior lock on the outer door, and two large or three or four smaller bedrooms, plus servants on call to clean, cook, help with dressing, or send messages.",
+		"Extras": {
+			"Notes": []
+		}
 	},
 
 
 	"Cold Bath": {
 		"Cost": 0.02,
-		"weight": 0,
-		"group": "Services",
-		"description": "A cold bath usually involves someone else’s used soapy bath water."
+		"Weight": 0,
+		"Category": "Services",
+		"Description": "A cold bath usually involves someone else’s used soapy bath water.",
+		"Extras": {
+			"Notes": []
+		}
 	},
 	"Hot Bath": {
 		"Cost": 0.06,
-		"weight": 0,
-		"group": "Services",
-		"description": "A hot bath is a one-person washtub filled with hot water one pot at a time."
+		"Weight": 0,
+		"Category": "Services",
+		"Description": "A hot bath is a one-person washtub filled with hot water one pot at a time.",
+		"Extras": {
+			"Notes": []
+		}
 	},
 	"Public Bath": {
 		"Cost": 0.5,
-		"weight": 0,
-		"group": "Services",
-		"description": "A public bath is a bath facility (such as a bath house or resort) that provides hot water, soap, and cologne or perfume, and may also offer wading pools, massages, or other services for an additional cost. Some public baths require membership or a minimum social status and are more expensive."
+		"Weight": 0,
+		"Category": "Services",
+		"Description": "A public bath is a bath facility (such as a bath house or resort) that provides hot water, soap, and cologne or perfume, and may also offer wading pools, massages, or other services for an additional cost. Some public baths require membership or a minimum social status and are more expensive.",
+		"Extras": {
+			"Notes": []
+		}
 	},
 
-	
+
 	"Messenger": {
 		"Cost": 0.02,
-		"weight": 0,
-		"group": "Services",
-		"description": "This includes horse-riding messengers and runners. Those willing to carry a message to a place they were going anyway may ask for only half the indicated amount. The ammount listed is per mile."
+		"Weight": 0,
+		"Category": "Services",
+		"Description": "This includes horse-riding messengers and runners. Those willing to carry a message to a place they were going anyway may ask for only half the indicated amount. The ammount listed is per mile.",
+		"Extras": {
+			"Notes": []
+		}
 	},
 	"Laundry": {
 		"Cost": 0.1,
-		"weight": 0,
-		"group": "Services",
-		"description": "The listed price is for up to four items (such as trousers, an undergarment, shirt, and jacket or vest). Additional items may be washed for 3cp each. Laundry is finished the next day unless you bring it to the washer early."
+		"Weight": 0,
+		"Category": "Services",
+		"Description": "The listed price is for up to four items (such as trousers, an undergarment, shirt, and jacket or vest). Additional items may be washed for 3cp each. Laundry is finished the next day unless you bring it to the washer early.",
+		"Extras": {
+			"Notes": []
+		}
 	},
 	"Magic Laundry": {
 		"Cost": 1,
-		"weight": 0,
-		"group": "Services",
-		"description": "Magical laundry service is a mage (typically an apprentice wizard) magically and instantly cleaning your clothes with prestidigitation."
+		"Weight": 0,
+		"Category": "Services",
+		"Description": "Magical laundry service is a mage (typically an apprentice wizard) magically and instantly cleaning your clothes with prestidigitation.",
+		"Extras": {
+			"Notes": []
+		}
 	}
 }

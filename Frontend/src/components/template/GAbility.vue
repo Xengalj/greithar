@@ -85,6 +85,7 @@
             <el-button @click="bonus.targets.push(customTarget); customTarget='';"> Add </el-button>
           </template>
         </el-input>
+        <!-- TODO : TargetAtkBonus || TargetDmgBonus -->
       </el-col>
       <el-col :span="2" class="center-horz center-vert">
         <el-popconfirm title="Are you sure to delete this?">

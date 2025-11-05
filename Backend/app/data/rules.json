@@ -151,13 +151,13 @@
     { "color": "#FF6600", "label": "Reflex",              "value": "ref" },
     { "color": "#4167F0", "label": "Will",                "value": "will" },
     { "color": "#FF6600", "label": "Initiative",          "value": "init" },
-    { "color": "#FF6600", "label": "Speed",               "value": "speed" },
+    { "color": "#FF6600", "label": "Speed",               "value": "baseSpeed" },
     { "color": "#1EC79D", "label": "Base Attack Bonus",   "value": "BAB" },
     { "color": "#1EC79D", "label": "CMB",                 "value": "CMB" },
-    { "color": "#E63415", "label": "Melee Attack Bonus",  "value": "meleeAtkBonus" },
-    { "color": "#E63415", "label": "Melee Damage Bonus",  "value": "meleeDmgBonus" },
-    { "color": "#FF6600", "label": "Ranged Attack Bonus", "value": "rangedAtkBonus" },
-    { "color": "#FF6600", "label": "Ranged Damage Bonus", "value": "rangedDmgBonus" },
+    { "color": "#E63415", "label": "Melee Attack Bonus",  "value": "MeleeAtkBonus" },
+    { "color": "#E63415", "label": "Melee Damage Bonus",  "value": "MeleeDmgBonus" },
+    { "color": "#FF6600", "label": "Ranged Attack Bonus", "value": "RangedAtkBonus" },
+    { "color": "#FF6600", "label": "Ranged Damage Bonus", "value": "RangedDmgBonus" },
     { "color": "#3cb44b", "label": "Skills",              "value": "skills" }
   ],
 

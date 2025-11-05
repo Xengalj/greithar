@@ -96,19 +96,19 @@
                     {{ character.basics.type.levels }} HD (1d{{ character.basics.type.hd }})
                   </template>
                 </el-tooltip>
-                <el-tag v-else size="small" effect="dark" type="primary">{{ capFirsts(character.basics.type.name) }}</el-tag>
+                <el-tag v-else-if="character.basics.type.name != 'Humanoid'" size="small" effect="dark" type="primary">{{ character.basics.type.name }}</el-tag>
               </el-col>
             </el-row>
             <el-row>
+              <el-tag size="small" effect="dark" type="info" v-for="subtype in character.basics.type.subtypes" :key="subtype" style="margin: 0 1px 0 2px;">
+                {{ capFirsts(subtype) }}
+              </el-tag>
               <el-tooltip placement="top" effect="light" v-for="(cClass, name) in character.classes" :key="name">
                 <el-tag size="small" effect="dark" type="primary" style="margin: 0 1px 0 0;">{{ capFirsts(name) }} {{ cClass.levels }}</el-tag>
                 <template #content>
                   {{ cClass.levels }} HD ({{ cClass.levels }}d{{ classes[name].hd }})
                 </template>
               </el-tooltip>
-              <el-tag size="small" effect="dark" type="info" v-for="subtype in character.basics.type.subtypes" :key="subtype" style="margin: 0 1px 0 2px;">
-                {{ capFirsts(subtype) }}
-              </el-tag>
             </el-row>
           </el-col>
         </el-row>
@@ -150,10 +150,10 @@
         </el-row>
 
         <el-row :gutter="10" justify="center" align="middle">
-          <el-col :xs="24" :span="6" class="center-horz">
+          <el-col :sm="8" :lg="6" class="center-horz">
             <el-button @click="saveCharacter()" type="primary" round> Save Changes </el-button>
           </el-col>
-          <el-col :xs="24" :span="2" class="center-horz">
+          <el-col :sm="4" :lg="2" class="center-horz">
             <el-tooltip placement="top" effect="light">
               <el-button @click="this.$router.push({ name: 'character-edit', params: { id: character.id } })" type="info" style="margin:0" circle>
                 <g-icon iconSize="24px" iconColor="#000" iconName="quill" />
@@ -341,6 +341,7 @@
               :default-expanded-keys="[ 'Melee', 'Ranged', 'Special' ]"
               :allow-drag="allowDrag"
               :allow-drop="allowDrop"
+              @node-drop="updateAction"
             >
               <template #default="{ data }">
                 <el-col :span="1" class="center-horz">
@@ -349,7 +350,9 @@
                 </el-col>
                 <el-col :span="5">
                   <el-tooltip v-if="data.value" placement="left" effect="light">
-                    <el-tag size="small" effect="dark" type="primary"> {{ data.label }} </el-tag>
+                    <el-button @click="actionBtn(data)" size="small" type="primary">
+                      {{ data.label }}
+                    </el-button>
                     <template #content>
                       {{ data.value.trigger }}
                     </template>
@@ -483,6 +486,14 @@
       <!-- Items -->
       <el-tab-pane name="Items">
         <template #label> <g-icon iconSize="20px" iconName="inventory" /> Items </template>
+
+
+        {{ invTotal }}
+
+<br><br>
+
+
+
         <!-- Coins -->
         <el-row :gutter="10">
           <el-col :span="6" class="center-vert center-horz">
@@ -494,7 +505,11 @@
                 + (character.coins.sp * 0.1)
                 + (character.coins.cp * 0.01)
               }}
-            </el-tag>
+            </el-tag> <br>
+              <el-tag size="large" effect="dark" type="info">
+                <g-icon iconSize="24px" iconName="weight" iconColor="#000" />
+                Total (lbs) : {{ '???' }}
+              </el-tag>
           </el-col>
           <el-col :span="9">
             <el-input v-model="character.coins.pp" aria-label="Platinum Pieces Input" >
@@ -543,38 +558,57 @@
           :allow-drop="allowDrop"
         >
           <template #default="{ node, data }">
-            <el-col :span="1" style="text-align: center; margin-right:2px;">
-              <g-icon iconSize="20px" v-if="data.extras && data.extras.icon" :iconName="data.extras.icon" />
-              <span v-else> • </span>
-            </el-col>
-            <el-col :span="7"> {{ node.label }} </el-col>
-            <el-col :span="3">
-              <span v-if="data.value"> {{ data.value.Cost }} gp </span>
-            </el-col>
-            <el-col :span="3">
-              <span v-if="data.value"> {{ data.value.Weight }} lbs. </span>
-            </el-col>
-            <el-col :span="3">
-              <el-input-number v-if="data.value" v-model="data.value.Ammount" :min="0" size="small" aria-label="Number of Items" />
-            </el-col>
-            <div class="custom-tree-node" v-if="data.value">
-              <!-- Edit Item (in modal component) -->
-              <el-button type="info" circle size="small" @click="editItem(data)">
-                <g-icon iconSize="16px" iconColor="#000" iconName="quill" />
-              </el-button>
+              <el-col :span="1" style="text-align: center; margin-right:2px;">
+                <g-icon iconSize="20px" v-if="data.extras && data.extras.icon" :iconName="data.extras.icon" />
+                <span v-else> • </span>
+              </el-col>
+              <el-col :sm="9" :lg="7"> {{ node.label }} </el-col>
 
-              <!-- Delete Item -->
-              <el-popconfirm title="Are you sure to delete this?">
-                <template #reference>
-                  <el-button type="danger" circle size="small">
-                    <g-icon iconSize="16px" iconColor="#000" iconName="trash" />
+              <el-col :sm="0" :lg="6" style="overflow: hidden">
+                <span v-if="data.value && data.value.Extras && data.value.Extras.Notes && data.value.Extras.Notes.length">
+                  <el-tag type="info" effect="dark">
+                    {{ data.value.Extras.Notes[0] }}
+                  </el-tag>
+                </span>
+              </el-col>
+
+              <el-col :sm="3" :lg="2">
+                <el-tag v-if="data.value" color="#FFDE0A" style="color:black; border:none;">
+                  {{ data.value.Cost }} gp
+                </el-tag>
+              </el-col>
+
+              <el-col :sm="2" :lg="2">
+                <el-tag v-if="data.value" type="info" effect="dark">
+                  {{ data.value.Weight }} lbs.
+                </el-tag>
+              </el-col>
+
+              <el-col :sm="5" :lg="3">
+                <el-input-number v-if="data.value && data.value.Ammount" v-model="data.value.Ammount" :min="0" size="small" aria-label="Number of Items" />
+              </el-col>
+
+              <el-col :sm="3" :lg="2">
+                <div class="custom-tree-node" v-if="data.value">
+                  <!-- Edit Item (in modal component) -->
+                  <el-button type="info" circle size="small" @click="editItem(data)">
+                    <g-icon iconSize="16px" iconColor="#000" iconName="quill" />
                   </el-button>
-                </template>
-                <template #actions="">
-                  <el-button type="danger" size="small" @click="deleteItem(node, data)">Yes</el-button>
-                </template>
-              </el-popconfirm>
-            </div>
+
+                  <!-- Delete Item -->
+                  <el-popconfirm title="Are you sure to delete this?">
+                    <template #reference>
+                      <el-button type="danger" circle size="small">
+                        <g-icon iconSize="16px" iconColor="#000" iconName="trash" />
+                      </el-button>
+                    </template>
+                    <template #actions="">
+                      <el-button type="danger" size="small" @click="deleteItem(node, data)">Yes</el-button>
+                    </template>
+                  </el-popconfirm>
+                </div>
+              </el-col>
+
           </template>
         </el-tree>
       </el-tab-pane>
@@ -1288,7 +1322,7 @@ import CharacterService from "@/services/character.service";
 import HexGraph from '@/components/template/HexGraph.vue';
 import GItem from '@/components/template/GItem.vue';
 import GAbility from '@/components/template/GAbility.vue';
-import OBR from "@owlbear-rodeo/sdk";
+// import OBR from "@owlbear-rodeo/sdk";
 
 export default {
   name: "View Character",
@@ -1335,6 +1369,47 @@ export default {
     inventory() { return this.character.inventory; },
     abilities() { return this.character.abilities; },
     sizeStats() { return this.rules.size ? this.rules.size[this.character.basics.size] : { "space": "5 ft." }; },
+    invTotal() {
+      let invTotal = {
+        "totalValue": 0,
+        "totalWeight": 0,
+
+        "carryCap": 10,
+      };
+
+      // Magic Items
+      for (let slot of Object.values(this.inventory[0].children)) {
+        console.log(slot.label);
+        for (let item of Object.values(slot.children)) {
+          console.log(item.label, item.value);
+
+        }
+      }
+
+      // Equipped Items
+      // let armor = this.inventory[1].children[0];
+
+      for (let slot of Object.values(this.inventory[1].children[1].children)) {
+        console.log(slot.label);
+        for (let item of Object.values(slot.children)) {
+          console.log(item.label, item.value);
+
+        }
+      }
+
+      // Other Items
+      for (let item0 of Object.values(this.inventory[2].children)) {
+        console.log(item0.label, item0);
+      }
+
+
+
+
+
+
+
+      return invTotal;
+    },
 
     // USES: activeConditions, inventory, abilities
     // an update to computed properties makes this loop re-evaluate
@@ -1538,16 +1613,11 @@ export default {
     speed() {
       let speed = {};
       speed = this.character.basics.speed;
-      this.bonusLoop(speed.base, "base");
+      this.bonusLoop(speed.base, "baseSpeed");
       this.bonusLoop(speed.burrow, "burrow");
       this.bonusLoop(speed.climb, "climb");
       this.bonusLoop(speed.fly, "fly");
       this.bonusLoop(speed.swim, "swim");
-      Object.values(this.abilities).forEach(abil => {
-        if (abil.benefit && abil.benefit.target == "speed") {
-          speed.push(abil.benefit.text);
-        }
-      });
       return speed;
     },
     // USES: abilities, skills
@@ -1598,7 +1668,6 @@ export default {
       return bab;
     },
 
-    // TODO: weapon actions
     // USES: basics, inventory, bab, bonusLoop(bonuses), attributes
     actions() {
       let actions = [
@@ -1672,12 +1741,12 @@ export default {
         }
 
         // Add Active Bonuses
-        this.bonusLoop(newAtk.value.atkBonus, "MeleeAtkBonus");
-        this.bonusLoop(newAtk.value.dmgBonus, "MeleeDmgBonus");
-        this.bonusLoop(newAtk.value.atkBonus, "RangedAtkBonus");
-        this.bonusLoop(newAtk.value.dmgBonus, "RangedDmgBonus");
-        this.bonusLoop(newAtk.value.atkBonus, "SpecialAtkBonus");
-        this.bonusLoop(newAtk.value.dmgBonus, "SpecialDmgBonus");
+        this.bonusLoop(newAtk.value.atkBonus, "meleeAtkBonus");
+        this.bonusLoop(newAtk.value.dmgBonus, "meleeDmgBonus");
+        this.bonusLoop(newAtk.value.atkBonus, "rangedAtkBonus");
+        this.bonusLoop(newAtk.value.dmgBonus, "rangedDmgBonus");
+        this.bonusLoop(newAtk.value.atkBonus, "specialAtkBonus");
+        this.bonusLoop(newAtk.value.dmgBonus, "specialDmgBonus");
 
         // set damage types
         for (const category of Object.values(this.rules["Damage Types"])) {
@@ -1689,7 +1758,23 @@ export default {
             });
           }
         }
-        actions[2]["children"].push(newAtk);
+
+        // choose atk location
+        if (atk.style) {
+          switch (atk.style) {
+            case "Melee":
+              actions[0]["children"].push(newAtk);
+              break;
+            case "Ranged":
+              actions[1]["children"].push(newAtk);
+              break;
+            default:
+              actions[2]["children"].push(newAtk);
+          }
+        } else {
+          actions[2]["children"].push(newAtk);
+        }
+
       } // End character.attacks loop
 
       /***************************\
@@ -1991,37 +2076,6 @@ export default {
       document.getElementsByClassName('title')[0].innerHTML = this.character.name;
       this.spellTabs = Object.keys(this.character.spells)[0];
 
-      this.character.attacks = {
-        "Zap": {
-          "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "2d8",  "colossal": "4d6"  },
-          "Critical": "20/x2",
-          "Range": 60,
-          "Damage Type": [ "Slashing" ],
-          "Proficiency": "Natural",
-          "Category": "Special",
-
-          atkNum: 1,
-          atkAbilOverride: "Dex",
-          dmgAbilOverride: "",
-          trigger: "Standard",
-          extras: {}
-        },
-        "Bite": {
-          "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "2d8",  "colossal": "4d6"  },
-          "Critical": "20/x2",
-          "Range": 0,
-          "Damage Type": [ "Piercing" ],
-          "Proficiency": "Natural",
-          "Category": "Primary",
-
-          atkNum: 1,
-          atkAbilOverride: "",
-          dmgAbilOverride: "",
-          trigger: "Standard",
-          extras: {}
-        }
-      };
-
       this.loading = false;
     })
     .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
@@ -2038,20 +2092,20 @@ export default {
       spellTabs.appendChild(this.$refs.addSpell.$el);
 
       // Link up Owlbear Rodeo :)
-      OBR.onReady(() => {
-        OBR.scene.items.onChange(
-          (items) => {
-            items.forEach(item => {
-              if ( item.layer === "CHARACTER" && item.name === "Lillian" ) {
-                console.log(item.name);
-                let toon = item.metadata["com.bitperfect-software.hp-tracker/data"];
-                console.log(toon);
-              }
-
-            });
-          }
-        ); // End OBR onChange
-      });
+      // OBR.onReady(() => {
+      //   OBR.scene.items.onChange(
+      //     (items) => {
+      //       items.forEach(item => {
+      //         if ( item.layer === "CHARACTER" && item.name === "Lillian" ) {
+      //           console.log(item.name);
+      //           let toon = item.metadata["com.bitperfect-software.hp-tracker/data"];
+      //           console.log(toon);
+      //         }
+      //
+      //       });
+      //     }
+      //   ); // End OBR onChange
+      // });
       /*
       Hide selected items when clicking a context menu item
 
@@ -2089,7 +2143,10 @@ export default {
     \***************************/
     capFirsts(string) { return string ? string.replace(/(^\w|\s\w)/g, m => m.toUpperCase()) : ""; },
     bonusLoop(object, tString) {
-          // console.log(tString, object);
+      if (tString == 'trevTest') {
+        console.log(tString, object);
+      }
+
       // object = the bonus object we are adding to: { total: #, sources: [] }
       // tString = the target string we match to add to the bonus object: "atkBonus" || "Str" || "touchAC"
       // Add Active Bonuses
@@ -2206,7 +2263,10 @@ export default {
       this.$message({ message: "Resting for 8 hours", type: "success" });
     },
     saveCharacter() {
+      console.log(this.character);
+
       CharacterService.updateCharacter(this.character)
+      .then((response) => { this.$message({ message: `${response.character.name} updated`, type: 'success', }); })
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
     },
 
@@ -2249,6 +2309,16 @@ export default {
     deleteAbil(name) {
       delete this.abilities[name];
       this.$message({ message: `${name} was removed from abilities`, type: "warning" });
+    },
+
+    actionBtn(action) {
+      console.log(action);
+      // TODO: do magic
+    },
+    updateAction(draggingNode, dropNode) {
+      let action = draggingNode.data.label;
+      let style = ['Melee', 'Ranged', 'Special'].includes(dropNode.data.label) ? dropNode.data.label : dropNode.parent.data.label;
+      this.character.attacks[action].style = style;
     },
 
     /***************************\
