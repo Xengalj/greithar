@@ -497,18 +497,13 @@
         <!-- Coins -->
         <el-row :gutter="10">
           <el-col :span="6" class="center-vert center-horz">
-            <el-tag size="large" effect="dark" type="primary">
-              <g-icon iconSize="24px" iconName="treasure" />
-              Total (gp) : {{
-                (character.coins.pp * 10)
-                + (character.coins.gp * 1)
-                + (character.coins.sp * 0.1)
-                + (character.coins.cp * 0.01)
-              }}
+            <el-tag size="large" effect="dark" color="#FFDE0A" style="color:black">
+              <g-icon iconSize="24px" iconName="treasure" iconColor="#000" />
+              Total (gp) : {{ invTotal.value }}
             </el-tag> <br>
-              <el-tag size="large" effect="dark" type="info">
+              <el-tag size="large" effect="dark" type="info" style="color:black">
                 <g-icon iconSize="24px" iconName="weight" iconColor="#000" />
-                Total (lbs) : {{ '???' }}
+                Total (lbs) : {{ invTotal.weight }}
               </el-tag>
           </el-col>
           <el-col :span="9">
@@ -1371,75 +1366,52 @@ export default {
     sizeStats() { return this.rules.size ? this.rules.size[this.character.basics.size] : { "space": "5 ft." }; },
     invTotal() {
       let invTotal = {
-        "totalValue": 0,
-        "totalWeight": 0,
+        "value": 0,
+        "weight": 0,
 
         "carryCap": 10,
       };
 
+      // Coins
+      invTotal.value += (this.character.coins.pp * 10)
+                        + (this.character.coins.gp * 1)
+                        + (this.character.coins.sp * 0.1)
+                        + (this.character.coins.cp * 0.01);
+      invTotal.weight += (this.character.coins.pp / 50)
+                        + (this.character.coins.gp / 50)
+                        + (this.character.coins.sp / 50)
+                        + (this.character.coins.cp / 50);
+
       // Magic Items
       for (let slot of Object.values(this.inventory[0].children)) {
-        console.log(slot.label);
         for (let item of Object.values(slot.children)) {
-          console.log(item.label, item.value);
-
+          // console.log(slot.label);
+          // console.log(item.label, item.value);
+          invTotal.value += item.value.Cost;
+          invTotal.weight += item.value.Weight;
         }
       }
 
       // Equipped Items
-      // let armor = this.inventory[1].children[0];
-
+      let armor = this.inventory[1].children[0].children;
+      if (armor.length) {
+        // console.log('Armor');
+        // console.log(armor.label, armor);
+        invTotal.value += armor.value.Cost;
+        invTotal.weight += armor.value.Weight;
+      }
       for (let slot of Object.values(this.inventory[1].children[1].children)) {
-        console.log(slot.label);
         for (let item of Object.values(slot.children)) {
-          console.log(item.label, item.value);
-
+          // console.log(slot.label);
+          // console.log(item.label, item.value);
+          invTotal.value += item.value.Cost;
+          invTotal.weight += item.value.Weight;
         }
       }
 
       // Other Items
-      console.log('Items');
-      for (let item of Object.values(this.inventory[2].children)) {
-        console.log(item.label, item); // backpack
-
-        if (item.children) {
-          for (let child of Object.values(item.children)) {
-            console.log(child.label, child); // holding
-
-            if (child.children) {
-              for (let item of Object.values(child.children)) {
-                console.log(item.label, item); // sash
-
-                if (item.children) {
-                  for (let child of Object.values(item.children)) {
-                    console.log(child.label, child); // backpack
-
-                    if (child.children) {
-                      for (let item of Object.values(child.children)) {
-                        console.log(item.label, item); // kettle
-                      }
-                    }
-
-                    console.log(child.label);
-                  } // end child container 3
-                }
-
-                console.log(item.label);
-              } // end child container 2
-            }
-
-            console.log(child.label);
-          } // end child container 1
-        }
-
-        console.log(item.label);
-      } // end main container
-
-
-
-
-
-
+      // console.log('Items');
+      this.recursiveInventory(this.inventory[2].children, invTotal);
 
       return invTotal;
     },
@@ -2343,7 +2315,6 @@ export default {
       delete this.abilities[name];
       this.$message({ message: `${name} was removed from abilities`, type: "warning" });
     },
-
     actionBtn(action) {
       console.log(action);
       // TODO: do magic
@@ -2444,6 +2415,19 @@ export default {
       const index = children.findIndex(d => d.label === data.label);
       children.splice(index, 1);
       this.$message({ message: `${data.label} was removed from inventory`, type: "warning" });
+    },
+
+    recursiveInventory(container, invTotal){
+      for (let item of Object.values(container)) {
+        // console.log(item.label, item);
+        if (item.value) {
+          invTotal.value += item.value.Cost;
+          invTotal.weight += item.value.Weight;
+        }
+        if (item.children) {
+          this.recursiveInventory(item.children, invTotal);
+        }
+      }
     },
 
     /***************************\

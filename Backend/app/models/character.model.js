@@ -158,7 +158,7 @@ module.exports = (sequelize, Sequelize) => {
               { 'label': 'Back',     'extras': { 'icon': 'swordShield', 'capacity': 2 }, 'children': [] },
             ] }
           ] },
-          { 'label': 'Items',        'extras': { 'icon': 'inventory' }, 'children': [
+          { 'label': 'Items',        'extras': { 'icon': 'inventory', 'capacity': 100 }, 'children': [
             { 'label': 'Backpack',   'extras': { 'icon': 'backpack', 'capacity': 20 }, 'children': [], 'value':
               { 'Cost': 2, 'Weight': 2, 'Description': "This leather knapsack has one large pocket that closes with a buckled strap and holds about 2 cubic feet of material. Some may have one or more smaller pockets on the sides." }
             }
