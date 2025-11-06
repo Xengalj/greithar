@@ -1654,10 +1654,6 @@ export default {
       let speed = {};
       speed = this.character.basics.speed;
       this.bonusLoop(speed.base, "baseSpeed");
-      this.bonusLoop(speed.burrow, "burrow");
-      this.bonusLoop(speed.climb, "climb");
-      this.bonusLoop(speed.fly, "fly");
-      this.bonusLoop(speed.swim, "swim");
 
       let penalties = {};
       let armor = this.character.inventory[1].children[0].children[0];
@@ -1668,23 +1664,24 @@ export default {
       if (offHand?.value.Penalty < 0) { penalties[offHand.label] = offHand.value.Penalty; }
       if (this.invTotal?.speed_pen < 0) { penalties["Encumberance"] = this.invTotal.speed_pen; }
 
-
       // Armor / Encumberance Penalty
       console.log(penalties);
-      // if (this.rules.skills[name].armor_pen) {
-      //   for (let [label, penalty] of Object.entries(penalties)) {
-      //     this.applyBonus(label, penalty, speed.base);
-      //   }
-      // }
-
-      /*
-      climb  & swim @ 25% base (base/4)
-      if (speed.climb.total == 0) {
-      base / 4
+      for (let [label, penalty] of Object.entries(penalties)) {
+        this.applyBonus(label, penalty, speed.base);
       }
-      */
 
+      this.bonusLoop(speed.burrow, "burrow");
+      this.bonusLoop(speed.fly, "fly");
+      this.bonusLoop(speed.climb, "climb");
+      this.bonusLoop(speed.swim, "swim");
 
+      // climb  & swim @ 25% base (base/4)
+      if (speed.climb.total == 0) {
+        speed.climb.total = speed.base.total / 4;
+      }
+      if (speed.swim.total == 0) {
+        speed.swim.total = speed.base.total / 4;
+      }
 
       return speed;
     },
