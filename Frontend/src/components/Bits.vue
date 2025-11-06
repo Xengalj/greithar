@@ -143,8 +143,6 @@ export default {
     \***************************/
     /*
     - Remove redundant grey abil totals
-    - add view btn to edit toon
-    -
 
 
     */

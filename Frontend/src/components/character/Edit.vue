@@ -161,13 +161,6 @@
 
         <!-- Favored Class Bonus & Level -->
         <el-col :span="6">
-          <el-row>
-            <h4> <g-icon iconName="magicSwirl" /> Favored Class Bonus </h4>
-            <el-select v-model="character.basics.favoredClass.name" aria-label="Favored Class Select">
-              <el-option v-for="(cClass, cName) in classes" :key="cName" :label="cName" :value="cName" />
-            </el-select>
-            <el-input v-model="character.basics.favoredClass.bonus" aria-label="Favored Class Bonus Input" />
-          </el-row>
           <el-row class="center-horz">
             <el-col :span="12">
               <el-input v-model="character.basics.cr" aria-label="Character Level" disabled>
@@ -190,6 +183,15 @@
                 </template>
               </el-popconfirm>
             </el-col>
+          </el-row>
+          <el-row>
+            <span style="font-size:16px;">
+              <g-icon iconName="magicSwirl" iconSize="24"/> Favored Class Bonus
+            </span>
+            <el-select v-model="character.basics.favoredClass.name" aria-label="Favored Class Select">
+              <el-option v-for="(cClass, cName) in classes" :key="cName" :label="cName" :value="cName" />
+            </el-select>
+            <el-input v-model="character.basics.favoredClass.bonus" aria-label="Favored Class Bonus Input" />
           </el-row>
         </el-col>
       </el-row>
@@ -1256,7 +1258,9 @@
 
     <!-- FOOTER -->
     <div style="text-align: right; margin-top: 10px;">
-      <el-button @click="$router.push({ name: 'character-list' })" type="warning" plain>Back to All Characters </el-button>
+      <el-button @click="$router.push({ name: 'character-list' })" type="warning" plain> Back to All Characters </el-button>
+
+      <el-button @click="this.$router.push({ name: 'character-view', params: { id: character.id } })" type="info"> View </el-button>
       <el-button @click="saveCharacter()" type="primary"> Save Changes </el-button>
     </div>
 
