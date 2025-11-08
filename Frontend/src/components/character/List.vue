@@ -145,7 +145,7 @@ export default {
     },
     createCharacter() {
       // this.loading = true;
-      CharacterService.createCharacter()
+      CharacterService.createCharacter(this.userID)
       .then(response => {
         let id = response.character.id;
         this.$router.push({ name: 'character-edit', params: { id: id } });

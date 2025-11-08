@@ -14,8 +14,11 @@ try {
 
 
 class CharacterService {
-  createCharacter() {
-    return axios.post(API_URL + 'create', {},
+  createCharacter(user_id) {
+    return axios.post(API_URL + 'create',
+    {
+      user_id: user_id
+    },
     { headers: authHeader() })
     .then(response => { return response.data; })
     .catch(err => { return err; });

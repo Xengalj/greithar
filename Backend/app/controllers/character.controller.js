@@ -13,7 +13,7 @@ const Op = db.Sequelize.Op;
 exports.create = (req, res) => {
   Character.create()
   .then(character => {
-    character.setUser(req.userID)
+    character.setUser(req.userId)
     .then(() => {
       res.status(201).send({ character: character });
     })
@@ -85,16 +85,15 @@ exports.update = (req, res) => {
       for (let i = 0; i < roles.length; i++) {
         if (roles[i].name === "admin") { isAdmin = true; }
       }
-
       Character.findOne({ where: { id: req.body.id }, include: User })
       .then(character => {
         if (!character) { return res.status(404).send({ message: "Character not found!" }); }
 
         // only let users edit their own, or admins edit any
-        if (isAdmin || character.user.id == req.user.id) {
+        if (isAdmin || character.user.id == req.userId) {
           // set values to be updated
           for (const [key, value] of Object.entries(req.body)) {
-            console.log(`${key}: ${value}`);
+            // console.log(`${key}: ${value}`);
             if (key == "id") { continue; }
             if (isAdmin && key == "user") { character.setUser(value.id); }
             character[key] = value;
