@@ -1,6 +1,6 @@
 {
   "serverURL": "https://greithar.mqt.dev",
-  "isStaging": 0,
+  "isStaging": 1,
   "isProd": 0,
   "reSeed": 0
 }
