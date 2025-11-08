@@ -80,9 +80,13 @@
       "targets": [ "totalAC", "touchAC", "flatAC", "cmd" ],
       "subtargets": [ "touch", "flat" ]
     },
+    "Encumbrance": {
+      "description": "This malus (penalty) only gets applied by armor or by carrying too much.",
+      "targets": [ "armorSkills", "baseSpeed" ]
+    },    
     "Enhancement": {
       "description": "An enhancement bonus represents an increase in the effectiveness of armor, natural armor, weapon, or a general bonus to an ability score. Multiple enhancement bonuses on the same object (in the case of armor and weapons), creature (in the case of natural armor), or ability score do not stack. Only the highest enhancement bonus applies.",
-      "targets": [ "totalAC", "touchAC", "flatAC", "fort", "ref", "will", "atkBonus", "dmgBonus", "Speed", "Str", "Dex", "Con", "Int", "Wis", "Cha" ],
+      "targets": [ "totalAC", "touchAC", "flatAC", "fort", "ref", "will", "atkBonus", "dmgBonus", "baseSpeed", "Str", "Dex", "Con", "Int", "Wis", "Cha" ],
       "subtargets": [ "touch", "flat", "fort", "ref", "will" ]
     },
     "Insight": {
