@@ -1472,14 +1472,21 @@ export default {
         }
       }
 
-      // Equipped Items
+      // Equipped Items      
       let armor = this.inventory[1].children[0].children;
       if (armor.length) {
         invTotal.value += armor.value.Cost;
         invTotal.weight += armor.value.Weight;
+        
+        console.log(armor);
+        // if armor has maluses, add em
       }
       for (let slot of Object.values(this.inventory[1].children[1].children)) {
         for (let item of Object.values(slot.children)) {
+                  console.log(slot);
+        // if slot == hands
+        // if item has maluses, add em
+
           invTotal.value += item.value.Cost;
           invTotal.weight += item.value.Weight;
         }
@@ -1508,6 +1515,12 @@ export default {
       let medium = invTotal.carryCap * 2/3;
       let heavy = invTotal.carryCap;
 
+      let encumbrance = {
+        "name": "Encumbered",
+        "description": "You are carrying more than a light load, slowing you down.",
+        "bonuses": {}
+      };
+
       if (invTotal.weight < light) {
         invTotal.color = "success";
         invTotal.level = "Light";
@@ -1515,9 +1528,25 @@ export default {
       } else if (invTotal.weight < medium) {
         invTotal.color = "info";
         invTotal.level = "Medium";
+        
         invTotal.skill_pen = -3;
         invTotal.speed_pen = (Math.floor(this.character.basics.speed.base.total * 0.138) * 5) - this.character.basics.speed.base.total;
         invTotal.maxDex = 3;
+
+        encumbrance.bonuses["Encumbrance Skill Malus"] = {
+            "type": "Encumbrance",
+            "value": -3,
+            "targets": [ "armorSkills" ]          
+        };
+        encumbrance.bonuses["Encumbrance Speed Malus"] = {
+            "type": "Encumbrance",
+            "value": (Math.floor(this.character.basics.speed.base.total * 0.138) * 5) - this.character.basics.speed.base.total,
+            "targets": [ "baseSpeed" ]          
+        };
+        encumbrance.extras = { "noDexAC": true };
+        this.newCondition = encumbrance;
+        this.addCondition();
+
 
       } else if (invTotal.weight < heavy) {
         invTotal.color = "warning";
@@ -1660,93 +1689,6 @@ export default {
       let speed = {};
       speed = this.character.basics.speed;
       this.bonusLoop(speed.base, "baseSpeed");
-
-      let penalties = {};
-      let armor = this.character.inventory[1].children[0].children[0];
-      let mainHand = this.character.inventory[1].children[1].children[0].children[0];
-      let offHand = this.character.inventory[1].children[1].children[0].children[1];
-      if (armor?.value.Penalty < 0) { penalties[armor.label] = armor.value.Penalty; }
-      if (mainHand?.value.Penalty < 0) { penalties[mainHand.label] = mainHand.value.Penalty; }
-      if (offHand?.value.Penalty < 0) { penalties[offHand.label] = offHand.value.Penalty; }
-      if (this.invTotal?.speed_pen < 0) { penalties["Encumberance"] = this.invTotal.speed_pen; }
-
-      // Armor / Encumberance Penalty
-      // add all amors
-
-      // get higher armor / inv
-
-      // replace source
-      let armor, inv, prefix = (penalty > 0) ? "+" : "";
-
-      for (let [label, penalty] of Object.entries(penalties)) {
-        console.log(label, penalty);
-        console.log(speed.base);
-
-        this.applyBonus(label, penalty, speed.base);
-
-        speed.base.sources.forEach(source => {
-          if (source.includes("Encumberance")) {
-
-          }
-        });
-
-
-        if (speed.base.sources.includes(label)) {
-          if (speed.base.) {
-
-          }
-        }
-
-
-
-
-
-
-        //     if (typedBonuses[bonus.type]) {
-        //       // If we have the type of bonus already
-        //       if (typedBonuses[bonus.type].value > bonus.value) {
-        //         // If the current is higher, skip
-        //         continue;
-        //       } else {
-        //         // remove current bonus & value
-        //         bonus.targets.forEach(target => {
-        //           if (target == tString) {
-        //             object.total -= typedBonuses[bonus.type].value;
-        //             // loop on sources looking for the one to remove
-        //             object.sources.forEach((source, i) => {
-        //               if ( source.includes(typedBonuses[bonus.type].name) ) {
-        //                 object.sources.splice(i, 1);
-        //               }
-        //             });
-        //           }
-        //         });
-        //       }
-        //     }
-        //     typedBonuses[bonus.type] = { name: name, value: bonus.value };
-        //   } // End typed bonus prep
-        //
-        //   if (!object.sources.includes(`${prefix}${bonus.value} ${name}`)) {
-        //     // if we dont already have that specific bonus applied, add it
-        //     bonus.targets.forEach(target => {
-        //       if (target == tString) {
-        //         // If bonus.targets includes tString, apply it
-        //         object.total += parseInt(bonus.value);
-        //         object.sources.push(`${prefix}${bonus.value} ${name}`);
-        //       }
-        //     });
-        //   }
-        // } // End Bonuses Loop
-
-
-
-
-
-
-      }
-
-
-
-
       this.bonusLoop(speed.burrow, "burrow");
       this.bonusLoop(speed.fly, "fly");
       this.bonusLoop(speed.climb, "climb");
@@ -2061,15 +2003,14 @@ export default {
     skills() {
       let skills = {};
 
-      let armor = this.character.inventory[1].children[0].children[0];
-      let mainHand = this.character.inventory[1].children[1].children[0].children[0];
-      let offHand = this.character.inventory[1].children[1].children[0].children[1];
-      let penalties = {};
-      if (armor?.value.Penalty < 0) { penalties[armor.label] = armor.value.Penalty; }
-      if (mainHand?.value.Penalty < 0) { penalties[mainHand.label] = mainHand.value.Penalty; }
-      if (offHand?.value.Penalty < 0) { penalties[offHand.label] = offHand.value.Penalty; }
-
-      if (this.invTotal.skill_pen < 0) { penalties["Encumberance"] = this.invTotal.skill_pen; }
+      // let armor = this.character.inventory[1].children[0].children[0];
+      // let mainHand = this.character.inventory[1].children[1].children[0].children[0];
+      // let offHand = this.character.inventory[1].children[1].children[0].children[1];
+      // let penalties = {};
+      // if (armor?.value.Penalty < 0) { penalties[armor.label] = armor.value.Penalty; }
+      // if (mainHand?.value.Penalty < 0) { penalties[mainHand.label] = mainHand.value.Penalty; }
+      // if (offHand?.value.Penalty < 0) { penalties[offHand.label] = offHand.value.Penalty; }
+      // if (this.invTotal.skill_pen < 0) { penalties["Encumberance"] = this.invTotal.skill_pen; }
 
       for (const [name, skill] of Object.entries(this.character.skills)) {
         let bonus = { "total": 0, "sources": [] };
@@ -2090,9 +2031,10 @@ export default {
 
         // Armor / Encumberance Penalty
         if (this.rules.skills[name].armor_pen) {
-          for (let [label, penalty] of Object.entries(penalties)) {
-            this.applyBonus(label, penalty, bonus);
-          }
+          this.bonusLoop(bonus, 'armorSkills');
+          // for (let [label, penalty] of Object.entries(penalties)) {
+          //   this.applyBonus(label, penalty, bonus);
+          // }
         }
         this.bonusLoop(bonus, name);
         this.bonusLoop(bonus, 'skills');
