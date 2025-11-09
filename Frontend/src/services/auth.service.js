@@ -3,7 +3,6 @@ import axios from 'axios';
 let API_URL = 'http://localhost:8080';
 try {
   const settings = require('../../../config.json');
-  console.log(settings);
   if (settings.isProd) { API_URL = settings.serverURL; }
 } catch (e) {
   // config not in dev / frontent

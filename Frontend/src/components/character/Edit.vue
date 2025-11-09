@@ -1643,7 +1643,6 @@ export default {
           }
         }
       } // end magic items
-      // console.log("BONUSES", bonuses);
       return bonuses;
     },
 
@@ -1710,7 +1709,6 @@ export default {
 
     CharacterService.getCharacter(this.$route.params.id)
     .then((response) => {
-      console.log(response);
       this.character = response.character;
       if (!this.character.user) { this.character.user = {} }
       this.loading = false;
@@ -1729,7 +1727,6 @@ export default {
     // Helper Methods
     capFirsts(string) { return string ? string.replace(/(^\w|\s\w)/g, m => m.toUpperCase()) : ""; },
     bonusLoop(object, tString) {
-          // console.log(tString, object);
       // object = the bonus object we are adding to: { total: #, sources: [] }
       // tString = the target string we match to add to the bonus object: "atkBonus" || "Str" || "touchAC"
       // Add Active Bonuses
@@ -1783,7 +1780,6 @@ export default {
       }
     },
     saveCharacter() {
-      console.log(this.character);
       CharacterService.updateCharacter(this.character)
       .then((response) => { this.$message({ message: `${response.character.name} updated`, type: 'success', }); })
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
@@ -1802,7 +1798,6 @@ export default {
         }
       }
       for (const [name, trait] of Object.entries(this.races[basics.race].traits)) {
-        console.log(name, trait);
         this.character.abilities[name] = trait;
         this.character.abilities[name].extras = { "active": true, "showMain": false, "source": "Race" };
       }

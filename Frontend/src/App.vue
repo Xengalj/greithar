@@ -61,10 +61,7 @@ export default {
       localStorage.setItem('conditions', JSON.stringify(response.conditions));
     } );
 
-
     if (this.currentUser) {
-      // console.log(this.currentUser);
-
       this.usermeta.faveColor = "--el-color-primary: " + this.currentUser.usermeta.faveColor + " !important";
       document.documentElement.style.cssText = this.usermeta.faveColor;
 
