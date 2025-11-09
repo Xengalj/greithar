@@ -36,7 +36,6 @@
       table-layout="auto"
       height="700"
       stripe
-      sort-change="console.log('sorted')"
     >
       <el-table-column
         v-for="col in tableCols"
@@ -183,7 +182,6 @@ export default {
   },
   mounted() {
     this.tableUpdate();
-    // console.log(this.equipment);
   },
   methods: {
     /***************************\

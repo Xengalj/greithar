@@ -101,45 +101,49 @@ exports.update = async (req, res) => {
         isAdmin = true;
       }
     });
-    if (!editSelf || !isAdmin) { return res.status(403).send({ message: "You do not have permission to edit this user" }); }
 
-    const token = jwt.sign(
-      { id: user.id }, config.secret,
-      { algorithm: 'HS256', allowInsecureKeySizes: true,
-      expiresIn: 86400, // 24 hours
-    });
 
-    let newContent = {
-      username: req.body.username ? req.body.username : user.username,
-      email: req.body.email ? req.body.email : user.email,
-      usermeta: req.body.usermeta ? req.body.usermeta : user.usermeta,
-      roles: (isAdmin && req.body.roles) ? req.body.roles : authorities
-    };
-
-    // update user with new info
-    user.update({
-      username: newContent.username,
-      email: newContent.email,
-      usermeta: newContent.usermeta
-    })
-    .then(user => {
-
-      // Update roles
-      Role.findAll({ where: { name: { [Op.or]: newContent.roles } } })
-      .then(roles => {
-        user.setRoles(roles);
-        // return new user info
-        res.status(200).send({
-          id: user.id,
-          username: user.username,
-          email: user.email,
-          usermeta: user.usermeta,
-          roles: roles,
-          token: token
-        });
+    if (editSelf || isAdmin) {
+      const token = jwt.sign(
+        { id: user.id }, config.secret,
+        { algorithm: 'HS256', allowInsecureKeySizes: true,
+        expiresIn: 86400, // 24 hours
       });
-    })
-    .catch(err => { res.status(500).send({ message: err.message }); }); // user update catch
+
+      let newContent = {
+        username: req.body.username ? req.body.username : user.username,
+        email: req.body.email ? req.body.email : user.email,
+        usermeta: req.body.usermeta ? req.body.usermeta : user.usermeta,
+        roles: (isAdmin && req.body.roles) ? req.body.roles : authorities
+      };
+
+      // update user with new info
+      user.update({
+        username: newContent.username,
+        email: newContent.email,
+        usermeta: newContent.usermeta
+      })
+      .then(user => {
+        // Update roles
+        Role.findAll({ where: { name: { [Op.or]: newContent.roles } } })
+        .then(roles => {
+          user.setRoles(roles);
+          // return new user info
+          res.status(200).send({
+            id: user.id,
+            username: user.username,
+            email: user.email,
+            usermeta: user.usermeta,
+            roles: roles,
+            token: token
+          });
+        });
+      })
+      .catch(err => { res.status(500).send({ message: err.message }); }); // user update catch
+
+    } else {
+      return res.status(403).send({ message: "You do not have permission to edit this user" });
+    }
   })
   .catch(err => { res.status(500).send({ message: err.message }); }); // user find catch
 };

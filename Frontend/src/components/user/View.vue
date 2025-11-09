@@ -117,7 +117,6 @@ export default {
       .finally(() => {
         CharacterService.getCharacter(this.user.usermeta.hero)
         .then(response => {
-          console.log(response.character);
           this.hero = response.character;
         })
         .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })

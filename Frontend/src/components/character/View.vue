@@ -180,8 +180,8 @@
       <!-- Main -->
       <el-tab-pane name="Main">
         <template #label> <g-icon iconSize="20px" iconName="compass" /> Main </template>
-{{ invTotal }} <br>
-{{ speed }}
+<!-- {{ invTotal }} <br>
+{{ speed }} -->
         <el-collapse v-model="character.settings.mainSections">
           <!-- Defense -->
           <el-collapse-item name="defense">

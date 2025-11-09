@@ -121,8 +121,8 @@ export default {
     equipment() { return JSON.parse(localStorage.getItem('equipment')); },
   },
   mounted() {
-    console.log('home -> user', this.user);
-    console.log('rules', this.rules);
+    // console.log('home -> user', this.user);
+    // console.log('rules', this.rules);
   },
 };
 </script>

@@ -85,7 +85,7 @@
             <el-button :onclick="resetForm" type="warning" plain> Reset </el-button>
           </el-col>
           <el-col :xs="6" :span="3">
-            <el-button :onclick="submitForm" type="primary"> Submit </el-button>
+            <el-button :onclick="submitForm" type="primary"> Save </el-button>
           </el-col>
         </el-row>
       </template>
@@ -235,11 +235,6 @@ export default {
           }
         });
       }
-
-
-
-
-
 
     },
   }
