@@ -180,8 +180,9 @@
       <!-- Main -->
       <el-tab-pane name="Main">
         <template #label> <g-icon iconSize="20px" iconName="compass" /> Main </template>
-<!-- {{ invTotal }} <br>
-{{ speed }} -->
+{{ invTotal }} <br>
+{{ encumbrance }} <br>
+{{ speed }}
         <el-collapse v-model="character.settings.mainSections">
           <!-- Defense -->
           <el-collapse-item name="defense">
@@ -1350,6 +1351,11 @@ export default {
       metamagic: null,
 
       character: {},
+      encumbrance: {
+        name: "Encumbrance",
+        description: "You carry too much",
+        bonuses: {}
+      }
 
     };
   },
@@ -1417,7 +1423,15 @@ export default {
             }
           }
         }
-      } // end magic items
+      }
+      // Encumbrance
+      if (Object.keys(this.encumbrance.bonuses).length) {
+        console.log(this.encumbrance);
+        for (let [name, bonus] of Object.entries(this.encumbrance.bonuses)) {
+          bonuses[name] = bonus;
+        }
+      }
+
       // console.log("BONUSES", bonuses);
       return bonuses;
     },
@@ -1441,7 +1455,7 @@ export default {
       return attributes;
     },
 
-    // USES: inventory, attributes
+    // USES: inventory
     invTotal() {
       let invTotal = {
         "value": 0,
@@ -1450,8 +1464,6 @@ export default {
         "level": "",
         "color": "success",
         "maxDex": 100,
-        "skill_pen": 0,
-        "speed_pen": 0
       };
 
       // Coins
@@ -1473,23 +1485,25 @@ export default {
       }
 
       // Equipped Items
+      // TODO: compare maluses and add / replace
       let armor = this.inventory[1].children[0].children[0];
       if (armor) {
+        invTotal.maxDex = armor.value["Max Dex"];
+        this.encumbranceMalus("Encumbrance Skill", armor.value.Penalty, [ "armorSkills" ]);
+        if (["Medium", "Heavy"].includes(armor.value.Proficiency)) {
+          this.encumbranceMalus("Encumbrance Speed",
+          (Math.floor(this.character.basics.speed.base.total * 0.138) * 5) - this.character.basics.speed.base.total, [ "baseSpeed" ]);
+        }
         invTotal.value += armor.value.Cost;
         invTotal.weight += armor.value.Weight;
-        // TODO:
-        // console.log(armor);
-        // if armor has maluses, add em
       }
+
       for (let slot of Object.values(this.inventory[1].children[1].children)) {
         for (let item of Object.values(slot.children)) {
-                  // console.log(slot);
-        if (slot.label == "Hands" && item.value.Penalty) {
-          // console.log(item);
-          // if item has maluses, add em
-          // TODO:
-        }
-
+          if (slot.label == "Hands" && item.value.Penalty) {
+            invTotal.maxDex = item.value["Max Dex"];
+            this.encumbranceMalus("Encumbrance Skill", item.value.Penalty, [ "armorSkills" ]);
+          }
           invTotal.value += item.value.Cost;
           invTotal.weight += item.value.Weight;
         }
@@ -1499,7 +1513,7 @@ export default {
       this.recursiveInventory(this.inventory[2].children, invTotal, false);
 
       // CARRY CAPACITY
-      let str = this.attributes.Str.total;
+      let str = this.character.attributes.Str.base;
       let bonus = 0; // TODO: +1 from mwk backpack OR +8 from muleback cords (bonus)
       let sizeMult = 1;
 
@@ -1526,22 +1540,29 @@ export default {
         invTotal.color = "info";
         invTotal.level = "Medium";
         invTotal.maxDex = 3;
-        invTotal.skill_pen = -3;
-        invTotal.speed_pen = (Math.floor(this.character.basics.speed.base.total * 0.138) * 5) - this.character.basics.speed.base.total;
+
+        this.encumbranceMalus("Encumbrance Skill", -3, [ "armorSkills" ]);
+        this.encumbranceMalus("Encumbrance Speed",
+            (Math.floor(this.character.basics.speed.base.total * 0.138) * 5) - this.character.basics.speed.base.total, [ "baseSpeed" ]);
 
       } else if (invTotal.weight < heavy) {
         invTotal.color = "warning";
         invTotal.level = "Heavy";
         invTotal.maxDex = 1;
-        invTotal.skill_pen = -6;
-        invTotal.speed_pen = (Math.floor(this.character.basics.speed.base.total * 0.138) * 5) - this.character.basics.speed.base.total;
+
+        this.encumbranceMalus("Encumbrance Skill", -6, [ "armorSkills" ]);
+        this.encumbranceMalus("Encumbrance Speed",
+            (Math.floor(this.character.basics.speed.base.total * 0.138) * 5) - this.character.basics.speed.base.total, [ "baseSpeed" ]);
 
       } else {              // Staggering
         invTotal.color = "danger";
         invTotal.level = "Staggering";
         invTotal.maxDex = 0;
-        invTotal.skill_pen = -6;
-        invTotal.speed_pen = 5 - this.character.basics.speed.base.total;
+
+        this.encumbranceMalus("Encumbrance Skill", -6, [ "armorSkills" ]);
+        this.encumbranceMalus("Encumbrance Speed",
+            5 - this.character.basics.speed.base.total, [ "baseSpeed" ]);
+
       }
 
       return invTotal;
@@ -1667,42 +1688,21 @@ export default {
     },
     // USES: bonusLoop(bonuses), invTotal
     speed() {
-      let speed = {};
-      speed = this.character.basics.speed;
+      let speed = {
+        "base":   { "total": 0, "sources": [] },
+        "fly":    { "total": 0, "sources": [] },
+        "swim":   { "total": 0, "sources": [] },
+        "climb":  { "total": 0, "sources": [] },
+        "burrow": { "total": 0, "sources": [] }
+      };
+
+      // speed = this.character.basics.speed;
+      console.log(this.character.basics);
+      console.log(this.races[this.character.basics.race]);
+      // TODO: add racial base as a bonus
+      this.applyBonus("Racial Base", this.races[this.character.basics.race].speed, speed.base);
+
       this.bonusLoop(speed.base, "baseSpeed");
-      // TODO: make encumbrance pen its own method
-      // if (this.invTotal.speed_pen < 0) {
-      //   speed.base.sources.forEach((source, i) => {
-      //     console.log(i, source);
-      //
-      //     if (source.includes("Encumbrance")) {
-      //       let val = source.split(' ');
-      //       console.log(val[0]);
-      //
-      //       // If current value needs to be replaced
-      //       if (val[0] < this.invTotal.speed_pen) {
-      //         console.log('remove  old penalty');
-      //         console.log(speed.base.total);
-      //         speed.base.total += Math.abs(val[0]);
-      //         speed.base.sources.splice(i, 1);
-      //         console.log(speed.base.total);
-      //
-      //         speed.base.total += this.invTotal.speed_pen;
-      //         speed.base.sources.push(`${this.invTotal.speed_pen} Encumbrance`);
-      //         console.log(speed.base.total);
-      //       }
-      //     } else {
-      //
-      //       console.log('first pen add');
-      //       console.log(speed.base.total);
-      //       speed.base.total += this.invTotal.speed_pen;
-      //       speed.base.sources.push(`${this.invTotal.speed_pen} Encumbrance`);
-      //       console.log(speed.base.total);
-      //     }
-      //   });
-      // }
-
-
       this.bonusLoop(speed.burrow, "burrow");
       this.bonusLoop(speed.fly, "fly");
       this.bonusLoop(speed.climb, "climb");
@@ -2035,9 +2035,11 @@ export default {
         this.applyBonus(abil.concat("Mod"), this.attributes[abil].mod, bonus);
 
         // Armor / Encumberance Penalty
-        if (this.invTotal.skill_pen < 0 && this.rules.skills[name].armor_pen) {
-          this.applyBonus("Encumbrance", this.invTotal.skill_pen, bonus);
-        }
+        this.bonusLoop(bonus, 'armorSkills');
+        // if (this.invTotal.skill_pen < 0 && this.rules.skills[name].armor_pen) {
+        //   this.applyBonus("Encumbrance", this.invTotal.skill_pen, bonus);
+        // }
+
         this.bonusLoop(bonus, name);
         this.bonusLoop(bonus, 'skills');
         // Add leading + to main display
@@ -2232,7 +2234,9 @@ export default {
     \***************************/
     capFirsts(string) { return string ? string.replace(/(^\w|\s\w)/g, m => m.toUpperCase()) : ""; },
     bonusLoop(object, tString) {
-      // console.log(tString, object);
+      if (tString == "baseSpeed") {
+        console.log(tString, object);
+      }
       // object = the bonus object we are adding to: { total: #, sources: [] }
       // tString = the target string we match to add to the bonus object: "atkBonus" || "Str" || "touchAC"
       // Add Active Bonuses
@@ -2457,6 +2461,13 @@ export default {
           BagOfHolding = false;
         }
       }
+    },
+    encumbranceMalus(bonusName, value, targets) {
+      this.encumbrance.bonuses[bonusName] = {
+        type: "Condition",
+        value: value,
+        targets: targets
+      };
     },
     filterNode(value, data) {
       if (!value) return true;
