@@ -57,7 +57,7 @@
 
     <el-tag size="small" effect="dark" type="primary" color="#FFAA00">
       CONTENT
-    <el-tag/>
+    </el-tag>
 
     <el-tooltip placement="top" effect="light">
       HOVER HERE
