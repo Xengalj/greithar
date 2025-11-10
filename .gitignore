@@ -32,3 +32,4 @@ package-lock.json
 
 Backend/app/config/*
 Backend/app/views
+Frontend/.env
