@@ -12,7 +12,6 @@ const Op = db.Sequelize.Op;
 \***************************/
 // creates a blank campaign
 exports.createCampaign = (req, res) => {
-  console.log("******************** CREATE CAMPAIGN");
   // only let storytellers create campaigns
   let isAdmin, isStoryteller = false;
 
@@ -27,20 +26,13 @@ exports.createCampaign = (req, res) => {
       if (isAdmin || isStoryteller) {
         Campaign.create()
         .then(campaign => {
-          console.log(campaign);
-          console.log(req.userId);
-          // console.log(res);
+
           // set owner
           campaign.setUser(req.userId)
-          .then(() => { res.status(201).send({ campaign: campaign }); })
-          .catch(err => {
-            console.log(campaign);
-            console.log('**');
-            console.log(err);
-            console.log('*********');
-            console.log(err.message);
-            res.status(500).send({ message: err.message, trevNote: "Error w/ set user" });
-          });
+          .then(() => {
+            res.status(201).send({ campaign: JSON.stringify(campaign) });
+          })
+          .catch(err => { res.status(500).send({ message: err.message }); })
         })
         .catch(err => { res.status(500).send({ message: err.message }); });
 

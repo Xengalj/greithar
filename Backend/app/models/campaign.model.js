@@ -6,8 +6,8 @@ module.exports = (sequelize, Sequelize) => {
     },
     loot: {
       type: Sequelize.TEXT('long'),
-      get: function() { return JSON.parse(this.getDataValue('inventory')); },
-      set: function(val) { return this.setDataValue( 'inventory', JSON.stringify(val) ); },
+      get: function() { return JSON.parse(this.getDataValue('loot')); },
+      set: function(val) { return this.setDataValue( 'loot', JSON.stringify(val) ); },
       defaultValue: function() {
         let inv = [
           { 'label': 'Cart', 'extras': { 'icon': 'cart', 'capacity': 30 }, 'children': [], 'value':
