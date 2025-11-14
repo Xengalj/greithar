@@ -1507,14 +1507,6 @@ export default {
       let bonuses = {};
       if (this.loading) { return bonuses; }
 
-      // Add racial ability / attribute bonuses
-      for (let [name, val] of Object.entries(this.races[this.character.basics.race].abilityMods)) {
-        bonuses[`Racial ${name} Bonus`] = {};
-        bonuses[`Racial ${name} Bonus`].type = "Racial";
-        bonuses[`Racial ${name} Bonus`].targets = [ name ];
-        bonuses[`Racial ${name} Bonus`].value = val;
-      }
-
       // Add feats and other abilities to bonuses
       for (const ability of Object.values(this.abilities)) {
         if (ability.extras.active && Object.keys(ability.bonuses).length>0) {

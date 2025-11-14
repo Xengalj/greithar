@@ -1,4 +1,3 @@
-
 {
 	"Amaru": {
 		"rp": 12,
@@ -35,9 +34,9 @@
 			"names": [ "Auka", "Caipa", "Chalco", "Chinpu", "Kucha", "Llo'Que", "Nyusta", "Ophiiphelia", "Pari", "Phoexis", "Qatquil", "Qori", "Rauwa", "Shero", "Talla", "Tamia", "Thiesla", "Uluqu'u", "Usqu", "Wayna" ]
 		},
 		"abilityMods": {
-			"Dexterity": 2,
-			"Intelligence": 2,
-			"Strength": -2
+			"Dex": 2,
+			"Int": 2,
+			"Str": -2
 		},
 		"size": "medium",
 		"type": {
@@ -132,9 +131,9 @@
 			"weight": "110 lbs. +2d4×5 lbs. (120 – 150 lbs.)"
 		},
 		"abilityMods": {
-			"Dexterity": 2,
-			"Intelligence": 2,
-			"Constitution": -2
+			"Dex": 2,
+			"Int": 2,
+			"Con": -2
 		},
 		"size": "medium",
 		"type": {
@@ -220,9 +219,9 @@
 			"weight": "85 lbs. +2d8×5 lbs. (95 – 165 lbs.)"
 		},
 		"abilityMods": {
-			"Dexterity": 2,
-			"Charisma": 2,
-			"Intelligence": -2
+			"Dex": 2,
+			"Cha": 2,
+			"Int": -2
 		},
 		"size": "medium",
 		"type": {
@@ -321,9 +320,9 @@
 			"weight": "120 lbs. +2d4×7 lbs. (134 – 176 lbs.)"
 		},
 		"abilityMods": {
-			"Strengeth": 2,
-			"Constitution": 2,
-			"Wisdom": -2
+			"Str": 2,
+			"Con": 2,
+			"Wis": -2
 		},
 		"size": "medium",
 		"type": {
@@ -439,9 +438,9 @@
 			"weight": "180 lbs. +2d4×7 lbs. (194 – 236 lbs.)"
 		},
 		"abilityMods": {
-			"Constitution": 2,
-			"Wisdom": 2,
-			"Dexterity": -2
+			"Con": 2,
+			"Wis": 2,
+			"Dex": -2
 		},
 		"size": "medium",
 		"type": {
@@ -536,9 +535,9 @@
 			"weight": "85 lbs. +2d10×5 lbs. (95 – 185 lbs.)"
 		},
 		"abilityMods": {
-			"Strength": 2,
-			"Wisdom": 2,
-			"Charisma": -2
+			"Str": 2,
+			"Wis": 2,
+			"Cha": -2
 		},
 		"size": "medium",
 		"type": {
@@ -626,9 +625,9 @@
 			"weight": "450 lbs. +2d8×10 lbs. (470 – 630 lbs.)"
 		},
 		"abilityMods": {
-			"Strength": 2,
-			"Intelligence": 2,
-			"Charisma": -2
+			"Str": 2,
+			"Int": 2,
+			"Cha": -2
 		},
 		"size": "large",
 		"type": {
@@ -703,9 +702,9 @@
 			"weight": "20 lbs. +2d4 lbs. (22 – 28 lbs.)"
 		},
 		"abilityMods": {
-			"Dexterity": 2,
-			"Charisma": 2,
-			"Constitution": -4
+			"Dex": 2,
+			"Cha": 2,
+			"Con": -4
 		},
 		"size": "small",
 		"type": {
@@ -771,9 +770,9 @@
 			"weight": "420 lbs. +2d10×5 lbs. (430 – 520 lbs.)"
 		},
 		"abilityMods": {
-			"Dexterity": 2,
-			"Wisdom": 2,
-			"Strength": -4
+			"Dex": 2,
+			"Wis": 2,
+			"Str": -4
 		},
 		"size": "large",
 		"type": {
@@ -826,10 +825,10 @@
 			"weight": "460 lbs. +2d8×10 lbs. (480 – 620 lbs.)"
 		},
 		"abilityMods": {
-			"Constitution": 4,
-			"Intelligence": -2,
-			"Wisdom": -2,
-			"Charisma": -2
+			"Con": 4,
+			"Int": -2,
+			"Wis": -2,
+			"Cha": -2
 		},
 		"size": "medium",
 		"type": {
@@ -909,9 +908,9 @@
 			"weight": "675 lbs. +2d10×5 lbs. (385 – 475 lbs.)"
 		},
 		"abilityMods": {
-			"Constitution": 4,
-			"Dexterity": -2,
-			"Charisma": -2
+			"Con": 4,
+			"Dex": -2,
+			"Cha": -2
 		},
 		"size": "medium",
 		"type": {
@@ -1019,7 +1018,7 @@
 		"sub-types": {
 			"Ta-Matoran": {
 				"names": [],
-				"abilityMods": { "Charisma": 2 },
+				"abilityMods": { "Cha": 2 },
 				"traits": {
 					"Heart of Fire": {
 						"trigger": "Continuous",
@@ -1041,7 +1040,7 @@
 			},
 			"Ga-Matoran": {
 				"names": [],
-				"abilityMods": { "Intelligence": 2 },
+				"abilityMods": { "Int": 2 },
 				"traits": {
 					"Learner": {
 						"trigger": "Continuous",
@@ -1061,7 +1060,7 @@
 			},
 			"Le-Matoran": {
 				"names": [],
-				"abilityMods": { "Dexterity": 2 },
+				"abilityMods": { "Dex": 2 },
 				"traits": {
 					"Tree-Topper": {
 						"trigger": "Continuous",
@@ -1079,7 +1078,7 @@
 			},
 			"Po-Matoran": {
 				"names": [],
-				"abilityMods": { "Strength": 2 },
+				"abilityMods": { "Str": 2 },
 				"traits": {
 					"Carver": {
 						"trigger": "Continuous",
@@ -1097,7 +1096,7 @@
 			},
 			"Onu-Matoran": {
 				"names": [],
-				"abilityMods": { "Constitution": 2 },
+				"abilityMods": { "Con": 2 },
 				"traits": {
 					"Stonecunnign": {
 						"trigger": "Continuous",
@@ -1115,7 +1114,7 @@
 			},
 			"Ko-Matoran": {
 				"names": [],
-				"abilityMods": { "Wisdom": 2 },
+				"abilityMods": { "Wis": 2 },
 				"traits": {
 					"Ice Heart": {
 						"trigger": "Continuous",
@@ -1166,9 +1165,9 @@
 			"weight": "120 lbs. +2d4×7 lbs. (134 – 176 lbs.)"
 		},
 		"abilityMods": {
-			"Constitution": 2,
-			"Wisdom": 2,
-			"Charisma": -2
+			"Con": 2,
+			"Wis": 2,
+			"Cha": -2
 		},
 		"size": "medium",
 		"type": {
@@ -1263,9 +1262,9 @@
 			"weight": "90 lbs. +2d6×3 lbs. (96 – 126 lbs.)"
 		},
 		"abilityMods": {
-			"Dexterity": 2,
-			"Intelligence": 2,
-			"Constitution": -2
+			"Dex": 2,
+			"Int": 2,
+			"Con": -2
 		},
 		"size": "medium",
 		"type": {
@@ -1342,9 +1341,9 @@
 			"weight": "30 lbs. +2d4 lbs. (32 – 38 lbs.)"
 		},
 		"abilityMods": {
-			"Constitution": 2,
-			"Charisma": 2,
-			"Strength": -2
+			"Con": 2,
+			"Cha": 2,
+			"Str": -2
 		},
 		"size": "small",
 		"type": {
@@ -1439,9 +1438,9 @@
 			"weight": "25 lbs. +2d4 lbs. (27 – 33 lbs.)"
 		},
 		"abilityMods": {
-			"Dexterity": 2,
-			"Charisma": 2,
-			"Strength": -2
+			"Dex": 2,
+			"Cha": 2,
+			"Str": -2
 		},
 		"size": "small",
 		"type": {
@@ -1579,9 +1578,9 @@
 			"weight": "20 lbs. +2d4 lbs. (22 – 28 lbs.)"
 		},
 		"abilityMods": {
-			"Dexterity": 2,
-			"Strength": -4,
-			"Constitution": -2
+			"Dex": 2,
+			"Str": -4,
+			"Con": -2
 		},
 		"size": "small",
 		"type": {
@@ -1598,7 +1597,9 @@
 				"trigger": "Continuous",
 				"description": "Kobolds' naturally scaly skin grants them a +1 natural armor bonus.",
 				"benefit": { "target": "self", "text": "SHORT_BLURB" },
-				"bonuses": {}
+				"bonuses": {
+					"Kobold Scales": { "value": 1, "type": "Racial", "targets": [ "totalAC", "flatAC" ] }
+				}
 			},
 			"Crafty": {
 				"trigger": "Continuous",
@@ -1659,9 +1660,9 @@
 			"weight": "25 lbs. +2d4 lbs. (27 – 33 lbs.)"
 		},
 		"abilityMods": {
-			"Dexterity": 4,
-			"Strength": -2,
-			"Charisma": -2
+			"Dex": 4,
+			"Str": -2,
+			"Cha": -2
 		},
 		"size": "small",
 		"type": {
@@ -1726,8 +1727,8 @@
 			"weight": "145 lbs. +2d8×5 lbs. (155 – 255 lbs.)"
 		},
 		"abilityMods": {
-			"Dexterity": 2,
-			"Constitution": 2
+			"Dex": 2,
+			"Con": 2
 		},
 		"size": "medium",
 		"type": {

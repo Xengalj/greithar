@@ -1,0 +1,206 @@
+<template>
+  <div class="container">
+
+    <el-row :gutter="10" justify="space-between" style="margin-bottom:20px">
+      <el-col :xs="24" :span="12">
+        <el-input v-model="campaignNameFilter" @input="searchByName" id="nameFilter" placeholder="Campaign Name" aria-label="Campaign Name Filter" style="margin-bottom:5px">
+          <template #prepend>
+            <g-icon iconSize="20px" iconName="search" />
+          </template>
+          <template #append>
+            <el-button type="warning" @click="clearFilter"> Reset </el-button>
+          </template>
+        </el-input>
+      </el-col>
+      <el-col :offset="8" :span="3">
+        <el-button @click="createCampaign" plain>
+          <g-icon iconSize="24px" iconName="createScroll" style="margin-right: 5px;" /> New
+        </el-button>
+      </el-col>
+    </el-row>
+
+{{ campaigns }}
+
+    <!--
+    <el-table
+      v-loading="loading"
+      :data="campaigns"
+      max-height="600"
+      id="campaignTable"
+      stripe
+    >
+      <el-table-column prop="name" label="Name" min-width="100" sortable />
+      <el-table-column prop="user.username" label="User" sortable v-if="!userID" />
+      <el-table-column prop="basics.appearance.age" label="Age" sortable />
+      <el-table-column prop="basics.race" label="Race" sortable />
+      <el-table-column prop="classes" label="Class" min-width="90" sortable>
+        <template #default="scope">
+          <el-tag effect="dark">
+            <span v-if="Object.keys(scope.row.classes).length == 0"> Level 0 </span>
+            <span v-for="(cClass, cName, index) in scope.row.classes" :key="cName">
+              {{ capFirsts(cName) }} {{ cClass.levels }}
+              <span v-if="index < Object.keys(scope.row.classes).length-1"> / </span>
+            </span>
+          </el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column label="Actions" width="130" fixed="right">
+        <template #default="scope">
+          <el-row class="row-bg" justify="space-between">
+            <el-button @click="viewCampaign(scope.row.id)" type="primary" style="margin:0" circle>
+              <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
+            </el-button>
+            <el-button @click="editCampaign(scope.row.id)" type="primary" style="margin:0" circle>
+              <g-icon iconSize="24px" iconColor="#000" iconName="quill" />
+            </el-button>
+            <el-popconfirm :title="`Delete ${scope.row.name}?`">
+              <template #reference>
+                <el-button type="danger" style="margin:0" circle>
+                  <g-icon iconSize="24px" iconColor="#000" iconName="trash" />
+                </el-button>
+              </template>
+              <template #actions="">
+                <el-button @click="deleteCampaign(scope.row.id, scope.$index)" type="danger" size="small"> Yes </el-button>
+              </template>
+            </el-popconfirm>
+          </el-row>
+         </template>
+       </el-table-column>
+    </el-table>
+    -->
+
+    <!--
+    <el-row justify="center" class="char-pager">
+      <el-col :xs="19" :span="0">
+        <el-pagination
+          v-model:current-page="currentPage"
+          v-model:page-size="pageSize"
+          :background="true"
+          layout="prev, pager, next, total"
+          :total="totalToons"
+          @current-change="loadCampaigns"
+          @size-change="loadCampaigns"
+          hide-on-single-page
+        />
+      </el-col>
+      <el-col :xs="0"  :span="11">
+        <el-pagination
+          v-model:current-page="currentPage"
+          v-model:page-size="pageSize"
+          :page-sizes="[10, 25, 50, 100]"
+          :background="true"
+          layout="sizes, prev, pager, next, jumper, total"
+          :total="totalToons"
+          @current-change="loadCampaigns"
+          @size-change="loadCampaigns"
+          hide-on-single-page
+        />
+      </el-col>
+    </el-row>
+    -->
+
+  </div>
+</template>
+
+<script>
+import CampaignService from "@/services/campaign.service";
+
+export default {
+  name: "List Campaigns",
+  computed: {
+    currentUser() { return this.$store.state.auth.user; }
+  },
+  data() {
+    return {
+      loading: true,
+      advanced: false,
+      userID: this.$route.params.id, // user id
+
+      // filters
+      campaignNameFilter: "",
+
+      // pagination
+      currentPage: 1,
+      pageSize: 10,
+      totalToons: 0,
+
+      campaigns: [],
+    }
+  },
+
+  mounted() {
+    if (!this.currentUser.roles.includes("admin")) {
+      this.userID = this.currentUser.id;
+    }
+    this.loadCampaigns();
+  },
+
+  methods: {
+    capFirsts(string) { return string ? string.replace(/(^\w|\s\w)/g, m => m.toUpperCase()) : ""; },
+
+    loadCampaigns() {
+      let offset = this.pageSize * (this.currentPage-1);
+      CampaignService.getCampaignList(this.userID, offset, this.pageSize)
+      .then(response => {
+        console.log(response);
+
+        let tmp = JSON.parse(response.campaigns);
+        this.totalToons = tmp.count;
+        this.campaigns = tmp.rows;
+        this.loading = false;
+      })
+      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
+    },
+    createCampaign() {
+      CampaignService.createCampaign()
+      .then(response => {
+        console.log(response);
+        // let id = response.campaign.id;
+        // this.$router.push({ name: 'campaign-edit', params: { id: id } });
+      })
+      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err.message); });
+    },
+    viewCampaign(id) { this.$router.push({ name: 'campaign-view', params: { id: id } }); },
+    editCampaign(id) { this.$router.push({ name: 'campaign-edit', params: { id: id } }); },
+    deleteCampaign(id, rowIndex) {
+      CampaignService.deleteCampaign(id)
+      .then(response => { this.$message({ message: response, type: 'warning' }); this.campaigns.splice(rowIndex, 1); })
+      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
+    },
+
+    /***************************\
+    *                           *
+    *          FILTERS          *
+    *                           *
+    \***************************/
+    // HIDES non-matching rows (display: none)
+    searchByName(filter) {
+      let table, tr, td, i, txtValue;
+      filter = filter.toUpperCase();
+      table = document.getElementById("campaignTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    },
+    clearFilter() { this.charNameFilter = ""; this.searchByName(""); }
+
+  }
+};
+</script>
+<style media="screen">
+.char-pager {
+  margin-top: 10px;
+}
+.char-pager .el-pagination button .el-icon {
+  display: flex;
+}
+</style>

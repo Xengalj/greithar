@@ -1,16 +1,31 @@
 module.exports = (sequelize, Sequelize) => {
   const Campaign = sequelize.define("campaign", {
     name: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
+      defaultValue: "An Adventure Begins..."
+    },
+    loot: {
+      type: Sequelize.TEXT('long'),
+      get: function() { return JSON.parse(this.getDataValue('inventory')); },
+      set: function(val) { return this.setDataValue( 'inventory', JSON.stringify(val) ); },
+      defaultValue: function() {
+        let inv = [
+          { 'label': 'Cart', 'extras': { 'icon': 'cart', 'capacity': 30 }, 'children': [], 'value':
+            { 'Cost': 15, 'Weight': 0, 'Description': "This two-wheeled vehicle can be drawn by a single horse or other beast of burden, and is often used to transport goods across short distances. It comes with a harness." }
+          }
+        ];
+        return JSON.stringify(inv);
+      }
+    },
+    loot_lock: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: false
     },
     notes: {
-      type: Sequelize.JSON
+      type: Sequelize.JSON,
+      defaultValue: {}
     }
   });
-
-  // hasOne ( user )    = owner
-  // hasMany ( encounters )
-  // hasMany ( characters )
 
   return Campaign;
 };

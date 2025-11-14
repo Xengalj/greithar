@@ -792,7 +792,7 @@
     "ref":  { "mult": 0.33, "bonus": 0 },
     "will": { "mult": 0.5, "bonus": 2 },
     "special": [ [],
-      [ "Arcane Bond (Ex od Sp)", "Patron Spells", "Witch’s Familiar (Ex)", "Hex (REPLACE)" ], [ "Hex (REPLACE)" ], [], [ "Hex (REPLACE)" ], [],
+      [ "Patron Spells", "Witch’s Familiar (Ex)", "Hex (REPLACE)" ], [ "Hex (REPLACE)" ], [], [ "Hex (REPLACE)" ], [],
       [ "Hex (REPLACE)" ], [], [ "Hex (REPLACE)" ], [], [ "Major Hex", "Hex (REPLACE)" ],
       [], [ "Hex (REPLACE)" ], [], [ "Hex (REPLACE)" ], [],
       [ "Hex (REPLACE)" ], [], [ "Grand Hex", "Hex (REPLACE)" ], [], [ "Hex (REPLACE)" ]

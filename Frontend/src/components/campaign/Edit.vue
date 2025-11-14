@@ -2,20 +2,20 @@
   <div v-if="!loading" class="container">
 
     <!-- NAME & ADVANCED -->
-    <el-row :gutter="10">
+    <el-row>
       <el-col :span="12">
         <h3>
           {{ character.name }}
           <el-tag v-if="advanced" effect="dark" type="info" style="margin-right:10px;">
             ID : {{ character.id }}
           </el-tag>
-          <span v-if="character.basics.race && ['male','female','agender'].includes(character.basics.appearance.gender)">
+          <span v-if="character.basics.race && ['male','female','agander'].includes(character.basics.appearance.gender) && advanced">
             <el-button type="primary" @click="genRandomName()"> Random Name! </el-button>
           </span>
         </h3>
       </el-col>
-      <el-col :xs="3" :sm="2" :md="1"> <span v-if="advanced"> User: </span> </el-col>
-      <el-col :xs="9" :sm="4" :md="4">
+      <el-col :span="1"> <span v-if="advanced"> User: </span> </el-col>
+      <el-col :span="4">
         <el-select v-if="advanced && $store.state.auth.user.roles.includes('admin')" v-model="character.user.id" size="small" placeholder="Choose User" aria-label="User Select">
           <template #label="{ label }">
             <span>{{ label }}</span>
@@ -25,7 +25,7 @@
           </el-option>
         </el-select>
       </el-col>
-      <el-col :offset="1" :xs="7" :sm="3" :md="2" style="display: flex; justify-content: space-evenly;">
+      <el-col :offset="1" :span="6" style="display: flex; justify-content: space-evenly;">
         <el-switch v-model="advanced" inline-prompt active-text=" Advanced " inactive-text=" Normal " aria-label="Advanced Mode Switch" />
       </el-col>
     </el-row>
@@ -139,7 +139,7 @@
             <!-- Diety -->
             <el-col :span="8">
               <el-input v-model="character.basics.diety" aria-label="Worship Input">
-                <template #prepend>Diety</template>
+                <template #prepend>Beliefs</template>
               </el-input>
             </el-col>
             <el-col :span="8">
@@ -436,18 +436,16 @@
                 </el-descriptions-item>
                 <el-descriptions-item>
                   <template #label> Casting Style </template>
-                  {{ classes[cName].magic.style }}
+                  {{ this.classes[cName].magic.style }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                   <template #label> Casting Attribute </template>
-                  {{ classes[cName].magic.castingAtr }}
+                  {{ this.classes[cName].magic.castingAtr }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                   <template #label> Spells Per Level </template>
                   {{ classes[cName].magic.spellsKnown.perLevel }}
-                  <span v-if="classes[cName].magic.spellsKnown.byLevel">
-                    {{ classes[cName].magic.spellsKnown.byLevel[cClass.levels] }}
-                  </span>
+                  {{ classes[cName].magic.spellsKnown.byLevel[cClass.levels] }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                   <template #label> Galdur / <br> Spell Slots </template>
@@ -1199,83 +1197,60 @@
             <h4> <g-icon iconSize="32px" iconName="openScroll" /> Extras </h4>
           </el-divider>
         </template>
-
-        <el-row :gutter="10" justify="center">
-          <el-col :span="12">
-            <el-row>
-              <el-col :span="4" class="center-vert"> Hero Points </el-col>
-              <el-col :span="5"> <el-input-number v-model="character.settings.heroPoints" :min="0" :max="4" aria-label="Hero Points" /> </el-col>
-            </el-row>
-            <el-row>
-              <el-col :span="4" class="center-vert"> Open Tab </el-col>
-              <el-col :span="20">
-                <el-select v-model="character.settings.cardTab" size="small" aria-label="View's Tab Select">
-                  <el-option label="Main" value="Main" />
-                  <el-option label="Items" value="Items" />
-                  <el-option label="Skills" value="Skills" />
-                  <el-option label="abilities" value="abilities" />
-                  <el-option label="Spells" value="Spells" />
-                  <el-option label="Edit" value="Edit" />
-                </el-select>
-              </el-col>
-            </el-row>
-            <el-row>
-              <el-col :span="4" class="center-vert"> Open Main Sections </el-col>
-              <el-col :span="20">
-                <el-select v-model="character.settings.mainSections" size="small" multiple aria-label="View's main tab open sections">
-                  <el-option label="Defense" value="defense" />
-                  <el-option label="Actions" value="actions" />
-                  <el-option label="Resources" value="resources" />
-                </el-select>
-              </el-col>
-            </el-row>
-            <el-row>
-              <el-col :span="4" class="center-vert"> Open Inventory Sections </el-col>
-              <el-col :span="20">
-                <el-select v-model="character.settings.expandInventory" size="small" multiple aria-label="Gender Select">
-                  <el-option label="Magic Items" value="Magic Items" />
-                  <el-option label="Equipped" value="Equipped" />
-                  <el-option label="Armor" value="Armor" />
-                  <el-option label="Weapons" value="Weapons" />
-                  <el-option label="Hands" value="Hands" />
-                  <el-option label="Back" value="Back" />
-                  <el-option label="Items" value="Items" />
-                </el-select>
-              </el-col>
-            </el-row>
-            <el-row>
-              <el-col :span="4" class="center-vert"> Backstory </el-col>
-              <el-col :span="20">
-                <el-input v-model="character.basics.backstory" type="textarea" autosize aria-label="Backstory Textarea" />
-              </el-col>
-            </el-row>
-            <el-row style="margin-bottom:30px;">
-              <el-col :span="4" class="center-vert"> Notes </el-col>
-              <el-col :span="20">
-                <el-input v-model="character.notes" type="textarea" autosize aria-label="Notes Textarea" />
-              </el-col>
-            </el-row>
+        <el-row>
+          <el-col :span="4" class="center-vert"> Hero Points </el-col>
+          <el-col :span="5"> <el-input-number v-model="character.settings.heroPoints" :min="0" :max="4" aria-label="Hero Points" /> </el-col>
+          <el-col v-if="advanced" :offset="13" :span="2" class="center-horz">
+            <el-switch v-model="character.settings.isNPC" inline-prompt active-text=" NPC " inactive-text=" PLAYER " aria-label="Player / NPC Switch" />
           </el-col>
-
-          <el-col :span="12" class="center-horz">
-            <el-switch v-if="advanced" v-model="character.settings.isNPC" inline-prompt active-text=" NPC " inactive-text=" PLAYER " aria-label="Player / NPC Switch" />
-
-            <el-divider style="margin: 24px 0 10px 0"> Bonuses </el-divider>
-            <div>
-              <el-row :gutter="5">
-                <el-col :span="6"> <el-tag effect="dark" type="primary"> Name </el-tag> </el-col>
-                <el-col :span="2" class="center-horz"> <el-tag effect="dark" type="primary"> Value </el-tag> </el-col>
-                <el-col :span="4" class="center-horz"> <el-tag effect="dark" type="primary"> Type </el-tag> </el-col>
-                <el-col :span="12"> <el-tag effect="dark" type="primary"> Targets </el-tag> </el-col>
-                <el-divider style="margin: 5px 0 10px 0" />
-              </el-row>
-              <el-row v-for="(bonus, name) in bonuses" :key="name" :gutter="5">
-                <el-col :span="6"> {{ name }} </el-col>
-                <el-col :span="2" class="center-horz"> {{ bonus.value }} </el-col>
-                <el-col :span="4" class="center-horz"> {{ bonus.type }} </el-col>
-                <el-col :span="12"> {{ bonus.targets }} </el-col>
-              </el-row>
-            </div>
+        </el-row>
+        <el-row>
+          <el-col :span="4" class="center-vert"> Open Tab </el-col>
+          <el-col :span="20">
+            <el-select v-model="character.settings.cardTab" size="small" aria-label="View's Tab Select">
+              <el-option label="Main" value="Main" />
+              <el-option label="Items" value="Items" />
+              <el-option label="Skills" value="Skills" />
+              <el-option label="abilities" value="abilities" />
+              <el-option label="Spells" value="Spells" />
+              <el-option label="Edit" value="Edit" />
+            </el-select>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="4" class="center-vert"> Open Main Sections </el-col>
+          <el-col :span="20">
+            <el-select v-model="character.settings.mainSections" size="small" multiple aria-label="View's main tab open sections">
+              <el-option label="Defense" value="defense" />
+              <el-option label="Actions" value="actions" />
+              <el-option label="Resources" value="resources" />
+            </el-select>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="4" class="center-vert"> Open Inventory Sections </el-col>
+          <el-col :span="20">
+            <el-select v-model="character.settings.expandInventory" size="small" multiple aria-label="Gender Select">
+              <el-option label="Magic Items" value="Magic Items" />
+              <el-option label="Equipped" value="Equipped" />
+              <el-option label="Armor" value="Armor" />
+              <el-option label="Weapons" value="Weapons" />
+              <el-option label="Hands" value="Hands" />
+              <el-option label="Back" value="Back" />
+              <el-option label="Items" value="Items" />
+            </el-select>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="4" class="center-vert"> Backstory </el-col>
+          <el-col :span="20">
+            <el-input v-model="character.basics.backstory" type="textarea" autosize aria-label="Backstory Textarea" />
+          </el-col>
+        </el-row>
+        <el-row style="margin-bottom:30px;">
+          <el-col :span="4" class="center-vert"> Notes </el-col>
+          <el-col :span="20">
+            <el-input v-model="character.notes" type="textarea" autosize aria-label="Notes Textarea" />
           </el-col>
         </el-row>
       </el-collapse-item>
@@ -1345,24 +1320,20 @@
             </el-descriptions>
             <div class="center-horz" style="margin-top:10px">
               <div v-if="classes[newLevel.class].magic.spellsKnown">
-                <!-- Cleric Total -->
                 <span v-if="classes[newLevel.class].magic.spellsKnown.total">
                   {{ classes[newLevel.class].magic.spellsKnown.total }}
                 </span>
-                <!-- Wizard Initial -->
-                <span v-else-if="newLevel.level == 1 && classes[newLevel.class].magic.spellsKnown.starting">
-                  Add {{ classes[newLevel.class].magic.spellsKnown.starting }}
-                </span>
-                <!-- Wizard By Level -->
-                <span v-else-if="classes[newLevel.class].magic.spellsKnown.perLevel">
-                  Add {{ classes[newLevel.class].magic.spellsKnown.perLevel }} 2
-                </span>
-                <!-- Bard By Level -->
-                <span v-else-if="classes[newLevel.class].magic.spellsKnown.byLevel[newLevel.level]">
+                <span v-else-if="newLevel.level == 1 && classes[newLevel.class].magic.spellsKnown.byLevel[newLevel.level]">
                   Add
                   <span v-for="(num, index) in classes[newLevel.class].magic.spellsKnown.byLevel[newLevel.level]" :key="index">
                     {{ num }} level {{ index }}s{{ classes[newLevel.class].magic.spellsKnown.byLevel[newLevel.level].length-1 > index ? ', and ' : '' }}
                   </span>
+                </span>
+                <span v-else-if="newLevel.level == 1 && classes[newLevel.class].magic.spellsKnown.starting">
+                  Add {{ classes[newLevel.class].magic.spellsKnown.starting }} 1
+                </span>
+                <span v-else-if="classes[newLevel.class].magic.spellsKnown.perLevel">
+                  Add {{ classes[newLevel.class].magic.spellsKnown.perLevel }} 2
                 </span>
               </div>
               <el-button @click="newLevel.newSpells.push({ 'name': '', 'level': 0, 'class': newLevel.class })" type="primary"  ref="addSpell">
@@ -1464,18 +1435,10 @@
                 </el-tag>
               </el-col>
               <el-col :span="10">
-                <el-input-number v-model="newLevel.skills[name].newRanks" :min="0"
-                  :max="(character.basics.cr+1) - (character.skills[name].ranks + newLevel.skills[name].backgroundRanks?newLevel.skills[name].backgroundRanks:0)"
-                  size="small" aria-label="New Ranks">
-                  <template #suffix>
-                    <g-icon v-if="newLevel.skills[name].newRanks>0" iconSize="24px" iconName="sparkle" iconColor="var(--el-color-warning)" />
-                  </template>
-                </el-input-number>
+                <el-input-number v-model="newLevel.skills[name].newRanks" :min="0" :max="character.basics.cr+1-character.skills[name].ranks-newLevel.skills[name].backgroundRanks" size="small" aria-label="New Ranks" />
               </el-col>
               <el-col :span="10">
-                <el-input-number v-if="skill.background" v-model="newLevel.skills[name].backgroundRanks" :min="0"
-                  :max="Math.min(2, character.basics.cr+1-character.skills[name].ranks-newLevel.skills[name].newRanks)"
-                  size="small" aria-label="New Background Ranks" />
+                <el-input-number v-if="skill.background" v-model="newLevel.skills[name].backgroundRanks" :min="0" :max="Math.min(2, character.basics.cr+1-character.skills[name].ranks-newLevel.skills[name].newRanks)" size="small" aria-label="New Background Ranks" />
               </el-col>
             </el-row>
           </el-col>
@@ -1634,13 +1597,6 @@ export default {
       let bonuses = {};
       if (this.loading) { return bonuses; }
 
-      for (let [name, val] of Object.entries(this.races[this.character.basics.race].abilityMods)) {
-        bonuses[`Racial ${name} Bonus`] = {};
-        bonuses[`Racial ${name} Bonus`].type = "Racial";
-        bonuses[`Racial ${name} Bonus`].targets = [ name ];
-        bonuses[`Racial ${name} Bonus`].value = val;
-      }
-
       // Add feats and other abilities to bonuses
       for (const ability in this.abilities) {
         if (this.abilities[ability].extras.active && this.abilities[ability].bonuses) {
@@ -1747,7 +1703,7 @@ export default {
 
     if ( this.currentUser.roles.includes("admin") ) {
       UserService.getAllUsers()
-      .then(response => { this.users = response.data.rows.map((user) => { return {'username': user.username, 'id': user.id} } ); })
+      .then(response => { this.users = response.data.map((user) => { return {'username': user.username, 'id': user.id} } ); })
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
     }
 
@@ -1851,13 +1807,11 @@ export default {
 
       fNames = this.races[this.character.basics.race][this.character.basics.appearance.gender].names;
       rand = Math.floor(Math.random() * fNames.length);
-      this.character.name = fNames[rand];
+      this.character.name = fNames[rand] + " ";
 
-      if (this.races[this.character.basics.race].surnames) {
-        surnames = this.races[this.character.basics.race].surnames;
-        rand = Math.floor(Math.random() * Object.keys(surnames).length);
-        this.character.name += " " + Object.keys(surnames)[rand];
-      }
+      surnames = this.races[this.character.basics.race].surnames;
+      rand = Math.floor(Math.random() * Object.keys(surnames).length);
+      this.character.name += Object.keys(surnames)[rand];
     },
 
     // Class Methods
@@ -1870,6 +1824,7 @@ export default {
         "newSpells": [],
         "useGaldur": this.character.classes[this.newLevel.class] ? this.character.classes[this.newLevel.class].useGaldur : false,
       };
+
       // skills
       for (let [name, skill] of Object.entries(this.rules.skills)) {
         if ( this.classes[lvl.class].skills.includes(name) ) {
@@ -1890,16 +1845,14 @@ export default {
 
       // magic
       if (this.classes[lvl.class].magic) {
-        if (this.classes[lvl.class].magic.spellsKnown.byLevel) {
+        if (lvl.level != 1) {
           let newSpellArr = this.classes[lvl.class].magic.spellsKnown.byLevel[lvl.level];
           for (let level = 0; level < newSpellArr.length; level++) {
-            let lvlNum = newSpellArr[level];
-            if (lvl.level > 1) {
-              lvlNum -= Object.keys(this.character.spells[lvl.class][level]).length;
-            }
+            let lvlNum = newSpellArr[level] - Object.keys(this.character.spells[lvl.class][level]).length;
             for (let j = 0; j < lvlNum; j++) {
               lvl.newSpells.push({ "name": '', "level": level, "class": lvl.class });
             }
+
           }
         }
       }
@@ -1921,8 +1874,7 @@ export default {
 
       // Class
       let source = this.classes[this.newLevel.class];
-      // if toon doesn't have a level in the given class yet, make a new obj for it
-      if ( !this.character.classes[this.newLevel.class] ) { this.character.classes[this.newLevel.class] = {}; }
+      if ( !this.character.classes[this.newLevel.class] ) {this.character.classes[this.newLevel.class] = {}; }
       let cClass = this.character.classes[this.newLevel.class];
       cClass.levels = this.newLevel.level;
 
@@ -1961,15 +1913,15 @@ export default {
         this.newLevel.newSpells.forEach(spell => {
           if ( !this.character.spells[spell.class][spell.level] ) { this.character.spells[spell.class][spell.level] = {}; }
           this.character.spells[spell.class][spell.level][spell.name] = {
-            "SR": true,
-            "castTime": "1 Standard",
+            "SR": false,
+            "castTime": "",
             "casts": 0,
-            "components": "V,S, M/DF",
+            "components": "V,S",
             "description": "",
-            "duration": "Instant",
-            "range": "Close",
-            "save": "Ref (half)",
-            "target": "Self"
+            "duration": "",
+            "range": "",
+            "save": "",
+            "target": ""
           }
         });
       }

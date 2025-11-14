@@ -6,10 +6,6 @@ import Login from "./components/auth/Login.vue";
 import Register from "./components/auth/Register.vue";
 import PageNotFound from "./components/404.vue";
 
-// temporary template
-const temp = "<template><div class='user'><h2>User </h2><router-view /></div></template>";
-
-
 const routes = [
   /***************************\
   *                           *
@@ -138,7 +134,6 @@ const routes = [
         }
       },
       {
-        // load hero from $store, after /profile
         path: "view/:id",
         name: "character-view",
         component: () => import("./components/character/View.vue"),
@@ -153,11 +148,99 @@ const routes = [
         component: () => import("./components/character/Edit.vue"),
         meta: {
           breadcrumb: "Edit Character",
-          title: "Edit character",
+          title: "Edit Character",
         }
       },
     ],
   },
+
+  /***************************\
+  *                           *
+  *      CAMPAIGN ROUTES      *
+  *                           *
+  \***************************/
+  {
+    path: "/campaign",
+    name: "campaign",
+    redirect: { name: 'campaign-list' },
+    meta: {
+      breadcrumb: "Campaign",
+      title: "Campaign",
+    },
+    children: [
+      {
+        path: "list/:id?",
+        name: "campaign-list",
+        component: () => import("./components/campaign/List.vue"),
+        meta: {
+          breadcrumb: "Campaign List",
+          title: "Campaign List",
+        }
+      },
+      {
+        path: "view/:id",
+        name: "campaign-view",
+        component: () => import("./components/campaign/View.vue"),
+        meta: {
+          breadcrumb: "View Campaign",
+          title: "View Campaign",
+        }
+      },
+      {
+        path: "edit/:id",
+        name: "campaign-edit",
+        component: () => import("./components/campaign/Edit.vue"),
+        meta: {
+          breadcrumb: "Edit Campaign",
+          title: "Edit Campaign",
+        }
+      },
+    ],
+  },
+
+  /***************************\
+  *                           *
+  *     ENCOUNTER ROUTES      *
+  *                           *
+  \***************************/
+  // {
+  //   path: "/encoutner",
+  //   name: "encoutner",
+  //   redirect: { name: 'encoutner-list' },
+  //   meta: {
+  //     breadcrumb: "Encounter",
+  //     title: "Encounter",
+  //   },
+  //   children: [
+  //     {
+  //       path: "list/:id?",
+  //       name: "encoutner-list",
+  //       component: () => import("./components/encoutner/List.vue"),
+  //       meta: {
+  //         breadcrumb: "Encounter List",
+  //         title: "Encounter List",
+  //       }
+  //     },
+  //     {
+  //       path: "view/:id",
+  //       name: "encoutner-view",
+  //       component: () => import("./components/encoutner/View.vue"),
+  //       meta: {
+  //         breadcrumb: "View Encounter",
+  //         title: "View Encounter",
+  //       }
+  //     },
+  //     {
+  //       path: "edit/:id",
+  //       name: "encoutner-edit",
+  //       component: () => import("./components/encoutner/Edit.vue"),
+  //       meta: {
+  //         breadcrumb: "Edit Encounter",
+  //         title: "Edit Encoutner",
+  //       }
+  //     },
+  //   ],
+  // },
 
   /***************************\
   *                           *
@@ -181,74 +264,6 @@ const routes = [
       breadcrumb: "Equipment",
       title: "Equipment"
     }
-  },
-
-  /***************************\
-  *                           *
-  *        RULE ROUTES        *
-  *                           *
-  \***************************/
-  {
-    path: "/rules",
-    // component: Rules,
-    children: [
-      {
-        path: "combat",
-        name: "combat",
-        component: temp,
-        meta: {
-          breadcrumb: "Combat",
-          title: "Combat"
-        }
-      },
-      {
-        path: "magic",
-        name: "magic",
-        component: temp,
-        meta: {
-          breadcrumb: "Magic",
-          title: "Magic"
-        }
-        // children: divine, arcane, spell slots v galdur
-      }
-    ]
-  },
-
-
-  /***************************\
-  *                           *
-  *        LORE ROUTES        *
-  *                           *
-  \***************************/
-  {
-    path: "/lore",
-    name: "Lore",
-    component: temp,
-    meta: {
-      breadcrumb: "Lore",
-      title: "Lore",
-    },
-    children: [
-      {
-        path: "timeline",
-        name: "timeline",
-        component: temp,
-        meta: {
-          breadcrumb: "Timeline",
-          title: "Timeline",
-        }
-      },
-      {
-        path: "races/:id", // /lore/races/:id <race_name> ?
-        name: "race",
-        component: temp,
-        // component: () => import('./views/Races.vue'),
-        meta: {
-          breadcrumb: "Race",
-          title: "Race",
-        }
-      },
-    ]
   },
 
 

@@ -2,9 +2,9 @@
   <div class="container">
     <!--
       Splits:
-      XS : Phone : 360px
+      xs : Phone : 360px
       sm : Tablet : 800px
-      LG : Laptop : >
+      md : Laptop : >
     -->
     <el-row :gutter="10" justify="center" align="middle">
       <el-col :xs="24" :sm="12" :md="6">

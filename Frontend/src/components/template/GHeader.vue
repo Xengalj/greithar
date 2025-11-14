@@ -90,7 +90,13 @@
         </el-sub-menu>
 
         <!-- DM Links -->
-        <el-menu-item-group v-if="showAdmin" title="DM Things">
+        <el-menu-item-group v-if="showStoryteller" title="DM Things">
+          <!-- /campaign/list/ <user_id> -->
+          <el-menu-item index="userCampaigns">
+            <router-link :to="{ name: 'campaign-list', params: { id: currentUser.id } }" class="nav-link">
+              <g-icon :iconColor="iconColor" iconName="spellBook" iconSize="24px" /> Campaigns
+            </router-link>
+          </el-menu-item>
           <el-menu-item index="dmScreen">
             <router-link to="/dm-screen" class="nav-link">
               <g-icon :iconColor="iconColor" iconName="map" iconSize="24px" /> DM Screen
@@ -102,13 +108,18 @@
         <el-menu-item-group v-if="showAdmin" title="Admin">
           <el-menu-item index="users">
             <router-link to="/user/list" class="nav-link">
-              <g-icon :iconColor="iconColor" iconName="userList" iconSize="24px" /> Users
+              <g-icon :iconColor="iconColor" iconName="userList" iconSize="24px" /> All Users
             </router-link>
           </el-menu-item>
           <el-menu-item index="characters">
             <!-- /character/list/ -->
             <router-link :to="{ name: 'character-list' }" class="nav-link">
               <g-icon :iconColor="iconColor" iconName="userList" iconSize="24px" /> All Characters
+            </router-link>
+          </el-menu-item>
+          <el-menu-item index="campaigns">
+            <router-link to="/campaign/list" class="nav-link">
+              <g-icon :iconColor="iconColor" iconName="spellBook" iconSize="24px" /> All Campaigns
             </router-link>
           </el-menu-item>
         </el-menu-item-group>

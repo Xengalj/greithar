@@ -71,7 +71,11 @@ exports.read = (req, res) => {
 
     // find all users
   } else {
-    User.findAll({ include: [{ model: Role }] })
+    User.findAndCountAll({
+      include: [{ model: Role }],
+      offset: req.body.offset,
+      limit: req.body.limit
+    })
     .then(users => {
       if (!users) { return res.status(404).send({ message: "No users found!" }); }
       res.status(200).send({ data: users });

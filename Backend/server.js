@@ -73,8 +73,9 @@ if (isProd) {
 // routes
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
-require('./app/routes/character.routes')(app);
 require('./app/routes/data.routes')(app);
+require('./app/routes/character.routes')(app);
+require('./app/routes/campaign.routes')(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
@@ -119,9 +120,6 @@ function initial() {
     password: bcrypt.hashSync("pwd4eric", 8)
   })
   .then(user => { user.setRoles([1, 2, 3]) });
-
-  db.character.create()
-  .then(character => { character.setUser(2) });
 
   db.character.create({
     name: "Smelborp",
