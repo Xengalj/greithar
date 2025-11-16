@@ -827,10 +827,7 @@
             <template #title>
               <g-icon iconSize="32px" iconName="dizzyStar" /> Conditions
             </template>
-            <el-row :gutter="10" justify="space-between">
-              <el-col :span="8">
-                The current conditions affecting you
-              </el-col>
+            <el-row :gutter="10" justify="end">
               <el-col :span="8">
                 <el-select v-model="character.conditions" value-key="name" multiple placeholder="Common Conditions" aria-label="Conditions Select">
                   <template #tag>
@@ -845,7 +842,7 @@
                 </el-select>
               </el-col>
             </el-row>
-            <el-divider />
+            <el-divider> Active </el-divider>
             <el-row v-for="condition in character.conditions" :key="condition.name">
               <el-col :span="6" class="center-vert">
                 <el-tag type="info" size="large" effect="dark"> {{ condition.name }} </el-tag>
@@ -1124,18 +1121,7 @@
 
                 <el-row v-for="(spell, sName) in spells" :key="sName" :gutter="10">
                   <el-col :span="4" class="center-horz">
-                    <el-popconfirm
-                      :title="`Cast for ${spell.casts} Galdur?`"
-                      confirm-button-text="Yes"
-                      cancel-button-text="No"
-                      @confirm="console.log('yep')"
-                      @cancel="console.log('nnnope')"
-                      hide-icon
-                    >
-                      <template #reference>
-                        <el-button type="warning" plain> {{ sName }} </el-button>
-                      </template>
-                    </el-popconfirm>
+                    <el-button type="warning" plain> {{ sName }} </el-button>
                   </el-col>
 
                   <el-col :span="8">
@@ -1964,7 +1950,7 @@ export default {
             "SR": true,
             "castTime": "1 Standard",
             "casts": 0,
-            "components": "V,S, M/DF",
+            "components": "V, S, M/DF",
             "description": "",
             "duration": "Instant",
             "range": "Close",
@@ -2169,7 +2155,7 @@ export default {
         cClass[this.newSpell.level][this.newSpell.name] = {
           'casts': 0,
           'castTime': '1 Standard',
-          'components': 'V,S,M/DF',
+          'components': 'V, S, M/DF',
           'target': 'Self',
           'range': 'Close',
           'duration': 'Instant',

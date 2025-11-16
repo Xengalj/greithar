@@ -192,15 +192,15 @@
                   <el-col :span="22">
                     <el-tooltip placement="top" effect="light">
                       <el-progress
-                        v-if="character.health.total > 0"
-                        :percentage="Math.max(0, Math.floor(((character.health.total-character.health.damage)/character.health.total)*100))"
+                        v-if="health.total > 0"
+                        :percentage="Math.max(0, Math.floor(((health.total-health.damage)/health.total)*100))"
                         :color="healthColors"
                         :text-inside="true"
                         :stroke-width="24">
-                        HP : {{ character.health.total-character.health.damage }} / {{ character.health.total }}
+                        HP : {{ health.total-health.damage }} / {{ health.total }}
                       </el-progress>
                       <template #content>
-                        <span v-for="bonus in character.health.sources" :key="bonus"> {{ bonus+" " }} </span>
+                        <span v-for="bonus in health.sources" :key="bonus"> {{ bonus+" " }} </span>
                       </template>
                     </el-tooltip>
                   </el-col>
@@ -313,8 +313,8 @@
 
             <!-- Immunities & Weaknesses -->
             <el-row v-for="(type, name) in defenses" :key="name">
-              <el-col :span="5" v-if="type.length"> {{ capFirsts(name) }} </el-col>
-              <el-col :span="16">
+              <el-col :offset="10" :span="5" v-if="type.length"> {{ capFirsts(name) }} </el-col>
+              <el-col :span="9">
                 <span v-for="defense in type" :key="defense">
                   <span v-if="Array.isArray(defense)">
                     <el-tag v-for="item in defense" :key="item" size="small" effect="dark" type="info" style="margin-right:5px;">
@@ -763,7 +763,7 @@
         </el-collapse>
 
         <!-- Conditions -->
-        <el-row :gutter="10">
+        <el-row :gutter="10" style="margin-top:7px;">
           <el-col :span="4">
             <g-icon iconSize="32px" iconName="dizzyStar" /> Conditions
           </el-col>
@@ -781,6 +781,7 @@
             </el-select>
           </el-col>
         </el-row>
+        <el-divider> Active </el-divider>
         <el-row v-for="condition in character.conditions" :key="condition.name">
           <el-col :span="6" class="center-vert">
             <el-tag type="info" size="large" effect="dark"> {{ condition.name }} </el-tag>
@@ -1299,16 +1300,6 @@
       </el-row>
     </el-dialog>
 
-
-    <!--
-    <el-divider />
-    <div v-for="(item, name) in this.character" :key="name">
-      {{ name }} : {{ item }}
-      <br><br>
-    </div>
-    -->
-
-
   </div>
 </template>
 
@@ -1369,6 +1360,12 @@ export default {
     inventory() { return this.character.inventory; },
     abilities() { return this.character.abilities; },
     sizeStats() { return this.rules.size ? this.rules.size[this.character.basics.size] : { "space": "5 ft." }; },
+
+    health() {
+      let health = this.character.health;
+      this.bonusLoop(health, "HP");
+      return health;
+    },
 
     // USES: inventory
     invTotal() {
@@ -1784,7 +1781,6 @@ export default {
       bab = Math.floor(bab);
       return bab;
     },
-
     // USES: basics, inventory, bab, bonusLoop(bonuses), attributes
     actions() {
       let actions = [
@@ -2031,7 +2027,6 @@ export default {
 
       return actions;
     },
-
     // USES: bonusLoop(bonuses), attributes, invTotal
     skills() {
       let skills = {};
@@ -2067,7 +2062,6 @@ export default {
       }
       return skills;
     },
-
     // USES: bonusLoop(bonuses), attributes
     concentration() {
       let classes = {};
@@ -2080,7 +2074,6 @@ export default {
       } // end class loop
       return classes;
     },
-
     // USES: abilites
     knownMetas() {
       let knownMetas = [];

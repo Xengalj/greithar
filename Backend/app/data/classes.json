@@ -798,7 +798,7 @@
       [ "Hex (REPLACE)" ], [], [ "Grand Hex", "Hex (REPLACE)" ], [], [ "Hex (REPLACE)" ]
     ],
     "magic": {
-      "style": "Spontaneous Arcane",
+      "style": "Prepared Arcane",
       "castingAtr": "Int",
       "spellsKnown": {
         "starting": "All cantrips and 3 + Intelligence Modifier first level spells",
