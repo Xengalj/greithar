@@ -69,7 +69,7 @@ module.exports = (sequelize, Sequelize) => {
     },
     conditions: {
       type: Sequelize.JSON,
-      defaultValue: {}
+      defaultValue: []
     },
     attacks: {
       type: Sequelize.JSON,

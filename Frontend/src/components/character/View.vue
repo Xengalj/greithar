@@ -21,7 +21,7 @@
               <template #content> <span v-for="bonus in attributes.Str.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
             </el-tooltip>
             <el-tag v-else size="small" effect="dark" type="info">{{attributes.Str.total}}</el-tag>
-            <el-tag size="large" effect="dark" type="primary">{{ Math.floor((attributes.Str.total-10)/2) }}</el-tag>
+            <el-tag size="large" effect="dark" type="primary">{{ attributes.Str.mod }}</el-tag>
           </el-col>
           <el-col :offset="1" :span="2"> Int: </el-col>
           <el-col :span="3">
@@ -30,7 +30,7 @@
               <template #content> <span v-for="bonus in attributes.Int.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
             </el-tooltip>
             <el-tag v-else size="small" effect="dark" type="info">{{attributes.Int.total}}</el-tag>
-            <el-tag size="large" effect="dark" type="primary">{{ Math.floor((attributes.Int.total-10)/2) }}</el-tag>
+            <el-tag size="large" effect="dark" type="primary">{{ attributes.Int.mod }}</el-tag>
           </el-col>
         </el-row>
         <el-row>
@@ -41,7 +41,7 @@
               <template #content> <span v-for="bonus in attributes.Dex.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
             </el-tooltip>
             <el-tag v-else size="small" effect="dark" type="info">{{attributes.Dex.total}}</el-tag>
-            <el-tag size="large" effect="dark" type="primary">{{ Math.floor((attributes.Dex.total-10)/2) }}</el-tag>
+            <el-tag size="large" effect="dark" type="primary">{{ attributes.Dex.mod }}</el-tag>
           </el-col>
           <el-col :offset="1" :span="2"> Wis: </el-col>
           <el-col :span="3">
@@ -50,7 +50,7 @@
               <template #content> <span v-for="bonus in attributes.Wis.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
             </el-tooltip>
             <el-tag v-else size="small" effect="dark" type="info">{{attributes.Wis.total}}</el-tag>
-            <el-tag size="large" effect="dark" type="primary">{{ Math.floor((attributes.Wis.total-10)/2) }}</el-tag>
+            <el-tag size="large" effect="dark" type="primary">{{ attributes.Wis.mod }}</el-tag>
           </el-col>
         </el-row>
         <el-row>
@@ -61,7 +61,7 @@
               <template #content> <span v-for="bonus in attributes.Con.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
             </el-tooltip>
             <el-tag v-else size="small" effect="dark" type="info">{{attributes.Con.total}}</el-tag>
-            <el-tag size="large" effect="dark" type="primary">{{ Math.floor((attributes.Con.total-10)/2) }}</el-tag>
+            <el-tag size="large" effect="dark" type="primary">{{ attributes.Con.mod }}</el-tag>
           </el-col>
           <el-col :offset="1" :span="2"> Cha: </el-col>
           <el-col :span="3">
@@ -70,7 +70,7 @@
               <template #content> <span v-for="bonus in attributes.Cha.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
             </el-tooltip>
             <el-tag v-else size="small" effect="dark" type="info">{{attributes.Cha.total}}</el-tag>
-            <el-tag size="large" effect="dark" type="primary">{{ Math.floor((attributes.Cha.total-10)/2) }}</el-tag>
+            <el-tag size="large" effect="dark" type="primary">{{ attributes.Cha.mod }}</el-tag>
           </el-col>
         </el-row>
       </el-col>
@@ -401,24 +401,41 @@
                   </el-row>
                 </el-col>
                 <!-- Damage -->
-                <el-col v-if="data.value && data.value.damage" :offset="1" :span="2">
-                  <el-tag type="danger" effect="dark" size="small">
-                    {{ data.value.damage[character.basics.size] }}
-                    <el-tooltip v-if="data.value.dmgBonus.total" placement="top" effect="light">
-                      <span> <span v-if="data.value.dmgBonus.total >= 0">+</span>{{ data.value.dmgBonus.total }} </span>
-                      <template #content>
-                        <span v-for="bonus in data.value.dmgBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
-                      </template>
-                    </el-tooltip>
-                  </el-tag>
-                </el-col>
-                <!-- Damage Types -->
-                <el-col v-if="data.value && data.value.damageTypes" :span="4">
-                  <el-tag v-for="type in data.value.damageTypes" :key="type.value" size="small" effect="dark" type="info" style="margin-left:5px">
-                    <span :style="`color:${type.color}`">
-                      {{ type.label }}
-                    </span>
-                  </el-tag>
+                <el-col v-if="data.value && data.value.damage" :offset="1" :span="6">
+
+                  <el-tooltip placement="top" effect="light">
+
+                    <el-tag type="danger" effect="dark" size="small">
+                      {{ data.value.damage[character.basics.size] }}
+                      <span v-if="data.value.dmgBonus.total">
+                        <span v-if="data.value.dmgBonus.total >= 0">+</span>
+                        {{ data.value.dmgBonus.total }}
+                      </span>
+                    </el-tag>
+
+                    <template #content>
+                      <span v-for="bonus in data.value.dmgBonus.sources" :key="bonus"> {{ bonus+" " }} </span> <br>
+                      <el-tag v-for="type in data.value.damageTypes" :key="type.value" size="small" effect="dark" type="info" style="margin-left:5px">
+                        <span :style="`color:${type.color}`">
+                          {{ type.label }}
+                        </span>
+                      </el-tag>
+                    </template>
+                  </el-tooltip>
+
+                  <!-- Bonus Damage -->
+                  <el-tooltip v-for="(obj, name) in data.value.extras.extraDamages" :key="name" placement="top" effect="light">
+                    <el-tag size="small" effect="dark" type="warning" style="margin-left:5px">
+                      <span v-if="data.value.dmgBonus.total >= 0">+</span>
+                      {{ obj.Damage }}
+                    </el-tag>
+                    <template #content>
+                      From {{ name }} <br>
+                      <el-tag size="small" effect="dark" type="info" style="margin-left:5px">
+                        {{ obj.Type }}
+                      </el-tag>
+                    </template>
+                  </el-tooltip>
                 </el-col>
                 <!-- Crit -->
                 <el-col v-if="data.value && data.value.crit" :span="2" class="center-horz">
@@ -538,7 +555,7 @@
             <el-input v-model="itemFilter" class="w-60 mb-2" placeholder="Item Search" aria-label="Item Search" />
           </el-col>
           <el-col :span="4">
-            <el-button type="primary" @click="editItem({})">Add Item</el-button>
+            <el-button type="primary" @click="editItem({label:'', value:{}})">Add Item</el-button>
           </el-col>
         </el-row>
         <el-tree
@@ -1217,15 +1234,15 @@
           <el-row :gutter="5">
             <el-col :span="6"> <el-tag effect="dark" type="primary"> Name </el-tag> </el-col>
             <el-col :span="2" class="center-horz"> <el-tag effect="dark" type="primary"> Value </el-tag> </el-col>
-            <el-col :span="4" class="center-horz"> <el-tag effect="dark" type="primary"> Type </el-tag> </el-col>
-            <el-col :span="12"> <el-tag effect="dark" type="primary"> Targets </el-tag> </el-col>
+            <el-col :span="6" class="center-horz"> <el-tag effect="dark" type="primary"> Type </el-tag> </el-col>
+            <el-col :span="8"> <el-tag effect="dark" type="primary"> Targets </el-tag> </el-col>
             <el-divider style="margin: 5px 0 10px 0" />
           </el-row>
           <el-row v-for="(bonus, name) in bonuses" :key="name" :gutter="5">
             <el-col :span="6"> {{ name }} </el-col>
             <el-col :span="2" class="center-horz"> {{ bonus.value }} </el-col>
-            <el-col :span="4" class="center-horz"> {{ bonus.type }} </el-col>
-            <el-col :span="12"> {{ bonus.targets }} </el-col>
+            <el-col :span="6" class="center-horz"> {{ bonus.type }} </el-col>
+            <el-col :span="8"> {{ bonus.targets }} </el-col>
           </el-row>
         </div>
       </el-tab-pane>
@@ -1548,8 +1565,8 @@ export default {
       // Magic Items        For items in equipment . (slotted) Magic Items
       for (const slot of this.character.inventory[0].children) {
         for (const item of slot.children) {
-          if (item.bonuses) {
-            for (const [name, bonus] of Object.entries(item.bonuses)) {
+          if (item.value.Bonuses) {
+            for (const [name, bonus] of Object.entries(item.value.Bonuses)) {
               bonuses[name] = {};
               bonuses[name].type = bonus.type;
               bonuses[name].targets = bonus.targets;
@@ -1582,13 +1599,13 @@ export default {
       if (this.loading) { return attributes; }
       for (let [name, attr] of Object.entries(this.character.attributes)) {
         attributes[name].total = attr.base;
-        attributes[name].mod = Math.floor( (name == "-" ? 0 : attr.base - 10) / 2 );
         this.bonusLoop(attributes[name], name);
+        attributes[name].mod = Math.floor( (name == "-" ? 0 : attributes[name].total - 10) / 2 );
       }
       return attributes;
     },
 
-    // USES: bonusLoop(bonuses), inventory, abilities, invTotal
+    // USES: bonusLoop(bonuses), inventory, attributes, invTotal
     ac() {
       // total = All
       // touch = creature.ac.total - bonus.armor - bonus.shield - bonus.natural;
@@ -1598,7 +1615,8 @@ export default {
 
       // Min (Dex Mod, Armor Max Dex, Carry Cap Max Dex)
       // TODO: lose dex from blinded (and others)
-      let bonus = Math.min(this.attributes.Dex.mod, this.invTotal.maxDex, (armor ? armor.value["Max Dex"] : 100) );
+      let dex = this.attributes.Dex.mod;
+      let bonus = Math.min(dex, this.invTotal.maxDex, (armor ? armor.value["Max Dex"] : 100) );
       this.applyBonus('Dex', bonus, ac.total);
       this.applyBonus('Dex', bonus, ac.touch);
 
@@ -1924,6 +1942,7 @@ export default {
               range: weapon.value["Critical"].split("/")[0],
               mult: weapon.value["Critical"].split("/")[1]
             },
+            range: weapon.value.range
             // notes: weapon.value["Extras"]["Notes"]
           }
         };
@@ -1932,6 +1951,8 @@ export default {
         newAtk.value.crit.range = weapon.value.Critical.split("/")[0];
         newAtk.value.crit.mult = weapon.value.Critical.split("/")[1];
         newAtk.value.extras = (weapon.value.Extras) ? weapon.value.Extras : [];
+
+        // Attack Bonus
 
         this.applyBonus("BAB", this.bab, newAtk.value.atkBonus);
         this.applyBonus("Size", this.sizeStats["ac / atk"], newAtk.value.atkBonus);
@@ -1942,7 +1963,6 @@ export default {
         } else if (weapon.value.Extras["Masterwork"]) {
           this.applyBonus("Masterwork", 1, newAtk.value.atkBonus);
         }
-
         // Add AbilMod to atkBonus
         if (weapon.value.Extras.atkAbilOverride) {
           this.applyBonus(weapon.value.Extras.atkAbilOverride, this.attributes[weapon.value.Extras.atkAbilOverride].mod, newAtk.value.atkBonus);
@@ -1951,6 +1971,8 @@ export default {
         } else {
           this.applyBonus("Str", this.attributes.Str.mod, newAtk.value.atkBonus);
         }
+
+        // Damage Bonus
 
         // Add AbilMod to dmgBonus
         if (weapon.value.Extras.dmgAbilOverride) {
@@ -2245,7 +2267,7 @@ export default {
     \***************************/
     capFirsts(string) { return string ? string.replace(/(^\w|\s\w)/g, m => m.toUpperCase()) : ""; },
     bonusLoop(object, tString) {
-      // if (tString == "baseSpeed") {
+      // if (tString == "totalAC") {
       //   console.log(tString, object);
       // }
       // object = the bonus object we are adding to: { total: #, sources: [] }
@@ -2301,7 +2323,7 @@ export default {
       }
     },
     healthCheck() {
-      let deathNum, curr = this.character.health.total - this.character.health.damage;
+      let deathNum, curr = this.health.total - this.health.damage;
       if (this.character.basics.type.name == "undead") {
         deathNum = 0 - this.attributes.Cha.total;
       } else if (this.character.basics.type.name == "construct") {
@@ -2310,13 +2332,12 @@ export default {
         deathNum = 0 - this.attributes.Con.total;
       }
 
-      if (this.character.health.nonlethal == curr) {
+      if (this.health.nonlethal == curr) {
         // When (nonlethal damage == current HP) { you are STAGGERED }
         this.activeConditions.push(this.conditions[30]);
         this.$message({ message: "You become staggered", type: "warning" });
-        // this.$alert( "You become disabled", null, { center: true, dangerouslyUseHTMLString: true, });
 
-      } else if (this.character.health.nonlethal == curr+1) {
+      } else if (this.health.nonlethal == curr+1) {
         // When (nonlethal damage > current HP) { you are UNCONSIOUS }
         this.activeConditions.push(this.conditions[32]);
         this.$message({ message: "You fall unconsious", type: "warning" });
@@ -2417,8 +2438,10 @@ export default {
     },
     updateAction(draggingNode, dropNode) {
       let action = draggingNode.data.label;
-      let style = ['Melee', 'Ranged', 'Special'].includes(dropNode.data.label) ? dropNode.data.label : dropNode.parent.data.label;
-      this.character.attacks[action].style = style;
+      if (this.character.attacks[action]) {
+        let style = ['Melee', 'Ranged', 'Special'].includes(dropNode.data.label) ? dropNode.data.label : dropNode.parent.data.label;
+        this.character.attacks[action].style = style;
+      }
     },
 
     /***************************\
@@ -2503,28 +2526,21 @@ export default {
       }
     },
     saveItem(item) {
-      // console.log(item);
-      // console.log( this.$refs['tree'].getNode(item.label) );
-
+      // BUG: When changing the name of an item, duplicates it, since we check item name for updates
       if (this.$refs['tree'].getNode(item.label)) {
         this.$message({ message: `${item.label} Updated`, type: "success" });
       } else {
-        this.character.inventory[2].children.push(item);
+        this.inventory[2].children.push(item);
       }
       this.editingItem = false;
     },
     editItem(item) {
-      if (!Object.keys(item).length) {
-        item = {
-          label: "",
-          value: {
-            Description: "",
-            Cost: 0,
-            Weight: 0,
-            Ammount: 1,
-            Extras: { Notes: [] }
-          }
-        };
+      if (!item.value) { item.value = {}; }
+      let base = { Description:'', Cost:0, Weight:0, Ammount:1, Extras:{ Notes: [] } };
+      for (let [key, value] of Object.entries(base)) {
+        if (!item.value[key]) {
+          item.value[key] = value;
+        }
       }
       this.item = item;
       this.editingItem = true;

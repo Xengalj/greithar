@@ -43,29 +43,33 @@
     <el-divider> Bonuses </el-divider>
     <el-row class="center-horz" :gutter="5">
       <el-col :span="5"> <span v-if="Object.keys(ability.bonuses).length"> Name </span> </el-col>
-      <el-col :span="3"> <span v-if="Object.keys(ability.bonuses).length"> Type </span> </el-col>
-      <el-col :span="4"> <span v-if="Object.keys(ability.bonuses).length"> Value </span> </el-col>
-      <el-col :span="9"> <span v-if="Object.keys(ability.bonuses).length"> Targets </span> </el-col>
+      <el-col :span="6"> <span v-if="Object.keys(ability.bonuses).length"> Type </span> </el-col>
+      <el-col :span="5"> <span v-if="Object.keys(ability.bonuses).length"> Value </span> </el-col>
+      <el-col :span="5"> <span v-if="Object.keys(ability.bonuses).length"> Targets </span> </el-col>
       <el-col :span="3">
         <el-button size="small" type="primary" @click="addBonus()" style="margin-bottom:5px;"> Add Bonus </el-button>
       </el-col>
     </el-row>
-    <el-row v-for="(bonus, name) in ability.bonuses" :key="name" :gutter="5" style="margin-bottom:5px;">
+    <el-row v-for="(bonus, name) in ability.bonuses" :key="name" :gutter="10" align="middle" style="margin-bottom:5px;">
       <el-col :span="5" class="center-horz">
         <el-tag type="primary" effect="dark" size="large" style="margin-left:5px;"> {{ name }} </el-tag>
       </el-col>
-      <el-col :span="3">
+      <el-col :span="6">
         <el-input v-model="bonus.type" />
       </el-col>
-      <el-col :span="4">
-        <el-input-number v-model="bonus.value" style="width:120px;"/>
+      <el-col :span="6">
+        <el-input-number v-model="bonus.value" />
       </el-col>
-      <el-col :span="5">
+      <el-col :span="6">
         <el-select
           v-model="bonus.targets"
           value-key="name"
           size="small"
           multiple
+          filterable
+          allow-create
+          default-first-option
+          :reserve-keyword="false"
           placeholder="Modifier Target"
         >
           <template #tag>
@@ -79,15 +83,7 @@
           </el-option>
         </el-select>
       </el-col>
-      <el-col :span="5">
-        <el-input v-if="advanced" v-model="customTarget" placeholder="Enter custom target string">
-          <template #append>
-            <el-button @click="bonus.targets.push(customTarget); customTarget='';"> Add </el-button>
-          </template>
-        </el-input>
-        <!-- TODO : TargetAtkBonus || TargetDmgBonus -->
-      </el-col>
-      <el-col :span="2" class="center-horz center-vert">
+      <el-col :span="1" class="center-horz center-vert">
         <el-popconfirm title="Are you sure to delete this?">
           <template #reference>
             <el-button type="danger" circle size="small">
@@ -149,7 +145,6 @@ export default {
       original: { name: "", text: "" },
       newBonusName: "",
       advanced: this.$store.state.auth.user.roles.includes('admin'),
-      customTarget: "",
       selects: {
         "trigger": [
           { "color": "#E63415", "label": "Continuous",  "value": "Continuous" },
