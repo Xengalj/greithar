@@ -9,9 +9,9 @@ if(process.env.VUE_APP_ENV === "prod"){
 API_URL += '/api/encounter/';
 
 class EncounterService {
-  createEncounter(name) {
+  createEncounter(id) {
     return axios.post(API_URL + 'create',
-    { name: name },
+    { campaign_id: id, },
     { headers: authHeader() })
     .then(response => { return response.data; })
     .catch(err => { return err; });
@@ -19,34 +19,23 @@ class EncounterService {
 
   getEncounter(id) {
     return axios.post(API_URL + 'read',
-      { encounter_id: id },
-      { headers: authHeader() })
-      .then(response => { return response.data; })
-      .catch(err => { return err; });
+    { encounter_id: id },
+    { headers: authHeader() })
+    .then(response => { return response.data; })
+    .catch(err => { return err; });
   }
 
-  // Get a list of encounters the user has, or all encounters
-  getEncounterList(user_id, offset, limit) {
-    if (user_id) {
-      return axios.post(API_URL + 'read',
-      {
-        user_id: user_id,
-        offset: offset,
-        limit: limit
-      },
-      { headers: authHeader() })
-      .then(response => { return response.data; })
-      .catch(err => { return err; });
-    } else {
-      return axios.post(API_URL + 'read',
-      {
-        offset: offset,
-        limit: limit
-      },
-      { headers: authHeader() })
-      .then(response => { return response.data; })
-      .catch(err => { return err; });
-    }
+  // Get a list of encounters the campaign has
+  getEncounterList(id, offset, limit) {
+    return axios.post(API_URL + 'read',
+    {
+      campaign_id: id,
+      offset: offset,
+      limit: limit
+    },
+    { headers: authHeader() })
+    .then(response => { return response.data; })
+    .catch(err => { return err; });
   }
 
   updateEncounter(encounter) {
@@ -59,7 +48,7 @@ class EncounterService {
 
   deleteEncounter(id) {
     return axios.post(API_URL + 'delete',
-    { encounter_id: id },
+    { id: id },
     { headers: authHeader() })
     .then(response => { return response.data; })
     .catch(err => { return err; });

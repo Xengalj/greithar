@@ -19,9 +19,6 @@
       </el-col>
     </el-row>
 
-{{ campaigns }}
-
-    <!--
     <el-table
       v-loading="loading"
       :data="campaigns"
@@ -31,28 +28,42 @@
     >
       <el-table-column prop="name" label="Name" min-width="100" sortable />
       <el-table-column prop="user.username" label="User" sortable v-if="!userID" />
-      <el-table-column prop="basics.appearance.age" label="Age" sortable />
-      <el-table-column prop="basics.race" label="Race" sortable />
-      <el-table-column prop="classes" label="Class" min-width="90" sortable>
+
+      <!--
+      <el-table-column prop="characters" label="Characters" min-width="90" sortable>
         <template #default="scope">
-          <el-tag effect="dark">
-            <span v-if="Object.keys(scope.row.classes).length == 0"> Level 0 </span>
-            <span v-for="(cClass, cName, index) in scope.row.classes" :key="cName">
-              {{ capFirsts(cName) }} {{ cClass.levels }}
-              <span v-if="index < Object.keys(scope.row.classes).length-1"> / </span>
-            </span>
+          {{ scope }}
+          <el-tag v-for="toon in scope" :key="toon.id">
+            {{ toon.name }}
           </el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="Actions" width="130" fixed="right">
+      -->
+
+      <el-table-column label="Loot" width="100">
         <template #default="scope">
           <el-row class="row-bg" justify="space-between">
-            <el-button @click="viewCampaign(scope.row.id)" type="primary" style="margin:0" circle>
+
+            <el-button @click="viewLoot(scope.row.id)" type="info" style="margin:0" circle>
               <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
             </el-button>
+
+            <el-button @click="editLoot(scope.row.id)" type="info" style="margin:0" circle>
+              <g-icon iconSize="24px" iconColor="#000" iconName="quill" />
+            </el-button>
+
+          </el-row>
+        </template>
+      </el-table-column>
+
+      <el-table-column label="Actions" width="100" fixed="right">
+        <template #default="scope">
+          <el-row class="row-bg" justify="space-between">
+
             <el-button @click="editCampaign(scope.row.id)" type="primary" style="margin:0" circle>
               <g-icon iconSize="24px" iconColor="#000" iconName="quill" />
             </el-button>
+
             <el-popconfirm :title="`Delete ${scope.row.name}?`">
               <template #reference>
                 <el-button type="danger" style="margin:0" circle>
@@ -63,13 +74,12 @@
                 <el-button @click="deleteCampaign(scope.row.id, scope.$index)" type="danger" size="small"> Yes </el-button>
               </template>
             </el-popconfirm>
+
           </el-row>
          </template>
        </el-table-column>
     </el-table>
-    -->
 
-    <!--
     <el-row justify="center" class="char-pager">
       <el-col :xs="19" :span="0">
         <el-pagination
@@ -77,7 +87,7 @@
           v-model:page-size="pageSize"
           :background="true"
           layout="prev, pager, next, total"
-          :total="totalToons"
+          :total="totalCampaigns"
           @current-change="loadCampaigns"
           @size-change="loadCampaigns"
           hide-on-single-page
@@ -90,14 +100,15 @@
           :page-sizes="[10, 25, 50, 100]"
           :background="true"
           layout="sizes, prev, pager, next, jumper, total"
-          :total="totalToons"
+          :total="totalCampaigns"
           @current-change="loadCampaigns"
           @size-change="loadCampaigns"
           hide-on-single-page
         />
       </el-col>
     </el-row>
-    -->
+
+    {{ campaigns }}
 
   </div>
 </template>
@@ -122,7 +133,7 @@ export default {
       // pagination
       currentPage: 1,
       pageSize: 10,
-      totalToons: 0,
+      totalCampaigns: 0,
 
       campaigns: [],
     }
@@ -142,10 +153,9 @@ export default {
       let offset = this.pageSize * (this.currentPage-1);
       CampaignService.getCampaignList(this.userID, offset, this.pageSize)
       .then(response => {
-        console.log(response);
-
         let tmp = JSON.parse(response.campaigns);
-        this.totalToons = tmp.count;
+console.log(tmp);
+        this.totalCampaigns = tmp.count;
         this.campaigns = tmp.rows;
         this.loading = false;
       })
@@ -154,15 +164,17 @@ export default {
     createCampaign() {
       CampaignService.createCampaign()
       .then(response => {
-        console.log(response);
-        // let id = response.campaign.id;
-        // this.$router.push({ name: 'campaign-edit', params: { id: id } });
+        // console.log(response);
+        let id = response.campaign.id;
+        this.$router.push({ name: 'campaign-edit', params: { id: id } });
       })
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err.message); });
     },
     viewCampaign(id) { this.$router.push({ name: 'campaign-view', params: { id: id } }); },
     editCampaign(id) { this.$router.push({ name: 'campaign-edit', params: { id: id } }); },
     deleteCampaign(id, rowIndex) {
+      console.log('deleteCampaign', id);
+      console.log(rowIndex);
       CampaignService.deleteCampaign(id)
       .then(response => { this.$message({ message: response, type: 'warning' }); this.campaigns.splice(rowIndex, 1); })
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });

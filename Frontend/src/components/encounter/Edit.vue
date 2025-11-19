@@ -7,8 +7,10 @@
           <g-icon iconSize="32px" iconName="map" />
         </el-divider>
 
-        <el-input v-model="campaign.name" aria-label="Campaign Title">
-          <template #prepend> Title </template>
+        <el-input v-model="campaign.name" @input="onChangeEvent" aria-label="inputName">
+          <template #prepend>
+            Title
+          </template>
         </el-input>
 
         <br>
@@ -117,7 +119,7 @@
 
         <el-row :gutter="10" justify="space-between">
           <el-col :xs="24" :span="14">
-            <el-input v-model="encounterFilter" @input="searchByName" id="nameFilter" placeholder="Encounter Name" aria-label="Encounter Name Filter">
+            <el-input v-model="encounterNameFilter" @input="searchByName" id="nameFilter" placeholder="Encounter Name" aria-label="Encounter Name Filter">
               <template #prefix>
                 <g-icon iconSize="20px" iconName="search" />
               </template>
@@ -135,17 +137,35 @@
 
         <el-table
           v-loading="loading"
-          :data="encounters"
+          :data="campaign.encounters"
           max-height="600"
           id="encounterTable"
           stripe
         >
           <el-table-column prop="id" label="Id" sortable />
-          <!-- <el-table-column prop="extras.name" label="Name" min-width="100" sortable>
+          <el-table-column v-if="extras && extras.name" prop="extras.name" label="Name" min-width="100" sortable />
+
+          <!--
+          <el-table-column prop="npcs" label="NPCs" min-width="90" sortable>
             <template #default="scope">
               {{ scope }}
+              <el-tag v-for="toon in scope" :key="toon.id">
+                {{ toon.name }}
+              </el-tag>
             </template>
-          </el-table-column> -->
+          </el-table-column>
+          -->
+
+          <!--
+          <el-table-column prop="monsters" label="Monsters" min-width="90" sortable>
+            <template #default="scope">
+              {{ scope }}
+              <el-tag v-for="toon in scope" :key="toon.id">
+                {{ toon.name }}
+              </el-tag>
+            </template>
+          </el-table-column>
+          -->
 
           <!-- <el-table-column label="Notes" width="100">
             <template #default="scope">
@@ -162,6 +182,7 @@
               </el-row>
             </template>
           </el-table-column> -->
+
 
           <el-table-column label="Actions" width="100" fixed="right">
             <template #default="scope">
@@ -198,9 +219,9 @@
               v-model:page-size="pageSize"
               :background="true"
               layout="prev, pager, next, total"
-              :total="totalEncounters"
-              @current-change="loadEncounters"
-              @size-change="loadEncounters"
+              :total="totalCampaigns"
+              @current-change="loadCampaigns"
+              @size-change="loadCampaigns"
               hide-on-single-page
             />
           </el-col>
@@ -211,9 +232,9 @@
               :page-sizes="[10, 25, 50, 100]"
               :background="true"
               layout="sizes, prev, pager, next, jumper, total"
-              :total="totalEncounters"
-              @current-change="loadEncounters"
-              @size-change="loadEncounters"
+              :total="totalCampaigns"
+              @current-change="loadCampaigns"
+              @size-change="loadCampaigns"
               hide-on-single-page
             />
           </el-col>
@@ -253,23 +274,15 @@
 
 <script>
 import CampaignService from "@/services/campaign.service";
-import EncounterService from "@/services/encounter.service";
 
 export default {
-  name: "Edit Campaign",
+  name: "Edit Encounter",
   data() {
     return {
       loading: true,
       itemFilter: '',
-      encounterFilter: '',
-
-      // pagination
-      currentPage: 1,
-      pageSize: 10,
-      totalEncounters: 0,
 
       campaign: {},
-      encounters: []
     };
   },
   computed: {
@@ -278,15 +291,28 @@ export default {
   },
   mounted() {
     if (!this.rules.size) { this.$router.push("/"); }
+
     if ( this.currentUser.roles.includes("storyteller") ) {
+      // CampaignService.getAllUsers()
+      // .then(response => { this.users = response.data.map((user) => { return {'username': user.username, 'id': user.id} } ); })
+      // .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
+
       CampaignService.getCampaign(this.$route.params.id)
       .then((response) => {
         console.log(response);
         this.campaign = response.campaign;
-        this.loadEncounters();
+
+        // if (!this.character.user) { this.character.user = {} }
+        this.loading = false;
       })
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
+      // .finally(() => {
+      //   // Put [Add Spell] btn in class spells tabs, wait til refs loaded
+      //   const spellTabs = this.$refs.spellsTab.$el.querySelector('.el-tabs__nav-scroll');
+      //   spellTabs.appendChild(this.$refs.addSpell.$el);
+      // });
     }
+
   },
 
   watch: {
@@ -315,17 +341,11 @@ export default {
     *          FILTERS          *
     *                           *
     \***************************/
-    // Loot Search, part 2
-    filterNode(value, data) {
-      if (!value) return true;
-      return data.label.indexOf(value) !== -1;
-    },
-    // filters encounter table
     // HIDES non-matching rows (display: none)
     searchByName(filter) {
       let table, tr, td, i, txtValue;
       filter = filter.toUpperCase();
-      table = document.getElementById("encounterTable");
+      table = document.getElementById("campaignTable");
       tr = table.getElementsByTagName("tr");
       for (i = 0; i < tr.length; i++) {
         td = tr[i].getElementsByTagName("td")[0];
@@ -339,42 +359,24 @@ export default {
         }
       }
     },
-    clearFilter() { this.encounterFilter = ""; this.searchByName(""); },
+    clearFilter() { this.charNameFilter = ""; this.searchByName(""); },
+    // Loot Search, part 2
+    filterNode(value, data) {
+      if (!value) return true;
+      return data.label.indexOf(value) !== -1;
+    },
 
     /***************************\
     *                           *
     *         ENCOUNTERS        *
     *                           *
     \***************************/
-    loadEncounters() {
-      let offset = this.pageSize * (this.currentPage-1);
-      EncounterService.getEncounterList(this.campaign.id, offset, this.pageSize)
-      .then(response => {
-        let tmp = response.encounters;
-        this.totalEncounters = tmp.count;
-        this.encounters = tmp.rows;
-        this.loading = false;
-      })
-      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
-    },
-    createEncounter() {
-      EncounterService.createEncounter(this.campaign.id)
-      .then(response => {
-        console.log(response);
-        // let id = response.encounter.id;
-        // this.$router.push({ name: 'encounter-edit', params: { id: id } });
-      })
-      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err.message); });
-    },
-    viewEncounter(id) {
-      console.log('view encounter', id);
-      // this.$router.push({ name: 'campaign-view', params: { id: id } });
-    },
-    editEncounter(id) { this.$router.push({ name: 'encounter-edit', params: { id: id } }); },
+    viewEncounter(id) { this.$router.push({ name: 'campaign-view', params: { id: id } }); },
+    editEncounter(id) { this.$router.push({ name: 'campaign-edit', params: { id: id } }); },
     deleteEncounter(id, rowIndex) {
       console.log('deleteEncounter', id);
       console.log(rowIndex);
-      // CampaignService.deleteEncounter(id)
+      // CampaignService.deleteCampaign(id)
       // .then(response => { this.$message({ message: response, type: 'warning' }); this.campaigns.splice(rowIndex, 1); })
       // .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
     },

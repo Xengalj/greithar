@@ -1,22 +1,25 @@
 module.exports = (sequelize, Sequelize) => {
   const Encounters = sequelize.define("encounters", {
-    creatures: {
+    monsters: {
       type: Sequelize.TEXT('long'),
-      get: function() { return JSON.parse(this.getDataValue('creatures')); },
-      set: function(val) { return this.setDataValue( 'creatures', JSON.stringify(val) ); },
+      get: function() { return JSON.parse(this.getDataValue('monsters')); },
+      set: function(val) { return this.setDataValue( 'monsters', JSON.stringify(val) ); },
+      defaultValue: function() {
+        let monsters = [];
+        return JSON.stringify(monsters);
+      }
+    },
+    npcs: {
+      type: Sequelize.TEXT('long'),
+      get: function() { return JSON.parse(this.getDataValue('npcs')); },
+      set: function(val) { return this.setDataValue( 'npcs', JSON.stringify(val) ); },
       defaultValue: function() {
         let npcs = [];
         return JSON.stringify(npcs);
       }
     },
-    characters: {
-      type: Sequelize.TEXT('long'),
-      get: function() { return JSON.parse(this.getDataValue('characters')); },
-      set: function(val) { return this.setDataValue( 'characters', JSON.stringify(val) ); },
-      defaultValue: function() {
-        let toons = [];
-        return JSON.stringify(toons);
-      }
+    extras: {
+      type: Sequelize.JSON
     },
     notes: {
       type: Sequelize.JSON

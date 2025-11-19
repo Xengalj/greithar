@@ -23,7 +23,7 @@ module.exports = (sequelize, Sequelize) => {
     },
     notes: {
       type: Sequelize.JSON,
-      defaultValue: {}
+      defaultValue: []
     }
   });
 

@@ -13,7 +13,9 @@
 
     <g-icon iconName="d20" iconSize="24px" iconColor="#CCC" />
 
-    <el-divider />
+    <el-divider style="max-width:50%">
+      <h4> <g-icon iconSize="32px" iconName="magicSwirl" /> Classes </h4>
+    </el-divider>
 
     <el-button @click="onClickEvent" size="large" type="primary" circle>
       CONTENT

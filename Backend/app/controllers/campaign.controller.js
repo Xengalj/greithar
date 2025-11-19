@@ -30,7 +30,7 @@ exports.createCampaign = (req, res) => {
           // set owner
           campaign.setUser(req.userId)
           .then(() => {
-            res.status(201).send({ campaign: JSON.stringify(campaign) });
+            res.status(201).send({ campaign: campaign });
           })
           .catch(err => { res.status(500).send({ message: err.message }); })
         })
@@ -50,7 +50,6 @@ exports.createCampaign = (req, res) => {
 \***************************/
 // returns either a list of campaigns, or if an id was given, returns that one
 exports.readCampaign = (req, res) => {
-  console.log("******************** READ CAMPAIGN");
   // If campaign_id is provided, find that campaign
   if (req.body.campaign_id) {
     Campaign.findOne({ where: { id: req.body.campaign_id }, include: [{ model: Character }, { model: Encounter }] })
@@ -64,7 +63,8 @@ exports.readCampaign = (req, res) => {
   } else if (req.body.user_id) {
     Campaign.findAndCountAll({
       where: { userId: req.body.user_id },
-      include: [{ model: Character }, { model: Encounter }],
+      include: [{ model: Character }, { model: Encounter }, { model: User }],
+      // TODO: include just username
       offset: req.body.offset,
       limit: req.body.limit
     })
@@ -77,7 +77,7 @@ exports.readCampaign = (req, res) => {
   // find all campaigns~
   } else {
     Campaign.findAndCountAll({
-      include: [{ model: Character }, { model: Encounter }],
+      include: [{ model: Character }, { model: Encounter }, { model: User }],
       offset: req.body.offset,
       limit: req.body.limit
     })
@@ -190,13 +190,12 @@ exports.updateCampaign = (req, res) => {
 *                           *
 \***************************/
 exports.deleteCampaign = (req, res) => {
-  console.log("******************** DELETE CAMPAIGN");
   Campaign.findByPk( req.body.id )
   .then(campaign => {
     if (!campaign) { return res.status(404).send({ message: "Campaign not found!" }); }
     let name = campaign.name;
     campaign.destroy();
-    res.status(200).send({ message: `${name} delteted successfully!` });
+    res.status(200).send({ message: `${name} deleted successfully!` });
   })
   .catch(err => { res.status(500).send({ message: err.message }); });
 };
@@ -213,52 +212,37 @@ exports.deleteCampaign = (req, res) => {
 // creates a blank encounter
 exports.createEncounter = (req, res) => {
   console.log("******************** CREATE ENCOUNTER");
-  // // only let storytellers create encounters
-  // let isAdmin, isStoryteller = false;
-  //
-  // // Find the given user by user_id
-  // User.findOne({ where: { id: req.body.user_id }, include: [{ model: Role }] })
-  // .then(user => {
-  //   if (!user) { return res.status(404).send({ message: "User not found!" }); }
-  //   user.roles.forEach(role => {
-  //     if (role.dataValues.name === "admin") { isAdmin = true; }
-  //     if (role.dataValues.name === "storyteller") { isStoryteller = true; }
-  //   });
-  //   console.log(`isAdmin = ${isAdmin}`);
-  //   console.log(`isStoryteller = ${isStoryteller}`);
-  //
-  // })
-  // .catch(err => { return res.status(500).send({ message: err.message }); });
-  //
-  // console.log(` after isAdmin = ${isAdmin}`);
-  // console.log(` after isStoryteller = ${isStoryteller}`);
-  //
-  //
-  // if (isAdmin || isStoryteller) {
-  //   Encounter.create({ name: req.body.name, loot_lock: false, notes: req.body.notes })
-  //   .then(encounter => {
-  //
-  //     // set characters (by id array)
-  //     if (req.body.characters) {
-  //       // find all toons where id is = [id array]
-  //       Character.findAll({ where: { id: { [Op.or]: req.body.characters } } })
-  //       .then( characters => {
-  //         encounter.setCharacters(characters)
-  //         .then(() => { })
-  //         .catch(err => { return res.status(500).send({ message: err.message }); });
-  //       })
-  //     }
-  //
-  //     // set owner
-  //     encounter.setUser(req.userId)
-  //     .then(() => { res.status(201).send({ encounter: encounter }); })
-  //     .catch(err => { res.status(500).send({ message: "Could not set Encounter Owner" }); });
-  //
-  //   })
-  //   .catch(err => { res.status(500).send({ message: err.message }); });
-  //
-  // } else { return res.status(401).send({ message: "Only Storytellers may create encounters" }); }
+  console.log(req.body);
+  // only let storytellers create encounters
+  let isAdmin, isStoryteller = false;
 
+  // Find the given user by user_id
+  User.findByPk(req.userId).then(user => {
+    user.getRoles().then(roles => {
+      roles.forEach(role => {
+        if (role.dataValues.name === "admin") { isAdmin = true; }
+        if (role.dataValues.name === "storyteller") { isStoryteller = true; }
+      });
+
+      if (isAdmin || isStoryteller) {
+        if (req.body.campaign_id) {
+          Encounter.create()
+          .then(encounter => {
+            encounter.setCampaign(req.body.campaign_id)
+            .then(() => {
+              res.status(201).send({ encounter: encounter });
+            })
+            .catch(err => { res.status(500).send({ message: err.message }); });
+          })
+          .catch(err => { return res.status(500).send({ message: err.message }); });
+
+        } else { return res.status(400).send({ message: "Encounters require campaigns" }); }
+      } else { return res.status(401).send({ message: "Only Storytellers may create encounters" }); }
+
+    })
+    .catch(err => { return res.status(500).send({ message: err.message }); });
+  })
+  .catch(err => { return res.status(500).send({ message: err.message }); });
 };
 
 /***************************\
@@ -269,42 +253,42 @@ exports.createEncounter = (req, res) => {
 // returns either a list of encounters, or if an id was given, returns that one
 exports.readEncounter = (req, res) => {
   console.log("******************** READ ENCOUNTER");
-  // // If encounter_id is provided, find that encounter
-  // if (req.body.encounter_id) {
-  //   Encounter.findOne({ where: { id: req.body.encounter_id }, include: [{ model: Character }, { model: Encounter }] })
-  //   .then(encounter => {
-  //     if (!encounter) { return res.status(404).send({ message: "No encounters found!" }); }
-  //     res.status(200).send({ encounter: encounter });
-  //   })
-  //   .catch(err => { res.status(500).send({ message: err.message }); });
-  //
-  // // If user_id is provided, find that user's encounters
-  // } else if (req.body.user_id) {
-  //   Encounter.findAndCountAll({
-  //     where: { userId: req.body.user_id },
-  //     include: [{ model: Character }, { model: Encounter }],
-  //     offset: req.body.offset,
-  //     limit: req.body.limit
-  //   })
-  //   .then(encounters => {
-  //     if (!encounters) { return res.status(404).send({ message: "No encounters found!" }); }
-  //     res.status(200).send({ encounters: JSON.stringify(encounters) });
-  //   })
-  //   .catch(err => { res.status(500).send({ message: err.message }); });
-  //
+  // If encounter_id is provided, find that encounter
+  if (req.body.encounter_id) {
+    Encounter.findOne({ where: { id: req.body.encounter_id } })
+    .then(encounter => {
+      if (!encounter) { return res.status(404).send({ message: "No encounters found!" }); }
+      res.status(200).send({ encounter: encounter });
+    })
+    .catch(err => { res.status(500).send({ message: err.message }); });
+
+  // If campaign_id is provided, find that campaign's encounters
+  } else if (req.body.campaign_id) {
+    Encounter.findAndCountAll({
+      where: { campaignId: req.body.campaign_id },
+      // include: [{ model: Character }],
+      offset: req.body.offset,
+      limit: req.body.limit
+    })
+    .then(encounters => {
+      if (!encounters) { return res.status(404).send({ message: "No encounters found!" }); }
+      res.status(200).send({ encounters: encounters });
+    })
+    .catch(err => { res.status(500).send({ message: err.message }); });
+
   // // find all encounters~
   // } else {
   //   Encounter.findAndCountAll({
-  //     include: [{ model: Character }, { model: Encounter }],
+  //     include: [{ model: Character }],
   //     offset: req.body.offset,
   //     limit: req.body.limit
   //   })
   //   .then(encounters => {
   //     if (!encounters) { return res.status(404).send({ message: "No encounters found!" }); }
-  //     res.status(200).send({ encounters: JSON.stringify(encounters) });
+  //     res.status(200).send({ encounters: encounters });
   //   })
   //   .catch(err => { res.status(500).send({ message: err.message }); });
-  // }
+  }
 };
 
 /***************************\
@@ -394,12 +378,12 @@ exports.updateEncounter = (req, res) => {
 \***************************/
 exports.deleteEncounter = (req, res) => {
   console.log("******************** DELETE ENCOUNTER");
-  // Encounter.findByPk( req.body.id )
-  // .then(encounter => {
-  //   if (!encounter) { return res.status(404).send({ message: "Encounter not found!" }); }
-  //   let name = encounter.name;
-  //   encounter.destroy();
-  //   res.status(200).send({ message: `${name} delteted successfully!` });
-  // })
-  // .catch(err => { res.status(500).send({ message: err.message }); });
+  Encounter.findByPk( req.body.id )
+  .then(encounter => {
+    if (!encounter) { return res.status(404).send({ message: "Encounter not found!" }); }
+    let id = encounter.id;
+    encounter.destroy();
+    res.status(200).send({ message: `Encounter ${id} deleted successfully!` });
+  })
+  .catch(err => { res.status(500).send({ message: err.message }); });
 };

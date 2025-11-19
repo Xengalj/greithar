@@ -195,6 +195,26 @@ const routes = [
           title: "Edit Campaign",
         }
       },
+
+      {
+        path: "viewLoot/:id",
+        name: "campaign-loot-view",
+        component: () => import("./components/campaign/ViewLoot.vue"),
+        meta: {
+          breadcrumb: "View Loot",
+          title: "View Loot",
+        }
+      },
+      {
+        path: "editLoot/:id",
+        name: "campaign-loot-edit",
+        component: () => import("./components/campaign/EditLoot.vue"),
+        meta: {
+          breadcrumb: "Edit Loot",
+          title: "Edit Loot",
+        }
+      },
+
     ],
   },
 
@@ -203,44 +223,44 @@ const routes = [
   *     ENCOUNTER ROUTES      *
   *                           *
   \***************************/
-  // {
-  //   path: "/encoutner",
-  //   name: "encoutner",
-  //   redirect: { name: 'encoutner-list' },
-  //   meta: {
-  //     breadcrumb: "Encounter",
-  //     title: "Encounter",
-  //   },
-  //   children: [
-  //     {
-  //       path: "list/:id?",
-  //       name: "encoutner-list",
-  //       component: () => import("./components/encoutner/List.vue"),
-  //       meta: {
-  //         breadcrumb: "Encounter List",
-  //         title: "Encounter List",
-  //       }
-  //     },
-  //     {
-  //       path: "view/:id",
-  //       name: "encoutner-view",
-  //       component: () => import("./components/encoutner/View.vue"),
-  //       meta: {
-  //         breadcrumb: "View Encounter",
-  //         title: "View Encounter",
-  //       }
-  //     },
-  //     {
-  //       path: "edit/:id",
-  //       name: "encoutner-edit",
-  //       component: () => import("./components/encoutner/Edit.vue"),
-  //       meta: {
-  //         breadcrumb: "Edit Encounter",
-  //         title: "Edit Encoutner",
-  //       }
-  //     },
-  //   ],
-  // },
+  {
+    path: "/encounter",
+    name: "encounter",
+    redirect: { name: 'encounter-list' },
+    meta: {
+      breadcrumb: "Encounter",
+      title: "Encounter",
+    },
+    children: [
+      // {
+      //   path: "list/:id?",
+      //   name: "encounter-list",
+      //   component: () => import("./components/encounter/List.vue"),
+      //   meta: {
+      //     breadcrumb: "Encounter List",
+      //     title: "Encounter List",
+      //   }
+      // },
+      // {
+      //   path: "view/:id",
+      //   name: "encounter-view",
+      //   component: () => import("./components/encounter/View.vue"),
+      //   meta: {
+      //     breadcrumb: "View Encounter",
+      //     title: "View Encounter",
+      //   }
+      // },
+      {
+        path: "edit/:id",
+        name: "encounter-edit",
+        component: () => import("./components/encounter/Edit.vue"),
+        meta: {
+          breadcrumb: "Edit Encounter",
+          title: "Edit Encounter",
+        }
+      },
+    ],
+  },
 
   /***************************\
   *                           *

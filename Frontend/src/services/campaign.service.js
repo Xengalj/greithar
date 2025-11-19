@@ -59,7 +59,7 @@ class CampaignService {
 
   deleteCampaign(id) {
     return axios.post(API_URL + 'delete',
-    { campaign_id: id },
+    { id: id },
     { headers: authHeader() })
     .then(response => { return response.data; })
     .catch(err => { return err; });
