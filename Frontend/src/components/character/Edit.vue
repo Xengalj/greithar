@@ -1190,7 +1190,34 @@
           <el-col :span="12">
             <el-row>
               <el-col :span="4" class="center-vert"> Hero Points </el-col>
-              <el-col :span="5"> <el-input-number v-model="character.settings.heroPoints" :min="0" :max="4" aria-label="Hero Points" /> </el-col>
+              <el-col :span="7"> <el-input-number v-model="character.settings.heroPoints" :min="0" :max="4" aria-label="Hero Points" /> </el-col>
+
+              <el-col :span="13">
+                <el-input v-model="campaignName" placeholder="Enter Campaign Name" aria-label="Canmpaign Name">
+                  <template #append>
+                    <el-popover @show="campaignPop" :hide-after="2000" trigger="click" style="width: 240px">
+                      <template #reference>
+                        <el-button> Join Campaign </el-button>
+                      </template>
+                      <template #default>
+                        <el-select v-model="campaign" @change="loadEncounters" aria-label="Confirm Campaign">
+                          <el-option v-for="campaign in campaigns" :key="campaign.id" :label="campaign.name" :value="campaign" >
+                            {{ campaign.user.username }}'s {{ campaign.name }} ({{ campaign.id }})
+                          </el-option>
+                        </el-select>
+                        <span v-if="!character.settings.isNPC">
+                          <span v-if="campaign.id"> Join {{ campaign.name }}? </span>
+                          <span v-else> {{ campaignName }} wasn't found... </span>
+                          <el-button v-if="campaign.id" @click="joinCampaign" type="success" size="small" aria-label="Join Campaign"> Yes </el-button>
+                        </span>
+                      </template>
+                    </el-popover>
+                  </template>
+                </el-input>
+              </el-col>
+
+              {{ campaign }}
+
             </el-row>
             <el-row>
               <el-col :span="4" class="center-vert"> Open Tab </el-col>
@@ -1243,11 +1270,46 @@
             </el-row>
           </el-col>
 
-          <el-col :span="12" class="center-horz">
-            <el-switch v-if="advanced" v-model="character.settings.isNPC" inline-prompt active-text=" NPC " inactive-text=" PLAYER " aria-label="Player / NPC Switch" />
+          <el-col :span="12">
+            <el-row :gutter="10" justify="space-evenly">
+              <el-col :span="12" v-if="character.settings.isNPC">
+
+
+
+                <!-- remote
+                reserve-keyword
+                placeholder="Please enter a keyword"
+                remote-show-suffix
+                :remote-method="remoteMethod"
+                :loading="encountersLoading" -->
+
+                <el-select
+                  v-model="encounter"
+                  @change="joinEncounter"
+                  filterable
+                >
+                  <el-option
+                    v-for="encounter in encounters"
+                    :key="encounter.id"
+                    :label="encounter.name"
+                    :value="encounter"
+                  />
+                </el-select>
+
+
+                {{ encounters }}
+
+
+
+
+              </el-col>
+              <el-col :span="3">
+                <el-switch v-if="advanced" v-model="character.settings.isNPC" inline-prompt active-text=" NPC " inactive-text=" PLAYER " aria-label="Player / NPC Switch" />
+              </el-col>
+            </el-row>
 
             <el-divider style="margin: 24px 0 10px 0"> Bonuses </el-divider>
-            <div>
+            <div class="center-horz">
               <el-row :gutter="5">
                 <el-col :span="6"> <el-tag effect="dark" type="primary"> Name </el-tag> </el-col>
                 <el-col :span="2" class="center-horz"> <el-tag effect="dark" type="primary"> Value </el-tag> </el-col>
@@ -1557,6 +1619,8 @@
 <script>
 import UserService from "@/services/user.service";
 import CharacterService from "@/services/character.service";
+import CampaignService from "@/services/campaign.service";
+import EncounterService from "@/services/encounter.service";
 import HexGraph from '@/components/template/HexGraph.vue';
 import GItem from '@/components/template/GItem.vue';
 import GAbility from '@/components/template/GAbility.vue';
@@ -1597,6 +1661,15 @@ export default {
       spellsTab: "",
       newSpell: { name: "", level: 0, class: "" },
       spellsCollapse: [],
+
+      campaignName: "An Adventure Begins...",
+      campaigns: [],
+      campaign: {},
+
+      encounterName: "",
+      encounters: [],
+      encounter: {},
+      encountersLoading: false,
 
       character: {},
     };
@@ -1739,8 +1812,10 @@ export default {
 
     CharacterService.getCharacter(this.$route.params.id)
     .then((response) => {
+      console.log(response);
       this.character = response.character;
       if (!this.character.user) { this.character.user = {} }
+      if (!this.character.campaign) { this.character.campaign = {} }
       this.loading = false;
     })
     .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
@@ -2166,6 +2241,42 @@ export default {
         this.newSpell = { name: "", level: 0, class: "" };
       }
     },
+
+    /***************************\
+    *                           *
+    *         CAMPAIGNS         *
+    *                           *
+    \***************************/
+    // Get & show a list of campaigns, matching the input title
+    campaignPop() {
+      if (this.campaignName) {
+        CampaignService.getCampaignByName(this.campaignName)
+        .then((response) => { this.campaigns = response.campaigns; })
+        .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
+      }
+    },
+
+
+    // Add character as a player toon to campaign
+    joinCampaign() {
+      console.log('join', this.campaignName);
+      // TODO:  update campaign
+    },
+
+    loadEncounters() {
+      if (this.character.settings.isNPC) {
+        EncounterService.getEncounterList(this.campaign.id, 0, 100)
+        .then((response) =>{ this.encounters = response.encounters.rows; })
+        .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
+      }
+    },
+
+    joinEncounter() {
+      console.log(this.encounter);
+      // update encounter
+    },
+
+
 
   }
 }

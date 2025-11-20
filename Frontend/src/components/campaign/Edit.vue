@@ -6,12 +6,12 @@
         <el-divider >
           <g-icon iconSize="32px" iconName="map" />
         </el-divider>
-
         <el-input v-model="campaign.name" aria-label="Campaign Title">
           <template #prepend> Title </template>
         </el-input>
-
         <br>
+
+
         <!-- Characters -->
         [Characters]
         [toon.name] ^[user]   // both in fave color
@@ -26,7 +26,7 @@
         <el-input
           v-for="(note, index) in campaign.notes" :key="index"
           v-model="campaign.notes[index]"
-          :autosize="{ minRows: 1, maxRows: 4 }"
+          :autosize="{ minRows: 2, maxRows: 5 }"
           type="textarea"
           aria-label="textAreaName" />
         <el-button @click="campaign.notes.push('')" size="large" type="primary">
@@ -147,22 +147,6 @@
             </template>
           </el-table-column> -->
 
-          <!-- <el-table-column label="Notes" width="100">
-            <template #default="scope">
-              <el-row class="row-bg" justify="space-between">
-
-              extras . name?
-              extras . prevEncounter : id #
-              extras . nextEncounter : id #
-
-                <el-button @click="viewLoot(scope.row.id)" type="info" style="margin:0" circle>
-                  <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
-                </el-button>
-
-              </el-row>
-            </template>
-          </el-table-column> -->
-
           <el-table-column label="Actions" width="100" fixed="right">
             <template #default="scope">
               <el-row class="row-bg" justify="space-between">
@@ -227,13 +211,6 @@
       </el-col>
 
     </el-row>
-
-
-
-
-
-    [loot]
-    [encounters]
 
 
     <br>
@@ -378,7 +355,6 @@ export default {
       // .then(response => { this.$message({ message: response, type: 'warning' }); this.campaigns.splice(rowIndex, 1); })
       // .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
     },
-
 
   }
 }

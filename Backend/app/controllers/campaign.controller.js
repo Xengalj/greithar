@@ -63,21 +63,30 @@ exports.readCampaign = (req, res) => {
   } else if (req.body.user_id) {
     Campaign.findAndCountAll({
       where: { userId: req.body.user_id },
-      include: [{ model: Character }, { model: Encounter }, { model: User }],
-      // TODO: include just username
+      include: [{ model: Character }, { model: Encounter }, { model: User, attributes: ['id', 'username'] }],
       offset: req.body.offset,
       limit: req.body.limit
     })
     .then(campaigns => {
       if (!campaigns) { return res.status(404).send({ message: "No campaigns found!" }); }
-      res.status(200).send({ campaigns: JSON.stringify(campaigns) });
+      res.status(200).send({ campaigns: campaigns });
+      // res.status(200).send({ campaigns: JSON.stringify(campaigns) });
+    })
+    .catch(err => { res.status(500).send({ message: err.message }); });
+
+  // If campaign_name is provided, search for that campaign
+  } else if (req.body.campaign_name) {
+    Campaign.findAll({ where: { name: req.body.campaign_name }, include: [{ model: User, attributes: ['id', 'username'] }] })
+    .then(campaigns => {
+      if (!campaigns) { return res.status(404).send({ message: "No campaigns found!" }); }
+      res.status(200).send({ campaigns: campaigns });
     })
     .catch(err => { res.status(500).send({ message: err.message }); });
 
   // find all campaigns~
   } else {
     Campaign.findAndCountAll({
-      include: [{ model: Character }, { model: Encounter }, { model: User }],
+      include: [{ model: Character }, { model: Encounter }, { model: User, attributes: ['id', 'username'] }],
       offset: req.body.offset,
       limit: req.body.limit
     })

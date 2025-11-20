@@ -25,6 +25,15 @@ class CampaignService {
       .catch(err => { return err; });
   }
 
+  getCampaignByName(name) {
+    console.log(name);
+    return axios.post(API_URL + 'read',
+      { campaign_name: name },
+      { headers: authHeader() })
+      .then(response => { return response.data; })
+      .catch(err => { return err; });
+  }
+
   // Get a list of campaigns the user has, or all campaigns
   getCampaignList(user_id, offset, limit) {
     if (user_id) {

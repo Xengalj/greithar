@@ -1,5 +1,9 @@
 module.exports = (sequelize, Sequelize) => {
   const Encounters = sequelize.define("encounters", {
+    name: {
+      type: Sequelize.STRING,
+      defaultValue: "Roadside Bandits"
+    },
     monsters: {
       type: Sequelize.TEXT('long'),
       get: function() { return JSON.parse(this.getDataValue('monsters')); },
@@ -19,10 +23,12 @@ module.exports = (sequelize, Sequelize) => {
       }
     },
     extras: {
-      type: Sequelize.JSON
+      type: Sequelize.JSON,
+      defaultValue: {}
     },
     notes: {
-      type: Sequelize.JSON
+      type: Sequelize.JSON,
+      defaultValue: []
     }
   });
 
