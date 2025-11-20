@@ -1191,7 +1191,6 @@
             <el-row>
               <el-col :span="4" class="center-vert"> Hero Points </el-col>
               <el-col :span="7"> <el-input-number v-model="character.settings.heroPoints" :min="0" :max="4" aria-label="Hero Points" /> </el-col>
-
               <el-col :span="13">
                 <el-input v-model="campaignName" placeholder="Enter Campaign Name" aria-label="Canmpaign Name">
                   <template #append>
@@ -1205,7 +1204,7 @@
                             {{ campaign.user.username }}'s {{ campaign.name }} ({{ campaign.id }})
                           </el-option>
                         </el-select>
-                        <span v-if="!character.settings.isNPC">
+                        <span>
                           <span v-if="campaign.id"> Join {{ campaign.name }}? </span>
                           <span v-else> {{ campaignName }} wasn't found... </span>
                           <el-button v-if="campaign.id" @click="joinCampaign" type="success" size="small" aria-label="Join Campaign"> Yes </el-button>
@@ -1215,9 +1214,6 @@
                   </template>
                 </el-input>
               </el-col>
-
-              {{ campaign }}
-
             </el-row>
             <el-row>
               <el-col :span="4" class="center-vert"> Open Tab </el-col>
@@ -1271,23 +1267,9 @@
           </el-col>
 
           <el-col :span="12">
-            <el-row :gutter="10" justify="space-evenly">
+            <el-row :gutter="10" >
               <el-col :span="12" v-if="character.settings.isNPC">
-
-
-
-                <!-- remote
-                reserve-keyword
-                placeholder="Please enter a keyword"
-                remote-show-suffix
-                :remote-method="remoteMethod"
-                :loading="encountersLoading" -->
-
-                <el-select
-                  v-model="encounter"
-                  @change="joinEncounter"
-                  filterable
-                >
+                <el-select v-model="encounter" @change="joinEncounter" filterable>
                   <el-option
                     v-for="encounter in encounters"
                     :key="encounter.id"
@@ -1295,13 +1277,9 @@
                     :value="encounter"
                   />
                 </el-select>
-
-
-                {{ encounters }}
-
-
-
-
+              </el-col>
+              <el-col :span="3" v-if="character.settings.isNPC">
+                <el-button v-if="encounter.id" @click="joinEncounter" type="primary" size="small" aria-label="Join Encounter"> Join </el-button>
               </el-col>
               <el-col :span="3">
                 <el-switch v-if="advanced" v-model="character.settings.isNPC" inline-prompt active-text=" NPC " inactive-text=" PLAYER " aria-label="Player / NPC Switch" />
@@ -2259,7 +2237,7 @@ export default {
 
     // Add character as a player toon to campaign
     joinCampaign() {
-      console.log('join', this.campaignName);
+      console.log('join', this.campaign);
       // TODO:  update campaign
     },
 

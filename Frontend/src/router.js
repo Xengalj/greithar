@@ -196,15 +196,15 @@ const routes = [
         }
       },
 
-      {
-        path: "viewLoot/:id",
-        name: "campaign-loot-view",
-        component: () => import("./components/campaign/ViewLoot.vue"),
-        meta: {
-          breadcrumb: "View Loot",
-          title: "View Loot",
-        }
-      },
+      // {
+      //   path: "viewLoot/:id",
+      //   name: "campaign-loot-view",
+      //   component: () => import("./components/campaign/ViewLoot.vue"),
+      //   meta: {
+      //     breadcrumb: "View Loot",
+      //     title: "View Loot",
+      //   }
+      // },
       {
         path: "editLoot/:id",
         name: "campaign-loot-edit",
