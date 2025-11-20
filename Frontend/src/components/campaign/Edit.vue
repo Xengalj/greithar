@@ -140,25 +140,18 @@
           id="encounterTable"
           stripe
         >
+          <el-table-column prop="name" label="Name" min-width="120" sortable />
           <el-table-column prop="id" label="Id" sortable />
-          <!-- <el-table-column prop="extras.name" label="Name" min-width="100" sortable>
-            <template #default="scope">
-              {{ scope }}
-            </template>
-          </el-table-column> -->
 
-          <el-table-column label="Actions" width="100" fixed="right">
+          <el-table-column label="Actions" width="135" fixed="right">
             <template #default="scope">
               <el-row class="row-bg" justify="space-between">
-
                 <el-button @click="viewEncounter(scope.row.id)" type="info" style="margin:0" circle>
                   <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
                 </el-button>
-
                 <el-button @click="editEncounter(scope.row.id)" type="primary" style="margin:0" circle>
                   <g-icon iconSize="24px" iconColor="#000" iconName="quill" />
                 </el-button>
-
                 <el-popconfirm :title="`Delete Encounter?`">
                   <template #reference>
                     <el-button type="danger" style="margin:0" circle>
@@ -169,7 +162,6 @@
                     <el-button @click="deleteEncounter(scope.row.id, scope.$index)" type="danger" size="small"> Yes </el-button>
                   </template>
                 </el-popconfirm>
-
               </el-row>
              </template>
            </el-table-column>
@@ -204,12 +196,7 @@
         </el-row>
 
 
-
-
-
-
       </el-col>
-
     </el-row>
 
 
