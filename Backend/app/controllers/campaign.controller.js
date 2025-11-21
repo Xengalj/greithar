@@ -105,7 +105,23 @@ exports.readCampaign = (req, res) => {
 \***************************/
 exports.updateCampaign = (req, res) => {
   console.log("******************** UPDATE CAMPAIGN");
-  return res.status(404).send({ message: "Campaign not found!" });
+  return res.status(404).send({ message: "Campaign update not set up!" });
+
+  /*
+  admin check
+    or
+  storyteller & owner
+  */
+
+  /*
+  for (const [key, value] of Object.entries(req.body)) {
+    // console.log(`${key}: ${value}`);
+    if (key == "id") { continue; }
+    if (isAdmin && key == "user") { character.setUser(value.id); }
+    character[key] = value;
+  }
+  character.save();
+  */
 
 
   // set characters (by id array)
@@ -193,6 +209,37 @@ exports.updateCampaign = (req, res) => {
   //   });
 };
 
+// Add a single character to a campaign
+exports.joinCampaign = (req, res) => {
+  console.log("******************** JOIN CAMPAIGN");
+  console.log(req.body.character_id);
+  Campaign.findOne({ where: { id: req.body.campaign_id}, include: [{ model: Character }] })
+  .then(campaign => {
+    if (!campaign) { return res.status(404).send({ message: "Campaign not found!" }); }
+
+    if (req.body.character_id) {
+
+      // get current characters
+      let toons = [];
+      campaign.characters.forEach(character => {
+        toons.push(character.dataValues.id);
+      });
+
+      // if character isn't yet added, add em
+      if (!toons.includes(req.body.character_id)) {
+        console.log('toon not yet added');
+        Character.findByPk( req.body.character_id )
+        .then( char => {
+          campaign.addCharacter(char);
+          res.status(200).send({ message: `${char.name} added successfully!` });
+        });
+
+      } else { res.status(200).send({ warning: `You may only add a character once` }); }
+    } else { res.status(200).send({ warning: `character_id is required` }); }
+  })
+  .catch(err => { res.status(500).send({ message: err.message }); });
+};
+
 /***************************\
 *                           *
 *      CAMPAIGN DELETE      *
@@ -208,6 +255,28 @@ exports.deleteCampaign = (req, res) => {
   })
   .catch(err => { res.status(500).send({ message: err.message }); });
 };
+
+/***************************\
+*                           *
+*       GET LOOT LOCK       *
+*                           *
+\***************************/
+exports.getLock = (req, res) => {
+  console.log("******************** GET LOOT LOCK");
+  return res.status(404).send({ message: "GET LOOT LOCK NOT SET UP!" });
+};
+
+/***************************\
+*                           *
+*       SET LOOT LOCK       *
+*                           *
+\***************************/
+exports.setLock = (req, res) => {
+  console.log("******************** SET LOOT LOCK");
+  return res.status(404).send({ message: "SET LOOT LOCK NOT SETUP!" });
+};
+
+
 
 
 
@@ -307,6 +376,7 @@ exports.readEncounter = (req, res) => {
 \***************************/
 exports.updateEncounter = (req, res) => {
   console.log("******************** UPDATE ENCOUNTER");
+  return res.status(404).send({ message: "UPDATE ENCOUNTER NOT SETUP!" });
   // // only let storytellers edit their own, or admins edit any encounter
   // let isAdmin, isStoryteller = false;
   // User.findByPk(req.userId).then(user => {

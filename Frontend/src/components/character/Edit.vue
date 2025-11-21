@@ -1269,7 +1269,7 @@
           <el-col :span="12">
             <el-row :gutter="10" >
               <el-col :span="12" v-if="character.settings.isNPC">
-                <el-select v-model="encounter" @change="joinEncounter" filterable>
+                <el-select v-model="encounter" filterable>
                   <el-option
                     v-for="encounter in encounters"
                     :key="encounter.id"
@@ -2234,11 +2234,17 @@ export default {
       }
     },
 
-
     // Add character as a player toon to campaign
     joinCampaign() {
-      console.log('join', this.campaign);
-      // TODO:  update campaign
+      CampaignService.joinCampaign(this.campaign, this.character)
+      .then((response) => {
+        if (response.warning) {
+          this.$message({ message: response.warning, type: 'warning', });
+        } else {
+          this.$message({ message: response.message, type: 'success', });
+        }
+      })
+      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
     },
 
     loadEncounters() {
@@ -2251,7 +2257,18 @@ export default {
 
     joinEncounter() {
       console.log(this.encounter);
-      // update encounter
+
+      if (!this.encounter.npcs.includes(this.character.id)) {
+        this.encounter.npcs.push(this.character.id);
+        // update encounter
+
+        // CampaignService.joinCampaign(this.campaign, this.character)
+        // .then((response) => { this.$message({ message: response.message, type: 'success', }); })
+        // .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
+
+      } else {
+        this.$message({ message: 'You may only add a character to an encounter once', type: 'warning', });
+      }
     },
 
 

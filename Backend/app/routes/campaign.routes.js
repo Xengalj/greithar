@@ -34,9 +34,27 @@ module.exports = function(app) {
   );
 
   app.post(
+    "/api/campaign/join",
+    [ authJwt.verifyToken ],
+    controller.joinCampaign
+  );
+
+  app.post(
     "/api/campaign/delete",
     [ authJwt.verifyToken ],
     controller.deleteCampaign
+  );
+
+  // Loot
+    app.post(
+    "/api/campaign/getLock",
+    [ authJwt.verifyToken ],
+    controller.getLock
+  );
+  app.post(
+    "/api/campaign/setLock",
+    [ authJwt.verifyToken ],
+    controller.setLock
   );
 
   /***************************\
@@ -61,6 +79,12 @@ module.exports = function(app) {
     [ authJwt.verifyToken ],
     controller.updateEncounter
   );
+
+  // app.post(
+  //   "/api/encounter/join",
+  //   [ authJwt.verifyToken ],
+  //   controller.joinEncounter
+  // );
 
   app.post(
     "/api/encounter/delete",

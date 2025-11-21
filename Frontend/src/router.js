@@ -207,7 +207,7 @@ const routes = [
       // },
       {
         path: "editLoot/:id",
-        name: "campaign-loot-edit",
+        name: "campaign-loot",
         component: () => import("./components/campaign/EditLoot.vue"),
         meta: {
           breadcrumb: "Edit Loot",

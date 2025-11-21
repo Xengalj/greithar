@@ -66,12 +66,43 @@ class CampaignService {
     .catch(err => { return err; });
   }
 
+  joinCampaign(campaign, character) {
+    return axios.post(API_URL + 'join',
+    {
+      campaign_id: campaign.id,
+      character_id: character.id
+    },
+    { headers: authHeader() })
+    .then(response => { return response.data; })
+    .catch(err => { return err; });
+  }
+
   deleteCampaign(id) {
     return axios.post(API_URL + 'delete',
     { id: id },
     { headers: authHeader() })
     .then(response => { return response.data; })
     .catch(err => { return err; });
+  }
+
+  getLock(campaign_id) {
+    return axios.post(API_URL + 'getLock',
+    { campaign_id: campaign_id },
+    { headers: authHeader() })
+    .then(response => { return response.data; })
+    .catch(err => { return err; });
+  }
+
+  setLock(campaign_id, user) {
+    return axios.post(API_URL + 'setLock',
+    {
+      campaign_id: campaign_id,
+      user: user
+    },
+    { headers: authHeader() })
+    .then(response => { return response.data; })
+    .catch(err => { return err; });
+
   }
 }
 

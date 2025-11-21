@@ -18,8 +18,8 @@ module.exports = (sequelize, Sequelize) => {
       }
     },
     loot_lock: {
-      type: Sequelize.BOOLEAN,
-      defaultValue: false
+      type: Sequelize.JSON,
+      defaultValue: {}
     },
     notes: {
       type: Sequelize.JSON,
