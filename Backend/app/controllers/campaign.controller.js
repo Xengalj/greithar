@@ -54,31 +54,28 @@ exports.readCampaign = (req, res) => {
     .then(campaign => {
       if (!campaign) { return res.status(404).send({ message: "No campaigns found!" }); }
 
-      // campaign.characters = [];
+      campaign.characters = [];
 
-
-      // campaign.getCharacters().then(characters => {
-      //   characters.forEach(character => {
-      //     console.log(character.name);
-      //     User.findByPk(character.userId)
-      //     .then(user => {
-      //
-      //     })
-      //
-      //     character.getUser().then(user => {
-      //       console.log(user);
-      //       console.log(user.username);
-      //       console.log(user.usermeta);
-      //       console.log(user.usermeta.faveColor);
-      //       // campaign.characters.push({name: character.name, user: {username: user.username, color: user.usermeta.faveColor} });
-      //       // characters.dataValues.
-      //     })
-      //     .catch(err => { res.status(500).send({ message: err.message }); });
-      //   })
-      //   .catch(err => { res.status(500).send({ message: err.message }); });
-      // })
-
-
+      campaign.getCharacters().then(characters => {
+        characters.forEach(character => {
+          console.log(character.name);
+          User.findByPk(character.userId)
+          .then(user => {
+            console.log(user);
+            console.log(user.username);
+            console.log(user.usermeta);
+            campaign.characters.push({
+              name: character.name,
+              user: {
+                username: user.username,
+                color: user.usermeta.faveColor
+              }
+            });
+          })
+          .catch(err => { res.status(500).send({ message: err.message }); });
+        })
+        .catch(err => { res.status(500).send({ message: err.message }); });
+      })
 
       res.status(200).send({ campaign: campaign });
     })
@@ -132,106 +129,38 @@ exports.updateCampaign = (req, res) => {
   console.log("******************** UPDATE CAMPAIGN");
   return res.status(404).send({ message: "Campaign update not set up!" });
 
-  /*
-  admin check
-    or
-  storyteller & owner
-  */
+  let isAdmin = false;
+  User.findByPk(req.userId).then(user => {
+    user.getRoles().then(roles => {
+      for (let i = 0; i < roles.length; i++) {
+        if (roles[i].name === "admin") { isAdmin = true; }
+      }
+      
+      Campaign.findOne({ where: { id: req.body.id } })
+      .then(campaign => {
+        if (!campaign) { return res.status(404).send({ message: "Campaign not found!" }); }
 
-  /*
-  for (const [key, value] of Object.entries(req.body)) {
-    // console.log(`${key}: ${value}`);
-    if (key == "id") { continue; }
-    if (isAdmin && key == "user") { character.setUser(value.id); }
-    character[key] = value;
-  }
-  character.save();
-  */
+        // only let users edit their own, or admins edit any
+        if (isAdmin || campaign.userId == req.userId) {
+        
+          for (const [key, value] of Object.entries(req.body)) {
+            console.log(`${key}: ${value}`);
+            if (key == "id") { continue; }
+            // if (isAdmin && key == "user") { campaign.setUser(value.id); }
+            campaign[key] = value;
+          }
+          campaign.save();
 
-
-  // set characters (by id array)
-  // if (req.body.characters) {
-  //   // find all toons where id is = [id array]
-  //   Character.findAll({ where: { id: { [Op.or]: req.body.characters } } })
-  //   .then( characters => {
-  //     campaign.setCharacters(characters)
-  //     .then(() => { })
-  //     .catch(err => { return res.status(500).send({ message: err.message }); });
-  //   })
-  // }
-
-
-  // // only let storytellers edit their own, or admins edit any campaign
-  // let isAdmin, isStoryteller = false;
-  // User.findByPk(req.userId).then(user => {
-  //   user.getRoles().then(roles => {
-  //     for (let i = 0; i < roles.length; i++) {
-  //       if (roles[i].name === "admin") { isAdmin = true; }
-  //       if (roles[i].name === "storyteller") { isStoryteller = true; }
-  //     }
-  //   });
-  // });
-  //
-  // if (isAdmin || isStoryteller) {
-  //   // Find the given campaign by campaign_id
-  //   Campaign.findByPk(req.body.campaign_id)
-  //   .then(campaign => {
-  //     if (!campaign) { return res.status(404).send({ message: "Campaign not found!" }); }
-  //     campaign.getUser().then(user => {
-  //       if (isAdmin || req.userId != user.id) {
-  //         return res.status(401).send({ message: "Only the owner may update their campaign" });
-  //       }
-  //     });
-  //
-  //     // get the characters of a campaign
-  //     let toons = [];
-  //     campaign.getCharacters()
-  //     .then(characters => {
-  //       for (let i = 0; i < characters.length; i++) {
-  //         toons.push(characters[i].id);
-  //       }
-  //
-  //       let newContent = {
-  //         name: req.body.name ? req.body.name : campaign.name,
-  //         notes: req.body.notes ? req.body.notes : campaign.notes,
-  //         characters: req.body.characters ? req.body.characters : toons
-  //         // encounters
-  //       };
-  //
-  //       // update campaign with new info
-  //       campaign.update({
-  //         name: newContent.name,
-  //         notes: newContent.notes
-  //       })
-  //       .then(campaign => {
-  //         // Update characters
-  //         Character.findAll({ where: { id: { [Op.or]: newContent.characters } } })
-  //         .then(characters => {
-  //           campaign.setCharacters(characters);
-  //
-  //           // return new campaign info
-  //           res.status(200).send({
-  //             id: campaign.id,
-  //             name: campaign.name,
-  //             characters: campaign.characters
-  //             // encounters: campaign.encounters
-  //           });
-  //         });
-  //       })
-  //       .catch(err => {
-  //         // error updating campaign
-  //         res.status(500).send({ message: err.message });
-  //       });
-  //     })
-  //     .catch(err => {
-  //       // error getting campaign characters
-  //       res.status(500).send({ message: err.message });
-  //     });
-  //   })
-  //   .catch(err => {
-  //     // error finding campaign
-  //     res.status(500).send({ message: err.message });
-  //   });
+          res.status(200).send({ campaign });
+        } else {
+          res.status(403).send({ message: `You do not have permission to update this campaign` });
+        }
+      })
+      .catch(err => { res.status(500).send({ message: err.message }); });
+    })
+    .catch(err => { res.status(500).send({ message: err.message }); });
+  })
+  .catch(err => { res.status(500).send({ message: err.message }); });
 };
 
 // Add a single character to a campaign
@@ -402,77 +331,39 @@ exports.readEncounter = (req, res) => {
 exports.updateEncounter = (req, res) => {
   console.log("******************** UPDATE ENCOUNTER");
   return res.status(404).send({ message: "UPDATE ENCOUNTER NOT SETUP!" });
-  // // only let storytellers edit their own, or admins edit any encounter
-  // let isAdmin, isStoryteller = false;
-  // User.findByPk(req.userId).then(user => {
-  //   user.getRoles().then(roles => {
-  //     for (let i = 0; i < roles.length; i++) {
-  //       if (roles[i].name === "admin") { isAdmin = true; }
-  //       if (roles[i].name === "storyteller") { isStoryteller = true; }
-  //     }
-  //   });
-  // });
-  //
-  // if (isAdmin || isStoryteller) {
-  //   // Find the given encounter by encounter_id
-  //   Encounter.findByPk(req.body.encounter_id)
-  //   .then(encounter => {
-  //     if (!encounter) { return res.status(404).send({ message: "Encounter not found!" }); }
-  //     encounter.getUser().then(user => {
-  //       if (isAdmin || req.userId != user.id) {
-  //         return res.status(401).send({ message: "Only the owner may update their encounter" });
-  //       }
-  //     });
-  //
-  //     // get the characters of a encounter
-  //     let toons = [];
-  //     encounter.getCharacters()
-  //     .then(characters => {
-  //       for (let i = 0; i < characters.length; i++) {
-  //         toons.push(characters[i].id);
-  //       }
-  //
-  //       let newContent = {
-  //         name: req.body.name ? req.body.name : encounter.name,
-  //         notes: req.body.notes ? req.body.notes : encounter.notes,
-  //         characters: req.body.characters ? req.body.characters : toons
-  //         // encounters
-  //       };
-  //
-  //       // update encounter with new info
-  //       encounter.update({
-  //         name: newContent.name,
-  //         notes: newContent.notes
-  //       })
-  //       .then(encounter => {
-  //         // Update characters
-  //         Character.findAll({ where: { id: { [Op.or]: newContent.characters } } })
-  //         .then(characters => {
-  //           encounter.setCharacters(characters);
-  //
-  //           // return new encounter info
-  //           res.status(200).send({
-  //             id: encounter.id,
-  //             name: encounter.name,
-  //             characters: encounter.characters
-  //             // encounters: encounter.encounters
-  //           });
-  //         });
-  //       })
-  //       .catch(err => {
-  //         // error updating encounter
-  //         res.status(500).send({ message: err.message });
-  //       });
-  //     })
-  //     .catch(err => {
-  //       // error getting encounter characters
-  //       res.status(500).send({ message: err.message });
-  //     });
-  //   })
-  //   .catch(err => {
-  //     // error finding encounter
-  //     res.status(500).send({ message: err.message });
-  //   });
+
+  let isAdmin, isStoryteller = false;
+  User.findByPk(req.userId).then(user => {
+    user.getRoles().then(roles => {
+      for (let i = 0; i < roles.length; i++) {
+        if (roles[i].name === "admin") { isAdmin = true; }
+        if (roles[i].name === "storyteller") { isStoryteller = true; }
+      }
+      
+      Encounter.findOne({ where: { id: req.body.id } })
+      .then(encounter => {
+        if (!encounter) { return res.status(404).send({ message: "Encounter not found!" }); }
+
+        // only let users edit their own, or admins edit any
+        if (isAdmin || isStoryteller) {
+        
+          for (const [key, value] of Object.entries(req.body)) {
+            console.log(`${key}: ${value}`);
+            if (key == "id") { continue; }
+            encounter[key] = value;
+          }
+          encounter.save();
+
+          res.status(200).send({ encounter });
+        } else {
+          res.status(403).send({ message: `You do not have permission to update this encounter` });
+        }
+      })
+      .catch(err => { res.status(500).send({ message: err.message }); });
+    })
+    .catch(err => { res.status(500).send({ message: err.message }); });
+  })
+  .catch(err => { res.status(500).send({ message: err.message }); });
 };
 
 /***************************\
