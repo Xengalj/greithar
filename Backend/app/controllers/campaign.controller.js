@@ -29,9 +29,7 @@ exports.createCampaign = (req, res) => {
 
           // set owner
           campaign.setUser(req.userId)
-          .then(() => {
-            res.status(201).send({ campaign: campaign });
-          })
+          .then(() => { res.status(201).send({ campaign: campaign }); })
           .catch(err => { res.status(500).send({ message: err.message }); })
         })
         .catch(err => { res.status(500).send({ message: err.message }); });
@@ -55,6 +53,33 @@ exports.readCampaign = (req, res) => {
     Campaign.findOne({ where: { id: req.body.campaign_id }, include: [{ model: Character }, { model: Encounter }] })
     .then(campaign => {
       if (!campaign) { return res.status(404).send({ message: "No campaigns found!" }); }
+
+      // campaign.characters = [];
+
+
+      // campaign.getCharacters().then(characters => {
+      //   characters.forEach(character => {
+      //     console.log(character.name);
+      //     User.findByPk(character.userId)
+      //     .then(user => {
+      //
+      //     })
+      //
+      //     character.getUser().then(user => {
+      //       console.log(user);
+      //       console.log(user.username);
+      //       console.log(user.usermeta);
+      //       console.log(user.usermeta.faveColor);
+      //       // campaign.characters.push({name: character.name, user: {username: user.username, color: user.usermeta.faveColor} });
+      //       // characters.dataValues.
+      //     })
+      //     .catch(err => { res.status(500).send({ message: err.message }); });
+      //   })
+      //   .catch(err => { res.status(500).send({ message: err.message }); });
+      // })
+
+
+
       res.status(200).send({ campaign: campaign });
     })
     .catch(err => { res.status(500).send({ message: err.message }); });

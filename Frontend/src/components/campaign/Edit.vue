@@ -1,16 +1,26 @@
 <template lang="html">
   <div v-if="!loading" class="container">
 
-    <el-row :gutter="10" justify="center">
-      <el-col :xs="24" :sm="12">
-        <el-divider >
-          <g-icon iconSize="32px" iconName="map" />
-        </el-divider>
+    <el-row :gutter="10" justify="center" align="middle">
+      <el-col :span="14">
         <el-input v-model="campaign.name" aria-label="Campaign Title">
           <template #prepend> Title </template>
         </el-input>
-        <br>
+      </el-col>
+      <el-col :span="3">
+        <el-button @click="saveCampaign" size="large" type="primary">
+          Save
+          <g-icon iconName="rolledScroll" iconSize="24px" iconColor="#CCC" />
+        </el-button>
+      </el-col>
+    </el-row>
 
+
+    <el-row :gutter="10" justify="center">
+      <el-col :xs="24" :sm="12">
+        <el-divider >
+          <g-icon iconSize="32px" iconName="userList" /> Characters
+        </el-divider>
 
         <!-- Characters -->
         [Characters]
@@ -35,7 +45,6 @@
         </el-button>
       </el-col>
     </el-row>
-    <br>
 
     <el-row :gutter="10" justify="center" align="middle">
       <!-- Group Loot -->
@@ -262,11 +271,12 @@ export default {
     // Helper Methods
     capFirsts(string) { return string ? string.replace(/(^\w|\s\w)/g, m => m.toUpperCase()) : ""; },
 
-    // saveCharacter() {
-    //   CharacterService.updateCharacter(this.character)
-    //   .then((response) => { this.$message({ message: `${response.character.name} updated`, type: 'success', }); })
-    //   .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
-    // },
+    saveCampaign() {
+      console.log(this.campaign);
+      // CharacterService.updateCharacter(this.character)
+      // .then((response) => { this.$message({ message: `${response.character.name} updated`, type: 'success', }); })
+      // .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
+    },
     viewLoot() {
       console.log('view');
     },
@@ -348,4 +358,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.el-row {
+  margin-bottom: 5px;
+}
 </style>

@@ -2260,7 +2260,8 @@ export default {
 
       if (!this.encounter.npcs.includes(this.character.id)) {
         this.encounter.npcs.push(this.character.id);
-        // update encounter
+
+        // TODO: Update Encounter
 
         // CampaignService.joinCampaign(this.campaign, this.character)
         // .then((response) => { this.$message({ message: response.message, type: 'success', }); })
