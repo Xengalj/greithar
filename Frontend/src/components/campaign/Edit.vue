@@ -21,11 +21,14 @@
         <el-divider >
           <g-icon iconSize="32px" iconName="userList" /> Characters
         </el-divider>
-
-        <!-- Characters -->
-        [Characters]
-        [toon.name] ^[user]   // both in fave color
-
+        <el-tooltip v-for="(character, index) in campaign.characters" :key="index" placement="top" effect="light">
+          <el-tag :color="character.user.color" size="small" effect="dark">
+            {{ character.name }}
+          </el-tag>
+          <template #content>
+            {{ character.user.username }}
+          </template>
+        </el-tooltip>
       </el-col>
 
       <!-- Notes -->
@@ -50,72 +53,22 @@
       <!-- Group Loot -->
       <el-col :xs="24" :sm="12">
         <el-divider >
-          <h4> <g-icon iconSize="32px" iconName="inventory" /> Group Loot </h4>
+          <h4>
+            <g-icon iconSize="32px" iconName="inventory" />
+            Group Loot
+            <el-tooltip v-if="campaign.loot_lock.username" placement="top" effect="light">
+              <el-button type="warning" style="margin:0" circle>
+                <g-icon iconSize="32px" iconColor="#000" iconName="lock" />
+              </el-button>
+              <template #content>
+                <el-tag :color="campaign.loot_lock.color" size="small" effect="dark">
+                  {{ campaign.loot_lock.username }}
+                </el-tag>
+              </template>
+            </el-tooltip>
+          </h4>
         </el-divider>
-
-        <el-row :gutter="10" justify="space-between">
-          <el-col :xs="24" :sm="20">
-            <el-input v-model="itemFilter" class="w-60 mb-2" placeholder="Item Search" aria-label="Item Search">
-              <template #prefix>
-                <g-icon iconSize="20px" iconName="search" />
-              </template>
-              <template #append>
-                <el-button type="warning" @click="clearFilter"> Reset </el-button>
-              </template>
-            </el-input>
-          </el-col>
-          <el-col :xs="24" :sm="4">
-            <el-button @click="viewLoot()" type="primary" style="margin:0" circle>
-              <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
-            </el-button>
-            <el-button @click="editLoot()" type="primary" style="margin:0" circle>
-              <g-icon iconSize="24px" iconColor="#000" iconName="quill" />
-            </el-button>
-          </el-col>
-        </el-row>
-
-
-        <!--
-        draggable
-        render-after-expand
-        :default-expanded-keys="character.settings.expandInventory"
-        :allow-drag="allowDrag"
-        :allow-drop="allowDrop"
-        -->
-        <el-tree
-          :data="campaign.loot"
-          ref="tree"
-          node-key="label"
-          :filter-node-method="filterNode"
-        >
-          <template #default="{ node, data }">
-            <el-col :span="2" style="text-align: center; margin-right:2px;">
-              <g-icon iconSize="20px" v-if="data.extras && data.extras.icon" :iconName="data.extras.icon" />
-              <span v-else> • </span>
-            </el-col>
-            <el-col :sm="9" :md="7">
-              {{ node.label }}
-            </el-col>
-            <el-col :sm="3" :md="3">
-              <el-tag v-if="data.value" color="#FFDE0A" style="color:black; border:none;">
-                {{ data.value.Cost }} gp
-              </el-tag>
-            </el-col>
-            <el-col :sm="2" :md="3">
-              <el-tag v-if="data.value" type="info" effect="dark">
-                {{ data.value.Weight }} lbs.
-              </el-tag>
-            </el-col>
-            <el-col :sm="5" :md="3">
-              <el-tag v-if="data.value" type="info" effect="dark">
-                x 1
-              </el-tag>
-              <el-tag v-if="data.value && data.value.Ammount" type="info" effect="dark">
-                x {{ data.value.Ammount }}
-              </el-tag>
-            </el-col>
-          </template>
-        </el-tree>
+        <g-loot :source="campaign.loot" @edit-loot="editLoot"/>
       </el-col>
 
       <el-col :xs="24" :sm="12">
@@ -215,21 +168,17 @@
       {{ name }} : {{ item }}
       <br>
     </div>
-
-    <!-- EDIT ITEM DIALOG -->
-    <!-- <el-dialog v-model="editingItem" width="800">
-      <g-item :source="item" @save-item="saveItem"/>
-    </el-dialog> -->
-
   </div>
 </template>
 
 <script>
 import CampaignService from "@/services/campaign.service";
 import EncounterService from "@/services/encounter.service";
+import GLoot from '@/components/template/GLoot.vue';
 
 export default {
   name: "Edit Campaign",
+  components: { GLoot },
   data() {
     return {
       loading: true,
@@ -277,9 +226,7 @@ export default {
       // .then((response) => { this.$message({ message: `${response.character.name} updated`, type: 'success', }); })
       // .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
     },
-    viewLoot() {
-      console.log('view');
-    },
+
     editLoot() {
       console.log('edit');
     },

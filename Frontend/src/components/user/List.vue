@@ -187,8 +187,8 @@ export default {
     loadUsers() {
       UserService.getAllUsers()
       .then(response => {
-        this.allUsers = response.data;
-        this.tableUsers = response.data;
+        this.allUsers = response.data.rows;
+        this.tableUsers = response.data.rows;
       })
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
       .finally(() => { this.loading = false; });

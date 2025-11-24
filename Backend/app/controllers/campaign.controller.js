@@ -47,36 +47,30 @@ exports.createCampaign = (req, res) => {
 *                           *
 \***************************/
 // returns either a list of campaigns, or if an id was given, returns that one
-exports.readCampaign = (req, res) => {
+exports.readCampaign = async (req, res) => {
   // If campaign_id is provided, find that campaign
   if (req.body.campaign_id) {
-    Campaign.findOne({ where: { id: req.body.campaign_id }, include: [{ model: Character }, { model: Encounter }] })
-    .then(campaign => {
+    Campaign.findOne({ where: { id: req.body.campaign_id }, include: [{ model: Encounter }] })
+    .then(async campaign => {
       if (!campaign) { return res.status(404).send({ message: "No campaigns found!" }); }
 
-      campaign.characters = [];
-
-      campaign.getCharacters().then(characters => {
-        characters.forEach(character => {
-          console.log(character.name);
-          User.findByPk(character.userId)
-          .then(user => {
-            console.log(user);
-            console.log(user.username);
-            console.log(user.usermeta);
-            campaign.characters.push({
-              name: character.name,
-              user: {
-                username: user.username,
-                color: user.usermeta.faveColor
-              }
-            });
-          })
-          .catch(err => { res.status(500).send({ message: err.message }); });
+      // create custom array for campaign.characters
+      campaign.dataValues.characters = [];
+      const toons = await campaign.getCharacters();
+      for (const character of toons) {
+        await character.getUser()
+        .then(user => {
+          campaign.dataValues.characters.push({
+            name: character.name,
+            user: {
+              username: user.username,
+              color: user.usermeta.faveColor
+            }
+          });
         })
         .catch(err => { res.status(500).send({ message: err.message }); });
-      })
-
+      }
+      console.log(campaign);
       res.status(200).send({ campaign: campaign });
     })
     .catch(err => { res.status(500).send({ message: err.message }); });
@@ -135,14 +129,14 @@ exports.updateCampaign = (req, res) => {
       for (let i = 0; i < roles.length; i++) {
         if (roles[i].name === "admin") { isAdmin = true; }
       }
-      
+
       Campaign.findOne({ where: { id: req.body.id } })
       .then(campaign => {
         if (!campaign) { return res.status(404).send({ message: "Campaign not found!" }); }
 
         // only let users edit their own, or admins edit any
         if (isAdmin || campaign.userId == req.userId) {
-        
+
           for (const [key, value] of Object.entries(req.body)) {
             console.log(`${key}: ${value}`);
             if (key == "id") { continue; }
@@ -217,6 +211,7 @@ exports.deleteCampaign = (req, res) => {
 \***************************/
 exports.getLock = (req, res) => {
   console.log("******************** GET LOOT LOCK");
+  // { username: xx, color: user.meta.fave }
   return res.status(404).send({ message: "GET LOOT LOCK NOT SET UP!" });
 };
 
@@ -339,14 +334,14 @@ exports.updateEncounter = (req, res) => {
         if (roles[i].name === "admin") { isAdmin = true; }
         if (roles[i].name === "storyteller") { isStoryteller = true; }
       }
-      
+
       Encounter.findOne({ where: { id: req.body.id } })
       .then(encounter => {
         if (!encounter) { return res.status(404).send({ message: "Encounter not found!" }); }
 
         // only let users edit their own, or admins edit any
         if (isAdmin || isStoryteller) {
-        
+
           for (const [key, value] of Object.entries(req.body)) {
             console.log(`${key}: ${value}`);
             if (key == "id") { continue; }
