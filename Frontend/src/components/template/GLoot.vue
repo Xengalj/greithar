@@ -11,9 +11,14 @@
       </el-input>
     </el-col>
     <el-col :span="4">
-      <el-button @click="editLoot()" type="primary" style="margin:0" circle>
-        <g-icon iconSize="24px" iconColor="#000" iconName="quill" />
-      </el-button>
+      <el-tooltip placement="top" effect="light">
+        <el-button @click="editLoot()" type="primary" style="margin:0" circle>
+          <g-icon iconSize="24px" iconColor="#000" iconName="quill" />
+        </el-button>
+        <template #content>
+          Edit Group Loot
+        </template>
+      </el-tooltip>
     </el-col>
   </el-row>
 

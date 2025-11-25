@@ -2,33 +2,58 @@
   <div v-if="!loading" class="container">
 
     <el-row :gutter="10" justify="center" align="middle">
-      <el-col :span="14">
+      <el-col :xs="24" :span="14">
         <el-input v-model="campaign.name" aria-label="Campaign Title">
           <template #prepend> Title </template>
         </el-input>
       </el-col>
-      <el-col :span="3">
+      <el-col :xs="12" :span="3">
         <el-button @click="saveCampaign" size="large" type="primary">
-          Save
-          <g-icon iconName="rolledScroll" iconSize="24px" iconColor="#CCC" />
+          Save <g-icon iconName="rolledScroll" iconSize="24px" iconColor="#CCC" />
         </el-button>
       </el-col>
     </el-row>
 
-
+    <!-- Characters -->
     <el-row :gutter="10" justify="center">
       <el-col :xs="24" :sm="12">
         <el-divider >
-          <g-icon iconSize="32px" iconName="userList" /> Characters
+          <el-col :xs="24" :span="0">
+            <g-icon iconSize="26px" iconName="userList" style="margin:0" /> Characters
+          </el-col>
+          <el-col :xs="0" :sm="24">
+            <g-icon iconSize="32px" iconName="userList" /> Characters
+          </el-col>
         </el-divider>
-        <el-tooltip v-for="(character, index) in campaign.characters" :key="index" placement="top" effect="light">
-          <el-tag :color="character.user.color" size="small" effect="dark">
-            {{ character.name }}
-          </el-tag>
-          <template #content>
-            {{ character.user.username }}
-          </template>
-        </el-tooltip>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;" >
+          <el-card v-for="(character, index) in campaign.characters" :key="index" style="max-width: 200px">
+            <template #header>
+              <el-tag :color="character.color" size="large" effect="dark" class="card-header">
+                <div class="card-header">
+                  <span>{{ character.name }} ({{ character.username }})</span>
+                </div>
+              </el-tag>
+            </template>
+            <el-row>
+              <el-input v-model="character.alignment" disabled>
+                <template #prepend>
+                  Alignment
+                </template>
+              </el-input>
+            </el-row>
+            <el-row justify="space-between" align="middle">
+              <el-tag type="danger" effect="dark" style="color: black">
+                {{ character.health }} HP
+              </el-tag>
+              <el-button @click=" this.$router.push({ name: 'character-view', params: { id: character.id } }); " type="primary" style="margin:0" circle>
+              <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
+            </el-button>
+            </el-row>
+            <el-tag v-for="(cClass, cName) in character.classes" :key="cName" size="large" effect="dark" type="primary" >
+              {{ capFirsts(cName) }} {{ cClass.levels }}
+            </el-tag>
+          </el-card>
+        </div>
       </el-col>
 
       <!-- Notes -->
@@ -36,21 +61,36 @@
         <el-divider >
           <h4> <g-icon iconSize="32px" iconName="openScroll" /> Notes </h4>
         </el-divider>
-        <el-input
-          v-for="(note, index) in campaign.notes" :key="index"
-          v-model="campaign.notes[index]"
-          :autosize="{ minRows: 2, maxRows: 5 }"
-          type="textarea"
-          aria-label="textAreaName" />
         <el-button @click="campaign.notes.push('')" size="large" type="primary">
           Add Note
           <g-icon iconName="createScroll" iconSize="24px" iconColor="#CCC" />
         </el-button>
+        <el-row v-for="(note, index) in campaign.notes" :key="index" align="middle">
+          <el-col :span="21">
+            <el-input
+              v-model="campaign.notes[index]"
+              :autosize="{ minRows: 2, maxRows: 5 }"
+              type="textarea"
+              aria-label="textAreaName" />
+          </el-col>
+          <el-col :span="3">
+            <el-popconfirm :title="`Delete Note?`">
+              <template #reference>
+                <el-button type="danger" style="margin:0" circle>
+                  <g-icon iconSize="24px" iconColor="#000" iconName="trash" />
+                </el-button>
+              </template>
+              <template #actions="">
+                <el-button @click="campaign.notes.splice(index, 1);" type="danger" size="small"> Yes </el-button>
+              </template>
+            </el-popconfirm>
+          </el-col>
+        </el-row>
       </el-col>
     </el-row>
 
+    <!-- Group Loot -->
     <el-row :gutter="10" justify="center" align="middle">
-      <!-- Group Loot -->
       <el-col :xs="24" :sm="12">
         <el-divider >
           <h4>
@@ -71,12 +111,11 @@
         <g-loot :source="campaign.loot" @edit-loot="editLoot"/>
       </el-col>
 
+      <!-- Encounters -->
       <el-col :xs="24" :sm="12">
-        <!-- Encounters -->
         <el-divider>
           <h4> <g-icon iconSize="32px" iconName="weapons" /> Encounters </h4>
         </el-divider>
-
         <el-row :gutter="10" justify="space-between">
           <el-col :xs="24" :span="14">
             <el-input v-model="encounterFilter" @input="searchByName" id="nameFilter" placeholder="Encounter Name" aria-label="Encounter Name Filter">
@@ -156,18 +195,9 @@
             />
           </el-col>
         </el-row>
-
-
       </el-col>
     </el-row>
 
-
-    <br>
-    <br>
-    <div v-for="(item, name) in campaign" :key="name">
-      {{ name }} : {{ item }}
-      <br>
-    </div>
   </div>
 </template>
 
@@ -182,7 +212,6 @@ export default {
   data() {
     return {
       loading: true,
-      itemFilter: '',
       encounterFilter: '',
 
       // pagination
@@ -211,24 +240,27 @@ export default {
     }
   },
 
-  watch: {
-    // Loot Search, part 1
-    itemFilter(val) { this.$refs.tree.filter(val); }
-  },
+
 
   methods: {
     // Helper Methods
     capFirsts(string) { return string ? string.replace(/(^\w|\s\w)/g, m => m.toUpperCase()) : ""; },
 
     saveCampaign() {
-      console.log(this.campaign);
-      // CharacterService.updateCharacter(this.character)
-      // .then((response) => { this.$message({ message: `${response.character.name} updated`, type: 'success', }); })
-      // .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
+      CampaignService.updateCampaign(this.campaign)
+      .then((response) => { this.$message({ message: `${response.campaign.name} updated`, type: 'success', }); })
+      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
     },
 
     editLoot() {
       console.log('edit');
+
+      if (!this.campaign.loot_lock.id) {
+       // this.$router.push({ name: 'character-view', params: { id: character.id } })
+       console.log(this.campaign.loot_lock);
+
+      }
+
     },
 
     /***************************\
@@ -280,11 +312,7 @@ export default {
     },
     createEncounter() {
       EncounterService.createEncounter(this.campaign.id)
-      .then(response => {
-        console.log(response);
-        // let id = response.encounter.id;
-        // this.$router.push({ name: 'encounter-edit', params: { id: id } });
-      })
+      .then(() => { this.loadEncounters(); })
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err.message); });
     },
     viewEncounter(id) {
@@ -293,11 +321,9 @@ export default {
     },
     editEncounter(id) { this.$router.push({ name: 'encounter-edit', params: { id: id } }); },
     deleteEncounter(id, rowIndex) {
-      console.log('deleteEncounter', id);
-      console.log(rowIndex);
-      // CampaignService.deleteEncounter(id)
-      // .then(response => { this.$message({ message: response, type: 'warning' }); this.campaigns.splice(rowIndex, 1); })
-      // .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
+      EncounterService.deleteEncounter(id)
+      .then(response => { this.$message({ message: response.message, type: 'warning' }); this.encounters.splice(rowIndex, 1); })
+      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
     },
 
   }

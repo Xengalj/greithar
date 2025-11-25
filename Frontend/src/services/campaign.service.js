@@ -26,7 +26,6 @@ class CampaignService {
   }
 
   getCampaignByName(name) {
-    console.log(name);
     return axios.post(API_URL + 'read',
       { campaign_name: name },
       { headers: authHeader() })
