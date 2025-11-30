@@ -1,4 +1,8 @@
 <template>
+
+  TOMBSTONE
+
+
   <div v-if="!loading" class="container">
     <!--
     upload a file (profile)

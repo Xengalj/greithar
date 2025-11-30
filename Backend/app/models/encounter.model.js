@@ -24,7 +24,10 @@ module.exports = (sequelize, Sequelize) => {
     },
     extras: {
       type: Sequelize.JSON,
-      defaultValue: {}
+      defaultValue: {
+        "next": 0,
+        "prev": 0
+      }
     },
     notes: {
       type: Sequelize.JSON,

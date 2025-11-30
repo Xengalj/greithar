@@ -2,25 +2,58 @@
   <div v-if="!loading" class="container">
 
     <el-row :gutter="10" justify="center">
-      <el-col :xs="24" :sm="6">
+      <el-col :xs="24" :sm="10" :md="6" class="center-horz">
         <el-divider >
           <g-icon iconSize="32px" iconName="map" />
         </el-divider>
-        <el-input v-model="encounter.extras.name">
+
+        <!-- Actions -->
+        <el-button @click=" console.log(`this.$router.push({ name: 'dm-screen', params: { id: character.id } });`); " type="primary" size="large">
+          View <g-icon iconName="eye" iconSize="24px" iconColor="#CCC" />
+        </el-button>
+        <el-button @click="saveEncounter" type="primary" size="large">
+          Save <g-icon iconName="rolledScroll" iconSize="24px" iconColor="#CCC" />
+        </el-button>
+
+        <!-- Title -->
+        <el-input v-model="encounter.name">
           <template #prepend> Title </template>
         </el-input>
         <br>
 
-        [next]
-        <br>
-        [prev]
+        <!-- Prev / Next -->
+        <el-row>
+          <el-col :span="5">
+            <el-tag size="large" effect="dark" type="info"> Prev </el-tag>
+          </el-col>
+          <el-col :span="19">
+            <el-select v-model="encounter.extras.prev" filterable>
+              <el-option v-for="encounter in siblings" :key="encounter.id" :label="encounter.name" :value="encounter.name" />
+            </el-select>
+          </el-col>
+        </el-row>
 
+        <el-row>
+          <el-col :span="5">
+            <el-tag size="large" effect="dark" type="info"> Next </el-tag>
+          </el-col>
+          <el-col :span="19">
+            <el-select v-model="encounter.extras.next" filterable>
+              <el-option v-for="encounter in siblings" :key="encounter.id" :label="encounter.name" :value="encounter.name" />
+            </el-select>
+          </el-col>
+        </el-row>
       </el-col>
 
       <!-- Notes -->
-      <el-col :xs="24" :sm="18" class="center-horz">
+      <el-col :xs="24" :sm="14" :md="18" class="center-horz">
         <el-divider >
-          <h4> <g-icon iconSize="32px" iconName="openScroll" /> Notes </h4>
+          <el-col :xs="24" :span="0">
+            <g-icon iconName="openScroll" iconSize="26px" style="margin:0" /> Notes
+          </el-col>
+          <el-col :xs="0" :sm="24">
+            <g-icon iconName="openScroll" iconSize="32px" /> Notes
+          </el-col>
         </el-divider>
         <el-input
           v-for="(note, index) in encounter.notes" :key="index"
@@ -34,80 +67,99 @@
         </el-button>
       </el-col>
     </el-row>
-    <br>
 
+    <!-- Monsters -->
     <el-row :gutter="10" justify="center" align="middle">
-      <!-- Monsters -->
       <el-col :xs="24" :sm="12">
         <el-divider >
-          <h4> <g-icon iconSize="32px" iconName="magical beast" /> Monsters </h4>
+          <el-col :xs="24" :span="0">
+            <g-icon iconName="magical beast" iconSize="26px" style="margin:0" /> Monsters
+          </el-col>
+          <el-col :xs="0" :sm="24">
+            <g-icon iconName="magical beast" iconSize="32px" /> Monsters
+          </el-col>
         </el-divider>
+        <el-table v-loading="loading" :data="this.encounter.monsters" stripe >
+          <el-table-column label="Type" min-width="55">
+            <template #default="scope">
+              <g-icon :iconName="scope.row.type" iconSize="24px" />
+            </template>
+          </el-table-column>
+          <el-table-column prop="name" label="Name" min-width="120" sortable />
+          <el-table-column prop="alignment" label="Align" min-width="90" sortable />
+          <el-table-column prop="hp" label="HP" min-width="70" sortable />
 
-
-        <el-row v-for="(monster, index) in encounter.monsters" :key="index" :gutter="10" justify="center" align="middle">
-          <el-col :xs="24" :sm="12" :md="1">
-            <!-- iconSize="32px"
-           -->
-            <!-- <g-icon :iconName="monster.basics.type" /> -->
-            <g-icon iconName="dragon" />
-            monster.name
-          </el-col>
-
-          <el-col :xs="24" :sm="12" :md="6">
-            <el-tag size="small" effect="dark" type="primary" color="#FFAA00">
-              monster.HP.total
-            </el-tag>
-          </el-col>
-
-          <el-col :xs="24" :sm="12" :md="6">
-            <el-tag size="small" effect="dark" type="primary" color="#00AAFF">
-              monster.ac.total
-            </el-tag>
-          </el-col>
-
-          <el-col :xs="24" :sm="12" :md="6">
-
-            <el-button @click="viewMonster(monster.id)" type="primary" style="margin:0" circle>
-              <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
-            </el-button>
-
-            <el-button @click="editMonster(monster.id)" type="primary" style="margin:0" circle>
-              <g-icon iconSize="24px" iconColor="#000" iconName="quill" />
-            </el-button>
-
-            <el-popconfirm :title="`Delete ${monster.name}?`">
-              <template #reference>
-                <el-button type="danger" style="margin:0" circle>
-                  <g-icon iconSize="24px" iconColor="#000" iconName="trash" />
+          <el-table-column label="Actions" width="135" fixed="right">
+            <template #default="scope">
+              <el-row class="row-bg" justify="space-between">
+                <el-button @click="viewMonster(scope.row.id)" type="info" style="margin:0" circle>
+                  <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
                 </el-button>
-              </template>
-              <template #actions="">
-                <el-button @click="encounters.monsters.splice(index, 1)" type="danger" size="small"> Yes </el-button>
-              </template>
-            </el-popconfirm>
-
-          </el-col>
-        </el-row>
-
-        list
-        icon - name - hp - ac - view - edit - delete
-
+                <el-button @click="editMonster(scope.row.id)" type="primary" style="margin:0" circle>
+                  <g-icon iconSize="24px" iconColor="#000" iconName="quill" />
+                </el-button>
+                <el-popconfirm :title="`Delete Monster?`">
+                  <template #reference>
+                    <el-button type="danger" style="margin:0" circle>
+                      <g-icon iconSize="24px" iconColor="#000" iconName="trash" />
+                    </el-button>
+                  </template>
+                  <template #actions="">
+                    <el-button @click="deleteMonster(scope.$index)" type="danger" size="small"> Yes </el-button>
+                  </template>
+                </el-popconfirm>
+              </el-row>
+             </template>
+           </el-table-column>
+        </el-table>
       </el-col>
 
       <!-- NPCs -->
       <el-col :xs="24" :sm="12">
         <el-divider >
-          <h4> <g-icon iconSize="32px" iconName="userList" /> NPCs </h4>
+          <el-col :xs="24" :span="0">
+            <g-icon iconName="userList" iconSize="26px" style="margin:0" /> NPCs
+          </el-col>
+          <el-col :xs="0" :sm="24">
+            <g-icon iconName="userList" iconSize="32px" /> NPCs
+          </el-col>
         </el-divider>
 
-        list
-        icon - name - hp - ac - view - edit - delete
+        <el-table v-loading="loading" :data="this.encounter.npcs" stripe >
+          <el-table-column label="Type" min-width="55">
+            <template #default="scope">
+              <g-icon :iconName="scope.row.type" iconSize="24px" />
+            </template>
+          </el-table-column>
+          <el-table-column prop="name" label="Name" min-width="120" sortable />
+          <el-table-column prop="alignment" label="Align" min-width="90" sortable />
+          <el-table-column prop="hp" label="HP" min-width="70" sortable />
 
+          <el-table-column label="Actions" width="135" fixed="right">
+            <template #default="scope">
+              <el-row class="row-bg" justify="space-between">
+                <el-button @click="viewNPC(scope.row.id)" type="info" style="margin:0" circle>
+                  <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
+                </el-button>
+                <el-button @click="editNPC(scope.row.id)" type="primary" style="margin:0" circle>
+                  <g-icon iconSize="24px" iconColor="#000" iconName="quill" />
+                </el-button>
+                <el-popconfirm :title="`Delete NPC?`">
+                  <template #reference>
+                    <el-button type="danger" style="margin:0" circle>
+                      <g-icon iconSize="24px" iconColor="#000" iconName="trash" />
+                    </el-button>
+                  </template>
+                  <template #actions="">
+                    <el-button @click="deleteNPC(scope.$index)" type="danger" size="small"> Yes </el-button>
+                  </template>
+                </el-popconfirm>
+              </el-row>
+             </template>
+           </el-table-column>
+        </el-table>
       </el-col>
     </el-row>
-
-
-
 
 
     <br>
@@ -133,8 +185,10 @@ export default {
   data() {
     return {
       loading: true,
-      itemFilter: '',
+      monsters: [],
+      NPCs: [],
 
+      siblings: [], // other encounters within the campaign
       encounter: {},
     };
   },
@@ -152,62 +206,40 @@ export default {
         console.log(response);
         this.encounter = response.encounter;
 
+        EncounterService.getEncounterList(this.encounter.campaignId, 0, 100)
+        .then((response) =>{ this.siblings = response.encounters.rows; })
+        .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
         this.loading = false;
       })
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
+
+
+
     }
   },
-
-  watch: {
-    // Loot Search, part 1
-    itemFilter(val) { this.$refs.tree.filter(val); }
-  },
-
   methods: {
     // Helper Methods
     capFirsts(string) { return string ? string.replace(/(^\w|\s\w)/g, m => m.toUpperCase()) : ""; },
 
-    // saveCharacter() {
-    //   CharacterService.updateCharacter(this.character)
-    //   .then((response) => { this.$message({ message: `${response.character.name} updated`, type: 'success', }); })
-    //   .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
-    // },
-    viewLoot() {
-      console.log('view');
-    },
-    editLoot() {
-      console.log('edit');
+
+
+    saveEncounter() {
+      EncounterService.updateEncounter(this.encounter)
+      .then((response) => { this.$message({ message: `${response.encounter.name} updated`, type: 'success', }); })
+      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
     },
 
-    /***************************\
-    *                           *
-    *          FILTERS          *
-    *                           *
-    \***************************/
-    // HIDES non-matching rows (display: none)
-    searchByName(filter) {
-      let table, tr, td, i, txtValue;
-      filter = filter.toUpperCase();
-      table = document.getElementById("encounterTable");
-      tr = table.getElementsByTagName("tr");
-      for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[0];
-        if (td) {
-          txtValue = td.textContent || td.innerText;
-          if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            tr[i].style.display = "";
-          } else {
-            tr[i].style.display = "none";
-          }
-        }
-      }
+    viewEncounter() {
+      console.log('load into DM Screen');
+      // EncounterService.updateEncounter(this.campaign)
+      // .then((response) => { this.$message({ message: `${response.campaign.name} updated`, type: 'success', }); })
+      // .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
     },
-    clearFilter() { this.charNameFilter = ""; this.searchByName(""); },
-    // Loot Search, part 2
-    filterNode(value, data) {
-      if (!value) return true;
-      return data.label.indexOf(value) !== -1;
-    },
+
+
+
+
+
 
     /***************************\
     *                           *
@@ -222,13 +254,28 @@ export default {
       console.log('edit monster', id);
       // this.$router.push({ name: 'encounter-edit', params: { id: id } });
     },
-    // deleteMonster(id, rowIndex) {
-    //   console.log('deleteEncounter', id);
-    //   console.log(rowIndex);
-    //   // CampaignService.deleteCampaign(id)
-    //   // .then(response => { this.$message({ message: response, type: 'warning' }); this.encounters.splice(rowIndex, 1); })
-    //   // .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
-    // },
+    deleteMonster(rowIndex) {
+      this.encounter.monsters.splice(rowIndex, 1);
+      this.saveEncounter();
+    },
+
+    /***************************\
+    *                           *
+    *            NPCs           *
+    *                           *
+    \***************************/
+    viewNPC(id) {
+      console.log('view npc', id);
+      // this.$router.push({ name: 'encounter-view', params: { id: id } });
+    },
+    editNPC(id) {
+      console.log('edit npc', id);
+      // this.$router.push({ name: 'encounter-edit', params: { id: id } });
+    },
+    deleteNPC(rowIndex) {
+      this.encounter.npcs.splice(rowIndex, 1);
+      this.saveEncounter();
+    },
 
 
   }

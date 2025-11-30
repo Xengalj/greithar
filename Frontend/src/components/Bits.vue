@@ -13,6 +13,10 @@
 
     <g-icon iconName="d20" iconSize="24px" iconColor="#CCC" />
 
+    <el-tag size="small" effect="dark" type="primary" color="#FFAA00">
+      CONTENT
+    </el-tag>
+
     <el-divider style="max-width:50%">
       <h4> <g-icon iconSize="32px" iconName="magicSwirl" /> Classes </h4>
     </el-divider>
@@ -56,10 +60,6 @@
         <el-button v-if="!addingCondition" text bg size="small" @click="addNewContion()"> Add custom condition </el-button>
       </template>
     </el-select>
-
-    <el-tag size="small" effect="dark" type="primary" color="#FFAA00">
-      CONTENT
-    </el-tag>
 
     <el-tooltip placement="top" effect="light">
       HOVER HERE

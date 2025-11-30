@@ -2256,16 +2256,19 @@ export default {
     },
 
     joinEncounter() {
-      console.log(this.encounter);
-
       if (!this.encounter.npcs.includes(this.character.id)) {
-        this.encounter.npcs.push(this.character.id);
+        let npc = {
+          id: this.character.id,
+          name: this.character.name,
+          type: this.character.basics.type.name,
+          alignment: this.character.basics.alignment,
+          hp: this.character.health.total,
+        };
+        this.encounter.npcs.push(npc);
 
-        // TODO: Update Encounter
-
-        // CampaignService.joinCampaign(this.campaign, this.character)
-        // .then((response) => { this.$message({ message: response.message, type: 'success', }); })
-        // .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
+        EncounterService.updateEncounter(this.encounter)
+        .then((response) => { this.$message({ message: `${response.encounter.name} updated`, type: 'success', }); })
+        .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
 
       } else {
         this.$message({ message: 'You may only add a character to an encounter once', type: 'warning', });

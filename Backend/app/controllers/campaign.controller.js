@@ -286,6 +286,7 @@ exports.readEncounter = (req, res) => {
     Encounter.findAndCountAll({
       where: { campaignId: req.body.campaign_id },
       // include: [{ model: Character }],
+      order: [ ['id', 'DESC'] ],
       offset: req.body.offset,
       limit: req.body.limit
     })
@@ -327,14 +328,15 @@ exports.updateEncounter = (req, res) => {
         if (roles[i].name === "storyteller") { isStoryteller = true; }
       }
 
-      Encounter.findOne({ where: { id: req.body.id } })
+      Encounter.findOne({ where: { id: req.body.encounter.id } })
       .then(encounter => {
         if (!encounter) { return res.status(404).send({ message: "Encounter not found!" }); }
 
         // only let users edit their own, or admins edit any
         if (isAdmin || isStoryteller) {
+          console.log('update');
 
-          for (const [key, value] of Object.entries(req.body)) {
+          for (const [key, value] of Object.entries(req.body.encounter)) {
             console.log(`${key}: ${value}`);
             if (key == "id") { continue; }
             encounter[key] = value;
