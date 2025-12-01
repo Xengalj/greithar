@@ -40,9 +40,8 @@ const routes = [
     component: Register,
   },
   {
-    path: "/dm-screen",
+    path: "/dm-screen/:campaign?/:encounter?",
     name: "dm-screen",
-    // lazy-loaded
     component: () => import("./components/dm/DMScreen.vue"),
     meta: {
       breadcrumb: "DM Screen",
@@ -50,16 +49,18 @@ const routes = [
     },
   },
 
-  {
-    path: "/admin",
-    name: "admin",
-    // lazy-loaded
-    component: () => import("./components/dm/DMScreen.vue"),
-    meta: {
-      breadcrumb: "Admin",
-      title: "Admin",
-    },
-  },
+
+
+  // {
+  //   path: "/admin",
+  //   name: "admin",
+  //   // lazy-loaded
+  //   component: () => import("./components/dm/DMScreen.vue"),
+  //   meta: {
+  //     breadcrumb: "Admin",
+  //     title: "Admin",
+  //   },
+  // },
 
 
 

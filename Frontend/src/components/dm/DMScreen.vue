@@ -1,30 +1,116 @@
 <template>
 
-  <el-row>
-    <el-col :span="4" class="center-horz">
-      Random Name Generator
-      <el-select v-model="tempName.race" size="small" placeholder="Choose Race">
-        <el-option v-for="(race, name) in races" :key="name" :label="name" :value="name" />
-      </el-select>
-    </el-col>
-    <el-col :span="8">
-      <div v-if="tempName.race">
-        Gender (♀, ♂, ⚨ First Names)
-        <el-select v-model="tempName.gender" size="small" placeholder="Choose Gender">
-          <el-option v-if="races[tempName.race].female" key="female" label="♀ female" value="female" />
-          <el-option v-if="races[tempName.race].male" key="male" label="♂ male" value="male" />
-          <!-- <el-option v-if="races[tempName.race].sexless" key="agender" label="⚨ agender" value="agender" /> -->
-          <el-option v-if="races[tempName.race].agender" key="agender" label="⚨ agender" value="agender" />
-        </el-select>
-      </div>
-    </el-col>
-    <el-col :span="10">
-      <div v-if="tempName.gender">
-        <el-button type="primary" @click="genRandomName()"> Random Name! </el-button>
-        {{ tempName.fName }} {{ tempName.surname }} ( {{ tempName.gender }} {{ tempName.race }} )
-      </div>
-    </el-col>
+  <!-- PARTY -->
+  <el-row justify="space-around">
+    <el-card v-for="(character, index) in campaign.characters" :key="index" style="max-width: 200px">
+      <template #header>
+        <div class="card-header">
+          <el-tag :color="character.color" size="large" effect="dark" class="card-header">
+            <div class="card-header">
+              <span>{{ character.name }} ({{ character.username }})</span>
+            </div>
+          </el-tag>
+        </div>
+      </template>
+
+      <el-row>
+        <el-input v-model="character.alignment" disabled>
+          <template #prepend> Alignment </template>
+        </el-input>
+        <el-input v-model="character.alignment" disabled>
+          <template #prepend> Perception </template>
+        </el-input>
+      </el-row>
+
+      <el-row justify="space-between" align="middle">
+        <el-tag type="danger" effect="dark" style="color: black"> {{ character.health }} HP </el-tag>
+        <el-tag color="#42d4f4" effect="dark"> {{ character.health }} AC </el-tag>
+
+        <el-button @click=" this.$router.push({ name: 'character-view', params: { id: character.id } }); " type="primary" style="margin:0" circle>
+          <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
+        </el-button>
+      </el-row>
+
+      <el-tag v-for="(cClass, cName) in character.classes" :key="cName" size="large" effect="dark" type="primary" >
+        {{ capFirsts(cName) }} {{ cClass.levels }}
+      </el-tag>
+    </el-card>
   </el-row>
+
+  <el-card>
+    <el-row :gutter="10" justify="center" align="middle" class="campaignExtras">
+      <el-col :xs="24" :sm="12" :md="6">
+        <el-input v-model="campaign.extras" aria-label="campaignTime">
+          <template #prepend> Current Time </template>
+        </el-input>
+      </el-col>
+      <el-col :xs="24" :sm="12" :md="6">
+        <el-input v-model="campaign.extras" aria-label="campaignWeather">
+          <template #prepend> Weather </template>
+        </el-input>
+      </el-col>
+      <el-col :xs="24" :sm="12" :md="6">
+        <el-input type="textarea" v-model="campaign.extras" :autosize="{ minRows: 1, maxRows: 4 }" placeholder="Weather notes..." aria-label="campaignWeatherNotes" />
+      </el-col>
+      <el-col :xs="24" :sm="12" :md="6" class="center-horz">
+        <el-button @click="saveCampaign" size="large" type="primary">
+          Save <g-icon iconName="rolledScroll" iconSize="24px" iconColor="#CCC" />
+        </el-button>
+        <el-button @click="drawer = true" size="large" type="primary" >
+          Open Drawer
+        </el-button>
+      </el-col>
+    </el-row>
+
+    <el-row :gutter="10" justify="center">
+      <el-tag size="large" effect="dark" type="info">
+        <h3>
+          Random Name Generator
+        </h3>
+      </el-tag>
+    </el-row>
+
+    <el-row :gutter="10" align="middle">
+      <el-col :xs="12" :sm="8" :md="4">
+        Race
+        <el-select v-model="tempName.race" size="large" placeholder="Choose Race">
+          <el-option v-for="(race, name) in races" :key="name" :label="name" :value="name" />
+        </el-select>
+      </el-col>
+
+      <el-col :xs="12" :sm="8" :md="4">
+        <div v-if="tempName.race">
+          Gender (♀, ♂, ⚨)
+          <el-select v-model="tempName.gender" size="large" placeholder="Choose Gender">
+            <el-option v-if="races[tempName.race].female" key="female" label="♀ female" value="female" />
+            <el-option v-if="races[tempName.race].male" key="male" label="♂ male" value="male" />
+            <el-option v-if="races[tempName.race].agender" key="agender" label="⚨ agender" value="agender" />
+          </el-select>
+        </div>
+      </el-col>
+
+      <el-col :xs="24" :sm="8" :md="4">
+        <div v-if="tempName.gender" class="center-horz">
+          <br>
+          <el-button type="primary" @click="genRandomName()"> Random Name! </el-button>
+        </div>
+      </el-col>
+      <el-col :xs="24" :sm="24" :md="6" class="center-horz">
+        <br>
+        <el-tag v-if="tempName.fName" size="large" effect="plain" type="success" style="font-size: 16px;">
+          {{ tempName.fName }} {{ tempName.surname }}
+        </el-tag>
+      </el-col>
+    </el-row>
+  </el-card>
+
+
+
+
+
+
+
+
   <br><br>
 
   <el-button type="primary" circle @click="monsterOpen('Skeletal Champion')">
@@ -58,24 +144,164 @@
     </template>
   </el-dialog>
 
-  <el-row>
-    <div v-for="(icon, name, index) in icons" :key="index" class="center-horz" style="margin: 5px;">
-      <el-button size="large" type="primary" circle>
-        <g-icon iconSize="24px" :iconName="name" />
-      </el-button>
-      <br>
-      {{ name }}
+
+
+
+  <el-drawer v-model="drawer" direction="rtl">
+  <template #header>
+    <h4>{{ encounter.name }}</h4>
+  </template>
+
+  <template #default>
+
+    <div v-if="encounter">
+      <el-collapse v-model="encounterCollapse">
+
+        <el-collapse-item name="1">
+          <template #title>
+            <el-divider style="max-width:75%">
+              <g-icon iconSize="20px" iconName="openScroll" /> Notes
+            </el-divider>
+          </template>
+
+          <el-input
+            v-for="(note, index) in encounter.notes" :key="index"
+            v-model="encounter.notes[index]"
+            :autosize="{ minRows: 2, maxRows: 5 }"
+            type="textarea"
+            aria-label="textAreaName" />
+          <el-button @click="encounter.notes.push('')" size="large" type="primary">
+            Add Note
+            <g-icon iconName="createScroll" iconSize="24px" iconColor="#CCC" />
+          </el-button>
+        </el-collapse-item>
+
+        <el-collapse-item name="2">
+          <template #title>
+            <el-divider style="max-width:75%">
+              <g-icon iconSize="20px" iconName="userList" /> NPCs
+            </el-divider>
+          </template>
+
+          <el-table v-loading="loading" :data="this.encounter.npcs" stripe >
+            <el-table-column label="Type" min-width="55">
+              <template #default="scope">
+                <g-icon :iconName="scope.row.type" iconSize="24px" />
+              </template>
+            </el-table-column>
+            <el-table-column prop="name" label="Name" min-width="120" sortable />
+            <el-table-column prop="alignment" label="Align" min-width="90" sortable />
+            <el-table-column prop="hp" label="HP" sortable />
+
+            <el-table-column label="Actions" fixed="right">
+              <template #default="scope">
+                <el-row class="row-bg" justify="space-between">
+                  <el-button @click="viewNPC(scope.row.id)" type="info" style="margin:0" circle>
+                    <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
+                  </el-button>
+                </el-row>
+               </template>
+             </el-table-column>
+          </el-table>
+
+        </el-collapse-item>
+
+        <el-collapse-item name="3">
+          <template #title>
+            <el-divider style="max-width:75%">
+              <g-icon iconSize="20px" iconName="magical beast" /> Monsters
+            </el-divider>
+          </template>
+
+          <el-table v-loading="loading" :data="this.encounter.monsters" stripe >
+            <el-table-column label="Type" min-width="55">
+              <template #default="scope">
+                <g-icon :iconName="scope.row.type" iconSize="24px" />
+              </template>
+            </el-table-column>
+            <el-table-column prop="name" label="Name" min-width="120" sortable />
+            <el-table-column prop="alignment" label="Align" min-width="90" sortable />
+            <el-table-column prop="hp" label="HP" min-width="70" sortable />
+
+            <el-table-column label="Actions" fixed="right">
+              <template #default="scope">
+                <el-row class="row-bg" justify="space-between">
+                  <el-button @click="viewMonster(scope.row.id)" type="info" style="margin:0" circle>
+                    <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
+                  </el-button>
+                </el-row>
+               </template>
+             </el-table-column>
+          </el-table>
+        </el-collapse-item>
+
+
+        <el-collapse-item name="4">
+          <template #title>
+            <el-divider style="max-width:75%">
+              <g-icon iconSize="20px" iconName="map" /> Extras
+            </el-divider>
+          </template>
+
+
+          <!-- Prev / Next -->
+          <el-row>
+            <el-col :span="5">
+              <el-tag size="large" effect="dark" type="info"> Prev </el-tag>
+            </el-col>
+            <el-col :span="19">
+
+              <el-button @click="viewMonster(scope.row.id)" type="info" style="margin:0" circle>
+                <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
+              </el-button>
+
+              <el-select v-model="encounter.extras.prev" filterable>
+                <el-option v-for="encounter in siblings" :key="encounter.id" :label="encounter.name" :value="encounter.name" />
+              </el-select>
+            </el-col>
+          </el-row>
+
+          <el-row>
+            <el-col :span="5">
+              <el-tag size="large" effect="dark" type="info"> Next </el-tag>
+            </el-col>
+            <el-col :span="19">
+              <el-select v-model="encounter.extras.next" filterable>
+                <el-option v-for="encounter in siblings" :key="encounter.id" :label="encounter.name" :value="encounter.name" />
+              </el-select>
+            </el-col>
+          </el-row>
+
+        </el-collapse-item>
+      </el-collapse>
+
+
+
+
+
+
+
+      {{ encounter }}
     </div>
-  </el-row>
+  </template>
+  <template #footer>
+    <div style="flex: auto">
+      <el-button @click="console.log('nope')">cancel</el-button>
+      <el-button type="primary" @click="console.log('yep')">confirm</el-button>
+    </div>
+  </template>
+</el-drawer>
+
 
 
 </template>
 
 <script>
-import UserService from "@/services/user.service";
 import DataService from "@/services/data.service";
 import CreatureCard from '@/components/template/CreatureCard.vue'
-const icons = require('@/components/template/svgPaths.json');
+import CampaignService from "@/services/campaign.service";
+import EncounterService from "@/services/encounter.service";
+
 
 export default {
   name: "DM Screen",
@@ -85,7 +311,12 @@ export default {
   data() {
     return {
       content: "DM Screen",
-      icons: icons,
+
+      drawer: false,
+      campaign: {},
+      encounter: {},
+
+      encounterCollapse: [ '' ],
 
       monsterVisible: false,
       creature: {},
@@ -96,14 +327,7 @@ export default {
     }
   },
   computed: {
-    user() {
-      let user = "Xen";
-      user = localStorage.getItem('user');
-
-      // this.$store.state.auth.status.loggedIn
-      // console.log(this.$store.state.auth);
-      return user;
-    },
+    currentUser() { return this.$store.state.auth.user; },
     rules() { return JSON.parse(localStorage.getItem('rules')); },
     races() { return JSON.parse(localStorage.getItem('races')); },
     classes() { return JSON.parse(localStorage.getItem('classes')); },
@@ -112,31 +336,26 @@ export default {
     actions() { return JSON.parse(localStorage.getItem('actions')); },
     conditions() { return JSON.parse(localStorage.getItem('conditions')); },
   },
-  created() {
-    UserService.getAdminBoard().then(
-      (response) => { this.content = response.data; },
-      (error) => {
-        this.content =
-        (error.response && error.response.data && error.response.data.message)
-        || error.message || error.toString();
-      }
-    );
-  },
-  mounted() {
+  async mounted() {
     if (!this.rules.size) { this.$router.push("/"); }
 
-    // Wait until we have data (like 500 ms?)
-    if (this.conditions) {
-      console.log('Races', this.races);
-
-      // this.monsterOpen("Skeletal Champion");
-      // this.monsterOpen("Adult Red Dragon");
-      // this.monsterOpen("Death Worm");
-      // this.monsterOpen("Ochre Jelly");
+    console.log(this.$route.params);
+    if (this.$route.params.campaign) {
+      this.loadCampaign(this.$route.params.campaign);
     }
+    if (this.$route.params.encounter) {
+      this.loadEncounter(this.$route.params.encounter);
+    }
+
+    if (!this.$route.params.campaign && !this.$route.params.encounter) {
+      this.loadCampaigns();
+    }
+
+
 
   },
   methods: {
+    capFirsts(string) { return string ? string.replace(/(^\w|\s\w)/g, m => m.toUpperCase()) : ""; },
     monsterOpen(name) {
       DataService.getMonster({"Name": name})
       .then(response => {
@@ -746,7 +965,53 @@ export default {
       surnames = this.races[this.tempName.race].surnames;
       rand = Math.floor(Math.random() * Object.keys(surnames).length);
       this.tempName.surname = Object.keys(surnames)[rand];
-    }
+    },
+
+
+    loadCampaign(id) {
+      CampaignService.getCampaign(id)
+      .then((response) => {
+        console.log('campaign', response);
+        this.campaign = response.campaign;
+        let title = document.getElementsByClassName('jumbotron')[0];
+        title.innerHTML = this.campaign.name;
+      })
+      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
+    },
+
+    loadEncounter(id) {
+      console.log(id);
+      EncounterService.getEncounter(id)
+      .then((response) => {
+        console.log('encounter', response);
+        this.encounter = response.encounter;
+      })
+      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
+    },
+
+    loadCampaigns() {
+      CampaignService.getCampaignList(this.userID, 0, 100)
+      .then(response => {
+        let tmp = JSON.parse(response.campaigns);
+        this.campaigns = tmp.rows;
+      })
+      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
+    },
+    loadEncounters() {
+      EncounterService.getEncounterList(this.campaign.id, 0, 100)
+      .then(response => {
+        let tmp = response.encounters;
+        this.totalEncounters = tmp.count;
+        this.encounters = tmp.rows;
+        this.loading = false;
+      })
+      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
+    },
+
+
+
+
+
 
     // End Methods
   }
@@ -754,4 +1019,5 @@ export default {
 </script>
 
 <style>
+.el-row, .el-input, .el-textarea { margin-bottom: 10px; }
 </style>

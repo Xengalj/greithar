@@ -33,10 +33,10 @@
       <template #prefix>
         INSIDE START
       </template>
-      <template #append>
+      <template #suffix>
         INSIDE END
       </template>
-      <template #suffix>
+      <template #append>
         AFETR BOX
       </template>
     </el-input>
