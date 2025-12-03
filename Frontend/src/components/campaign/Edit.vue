@@ -14,8 +14,8 @@
       </el-col>
     </el-row>
 
-    <!-- Characters -->
     <el-row :gutter="10" justify="center">
+      <!-- Characters -->
       <el-col :xs="24" :sm="12">
         <el-divider >
           <el-col :xs="24" :span="0">
@@ -28,29 +28,34 @@
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;" >
           <el-card v-for="(character, index) in campaign.characters" :key="index" style="max-width: 200px">
             <template #header>
-              <el-tag :color="character.color" size="large" effect="dark" class="card-header">
-                <div class="card-header">
-                  <span>{{ character.name }} ({{ character.username }})</span>
-                </div>
-              </el-tag>
+              <div class="card-header">
+                <el-tag :color="character.color" size="large" effect="dark">
+                  <span>{{ character.name }} ({{ character.user }})</span>
+                </el-tag>
+              </div>
             </template>
-            <el-row>
-              <el-input v-model="character.alignment" disabled>
-                <template #prepend>
-                  Alignment
-                </template>
-              </el-input>
-            </el-row>
-            <el-row justify="space-between" align="middle">
-              <el-tag type="danger" effect="dark" style="color: black">
-                {{ character.health }} HP
-              </el-tag>
-              <el-button @click=" this.$router.push({ name: 'character-view', params: { id: character.id } }); " type="primary" style="margin:0" circle>
+
+            <el-input v-model="campaign.extras.playerNotes[character.id].alignment" aria-label="Character AC">
+              <template #prepend> Alignment </template>
+            </el-input>
+            <el-input v-model="campaign.extras.playerNotes[character.id].HP" aria-label="Character Max Health">
+              <template #prepend>
+                <el-tag type="danger" effect="dark" style="color: black"> HP </el-tag>
+              </template>
+            </el-input>
+            <el-input v-model="campaign.extras.playerNotes[character.id].AC" aria-label="Character Total AC">
+              <template #prepend>
+                <el-tag color="#42d4f4" effect="dark"> AC </el-tag>
+              </template>
+            </el-input>
+            <el-input v-model="campaign.extras.playerNotes[character.id].perception" aria-label="Character Percpeption">
+              <template #prepend> Perception </template>
+            </el-input>
+            <el-button @click=" this.$router.push({ name: 'character-view', params: { id: character.id } }); " type="info" style="margin:0 10px" circle>
               <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
             </el-button>
-            </el-row>
-            <el-tag v-for="(cClass, cName) in character.classes" :key="cName" size="large" effect="dark" type="primary" >
-              {{ capFirsts(cName) }} {{ cClass.levels }}
+            <el-tag v-for="cClass in character.classes" :key="cClass.name" size="large" effect="dark" type="primary" >
+              {{ capFirsts(cClass.name) }} {{ cClass.levels }}
             </el-tag>
           </el-card>
         </div>
@@ -89,8 +94,8 @@
       </el-col>
     </el-row>
 
-    <!-- Group Loot -->
     <el-row :gutter="10" justify="center" align="middle">
+      <!-- Group Loot -->
       <el-col :xs="24" :sm="12">
         <el-divider >
           <h4>
@@ -316,8 +321,7 @@ export default {
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err.message); });
     },
     viewEncounter(id) {
-      console.log('view encounter', id);
-      // this.$router.push({ name: 'campaign-view', params: { id: id } });
+      this.$router.push({ name: 'dm-screen', params: { campaign: this.campaign.id, encounter: id } });
     },
     editEncounter(id) { this.$router.push({ name: 'encounter-edit', params: { id: id } }); },
     deleteEncounter(id, rowIndex) {
@@ -331,7 +335,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.el-row {
-  margin-bottom: 5px;
+.el-card .el-input {
+  margin-bottom: 10px;
 }
 </style>

@@ -27,8 +27,8 @@
             <el-tag size="large" effect="dark" type="info"> Prev </el-tag>
           </el-col>
           <el-col :span="19">
-            <el-select v-model="encounter.extras.prev" filterable>
-              <el-option v-for="encounter in siblings" :key="encounter.id" :label="encounter.name" :value="encounter.name" />
+            <el-select v-model="encounter.extras.prev" value-key="id" filterable>
+              <el-option v-for="sib in siblings" :key="sib.id" :label="sib.name" :value="sib" />
             </el-select>
           </el-col>
         </el-row>
@@ -38,8 +38,8 @@
             <el-tag size="large" effect="dark" type="info"> Next </el-tag>
           </el-col>
           <el-col :span="19">
-            <el-select v-model="encounter.extras.next" filterable>
-              <el-option v-for="encounter in siblings" :key="encounter.id" :label="encounter.name" :value="encounter.name" />
+            <el-select v-model="encounter.extras.next" value-key="id" filterable>
+              <el-option v-for="sib in siblings" :key="sib.id" :label="sib.name" :value="sib" />
             </el-select>
           </el-col>
         </el-row>
@@ -207,7 +207,11 @@ export default {
         this.encounter = response.encounter;
 
         EncounterService.getEncounterList(this.encounter.campaignId, 0, 100)
-        .then((response) =>{ this.siblings = response.encounters.rows; })
+        .then((response) =>{
+          for (let encounter of response.encounters.rows) {
+            this.siblings.push({ 'id': encounter.id, 'name': encounter.name });
+          }
+        })
         .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
         this.loading = false;
       })

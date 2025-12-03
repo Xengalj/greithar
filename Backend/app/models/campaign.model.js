@@ -21,6 +21,12 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.JSON,
       defaultValue: {}
     },
+    extras: {
+      type: Sequelize.JSON,
+      defaultValue: {
+        "playerNotes": {}
+      }
+    },
     notes: {
       type: Sequelize.JSON,
       defaultValue: []

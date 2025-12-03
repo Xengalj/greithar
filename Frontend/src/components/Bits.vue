@@ -9,6 +9,8 @@
     <el-row :gutter="10" justify="center" align="middle">
       <el-col :xs="24" :sm="12" :md="6">
       </el-col>
+      <el-col :xs="24" :sm="12" :md="6">
+      </el-col>
     </el-row>
 
     <g-icon iconName="d20" iconSize="24px" iconColor="#CCC" />

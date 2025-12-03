@@ -2266,15 +2266,13 @@ export default {
     *                           *
     \***************************/
     capFirsts(string) { return string ? string.replace(/(^\w|\s\w)/g, m => m.toUpperCase()) : ""; },
+    // Add Active Bonuses
     bonusLoop(object, tString) {
-      // if (tString == "totalAC") {
-      //   console.log(tString, object);
-      // }
       // object = the bonus object we are adding to: { total: #, sources: [] }
       // tString = the target string we match to add to the bonus object: "atkBonus" || "Str" || "touchAC"
-      // Add Active Bonuses
       let typedBonuses = {};
       let prefix = "";
+      // if (tString == "totalAC") { console.log(tString, object); }
 
       for (let [name, bonus] of Object.entries(this.bonuses)) {
         prefix = (bonus.value > 0) ? "+" : "";

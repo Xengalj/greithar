@@ -56,19 +56,21 @@ exports.readCampaign = async (req, res) => {
 
       // create custom array for campaign.characters
       campaign.dataValues.characters = [];
-      const toons = await campaign.getCharacters();
-      for (const character of toons) {
+      const characters = await campaign.getCharacters();
+      for (const character of characters) {
         await character.getUser()
         .then(user => {
-          campaign.dataValues.characters.push({
+          let toon = {
             id: character.id,
             name: character.name,
-            alignment: character.basics.alignment,
-            health: character.health.total,
-            classes: character.classes,
-            username: user.username,
+            user: user.username,
             color: user.usermeta.faveColor,
-          });
+            classes: []
+          };
+          for (let [name, cClass] of Object.entries(character.classes)) {
+            toon.classes.push({'name': name, 'levels': cClass.levels});
+          }
+          campaign.dataValues.characters.push(toon);
         })
         .catch(err => { res.status(500).send({ message: err.message }); });
       }
@@ -174,6 +176,8 @@ exports.joinCampaign = (req, res) => {
         Character.findByPk( req.body.character_id )
         .then( char => {
           campaign.addCharacter(char);
+          campaign.extras.playerNotes[req.body.character_id] = {};
+          campaign.save();
           res.status(200).send({ message: `${char.name} added successfully!` });
         });
 
