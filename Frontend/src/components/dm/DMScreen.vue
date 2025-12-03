@@ -529,188 +529,157 @@ export default {
         console.log(tmp);
 
         let res = {
-          id: 0, // monsters dont have id...
-
-          AC: 21,
-          "AC_Flat-footed": 19,
-          "​AC_Touch": 12,
-          Alignment: "NE",
-          AlternateNameForm: null,
-          Base_Speed: 30,
-          Burrow: 0,
-          Burrow_Speed: null,
-          CR: 2,
-          Cha: 12,
-          CharacterFlag: 0,
-          Class1: "warrior",
-          Class1_Lvl: 1,
-          Class2: null,
-          Class2_Lvl: null,
-          ClassArchetypes: null,
-          Climb: 0,
-          Climb_Speed: null,
-          CompanionFamiliarLink: "NULL",
-          CompanionFlag: 0,
-          Con: "-",
-          Dex: 13,
-          Environment: "any",
-          Feats: "Cleave, Improved InitiativeB, Power Attack, Weapon Focus (longsword)",
-          Fly: 0,
-          Fly_Speed: null,
-          Fort: 3,
-          Gear: null,
-          Group: null,
-          HD: "3 HD; 2d8+1d10+3",
-          HP: 17,
-          Int: 9,
-          Languages: null,
-          MR: 0,
-          MT: 0,
-          Maneuverability: null,
-          "Melee": "mwk longsword +7 (1d8+3/19-20)",
-          Mythic: 0,
-          Name: "Skeletal Champion",
-          Organization: "solitary, pair, or platoon (3-12)",
-          OtherGear: null,
-          Race: "Human skeletal champion",
-          RacialMods: null,
-          Ranged: null,
-          Reach: 5,
-          Ref: 1,
-          SQ: null,
-          Size: "Medium",
-          Skills: "Intimidate +7, Perception +6, Stealth -1",
-          Source: "PFRPG Bestiary",
-          Space: 5,
-          Speed: "30 ft.",
-          Speed_Land: 1,
-          Speed_Special: null,
-          Str: 17,
-          Swim: 0,
-          Swim_Speed: null,
-          Treasure: "standard (breastplate, heavy steel shield, masterwork longsword, other treasure)",
-          Type: "undead",
-          UniqueMonster: 0,
-          VariantParent: null,
-          Will: 3,
-          Wis: 10,
-          XP: 600,
-          // id: 322,
-          subtype1: null,
-          subtype2: null,
-          subtype3: null,
-          subtype4: null,
-          subtype5: null,
-          subtype6: null,
+Feats: "Cleave, Improved InitiativeB, Power Attack, Weapon Focus (longsword)",
+Gear: null,
+Languages: null,
+"Melee": "mwk longsword +7 (1d8+3/19-20)",
+OtherGear: null,
+SQ: null,
+Skills: "Intimidate +7, Perception +6, Stealth -1",
+Treasure: "standard (breastplate, heavy steel shield, masterwork longsword, other treasure)",
         };
         console.log("CSV", res);
 
-
-
-
-        // createureCard <- tmp
-
-
+        this.creature = {
+            name: response.name,
+            basics: {},
+          conditions: [],
+            attributes: {},
+            health: {},
+            classes: {},
+          resources: {},
+            abilities: {},
+          attacks: {},
+          spells: {},
+          coins: {},
+            inventory: [],
+            skills: {},
+            settings: {
+              "cardTab": "Main",
+              "mainSections": [  "defense", "actions" ],
+              "expandInventory": [ "Equipped", "Armor", "Weapons", "Hands", "Back", "Items" ]
+            },
+            notes: []
+        };
 
         /***************************\
         *                           *
         *          BASICS           *
         *                           *
         \***************************/
-        // Ability Score Modifiers
-        // creature.attributes = {
-        //   Str: { total: (response.Str == "-" ? 0 : response.Str) }, StrMod: Math.floor( (response.Str == "-" ? 0 : response.Str - 10) / 2 ),
-        //   Dex: { total: (response.Dex == "-" ? 0 : response.Dex) }, DexMod: Math.floor( (response.Dex == "-" ? 0 : response.Dex - 10) / 2 ),
-        //   Con: { total: (response.Con == "-" ? 0 : response.Con) }, ConMod: Math.floor( (response.Con == "-" ? 0 : response.Con - 10) / 2 ),
-        //   Int: { total: (response.Int == "-" ? 0 : response.Int) }, IntMod: Math.floor( (response.Int == "-" ? 0 : response.Int - 10) / 2 ),
-        //   Wis: { total: (response.Wis == "-" ? 0 : response.Wis) }, WisMod: Math.floor( (response.Wis == "-" ? 0 : response.Wis - 10) / 2 ),
-        //   Cha: { total: (response.Cha == "-" ? 0 : response.Cha) }, ChaMod: Math.floor( (response.Cha == "-" ? 0 : response.Cha - 10) / 2 )
-        // }
+        this.creature.name = response.name;
+        this.creature.settings = {
+          "cardTab": "Main",
+          "mainSections": [  "defense", "actions" ],
+          "expandInventory": [ "Equipped", "Armor", "Weapons", "Hands", "Back", "Items" ]
+        };
+        this.creature.notes = [];
+        this.creature.basics = {
+          cr: response.CR,
+          type: {}
+          race: NULL,
+          size: response.size,
+          speed: {
+            "base": { "total": response.Base_Speed, "sources": [ `+${response.Base_Speed} Racial Base` ] },
+            "swim": { "total": 0, "sources": [] },
+            "climb": { "total": 0, "sources": [] },
+            "fly": { "total": 0, "sources": [] },
+            "burrow": { "total": 0, "sources": [] }
+          },
+          alignment: response.Alignment,
+          environment: response.Environment,
+        };
 
-        // // Get total HD
-        // let racialHD = 0;
-        // let strings = response.HD.split(";");
-        // strings = strings[1] ? strings[1] : strings[0];
-        // strings = strings.split("+");
-        // for (var str of strings) {
-        //   str = str.trimStart();
-        //   if (str.includes('d')) {
-        //     str = str.split("d");
-        //     racialHD += parseInt(str[0]);
-        //   }
-        // }
-        // // Subtract Class HD from total HD to find racialHD
-        // if (response.Class1) {
-        //   creature.classes[response.Class1] = { "levels": response.Class1_Lvl };
-        //   racialHD -= response.Class1_Lvl;
-        // }
-        // if (response.Class2) {
-        //   creature.classes[response.Class2] = { "levels": response.Class2_Lvl };
-        //   racialHD -= response.Class2_Lvl;
-        // }
-        // // Racial
-        // let type  = this.rules.creature_types[response.Type];
-        // creature.basics.type = {
-        //   name: response.Type,
-        //   levels: racialHD,
-        //   hd: type.hd,
-        //   subtypes: []
-        // }
-        // for (let [name, trait] of Object.entries(type.traits)) {
-        //   creature.abilities[name] = trait;
-        //   creature.abilities[name].extras = { active: true, source: "Trait" };
-        // }
-        // if (response.Race) {
-        //   creature.basics.type.subtypes.push(response.Race);
-        //   if (Object.keys(this.races).includes(response.Race)) {
-        //     for (let [name, trait] of Object.entries(this.races[response.Race].traits)) {
-        //       creature.abilities[name] = trait;
-        //       creature.abilities[name].extras = { active: true, source: "Trait" };
-        //     }
-        //   }
-        // }
-        // // Subtypes
-        // for (let i = 1; i < 7; i++) {
-        //   if (response[`subtype${i}`]) {
-        //     creature.basics.type.subtypes.push(response[`subtype${i}`]);
-        //   }
-        // }
+        /***************************\
+        *                           *
+        *        TYPE / RACE        *
+        *                           *
+        \***************************/
+        // Prep Racial HD
+        let racialHD = 0;
+        let strings = response.HD.split(";");
+        strings = strings[1] ? strings[1] : strings[0];
+        strings = strings.split("+");
+        for (var str of strings) {
+          str = str.trimStart();
+          if (str.includes('d')) {
+            str = str.split("d");
+            racialHD += parseInt(str[0]);
+          }
+        }
+
+        // Load Class 1
+        if (response.Class1) {
+          this.creature.classes[response.Class1] = { levels: response.Class1_Lvl };
+          // Subtract Class HD from total HD to find racialHD
+          racialHD -= response.Class1_Lvl;
+        }
+
+        // Load Class 2
+        if (response.Class2) {
+          this.creature.classes[response.Class2] = { levels: response.Class2_Lvl };
+          racialHD -= response.Class2_Lvl;
+        }
+
+        // Prep creature.basics
+        let type  = this.rules.creature_types[response.Type];
+        this.creature.basics.type = {
+          name: response.Type,
+          hd: type.hd,
+          levels: racialHD,
+          subtypes: []
+        }
+        // Creature Type Abilities
+        for (let [name, trait] of Object.entries(type.traits)) {
+          this.creature.abilities[name] = trait;
+          this.creature.abilities[name].extras = { active: true, source: "Race", showMain: false };
+        }
+        if (response.Race) {
+          this.creature.basics.race = response.Race;
+          // Racial Abilities
+          if (Object.keys(this.races).includes(response.Race)) {
+            for (let [name, trait] of Object.entries(this.races[response.Race].traits)) {
+              this.creature.abilities[name] = trait;
+              this.creature.abilities[name].extras = { active: true, source: "Race", showMain: false };
+            }
+          }
+        }
+        // Subtypes
+        for (let i = 1; i < 7; i++) {
+          if (response[`subtype${i}`]) {
+            this.creature.basics.type.subtypes.push(response[`subtype${i}`]);
+          }
+        }
+
+        /***************************\
+        *                           *
+        *        ATTRIBUTES         *
+        *                           *
+        \***************************/
+        this.creature.attributes = {
+          Str: { base: (response.Str == "-" ? 0 : response.Str) },
+          Dex: { base: (response.Dex == "-" ? 0 : response.Dex) },
+          Con: { base: (response.Con == "-" ? 0 : response.Con) },
+          Int: { base: (response.Int == "-" ? 0 : response.Int) },
+          Wis: { base: (response.Wis == "-" ? 0 : response.Wis) },
+          Cha: { base: (response.Cha == "-" ? 0 : response.Cha) }
+        }
+
+        this.creature.health = {};
+        this.creature.skills = {};
+        this.creature.inventory = [];
+
+
+
+
+
+
+
         // creature.health.current = response.HP;
-        //
-        // // Speed
-        // creature.basics.speed = {
-        //   speed: { "total": 0, "sources": [] },
-        //   swim: { "total": 0, "sources": [] },
-        //   climb: { "total": 0, "sources": [] },
-        //   fly: { "total": 0, "sources": [] },
-        //   burrow: { "total": 0, "sources": [] }
-        // }
-        // response.Speed.split(',').forEach((speed, i) => {
-        //   // Remove leading any whitespace & capitalize
-        //   speed = speed.trim();
-        //   speed = speed.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
-        //   if (i == 0) {
-        //     creature.basics.speed.speed.total = parseInt(speed);
-        //     creature.basics.speed.speed.sources.push("Racial Base");
-        //
-        //   } else if (speed.includes("Swim")) {
-        //     creature.basics.speed.swim.total = parseInt(speed.slice(5));
-        //     creature.basics.speed.swim.sources.push("Racial Swim");
-        //
-        //   } else if (speed.includes("Climb")) {
-        //     creature.basics.speed.climb.total = parseInt(speed.slice(6));
-        //     creature.basics.speed.climb.sources.push("Racial Climb");
-        //
-        //   } else if (speed.includes("Fly")) {
-        //     creature.basics.speed.fly.total = parseInt(speed.slice(4));
-        //     creature.basics.speed.fly.sources.push("Racial Fly");
-        //
-        //   } else if (speed.includes("Burrow")) {
-        //     console.log('burrowSpeed');
-        //     creature.basics.speed.burrow.total = parseInt(speed.slice(7));
-        //     creature.basics.speed.burrow.sources.push("Racial Burrow");
-        //   }
-        // });
+
+
+
+
 
 
         /***************************\
