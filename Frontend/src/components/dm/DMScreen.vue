@@ -528,11 +528,6 @@ export default {
         };
         console.log(tmp);
 
-        let res = {
-Feats: "Cleave, Improved InitiativeB, Power Attack, Weapon Focus (longsword)",
-"Melee": "mwk longsword +7 (1d8+3/19-20)",
-SQ: null,
-        };
 
         this.creature = {
             name: response.name,
@@ -766,9 +761,6 @@ SQ: null,
         }
           
         for (let item of items) {
-              { 'label': 'Backpack',   'extras': { 'icon': 'backpack', 'capacity': 20 }, 'children': [], 'value':
-                { 'Cost': 2, 'Weight': 2, 'Description': "This leather knapsack has one large pocket that closes with a buckled strap and holds about 2 cubic feet of material. Some may have one or more smaller pockets on the sides." }
-              }
           let i, extras = {
             "Masterwork": false,
             "Enhancement": 0,
@@ -878,10 +870,13 @@ SQ: null,
         /***************************\
         *                           *
         *         ABILITIES         *
-        *             &             *
-        *          BONUSES          *
         *                           *
         \***************************/
+        
+        let res = {
+Feats: "Cleave, Improved InitiativeB, Power Attack, Weapon Focus (longsword)",
+SQ: null,
+        };
         console.log(response.SQ);
         console.log(response.Feats);
         // creature.actions.basic = this.actions;
