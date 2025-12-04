@@ -676,30 +676,17 @@ export default {
         }
 
         for (let item of items) {
-          let i, extras = {
-            "Masterwork": false,
-            "Enhancement": 0,
-            "Notes": []
-          };
+          let i, extras = { "Masterwork": false, "Enhancement": 0, "Notes": [] };
           item = item.toLowerCase();
           // "With" abilities (poison, bleed, frost)
           i = item.indexOf('with');
-          if (i > -1) {
-            extras["Notes"].push(item.slice(i));
-            item = item.slice(0, i);
-          }
+          if (i > -1) { extras["Notes"].push(item.slice(i)); item = item.slice(0, i); }
           // +# Magic items (can't go over +5)
           i = item.indexOf('+');
-          if (i > -1) {
-            extras["Enhancement"] = item.slice(i+1);
-            item = item.slice(i+2);
-          }
+          if (i > -1) { extras["Enhancement"] = item.slice(i+1); item = item.slice(i+2); }
           // Masterwork items
           i = item.indexOf('masterwork');
-          if (i > -1) {
-            extras["Masterwork"] = true;
-            item = item.slice(i+10);
-          }
+          if (i > -1) { extras["Masterwork"] = true; item = item.slice(i+10); }
           // Remove leading any whitespace & capitalize
           item = item[0] === " " ? item.slice(1) : item;
           item = item.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
@@ -730,10 +717,6 @@ export default {
             let notes = newWpn.Extras.Notes;
             if (notes.length) { extras.Notes.push(notes); }
             newWpn.Extras = extras;
-            // newWpn.Damage = this.equipment.Weapons[item].Damage;
-            // // do not reset damage on rerender
-            // if (typeof tmpWpn.Damage != 'string') {
-            // }
             if (weapons[0].children.length < 2) {
               // if weapons[hands].children < 2
               weapons[0].children.push({ label: item, value: newWpn });
@@ -754,12 +737,6 @@ export default {
             let notes = newWpn.Extras.Notes;
             if (notes.length) { extras.Notes.push(notes); }
             newWpn.Extras = extras;
-            // newWpn.Proficiency = "Shields";
-            // newWpn.Damage = this.equipment.Shields[item].Damage;
-            // // do not set damage on rerender
-            // if (typeof tmpWpn.Damage != 'string') {
-            // }
-
             newWpn.targets = this.rules.bonuses.Shield.targets;
             if (weapons[0].children.length < 2) {
               // if weapons[hands].children
@@ -787,49 +764,37 @@ export default {
         *         ABILITIES         *
         *                           *
         \***************************/
+        // Feats
+        if (response.Feats) {
+          for (let name of response.Feats.split(',')) {
+            let isBonus, feat = {
+              description: "",
+              trigger: "Continuous",
+              benefit: { text: "", target: "self" },
+              bonuses: {},
+              extras: { active: false, showMain: false, source: "Feat" }
+            };
+            name = name.trim();
+            if (name.indexOf('(') > 0) { name = name.slice(0, name.indexOf('(')-1); }
+            // Remove 'B' from bonus feat names
+            if (name[name.length-1] == 'B') {
+              isBonus = true;
+              name = name.slice(0, -1);
+            }
+            // if the feat is in the feats json, load it's data
+            if (this.feats[name]) {
+              console.log('load from json');
+              feat = this.feats[name];
+              feat.extras = {
+                active: (this.feats[name].trigger == "Continuous") ? true : false,
+                showMain: (this.feats[name].trigger == "Continuous") ? false : true,
+                source: isBonus ? "Class" : "Feat"
+              };
+            }
+            this.creature.abilities[name] = feat;
+          }
+        }
 
-        // let res = {
-        //   Feats: "Cleave, Improved InitiativeB, Power Attack, Weapon Focus (longsword)",
-        //   SQ: null,
-        // };
-        console.log(response.SQ);
-        console.log(response.Feats);
-        // creature.actions.basic = this.actions;
-        // for (let action of Object.entries(creature.actions.basic)) {
-        //   action[1].extras["source"] = "Basic";
-        // }
-        // FEATS
-        // if (response.Feats) {
-        //   for (let feat of response.Feats.split(',')) {
-        //     feat = feat.trim();
-        //     if (feat.indexOf('(') > 0) { feat = feat.slice(0, feat.indexOf('(')-1); }
-        //     if (feat[feat.length-1] == 'B') { feat = feat.slice(0, -1); } // Remove 'B' from bonus feat names
-        //
-        //     // if the feat is in the feats json
-        //     if (this.feats[feat]) {
-        //       creature.abilities[feat] = this.feats[feat];
-        //       if (this.feats[feat].trigger == "Continuous") {
-        //         creature.abilities[feat].extras = { active: true, showMain: false, source: "Feat" };
-        //       } else {
-        //         creature.abilities[feat].extras = { active: false, showMain: true, source: "Feat" };
-        //         creature.actions.special[feat] = this.feats[feat];
-        //       }
-        //     } else {
-        //       creature.abilities[feat] = {
-        //         "type": "UNKNOWN",
-        //         "prerequisites": [ "" ],
-        //         "description": "PLEASE UPDATE THIS ENTRY",
-        //         "benefit": "",
-        //         "trigger": "Continuous",
-        //         "bonuses": {},
-        //         "extras": { "active": false, "showMain": false, "source": "Feat" }
-        //       };
-        //     }
-        //   }
-        // }
-        // // TODO: Add Class Actions
-        //
-        //
         // // NATURAL ARMOR
         // tempNum = response.AC - 10;
         // tempNum -= Math.floor((response.Dex - 10) / 2);
@@ -859,8 +824,19 @@ export default {
         //     extras: { active: true, showMain: false, source: "Trait" }
         //   };
         // }
-        //
-        //
+
+
+        // let res = {
+        //   SQ: null,
+        // };
+        console.log(response.SQ);
+        // creature.actions.basic = this.actions;
+        // for (let action of Object.entries(creature.actions.basic)) {
+        //   action[1].extras["source"] = "Basic";
+        // }
+
+
+
         // // MELEE
         // if (response.Melee) {
         //   for (let atk of response.Melee.split(',')) {
@@ -968,17 +944,7 @@ export default {
 
 
 
-        /***************************\
-        *                           *
-        *           MAGIC           *
-        *                           *
-        \***************************/
-        // TODO:
 
-
-
-
-        // this.creature = creature;
         console.log(this.creature);
 
         // this.creatureName = name
