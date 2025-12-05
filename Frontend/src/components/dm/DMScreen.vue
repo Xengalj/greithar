@@ -795,152 +795,149 @@ export default {
           }
         }
 
-        // // NATURAL ARMOR
-        // tempNum = response.AC - 10;
-        // tempNum -= Math.floor((response.Dex - 10) / 2);
-        // tempNum -= this.rules.size[creature.basics.size]["ac / atk"];
-        // // Armor
-        // let item = creature.inventory[1].children[0].children[0];
-        // if (item) { tempNum -= item.value["AC Bonus"]; }
-        //
-        // // For items in equipment . equipped . hands
-        // for (const item of creature.inventory[1].children[1].children[0].children) {
-        //   if (item.value.Proficiency == "Shields") {
-        //     tempNum -= item.value["AC Bonus"];
-        //   }
-        // }
-        // if (tempNum > 0) {
-        //   creature.abilities["Natural Armor"] = {
-        //     trigger: "Continuous",
-        //     description: "This creature naturally tough, granting additional armor.",
-        //     benefit: "",
-        //     bonuses: {
-        //       "Natural Armor": {
-        //         value: tempNum,
-        //         targets: this.rules.bonuses["Natural Armor"].targets,
-        //         type: "Natural Armor",
-        //       }
-        //     },
-        //     extras: { active: true, showMain: false, source: "Trait" }
-        //   };
-        // }
+        // Natural Armor
+        tempNum = response.AC - 10;
+        tempNum -= Math.floor((response.Dex - 10) / 2);
+        tempNum -= this.rules.size[this.creature.basics.size]["ac / atk"];
+        let armor = this.creature.inventory[1].children[0].children[0];
+        if (armor) { tempNum -= item.value["AC Bonus"]; }
+        for (const item of this.creature.inventory[1].children[1].children[0].children) {
+          // Shields : for items in equipment . equipped . hands
+          if (item.value["AC Bonus"]) { tempNum -= item.value["AC Bonus"]; }
+        }
+        if (tempNum > 0) {
+          this.creature.abilities["Natural Armor"] = {
+            trigger: "Continuous",
+            description: "This creature is naturally tough, granting additional armor.",
+            benefit: { target: "self", text: "" },
+            bonuses: {
+              "Natural Armor": { value: tempNum, type: "Natural Armor", targets: this.rules.bonuses["Natural Armor"].targets }
+            },
+            extras: { active: true, showMain: false, source: "Trait" }
+          };
+        }
+        // Special Qualities
+        if (response.SQ) {
+          for (let abil of response.SQ.split(',')) {
+            this.creature.abilities[abil] = {
+              trigger: "Standard",
+              description: "",
+              benefit: { target: "self", text: "" },
+              bonuses: {},
+              extras: { active: false, showMain: false, source: "Race" }
+            }
+          }
+        }
 
-
-        // let res = {
-        //   SQ: null,
-        // };
-        console.log(response.SQ);
-        // creature.actions.basic = this.actions;
-        // for (let action of Object.entries(creature.actions.basic)) {
-        //   action[1].extras["source"] = "Basic";
-        // }
-
-
-
-        // // MELEE
-        // if (response.Melee) {
-        //   for (let atk of response.Melee.split(',')) {
-        //     let i, extras = {};
-        //     atk = atk.toLowerCase();
-        //     // abilities (poison, bleed, frost)
-        //     i = atk.indexOf('plus');
-        //     if (i > -1) {
-        //       extras["abilities"] = atk.slice(i);
-        //       extras["abilities"] = extras.abilities.slice(0, -1); // remove trailing ')'
-        //       atk = atk.slice(0, i);
-        //     }
-        //     // Dmg Die
-        //     let dmg = atk.slice(atk.indexOf("(")+1);
-        //     dmg = dmg.slice(0, dmg.indexOf('+'));
-        //     // remove atk bonus from string
-        //     atk = atk.slice(0, atk.indexOf('+')-1);
-        //
-        //     // Strip off masterwork & leading whitespace
-        //     atk = atk.replace(/(mwk|masterwork|Mwk|Masterwork)\s/gm, "").trim();
-        //     atk = atk.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
-        //
-        //     // Add only Natural Attacks
-        //     // item = equipment . equipped . hands . 'main hand'
-        //     let item = creature.inventory[1].children[1].children[0].children[0];
-        //     if (item && item.label == atk) { continue; }
-        //     // item = equipment . equipped . hands . 'off hand'
-        //     item = creature.inventory[1].children[1].children[0].children[1];
-        //     if (item && item.label == atk) { continue; }
-        //
-        //     let NAs = this.rules.natural_attacks;
-        //     // get Nat Atk name, for searching (no #, no trailing 's')
-        //     let atkName = atk;
-        //     if (parseInt(atk[0]) > 1) {
-        //       atk = atk.slice(2);
-        //       atk = atk.slice(0, -1);
-        //     }
-        //     if (Object.keys(NAs).includes(atk)) {
-        //       creature.actions.melee[atkName] = NAs[atk];
-        //       extras["Natural Attack"] = NAs[atk].Category;
-        //       creature.actions.melee[atkName].Extras = extras;
-        //       let tableDmg = NAs[atk].Damage[creature.basics.size];
-        //       if (tableDmg != dmg) { creature.actions.melee[atkName].Damage[creature.basics.size] = dmg; }
-        //     } else {
-        //       creature.actions.melee[atkName] = NAs["Other"];
-        //     }
-        //   }
-        // }
-        //
-        // // RANGED
-        // if (response.Ranged) {
-        //   for (let atk of response.Ranged.split(',')) {
-        //     let i, atkNum, extras = {};
-        //     atk = atk.toLowerCase();
-        //     // abilities (poison, bleed, frost)
-        //     i = atk.indexOf('plus');
-        //     if (i > -1) {
-        //       extras["abilities"] = atk.slice(i);
-        //       extras["abilities"] = extras.abilities.slice(0, -1); // remove trailing ')'
-        //       atk = atk.slice(0, i);
-        //     }
-        //     // Dmg Die
-        //     let dmg = atk.slice(atk.indexOf("(")+1);
-        //     dmg = dmg.slice(0, dmg.indexOf('+'));
-        //     // remove atk bonus from string
-        //     atk = atk.slice(0, atk.indexOf('+')-1);
-        //
-        //     // Strip off masterwork & leading whitespace
-        //     atk = atk.replace(/(mwk|masterwork|Mwk|Masterwork)\s/gm, "");
-        //     atk = atk.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
-        //
-        //     // Add only Natural Attacks
-        //     // item = equipment . equipped . hands . 'main hand'
-        //     let item = creature.inventory[1].children[1].children[0].children[0];
-        //     if (item && item.label == atk) { continue; }
-        //     // item = equipment . equipped . hands . 'off hand'
-        //     item = creature.inventory[1].children[1].children[0].children[1];
-        //     if (item && item.label == atk) { continue; }
-        //
-        //
-        //     let NAs = this.rules.natural_attacks;
-        //
-        //     // Number of Attacks (NAs)
-        //     if (parseInt(atk[0]) > 1) {
-        //       atkNum = atk[0];
-        //       atk = atk.slice(2);
-        //       atk = atk.slice(0, -1);
-        //     }
-        //     let atkName = atkNum ? atkNum+" "+atk : atk;
-        //     if (Object.keys(NAs).includes(atk)) {
-        //       creature.actions.ranged[atkName] = NAs[atk];
-        //       extras["Natural Attack"] = NAs[atk].Category;
-        //       creature.actions.ranged[atkName].Extras = extras;
-        //       let tableDmg = NAs[atk].Damage[creature.basics.size];
-        //       if (tableDmg != dmg) { creature.actions.ranged[atkName].Damage[creature.basics.size] = dmg; }
-        //     } else {
-        //       creature.actions.ranged[atkName] = NAs["Other"];
-        //       extras["Natural Attack"] = NAs["Other"].Category;
-        //       creature.actions.ranged[atkName].Extras = extras;
-        //       let tableDmg = NAs["Other"].Damage[creature.basics.size];
-        //       if (tableDmg != dmg) { creature.actions.ranged[atkName].Damage[creature.basics.size] = dmg; }
-        //     }
-        //   }
-        // }
+        /***************************\
+        *                           *
+        *          ATTACKS          *
+        *                           *
+        \***************************/
+        // MELEE
+        if (response.Melee) {
+          for (let atk of response.Melee.split(',')) {
+            let i, extras = {};
+            atk = atk.toLowerCase();
+            // abilities (poison, bleed, frost)
+            i = atk.indexOf('plus');
+            if (i > -1) {
+              extras.notes = atk.slice(i);
+              extras.notes = extras.notes.slice(0, -1); // remove trailing ')'
+              atk = atk.slice(0, i);
+            }
+            // Dmg Die
+            let dmg = atk.slice(atk.indexOf("(")+1);
+            dmg = dmg.slice(0, dmg.indexOf('+'));
+            // remove atk bonus from string
+            atk = atk.slice(0, atk.indexOf('+')-1);
+        
+            // Strip off masterwork & leading whitespace
+            atk = atk.replace(/(mwk|masterwork|Mwk|Masterwork)\s/gm, "").trim();
+            atk = atk.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
+        
+            // Add only Natural Attacks
+            // item = equipment . equipped . hands . 'main hand'
+            let item = creature.inventory[1].children[1].children[0].children[0];
+            if (item && item.label == atk) { continue; }
+            // item = equipment . equipped . hands . 'off hand'
+            item = creature.inventory[1].children[1].children[0].children[1];
+            if (item && item.label == atk) { continue; }
+        
+            let NAs = this.rules.natural_attacks;
+            // get Nat Atk name, for searching (no #, no trailing 's')
+            let atkName = atk;
+            if (parseInt(atk[0]) > 1) {
+              atk = atk.slice(2);
+              atk = atk.slice(0, -1);
+            }
+            if (Object.keys(NAs).includes(atk)) {
+              this.creature.attacks.melee[atkName] = NAs[atk];
+              extras["Natural Attack"] = NAs[atk].Category;
+              this.creature.actions.melee[atkName].Extras = extras;
+              let tableDmg = NAs[atk].Damage[this.creature.basics.size];
+              if (tableDmg != dmg) { this.creature.attacks.melee[atkName].Damage[this.creature.basics.size] = dmg; }
+            } else {
+              this.creature.actions.melee[atkName] = NAs["Other"];
+            }
+          }
+        }
+        
+        // RANGED
+        if (response.Ranged) {
+          for (let atk of response.Ranged.split(',')) {
+            let i, atkNum, extras = {};
+            atk = atk.toLowerCase();
+            // abilities (poison, bleed, frost)
+            i = atk.indexOf('plus');
+            if (i > -1) {
+              extras.notes = atk.slice(i);
+              extras.notes = extras.notes.slice(0, -1); // remove trailing ')'
+              atk = atk.slice(0, i);
+            }
+            // Dmg Die
+            let dmg = atk.slice(atk.indexOf("(")+1);
+            dmg = dmg.slice(0, dmg.indexOf('+'));
+            // remove atk bonus from string
+            atk = atk.slice(0, atk.indexOf('+')-1);
+        
+            // Strip off masterwork & leading whitespace
+            atk = atk.replace(/(mwk|masterwork|Mwk|Masterwork)\s/gm, "");
+            atk = atk.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
+        
+            // Add only Natural Attacks
+            // item = equipment . equipped . hands . 'main hand'
+            let item = this.creature.inventory[1].children[1].children[0].children[0];
+            if (item && item.label == atk) { continue; }
+            // item = equipment . equipped . hands . 'off hand'
+            item = this.creature.inventory[1].children[1].children[0].children[1];
+            if (item && item.label == atk) { continue; }
+        
+        
+            let NAs = this.rules.natural_attacks;
+        
+            // Number of Attacks (NAs)
+            if (parseInt(atk[0]) > 1) {
+              atkNum = atk[0];
+              atk = atk.slice(2);
+              atk = atk.slice(0, -1);
+            }
+            let atkName = atkNum ? atkNum+" "+atk : atk;
+            if (Object.keys(NAs).includes(atk)) {
+              this.creature.actions.ranged[atkName] = NAs[atk];
+              extras["Natural Attack"] = NAs[atk].Category;
+              this.creature.actions.ranged[atkName].Extras = extras;
+              let tableDmg = NAs[atk].Damage[this.creature.basics.size];
+              if (tableDmg != dmg) { this.creature.actions.ranged[atkName].Damage[this.creature.basics.size] = dmg; }
+            } else {
+              this.creature.actions.ranged[atkName] = NAs["Other"];
+              extras["Natural Attack"] = NAs["Other"].Category;
+              this.creature.actions.ranged[atkName].Extras = extras;
+              let tableDmg = NAs["Other"].Damage[this.creature.basics.size];
+              if (tableDmg != dmg) { this.creature.actions.ranged[atkName].Damage[this.creature.basics.size] = dmg; }
+            }
+          }
+        }
 
 
 
