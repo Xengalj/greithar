@@ -138,7 +138,6 @@
   <br><br><br>
 
   <el-dialog width="700" v-model="monsterVisible" :before-close="monsterClose">
-
     <CreatureCard :source="creature"></CreatureCard>
 
     <template #footer>
@@ -371,7 +370,6 @@ export default {
     loadCampaign(id) {
       CampaignService.getCampaign(id)
       .then((response) => {
-        console.log(response);
         this.campaign = response.campaign;
         let title = document.getElementsByClassName('jumbotron')[0];
         title.innerHTML = this.campaign.name;
@@ -643,6 +641,7 @@ export default {
         *                           *
         \***************************/
         this.creature.inventory = [
+          {},
           { 'label': 'Equipped',     'extras': { 'icon': 'equipment' }, 'children': [
             { 'label': 'Armor',      'extras': { 'icon': 'armor', 'capacity': 1 }, 'children': [] },
             { 'label': 'Weapons',    'extras': { 'icon': 'weapons' }, 'children': [
@@ -695,7 +694,7 @@ export default {
           // Armor
           if ( Object.keys(this.equipment.Armor).includes(item) ) {
             // creature.inventory[equipped].children[armor].children
-            let armor = this.creature.inventory[0].children[0].children;
+            let armor = this.creature.inventory[1].children[0].children;
             let newArmor = this.equipment.Armor[item];
             let notes = newArmor.Extras.Notes;
             if (notes.length) { extras.Notes.concat(notes); }
@@ -705,14 +704,14 @@ export default {
               armor.push({ label: item, value: newArmor });
             } else {
               // creature.inventory[loot].children
-              this.creature.inventory[1].children.push({ label: item, value: newArmor });
+              this.creature.inventory[2].children.push({ label: item, value: newArmor });
             }
           }
 
           // Weapons
           else if ( Object.keys(this.equipment.Weapons).includes(item) ) {
             // creature.inventory[equipped].children[weapons]
-            let weapons = this.creature.inventory[0].children[1].children;
+            let weapons = this.creature.inventory[1].children[1].children;
             let newWpn = this.equipment.Weapons[item];
             let notes = newWpn.Extras.Notes;
             if (notes.length) { extras.Notes.push(notes); }
@@ -725,14 +724,14 @@ export default {
               weapons[1].children.push({ label: item, value: newWpn });
             } else {
               // add weapon to creature.inventory[loot].children
-              this.creature.inventory[1].children.push({ label: item, value: newWpn });
+              this.creature.inventory[2].children.push({ label: item, value: newWpn });
             }
           }
 
           // Shields
           else if ( Object.keys(this.equipment.Shields).includes(item) ) {
             // creature.inventory[equipped].children[weapons]
-            let weapons = this.creature.inventory[0].children[1].children;
+            let weapons = this.creature.inventory[1].children[1].children;
             let newWpn = this.equipment.Shields[item];
             let notes = newWpn.Extras.Notes;
             if (notes.length) { extras.Notes.push(notes); }
@@ -746,13 +745,13 @@ export default {
               weapons[1].children.push({ label: item, value: newWpn });
             } else {
               // add shield to creature.inventory[loot].children
-              this.creature.inventory[1].children.push({ label: item, value: newWpn });
+              this.creature.inventory[2].children.push({ label: item, value: newWpn });
             }
           }
 
           // Others
           else {
-            this.creature.inventory[1].children.push({
+            this.creature.inventory[2].children.push({
               label: item,
               value: { "Cost": 1, "Weight": 0, "Description": "", "Extras": { "Notes": [] } }
             });
@@ -783,7 +782,6 @@ export default {
             }
             // if the feat is in the feats json, load it's data
             if (this.feats[name]) {
-              console.log('load from json');
               feat = this.feats[name];
               feat.extras = {
                 active: (this.feats[name].trigger == "Continuous") ? true : false,
@@ -796,22 +794,22 @@ export default {
         }
 
         // Natural Armor
-        tempNum = response.AC - 10;
-        tempNum -= Math.floor((response.Dex - 10) / 2);
-        tempNum -= this.rules.size[this.creature.basics.size]["ac / atk"];
+        let tempAC = response.AC - 10;
+        tempAC -= Math.floor((response.Dex - 10) / 2);
+        tempAC -= this.rules.size[this.creature.basics.size]["ac / atk"];
         let armor = this.creature.inventory[1].children[0].children[0];
-        if (armor) { tempNum -= item.value["AC Bonus"]; }
+        if (armor) { tempAC -= armor.value["AC Bonus"]; }
         for (const item of this.creature.inventory[1].children[1].children[0].children) {
           // Shields : for items in equipment . equipped . hands
-          if (item.value["AC Bonus"]) { tempNum -= item.value["AC Bonus"]; }
+          if (item.value["AC Bonus"]) { tempAC -= item.value["AC Bonus"]; }
         }
-        if (tempNum > 0) {
+        if (tempAC > 0) {
           this.creature.abilities["Natural Armor"] = {
             trigger: "Continuous",
             description: "This creature is naturally tough, granting additional armor.",
             benefit: { target: "self", text: "" },
             bonuses: {
-              "Natural Armor": { value: tempNum, type: "Natural Armor", targets: this.rules.bonuses["Natural Armor"].targets }
+              "Natural Armor": { value: tempAC, type: "Natural Armor", targets: this.rules.bonuses["Natural Armor"].targets }
             },
             extras: { active: true, showMain: false, source: "Trait" }
           };
@@ -851,19 +849,19 @@ export default {
             dmg = dmg.slice(0, dmg.indexOf('+'));
             // remove atk bonus from string
             atk = atk.slice(0, atk.indexOf('+')-1);
-        
+
             // Strip off masterwork & leading whitespace
             atk = atk.replace(/(mwk|masterwork|Mwk|Masterwork)\s/gm, "").trim();
             atk = atk.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
-        
+
             // Add only Natural Attacks
             // item = equipment . equipped . hands . 'main hand'
-            let item = creature.inventory[1].children[1].children[0].children[0];
+            let item = this.creature.inventory[1].children[1].children[0].children[0];
             if (item && item.label == atk) { continue; }
             // item = equipment . equipped . hands . 'off hand'
-            item = creature.inventory[1].children[1].children[0].children[1];
+            item = this.creature.inventory[1].children[1].children[0].children[1];
             if (item && item.label == atk) { continue; }
-        
+
             let NAs = this.rules.natural_attacks;
             // get Nat Atk name, for searching (no #, no trailing 's')
             let atkName = atk;
@@ -882,7 +880,7 @@ export default {
             }
           }
         }
-        
+
         // RANGED
         if (response.Ranged) {
           for (let atk of response.Ranged.split(',')) {
@@ -900,11 +898,11 @@ export default {
             dmg = dmg.slice(0, dmg.indexOf('+'));
             // remove atk bonus from string
             atk = atk.slice(0, atk.indexOf('+')-1);
-        
+
             // Strip off masterwork & leading whitespace
             atk = atk.replace(/(mwk|masterwork|Mwk|Masterwork)\s/gm, "");
             atk = atk.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
-        
+
             // Add only Natural Attacks
             // item = equipment . equipped . hands . 'main hand'
             let item = this.creature.inventory[1].children[1].children[0].children[0];
@@ -912,10 +910,10 @@ export default {
             // item = equipment . equipped . hands . 'off hand'
             item = this.creature.inventory[1].children[1].children[0].children[1];
             if (item && item.label == atk) { continue; }
-        
-        
+
+
             let NAs = this.rules.natural_attacks;
-        
+
             // Number of Attacks (NAs)
             if (parseInt(atk[0]) > 1) {
               atkNum = atk[0];
@@ -939,13 +937,8 @@ export default {
           }
         }
 
-
-
-
-        console.log(this.creature);
-
         // this.creatureName = name
-        // this.monsterVisible = true;
+        this.monsterVisible = true;
       })
       .catch(err => { console.error(err); });
 
