@@ -113,6 +113,10 @@
 
   <br><br>
 
+  <el-button type="primary" circle @click="creatureWidth = 355; loadMonster('Skeletal Champion')">
+    <g-icon iconSize="24px" iconName="undead" />
+  </el-button>
+
   <el-button type="primary" circle @click="loadMonster('Skeletal Champion')">
     <g-icon iconSize="24px" iconName="undead" />
   </el-button>
@@ -137,9 +141,8 @@
 
   <br><br><br>
 
-  <el-dialog width="700" v-model="monsterVisible" :before-close="monsterClose">
+  <el-dialog :width="creatureWidth" v-model="monsterVisible" :before-close="monsterClose">
     <CreatureCard :source="creature"></CreatureCard>
-
     <template #footer>
       <div class="dialog-footer">
         <el-button @click="monsterClose()"> Close </el-button>
@@ -318,6 +321,7 @@ export default {
       encounterCollapse: [ '' ],
 
       monsterVisible: false,
+      creatureWidth: 750,
       creature: {},
     }
   },
@@ -479,9 +483,10 @@ export default {
           environment: response.Environment,
         };
         this.creature.settings = {
-          "cardTab": "Main",
-          "mainSections": [  "defense", "actions" ],
-          "expandInventory": [ "Equipped", "Armor", "Weapons", "Hands", "Back", "Items" ]
+          isMonster: true,
+          cardTab: "Main",
+          mainSections: [  "defense", "actions" ],
+          expandInventory: [ "Equipped", "Armor", "Weapons", "Hands", "Back", "Items" ]
         };
         this.creature.notes = [];
 
@@ -937,7 +942,6 @@ export default {
           }
         }
 
-        // this.creatureName = name
         this.monsterVisible = true;
       })
       .catch(err => { console.error(err); });

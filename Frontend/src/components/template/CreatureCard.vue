@@ -1,127 +1,224 @@
-this.creature<template lang="html">
-  <div v-if="!loading">
-    <h2>{{ title }}</h2>
+<template lang="html">
+<div v-if="!loading">
+<h2>{{ title }}</h2>
 
-    <!-- Basics -->
-    <el-row :gutter="20" style="margin-bottom: 15px;">
-      <el-col :span="12" class="center-horz">
-        <svg width="225" height="200">
-          <HexGraph :abilities="[attributes.Str.total, attributes.Dex.total, attributes.Con.total, attributes.Int.total, attributes.Wis.total, attributes.Cha.total]"></HexGraph>
-        </svg>
+<!-- Basics -->
+<el-row :gutter="20" style="margin-bottom: 15px;">
+  <el-col :xs="24" :span="12" class="center-horz">
+    <svg width="225" height="200">
+      <HexGraph :abilities="[attributes.Str.total, attributes.Dex.total, attributes.Con.total, attributes.Int.total, attributes.Wis.total, attributes.Cha.total]"></HexGraph>
+    </svg>
+    <el-row :gutter="5" justify="center">
+      <el-col :span="12">
+        <el-tooltip v-if="attributes.Str.sources[0]" placement="top" effect="light">
+          <el-input disabled>
+            <template #prepend> Str </template>
+            <template #prefix> <el-tag effect="dark" type="info"> {{ attributes.Str.total }} </el-tag> </template>
+            <template #suffix> <el-tag effect="dark" type="primary"> {{ attributes.Str.mod }} </el-tag> </template>
+          </el-input>
+          <template #content>
+            <span v-for="bonus in attributes.Str.sources" :key="bonus"> {{ bonus+" " }} </span>
+          </template>
+        </el-tooltip>
+        <el-input v-else disabled>
+          <template #prepend> Str </template>
+          <template #prefix> <el-tag effect="dark" type="info"> {{ attributes.Str.total }} </el-tag> </template>
+          <template #suffix> <el-tag effect="dark" type="primary"> {{ attributes.Str.mod }} </el-tag> </template>
+        </el-input>
+      </el-col>
 
+      <el-col :span="12">
+        <el-tooltip v-if="attributes.Dex.sources[0]" placement="top" effect="light">
+          <el-input disabled>
+            <template #prepend> Dex </template>
+            <template #prefix> <el-tag effect="dark" type="info"> {{ attributes.Dex.total }} </el-tag> </template>
+            <template #suffix> <el-tag effect="dark" type="primary"> {{ attributes.Dex.mod }} </el-tag> </template>
+          </el-input>
+          <template #content>
+            <span v-for="bonus in attributes.Dex.sources" :key="bonus"> {{ bonus+" " }} </span>
+          </template>
+        </el-tooltip>
+        <el-input v-else disabled>
+          <template #prepend> Dex </template>
+          <template #prefix> <el-tag effect="dark" type="info"> {{ attributes.Dex.total }} </el-tag> </template>
+          <template #suffix> <el-tag effect="dark" type="primary"> {{ attributes.Dex.mod }} </el-tag> </template>
+        </el-input>
+      </el-col>
 
-      <div class="stat-controls">
-        <el-row style="justify-content: center;">
-          <el-col :span="3">  Str:</el-col>
-          <el-col :span="3">
-            <el-tooltip placement="top" effect="light" v-if="attributes.Str.sources[0]">
-              <el-tag size="small" effect="dark" type="primary">{{attributes.Str.total}}</el-tag>
-              <template #content> <span v-for="bonus in attributes.Str.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
-            </el-tooltip>
-            <el-tag size="small" effect="dark" type="primary" v-else>{{attributes.Str.total}}</el-tag>
-          </el-col>
-          <el-col :span="3">  Int:</el-col>
-          <el-col :span="3">
-            <el-tooltip placement="top" effect="light" v-if="attributes.Int.sources[0]">
-              <el-tag size="small" effect="dark" type="primary">{{attributes.Int.total}}</el-tag>
-              <template #content> <span v-for="bonus in attributes.Int.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
-            </el-tooltip>
-            <el-tag size="small" effect="dark" type="primary" v-else>{{attributes.Int.total}}</el-tag>
-          </el-col>
-        </el-row>
-        <el-row style="justify-content: center;">
-          <el-col :span="3">  Dex:</el-col>
-          <el-col :span="3">
-            <el-tooltip placement="top" effect="light" v-if="attributes.Dex.sources[0]">
-              <el-tag size="small" effect="dark" type="primary">{{attributes.Dex.total}}</el-tag>
-              <template #content> <span v-for="bonus in attributes.Dex.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
-            </el-tooltip>
-            <el-tag size="small" effect="dark" type="primary" v-else>{{attributes.Dex.total}}</el-tag>
-          </el-col>
-          <el-col :span="3">  Wis:</el-col>
-          <el-col :span="3">
-            <el-tooltip placement="top" effect="light" v-if="attributes.Wis.sources[0]">
-              <el-tag size="small" effect="dark" type="primary">{{attributes.Wis.total}}</el-tag>
-              <template #content> <span v-for="bonus in attributes.Wis.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
-            </el-tooltip>
-            <el-tag size="small" effect="dark" type="primary" v-else>{{attributes.Wis.total}}</el-tag>
-          </el-col>
-        </el-row>
-        <el-row style="justify-content: center;">
-          <el-col :span="3">  Con:</el-col>
-          <el-col :span="3">
-            <el-tooltip placement="top" effect="light" v-if="attributes.Con.sources[0]">
-              <el-tag size="small" effect="dark" type="primary">{{attributes.Con.total}}</el-tag>
-              <template #content> <span v-for="bonus in attributes.Con.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
-            </el-tooltip>
-            <el-tag size="small" effect="dark" type="primary" v-else>{{attributes.Con.total}}</el-tag>
-          </el-col>
-          <el-col :span="3">  Cha:</el-col>
-          <el-col :span="3">
-            <el-tooltip placement="top" effect="light" v-if="attributes.Cha.sources[0]">
-              <el-tag size="small" effect="dark" type="primary">{{attributes.Cha.total}}</el-tag>
-              <template #content> <span v-for="bonus in attributes.Cha.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
-            </el-tooltip>
-            <el-tag size="small" effect="dark" type="primary" v-else>{{attributes.Cha.total}}</el-tag>
-          </el-col>
-        </el-row>
-      </div>
-    </el-col>
+      <el-col :span="12">
+        <el-tooltip v-if="attributes.Con.sources[0]" placement="top" effect="light">
+          <el-input disabled>
+            <template #prepend> Con </template>
+            <template #prefix> <el-tag effect="dark" type="info"> {{ attributes.Con.total }} </el-tag> </template>
+            <template #suffix> <el-tag effect="dark" type="primary"> {{ attributes.Con.mod }} </el-tag> </template>
+          </el-input>
+          <template #content>
+            <span v-for="bonus in attributes.Con.sources" :key="bonus"> {{ bonus+" " }} </span>
+          </template>
+        </el-tooltip>
+        <el-input v-else disabled>
+          <template #prepend> Con </template>
+          <template #prefix> <el-tag effect="dark" type="info"> {{ attributes.Con.total }} </el-tag> </template>
+          <template #suffix> <el-tag effect="dark" type="primary"> {{ attributes.Con.mod }} </el-tag> </template>
+        </el-input>
+      </el-col>
 
-    <el-col :span="12">
-      <div class="center-horz">
-        <g-icon iconSize="128px" :icon-name="basics.type.name" :key="basics.type.name"/>
-      </div>
-      <el-row>
-        <el-col :span="4" class="center-vert center-horz">
-          <g-icon iconSize="24px" icon-name="compass"/>
-        </el-col>
-        <el-col :span="20">
-          <el-row>
-            <el-col :span="12">
-              {{ basics.alignment }} {{ capFirsts(basics.size) }} ({{ basics.sizeStats.space }})
-            </el-col>
-            <el-col :span="12">
-              <el-tooltip placement="top" effect="light">
-                <el-tag size="small" effect="dark" type="primary">{{ capFirsts(basics.type.name) }}</el-tag>
-                <template #content>
-                  {{ basics.type.levels }} HD (1d{{ basics.type.hd }})
-                </template>
-              </el-tooltip>
-            </el-col>
-          </el-row>
-          <el-row>
-            <el-tooltip placement="top" effect="light" v-for="(cClass, name) in cClasses" :key="name">
-              <el-tag size="small" effect="dark" type="primary" style="margin: 0 1px 0 0;">{{ capFirsts(name) }} {{ cClass.levels }}</el-tag>
+      <el-col :span="12">
+        <el-tooltip v-if="attributes.Int.sources[0]" placement="top" effect="light">
+          <el-input disabled>
+            <template #prepend> Int </template>
+            <template #prefix> <el-tag effect="dark" type="info"> {{ attributes.Int.total }} </el-tag> </template>
+            <template #suffix> <el-tag effect="dark" type="primary"> {{ attributes.Int.mod }} </el-tag> </template>
+          </el-input>
+          <template #content>
+            <span v-for="bonus in attributes.Int.sources" :key="bonus"> {{ bonus+" " }} </span>
+          </template>
+        </el-tooltip>
+        <el-input v-else disabled>
+          <template #prepend> Int </template>
+          <template #prefix> <el-tag effect="dark" type="info"> {{ attributes.Int.total }} </el-tag> </template>
+          <template #suffix> <el-tag effect="dark" type="primary"> {{ attributes.Int.mod }} </el-tag> </template>
+        </el-input>
+      </el-col>
+
+      <el-col :span="12">
+        <el-tooltip v-if="attributes.Wis.sources[0]" placement="top" effect="light">
+          <el-input disabled>
+            <template #prepend> Wis </template>
+            <template #prefix> <el-tag effect="dark" type="info"> {{ attributes.Wis.total }} </el-tag> </template>
+            <template #suffix> <el-tag effect="dark" type="primary"> {{ attributes.Wis.mod }} </el-tag> </template>
+          </el-input>
+          <template #content>
+            <span v-for="bonus in attributes.Wis.sources" :key="bonus"> {{ bonus+" " }} </span>
+          </template>
+        </el-tooltip>
+        <el-input v-else disabled>
+          <template #prepend> Wis </template>
+          <template #prefix> <el-tag effect="dark" type="info"> {{ attributes.Wis.total }} </el-tag> </template>
+          <template #suffix> <el-tag effect="dark" type="primary"> {{ attributes.Wis.mod }} </el-tag> </template>
+        </el-input>
+      </el-col>
+
+      <el-col :span="12">
+        <el-tooltip v-if="attributes.Cha.sources[0]" placement="top" effect="light">
+          <el-input disabled>
+            <template #prepend> Cha </template>
+            <template #prefix> <el-tag effect="dark" type="info"> {{ attributes.Cha.total }} </el-tag> </template>
+            <template #suffix> <el-tag effect="dark" type="primary"> {{ attributes.Cha.mod }} </el-tag> </template>
+          </el-input>
+          <template #content>
+            <span v-for="bonus in attributes.Cha.sources" :key="bonus"> {{ bonus+" " }} </span>
+          </template>
+        </el-tooltip>
+        <el-input v-else disabled>
+          <template #prepend> Cha </template>
+          <template #prefix> <el-tag effect="dark" type="info"> {{ attributes.Cha.total }} </el-tag> </template>
+          <template #suffix> <el-tag effect="dark" type="primary"> {{ attributes.Cha.mod }} </el-tag> </template>
+        </el-input>
+      </el-col>
+    </el-row>
+  </el-col>
+
+  <el-col :xs="24" :span="12">
+    <div class="center-horz">
+      <g-icon iconSize="128px" :icon-name="basics.type.name" :key="basics.type.name"/>
+    </div>
+
+    <el-row :gutter="10">
+      <el-col :span="4" class="center-vert center-horz">
+        <g-icon iconSize="24px" icon-name="compass"/>
+      </el-col>
+      <el-col :span="20">
+        <el-row>
+          <el-col :span="12">
+            {{ basics.alignment }} {{ capFirsts(basics.size) }} ({{ basics.sizeStats.space }})
+          </el-col>
+          <el-col :span="12">
+            <el-tooltip v-if="basics.type.levels" placement="top" effect="light">
+              <el-tag size="small" effect="dark" type="primary">{{ capFirsts(basics.type.name) }}</el-tag>
               <template #content>
-                {{ cClass.levels }} HD (1d{{ cClass.hd }})
+                {{ basics.type.levels }} HD (1d{{ basics.type.hd }})
               </template>
             </el-tooltip>
-            <el-tag size="small" effect="dark" type="info" v-for="subtype in basics.type.subtypes" :key="subtype" style="margin: 0 1px 0 2px;">
-              {{ capFirsts(subtype) }}
-            </el-tag>
-          </el-row>
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="4" class="center-vert center-horz"> <g-icon iconSize="24px" icon-name="forest"/> </el-col>
-        <el-col :span="20" class="center-vert"> {{ basics.environment }} </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="4" class="center-vert center-horz"> <g-icon iconSize="24px" icon-name="sparkle"/> </el-col>
-        <el-col :span="20" class="center-vert"> XP : {{ this.rules.experience[basics.cr] }} </el-col>
-      </el-row>
-    </el-col>
-  </el-row>
+            <el-tag v-else-if="basics.type.name == 'humanoid'" size="small" effect="dark" type="primary">{{ basics.race }}</el-tag>
+            <el-tag v-else size="small" effect="dark" type="primary">{{ basics.type.name }}</el-tag>
+          </el-col>
+        </el-row>
 
-  <!-- Content Tabs -->
-  <el-button @click="rest()" ref="restBtn" size="large" style="width:40px">
-    <el-tooltip placement="top" effect="light">
-      <g-icon iconSize="20px" iconName="campfire" />
-      <template #content>Rest for 8 Hours</template>
-    </el-tooltip>
-  </el-button>
-  <el-tabs v-model="creature.settings.cardTab" ref="mainTabs" type="card">
+        <el-row>
+          <el-tooltip placement="top" effect="light" v-for="(cClass, name) in cClasses" :key="name">
+            <el-tag size="small" effect="dark" type="primary" style="margin: 0 1px 0 0;">{{ capFirsts(name) }} {{ cClass.levels }}</el-tag>
+            <template #content>
+              {{ cClass.levels }} HD (1d{{ cClass.hd }})
+            </template>
+          </el-tooltip>
+          <el-tag size="small" effect="dark" type="info" v-for="subtype in basics.type.subtypes" :key="subtype" style="margin: 0 1px 0 2px;">
+            {{ capFirsts(subtype) }}
+          </el-tag>
+        </el-row>
+      </el-col>
+    </el-row>
+
+    <el-row v-if="basics.appearance">
+      <el-col :span="4" class="center-vert center-horz"> <g-icon iconSize="24px" icon-name="openScroll"/> </el-col>
+      <el-col :span="20" class="center-vert"> {{ basics.appearance.age }} years old, {{ basics.appearance.height }}, {{ basics.appearance.weight }} </el-col>
+    </el-row>
+    <el-row v-if="basics.diety">
+      <el-col :span="4" class="center-vert center-horz"> <g-icon iconSize="24px" icon-name="moon"/> </el-col>
+      <el-col :span="20" class="center-vert"> Diety : {{ basics.diety }} </el-col>
+    </el-row>
+    <el-row v-if="basics.environment">
+      <el-col :span="4" class="center-vert center-horz"> <g-icon iconSize="24px" icon-name="forest"/> </el-col>
+      <el-col :span="20" class="center-vert"> {{ basics.environment }} </el-col>
+    </el-row>
+    <el-row v-if="settings.isNPC || settings.isMonster">
+      <el-col :span="4" class="center-vert center-horz"> <g-icon iconSize="24px" icon-name="sparkle"/> </el-col>
+      <el-col :span="20" class="center-vert"> XP : {{ this.rules.experience[basics.cr] }} </el-col>
+    </el-row>
+
+    <el-row :gutter="10" justify="center" align="middle">
+      <el-col :xs="9" :sm="9">
+        <el-button @click="saveCreature()" type="primary" round> Save Changes </el-button>
+      </el-col>
+      <el-col :xs="3" :sm="3"  class="center-horz">
+        <el-tooltip v-if="!settings.isMonster" placement="top" effect="light">
+          <el-button @click="this.$router.push({ name: 'character-edit', params: { id: character.id } })" type="info" style="margin:0" circle>
+            <g-icon iconSize="24px" iconColor="#000" iconName="quill" />
+          </el-button>
+          <template #content>
+            Edit Character
+          </template>
+        </el-tooltip>
+      </el-col>
+      <el-col :xs="9" :sm="9">
+        <el-button @click="saveCreature()" type="primary" round> Open Drawer </el-button>
+      </el-col>
+    </el-row>
+  </el-col>
+</el-row>
+
+
+<!-- Content Tabs -->
+<el-row :gutter="10" justify="center" align="middle">
+  <el-col :xs="4" :sm="0">
+    <el-button @click="rest()" id="restBtn" size="large" style="width:40px">
+      <el-tooltip placement="top" effect="light">
+        <g-icon iconSize="20px" iconName="campfire" />
+        <template #content>Rest for 8 Hours</template>
+      </el-tooltip>
+    </el-button>
+  </el-col>
+</el-row>
+
+<el-tabs v-model="creature.settings.cardTab" ref="mainTabs" type="card">
+
+
+
+
+
+
+
+
 
     <!-- Main -->
     <el-tab-pane name="Main">
@@ -1268,6 +1365,7 @@ export default {
     activeConditions() { return this.creature.conditions; },
     inventory() { return this.creature.inventory; },
     abilities() { return this.creature.abilities; },
+    settings() { return this.creature.settings; },
     sizeStats() { return this.rules.size ? this.rules.size[this.source.basics.size] : { "space": "5 ft." }; },
 
     // userSettings() {
@@ -1539,20 +1637,17 @@ export default {
     // USES: bonusLoop(bonuses)
     attributes() {
       let attributes = {
-        Str: { total: 0, sources: [] }, StrMod: -5,
-        Dex: { total: 0, sources: [] }, DexMod: -5,
-        Con: { total: 0, sources: [] }, ConMod: -5,
-        Int: { total: 0, sources: [] }, IntMod: -5,
-        Wis: { total: 0, sources: [] }, WisMod: -5,
-        Cha: { total: 0, sources: [] }, ChaMod: -5
+        Str: { total: 10, sources: [], mod: 0 },
+        Dex: { total: 10, sources: [], mod: 0 },
+        Con: { total: 10, sources: [], mod: 0 },
+        Int: { total: 10, sources: [], mod: 0 },
+        Wis: { total: 10, sources: [], mod: 0 },
+        Cha: { total: 10, sources: [], mod: 0 }
       };
       for (let [name, attr] of Object.entries(this.creature.attributes)) {
-        if (name.indexOf('Mod') > -1) {
-          attributes[name] = attr;
-        } else {
-          attributes[name].total = attr.total;
-          this.bonusLoop(attributes[name], name);
-        }
+        attributes[name].total = attr.base;
+        this.bonusLoop(attributes[name], name);
+        attributes[name].mod = Math.floor( (name=="-" ? 0 : attributes[name].total -10) / 2 );
       }
       return attributes;
     },
@@ -1995,7 +2090,19 @@ export default {
 
     this.loading = false;
 
+    setTimeout(function () {
 
+      // add Rest button to tabs
+      if (window.innerWidth > 360) {
+        const mainTabs = document.getElementsByClassName('el-tabs__nav-scroll')[1];
+        mainTabs.appendChild( document.getElementById('restBtn') );
+      }
+
+
+    }, 10);
+
+    // const mainTabs = this.$refs.mainTabs.$el.children[1].querySelector('.el-tabs__nav-scroll');
+    // mainTabs.appendChild(this.$refs.restBtn.$el);
 
     // Put Add Spell btn in class spells tabs, wait til refs loaded
     // const spellTabs = this.$refs.spellTabs.$el.querySelector('.el-tabs__nav-scroll');
@@ -2302,9 +2409,6 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.stat-controls .el-input-number {
-  width: 70px;
-}
 .el-tabs__nav-scroll {
   display: flex;
   justify-content: space-between;

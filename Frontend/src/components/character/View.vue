@@ -96,7 +96,8 @@
                     {{ character.basics.type.levels }} HD (1d{{ character.basics.type.hd }})
                   </template>
                 </el-tooltip>
-                <el-tag v-else-if="character.basics.type.name != 'Humanoid'" size="small" effect="dark" type="primary">{{ character.basics.type.name }}</el-tag>
+                <el-tag v-else-if="character.basics.type.name == 'humanoid'" size="small" effect="dark" type="primary">{{ character.basics.race }}</el-tag>
+                <el-tag v-else size="small" effect="dark" type="primary">{{ character.basics.type.name }}</el-tag>
               </el-col>
             </el-row>
             <el-row>
