@@ -1,5 +1,5 @@
 <template lang="html">
-<div v-if="!loading">
+<div v-if="this.creature.name">
 <h2>{{ title }}</h2>
 
 <!-- Basics -->
@@ -385,7 +385,9 @@
             <el-col :xs="10" :sm="5" :md="4">
               <el-tooltip v-if="data.value" placement="left" effect="light">
                 <el-button @click="actionBtn(data)" size="small" type="primary">
+                  <span v-if="data.value.extras.AtkNum"> {{ data.value.extras.AtkNum }} &nbsp; </span>
                   {{ data.label }}
+                  <span v-if="data.value.extras.AtkNum">s</span>
                 </el-button>
                 <template #content>
                   {{ data.value.trigger }}
@@ -668,7 +670,7 @@
     <el-divider />
     <el-row :gutter="10" style="margin-bottom:5px; border-bottom:1px solid grey">
       <el-col :xs="6" :span="5" class="center-vert"> <h5> Name </h5> </el-col>
-      <el-col :xs="2" :span="1" class="center-horz">
+      <el-col :xs="2" :span="2" class="center-horz">
         <el-tooltip placement="top" effect="light">
           <g-icon iconSize="28px" iconName="d20" />
           <template #content> Skill Bonus </template>
@@ -708,7 +710,7 @@
           {{ name }}
           <span v-if="['Artistry', 'Craft', 'Lore', 'Perform', 'Profession'].includes(name)"> ({{ creature.skills[name].extras.specialty }}) </span>
         </el-col>
-        <el-col :xs="2" :span="1">
+        <el-col :xs="2" :span="2" class="center-horz">
           <el-tooltip placement="top" effect="light">
             {{ skills[name].bonus.total }}
             <template #content>
@@ -1310,6 +1312,8 @@ export default {
   data() {
     return {
       loading: true,
+      original: { name: "", val: "" },
+      creature: {},
 
 
 
@@ -1337,7 +1341,6 @@ export default {
       gFatigue: "",
       metamagic: null,
 
-      creature: {},
       encumbrance: {
         name: "Encumbrance",
         description: "You carry too much",
@@ -1363,10 +1366,19 @@ export default {
     inventory() { return this.creature.inventory; },
     abilities() { return this.creature.abilities; },
     sizeStats() { return this.rules.size ? this.rules.size[this.creature.basics.size] : { "space": "5 ft." }; },
-    settings() { return this.creature.settings; },
+    settings() {
+      let settings = {
+        isMonster: false,
+        cardTab: "Main",
+        mainSections: [ "defense", "actions" ],
+        expandInventory: [ "Equipped", "Armor", "Weapons", "Hands", "Back", "Items" ]
+      };
+      if ( this.creature.settings ) { settings = this.creature.settings; }
+      return settings;
+    },
     title() {
       let title = this.creature.name ? this.creature.name : "";
-      if (this.creature.basics.cr) { title = title.concat(" CR ", this.creature.basics.cr); }
+      if (this.creature.basics && this.creature.basics.cr) { title = title.concat(" CR ", this.creature.basics.cr); }
       return title;
     },
 
@@ -1581,10 +1593,12 @@ export default {
         Wis: { total: 10, sources: [], mod: 0 },
         Cha: { total: 10, sources: [], mod: 0 }
       };
-      for (let [name, attr] of Object.entries(this.creature.attributes)) {
-        attributes[name].total = attr.base;
-        this.bonusLoop(attributes[name], name);
-        attributes[name].mod = Math.floor( (name=="-" ? 0 : attributes[name].total -10) / 2 );
+      if ( this.creature.attributes ) {
+        for (let [name, attr] of Object.entries(this.creature.attributes)) {
+          attributes[name].total = attr.base;
+          this.bonusLoop(attributes[name], name);
+          attributes[name].mod = Math.floor( (name=="-" ? 0 : attributes[name].total -10) / 2 );
+        }
       }
       return attributes;
     },
@@ -1650,12 +1664,12 @@ export default {
         this.applyBonus('Dex', bonus, ac.total);
         this.applyBonus('Dex', bonus, ac.touch);
       } else {
-        bonus = this.attributes.Dex;
+        bonus = this.attributes.Dex.mod;
         this.applyBonus('Dex', bonus, ac.total);
         this.applyBonus('Dex', bonus, ac.touch);
       }
       if (this.creature.basics.size != "medium") {
-        bonus = this.creature.basics.sizeStats["ac / atk"];
+        bonus = this.sizeStats["ac / atk"];
         this.applyBonus('Size', bonus, ac.total);
         this.applyBonus('Size', bonus, ac.touch);
         this.applyBonus('Size', bonus, ac.flat);
@@ -1860,10 +1874,7 @@ export default {
               mult: atk["Critical"].split("/")[1]
             },
             range: atk["Range"],
-            extras: {
-              naturalAtk: true,
-              notes: atk.extras.notes
-            }
+            extras: atk['Extras']
           }
         };
 
@@ -1957,7 +1968,6 @@ export default {
           "label": weapon.label,
           "value": {
             trigger: "Standard",
-            atkNum: 1,
             atkBonus: { "total": 0, "sources": [] },
             damage: weapon.value["Damage"],
             dmgBonus: { "total": 0, "sources": [] },
@@ -2071,6 +2081,7 @@ export default {
         }
       }
 
+      console.log(actions);
       return actions;
     },
     // USES: basics, inventory, bonusLoop(bonuses), attributes
@@ -2127,32 +2138,31 @@ export default {
       return magic;
     },
 
-
   },
-
-  mounted() {
+  beforeMount(){
+    this.original.name = this.source.name;
+    this.original.val = JSON.stringify(this.source);
     this.creature = this.source;
-    console.log(this.creature);
-
-    this.loading = false;
-
-    setTimeout(function () {
-
-      // add Rest button to tabs
-      if (window.innerWidth > 360) {
-        const mainTabs = document.getElementsByClassName('el-tabs__nav-scroll')[1];
-        mainTabs.appendChild( document.getElementById('restBtn') );
-      }
-
-
-    }, 10);
-
-    // const mainTabs = this.$refs.mainTabs.$el.children[1].querySelector('.el-tabs__nav-scroll');
-    // mainTabs.appendChild(this.$refs.restBtn.$el);
+  },
+  mounted() {
+    // add Rest button to tabs
+    if (window.innerWidth > 360) {
+      const mainTabs = document.getElementsByClassName('el-tabs__nav-scroll')[1];
+      mainTabs.appendChild( document.getElementById('restBtn') );
+    }
 
     // Put Add Spell btn in class spells tabs, wait til refs loaded
     // const spellTabs = this.$refs.spellTabs.$el.querySelector('.el-tabs__nav-scroll');
     // spellTabs.appendChild(this.$refs.addSpell.$el);
+
+  },
+  updated() {
+    if (this.original.name != this.source.name) {
+      console.log(this.creature);
+      this.original.name = this.source.name;
+      this.original.val = JSON.stringify(this.source);
+      this.creature = this.source;
+    }
   },
 
   watch: {
