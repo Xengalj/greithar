@@ -121,7 +121,7 @@
 
   <el-col :xs="24" :span="12">
     <div class="center-horz">
-      <g-icon iconSize="128px" :icon-name="basics.type.name" :key="basics.type.name"/>
+      <g-icon iconSize="128px" :icon-name="this.creature.basics.type.name" :key="this.creature.basics.type.name"/>
     </div>
 
     <el-row :gutter="10">
@@ -131,49 +131,49 @@
       <el-col :span="20">
         <el-row>
           <el-col :span="12">
-            {{ basics.alignment }} {{ capFirsts(basics.size) }} ({{ basics.sizeStats.space }})
+            {{ this.creature.basics.alignment }} {{ capFirsts(this.creature.basics.size) }} ({{ this.sizeStats.space }})
           </el-col>
           <el-col :span="12">
-            <el-tooltip v-if="basics.type.levels" placement="top" effect="light">
-              <el-tag size="small" effect="dark" type="primary">{{ capFirsts(basics.type.name) }}</el-tag>
+            <el-tooltip v-if="this.creature.basics.type.levels" placement="top" effect="light">
+              <el-tag size="small" effect="dark" type="primary">{{ capFirsts(this.creature.basics.type.name) }}</el-tag>
               <template #content>
-                {{ basics.type.levels }} HD (1d{{ basics.type.hd }})
+                {{ this.creature.basics.type.levels }} HD (1d{{ this.creature.basics.type.hd }})
               </template>
             </el-tooltip>
-            <el-tag v-else-if="basics.type.name == 'humanoid'" size="small" effect="dark" type="primary">{{ basics.race }}</el-tag>
-            <el-tag v-else size="small" effect="dark" type="primary">{{ basics.type.name }}</el-tag>
+            <el-tag v-else-if="this.creature.basics.type.name == 'humanoid'" size="small" effect="dark" type="primary">{{ this.creature.basics.race }}</el-tag>
+            <el-tag v-else size="small" effect="dark" type="primary">{{ this.creature.basics.type.name }}</el-tag>
           </el-col>
         </el-row>
 
         <el-row>
-          <el-tooltip placement="top" effect="light" v-for="(cClass, name) in cClasses" :key="name">
+          <el-tooltip placement="top" effect="light" v-for="(cClass, name) in creature.classes" :key="name">
             <el-tag size="small" effect="dark" type="primary" style="margin: 0 1px 0 0;">{{ capFirsts(name) }} {{ cClass.levels }}</el-tag>
             <template #content>
               {{ cClass.levels }} HD (1d{{ cClass.hd }})
             </template>
           </el-tooltip>
-          <el-tag size="small" effect="dark" type="info" v-for="subtype in basics.type.subtypes" :key="subtype" style="margin: 0 1px 0 2px;">
+          <el-tag size="small" effect="dark" type="info" v-for="subtype in this.creature.basics.type.subtypes" :key="subtype" style="margin: 0 1px 0 2px;">
             {{ capFirsts(subtype) }}
           </el-tag>
         </el-row>
       </el-col>
     </el-row>
 
-    <el-row v-if="basics.appearance">
+    <el-row v-if="this.creature.basics.appearance">
       <el-col :span="4" class="center-vert center-horz"> <g-icon iconSize="24px" icon-name="openScroll"/> </el-col>
-      <el-col :span="20" class="center-vert"> {{ basics.appearance.age }} years old, {{ basics.appearance.height }}, {{ basics.appearance.weight }} </el-col>
+      <el-col :span="20" class="center-vert"> {{ this.creature.basics.appearance.age }} years old, {{ this.creature.basics.appearance.height }}, {{ this.creature.basics.appearance.weight }} </el-col>
     </el-row>
-    <el-row v-if="basics.diety">
+    <el-row v-if="this.creature.basics.diety">
       <el-col :span="4" class="center-vert center-horz"> <g-icon iconSize="24px" icon-name="moon"/> </el-col>
-      <el-col :span="20" class="center-vert"> Diety : {{ basics.diety }} </el-col>
+      <el-col :span="20" class="center-vert"> Diety : {{ this.creature.basics.diety }} </el-col>
     </el-row>
-    <el-row v-if="basics.environment">
+    <el-row v-if="this.creature.basics.environment">
       <el-col :span="4" class="center-vert center-horz"> <g-icon iconSize="24px" icon-name="forest"/> </el-col>
-      <el-col :span="20" class="center-vert"> {{ basics.environment }} </el-col>
+      <el-col :span="20" class="center-vert"> {{ this.creature.basics.environment }} </el-col>
     </el-row>
     <el-row v-if="settings.isNPC || settings.isMonster">
       <el-col :span="4" class="center-vert center-horz"> <g-icon iconSize="24px" icon-name="sparkle"/> </el-col>
-      <el-col :span="20" class="center-vert"> XP : {{ this.rules.experience[basics.cr] }} </el-col>
+      <el-col :span="20" class="center-vert"> XP : {{ this.rules.experience[this.creature.basics.cr] }} </el-col>
     </el-row>
 
     <el-row :gutter="10" justify="center" align="middle">
@@ -210,83 +210,56 @@
   </el-col>
 </el-row>
 
-<el-tabs v-model="creature.settings.cardTab" ref="mainTabs" type="card">
+<el-tabs v-model="settings.cardTab" ref="mainTabs" type="card">
 
+  <!-- Main -->
+  <el-tab-pane name="Main">
+    <template #label> <g-icon iconSize="20px" iconName="compass" /> Main </template>
 
+    <el-collapse v-model="settings.mainSections">
+      <!-- Defense -->
+      <el-collapse-item name="defense">
+        <template #title> <g-icon iconName="armor" /> Defense </template>
+        <el-row :gutter="10" >
 
-
-
-
-
-
-
-    <!-- Main -->
-    <el-tab-pane name="Main">
-      <template #label> <g-icon iconSize="20px" iconName="compass" /> Main </template>
-      <el-collapse v-model="creature.settings.mainSections">
-        <!-- Defense -->
-        <el-collapse-item name="defense">
-          <template #title> <g-icon iconName="armor" /> Defense </template>
-
-          <el-row :gutter="10" >
-            <!-- HEALTH -->
-            <el-col :span="10">
-              <el-row :gutter="10" style="margin-bottom:10px">
-                <el-col :span="22">
-                  <el-tooltip placement="top" effect="light">
-                    <el-progress
-                      v-if="health.total > 0"
-                      :percentage="Math.max(0, Math.floor(((health.total-health.damage)/health.total)*100))"
-                      :color="healthColors"
-                      :text-inside="true"
-                      :stroke-width="24">
-                      HP : {{ health.total-health.damage }} / {{ health.total }}
-                    </el-progress>
-                    <template #content>
-                      <span v-for="bonus in health.sources" :key="bonus"> {{ bonus+" " }} </span>
-                    </template>
-                  </el-tooltip>
-                </el-col>
-              </el-row>
-              <el-row :gutter="10" style="margin-bottom:5px">
-                <el-col :span="10" class="center-horz">
-                  <el-tag size="large" effect="dark" type="danger"> Damage </el-tag>
-                </el-col>
-                <el-col :span="10">
-                  <el-input-number v-model="creature.health.damage" :min="0" :max="creature.health.total + attributes.Con.total"  @change="healthCheck()" aria-label="Current Damage" />
-                </el-col>
-              </el-row>
-              <el-row :gutter="10">
-                <el-col :span="10" class="center-horz">
-                  <el-tag size="large" effect="dark" type="warning"> Nonleathal </el-tag>
-                </el-col>
-                <el-col :span="10">
-                  <el-input-number v-model="creature.health.nonlethal" :min="0" :max="creature.health.total+1" @change="healthCheck()" aria-label="Current Nonlethal Damage" />
-                </el-col>
-              </el-row>
-            </el-col>
-
-            <!-- AC & Stabilize -->
-            <el-col :span="5">
-              <el-tooltip placement="top" effect="light">
-                AC: {{ ac.total.total }}
-                <template #content>
-                  <span v-for="bonus in ac.total.sources" :key="bonus"> {{ bonus+" " }} </span>
-                </template>
-              </el-tooltip>   <br>
-              <el-tooltip placement="top" effect="light">
-                Touch: {{ ac.touch.total }}
-                <template #content>
-                  <span v-for="bonus in ac.touch.sources" :key="bonus"> {{ bonus+" " }} </span>
-                </template>
-              </el-tooltip>   <br>
-              <el-tooltip placement="top" effect="light">
-                Flat Footed: {{ ac.flat.total }}
-                <template #content>
-                  <span v-for="bonus in ac.flat.sources" :key="bonus"> {{ bonus+" " }} </span>
-                </template>
-              </el-tooltip>   <br>
-              <el-tooltip v-if="creature.health.damage > creature.health.total" placement="top" effect="light">
+          <!-- HEALTH -->
+          <el-col :xs="24" :span="10">
+            <el-row>
+              <el-col :xs="24" :span="22">
+                <el-tooltip placement="top" effect="light">
+                  <el-progress
+                    v-if="health.total > 0"
+                    :percentage="Math.max(0, Math.floor(((health.total-health.damage)/health.total)*100))"
+                    :color="healthColors"
+                    :text-inside="true"
+                    :stroke-width="24">
+                    HP : {{ health.total-health.damage }} / {{ health.total }}
+                  </el-progress>
+                  <template #content>
+                    <span v-for="bonus in health.sources" :key="bonus"> {{ bonus+" " }} </span>
+                  </template>
+                </el-tooltip>
+              </el-col>
+            </el-row>
+            <el-row>
+              <el-col :span="10" class="center-horz">
+                <el-tag size="large" effect="dark" type="danger"> Damage </el-tag>
+              </el-col>
+              <el-col :span="10">
+                <el-input-number v-model="creature.health.damage" :min="0" :max="health.total + attributes.Cha.total" v-if="creature.basics.type.name == 'undead'" @change="healthCheck()" aria-label="Current Damage" />
+                <el-input-number v-model="creature.health.damage" :min="0" :max="health.total + attributes.Con.total" v-else @change="healthCheck()" aria-label="Current Damage" />
+              </el-col>
+            </el-row>
+            <el-row>
+              <el-col :span="10" class="center-horz">
+                <el-tag size="large" effect="dark" type="warning"> Nonleathal </el-tag>
+              </el-col>
+              <el-col :span="10">
+                <el-input-number v-model="creature.health.nonlethal" :min="0" :max="health.total+1" @change="healthCheck()" aria-label="Current Nonlethal Damage" />
+              </el-col>
+            </el-row>
+            <el-row justify="center">
+              <el-tooltip v-if="health.damage > health.total" placement="top" effect="light">
                 <el-tag effect="dark" type="danger">
                   Stabilize (DC 10) : {{ attributes.Con.mod + (creature.health.total-creature.health.damage) }}
                 </el-tag>
@@ -294,1002 +267,1026 @@
                   ConMod: {{ attributes.Con.mod }} + Current Health: {{ (creature.health.total-creature.health.damage) }}
                 </template>
               </el-tooltip>
+            </el-row>
+          </el-col>
+
+          <!-- AC & Stabilize -->
+          <el-col :xs="8" :span="4">
+            <el-tooltip placement="top" effect="light">
+              AC: {{ ac.total.total }}
+              <template #content>
+                <span v-for="bonus in ac.total.sources" :key="bonus"> {{ bonus+" " }} </span>
+              </template>
+            </el-tooltip>   <br>
+            <el-tooltip placement="top" effect="light">
+              Touch: {{ ac.touch.total }}
+              <template #content>
+                <span v-for="bonus in ac.touch.sources" :key="bonus"> {{ bonus+" " }} </span>
+              </template>
+            </el-tooltip>   <br>
+            <el-tooltip placement="top" effect="light">
+              Flat Footed: {{ ac.flat.total }}
+              <template #content>
+                <span v-for="bonus in ac.flat.sources" :key="bonus"> {{ bonus+" " }} </span>
+              </template>
+            </el-tooltip>
+          </el-col>
+
+          <!-- CMD & Saves -->
+          <el-col :xs="8" :span="4">
+            <el-tooltip placement="top" effect="light">
+              CMD: {{ cmd.total }}
+              <template #content>
+                <span v-for="bonus in cmd.sources" :key="bonus"> {{ bonus+" " }} </span>
+              </template>
+            </el-tooltip>   <br>
+            <el-tooltip placement="top" effect="light">
+              Fort: {{ saves.fort.total > 0 ? "+" : "" }}{{ saves.fort.total }}
+              <template #content>
+                <span v-for="bonus in saves.fort.sources" :key="bonus"> {{ bonus+" " }} </span>
+              </template>
+            </el-tooltip>   <br>
+            <el-tooltip placement="top" effect="light">
+              Ref: {{ saves.ref.total > 0 ? "+" : "" }}{{ saves.ref.total }}
+              <template #content>
+                <span v-for="bonus in saves.ref.sources" :key="bonus"> {{ bonus+" " }} </span>
+              </template>
+            </el-tooltip>   <br>
+            <el-tooltip placement="top" effect="light">
+              Will: {{ saves.will.total > 0 ? "+" : "" }}{{ saves.will.total }}
+              <template #content>
+                <span v-for="bonus in saves.will.sources" :key="bonus"> {{ bonus+" " }} </span>
+              </template>
+            </el-tooltip>
+          </el-col>
+
+          <!-- Init, Speed, Senses -->
+          <el-col :xe="8" :span="5">
+            <el-tooltip placement="top" effect="light">
+              Init: {{ init.total > 0 ? "+" : "" }}{{ init.total }}
+              <template #content>
+                <span v-for="bonus in init.sources" :key="bonus"> {{ bonus+" " }} </span>
+              </template>
+            </el-tooltip>   <br>
+            <span v-for="(mode, name) in speed" :key="name">
+              <span v-if="mode.total">
+                <el-tooltip v-if="mode.sources[0]" placement="top" effect="light">
+                  <el-tag size="small" effect="dark" type="primary">
+                    {{ capFirsts(name) }}: {{ mode.total }} ft.
+                  </el-tag>
+                  <template #content>
+                    <span v-for="bonus in mode.sources" :key="bonus"> {{ bonus+" " }} </span>
+                  </template>
+                </el-tooltip>
+                <el-tag v-else size="small" effect="dark" type="info">
+                  {{ capFirsts(name) }}: {{ mode.total }} ft.
+                </el-tag>
+              </span>
+            </span>   <br>
+            Senses:
+            <el-tag v-for="sense in senses" :key="sense" size="small" effect="dark" type="primary" style="margin-right:5px;">
+              {{ sense }}
+            </el-tag>
+          </el-col>
+        </el-row>
+
+        <!-- Immunities & Weaknesses -->
+        <el-row v-for="(type, name) in defenses" :key="name">
+          <el-col :xs="6" :span="3" v-if="type.length"> {{ capFirsts(name) }} </el-col>
+          <el-col :xs="18" :span="21" >
+            <span v-for="defense in type" :key="defense">
+              <el-tag v-for="item in defense" :key="item" size="small" effect="dark" type="info" style="margin-right:5px;">
+                {{ capFirsts(item) }}
+              </el-tag>
+            </span>
+          </el-col>
+        </el-row>
+      </el-collapse-item>
+
+      <!-- Actions -->
+      <el-collapse-item name="actions">
+        <template #title> <g-icon iconName="swordShield" /> Actions </template>
+        <el-tree
+          :data="actions"
+          :default-expanded-keys="[ 'Melee', 'Ranged', 'Special' ]"
+          :allow-drag="allowDrag"
+          :allow-drop="allowDrop"
+          @node-drop="updateAction"
+          node-key="label"
+          render-after-expand
+          draggable >
+          <template #default="{ data }">
+
+            <!-- Icon & Name -->
+            <el-col :xs="2" :span="1" class="center-horz">
+              <g-icon iconSize="20px" v-if="data.extras && data.extras.icon" :iconName="data.extras.icon" />
+              <span v-else> • </span>
+            </el-col>
+            <el-col :xs="10" :sm="5" :md="4">
+              <el-tooltip v-if="data.value" placement="left" effect="light">
+                <el-button @click="actionBtn(data)" size="small" type="primary">
+                  {{ data.label }}
+                </el-button>
+                <template #content>
+                  {{ data.value.trigger }}
+                </template>
+              </el-tooltip>
+              <span v-else> {{ data.label }} </span>
             </el-col>
 
-            <!-- CMD & Saves -->
-            <el-col :span="4">
+            <!-- Attack Bonus (To Hit) -->
+            <el-col v-if="data.value && data.value.atkBonus" :span="3">
+              <el-row :gutter="10" justify="center">
+                <el-col :span="6">
+                  <el-tooltip placement="top" effect="light">
+                    <span> <span v-if="data.value.atkBonus.total >= 0">+</span>{{ data.value.atkBonus.total }} </span>
+                    <template #content>
+                      <span v-for="bonus in data.value.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
+                    </template>
+                  </el-tooltip>
+                </el-col>
+                <el-col :span="6">
+                  <el-tooltip v-if="bab>5 && !data.value.extras.naturalAtk" placement="top" effect="light">
+                    <span> <span v-if="data.value.atkBonus.total >= 0">+</span>{{ data.value.atkBonus.total-5 }} </span>
+                    <template #content>
+                      <span v-for="bonus in data.value.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
+                      <span> -5 Subsequent Attack </span>
+                    </template>
+                  </el-tooltip>
+                </el-col>
+                <el-col :span="6">
+                  <el-tooltip v-if="bab>10 && !data.value.extras.naturalAtk" placement="top" effect="light">
+                    <span> <span v-if="data.value.atkBonus.total >= 0">+</span>{{ data.value.atkBonus.total-10 }} </span>
+                    <template #content>
+                      <span v-for="bonus in data.value.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
+                      <span> -10 Subsequent Attack </span>
+                    </template>
+                  </el-tooltip>
+                </el-col>
+                <el-col :span="6">
+                  <el-tooltip v-if="bab>15 && !data.value.extras.naturalAtk" placement="top" effect="light">
+                    <span> <span v-if="data.value.atkBonus.total >= 0">+</span>{{ data.value.atkBonus.total-15 }} </span>
+                    <template #content>
+                      <span v-for="bonus in data.value.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
+                      <span> -15 Subsequent Attack </span>
+                    </template>
+                  </el-tooltip>
+                </el-col>
+              </el-row>
+            </el-col>
+
+            <!-- Damage -->
+            <el-col v-if="data.value && data.value.damage" :span="6">
               <el-tooltip placement="top" effect="light">
-                CMD: {{ cmd.total }}
+                <el-tag type="danger" effect="dark" size="small">
+                  {{ data.value.damage[creature.basics.size] }}
+                  <span v-if="data.value.dmgBonus.total">
+                    <span v-if="data.value.dmgBonus.total >= 0">+</span>
+                    {{ data.value.dmgBonus.total }}
+                  </span>
+                </el-tag>
                 <template #content>
-                  <span v-for="bonus in cmd.sources" :key="bonus"> {{ bonus+" " }} </span>
+                  <span v-for="bonus in data.value.dmgBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
+                  <br>
+                  <el-tag v-for="type in data.value.damageTypes" :key="type.value" size="small" effect="dark" type="info" style="margin-left:5px">
+                    <span :style="`color:${type.color}`">
+                      {{ type.label }}
+                    </span>
+                  </el-tag>
                 </template>
-              </el-tooltip>   <br>
-              <el-tooltip placement="top" effect="light">
-                Fort: {{ saves.fort.total > 0 ? "+" : "" }}{{ saves.fort.total }}
+              </el-tooltip>
+              <!-- Bonus Damage -->
+              <el-tooltip v-for="(obj, name) in data.value.extras.extraDamages" :key="name" placement="top" effect="light">
+                <el-tag size="small" effect="dark" type="warning" style="margin-left:5px">
+                  <span v-if="data.value.dmgBonus.total >= 0">+</span>
+                  {{ obj.Damage }}
+                </el-tag>
                 <template #content>
-                  <span v-for="bonus in saves.fort.sources" :key="bonus"> {{ bonus+" " }} </span>
-                </template>
-              </el-tooltip>   <br>
-              <el-tooltip placement="top" effect="light">
-                Ref: {{ saves.ref.total > 0 ? "+" : "" }}{{ saves.ref.total }}
-                <template #content>
-                  <span v-for="bonus in saves.ref.sources" :key="bonus"> {{ bonus+" " }} </span>
-                </template>
-              </el-tooltip>   <br>
-              <el-tooltip placement="top" effect="light">
-                Will: {{ saves.will.total > 0 ? "+" : "" }}{{ saves.will.total }}
-                <template #content>
-                  <span v-for="bonus in saves.will.sources" :key="bonus"> {{ bonus+" " }} </span>
+                  From {{ name }}
+                  <br>
+                  <el-tag size="small" effect="dark" type="info" style="margin-left:5px">
+                    {{ obj.Type }}
+                  </el-tag>
                 </template>
               </el-tooltip>
             </el-col>
 
-            <!-- Init, Speed, Senses -->
-            <el-col :span="5">
+            <!-- Crit -->
+            <el-col v-if="data.value && data.value.crit" :xs="0" :span="2" class="center-horz">
               <el-tooltip placement="top" effect="light">
-                Init: {{ init.total > 0 ? "+" : "" }}{{ init.total }}
+                <span>
+                  (<span v-if="data.value.crit.range<20">{{ data.value.crit.range }}-</span>20 {{ data.value.crit.mult }})
+                </span>
                 <template #content>
-                  <span v-for="bonus in init.sources" :key="bonus"> {{ bonus+" " }} </span>
+                  Crit Range and Multiplyer
                 </template>
-              </el-tooltip>   <br>
-              <span v-for="(mode, name) in speed" :key="name">
-                <span v-if="mode.total">
-                  <el-tooltip v-if="mode.sources[0]" placement="top" effect="light">
-                    <el-tag size="small" effect="dark" type="primary">
-                      {{ capFirsts(name) }}: {{ mode.total }} ft.
-                    </el-tag>
-                    <template #content>
-                      <span v-for="bonus in mode.sources" :key="bonus"> {{ bonus+" " }} </span>
-                    </template>
-                  </el-tooltip>
-                  <el-tag v-else size="small" effect="dark" type="info">
-                    {{ capFirsts(name) }}: {{ mode.total }} ft.
-                  </el-tag>
-                </span>
-              </span>   <br>
-              Senses:
-              <el-tag v-for="sense in senses" :key="sense" size="small" effect="dark" type="primary" style="margin-right:5px;">
-                {{ sense }}
-              </el-tag>
+              </el-tooltip>
+            </el-col>
+
+            <!-- Range -->
+            <el-col v-if="data.value && data.value.range" :xs="0" :span="2">
+              <span v-if="data.value.range"> {{ data.value.range }} ft. </span>
+            </el-col>
+
+            <!-- Notes -->
+            <el-col v-if="data.value && data.value.extras" :xs="0" :span="2">
+              <el-tooltip v-if="data.value.extras.notes" placement="left" effect="light">
+                <el-tag size="small" effect="dark" type="primary"> Notes </el-tag>
+                <template #content>
+                  {{ data.value.extras.notes }}
+                </template>
+              </el-tooltip>
+            </el-col>
+
+            <!-- Special Abilities -->
+            <el-col v-if="data.value && data.value.benefit" :span="14">
+              {{ data.value.benefit.text }}
+            </el-col>
+          </template>
+        </el-tree>
+      </el-collapse-item>
+
+      <!-- Resources -->
+      <el-collapse-item name="resources">
+        <template #title> <g-icon iconName="star" /> Resources </template>
+        <div v-for="(res, name) in creature.resources" :key="name">
+          <el-row :gutter="10" style="margin-bottom:10px">
+            <el-col :span="6" class="center-horz">
+              <el-tag size="large" effect="dark" type="primary"> {{ name }} </el-tag>
+            </el-col>
+            <el-col :span="17" class="center-horz">
+              <el-progress
+                :percentage="Math.floor((res.left/res.total)*100)"
+                :color="res.color"
+                :text-inside="true"
+                :striped="true"
+                :stroke-width="30">
+                {{ res.left }} / {{ res.total }} {{ res.units }}
+              </el-progress>
             </el-col>
           </el-row>
-
-          <!-- Immunities & Weaknesses -->
-          <el-row v-for="(type, name) in defenses" :key="name">
-            <el-col :offset="10" :span="5" v-if="type.length"> {{ capFirsts(name) }} </el-col>
-            <el-col :span="9">
-              <span v-for="defense in type" :key="defense">
-                <span v-if="Array.isArray(defense)">
-                  <el-tag v-for="item in defense" :key="item" size="small" effect="dark" type="info" style="margin-right:5px;">
-                    {{ capFirsts(item) }}
-                  </el-tag>
-                </span>
-                <span v-else>
-                  <el-tag size="small" effect="dark" type="info" style="margin-right:5px;">
-                    {{ capFirsts(defense) }}
-                  </el-tag>
-                </span>
-              </span>
+          <el-row :gutter="10" align="middle"  style="margin-bottom:10px">
+            <el-col :span="6" class="center-horz">
+              <el-input-number v-model="res.left" :min="0" :max="res.total" :aria-label="`Remaining ${name}`" />
+            </el-col>
+            <el-col :span="17">
+              <el-input v-model="res.notes" :autosize="{ minRows: 1, maxRows: 4 }" :aria-label="`${name} Notes`" type="textarea" />
             </el-col>
           </el-row>
-        </el-collapse-item>
+        </div>
+      </el-collapse-item>
+    </el-collapse>
+  </el-tab-pane>
 
-        <!-- Actions -->
-        <el-collapse-item name="actions">
-          <template #title> <g-icon iconName="swordShield" /> Actions </template>
-          <el-tree
-            :data="actions"
-            draggable
-            render-after-expand
-            node-key="label"
-            :default-expanded-keys="[ 'Melee', 'Ranged', 'Special' ]"
-            :allow-drag="allowDrag"
-            :allow-drop="allowDrop"
-            @node-drop="updateAction"
-          >
-            <template #default="{ data }">
-              <el-col :span="1" class="center-horz">
-                <g-icon iconSize="20px" v-if="data.extras && data.extras.icon" :iconName="data.extras.icon" />
-                <span v-else> • </span>
-              </el-col>
-              <el-col :span="5">
-                <el-tooltip v-if="data.value" placement="left" effect="light">
-                  <el-button @click="actionBtn(data)" size="small" type="primary">
-                    {{ data.label }}
-                  </el-button>
-                  <template #content>
-                    {{ data.value.trigger }}
-                  </template>
-                </el-tooltip>
-                <span v-else> {{ data.label }} </span>
-              </el-col>
-              <!-- Attack Bonus (To Hit) -->
-              <el-col v-if="data.value && data.value.atkBonus" :span="3">
-                <el-row :gutter="10" class="center-horz">
-                  <el-col :span="6">
-                    <el-tooltip placement="top" effect="light">
-                      <span> <span v-if="data.value.atkBonus.total >= 0">+</span>{{ data.value.atkBonus.total }} </span>
-                      <template #content>
-                        <span v-for="bonus in data.value.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
-                      </template>
-                    </el-tooltip>
-                  </el-col>
-                  <el-col :span="6">
-                    <el-tooltip v-if="bab>5 && !data.value.extras.naturalAtk" placement="top" effect="light">
-                      <span> <span v-if="data.value.atkBonus.total >= 0">+</span>{{ data.value.atkBonus.total-5 }} </span>
-                      <template #content>
-                        <span v-for="bonus in data.value.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
-                        <span> -5 Subsequent Attack </span>
-                      </template>
-                    </el-tooltip>
-                  </el-col>
-                  <el-col :span="6">
-                    <el-tooltip v-if="bab>10 && !data.value.extras.naturalAtk" placement="top" effect="light">
-                      <span> <span v-if="data.value.atkBonus.total >= 0">+</span>{{ data.value.atkBonus.total-10 }} </span>
-                      <template #content>
-                        <span v-for="bonus in data.value.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
-                        <span> -10 Subsequent Attack </span>
-                      </template>
-                    </el-tooltip>
-                  </el-col>
-                  <el-col :span="6">
-                    <el-tooltip v-if="bab>15 && !data.value.extras.naturalAtk" placement="top" effect="light">
-                      <span> <span v-if="data.value.atkBonus.total >= 0">+</span>{{ data.value.atkBonus.total-15 }} </span>
-                      <template #content>
-                        <span v-for="bonus in data.value.atkBonus.sources" :key="bonus"> {{ bonus+" " }} </span>
-                        <span> -15 Subsequent Attack </span>
-                      </template>
-                    </el-tooltip>
-                  </el-col>
-                </el-row>
-              </el-col>
-              <!-- Damage -->
-              <el-col v-if="data.value && data.value.damage" :offset="1" :span="6">
+  <!-- Items -->
+  <el-tab-pane name="Items">
+    <template #label> <g-icon iconSize="20px" iconName="inventory" /> Items </template>
 
-                <el-tooltip placement="top" effect="light">
+    <!-- Coins -->
+    <el-row :gutter="10">
+      <el-col :xs="24" :span="6" class="center-horz">
+        <el-tag size="large" effect="dark" color="#FFDE0A" style="color:black; --el-tag-border-color: none;">
+          <g-icon iconSize="24px" iconName="treasure" iconColor="#000" />
+          Total (gp) : {{ invTotal.value }}
+        </el-tag> <br>
+        <el-tooltip placement="right" effect="light">
+          <el-tag size="large" effect="dark" :type="invTotal.color" style="color:black">
+            <g-icon iconSize="24px" iconName="weight" iconColor="#000" />
+            Total (lbs) : {{ invTotal.weight }}
+          </el-tag>
+          <template #content>
+            {{ invTotal.level }} Load <br>
+            Max Weight: {{ invTotal.carryCap }} lbs
+          </template>
+        </el-tooltip>
+      </el-col>
+      <el-col :xs="24" :span="9">
+        <el-input v-model="creature.coins.pp" aria-label="Platinum Pieces Input" >
+          <template #prepend> Platinum </template>
+          <template #suffix> Coins </template>
+          <template #append> {{ (creature.coins.pp / 50) }} lbs. </template>
+        </el-input>
+        <el-input v-model="creature.coins.gp" aria-label="Gold Pieces Input" >
+          <template #prepend> Gold </template>
+          <template #suffix> Coins </template>
+          <template #append> {{ (creature.coins.gp / 50) }} lbs. </template>
+        </el-input>
+      </el-col>
+      <el-col :xs="24" :span="9">
+        <el-input v-model="creature.coins.sp" aria-label="Silver Pieces Input" >
+          <template #prepend> Silver </template>
+          <template #suffix> Coins </template>
+          <template #append> {{ (creature.coins.sp / 50) }} lbs. </template>
+        </el-input>
+        <el-input v-model="creature.coins.cp" aria-label="Copper Pieces Input" >
+          <template #prepend> Copper </template>
+          <template #suffix> Coins </template>
+          <template #append> {{ (creature.coins.cp / 50) }} lbs. </template>
+        </el-input>
+      </el-col>
+    </el-row>
 
-                  <el-tag type="danger" effect="dark" size="small">
-                    {{ data.value.damage[creature.basics.size] }}
-                    <span v-if="data.value.dmgBonus.total">
-                      <span v-if="data.value.dmgBonus.total >= 0">+</span>
-                      {{ data.value.dmgBonus.total }}
-                    </span>
-                  </el-tag>
+    <el-divider />
+    <el-row :gutter="10">
+      <el-col :xs="16" :span="20">
+        <el-input v-model="itemFilter" class="w-60 mb-2" placeholder="Item Search" aria-label="Item Search" />
+      </el-col>
+      <el-col :xs="7" :span="4">
+        <el-button type="primary" @click="editItem({label:'', value:{}})">Add Item</el-button>
+      </el-col>
+    </el-row>
 
-                  <template #content>
-                    <span v-for="bonus in data.value.dmgBonus.sources" :key="bonus"> {{ bonus+" " }} </span> <br>
-                    <el-tag v-for="type in data.value.damageTypes" :key="type.value" size="small" effect="dark" type="info" style="margin-left:5px">
-                      <span :style="`color:${type.color}`">
-                        {{ type.label }}
-                      </span>
-                    </el-tag>
-                  </template>
-                </el-tooltip>
-
-                <!-- Bonus Damage -->
-                <el-tooltip v-for="(obj, name) in data.value.extras.extraDamages" :key="name" placement="top" effect="light">
-                  <el-tag size="small" effect="dark" type="warning" style="margin-left:5px">
-                    <span v-if="data.value.dmgBonus.total >= 0">+</span>
-                    {{ obj.Damage }}
-                  </el-tag>
-                  <template #content>
-                    From {{ name }} <br>
-                    <el-tag size="small" effect="dark" type="info" style="margin-left:5px">
-                      {{ obj.Type }}
-                    </el-tag>
-                  </template>
-                </el-tooltip>
-              </el-col>
-              <!-- Crit -->
-              <el-col v-if="data.value && data.value.crit" :span="2" class="center-horz">
-                <el-tooltip placement="top" effect="light">
-                  <span>
-                    (<span v-if="data.value.crit.range<20">{{ data.value.crit.range }}-</span>20 {{ data.value.crit.mult }})
-                  </span>
-                  <template #content>
-                    Crit Range and Multiplyer
-                  </template>
-                </el-tooltip>
-              </el-col>
-              <!-- Range -->
-              <el-col v-if="data.value && data.value.range" :span="2">
-                <span v-if="data.value.range"> {{ data.value.range }} ft. </span>
-              </el-col>
-              <!-- Special Abilities -->
-              <el-col v-if="data.value && data.value.benefit" :span="14">
-                {{ data.value.benefit.text }}
-              </el-col>
-              <!-- Notes -->
-              <el-col v-if="data.value && data.value.extras" :span="2">
-                <el-tooltip v-if="data.value.extras.notes" placement="left" effect="light">
-                  <el-tag size="small" effect="dark" type="primary"> Notes </el-tag>
-                  <template #content>
-                    {{ data.value.extras.notes }}
-                  </template>
-                </el-tooltip>
-              </el-col>
-            </template>
-          </el-tree>
-        </el-collapse-item>
-
-        <!-- Resources -->
-        <el-collapse-item name="resources">
-          <template #title> <g-icon iconName="star" /> Resources </template>
-          <div v-for="(res, name) in creature.resources" :key="name">
-            <el-row :gutter="10" style="margin-bottom:10px">
-              <el-col :span="6" class="center-horz">
-                <el-tag size="large" effect="dark" type="primary"> {{ name }} </el-tag>
-              </el-col>
-              <el-col :span="17" class="center-horz">
-                <el-progress
-                  :percentage="Math.floor((res.left/res.total)*100)"
-                  :color="res.color"
-                  :text-inside="true"
-                  :striped="true"
-                  :stroke-width="30">
-                  {{ res.left }} / {{ res.total }} {{ res.units }}
-                </el-progress>
-              </el-col>
-            </el-row>
-            <el-row :gutter="10" align="middle"  style="margin-bottom:10px">
-              <el-col :span="6" class="center-horz">
-                <el-input-number v-model="res.left" :min="0" :max="res.total" :aria-label="`Remaining ${name}`" />
-              </el-col>
-              <el-col :span="17">
-                <el-input v-model="res.notes" :autosize="{ minRows: 1, maxRows: 4 }" :aria-label="`${name} Notes`" type="textarea" />
-              </el-col>
-            </el-row>
-          </div>
-        </el-collapse-item>
-      </el-collapse>
-    </el-tab-pane>
-
-    <!-- Items -->
-    <el-tab-pane name="Items">
-      <template #label> <g-icon iconSize="20px" iconName="inventory" /> Items </template>
-
-      <!-- Coins -->
-      <el-row :gutter="10">
-        <el-col :span="6" class="center-vert center-horz">
-          <el-tag size="large" effect="dark" color="#FFDE0A" style="color:black; --el-tag-border-color: none;">
-            <g-icon iconSize="24px" iconName="treasure" iconColor="#000" />
-            Total (gp) : {{ invTotal.value }}
-          </el-tag> <br>
-          <el-tooltip placement="right" effect="light">
-            <el-tag size="large" effect="dark" :type="invTotal.color" style="color:black">
-              <g-icon iconSize="24px" iconName="weight" iconColor="#000" />
-              Total (lbs) : {{ invTotal.weight }}
+    <el-tree
+      :data="creature.inventory"
+      :default-expanded-keys="creature.settings.expandInventory"
+      :filter-node-method="filterNode"
+      :allow-drag="allowDrag"
+      :allow-drop="allowDrop"
+      ref="tree"
+      node-key="label"
+      draggable
+      render-after-expand >
+      <template #default="{ node, data }">
+        <el-col :xs="2" :span="1" style="text-align: center; margin-right:2px;">
+          <g-icon iconSize="20px" v-if="data.extras && data.extras.icon" :iconName="data.extras.icon" />
+          <span v-else> • </span>
+        </el-col>
+        <el-col :xs="11" :sm="5"> {{ node.label }} </el-col>
+        <el-col :xs="0" :sm="0" :lg="6" style="overflow: hidden">
+          <span v-if="data.value && data.value.Extras && data.value.Extras.Notes && data.value.Extras.Notes.length">
+            <el-tag type="info" effect="dark">
+              {{ data.value.Extras.Notes[0] }}
             </el-tag>
-            <template #content>
-              {{ invTotal.level }} Load <br>
-              Max Weight: {{ invTotal.carryCap }} lbs
-            </template>
-          </el-tooltip>
+          </span>
         </el-col>
-        <el-col :span="9">
-          <el-input v-model="creature.coins.pp" aria-label="Platinum Pieces Input" >
-            <template #prepend> Platinum </template>
-            <template #suffix> Coins </template>
-            <template #append> {{ (creature.coins.pp / 50) }} lbs. </template>
-          </el-input>
-          <el-input v-model="creature.coins.gp" aria-label="Gold Pieces Input" >
-            <template #prepend> Gold </template>
-            <template #suffix> Coins </template>
-            <template #append> {{ (creature.coins.gp / 50) }} lbs. </template>
-          </el-input>
+        <el-col :xs="0" :sm="3" :lg="2">
+          <el-tag v-if="data.value" color="#FFDE0A" style="color:black; border:none;">
+            {{ data.value.Cost }} gp
+          </el-tag>
         </el-col>
-        <el-col :span="9">
-          <el-input v-model="creature.coins.sp" aria-label="Silver Pieces Input" >
-            <template #prepend> Silver </template>
-            <template #suffix> Coins </template>
-            <template #append> {{ (creature.coins.sp / 50) }} lbs. </template>
-          </el-input>
-          <el-input v-model="creature.coins.cp" aria-label="Copper Pieces Input" >
-            <template #prepend> Copper </template>
-            <template #suffix> Coins </template>
-            <template #append> {{ (creature.coins.cp / 50) }} lbs. </template>
-          </el-input>
+        <el-col :xs="0" :sm="3" :lg="2">
+          <el-tag v-if="data.value" type="info" effect="dark">
+            {{ data.value.Weight }} lbs.
+          </el-tag>
         </el-col>
-      </el-row>
-      <el-divider />
-
-      <el-row :gutter="10">
-        <el-col :span="20">
-          <el-input v-model="itemFilter" class="w-60 mb-2" placeholder="Item Search" aria-label="Item Search" />
+        <el-col :xs="0" :sm="5" :lg="3">
+          <el-input-number v-if="data.value && data.value.Amount" v-model="data.value.Amount" :min="0" size="small" aria-label="Number of Items" />
         </el-col>
-        <el-col :span="4">
-          <el-button type="primary" @click="editItem({label:'', value:{}})">Add Item</el-button>
-        </el-col>
-      </el-row>
-      <el-tree
-        :data="creature.inventory"
-        ref="tree"
-        draggable
-        render-after-expand
-        node-key="label"
-        :default-expanded-keys="creature.settings.expandInventory"
-        :filter-node-method="filterNode"
-        :allow-drag="allowDrag"
-        :allow-drop="allowDrop"
-      >
-        <template #default="{ node, data }">
-            <el-col :span="1" style="text-align: center; margin-right:2px;">
-              <g-icon iconSize="20px" v-if="data.extras && data.extras.icon" :iconName="data.extras.icon" />
-              <span v-else> • </span>
-            </el-col>
-            <el-col :sm="9" :lg="7"> {{ node.label }} </el-col>
-
-            <el-col :sm="0" :lg="6" style="overflow: hidden">
-              <span v-if="data.value && data.value.Extras && data.value.Extras.Notes && data.value.Extras.Notes.length">
-                <el-tag type="info" effect="dark">
-                  {{ data.value.Extras.Notes[0] }}
-                </el-tag>
-              </span>
-            </el-col>
-
-            <el-col :sm="3" :lg="2">
-              <el-tag v-if="data.value" color="#FFDE0A" style="color:black; border:none;">
-                {{ data.value.Cost }} gp
-              </el-tag>
-            </el-col>
-
-            <el-col :sm="2" :lg="2">
-              <el-tag v-if="data.value" type="info" effect="dark">
-                {{ data.value.Weight }} lbs.
-              </el-tag>
-            </el-col>
-
-            <el-col :sm="5" :lg="3">
-              <el-input-number v-if="data.value && data.value.Ammount" v-model="data.value.Ammount" :min="0" size="small" aria-label="Number of Items" />
-            </el-col>
-
-            <el-col :sm="3" :lg="2">
-              <div class="custom-tree-node" v-if="data.value">
-                <!-- Edit Item (in modal component) -->
-                <el-button type="info" circle size="small" @click="editItem(data)">
-                  <g-icon iconSize="16px" iconColor="#000" iconName="quill" />
+        <el-col :xs="7" :sm="4" :lg="3">
+          <div class="custom-tree-node" v-if="data.value">
+            <!-- Edit Item (in modal component) -->
+            <el-button type="info" circle size="small" @click="editItem(data)">
+              <g-icon iconSize="16px" iconColor="#000" iconName="quill" />
+            </el-button>
+            <!-- Delete Item -->
+            <el-popconfirm title="Are you sure to delete this?">
+              <template #reference>
+                <el-button type="danger" circle size="small">
+                  <g-icon iconSize="16px" iconColor="#000" iconName="trash" />
                 </el-button>
-
-                <!-- Delete Item -->
-                <el-popconfirm title="Are you sure to delete this?">
-                  <template #reference>
-                    <el-button type="danger" circle size="small">
-                      <g-icon iconSize="16px" iconColor="#000" iconName="trash" />
-                    </el-button>
-                  </template>
-                  <template #actions="">
-                    <el-button type="danger" size="small" @click="deleteItem(node, data)">Yes</el-button>
-                  </template>
-                </el-popconfirm>
-              </div>
-            </el-col>
-
-        </template>
-      </el-tree>
-    </el-tab-pane>
-
-    <!-- Skills -->
-    <el-tab-pane name="Skills">
-      <template #label> <g-icon iconSize="20px" iconName="sparkle" /> Skills </template>
-
-      <el-row v-if="creature.skills.Linguistics && creature.skills.Linguistics.extras">
-        <el-col :span="2"> Languages: </el-col>
-        <el-col :span="21">
-          <el-tag size="small" effect="dark" type="primary" v-for="language in creature.skills.Linguistics.extras.languages" :key="language" style="margin-left:5px;">{{ language }}</el-tag>
-        </el-col>
-      </el-row>
-      <el-divider />
-
-      <el-row :gutter="10" style="margin-bottom:5px; border-bottom:1px solid grey">
-        <el-col :span="5" class="center-vert"> <h5> Name </h5> </el-col>
-        <el-col :span="1" class="center-horz">
-          <el-tooltip placement="top" effect="light">
-            <g-icon iconSize="28px" iconName="d20" />
-            <template #content> Skill Bonus </template>
-          </el-tooltip>
-        </el-col>
-        <el-col :span="8" class="center-horz"> <h5> Notes </h5> </el-col>
-        <el-col :offset="3" :span="1" class="center-horz">
-          <el-tooltip placement="top" effect="light">
-            <g-icon iconSize="28px" iconName="sparkle" />
-            <template #content> Ranks </template>
-          </el-tooltip>
-        </el-col>
-        <el-col :span="1">
-          <el-tooltip placement="top" effect="light">
-            <g-icon iconSize="28px" iconName="magicSwirl" />
-            <template #content> Class Skill </template>
-          </el-tooltip>
-        </el-col>
-        <el-col :span="1">
-          <el-tooltip placement="top" effect="light">
-            <g-icon iconSize="28px" iconName="armor" />
-            <template #content> Armor Penalty </template>
-          </el-tooltip>
-        </el-col>
-        <el-col :span="1">
-          <el-tooltip placement="top" effect="light">
-            <g-icon iconSize="28px" iconName="openBook" />
-            <template #content> Background Skill </template>
-          </el-tooltip>
-        </el-col>
-      </el-row>
-
-      <div v-for="(skill, name) in rules.skills" :key="name">
-        <el-row :gutter="10" v-if="skill.untrained || skill.ranks" style="padding-bottom:5px; border-bottom:1px solid grey; margin-bottom:5px;">
-          <el-col :span="5" class="center-vert">
-            {{ name }}
-            <span v-if="['Artistry', 'Craft', 'Lore', 'Perform', 'Profession'].includes(name)"> ({{ creature.skills[name].extras.specialty }}) </span>
-          </el-col>
-          <!-- Bonus -->
-          <el-col :span="1">
-            <el-tooltip placement="top" effect="light">
-              {{ skills[name].bonus.total }}
-              <template #content>
-                <span v-for="bonus in skills[name].bonus.sources" :key="bonus"> {{ bonus+" " }} </span>
               </template>
-            </el-tooltip>
-          </el-col>
-          <!-- Notes -->
-          <el-col :span="8">
-            <el-input type="textarea" v-model="creature.skills[name].extras.notes" :autosize="{ minRows: 1, maxRows: 4 }" :aria-label="`${name} notes`" />
-          </el-col>
-          <el-col :offset="1" :span="1" class="center-horz">
-            ({{ skill.ability }})
-          </el-col>
-          <!-- Ranks -->
-          <el-col :offset="1" :span="1" class="center-horz">
-            <span v-if="creature.skills[name].ranks">
-              <el-tag effect="dark" type="info"> {{ creature.skills[name].ranks }} </el-tag>
-            </span>
-          </el-col>
-          <el-col :span="1" class="center-horz">
-            <g-icon v-if="creature.skills[name].class" iconSize="20px" iconName="magicSwirl" />
-          </el-col>
-          <el-col :span="1" class="center-horz">
-            <g-icon v-if="skill.armor_pen" iconSize="20px" iconName="armor" />
-          </el-col>
-          <el-col :span="1" class="center-horz">
-            <g-icon v-if="skill.background" iconSize="20px" iconName="openBook" />
-          </el-col>
-        </el-row>
-      </div>
-    </el-tab-pane>
-
-    <!-- Abilities -->
-    <el-tab-pane name="Abilities">
-      <template #label> <g-icon iconSize="20px" iconName="abilityPalm" /> Abilities </template>
-
-      <el-row class="center-horz" id="abilities" :gutter="5">
-        <el-col :span="5">Name</el-col>
-        <el-col :span="14">Description</el-col>
-        <el-col :span="5">
-          Actions
-          <el-popconfirm title="Add New Ability?" @confirm="addNewAbility" hide-icon>
-            <template #reference>
-              <el-button type="primary" size="small">New</el-button>
-            </template>
-            <template #actions="{ confirm }">
-              <el-input v-model="abilName" size="small" placeholder="Ability Name" style="margin-bottom:5px;" aria-label="New Ability Name" />
-              <el-button type="primary" size="small" @click="confirm" :disabled="abilName == ''" aria-label="Create New Ability">Yes</el-button>
-            </template>
-          </el-popconfirm>
-        </el-col>
-      </el-row>
-      <el-divider style="margin-top: 5px;" />
-      <el-collapse v-model="abilityCollapse">
-        <el-collapse-item v-for="type in abilityTypes" :key="type" :title="type" :name="type">
-          <div v-for="(abil, name) in abilities" :key="name">
-            <el-row v-if="abil.extras.source == type" :gutter="5" style="margin-bottom:5px;">
-              <el-col :span="5">
-                <el-tag size="small" effect="dark" type="primary"> {{ name }} </el-tag>
-              </el-col>
-              <el-col :span="14"> {{ abil.description }} </el-col>
-
-              <!-- ABILITY ACTIONS -->
-              <el-col :span="3">
-                <el-button size="small" style="width:95%; margin: 0;"
-                  :type="abil.extras.active?'primary':'info'"
-                  :disabled="abil.trigger=='Continuous'?true:false"
-                  @click="toggleAbility(name, abil)"
-                >
-                  {{ abil.trigger == "Toggle" ? "Free" : abil.trigger }}
-                </el-button>
-                <el-button size="small" style="width:95%; margin: 0;"
-                  :type="abil.extras.showMain?'primary':'info'"
-                  @click="abilShowMain(name, abil)"
-                >
-                  {{ abil.extras.showMain ? "On Main" : "Just Here" }}
-                </el-button>
-              </el-col>
-              <el-col :span="2" class="center-horz;">
-                <el-button type="info" size="small" @click="editAbility(name, abil)">
-                  <g-icon iconSize="16px" iconColor="#000" iconName="quill" />
-                </el-button>
-                <el-popconfirm title="Are you sure to delete this?">
-                  <template #reference>
-                    <el-button type="danger" size="small" style="margin:0">
-                      <g-icon iconSize="16px" iconColor="#000" iconName="trash" />
-                    </el-button>
-                  </template>
-                  <template #actions="">
-                    <el-button type="danger" size="small" @click="deleteAbil(name)">Yes</el-button>
-                  </template>
-                </el-popconfirm>
-              </el-col>
-            </el-row>
+              <template #actions="">
+                <el-button type="danger" size="small" @click="deleteItem(node, data)">Yes</el-button>
+              </template>
+            </el-popconfirm>
           </div>
-        </el-collapse-item>
-      </el-collapse>
-
-      <!-- Conditions -->
-      <el-row :gutter="10" style="margin-top:7px;">
-        <el-col :span="4">
-          <g-icon iconSize="32px" iconName="dizzyStar" /> Conditions
         </el-col>
-        <el-col :span="8" :offset="12">
-          <el-select v-model="creature.conditions" value-key="name" multiple placeholder="Common Conditions" aria-label="Conditions Select">
-            <template #tag>
-              <el-tag v-for="(condition, index) in creature.conditions" :key="condition" effect="dark" closable @close="creature.conditions.splice(index, 1)"> {{ condition.name }} </el-tag>
+      </template>
+    </el-tree>
+  </el-tab-pane>
+
+  <!-- Skills -->
+  <el-tab-pane name="Skills">
+    <template #label> <g-icon iconSize="20px" iconName="sparkle" /> Skills </template>
+    <el-row v-if="creature.skills.Linguistics && creature.skills.Linguistics.extras">
+      <el-col :xs="6" :sm="3" :span="2"> Languages: </el-col>
+      <el-col :xs="18" :sm="21" :span="23">
+        <el-tag size="small" effect="dark" type="primary" v-for="language in creature.skills.Linguistics.extras.languages" :key="language" style="margin-left:5px;">{{ language }}</el-tag>
+      </el-col>
+    </el-row>
+
+    <el-divider />
+    <el-row :gutter="10" style="margin-bottom:5px; border-bottom:1px solid grey">
+      <el-col :xs="6" :span="5" class="center-vert"> <h5> Name </h5> </el-col>
+      <el-col :xs="2" :span="1" class="center-horz">
+        <el-tooltip placement="top" effect="light">
+          <g-icon iconSize="28px" iconName="d20" />
+          <template #content> Skill Bonus </template>
+        </el-tooltip>
+      </el-col>
+      <el-col :xs="6" :span="8" class="center-horz"> <h5> Notes </h5> </el-col>
+      <el-col :xs="0" :span="2"></el-col>
+      <el-col :offset="1" :xs="3" :span="2" class="center-horz">
+        <el-tooltip placement="top" effect="light">
+          <g-icon iconSize="28px" iconName="sparkle" />
+          <template #content> Ranks </template>
+        </el-tooltip>
+      </el-col>
+      <el-col :xs="2" :span="1">
+        <el-tooltip placement="top" effect="light">
+          <g-icon iconSize="28px" iconName="magicSwirl" />
+          <template #content> Class Skill </template>
+        </el-tooltip>
+      </el-col>
+      <el-col :xs="2" :span="1">
+        <el-tooltip placement="top" effect="light">
+          <g-icon iconSize="28px" iconName="armor" />
+          <template #content> Armor Penalty </template>
+        </el-tooltip>
+      </el-col>
+      <el-col :xs="0" :span="1">
+        <el-tooltip placement="top" effect="light">
+          <g-icon iconSize="28px" iconName="openBook" />
+          <template #content> Background Skill </template>
+        </el-tooltip>
+      </el-col>
+    </el-row>
+
+    <div v-for="(skill, name) in rules.skills" :key="name">
+      <el-row :gutter="10" v-if="skill.untrained || skill.ranks" style="padding-bottom:5px; border-bottom:1px solid grey; margin-bottom:5px;" align="middle">
+        <el-col :xs="6" :span="5">
+          {{ name }}
+          <span v-if="['Artistry', 'Craft', 'Lore', 'Perform', 'Profession'].includes(name)"> ({{ creature.skills[name].extras.specialty }}) </span>
+        </el-col>
+        <el-col :xs="2" :span="1">
+          <el-tooltip placement="top" effect="light">
+            {{ skills[name].bonus.total }}
+            <template #content>
+              <span v-for="bonus in skills[name].bonus.sources" :key="bonus"> {{ bonus+" " }} </span>
             </template>
-            <el-option v-for="item in conditions" :key="item.name" :label="item.name" :value="item" >
-              <el-tag type="primary" style="margin-right: 8px" size="small" effect="dark"> {{ item.name }} </el-tag>
-            </el-option>
-            <template #footer>
-              <el-button v-if="!addingCondition" text bg size="small" @click="addNewContion()"> Add custom condition </el-button>
-            </template>
-          </el-select>
+          </el-tooltip>
+        </el-col>
+        <el-col :xs="6" :span="8">
+          <el-input type="textarea" v-model="creature.skills[name].extras.notes" :autosize="{ minRows: 1, maxRows: 4 }" :aria-label="`${name} notes`" />
+        </el-col>
+        <el-col :xs="0" :span="2" class="center-horz">
+          ({{ skill.ability }})
+        </el-col>
+        <el-col :offset="1" :xs="3" :span="2" class="center-horz">
+          <span v-if="creature.skills[name].ranks">
+            <el-tag effect="dark" type="info"> {{ creature.skills[name].ranks }} </el-tag>
+          </span>
+        </el-col>
+        <el-col :xs="2" :span="1" class="center-horz">
+          <g-icon v-if="creature.skills[name].class" iconSize="20px" iconName="magicSwirl" />
+        </el-col>
+        <el-col :xs="2" :span="1" class="center-horz">
+          <g-icon v-if="skill.armor_pen" iconSize="20px" iconName="armor" />
+        </el-col>
+        <el-col :xs="0" :span="1" class="center-horz">
+          <g-icon v-if="skill.background" iconSize="20px" iconName="openBook" />
         </el-col>
       </el-row>
-      <el-divider> Active </el-divider>
-      <el-row v-for="condition in creature.conditions" :key="condition.name">
-        <el-col :span="6" class="center-vert">
-          <el-tag type="info" size="large" effect="dark"> {{ condition.name }} </el-tag>
-        </el-col>
-        <el-col :span="18" class="center-vert">
-          {{ condition.description }}
-        </el-col>
-      </el-row>
-    </el-tab-pane>
+    </div>
+  </el-tab-pane>
 
-    <!-- Magic -->
-    <el-tab-pane name="Spells">
-      <template #label> <g-icon iconSize="20px" iconName="spellBook" /> Spells </template>
+  <!-- Abilities -->
+  <el-tab-pane name="Abilities">
+    <template #label> <g-icon iconSize="20px" iconName="abilityPalm" /> Abilities </template>
+    <el-row :gutter="5" justify="space-between">
+      <el-col :xs="4" :sm="2" :span="5">Name</el-col>
+      <el-col :xs="0" :sm="14" :span="14" class="center-horz">Description</el-col>
+      <el-col :xs="8" :sm="4" :span="5">
+        Actions
+        <el-popconfirm title="Add New Ability?" @confirm="addNewAbility" hide-icon>
+          <template #reference>
+            <el-button type="primary" size="small">New</el-button>
+          </template>
+          <template #actions="{ confirm }">
+            <el-input v-model="abilName" size="small" placeholder="Ability Name" style="margin-bottom:5px;" aria-label="New Ability Name" />
+            <el-button type="primary" size="small" @click="confirm" :disabled="abilName == ''" aria-label="Create New Ability">Yes</el-button>
+          </template>
+        </el-popconfirm>
+      </el-col>
+    </el-row>
 
-      <el-popconfirm title="Learn New Spell?" @confirm="addSpell" hide-icon :hide-after="1000">
-        <template #reference>
-          <el-button type="primary" size="large" ref="addSpell">Add Spell</el-button>
-        </template>
-        <template #actions="{ confirm }">
-          Name: <br>
-          <el-input v-model="newSpell.name" size="small" aria-label="New Spell Name" />
-          Level: <br>
-          <el-input-number v-model="newSpell.level" :min="0" :max="9" size="small" aria-label="New Spell Level" />
-          Class: <br>
-          <el-select v-model="newSpell.class" aria-label="New Spell Class">
-            <el-option v-for="(cClass, cName) in creature.classes" :key="cName" :label="cName" :value="cName" />
-          </el-select>
-          <el-button type="primary" size="small" @click="confirm" :disabled="newSpell.name == '' || newSpell.class == ''">Yes</el-button>
-        </template>
-      </el-popconfirm>
-      <el-tabs v-model="spellTabs" type="card" ref="spellTabs" style="padding-top:10px;">
-        <el-tab-pane v-for="(cClass, cName) in creature.spells" :key="cName" :label="capFirsts(cName)" :name="cName" >
-
-          <el-row :gutter="10" style="margin-bottom:10px" align="middle">
-            <el-col :span="12">
-              <div v-if="creature.classes[cName].useGaldur">
-                <el-row :gutter="10">
-                  <el-col :span="5">
-                    <el-tag effect="dark" type="primary"> Open Pool </el-tag>
-                  </el-col>
-                  <el-col :span="10">
-                    <el-progress :text-inside="true" :stroke-width="24" :percentage=" Math.floor( ( creature.classes[cName].openRemaining / creature.classes[cName].openTotal ) * 100 ) ">
-                      {{ creature.classes[cName].openRemaining }} / {{ creature.classes[cName].openTotal }}
-                    </el-progress>
-                  </el-col>
-                </el-row>
-                <el-row :gutter="10">
-                  <el-col :span="5">
-                    <el-tag effect="dark" type="warning"> Reserve Pool </el-tag>
-                  </el-col>
-                  <el-col :span="10">
-                    <el-progress :text-inside="true" :stroke-width="24" status="warning" :percentage=" Math.floor( ( creature.classes[cName].reserveRemaining / creature.classes[cName].reserveTotal ) * 100 ) ">
-                      {{ creature.classes[cName].reserveRemaining }} / {{ creature.classes[cName].reserveTotal }}
-                    </el-progress>
-                  </el-col>
-                </el-row>
-                <el-row :gutter="10" v-if="classes[cName].magic.extraGaldur">
-                  <el-col :span="5">
-                    <el-tag effect="dark" type="info"> {{ classes[cName].magic.extraGaldur.poolName }} </el-tag>
-                  </el-col>
-                  <el-col :span="10">
-                    <el-progress :text-inside="true" :stroke-width="24" color="#909399" :percentage=" Math.floor( ( creature.classes[cName].extraRemaining / creature.classes[cName].extraTotal ) * 100 ) ">
-                      {{ creature.classes[cName].extraRemaining }} / {{ creature.classes[cName].extraTotal }}
-                    </el-progress>
-                  </el-col>
-                </el-row>
-              </div>
-            </el-col>
-
-            <el-col :span="12">
-              <el-row justify="space-between" align="middle">
-                <el-col :span="12">
-                  <el-tooltip placement="top" effect="light">
-                    <el-tag effect="dark" type="primary" size="large">
-                      Concentration: +{{ concentration[cName].total }}
-                    </el-tag>
-                    <template #content>
-                      <span v-for="bonus in concentration[cName].sources" :key="bonus"> {{ bonus+" " }} </span>
-                    </template>
-                  </el-tooltip>
+    <el-divider style="margin-top: 5px;" />
+    <el-collapse v-model="abilityCollapse">
+      <el-collapse-item v-for="type in abilityTypes" :key="type" :title="type" :name="type">
+        <div v-for="(abil, name) in abilities" :key="name">
+          <el-row v-if="abil.extras.source == type" :gutter="5" style="margin-bottom:5px;" justify="space-between">
+            <el-col :xs="10" :sm="5"> <el-tag size="small" effect="dark" type="primary"> {{ name }} </el-tag> </el-col>
+            <el-col :xs="0" :sm="12" :span="14"> {{ abil.description }} </el-col>
+            <el-col :xs="10" :sm="6">
+              <el-row>
+                <el-col :xs="14" :span="16">
+                  <el-button size="small" style="width:95%; margin: 0;"
+                    :type="abil.extras.active?'primary':'info'"
+                    :disabled="abil.trigger=='Continuous'?true:false"
+                    @click="toggleAbility(name, abil)" >
+                    {{ abil.trigger == "Toggle" ? "Free" : abil.trigger }}
+                  </el-button>
+                  <el-button size="small" style="width:95%; margin: 0;"
+                    :type="abil.extras.showMain?'primary':'info'"
+                    @click="abilShowMain(name, abil)" >
+                    {{ abil.extras.showMain ? "On Main" : "Just Here" }}
+                  </el-button>
                 </el-col>
-                <el-col :span="8" v-if="(knownMetas.length > 0) && (classes[cName].magic.style.includes('Spontaneous') || creature.classes[cName].useGaldur)" class="center-horz">
-                  Metamagic
-                  <el-select v-model="metamagic" value-key="name" clearable aria-label="Metamagic Select">
-                    <el-option v-for="meta in knownMetas" :key="meta.name" :label="capFirsts(meta.name)" :value="meta" />
-                  </el-select>
-                  <el-tooltip v-if="metamagic" placement="left" effect="light">
-                    <el-input-number v-model="metamagic.increase" :min="0" :max="8" aria-label="Metamagic Increase" />
-                    <template #content>
-                      Choose the level incrase
+                <el-col :xs="10" :span="8" class="center-horz;">
+                  <el-button type="info" size="small" @click="editAbility(name, abil)">
+                    <g-icon iconSize="16px" iconColor="#000" iconName="quill" />
+                  </el-button>
+                  <el-popconfirm title="Are you sure to delete this?">
+                    <template #reference>
+                      <el-button type="danger" size="small" style="margin:0">
+                        <g-icon iconSize="16px" iconColor="#000" iconName="trash" />
+                      </el-button>
                     </template>
-                  </el-tooltip>
-               </el-col>
+                    <template #actions="">
+                      <el-button type="danger" size="small" @click="deleteAbil(name)">Yes</el-button>
+                    </template>
+                  </el-popconfirm>
+                </el-col>
               </el-row>
             </el-col>
           </el-row>
+        </div>
+      </el-collapse-item>
+    </el-collapse>
+    <!-- Conditions -->
+    <el-row :gutter="10" style="margin-top:7px;" justify="space-between">
+      <el-col :xs="9" :sm="5" :span="4"> <g-icon iconSize="32px" iconName="dizzyStar" /> Conditions </el-col>
+      <el-col :xs="10" :span="8">
+        <el-select v-model="creature.conditions" value-key="name" multiple placeholder="Common Conditions" aria-label="Conditions Select">
+          <template #tag>
+            <el-tag v-for="(condition, index) in creature.conditions" :key="condition" effect="dark" closable @close="creature.conditions.splice(index, 1)"> {{ condition.name }} </el-tag>
+          </template>
+          <el-option v-for="item in conditions" :key="item.name" :label="item.name" :value="item" >
+            <el-tag type="primary" style="margin-right: 8px" size="small" effect="dark"> {{ item.name }} </el-tag>
+          </el-option>
+          <template #footer>
+            <el-button v-if="!addingCondition" text bg size="small" @click="addNewContion()"> Add custom condition </el-button>
+          </template>
+        </el-select>
+      </el-col>
+    </el-row>
+    <el-divider> Active </el-divider>
+    <el-row v-for="condition in creature.conditions" :key="condition.name">
+      <el-col :span="6" class="center-vert">
+        <el-tag type="info" size="large" effect="dark"> {{ condition.name }} </el-tag>
+      </el-col>
+      <el-col :span="18" class="center-vert">
+        {{ condition.description }}
+      </el-col>
+    </el-row>
+  </el-tab-pane>
 
-          <!-- Prepared Spell List -->
-          <div v-if="classes[cName].magic.style.includes('Prepared') && !creature.classes[cName].useGaldur">
-            <el-collapse v-model="spellsCollapse">
-              <el-collapse-item v-for="(spells, lvl) in creature.classes[cName].preparedSpells" :key="lvl" :name="lvl">
-                <template #title>
-                  <el-row :gutter="10">
-                    <el-col :span="7">
-                      <el-tag effect="dark"> Level {{ lvl }} Spells </el-tag>
-                    </el-col>
-                    <el-col :span="7">
-                      <el-tooltip placement="top" effect="light">
-                        <el-tag effect="dark" type="info">
-                          Save DC : {{ 10 + lvl + (attributes[classes[cName].magic.castingAtr].mod) }}
-                        </el-tag>
-                        <template #content>
-                          10
-                          + {{ attributes[classes[cName].magic.castingAtr].mod }} {{ classes[cName].magic.castingAtr }}
-                          + {{ lvl }} Level Spell
-                        </template>
-                      </el-tooltip>
-                    </el-col>
-                    <el-col :span="10">
-                      <el-tooltip placement="top" effect="light">
-                        <el-tag effect="dark" type="info">
-                          Defensive Casting DC : {{ 15 + (lvl * 2) }}
-                        </el-tag>
-                        <template #content>
-                          Cast defensively to avoid an Attack of Opportunity <br>
-                          15 + {{ lvl * 2 }} (Spell Level x 2)
-                        </template>
-                      </el-tooltip>
-                    </el-col>
-                  </el-row>
-                </template>
-                <el-row v-for="(spell, index) in spells" :key="index" :gutter="10" align="middle" style="margin-bottom:15px;">
-                  <el-col :span="4" class="center-horz">
-                    <el-popconfirm :title="`Cast ${spell}`"
-                    @confirm="castPSpell(cName, lvl, spell, index)" hide-icon>
-                      <template #reference>
-                        <el-button :ref="`${spell}-${index}`" type="primary" plain>
-                          {{ spell }}
-                        </el-button>
-                      </template>
-                      <template #actions="{ confirm }">
-                        <el-button @click="confirm" size="small" type="primary">
-                          Yes
-                        </el-button>
-                      </template>
-                    </el-popconfirm>
-                  </el-col>
-                  <el-col :span="20">
-                    <el-row :gutter="10">
-                      <el-col :span="8">
-                        <el-input v-model="spell.components" aria-label="Components">
-                          <template #prepend>Components</template>
-                        </el-input>
-                      </el-col>
-                      <el-col :span="8">
-                        <el-input v-model="spell.castTime" aria-label="Casting Time">
-                          <template #prepend>Cast Time</template>
-                        </el-input>
-                      </el-col>
-                      <el-col :span="8">
-                        <el-input v-model="spell.duration" aria-label="Duration">
-                          <template #prepend>Duration</template>
-                        </el-input>
-                      </el-col>
-                    </el-row>
-                    <el-row :gutter="10">
-                      <el-col :span="8">
-                        <el-input v-model="spell.description" :autosize="{ minRows: 2, maxRows: 4 }" :aria-label="`${sName} Spell Description`"  type="textarea" />
-                      </el-col>
-                      <el-col :span="8">
-                        <el-input v-model="spell.target" aria-label="Target">
-                          <template #prepend>Target</template>
-                        </el-input>
-                        <el-input v-model="spell.range" aria-label="Range">
-                          <template #prepend>Range</template>
-                        </el-input>
-                      </el-col>
-                      <el-col :span="8" class="center-horz">
-                        <el-input v-model="spell.save" aria-label="Save">
-                          <template #prepend>Save</template>
-                        </el-input>
-                        <el-tag effect="dark" :type="spell.SR ? 'warning' : 'info'"> {{ spell.SR ? 'Yes' : 'No' }} SR </el-tag>
-                      </el-col>
-                    </el-row>
-                  </el-col>
-                </el-row>
-              </el-collapse-item>
-            </el-collapse>
-          </div>
 
-          <!-- Spontaneous Spell List -->
-          <div v-else-if="classes[cName].magic.style.includes('Spontaneous') && !creature.classes[cName].useGaldur">
-            <el-collapse v-model="spellsCollapse">
-              <el-collapse-item v-for="(spells, lvl) in cClass" :key="lvl" :name="lvl">
-                <template #title>
-                  <el-row :gutter="10">
-                    <el-col :span="7">
-                      <el-tag effect="dark"> Level {{ lvl }} Spells </el-tag>
-                    </el-col>
-                    <el-col :span="7">
-                      <el-tooltip placement="top" effect="light">
-                        <el-tag effect="dark" type="info">
-                          Save DC : {{ 10 + lvl + (attributes[classes[cName].magic.castingAtr].mod) }}
-                        </el-tag>
-                        <template #content>
-                          10
-                          + {{ attributes[classes[cName].magic.castingAtr].mod }} {{ classes[cName].magic.castingAtr }}
-                          + {{ lvl }} Level Spell
-                        </template>
-                      </el-tooltip>
-                    </el-col>
-                    <el-col :span="10">
-                      <el-tooltip placement="top" effect="light">
-                        <el-tag effect="dark" type="info">
-                          Defensive Casting DC : {{ 15 + (lvl * 2) }}
-                        </el-tag>
-                        <template #content>
-                          Cast defensively to avoid an Attack of Opportunity <br>
-                          15 + {{ lvl * 2 }} (Spell Level x 2)
-                        </template>
-                      </el-tooltip>
-                    </el-col>
-                  </el-row>
-                </template>
-                <el-row class="center-horz">
-                  <el-col :span="11">
+
+
+  <!-- Magic -->
+  <el-tab-pane name="Spells">
+    <template #label> <g-icon iconSize="20px" iconName="spellBook" /> Spells </template>
+    <el-popconfirm title="Learn New Spell?" @confirm="addSpell" hide-icon :hide-after="1000">
+      <template #reference>
+        <el-button type="primary" size="large" ref="addSpell">Add Spell</el-button>
+      </template>
+      <template #actions="{ confirm }">
+        Name: <br>
+        <el-input v-model="newSpell.name" size="small" aria-label="New Spell Name" />
+        Level: <br>
+        <el-input-number v-model="newSpell.level" :min="0" :max="9" size="small" aria-label="New Spell Level" />
+        Class: <br>
+        <el-select v-model="newSpell.class" aria-label="New Spell Class">
+          <el-option v-for="(cClass, cName) in creature.classes" :key="cName" :label="cName" :value="cName" />
+        </el-select>
+        <el-button type="primary" size="small" @click="confirm" :disabled="newSpell.name == '' || newSpell.class == ''">Yes</el-button>
+      </template>
+    </el-popconfirm>
+
+    <el-tabs v-model="spellTabs" type="card" ref="spellTabs" style="padding-top:10px;">
+      <el-tab-pane v-for="(cClass, cName) in creature.spells" :key="cName" :label="capFirsts(cName)" :name="cName" >
+
+        <el-row :gutter="10" style="margin-bottom:10px" align="middle">
+          <el-col :span="12">
+            <div v-if="creature.classes[cName].useGaldur">
+              <el-row :gutter="10">
+                <el-col :span="5">
+                  <el-tag effect="dark" type="primary"> Open Pool </el-tag>
+                </el-col>
+                <el-col :span="10">
+                  <el-progress :text-inside="true" :stroke-width="24" :percentage=" Math.floor( ( creature.classes[cName].openRemaining / creature.classes[cName].openTotal ) * 100 ) ">
+                    {{ creature.classes[cName].openRemaining }} / {{ creature.classes[cName].openTotal }}
+                  </el-progress>
+                </el-col>
+              </el-row>
+              <el-row :gutter="10">
+                <el-col :span="5">
+                  <el-tag effect="dark" type="warning"> Reserve Pool </el-tag>
+                </el-col>
+                <el-col :span="10">
+                  <el-progress :text-inside="true" :stroke-width="24" status="warning" :percentage=" Math.floor( ( creature.classes[cName].reserveRemaining / creature.classes[cName].reserveTotal ) * 100 ) ">
+                    {{ creature.classes[cName].reserveRemaining }} / {{ creature.classes[cName].reserveTotal }}
+                  </el-progress>
+                </el-col>
+              </el-row>
+              <el-row :gutter="10" v-if="classes[cName].magic.extraGaldur">
+                <el-col :span="5">
+                  <el-tag effect="dark" type="info"> {{ classes[cName].magic.extraGaldur.poolName }} </el-tag>
+                </el-col>
+                <el-col :span="10">
+                  <el-progress :text-inside="true" :stroke-width="24" color="#909399" :percentage=" Math.floor( ( creature.classes[cName].extraRemaining / creature.classes[cName].extraTotal ) * 100 ) ">
+                    {{ creature.classes[cName].extraRemaining }} / {{ creature.classes[cName].extraTotal }}
+                  </el-progress>
+                </el-col>
+              </el-row>
+            </div>
+          </el-col>
+
+          <el-col :span="12">
+            <el-row justify="space-between" align="middle">
+              <el-col :span="12">
+                <el-tooltip placement="top" effect="light">
+                  <el-tag effect="dark" type="primary" size="large">
+                    Concentration: +{{ concentration[cName].total }}
+                  </el-tag>
+                  <template #content>
+                    <span v-for="bonus in concentration[cName].sources" :key="bonus"> {{ bonus+" " }} </span>
+                  </template>
+                </el-tooltip>
+              </el-col>
+              <el-col :span="8" v-if="(knownMetas.length > 0) && (classes[cName].magic.style.includes('Spontaneous') || creature.classes[cName].useGaldur)" class="center-horz">
+                Metamagic
+                <el-select v-model="metamagic" value-key="name" clearable aria-label="Metamagic Select">
+                  <el-option v-for="meta in knownMetas" :key="meta.name" :label="capFirsts(meta.name)" :value="meta" />
+                </el-select>
+                <el-tooltip v-if="metamagic" placement="left" effect="light">
+                  <el-input-number v-model="metamagic.increase" :min="0" :max="8" aria-label="Metamagic Increase" />
+                  <template #content>
+                    Choose the level incrase
+                  </template>
+                </el-tooltip>
+              </el-col>
+            </el-row>
+          </el-col>
+        </el-row>
+
+        <!-- Prepared Spell List -->
+        <div v-if="classes[cName].magic.style.includes('Prepared') && !creature.classes[cName].useGaldur">
+          <el-collapse v-model="spellsCollapse">
+            <el-collapse-item v-for="(spells, lvl) in creature.classes[cName].preparedSpells" :key="lvl" :name="lvl">
+              <template #title>
+                <el-row :gutter="10">
+                  <el-col :span="7">
+                    <el-tag effect="dark"> Level {{ lvl }} Spells </el-tag>
+                  </el-col>
+                  <el-col :span="7">
                     <el-tooltip placement="top" effect="light">
-                      <el-progress :text-inside="true" :stroke-width="24" :color="healthColors"
-                        :percentage=" Math.floor( ( creature.classes[cName].remainingCasts[lvl] / (creature.classes[cName].spellsPerDay[lvl] == '∞' ? 1 : creature.classes[cName].spellsPerDay[lvl]) ) * 100 ) ">
-                        {{ creature.classes[cName].remainingCasts[lvl] }} / {{ creature.classes[cName].spellsPerDay[lvl] }}
-                      </el-progress>
-                      <template #content> Remaining Spell Slots </template>
+                      <el-tag effect="dark" type="info">
+                        Save DC : {{ 10 + lvl + (attributes[classes[cName].magic.castingAtr].mod) }}
+                      </el-tag>
+                      <template #content>
+                        10
+                        + {{ attributes[classes[cName].magic.castingAtr].mod }} {{ classes[cName].magic.castingAtr }}
+                        + {{ lvl }} Level Spell
+                      </template>
+                    </el-tooltip>
+                  </el-col>
+                  <el-col :span="10">
+                    <el-tooltip placement="top" effect="light">
+                      <el-tag effect="dark" type="info">
+                        Defensive Casting DC : {{ 15 + (lvl * 2) }}
+                      </el-tag>
+                      <template #content>
+                        Cast defensively to avoid an Attack of Opportunity <br>
+                        15 + {{ lvl * 2 }} (Spell Level x 2)
+                      </template>
                     </el-tooltip>
                   </el-col>
                 </el-row>
-                <el-row v-for="(spell, sName) in spells" :key="sName" :gutter="10" align="middle" style="margin-bottom:15px;">
-                  <el-col :span="4" class="center-horz">
-                    <el-button @click="castSSpell(cName, lvl)" :disabled="!creature.classes[cName].remainingCasts[lvl] > 0" type="primary" plain>
-                      {{ sName }}
+              </template>
+              <el-row v-for="(spell, index) in spells" :key="index" :gutter="10" align="middle" style="margin-bottom:15px;">
+                <el-col :span="4" class="center-horz">
+                  <el-popconfirm :title="`Cast ${spell}`" @confirm="castPSpell(cName, lvl, spell, index)" hide-icon>
+                  <template #reference>
+                    <el-button :ref="`${spell}-${index}`" type="primary" plain>
+                      {{ spell }}
                     </el-button>
+                  </template>
+                  <template #actions="{ confirm }">
+                    <el-button @click="confirm" size="small" type="primary">
+                      Yes
+                    </el-button>
+                  </template>
+                </el-popconfirm>
+              </el-col>
+              <el-col :span="20">
+                <el-row :gutter="10">
+                  <el-col :span="8">
+                    <el-input v-model="spell.components" aria-label="Components">
+                      <template #prepend>Components</template>
+                    </el-input>
                   </el-col>
-                  <el-col :span="20">
-                    <el-row :gutter="10">
-                      <el-col :span="8">
-                        <el-input v-model="spell.components" aria-label="Components">
-                          <template #prepend>Components</template>
-                        </el-input>
-                      </el-col>
-                      <el-col :span="8">
-                        <el-input v-model="spell.castTime" aria-label="Casting Time">
-                          <template #prepend>Cast Time</template>
-                        </el-input>
-                      </el-col>
-                      <el-col :span="8">
-                        <el-input v-model="spell.duration" aria-label="Duration">
-                          <template #prepend>Duration</template>
-                        </el-input>
-                      </el-col>
-                    </el-row>
-                    <el-row :gutter="10">
-                      <el-col :span="8">
-                        <el-input v-model="spell.description" :autosize="{ minRows: 2, maxRows: 4 }" :aria-label="`${sName} Spell Description`"  type="textarea" />
-                      </el-col>
-                      <el-col :span="8">
-                        <el-input v-model="spell.target" aria-label="Target">
-                          <template #prepend>Target</template>
-                        </el-input>
-                        <el-input v-model="spell.range" aria-label="Range">
-                          <template #prepend>Range</template>
-                        </el-input>
-                      </el-col>
-                      <el-col :span="8" class="center-horz">
-                        <el-input v-model="spell.save" aria-label="Save">
-                          <template #prepend>Save</template>
-                        </el-input>
-                        <el-tag effect="dark" :type="spell.SR ? 'warning' : 'info'"> {{ spell.SR ? 'Yes' : 'No' }} SR </el-tag>
-                      </el-col>
-                    </el-row>
+                  <el-col :span="8">
+                    <el-input v-model="spell.castTime" aria-label="Casting Time">
+                      <template #prepend>Cast Time</template>
+                    </el-input>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-input v-model="spell.duration" aria-label="Duration">
+                      <template #prepend>Duration</template>
+                    </el-input>
                   </el-col>
                 </el-row>
-              </el-collapse-item>
-            </el-collapse>
-          </div>
-
-          <!-- Galdur Spell List -->
-          <div v-else>
-            <el-collapse v-model="spellsCollapse">
-              <el-collapse-item v-for="(spells, lvl) in cClass" :key="lvl" :name="lvl">
-                <template #title>
-                  <el-row :gutter="10">
-                    <el-col :span="7">
-                      <el-tag effect="dark"> Level {{ lvl }} Spells </el-tag>
-                    </el-col>
-                    <el-col :span="7">
-                      <el-tooltip placement="top" effect="light">
-                        <el-tag effect="dark" type="info">
-                          Save DC : {{ 10 + lvl + (attributes[classes[cName].magic.castingAtr].mod) }}
-                        </el-tag>
-                        <template #content>
-                          10
-                          + {{ attributes[classes[cName].magic.castingAtr].mod }} {{ classes[cName].magic.castingAtr }}
-                          + {{ lvl }} Level Spell
-                        </template>
-                      </el-tooltip>
-                    </el-col>
-                    <el-col :span="10">
-                      <el-tooltip placement="top" effect="light">
-                        <el-tag effect="dark" type="info">
-                          Defensive Casting DC : {{ 15 + (lvl * 2) }}
-                        </el-tag>
-                        <template #content>
-                          Cast defensively to avoid an Attack of Opportunity <br>
-                          15 + {{ lvl * 2 }} (Spell Level x 2)
-                        </template>
-                      </el-tooltip>
-                    </el-col>
-                  </el-row>
-                </template>
-                <el-row v-for="(spell, sName) in spells" :key="sName" :gutter="10" align="middle" style="margin-bottom:15px;">
-                  <el-col :span="4" class="center-horz">
-                    <el-popover @show="spellPop(spell, lvl, cName)" trigger="click">
-                      <template #reference>
-                        <el-button plain :type="(creature.classes[cName].openRemaining > 0) ? 'primary' : 'warning'">
-                          {{ sName }}
-                        </el-button>
-                      </template>
-                      <template #default>
-                        <el-row>
-                          {{ `Cast for ${spellCost} Galdur?` }}
-                        </el-row>
-                        <el-row v-if="(creature.classes[cName].openRemaining - this.spellCost) <= 0">
-                          <el-tooltip placement="top" effect="light">
-                            <el-tag type="warning">
-                              {{ `Will Save (DC ${this.gFatigue})` }}
-                            </el-tag>
-                            <template #content>
-                              Will : {{ saves.will.total > 0 ? "+" : "" }}{{ saves.will.total }}
-                            </template>
-                          </el-tooltip>
-                        </el-row>
-                        <el-row justify="end">
-                          <el-button
-                            @click="castGSpell(sName, spell, lvl, cName)"
-                            :disabled="( (creature.classes[cName].reserveRemaining - this.spellCost) < 0 ) || ( (lvl==0) && (creature.classes[cName].reserveRemaining==0) )"
-                            :type="( ((creature.classes[cName].reserveRemaining - this.spellCost) < 0 ) || ((lvl==0) && (creature.classes[cName].reserveRemaining==0)) ) ? 'danger' : 'primary'"
-                            size="small">
-                            <span v-if="( (creature.classes[cName].reserveRemaining - this.spellCost) < 0 ) || ( (lvl==0) && (creature.classes[cName].reserveRemaining==0) )">
-                              Not Enough Galdur
-                            </span>
-                            <span v-else>
-                              Yes
-                            </span>
-                           </el-button>
-                        </el-row>
-                      </template>
-                    </el-popover>
+                <el-row :gutter="10">
+                  <el-col :span="8">
+                    <el-input v-model="spell.description" :autosize="{ minRows: 2, maxRows: 4 }" :aria-label="`${sName} Spell Description`"  type="textarea" />
                   </el-col>
-                  <el-col :span="20">
-                    <el-row :gutter="10">
-                      <el-col :span="8">
-                        <el-input v-model="spell.components" aria-label="Components">
-                          <template #prepend>Components</template>
-                        </el-input>
-                      </el-col>
-                      <el-col :span="8">
-                        <el-input v-model="spell.castTime" aria-label="Casting Time">
-                          <template #prepend>Cast Time</template>
-                        </el-input>
-                      </el-col>
-                      <el-col :span="8">
-                        <el-input v-model="spell.duration" aria-label="Duration">
-                          <template #prepend>Duration</template>
-                        </el-input>
-                      </el-col>
-                    </el-row>
-                    <el-row :gutter="10">
-                      <el-col :span="8">
-                        <el-input v-model="spell.description" :autosize="{ minRows: 2, maxRows: 4 }" :aria-label="`${sName} Spell Description`"  type="textarea" />
-                      </el-col>
-                      <el-col :span="8">
-                        <el-input v-model="spell.target" aria-label="Target">
-                          <template #prepend>Target</template>
-                        </el-input>
-                        <el-input v-model="spell.range" aria-label="Range">
-                          <template #prepend>Range</template>
-                        </el-input>
-                      </el-col>
-                      <el-col :span="8" class="center-horz">
-                        <el-input v-model="spell.save" aria-label="Save">
-                          <template #prepend>Save</template>
-                        </el-input>
-                        <el-tag effect="dark" :type="spell.SR ? 'warning' : 'info'"> {{ spell.SR ? 'Yes' : 'No' }} SR </el-tag>
-                      </el-col>
-                    </el-row>
+                  <el-col :span="8">
+                    <el-input v-model="spell.target" aria-label="Target">
+                      <template #prepend>Target</template>
+                    </el-input>
+                    <el-input v-model="spell.range" aria-label="Range">
+                      <template #prepend>Range</template>
+                    </el-input>
+                  </el-col>
+                  <el-col :span="8" class="center-horz">
+                    <el-input v-model="spell.save" aria-label="Save">
+                      <template #prepend>Save</template>
+                    </el-input>
+                    <el-tag effect="dark" :type="spell.SR ? 'warning' : 'info'"> {{ spell.SR ? 'Yes' : 'No' }} SR </el-tag>
                   </el-col>
                 </el-row>
-              </el-collapse-item>
-            </el-collapse>
-          </div>
-        </el-tab-pane>
-      </el-tabs>
-    </el-tab-pane>
-
-    <!-- Edit -->
-    <el-tab-pane name="Edit">
-      <template #label> <g-icon iconSize="20px" iconName="quill" /> Edit </template>
-      <el-row :gutter="10" align="middle" style="margin-bottom:10px">
-        <el-col :span="4"> Hero Points </el-col>
-        <el-col :span="6">
-          <el-input-number v-model="creature.settings.heroPoints" :min="0" :max="4" aria-label="Hero Points" />
-        </el-col>
-        <el-col :offset="2" :span="4"> Your Size </el-col>
-        <el-col :span="8">
-          <el-select v-model="creature.basics.size" label="Size">
-            <el-option v-for="size in Object.keys(rules.size)" :key="size" :label="capFirsts(size)" :value="size" />
-          </el-select>
-        </el-col>
-      </el-row>
-      <el-row :gutter="10">
-        <el-col :span="12"> <g-icon iconName="openScroll" /> Backstory </el-col>
-        <el-col :span="12"> <g-icon iconName="openBook" /> Notes </el-col>
-      </el-row>
-      <el-row :gutter="10" align="middle" style="margin-bottom:10px">
-        <el-col :span="12">
-          <el-input v-model="creature.basics.backstory" :autosize="{ minRows: 3, maxRows: 10 }" aria-label="Backstory" type="textarea" />
-        </el-col>
-        <el-col :span="12">
-          <el-input v-model="creature.notes" :autosize="{ minRows: 3, maxRows: 10 }" aria-label="Notes" type="textarea" />
-        </el-col>
-      </el-row>
-      <el-divider style="margin: 24px 0 10px 0"> Bonuses </el-divider>
-      <div>
-        <el-row :gutter="5">
-          <el-col :span="6"> <el-tag effect="dark" type="primary"> Name </el-tag> </el-col>
-          <el-col :span="2" class="center-horz"> <el-tag effect="dark" type="primary"> Value </el-tag> </el-col>
-          <el-col :span="6" class="center-horz"> <el-tag effect="dark" type="primary"> Type </el-tag> </el-col>
-          <el-col :span="8"> <el-tag effect="dark" type="primary"> Targets </el-tag> </el-col>
-          <el-divider style="margin: 5px 0 10px 0" />
-        </el-row>
-        <el-row v-for="(bonus, name) in bonuses" :key="name" :gutter="5">
-          <el-col :span="6"> {{ name }} </el-col>
-          <el-col :span="2" class="center-horz"> {{ bonus.value }} </el-col>
-          <el-col :span="6" class="center-horz"> {{ bonus.type }} </el-col>
-          <el-col :span="8"> {{ bonus.targets }} </el-col>
-        </el-row>
+              </el-col>
+            </el-row>
+          </el-collapse-item>
+        </el-collapse>
       </div>
-    </el-tab-pane>
-  </el-tabs>
+
+      <!-- Spontaneous Spell List -->
+      <div v-else-if="classes[cName].magic.style.includes('Spontaneous') && !creature.classes[cName].useGaldur">
+        <el-collapse v-model="spellsCollapse">
+          <el-collapse-item v-for="(spells, lvl) in cClass" :key="lvl" :name="lvl">
+            <template #title>
+              <el-row :gutter="10">
+                <el-col :span="7">
+                  <el-tag effect="dark"> Level {{ lvl }} Spells </el-tag>
+                </el-col>
+                <el-col :span="7">
+                  <el-tooltip placement="top" effect="light">
+                    <el-tag effect="dark" type="info">
+                      Save DC : {{ 10 + lvl + (attributes[classes[cName].magic.castingAtr].mod) }}
+                    </el-tag>
+                    <template #content>
+                      10
+                      + {{ attributes[classes[cName].magic.castingAtr].mod }} {{ classes[cName].magic.castingAtr }}
+                      + {{ lvl }} Level Spell
+                    </template>
+                  </el-tooltip>
+                </el-col>
+                <el-col :span="10">
+                  <el-tooltip placement="top" effect="light">
+                    <el-tag effect="dark" type="info">
+                      Defensive Casting DC : {{ 15 + (lvl * 2) }}
+                    </el-tag>
+                    <template #content>
+                      Cast defensively to avoid an Attack of Opportunity <br>
+                      15 + {{ lvl * 2 }} (Spell Level x 2)
+                    </template>
+                  </el-tooltip>
+                </el-col>
+              </el-row>
+            </template>
+            <el-row class="center-horz">
+              <el-col :span="11">
+                <el-tooltip placement="top" effect="light">
+                  <el-progress :text-inside="true" :stroke-width="24" :color="healthColors"
+                    :percentage=" Math.floor( ( creature.classes[cName].remainingCasts[lvl] / (creature.classes[cName].spellsPerDay[lvl] == '∞' ? 1 : creature.classes[cName].spellsPerDay[lvl]) ) * 100 ) ">
+                    {{ creature.classes[cName].remainingCasts[lvl] }} / {{ creature.classes[cName].spellsPerDay[lvl] }}
+                  </el-progress>
+                  <template #content> Remaining Spell Slots </template>
+                </el-tooltip>
+              </el-col>
+            </el-row>
+            <el-row v-for="(spell, sName) in spells" :key="sName" :gutter="10" align="middle" style="margin-bottom:15px;">
+              <el-col :span="4" class="center-horz">
+                <el-button @click="castSSpell(cName, lvl)" :disabled="!creature.classes[cName].remainingCasts[lvl] > 0" type="primary" plain>
+                  {{ sName }}
+                </el-button>
+              </el-col>
+              <el-col :span="20">
+                <el-row :gutter="10">
+                  <el-col :span="8">
+                    <el-input v-model="spell.components" aria-label="Components">
+                      <template #prepend>Components</template>
+                    </el-input>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-input v-model="spell.castTime" aria-label="Casting Time">
+                      <template #prepend>Cast Time</template>
+                    </el-input>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-input v-model="spell.duration" aria-label="Duration">
+                      <template #prepend>Duration</template>
+                    </el-input>
+                  </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                  <el-col :span="8">
+                    <el-input v-model="spell.description" :autosize="{ minRows: 2, maxRows: 4 }" :aria-label="`${sName} Spell Description`"  type="textarea" />
+                  </el-col>
+                  <el-col :span="8">
+                    <el-input v-model="spell.target" aria-label="Target">
+                      <template #prepend>Target</template>
+                    </el-input>
+                    <el-input v-model="spell.range" aria-label="Range">
+                      <template #prepend>Range</template>
+                    </el-input>
+                  </el-col>
+                  <el-col :span="8" class="center-horz">
+                    <el-input v-model="spell.save" aria-label="Save">
+                      <template #prepend>Save</template>
+                    </el-input>
+                    <el-tag effect="dark" :type="spell.SR ? 'warning' : 'info'"> {{ spell.SR ? 'Yes' : 'No' }} SR </el-tag>
+                  </el-col>
+                </el-row>
+              </el-col>
+            </el-row>
+          </el-collapse-item>
+        </el-collapse>
+      </div>
+
+
+    <!-- Galdur Spell List -->
+    <div v-else>
+      <el-collapse v-model="spellsCollapse">
+        <el-collapse-item v-for="(spells, lvl) in cClass" :key="lvl" :name="lvl">
+          <template #title>
+            <el-row :gutter="10">
+              <el-col :span="7">
+                <el-tag effect="dark"> Level {{ lvl }} Spells </el-tag>
+              </el-col>
+              <el-col :span="7">
+                <el-tooltip placement="top" effect="light">
+                  <el-tag effect="dark" type="info">
+                    Save DC : {{ 10 + lvl + (attributes[classes[cName].magic.castingAtr].mod) }}
+                  </el-tag>
+                  <template #content>
+                    10
+                    + {{ attributes[classes[cName].magic.castingAtr].mod }} {{ classes[cName].magic.castingAtr }}
+                    + {{ lvl }} Level Spell
+                  </template>
+                </el-tooltip>
+              </el-col>
+              <el-col :span="10">
+                <el-tooltip placement="top" effect="light">
+                  <el-tag effect="dark" type="info">
+                    Defensive Casting DC : {{ 15 + (lvl * 2) }}
+                  </el-tag>
+                  <template #content>
+                    Cast defensively to avoid an Attack of Opportunity <br>
+                    15 + {{ lvl * 2 }} (Spell Level x 2)
+                  </template>
+                </el-tooltip>
+              </el-col>
+            </el-row>
+          </template>
+          <el-row v-for="(spell, sName) in spells" :key="sName" :gutter="10" align="middle" style="margin-bottom:15px;">
+            <el-col :span="4" class="center-horz">
+              <el-popover @show="spellPop(spell, lvl, cName)" trigger="click">
+                <template #reference>
+                  <el-button plain :type="(creature.classes[cName].openRemaining > 0) ? 'primary' : 'warning'">
+                    {{ sName }}
+                  </el-button>
+                </template>
+                <template #default>
+                  <el-row>
+                    {{ `Cast for ${spellCost} Galdur?` }}
+                  </el-row>
+                  <el-row v-if="(creature.classes[cName].openRemaining - this.spellCost) <= 0">
+                    <el-tooltip placement="top" effect="light">
+                      <el-tag type="warning">
+                        {{ `Will Save (DC ${this.gFatigue})` }}
+                      </el-tag>
+                      <template #content>
+                        Will : {{ saves.will.total > 0 ? "+" : "" }}{{ saves.will.total }}
+                      </template>
+                    </el-tooltip>
+                  </el-row>
+                  <el-row justify="end">
+                    <el-button
+                    @click="castGSpell(sName, spell, lvl, cName)"
+                    :disabled="( (creature.classes[cName].reserveRemaining - this.spellCost) < 0 ) || ( (lvl==0) && (creature.classes[cName].reserveRemaining==0) )"
+                    :type="( ((creature.classes[cName].reserveRemaining - this.spellCost) < 0 ) || ((lvl==0) && (creature.classes[cName].reserveRemaining==0)) ) ? 'danger' : 'primary'"
+                    size="small">
+                    <span v-if="( (creature.classes[cName].reserveRemaining - this.spellCost) < 0 ) || ( (lvl==0) && (creature.classes[cName].reserveRemaining==0) )">
+                      Not Enough Galdur
+                    </span>
+                    <span v-else>
+                      Yes
+                    </span>
+                  </el-button>
+                </el-row>
+              </template>
+            </el-popover>
+          </el-col>
+          <el-col :span="20">
+            <el-row :gutter="10">
+              <el-col :span="8">
+                <el-input v-model="spell.components" aria-label="Components">
+                  <template #prepend>Components</template>
+                </el-input>
+              </el-col>
+              <el-col :span="8">
+                <el-input v-model="spell.castTime" aria-label="Casting Time">
+                  <template #prepend>Cast Time</template>
+                </el-input>
+              </el-col>
+              <el-col :span="8">
+                <el-input v-model="spell.duration" aria-label="Duration">
+                  <template #prepend>Duration</template>
+                </el-input>
+              </el-col>
+            </el-row>
+            <el-row :gutter="10">
+              <el-col :span="8">
+                <el-input v-model="spell.description" :autosize="{ minRows: 2, maxRows: 4 }" :aria-label="`${sName} Spell Description`"  type="textarea" />
+              </el-col>
+              <el-col :span="8">
+                <el-input v-model="spell.target" aria-label="Target">
+                  <template #prepend>Target</template>
+                </el-input>
+                <el-input v-model="spell.range" aria-label="Range">
+                  <template #prepend>Range</template>
+                </el-input>
+              </el-col>
+              <el-col :span="8" class="center-horz">
+                <el-input v-model="spell.save" aria-label="Save">
+                  <template #prepend>Save</template>
+                </el-input>
+                <el-tag effect="dark" :type="spell.SR ? 'warning' : 'info'"> {{ spell.SR ? 'Yes' : 'No' }} SR </el-tag>
+              </el-col>
+            </el-row>
+          </el-col>
+        </el-row>
+      </el-collapse-item>
+    </el-collapse>
+  </div>
+</el-tab-pane>
+</el-tabs>
+</el-tab-pane>
+
+
+
+  <!-- Edit -->
+  <el-tab-pane name="Edit">
+    <template #label> <g-icon iconSize="20px" iconName="quill" /> Edit </template>
+    <el-row :gutter="10">
+      <el-col :xs="24" :sm="12">
+        <el-row align="middle">
+          <el-col :xs="12" :sm="9" :span="4"> Hero Points </el-col>
+          <el-col :xs="12" :span="6">
+            <el-input-number v-model="creature.settings.heroPoints" :min="0" :max="4" aria-label="Hero Points" />
+          </el-col>
+        </el-row>
+      </el-col>
+      <el-col :xs="24" :sm="12">
+        <el-row align="middle">
+          <el-col :xs="12" :sm="9" :span="4"> Your Size </el-col>
+          <el-col :xs="12" :span="12">
+            <el-select v-model="creature.basics.size" label="Size">
+              <el-option v-for="size in Object.keys(rules.size)" :key="size" :label="capFirsts(size)" :value="size" />
+            </el-select>
+          </el-col>
+        </el-row>
+      </el-col>
+      <el-col :xs="24" :sm="12">
+        <el-row align="middle">
+          <el-col :xs="12" :sm="9" :span="4"> <g-icon iconName="openScroll" /> Backstory </el-col>
+          <el-col :span="12">
+            <el-input v-model="creature.basics.backstory" :autosize="{ minRows: 3, maxRows: 10 }" aria-label="Backstory" type="textarea" />
+          </el-col>
+        </el-row>
+      </el-col>
+      <el-col :xs="24" :sm="12">
+        <el-row align="middle">
+          <el-col :xs="12" :sm="9" :span="4"> <g-icon iconName="openBook" /> Notes </el-col>
+          <el-col :span="12">
+            <el-input v-model="creature.notes" :autosize="{ minRows: 3, maxRows: 10 }" aria-label="Notes" type="textarea" />
+          </el-col>
+        </el-row>
+      </el-col>
+    </el-row>
+
+    <el-divider style="margin: 24px 0 10px 0"> Bonuses </el-divider>
+    <el-row :gutter="5" justify="space-between">
+      <el-col :xs="4" :span="6"> <el-tag effect="dark" type="primary"> Name </el-tag> </el-col>
+      <el-col :xs="3" :span="2" class="center-horz"> <el-tag effect="dark" type="primary"> Value </el-tag> </el-col>
+      <el-col :xs="4" :span="6" class="center-horz"> <el-tag effect="dark" type="primary"> Type </el-tag> </el-col>
+      <el-col :xs="7" :span="8"> <el-tag effect="dark" type="primary"> Targets </el-tag> </el-col>
+      <el-divider style="margin: 5px 0 10px 0" />
+    </el-row>
+    <el-row v-for="(bonus, name) in bonuses" :key="name" :gutter="5" justify="space-between">
+      <el-col :xs="6" :span="6"> {{ name }} </el-col>
+      <el-col :xs="1" :span="2" class="center-horz"> {{ bonus.value }} </el-col>
+      <el-col :xs="4" :span="6" class="center-horz"> {{ bonus.type }} </el-col>
+      <el-col :xs="7" :span="8"> {{ bonus.targets }} </el-col>
+      <el-divider style="margin: 5px 0 10px 0" />
+    </el-row>
+  </el-tab-pane>
+</el-tabs>
+
 
   <!-- Edit Item Dialog -->
   <el-dialog v-model="dialog" width="750">
@@ -1297,10 +1294,6 @@
     <g-ability v-if="showAbil" :source="abil" :name="abilName" @save-abil="saveAbility"/>
   </el-dialog>
 
-  <!-- FOOTER -->
-  <div style="text-align: right">
-    <el-button type="primary" @click="saveMonster()"> Save Changes </el-button>
-  </div>
 </div>
 
 </template>
@@ -1351,6 +1344,10 @@ export default {
         bonuses: {}
       },
 
+
+      dialog: false,
+
+
     }
   },
 
@@ -1365,47 +1362,15 @@ export default {
     activeConditions() { return this.creature.conditions; },
     inventory() { return this.creature.inventory; },
     abilities() { return this.creature.abilities; },
+    sizeStats() { return this.rules.size ? this.rules.size[this.creature.basics.size] : { "space": "5 ft." }; },
     settings() { return this.creature.settings; },
-    sizeStats() { return this.rules.size ? this.rules.size[this.source.basics.size] : { "space": "5 ft." }; },
-
-    // userSettings() {
-    //   let userSettings = this.creature.userSettings;
-    //   userSettings.cardTab = this.capFirsts(this.creature.userSettings.cardTab);
-    //   return userSettings;
-    // },
     title() {
       let title = this.creature.name ? this.creature.name : "";
-      if (this.basics.cr) { title = title.concat(" CR ", this.creature.basics.cr); }
+      if (this.creature.basics.cr) { title = title.concat(" CR ", this.creature.basics.cr); }
       return title;
     },
-    basics() {
-      let basics = this.creature.basics ? this.creature.basics : { "type": {}, "size": "medium"};
-      basics.sizeStats = this.rules.size ? this.rules.size[basics.size] : { "space": "5 ft." };
-      return basics;
-    },
-    cClasses() {
-      let classes = {};
-      for (let name in this.creature.classes) {
-        classes[name] = this.classes[name];
-        classes[name].levels = this.creature.classes[name].levels;
-      }
-      return classes;
-    },
-    // abilities() {
-    //   let abilities = this.creature.abilities;
-    //   for (let actions of Object.entries(this.creature.actions)) {
-    //     if (actions[0] == "special" || actions[0] == "basic") {
-    //       actions = actions[1];
-    //       for (var action in actions) {
-    //         if (!Object.keys(abilities).includes(action)) {
-    //           abilities[action] = actions[action];
-    //         }
-    //       }
-    //     }
-    //   }
-    //   return abilities;
-    // },
-    // inventory() { return this.creature.equipment; },
+
+
     // USES: inventory
     invTotal() {
       let invTotal = {
@@ -1538,53 +1503,24 @@ export default {
       return invTotal;
     },
 
-    // USES: basics, cClasses
-    bab() {
-      let bab = 0;
-      // Racial HD Check
-      if (this.basics.type.levels) {
-        let racialBAB = this.rules.creature_types ? this.rules.creature_types[this.basics.type.name].bab : 0;
-        bab += racialBAB * this.basics.type.levels;
-      }
-      // Class Loop
-      for (let [name, cClass] of Object.entries(this.cClasses)) {
-        let classBAB = this.classes[name] ? this.classes[name].bab : 0;
-        bab += classBAB * cClass.levels;
-      }
-      bab = Math.floor(bab);
-      return bab;
-    },
-    // USES: abilities
-    defenses() {
-      let defenses = {
-        immunities: [],
-        weaknesses: [],
-        special: []
-      };
-      Object.values(this.abilities).forEach(abil => {
-        if (abil.benefit) {
-          switch (abil.benefit.target) {
-            case "immunities":
-              defenses.immunities.push(abil.benefit.text.split(','));
-              break;
-            case "weakness":
-              defenses.weaknesses.push(abil.benefit.text.split(','));
-              break;
-            case "specialDef":
-              defenses.special.push(abil.benefit.text);
-              break;
-          }
-        }
-      });
-      return defenses
-    },
-    // USES: <data>activeConditions, inventory, abilities
+    // USES: encumbrance(non-computed), activeConditions, inventory, abilities, encumbrance
+    // an update to computed properties makes this loop re-evaluate
+    // meaning updating armor will change the AC bonuses
     bonuses() {
       let bonuses = {};
+      // Add racial ability / attribute bonuses
+      if (this.races[this.creature.basics.race]) {
+        for (let [name, val] of Object.entries(this.races[this.creature.basics.race].abilityMods)) {
+          bonuses[`Racial ${name} Bonus`] = {};
+          bonuses[`Racial ${name} Bonus`].type = "Racial";
+          bonuses[`Racial ${name} Bonus`].targets = [ name ];
+          bonuses[`Racial ${name} Bonus`].value = val;
+        }
+      }
       // Add feats and other abilities to bonuses
-      for (const ability in this.abilities) {
-        if (this.abilities[ability].extras.active && this.abilities[ability].bonuses) {
-          for (const [name, bonus] of Object.entries(this.abilities[ability].bonuses)) {
+      for (const ability of Object.values(this.abilities)) {
+        if (ability.extras.active && Object.keys(ability.bonuses).length>0) {
+          for (const [name, bonus] of Object.entries(ability.bonuses)) {
             bonuses[name] = bonus;
           }
         }
@@ -1597,6 +1533,9 @@ export default {
           }
         }
       }
+
+
+
       // Armor
       let item = this.inventory[1].children[0].children[0];
       if (item) {
@@ -1607,20 +1546,19 @@ export default {
       }
       // Shields          For items in equipment . equipped . hands
       for (const item of this.inventory[1].children[1].children[0].children) {
-        if (item.value.Proficiency == "Shields") {
+        if (item.value["AC Bonus"]) {
           bonuses[item.label] = {};
           bonuses[item.label].type = "Shield";
           bonuses[item.label].targets = item.value.targets;
           bonuses[item.label].value = item.value["AC Bonus"];
         }
       }
-      // Magic Items
+      // Magic Items        For items in equipment . (slotted) Magic Items
       if (this.inventory[0].children) {
-        // For items in equipment . (slotted) Magic Items
         for (const slot of this.inventory[0].children) {
           for (const item of slot.children) {
-            if (item.bonuses) {
-              for (const [name, bonus] of Object.entries(item.bonuses)) {
+            if (item.value.Bonuses) {
+              for (const [name, bonus] of Object.entries(item.value.Bonuses)) {
                 bonuses[name] = {};
                 bonuses[name].type = bonus.type;
                 bonuses[name].targets = bonus.targets;
@@ -1629,8 +1567,7 @@ export default {
             }
           }
         }
-      } // end magic items
-      // console.log("BONUSES", bonuses);
+      }
       return bonuses;
     },
 
@@ -1651,39 +1588,18 @@ export default {
       }
       return attributes;
     },
-    // USES: basics, bonusLoop(bonuses)
-    speed() {
-      let speed = {};
-      speed = this.basics.speed;
-      this.bonusLoop(speed.base, "baseSpeed");
-      this.bonusLoop(speed.burrow, "burrowSpeed");
-      this.bonusLoop(speed.climb, "climbSpeed");
-      this.bonusLoop(speed.fly, "flySpeed");
-      this.bonusLoop(speed.swim, "swimSpeed");
-      Object.values(this.abilities).forEach(abil => {
-        if (abil.benefit && abil.benefit.target == "speed") {
-          speed.push(abil.benefit.text);
-        }
-      });
-      return speed;
-    },
-    // USES: basics, cClasses, bonusLoop(bonuses), attributes
+    // USES: attributes, bonusLoop(bonuses)
     health() {
-      let health = { nonlethal: 0, total: 0, sources: [] };
-      let firstLevel = true;
-      let ModBonus = 0;
-      let prefix = "";
+      let hpMod, health = { total: 0, damage: 0, nonlethal: 0, sources: [] };
+      health.total += this.creature.health.total;
+      health.damage += this.creature.health.damage;
+      health.nonlethal += this.creature.health.nonlethal;
+      health.sources = this.creature.health.sources;
 
       // Racial HD Check
-      if (this.basics.type.levels) { health.sources.push( `+${this.basics.type.levels}d${this.basics.type.hd}` ); }
-      for (let i = 1; i < this.basics.type.levels+1; i++) {
-        firstLevel = false;
-        health.total += this.basics.type.hd / 2 + 0.5;
-        if (this.basics.type.name == "undead") {
-          health.total += this.attributes.ChaMod;
-          ModBonus += this.attributes.ChaMod;
-        } else if (this.basics.type.name == "construct") {
-          switch (this.basics.size) {
+      if (this.creature.basics.type.hd) {
+        if (this.creature.basics.type.name == "construct") {
+          switch (this.creature.basics.size) {
             case "small": health.total += 10; health.sources.push(`+10 Construct`); break;
             case "medium": health.total += 20; health.sources.push(`+20 Construct`); break;
             case "large": health.total += 30; health.sources.push(`+30 Construct`); break;
@@ -1692,40 +1608,33 @@ export default {
             case "colossal": health.total += 80; health.sources.push(`+80 Construct`); break;
             default: health.total += 0;
           }
+        } else if (this.creature.basics.type.name == "undead") {
+          hpMod = "Cha";
         } else {
-          health.total += this.attributes.ConMod;
-          ModBonus += this.attributes.ConMod;
+          hpMod = "Con";
         }
       }
 
+      // Racial HD Check
+      let bonus = 0;
+      if (this.creature.basics.type.hd) {
+        for (let i = 1; i < this.creature.basics.type.levels+1; i++) {
+          bonus += this.attributes[hpMod].mod;
+        }
+      }
       // Class Loop
-      for (let [name, cClass] of Object.entries(this.cClasses)) {
-        if ([ "adept", "aristocrat", "commoner ", "expert", "warrior" ].includes(name)) { firstLevel = false; }
-        let levels = cClass.levels;
-        cClass = this.classes[name] ? this.classes[name] : { "hd": 0 };
-        health.sources.push( `+${levels}d${cClass.hd}` );
-        // Level Loop
-        for (let i = 1; i < levels+1; i++) {
-          health.total += firstLevel ? cClass.hd : cClass.hd / 2 + 0.5;
-          firstLevel = false;
-          if (this.basics.type.name == "undead") {
-            health.total += this.attributes.ChaMod;
-            ModBonus += this.attributes.ChaMod;
-          } else if (this.basics.type.name != "construct") {
-            health.total += this.attributes.ConMod;
-            ModBonus += this.attributes.ConMod;
-          }
+      for (let cClass of Object.values(this.creature.classes)) {
+        for (let i = 1; i < cClass.levels+1; i++) {
+          bonus += this.attributes[hpMod].mod;
         }
       }
-
-      prefix = (ModBonus > 0) ? "+" : "";
-      ModBonus = ModBonus.toString().concat(this.basics.type.name == "undead" ? " Cha" : " Con");
-      if (ModBonus != 0) {
-        health.sources.push(`${prefix}${ModBonus}`);
-        health.total = Math.floor(health.total);
+      health.total += bonus;
+      if (!health.sources.includes(`+${bonus} ${hpMod}`)) {
+        health.sources.push( `+${bonus} ${hpMod}` );
       }
-      // health.current = this.creature.health.current ? this.creature.health.current : health.total;
-      this.bonusLoop(health, "health");
+      health.total = Math.floor(health.total);
+
+      this.bonusLoop(health, "HP");
       return health;
     },
     // USES: inventory, bonusLoop(bonuses), attributes
@@ -1737,24 +1646,24 @@ export default {
       // touch = creature.ac.total - bonus.armor - bonus.shield - bonus.natural;
       // flat = creature.ac.total - bonus.dex - bonus.dodge;
       if (armor) {
-        bonus = Math.min(armor.value["Max Dex"], this.attributes.DexMod);
+        bonus = Math.min(armor.value["Max Dex"], this.attributes.Dex.mod);
         this.applyBonus('Dex', bonus, ac.total);
         this.applyBonus('Dex', bonus, ac.touch);
       } else {
-        bonus = this.attributes.DexMod;
+        bonus = this.attributes.Dex;
         this.applyBonus('Dex', bonus, ac.total);
         this.applyBonus('Dex', bonus, ac.touch);
       }
-      if (this.basics.size != "medium") {
-        bonus = this.basics.sizeStats["ac / atk"];
+      if (this.creature.basics.size != "medium") {
+        bonus = this.creature.basics.sizeStats["ac / atk"];
         this.applyBonus('Size', bonus, ac.total);
         this.applyBonus('Size', bonus, ac.touch);
         this.applyBonus('Size', bonus, ac.flat);
       }
       // neg dex still applies to flat footed
-      if (this.attributes.DexMod < 0) {
-        ac.flat.total += this.attributes.DexMod;
-        ac.flat.sources.push(`${this.attributes.DexMod} Dex`);
+      if (this.attributes.Dex < 0) {
+        ac.flat.total += this.attributes.Dex.mod;
+        ac.flat.sources.push(`${this.attributes.Dex} Dex`);
       }
       this.bonusLoop(ac.total, "totalAC");
       this.bonusLoop(ac.touch, "touchAC");
@@ -1771,15 +1680,15 @@ export default {
         bonus = 0;
         switch (name) {
           case "fort":
-            bonus += (this.basics.type.name == "undead") ? this.attributes.ChaMod : this.attributes.ConMod;
-            bName = (this.basics.type.name == "undead") ? "Cha" : "Con";
+            bonus += (this.creature.basics.type.name == "undead") ? this.attributes.Cha.mod : this.attributes.Con.mod;
+            bName = (this.creature.basics.type.name == "undead") ? "Cha" : "Con";
             break;
           case "ref":
-            bonus += this.attributes.DexMod;
+            bonus += this.attributes.Dex.mod;
             bName = "Dex";
             break;
           case "will":
-            bonus += this.attributes.WisMod;
+            bonus += this.attributes.Wis.mod;
             bName = "Dex";
             break;
         }
@@ -1787,17 +1696,17 @@ export default {
         this.applyBonus(bName, bonus, save);
 
         // Racial HD Check
-        if (this.basics.type.levels) {
-          bName = this.basics.type.name;
+        if (this.creature.basics.type.levels) {
+          bName = this.creature.basics.type.name;
           bonus = 0;
           let saveMult = this.rules.creature_types[bName][name].mult;
-          bonus += saveMult * this.basics.type.levels;
+          bonus += saveMult * this.creature.basics.type.levels;
           bonus += this.rules.creature_types[bName][name].bonus;
           bonus = Math.floor(bonus);
           this.applyBonus(bName, bonus, save);
         }
         // Class Loop
-        for (let [cName, cClass] of Object.entries(this.cClasses)) {
+        for (let [cName, cClass] of Object.entries(this.creature.classes)) {
           if (this.classes[cName]) {
             let levels = cClass.levels;
             cClass = this.classes[cName];
@@ -1820,20 +1729,13 @@ export default {
       saves.will.total = Math.floor(saves.will.total);
       return saves;
     },
-    // USES: bonusLoop(bonuses), attributes
-    init() {
-      let init = { "total": 0, "sources": [] };
-      this.applyBonus("Dex", this.attributes.DexMod, init);
-      this.bonusLoop(init, "initiative");
-      return init;
-    },
     // USES: basics, bab, bonusLoop(bonuses), attributes
     cmd() {
       let cmd = { "total": 10, "sources": [] };
       this.applyBonus("BAB", this.bab, cmd);
-      this.applyBonus("Str", this.attributes.StrMod, cmd);
-      this.applyBonus("Dex", this.attributes.DexMod, cmd);
-      this.applyBonus("Size", this.basics.sizeStats["cmb / cmd"], cmd);
+      this.applyBonus("Str", this.attributes.Str.mod, cmd);
+      this.applyBonus("Dex", this.attributes.Dex.mod, cmd);
+      this.applyBonus("Size", this.sizeStats["cmb / cmd"], cmd);
       this.bonusLoop(cmd, "cmd");
       return cmd;
     },
@@ -1841,176 +1743,333 @@ export default {
     cmb() {
       let cmb = { "total": 0, "sources": [] };
       this.applyBonus("BAB", this.bab, cmb);
-      if (["fine", "diminuitive", "tiny"].includes(this.basics.size)) {
-        this.applyBonus("Dex", this.attributes.DexMod, cmb);
+      if (["fine", "diminuitive", "tiny"].includes(this.creature.basics.size)) {
+        this.applyBonus("Dex", this.attributes.Dex.mod, cmb);
       } else {
-        this.applyBonus("Str", this.attributes.StrMod, cmb);
+        this.applyBonus("Str", this.attributes.Str.mod, cmb);
       }
-      this.applyBonus("Size", this.basics.sizeStats["cmb / cmd"], cmb);
+      this.applyBonus("Size", this.sizeStats["cmb / cmd"], cmb);
       this.bonusLoop(cmb, "cmb");
       return cmb;
     },
-    // TODO
-    // USES: basics, inventory, bab, bonusLoop(bonuses), attributes
-    actions() {
-      let actions = { melee: {}, ranged: {}, special: {} };
-      let NatAtkNum = 0;
+    // USES: bonusLoop(bonuses), attributes
+    init() {
+      let init = { "total": 0, "sources": [] };
+      this.applyBonus("Dex", this.attributes.Dex.mod, init);
+      this.bonusLoop(init, "initiative");
+      return init;
+    },
+    // USES: basics, bonusLoop(bonuses)
+    speed() {
+      let speed = {};
+      speed = this.creature.basics.speed;
+      this.bonusLoop(speed.base, "baseSpeed");
+      this.bonusLoop(speed.burrow, "burrowSpeed");
+      this.bonusLoop(speed.climb, "climbSpeed");
+      this.bonusLoop(speed.fly, "flySpeed");
+      this.bonusLoop(speed.swim, "swimSpeed");
+      Object.values(this.abilities).forEach(abil => {
+        if (abil.benefit && abil.benefit.target == "speed") {
+          speed.push(abil.benefit.text);
+        }
+      });
+      return speed;
+    },
+    // USES: abilities, skills
+    senses() {
+      let senses = [];
+      senses.push(`Perception ${this.skills.Perception.bonus.total}`);
+      Object.values(this.abilities).forEach(abil => {
+        if (abil.benefit && abil.benefit.target == "senses") {
+          senses.push(abil.benefit.text);
+        }
+      });
+      return senses;
+    },
+    // USES: abilities
+    defenses() {
+      let defenses = { immunities: [], weaknesses: [], special: [] };
+      Object.values(this.abilities).forEach(abil => {
+        if (abil.benefit) {
+          switch (abil.benefit.target) {
+            case "immunities":
+              defenses.immunities.push(abil.benefit.text.split(','));
+              break;
+            case "weakness":
+              defenses.weaknesses.push(abil.benefit.text.split(','));
+              break;
+            case "specialDef":
+              defenses.special.push(abil.benefit.text);
+              break;
+          }
+        }
+      });
+      return defenses
+    },
 
+    // USES: basics, cClasses
+    bab() {
+      let bab = 0;
+      // Racial HD Check
+      if (this.creature.basics.type.levels) {
+        let racialBAB = this.rules.creature_types ? this.rules.creature_types[this.creature.basics.type.name].bab : 0;
+        bab += racialBAB * this.creature.basics.type.levels;
+      }
+      // Class Loop
+      for (let [name, cClass] of Object.entries(this.creature.classes)) {
+        let classBAB = this.classes[name] ? this.classes[name].bab : 0;
+        bab += classBAB * cClass.levels;
+      }
+      bab = Math.floor(bab);
+      return bab;
+    },
+    // USES: inventory, bab, bonusLoop(bonuses), attributes
+    actions() {
+      let actions = [
+        { "label": "Melee", "extras": { "icon": "meleeSword", "capacity": 50 }, "children": [] },
+        { "label": "Ranged", "extras": { "icon": "rangedBow", "capacity": 50 }, "children": [] },
+        { "label": "Special", "extras": { "icon": "abilityPalm", "capacity": 50 }, "children": [] }
+      ];
+
+      /***************************\
+      *                           *
+      *      Special Actions      *
+      *                           *
+      \***************************/
+      // Abilities, like cleave, into 'special actions'
       for (const [name, abil] of Object.entries(this.abilities)) {
         if (abil.extras.showMain) {
-          actions.special[name] = abil;
+          actions[2].children.push({
+            "label": name, "value": abil
+          });
         }
       }
 
-      for (let type of Object.entries(this.creature.attacks)) {
-        type = type[0];
-
-        for (const [name, atk] of Object.entries(this.creature.actions[type])) {
-          if (type == 'special' || type == 'basic') { continue; }
-          // skip special and basics, they are done in prev loop
-
-          // TODO: split nat atk num from nat atk name (2 wings)
-
-            let newAtk = {
-              dmgBonus: { "total": 0, "sources": [] },
-              atkBonus: { "total": 0, "sources": [] }
-            };
-
-            NatAtkNum += (atk.Proficiency == "Natural" && Object.keys(this.rules.natural_attacks).includes(name)) ? 1 : 0;
-            this.applyBonus("BAB", this.bab, newAtk.atkBonus);
-            this.applyBonus("Size", this.basics.sizeStats["ac / atk"], newAtk.atkBonus);
-
-            // Add AbilMod to atkBonus
-            if (atk.category == "Ranged" || type == "ranged") {
-              this.applyBonus("Dex", this.attributes.DexMod, newAtk.atkBonus);
-            } else if (atk.Category == "Secondary") {
-              this.applyBonus("Str", this.attributes.StrMod - 5, newAtk.atkBonus);
-            } else {
-              this.applyBonus("Str", this.attributes.StrMod, newAtk.atkBonus);
+      for (const [name, atk] of Object.entries(this.creature.attacks)) {
+        let newAtk = {
+          "label": name,
+          "value": {
+            trigger: atk["trigger"],
+            atkNum: atk["atkNum"],
+            atkBonus: { "total": 0, "sources": [] },
+            damage: atk["Damage"],
+            dmgBonus: { "total": 0, "sources": [] },
+            damageTypes: [],
+            crit: {
+              range: atk["Critical"].split("/")[0],
+              mult: atk["Critical"].split("/")[1]
+            },
+            range: atk["Range"],
+            extras: {
+              naturalAtk: true,
+              notes: atk.extras.notes
             }
+          }
+        };
 
-            // Add AbilMod to dmgBonus
-            if (!Object.keys(this.rules.natural_attacks).includes(name)) {
-              // Fake Natural Attack, like Death Worm's Electrical Jolt
-              // They get no bonuses to DMG
-            } else if (atk.Category == "Secondary") {
-              this.applyBonus("Str", (this.attributes.StrMod / 2), newAtk.dmgBonus);
-            } else {
-              this.applyBonus("Str", this.attributes.StrMod, newAtk.dmgBonus);
-            }
+        // ATTACK BONUS
+        this.applyBonus("BAB", this.bab, newAtk.value.atkBonus);
+        this.applyBonus("Size", this.sizeStats["ac / atk"], newAtk.value.atkBonus);
+        // Add AbilMod to atkBonus
+        if (atk.atkAbilOverride) {
+          this.applyBonus(atk.atkAbilOverride, this.attributes[atk.atkAbilOverride].mod, newAtk.value.atkBonus);
+        } else if (atk.category == "Ranged") {
+          this.applyBonus("Dex", this.attributes.Dex.mod, newAtk.value.atkBonus);
+        } else if (atk.Category == "Secondary") {
+          // all nat atks when using weapons too
+          this.applyBonus("Str", this.attributes.Str.mod - 5, newAtk.value.atkBonus);
+        } else {
+          this.applyBonus("Str", this.attributes.Str.mod, newAtk.value.atkBonus);
+        }
 
-            // Add Active Bonuses
-            this.bonusLoop(newAtk.atkBonus, type.concat("AtkBonus"));
-            this.bonusLoop(newAtk.dmgBonus, type.concat("DmgBonus"));
+        // DAMAGE BONUS
+        // Add AbilMod to dmgBonus
+        if (atk.dmgAbilOverride) {
+          this.applyBonus(atk.dmgAbilOverride, this.attributes[atk.dmgAbilOverride].mod, newAtk.value.atkBonus);
+        } else if (!Object.keys(this.rules.natural_attacks).includes(name)) {
+        // Fake Natural Attack, like Death Worm's Electrical Jolt
+        // They get no bonuses to DMG
+        } else if (atk.Category == "Secondary") {
+          this.applyBonus("Str", (this.attributes.Str.mod / 2), newAtk.value.dmgBonus);
+        } else {
+          this.applyBonus("Str", this.attributes.Str.mod, newAtk.value.dmgBonus);
+        }
 
-            if (NatAtkNum>1) { newAtk.atkNum = NatAtkNum; }
-            newAtk.dmgDie = atk.Damage[this.basics.size];
-            newAtk.crit = {};
-            newAtk.crit.range = atk.Critical.split("/")[0];
-            newAtk.crit.mult = atk.Critical.split("/")[1];
-            newAtk.extras = (atk.Extras) ? atk.Extras : [];
-            actions[type][name] = newAtk;
+        // Add Active Bonuses
+        this.bonusLoop(newAtk.value.atkBonus, "meleeAtkBonus");
+        this.bonusLoop(newAtk.value.dmgBonus, "meleeDmgBonus");
+        this.bonusLoop(newAtk.value.atkBonus, "rangedAtkBonus");
+        this.bonusLoop(newAtk.value.dmgBonus, "rangedDmgBonus");
+        this.bonusLoop(newAtk.value.atkBonus, "specialAtkBonus");
+        this.bonusLoop(newAtk.value.dmgBonus, "specialDmgBonus");
 
-          } // End Action Loop
-        } // End Action Types Loop
-        if (NatAtkNum == 1) {
-          console.log('Extra Strength to Nat Attack');
-          for (const atk of Object.values(actions.melee)) {
-            this.applyBonus("Str", (this.attributes.StrMod / 2), atk.dmgBonus);
+        // set damage types
+        for (const category of Object.values(this.rules["Damage Types"])) {
+          for (const cType of Object.values(category)) {
+            atk["Damage Type"].forEach(aType => {
+              if (aType == cType.value) {
+                newAtk.value.damageTypes.push(cType);
+              }
+            });
           }
         }
 
-        // Weapon Actions
-        let mainHand = this.inventory[1].children[1].children[0].children[0];
-        let offHand = this.inventory[1].children[1].children[0].children[1];
+        // choose atk location
+        if (atk.style) {
+          switch (atk.style) {
+            case "Melee":
+              actions[0]["children"].push(newAtk);
+              break;
+            case "Ranged":
+              actions[1]["children"].push(newAtk);
+              break;
+            default:
+              actions[2]["children"].push(newAtk);
+          }
+        } else {
+          actions[2]["children"].push(newAtk);
+        }
 
-        for (const weapon of this.inventory[1].children[1].children[0].children) {
-          // this.inventory[ equipped ].children[ weapons ].children[ hands ].children
+      } // End character.attacks loop
 
-          // If the wielded item is not a weapon or inproperly equipped, skip
-          if (!weapon.value.Damage) { continue; }
-          if (weapon.value.Group.includes("Bows") || weapon.value.Category == "Two-Handed"){
-            if (weapon.label != mainHand.label || offHand != undefined) {
-              continue;
+      /***************************\
+      *                           *
+      *      Weapon Actions       *
+      *                           *
+      \***************************/
+
+      // Weapon Actions
+      let mainHand = this.inventory[1].children[1].children[0].children[0];
+      let offHand = this.inventory[1].children[1].children[0].children[1];
+
+      for (const weapon of this.inventory[1].children[1].children[0].children) {
+        // this.inventory[ equipped ].children[ weapons ].children[ hands ].children
+        // If the wielded item is not a weapon or inproperly equipped, skip
+        if (!weapon.value.Damage) { continue; }
+        if (weapon.value.Group.includes("Bows") || weapon.value.Category == "Two-Handed"){
+          if (weapon.label != mainHand.label || offHand != undefined) {
+            continue;
+          }
+        }
+
+        let type = (weapon.value.Category == "Ranged" || weapon.value.Group.includes("Thrown")) ? "Ranged" : "Melee";
+        let newAtk = {
+          "label": weapon.label,
+          "value": {
+            trigger: "Standard",
+            atkNum: 1,
+            atkBonus: { "total": 0, "sources": [] },
+            damage: weapon.value["Damage"],
+            dmgBonus: { "total": 0, "sources": [] },
+            damageTypes: [],
+            crit: {
+              range: weapon.value["Critical"].split("/")[0],
+              mult: weapon.value["Critical"].split("/")[1]
+            },
+            range: weapon.value.range
+            // notes: weapon.value["Extras"]["Notes"]
+          }
+        };
+
+        newAtk.value.crit = {};
+        newAtk.value.crit.range = weapon.value.Critical.split("/")[0];
+        newAtk.value.crit.mult = weapon.value.Critical.split("/")[1];
+        newAtk.value.extras = (weapon.value.Extras) ? weapon.value.Extras : [];
+
+        // Attack Bonus
+
+        this.applyBonus("BAB", this.bab, newAtk.value.atkBonus);
+        this.applyBonus("Size", this.sizeStats["ac / atk"], newAtk.value.atkBonus);
+        // Add mwk or magic enhancements to atk bonus
+        if (weapon.value.Extras["Enhancement"] > 0) {
+          this.applyBonus("Magic Enhancement", weapon.value.Extras["Enhancement"], newAtk.value.atkBonus);
+          this.applyBonus("Magic Enhancement", weapon.value.Extras["Enhancement"], newAtk.value.dmgBonus);
+        } else if (weapon.value.Extras["Masterwork"]) {
+          this.applyBonus("Masterwork", 1, newAtk.value.atkBonus);
+        }
+        // Add AbilMod to atkBonus
+        if (weapon.value.Extras.atkAbilOverride) {
+          this.applyBonus(weapon.value.Extras.atkAbilOverride, this.attributes[weapon.value.Extras.atkAbilOverride].mod, newAtk.value.atkBonus);
+        } else if (type == "Ranged") {
+          this.applyBonus("Dex", this.attributes.Dex.mod, newAtk.value.atkBonus);
+        } else {
+          this.applyBonus("Str", this.attributes.Str.mod, newAtk.value.atkBonus);
+        }
+
+        // Damage Bonus
+
+        // Add AbilMod to dmgBonus
+        if (weapon.value.Extras.dmgAbilOverride) {
+          this.applyBonus(weapon.value.Extras.dmgAbilOverride, this.attributes[weapon.value.Extras.dmgAbilOverride].mod, newAtk.value.dmgBonus);
+
+        } else if ( weapon.value.Group.includes("Thrown") ||
+          (weapon.value.Group.includes("Bows") && this.attributes.Str.mod < 0) ||
+          (weapon.value.Group.includes("Bows") && name.includes("Composite")) ) {
+            // BOW && THROWN STR MOD
+            this.applyBonus("Str", this.attributes.Str.mod, newAtk.value.dmgBonus);
+
+        } else if ( type == "Melee"){
+          if (weapon.label == mainHand.label) {
+            // Main Hand
+            if (offHand == undefined && (weapon.value.Category == "One-Handed" || weapon.value.Category == "Two-Handed")) {
+              // if using two hands (off-hand empty)
+              this.applyBonus("Str", Math.floor(this.attributes.Str.mod * 1.5), newAtk.value.dmgBonus);
+            } else {
+              // ie, main and shield
+              this.applyBonus("Str", this.attributes.Str.mod, newAtk.value.dmgBonus);
             }
-          }
 
-          let type = (weapon.value.Category == "Ranged" || weapon.value.Group.includes("Thrown")) ? "ranged" : "melee";
-          let newAtk = { dmgBonus: { "total": 0, "sources": [] }, atkBonus: { "total": 0, "sources": [] } };
-
-          this.applyBonus("BAB", this.bab, newAtk.atkBonus);
-          this.applyBonus("Size", this.basics.sizeStats["ac / atk"], newAtk.atkBonus);
-          // Add mwk or magic enhancements to atk bonus
-          if (weapon.value.Extras["Enhancement"] > 0) {
-            this.applyBonus("Magic Enhancement", weapon.value.Extras["Enhancement"], newAtk.atkBonus);
-            this.applyBonus("Magic Enhancement", weapon.value.Extras["Enhancement"], newAtk.dmgBonus);
-          } else if (weapon.value.Extras["Masterwork"]) {
-            this.applyBonus("Masterwork", 1, newAtk.atkBonus);
-          }
-
-          // Add AbilMod to atkBonus
-          if (type == "ranged" || weapon.value.Extras.Notes?.includes("DexBonus")) {
-            // use DexBonus for weapon finesse
-            this.applyBonus("Dex", this.attributes.DexMod, newAtk.atkBonus);
           } else {
-            this.applyBonus("Str", this.attributes.StrMod, newAtk.atkBonus);
-          }
-
-          // Add AbilMod to dmgBonus
-          if (weapon.value.Extras.Notes.includes("DexDamage")) {
-            this.applyBonus("Dex", this.attributes.DexMod, newAtk.dmgBonus);
-
-          } else if ( weapon.value.Group.includes("Thrown") ||
-            (weapon.value.Group.includes("Bows") && this.attributes.StrMod < 0) ||
-            (weapon.value.Group.includes("Bows") && name.includes("Composite")) ) {
-              // BOW && THROWN STR MOD
-              this.applyBonus("Str", this.attributes.StrMod, newAtk.dmgBonus);
-
-          } else if ( type == "melee"){
-            if (weapon.label == mainHand.label) {
-              // Main Hand
-              if (offHand == undefined && (weapon.value.Category == "One-Handed" || weapon.value.Category == "Two-Handed")) {
-                // if using two hands (off-hand empty)
-                this.applyBonus("Str", Math.floor(this.attributes.StrMod * 1.5), newAtk.dmgBonus);
-              } else {
-                // ie, main and shield
-                this.applyBonus("Str", this.attributes.StrMod, newAtk.dmgBonus);
-              }
-
-            } else {
-              // Off Hand
-              if (weapon.value.Category == "Light" || weapon.value.Category == "One-Handed") {
-                this.applyBonus("Str", Math.floor(this.attributes.StrMod / 2), newAtk.dmgBonus);
-              }
+            // Off Hand
+            if (weapon.value.Category == "Light" || weapon.value.Category == "One-Handed") {
+              this.applyBonus("Str", Math.floor(this.attributes.Str.mod / 2), newAtk.value.dmgBonus);
             }
           }
-
-          // Dual Wield penalties done in abilities -> bonuses
-          /*
-          penalties to AtkBonus, during a full-round atk
-          light & feat      { main -2  off -2 }
-          two-weapon feat   { main -4  off -4 }
-          off hand light    { main -4  off -8 }
-          normal            { main -6  off -10}
-          */
-
-          // Weapon Specific Bonuses (like for Weapon Focus)
-          this.bonusLoop(newAtk.atkBonus, weapon.label.concat("AtkBonus"));
-          this.bonusLoop(newAtk.dmgBonus, weapon.label.concat("DmgBonus"));
-
-          this.bonusLoop(newAtk.atkBonus, type.concat("AtkBonus"));
-          this.bonusLoop(newAtk.dmgBonus, type.concat("DmgBonus"));
-
-          // TODO: change wpn dmg die back to obj based on size, to allow size changing
-          // newAtk.dmgDie = weapon.value.Damage;
-          newAtk.dmgDie = weapon.value.Damage[this.basics.size];
-          newAtk.crit = {};
-          newAtk.crit.range = weapon.value.Critical.split("/")[0];
-          newAtk.crit.mult = weapon.value.Critical.split("/")[1];
-          newAtk.extras = (weapon.value.Extras) ? weapon.value.Extras : [];
-          // console.log(`${NatAtkNum>1 ? NatAtkNum : ""} ${name} +${newAtk.atkBonus.total} (${newAtk.dmgDie}+${newAtk.dmgBonus.total} /${atk.Critical})`);
-          actions[type][weapon.label] = newAtk;
         }
+
+        // Dual Wield penalties done in abilities -> bonuses
+        /*
+        penalties to AtkBonus, during a full-round atk
+        light & feat      { main -2  off -2 }
+        two-weapon feat   { main -4  off -4 }
+        off hand light    { main -4  off -8 }
+        normal            { main -6  off -10}
+        */
+
+        // Weapon Specific Bonuses (like for Weapon Focus)
+        this.bonusLoop(newAtk.value.atkBonus, weapon.label.concat("AtkBonus"));
+        this.bonusLoop(newAtk.value.dmgBonus, weapon.label.concat("DmgBonus"));
+
+        // Add Active Bonuses
+        this.bonusLoop(newAtk.value.atkBonus, type.concat("AtkBonus"));
+        this.bonusLoop(newAtk.value.dmgBonus, type.concat("DmgBonus"));
+
+        // set damage types
+        for (const category of Object.values(this.rules["Damage Types"])) {
+          for (const cType of Object.values(category)) {
+            weapon.value["Damage Type"].forEach(aType => {
+              if (aType == cType.value) {
+                newAtk.value.damageTypes.push(cType);
+              }
+            });
+          }
+        }
+
+        type = (type == 'Melee') ? 0 : 1;
+        actions[type].children.push(newAtk);
+      } // End Weapons loop
+
+      // If only 1 Primary Natural Attack (no other atks), add 0.5 * Str
+      let sum = actions[0].children.length + actions[1].children.length + actions[2].children.length;
+      if ( sum == 1 ) {
+        if (actions[0].children.length) {
+          this.applyBonus("Str", (this.attributes.Str.mod / 2), actions[0].children[0].value.dmgBonus);
+        } else if (actions[1].children.length) {
+          this.applyBonus("Str", (this.attributes.Str.mod / 2), actions[1].children[0].value.dmgBonus);
+        } else if (actions[2].children.length) {
+          this.applyBonus("Str * 1.5", (this.attributes.Str.mod / 2), actions[2].children[0].value.dmgBonus);
+        }
+      }
 
       return actions;
     },
@@ -2030,7 +2089,7 @@ export default {
         let bonus = { "total": 0, "sources": [] };
         // Size Mod
         if (name == "Stealth" || name == "Fly") {
-          this.applyBonus("Size", this.basics.sizeStats[name.toLowerCase()], bonus);
+          this.applyBonus("Size", this.sizeStats[name.toLowerCase()], bonus);
         }
         // Ranks
         if (skill.ranks) {
@@ -2040,7 +2099,7 @@ export default {
           }
         }
         // Ability
-        this.applyBonus(skill.ability.concat("Mod"), this.attributes[skill.ability.concat("Mod")], bonus);
+        this.applyBonus(skill.ability.concat("Mod"), this.attributes[skill.ability].mod, bonus);
 
         // Armor Penalty
         if (skill.armor_pen) {
@@ -2055,19 +2114,6 @@ export default {
         skills[name] = skill;
       }
       return skills;
-    },
-    // USES: abilities, skills
-    senses() {
-      let senses = [];
-      if (this.skills && this.skills.Perception) {
-        senses.push(`Perception ${this.skills.Perception.bonus.total}`);
-      }
-      Object.values(this.abilities).forEach(abil => {
-        if (abil.benefit && abil.benefit.target == "senses") {
-          senses.push(abil.benefit.text);
-        }
-      });
-      return senses;
     },
 
 
@@ -2113,6 +2159,11 @@ export default {
     itemFilter(val) { this.$refs.tree.filter(val); }
   },
   methods: {
+    /***************************\
+    *                           *
+    *          HELPERS          *
+    *                           *
+    \***************************/
     capFirsts(string) { return string ? string.replace(/(^\w|\s\w)/g, m => m.toUpperCase()) : ""; },
     bonusLoop(object, tString) {
       // console.log(tString, object);
@@ -2172,6 +2223,75 @@ export default {
         obj.sources.push(`${prefix}${value} ${name}`);
       }
     },
+    healthCheck() {
+      let deathNum, curr = this.health.total - this.health.damage;
+      if (this.creature.basics.type.name == "construct") {
+        deathNum = 0;
+      } else if (this.creature.basics.type.name == "undead") {
+        deathNum = 0 - this.attributes.Cha.total;
+      } else {
+        deathNum = 0 - this.attributes.Con.total;
+      }
+
+      if (this.health.nonlethal == curr) {
+        // When (nonlethal damage == current HP) { you are STAGGERED }
+        this.activeConditions.push(this.conditions[30]);
+        this.$message({ message: "You become staggered", type: "warning" });
+
+      } else if (this.health.nonlethal == curr+1) {
+        // When (nonlethal damage > current HP) { you are UNCONSIOUS }
+        this.activeConditions.push(this.conditions[32]);
+        this.$message({ message: "You fall unconsious", type: "warning" });
+
+      } else if (curr == 0) {
+        // When (current HP == 0) { you are DISABLED }
+        this.activeConditions.push(this.conditions[8]);
+        this.$message({ message: "You become disabled", type: "error" });
+
+      } else if (curr == -1) {
+        // When (current HP < 0) { you are DYING }
+        // check for hitting -1, then add the condition and don't keep adding it
+        this.activeConditions.push(this.conditions[9]);
+        this.$message({ message: "YOU ARE DYING", type: "error" });
+
+      } else if (curr <= deathNum) {
+        this.$alert( "<strong style='font-size:36px; color:red;'> YOU HAVE DIED </strong>", null, { center: true, dangerouslyUseHTMLString: true, });
+      }
+
+    },
+
+    rest() {
+      this.creature.health.damage = 0;
+      this.creature.health.nonlethal = 0;
+      // reset resources like rage
+      for (const res of Object.values(this.creature.resources)) {
+        res.left = res.total;
+      }
+      // reset P & G spells
+      for (const cClass of Object.values(this.creature.spells)) {
+        for (const spellLevel of Object.values(cClass)) {
+          for (const spell of Object.values(spellLevel)) {
+            spell.casts = 0;
+          }
+        }
+      }
+      // reset S spells
+      for (const cClass of Object.values(this.creature.classes)) {
+        if (cClass.remainingCasts) {
+          cClass.remainingCasts = Array.from(cClass.spellsPerDay);
+          cClass.remainingCasts[0] = 1;
+        }
+      }
+
+      this.$message({ message: "Resting for 8 hours", type: "success" });
+    },
+    saveCreature() {
+      console.log(this.creature);
+
+      // CharacterService.updateCharacter(this.creature)
+      // .then((response) => { this.$message({ message: `${response.character.name} updated`, type: 'success', }); })
+      // .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
+    },
 
     /***************************\
     *                           *
@@ -2214,7 +2334,7 @@ export default {
       for (let item of Object.values(container)) {
         if (item.value) {
           invTotal.value += item.value.Cost;
-          invTotal.weight += BagOfHolding ? 0 : item.value.Weight * (item.value.Ammount ? item.value.Ammount : 1);
+          invTotal.weight += BagOfHolding ? 0 : item.value.Weight * (item.value.Amount ? item.value.Amount : 1);
         }
         if (item.children && item.children.length) {
           if (item.label.includes("Bag of Holding") || item.label.includes("Handy Haversack")) {
@@ -2337,73 +2457,43 @@ export default {
       delete this.abilities[name];
       this.$message({ message: `${name} was removed from abilities`, type: "warning" });
     },
+    updateAction(draggingNode, dropNode) {
+      let action = draggingNode.data.label;
+      if (this.creature.attacks[action]) {
+        let style = ['Melee', 'Ranged', 'Special'].includes(dropNode.data.label) ? dropNode.data.label : dropNode.parent.data.label;
+        this.creature.attacks[action].style = style;
+      }
+    },
 
     /***************************\
     *                           *
-    *           MAGIC           *
+    *          SPELLS           *
     *                           *
     \***************************/
+    // Add a spell to spells known (by class)
+    addSpell() {
+      let cClass = this.creature.spells[this.newSpell.class];
 
-
-
-    /***************************\
-    *                           *
-    *           EDIT            *
-    *                           *
-    \***************************/
-    currHealthCheck() {
-      let deathNum = -10;
-      if (this.basics.type.name == "undead") {
-        deathNum = 0 - this.attributes.Cha.total;
-      } else if (this.basics.type.name == "construct") {
-        deathNum = 0;
+      if ( !cClass[this.newSpell.level] ) { cClass[this.newSpell.level] = {}; }
+      if (cClass[this.newSpell.level][this.newSpell.name]) {
+        this.$message({ message: `You already know a ${this.newSpell.class} spell called ${this.newSpell.name}`, type: "warning" });
+        return;
       } else {
-        deathNum = 0 - this.attributes.Con.total;
-      }
-
-      if (this.currHealth == 0) {
-        // When (nonlethal damage == current HP) { you are DISABLED }
-        this.activeConditions.push(this.conditions[8]);
-
-      } else if (this.currHealth == -1) {
-        // When (nonlethal damage == current HP) { you are DYING }
-        this.activeConditions.push(this.conditions[9]);
-
-      } else if (this.currHealth < deathNum) {
-        this.$alert( "<strong style='font-size:36px;'> YOU HAVE DIED </strong>", null, { center: true, dangerouslyUseHTMLString: true, });
-      }
-    },
-    nonlethalCheck() {
-      if (this.nonlethal == this.currHealth) {
-        // When (nonlethal damage == current HP) { you are STAGGERED }
-        this.activeConditions.push(this.conditions[30]);
-      } else if (this.nonlethal > this.currHealth) {
-        // When (nonlethal damage > current HP) { you are UNCONSIOUS }
-        this.activeConditions.push(this.conditions[32]);
+        cClass[this.newSpell.level][this.newSpell.name] = {
+          'casts': 0,
+          'castTime': '1 Standard',
+          'components': 'V,S,M/DF',
+          'target': 'Self',
+          'range': 'Close',
+          'duration': 'Instant',
+          'save': 'Ref (half)',
+          'SR': true,
+          'description': ""
+        };
+        this.newSpell = { name: "", level: 0, class: "" };
       }
     },
-    rest() {
-      console.log('REST UP: HP, SPELLS');
 
-      this.currHealth = this.health.total;
-
-      this.$message({ message: "Resting for 8 hours... Heal and restore magic.", type: "primary", duration: 10000, showClose: true });
-    },
-    saveMonster() {
-      console.log("This", this);
-      console.log("Name", this.creature.name); // this.title could have CR
-      console.log("Basics", this.basics);
-      console.log("Inventory", this.inventory);
-      console.log("Classes", this.cClasses);
-      console.log("Abilities", this.abilities);
-      console.log("Attributes", this.attributes);
-      console.log("Health", this.health); // this.currHealth & this.nonleathal too
-      console.log("Actions", this.actions);
-      console.log("Skills", this.skills);
-      // console.log(this.magic);
-      console.log("Settings", this.userSettings);
-      console.log("Notes", this.notes);
-    }
   }
 }
 </script>

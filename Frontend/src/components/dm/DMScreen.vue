@@ -143,12 +143,12 @@
 
   <el-dialog :width="creatureWidth" v-model="monsterVisible" :before-close="monsterClose">
     <CreatureCard :source="creature"></CreatureCard>
-    <template #footer>
+    <!-- <template #footer>
       <div class="dialog-footer">
         <el-button @click="monsterClose()"> Close </el-button>
         <el-button type="primary" @click="addMonster()"> Add to Session </el-button>
       </div>
-    </template>
+    </template> -->
   </el-dialog>
 
 
@@ -450,7 +450,7 @@ export default {
             abilities: {},
         attacks: {},
         spells: {},
-        coins: {},
+            coins: {},
             inventory: [],
             skills: {},
             settings: {
@@ -482,6 +482,8 @@ export default {
           alignment: response.Alignment,
           environment: response.Environment,
         };
+        this.creature.coins = { "cp": 0, "sp": 0, "gp": 0, "pp": 0 };
+
         this.creature.settings = {
           isMonster: true,
           cardTab: "Main",
@@ -570,75 +572,32 @@ export default {
         *          HEALTH           *
         *                           *
         \***************************/
-        this.creature.health = { total: 0, damage: 0, nonlethal: 0, sources: [] };
-        let cType = this.creature.basics.type;
-        if (cType.hd) {
-          let val = Math.floor(cType.levels * (cType.hd/2) );
-          this.creature.health.total += val;
-          this.creature.health.sources.push( `+${val} ${cType.name}` );
-        }
-        for (let [cName, cClass] of Object.entries(this.creature.classes)) {
-          let val = Math.floor(cClass.levels * (this.classes[cName].hd/2) );
-          this.creature.health.total += val;
-          this.creature.health.sources.push( `+${val} ${cType.name}` );
+        let health = { total: 0, damage: 0, nonlethal: 0, sources: [] };
+        let firstLevel = true;
+
+        // Racial HD Check
+        if (this.creature.basics.type.hd) {
+          for (let i = 1; i < this.creature.basics.type.levels+1; i++) {
+            firstLevel = false;
+            health.total += this.creature.basics.type.hd / 2 + 0.5;
+          }
+          health.sources.push( `+${this.creature.basics.type.levels}d${this.creature.basics.type.hd}` );
         }
 
-        /***************************\
-        *                           *
-        *          SKILLS           *
-        *                           *
-        \***************************/
-        // set up class skills array
-        let classSkills = this.rules.creature_types[this.creature.basics.type.name].skills
-        for (let cls of Object.keys(this.creature.classes)) {
-          this.classes[cls].skills.forEach(skill => {
-            if (!classSkills.includes(skill)) {
-              classSkills.push(skill);
-            }
-          });
+        // Class Loop
+        for (let [cName, cClass] of Object.entries(this.creature.classes)) {
+          if ([ "adept", "aristocrat", "commoner ", "expert", "warrior" ].includes(cName)) { firstLevel = false; }
+          let levels = cClass.levels;
+          cClass = this.classes[cName] ? this.classes[cName] : { "hd": 0 };
+          health.sources.push( `+${levels}d${cClass.hd}` );
+          // Level Loop
+          for (let i = 1; i < levels+1; i++) {
+            health.total += firstLevel ? cClass.hd : cClass.hd / 2 + 0.5;
+            firstLevel = false;
+          }
         }
-        // set up all skills
-        for (let [name, skill] of Object.entries(this.rules.skills)) {
-          // Languages
-          if (name == "Linguistics" && response.Languages) {
-            skill.extras = { languages: response.Languages.split(',') };
-          }
-          skill.ranks = 0
-          skill.class = classSkills.includes(name);
-          skill.extras = { notes: "" };
-          this.creature.skills[name] = skill;
-        }
-        // Get skill ranks
-        let skills = response.Skills.split(',');
-        skills.forEach(skill => {
-          let name = skill.slice(0, skill.search(/[+|-]/g)).trim();
-          name = name.replace("Knowl.", "Knowledge");
-          if (name.indexOf('(') > 0) {
-            let tmpName = name.slice(0, name.indexOf('(')).trim();
-            if ( ['Artistry', 'Craft', 'Lore', 'Perform', 'Profession'].includes(tmpName) ) {
-              name = tmpName;
-            }
-            this.creature.skills[name].extras.specialty = name.slice(name.indexOf('(')+1, name.indexOf(')'));
-          }
-          let bonus = skill.slice(skill.search(/[+|-]/g)-1);
-          if (bonus.indexOf('(') > 0) { bonus = bonus.slice(0, bonus.indexOf('(')-1); }
-          // total - ability mod
-          let abil = this.rules.skills[name].ability;
-          bonus -= this.creature.attributes[abil.concat("Mod")];
-          //class skill: total - 3;
-          bonus += classSkills.includes(name) ? -3 : 0
-          // total - Armor Penalty(s)
-          // if (this.rules.skills[name].armor_pen) {
-          //   for (let penalty of Object.entries(penalties)) {
-          //     bonus -= penalty[1];
-          //   }
-          // }
-          // total - Size Mod
-          if (name == "Stealth" || name == "Fly") {
-            bonus -= this.rules.size[this.creature.basics.size][name.toLowerCase()];
-          }
-          this.creature.skills[name].ranks = bonus;
-        }); // End skill ranks for each
+        health.total = Math.floor(health.total);
+        this.creature.health = health;
 
         /***************************\
         *                           *
@@ -646,7 +605,7 @@ export default {
         *                           *
         \***************************/
         this.creature.inventory = [
-          {},
+          { 'label': 'Magic Items',  'extras': { 'icon': "amulet" }, 'children': [] },
           { 'label': 'Equipped',     'extras': { 'icon': 'equipment' }, 'children': [
             { 'label': 'Armor',      'extras': { 'icon': 'armor', 'capacity': 1 }, 'children': [] },
             { 'label': 'Weapons',    'extras': { 'icon': 'weapons' }, 'children': [
@@ -703,6 +662,7 @@ export default {
             let newArmor = this.equipment.Armor[item];
             let notes = newArmor.Extras.Notes;
             if (notes.length) { extras.Notes.concat(notes); }
+            newArmor.Amount = 1;
             newArmor.Extras = extras;
             newArmor.targets = this.rules.bonuses.Armor.targets;
             if (!armor.length) {
@@ -720,6 +680,7 @@ export default {
             let newWpn = this.equipment.Weapons[item];
             let notes = newWpn.Extras.Notes;
             if (notes.length) { extras.Notes.push(notes); }
+            newWpn.Amount = 1;
             newWpn.Extras = extras;
             if (weapons[0].children.length < 2) {
               // if weapons[hands].children < 2
@@ -740,6 +701,7 @@ export default {
             let newWpn = this.equipment.Shields[item];
             let notes = newWpn.Extras.Notes;
             if (notes.length) { extras.Notes.push(notes); }
+            newWpn.Amount = 1;
             newWpn.Extras = extras;
             newWpn.targets = this.rules.bonuses.Shield.targets;
             if (weapons[0].children.length < 2) {
@@ -758,7 +720,7 @@ export default {
           else {
             this.creature.inventory[2].children.push({
               label: item,
-              value: { "Cost": 1, "Weight": 0, "Description": "", "Extras": { "Notes": [] } }
+              value: { "Cost": 1, "Weight": 0, "Description": "", "Amount": 1, "Extras": { "Notes": [] } }
             });
           }
         } // End items loop
@@ -942,6 +904,72 @@ export default {
           }
         }
 
+        /***************************\
+        *                           *
+        *          SKILLS           *
+        *                           *
+        \***************************/
+        // set up class skills array
+        let classSkills = this.rules.creature_types[this.creature.basics.type.name].skills
+        for (let cls of Object.keys(this.creature.classes)) {
+          this.classes[cls].skills.forEach(skill => {
+            if (!classSkills.includes(skill)) {
+              classSkills.push(skill);
+            }
+          });
+        }
+        // set up all skills
+        for (let [name, skill] of Object.entries(this.rules.skills)) {
+          // Languages
+          if (name == "Linguistics" && response.Languages) {
+            skill.extras = { languages: response.Languages.split(',') };
+          }
+          skill.ranks = 0
+          skill.class = classSkills.includes(name);
+          skill.extras = { notes: "" };
+          this.creature.skills[name] = skill;
+        }
+        // Get skill ranks
+        let skills = response.Skills.split(',');
+        skills.forEach(skill => {
+          let name = skill.slice(0, skill.search(/[+|-]/g)).trim();
+          name = name.replace("Knowl.", "Knowledge");
+          if (name.indexOf('(') > 0) {
+            let tmpName = name.slice(0, name.indexOf('(')).trim();
+            if ( ['Artistry', 'Craft', 'Lore', 'Perform', 'Profession'].includes(tmpName) ) {
+              name = tmpName;
+            }
+            this.creature.skills[name].extras.specialty = name.slice(name.indexOf('(')+1, name.indexOf(')'));
+          }
+          let bonus = skill.slice(skill.search(/[+|-]/g)-1);
+          if (bonus.indexOf('(') > 0) { bonus = bonus.slice(0, bonus.indexOf('(')-1); }
+          // total - ability mod
+          let abil = this.rules.skills[name].ability;
+          bonus -= Math.floor( (this.creature.attributes[abil].base -10) / 2);
+          //class skill: total - 3;
+          bonus += classSkills.includes(name) ? -3 : 0
+          // total - Armor Penalty(s)
+          if (this.rules.skills[name].armor_pen) {
+            // creature.inventory[equipped].children[armor].children
+            let armor = this.creature.inventory[1].children[0].children;
+            if ( armor ) {
+              bonus -= armor[0].value.Penalty;
+            }
+            // creature.inventory[equipped].children[Weapons].children[Hands]
+            for (let item of this.creature.inventory[1].children[1].children[0].children) {
+              if ( Object.keys(this.equipment.Shields).includes(item.label) ) {
+                bonus -= item.value.Penalty;
+              }
+            }
+          }
+          // total - Size Mod
+          if (name == "Stealth" || name == "Fly") {
+            bonus -= this.rules.size[this.creature.basics.size][name.toLowerCase()];
+          }
+
+          this.creature.skills[name].ranks = bonus;
+        }); // End skill ranks for each
+
         this.monsterVisible = true;
       })
       .catch(err => { console.error(err); });
@@ -960,5 +988,5 @@ export default {
 </script>
 
 <style>
-.el-row, .el-input, .el-textarea { margin-bottom: 10px; }
+.el-card .el-row, .el-card .el-input, .el-card .el-textarea { margin-bottom: 10px; }
 </style>

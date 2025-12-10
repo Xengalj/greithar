@@ -350,7 +350,7 @@
                   <g-icon iconSize="20px" v-if="data.extras && data.extras.icon" :iconName="data.extras.icon" />
                   <span v-else> • </span>
                 </el-col>
-                <el-col :span="5">
+                <el-col :span="4">
                   <el-tooltip v-if="data.value" placement="left" effect="light">
                     <el-button @click="actionBtn(data)" size="small" type="primary">
                       {{ data.label }}
@@ -1379,11 +1379,6 @@ export default {
     abilities() { return this.character.abilities; },
     sizeStats() { return this.rules.size ? this.rules.size[this.character.basics.size] : { "space": "5 ft." }; },
 
-    health() {
-      let health = this.character.health;
-      this.bonusLoop(health, "HP");
-      return health;
-    },
 
     // USES: inventory
     invTotal() {
@@ -1606,6 +1601,58 @@ export default {
       return attributes;
     },
 
+    // USES: bonusLoop(bonuses), attributes
+    health() {
+      let health = this.character.health;
+
+      // let hpMod, health = { total: 0, damage: 0, nonlethal: 0, sources: [] };
+      // health.total += this.creature.health.total;
+      // health.damage += this.creature.health.damage;
+      // health.nonlethal += this.creature.health.nonlethal;
+      // health.sources = this.creature.health.sources;
+      //
+      // // Racial HD Check
+      // if (this.creature.basics.type.hd) {
+      //   if (this.creature.basics.type.name == "construct") {
+      //     switch (this.creature.basics.size) {
+      //       case "small": health.total += 10; health.sources.push(`+10 Construct`); break;
+      //       case "medium": health.total += 20; health.sources.push(`+20 Construct`); break;
+      //       case "large": health.total += 30; health.sources.push(`+30 Construct`); break;
+      //       case "huge": health.total += 40; health.sources.push(`+40 Construct`); break;
+      //       case "gargantuan": health.total += 60; health.sources.push(`+60 Construct`); break;
+      //       case "colossal": health.total += 80; health.sources.push(`+80 Construct`); break;
+      //       default: health.total += 0;
+      //     }
+      //   } else if (this.creature.basics.type.name == "undead") {
+      //     hpMod = "Cha";
+      //   } else {
+      //     hpMod = "Con";
+      //   }
+      // }
+      //
+      // // Racial HD Check
+      // let bonus = 0;
+      // if (this.creature.basics.type.hd) {
+      //   for (let i = 1; i < this.creature.basics.type.levels+1; i++) {
+      //     bonus += this.attributes[hpMod].mod;
+      //   }
+      // }
+      // // Class Loop
+      // for (let cClass of Object.values(this.creature.classes)) {
+      //   for (let i = 1; i < cClass.levels+1; i++) {
+      //     bonus += this.attributes[hpMod].mod;
+      //   }
+      // }
+      // health.total += bonus;
+      // health.sources.push( `+${bonus} ${hpMod}` );
+      // health.total = Math.floor(health.total);
+
+      this.bonusLoop(health, "HP");
+      return health;
+    },
+
+
+
     // USES: bonusLoop(bonuses), inventory, attributes, invTotal
     ac() {
       // total = All
@@ -1800,7 +1847,7 @@ export default {
       bab = Math.floor(bab);
       return bab;
     },
-    // USES: basics, inventory, bab, bonusLoop(bonuses), attributes
+    // USES: inventory, bab, bonusLoop(bonuses), attributes
     actions() {
       let actions = [
         { "label": "Melee", "extras": { "icon": "meleeSword", "capacity": 50 }, "children": [] },
