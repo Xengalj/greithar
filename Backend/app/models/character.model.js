@@ -12,14 +12,7 @@ module.exports = (sequelize, Sequelize) => {
         "cr": 0,
         "size": "medium",
         "race": "Avaar",
-        "type": {},
-        "speed": {
-          "base": { "total": 0, "sources": [] },
-          "swim": { "total": 0, "sources": [] },
-          "climb": { "total": 0, "sources": [] },
-          "fly": { "total": 0, "sources": [] },
-          "burrow": { "total": 0, "sources": [] }
-        },
+        "subtypes": [],
         "alignment": "N",
         "appearance": {
           "age": 21,
@@ -54,24 +47,45 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.JSON,
       defaultValue: {
         "damage": 0,
-        "nonlethal": 0,
-        "total": 0,
-        "sources": []
+        "nonlethal": 0
       }
     },
     classes: {
       type: Sequelize.JSON,
-      defaultValue: {}
+      defaultValue: [
+        {
+          // tracks innate magic, feats, abil increases, total level
+          name: "Innate",
+          levels: 0,
+          bab: 0,
+          hd: 0,
+          saves: {
+            fort: { mult: 0, bonus: 0 },
+            ref: { mult: 0, bonus: 0 },
+            will: { mult: 0, bonus: 0 }
+          },
+          magic: {
+            castingAtr: "Cha",
+            style: "Spontaneous Arcane",
+
+            // Innate is only Spontaneous
+            // Spontaneous Casters
+            remainingCasts: [ ],
+            spellsPerDay: [ ],
+          },
+          abilites: []
+        }
+      ]
     },
     abilities: {
       type: Sequelize.JSON,
-      defaultValue: {}
+      defaultValue: []
     },
     conditions: {
       type: Sequelize.JSON,
       defaultValue: []
     },
-    attacks: {
+    actions: {
       type: Sequelize.JSON,
       defaultValue: {}
     },
@@ -175,7 +189,7 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.JSON,
       defaultValue: {
         "isNPC": false,
-        "heroPoints": 1,
+        "heroPoints": 0,
         "cardTab": "Main",
         "mainSections": [ "defense", "actions", "resources" ],
         "expandInventory": ['Equipped', 'Armor', 'Weapons', 'Hands', 'Back', 'Items'],

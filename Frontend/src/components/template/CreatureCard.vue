@@ -907,6 +907,7 @@
                   </template>
                 </el-tooltip>
               </el-col>
+              {{ classes[cName] }}
               <el-col :span="8" v-if="(knownMetas.length > 0) && (classes[cName].magic.style.includes('Spontaneous') || creature.classes[cName].useGaldur)" class="center-horz">
                 Metamagic
                 <el-select v-model="metamagic" value-key="name" clearable aria-label="Metamagic Select">
@@ -1605,47 +1606,50 @@ export default {
     // USES: attributes, bonusLoop(bonuses)
     health() {
       let hpMod, health = { total: 0, damage: 0, nonlethal: 0, sources: [] };
-      health.total += this.creature.health.total;
+      // health.total += this.creature.health.total;
       health.damage += this.creature.health.damage;
       health.nonlethal += this.creature.health.nonlethal;
-      health.sources = this.creature.health.sources;
+      // health.sources = this.creature.health.sources;
 
-      // Racial HD Check
-      if (this.creature.basics.type.hd) {
-        if (this.creature.basics.type.name == "construct") {
-          switch (this.creature.basics.size) {
-            case "small": health.total += 10; health.sources.push(`+10 Construct`); break;
-            case "medium": health.total += 20; health.sources.push(`+20 Construct`); break;
-            case "large": health.total += 30; health.sources.push(`+30 Construct`); break;
-            case "huge": health.total += 40; health.sources.push(`+40 Construct`); break;
-            case "gargantuan": health.total += 60; health.sources.push(`+60 Construct`); break;
-            case "colossal": health.total += 80; health.sources.push(`+80 Construct`); break;
-            default: health.total += 0;
-          }
-        } else if (this.creature.basics.type.name == "undead") {
-          hpMod = "Cha";
-        } else {
-          hpMod = "Con";
-        }
-      }
-
-      // Racial HD Check
+      // Type / Racial / Class HD
+      let firstLevel = true;
       let bonus = 0;
-      if (this.creature.basics.type.hd) {
-        for (let i = 1; i < this.creature.basics.type.levels+1; i++) {
-          bonus += this.attributes[hpMod].mod;
+      this.creature.classes.forEach((cClass, i) => {
+        if (i == 0) {
+          firstLevel = false;
+          if (this.creature.basics.type == "construct") {
+            switch (this.creature.basics.size) {
+              case "small": health.total += 10; health.sources.push(`+10 Construct`); break;
+              case "medium": health.total += 20; health.sources.push(`+20 Construct`); break;
+              case "large": health.total += 30; health.sources.push(`+30 Construct`); break;
+              case "huge": health.total += 40; health.sources.push(`+40 Construct`); break;
+              case "gargantuan": health.total += 60; health.sources.push(`+60 Construct`); break;
+              case "colossal": health.total += 80; health.sources.push(`+80 Construct`); break;
+              default: health.total += 0;
+            }
+          } else if (this.creature.basics.type == "undead") {
+            hpMod = "Cha";
+          } else {
+            hpMod = "Con";
+          }
         }
-      }
-      // Class Loop
-      for (let cClass of Object.values(this.creature.classes)) {
+        if ([ "adept", "aristocrat", "commoner ", "expert", "warrior" ].includes(cClass.name)) { firstLevel = false; }
+
+        // Level Loop
         for (let i = 1; i < cClass.levels+1; i++) {
+          health.total += firstLevel ? cClass.hd : cClass.hd / 2 + 0.5;
           bonus += this.attributes[hpMod].mod;
+          firstLevel = false;
         }
-      }
+
+        health.sources.push( `+${cClass.levels}d${cClass.hd}` );
+      }); // end classes loop
+
+      // HP Mod
       health.total += bonus;
-      if (!health.sources.includes(`+${bonus} ${hpMod}`)) {
+      // if (!health.sources.includes(`+${bonus} ${hpMod}`)) {
         health.sources.push( `+${bonus} ${hpMod}` );
-      }
+      // }
       health.total = Math.floor(health.total);
 
       this.bonusLoop(health, "HP");
@@ -2081,7 +2085,7 @@ export default {
         }
       }
 
-      console.log(actions);
+      // console.log(actions);
       return actions;
     },
     // USES: basics, inventory, bonusLoop(bonuses), attributes
@@ -2110,10 +2114,10 @@ export default {
           }
         }
         // Ability
-        this.applyBonus(skill.ability.concat("Mod"), this.attributes[skill.ability].mod, bonus);
+        this.applyBonus(this.rules.skills[name].ability.concat("Mod"), this.attributes[this.rules.skills[name].ability].mod, bonus);
 
         // Armor Penalty
-        if (skill.armor_pen) {
+        if (this.rules.skills[name].armor_pen) {
           for (let [name, penalty] of Object.entries(penalties)) {
             this.applyBonus(name, penalty, bonus);
           }
@@ -2143,6 +2147,7 @@ export default {
     this.original.name = this.source.name;
     this.original.val = JSON.stringify(this.source);
     this.creature = this.source;
+    console.log(this.creature);
   },
   mounted() {
     // add Rest button to tabs
@@ -2174,7 +2179,10 @@ export default {
     *          HELPERS          *
     *                           *
     \***************************/
-    capFirsts(string) { return string ? string.replace(/(^\w|\s\w)/g, m => m.toUpperCase()) : ""; },
+    capFirsts(string) {
+      // return string;
+      return string ? string.replace(/(^\w|\s\w)/g, m => m.toUpperCase()) : "";
+    },
     bonusLoop(object, tString) {
       // console.log(tString, object);
       // object = the bonus object we are adding to: { total: #, sources: [] }
@@ -2482,6 +2490,9 @@ export default {
     \***************************/
     // Add a spell to spells known (by class)
     addSpell() {
+      if (!this.creature.spells[this.newSpell.class]) {
+        this.creature.spells[this.newSpell.class] = [];
+      }
       let cClass = this.creature.spells[this.newSpell.class];
 
       if ( !cClass[this.newSpell.level] ) { cClass[this.newSpell.level] = {}; }
@@ -2502,6 +2513,7 @@ export default {
         };
         this.newSpell = { name: "", level: 0, class: "" };
       }
+      console.log(this.creature.spells);
     },
 
   }

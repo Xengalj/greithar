@@ -135,8 +135,8 @@
   <el-button type="primary" circle @click="loadMonster('Adult Red Dragon')">
     <g-icon iconSize="24px" iconName="dragon" />
   </el-button>
-  <el-button type="primary" circle @click="loadMonster('Kobold')">
-    <g-icon iconSize="24px" iconName="dragon" />
+  <el-button type="primary" circle @click="loadMonster('Shoreline Cleric')">
+    <g-icon iconSize="24px" iconName="runeStone" />
   </el-button>
 
   <br><br><br>
@@ -338,16 +338,16 @@ export default {
   mounted() {
     if (!this.rules.size) { this.$router.push("/"); }
 
-    if (this.$route.params.campaign) {
-      this.loadCampaign(this.$route.params.campaign);
-      if (this.$route.params.encounter) {
-        this.loadEncounter(this.$route.params.encounter);
-      } else {
-        this.loadEncounters();
-      }
-    } else {
-      this.loadCampaigns();
-    }
+    // if (this.$route.params.campaign) {
+    //   this.loadCampaign(this.$route.params.campaign);
+    //   if (this.$route.params.encounter) {
+    //     this.loadEncounter(this.$route.params.encounter);
+    //   } else {
+    //     this.loadEncounters();
+    //   }
+    // } else {
+    //   this.loadCampaigns();
+    // }
 
   },
   methods: {
@@ -446,38 +446,49 @@ export default {
         \***************************/
         let creature = {
           name: response.Name,
-          conditions: {},
-          resources: {},
-          spells: {},
-          abilities: {},
           basics: {
             cr: response.CR,
-            type: {},
-            race: 0,
             size: response.Size.toLowerCase(),
+            type: response.Type.toLowerCase(),
+            subtypes: [],
+            race: response.Race,
             speed: {
-              "base": { "total": response.Base_Speed, "sources": [ `+${response.Base_Speed} Racial Base` ] },
-              "swim": { "total": 0, "sources": [] },
-              "climb": { "total": 0, "sources": [] },
-              "fly": { "total": 0, "sources": [] },
-              "burrow": { "total": 0, "sources": [] }
+              base:     { total: response.Base_Speed, sources: [ `+${response.Base_Speed} Racial Base` ] },
+              swim:     { total: 0, sources: [] },
+              climb:    { total: 0, sources: [] },
+              fly:      { total: 0, sources: [] },
+              burrow:   { total: 0, sources: [] }
             },
             alignment: response.Alignment,
             environment: response.Environment,
           },
+          notes: "",
+          health: { damage: 0, nonlethal: 0 },
+          classes: [ {} ],
+          abilities: [],
+          conditions: [],
+          resources: {},
           coins: { "cp": 0, "sp": 0, "gp": 0, "pp": 0 },
+          spells: {},
           settings: {
+            isNPC: false,
             isMonster: true,
             cardTab: "Main",
             mainSections: [  "defense", "actions" ],
             expandInventory: [ "Equipped", "Armor", "Weapons", "Hands", "Back", "Items" ]
           },
-          notes: []
         };
+        // Subtypes
+        for (let i = 1; i < 7; i++) {
+          if (response[`subtype${i}`]) {
+            creature.basics.subtypes.push(response[`subtype${i}`]);
+          }
+        }
+
 
         /***************************\
         *                           *
-        *        TYPE / RACE        *
+        *          CLASSES          *
         *                           *
         \***************************/
         // Prep Racial HD
@@ -494,47 +505,134 @@ export default {
         }
 
         // Load Class 1
-        creature.classes = {};
         if (response.Class1) {
-          creature.classes[response.Class1] = { levels: response.Class1_Lvl };
+          let c1 = {
+            name: response.Class1,
+            levels: response.Class1_Lvl,
+            bab: this.classes[response.Class1].bab,
+            hd: this.classes[response.Class1].hd,
+            saves: {
+              fort: this.classes[response.Class1].fort,
+              ref: this.classes[response.Class1].ref,
+              will: this.classes[response.Class1].will,
+            },
+            abilites: []
+          };
+
+          if (this.classes[response.Class1].magic) {
+            c1.magic = {
+              style: this.classes[response.Class1].magic.style,
+              castingAtr: this.classes[response.Class1].magic.castingAtr,
+
+              useGaldur: false,
+              openTotal: Math.floor( this.classes[response.Class1].magic.galdurTotal[response.Class1_Lvl] / 2 ),
+              openRemaining: Math.floor( this.classes[response.Class1].magic.galdurTotal[response.Class1_Lvl] / 2 ),
+              reserveTotal: Math.ceil( this.classes[response.Class1].magic.galdurTotal[response.Class1_Lvl] / 2 ),
+              reserveRemaining: Math.ceil( this.classes[response.Class1].magic.galdurTotal[response.Class1_Lvl] / 2 ),
+            };
+
+
+            if (c1.magic.style.includes('Spontaneous')) {
+              c1.magic.spellsPerDay = this.classes[response.Class1].magic.spellsPerDay[response.Class1_Lvl];
+              c1.magic.remainingCasts = this.classes[response.Class1].magic.spellsPerDay[response.Class1_Lvl]
+            }
+
+            else if (c1.magic.style.includes('Prepared')) {
+              c1.magic.preparedSpells = [];
+              this.classes[response.Class1].magic.spellsPerDay[response.Class1_Lvl].forEach((numOfSpells, lvl) => {
+                console.log(lvl, numOfSpells);
+                c1.magic.preparedSpells[lvl] = [];
+                for (let i = 0; i < numOfSpells-1; i++) {
+                  c1.magic.preparedSpells[lvl].push("");
+                }
+              });
+            }
+          } // end Class Has Magic
+          creature.classes.push( c1 );
           // Subtract Class HD from total HD to find racialHD
           racialHD -= response.Class1_Lvl;
         }
 
         // Load Class 2
         if (response.Class2) {
-          creature.classes[response.Class2] = { levels: response.Class2_Lvl };
+          let c2 = {
+            name: response.Class2,
+            levels: response.Class2_Lvl,
+            bab: this.classes[response.Class2].bab,
+            hd: this.classes[response.Class2].hd,
+            saves: {
+              fort: this.classes[response.Class2].fort,
+              ref: this.classes[response.Class2].ref,
+              will: this.classes[response.Class2].will,
+            },
+            abilites: []
+          };
+
+          if (this.classes[response.Class2].magic) {
+            c2.magic = {
+              style: this.classes[response.Class2].magic.style,
+              castingAtr: this.classes[response.Class2].magic.castingAtr,
+              useGaldur: false,
+              openTotal: Math.floor( this.classes[response.Class2].magic.galdurTotal[response.Class2_Lvl] / 2 ),
+              openRemaining: Math.floor( this.classes[response.Class2].magic.galdurTotal[response.Class2_Lvl] / 2 ),
+              reserveTotal: Math.ceil( this.classes[response.Class2].magic.galdurTotal[response.Class2_Lvl] / 2 ),
+              reserveRemaining: Math.ceil( this.classes[response.Class2].magic.galdurTotal[response.Class2_Lvl] / 2 ),
+            };
+            if (c2.magic.style.includes('Spontaneous')) {
+              c2.magic.spellsPerDay = this.classes[response.Class2].magic.spellsPerDay[response.Class2_Lvl];
+              c2.magic.remainingCasts = this.classes[response.Class2].magic.spellsPerDay[response.Class2_Lvl]
+            }
+            else if (c2.magic.style.includes('Prepared')) {
+              c2.magic.preparedSpells = [];
+              this.classes[response.Class2].magic.spellsPerDay[response.Class2_Lvl].forEach((numOfSpells, lvl) => {
+                c2.magic.preparedSpells[lvl] = [];
+                for (let i = 0; i < numOfSpells-1; i++) {
+                  c2.magic.preparedSpells[lvl].push("");
+                }
+              });
+            }
+          } // end Class Has Magic
+          creature.classes.push( c2 );
           racialHD -= response.Class2_Lvl;
         }
 
-        // Prep creature.basics
-        let type  = this.rules.creature_types[response.Type];
-        creature.basics.type = {
-          name: response.Type,
-          hd: type.hd,
-          levels: racialHD,
-          subtypes: []
+        // Load Class[race/type]
+        let type = {
+          name: response.Race ? response.Race : response.Type,
+          levels: 0,
+          magic: {},
+          abilites: []
+        };
+
+        // ABILITIES <- Creature Type Traits
+        for (let [name, trait] of Object.entries(this.rules.creature_types[response.Type.toLowerCase()].traits)) {
+          trait.name = name;
+          trait.extras = { showMain: false, active: true, category: "Race" };
+          creature.abilities.push(trait);
         }
-        // Creature Type Abilities
-        for (let [name, trait] of Object.entries(type.traits)) {
-          creature.abilities[name] = trait;
-          creature.abilities[name].extras = { active: true, source: "Race", showMain: false };
-        }
-        if (response.Race) {
-          creature.basics.race = response.Race;
-          // Racial Abilities
-          if (Object.keys(this.races).includes(response.Race)) {
-            for (let [name, trait] of Object.entries(this.races[response.Race].traits)) {
-              creature.abilities[name] = trait;
-              creature.abilities[name].extras = { active: true, source: "Race", showMain: false };
-            }
+
+        // ABILITIES <- Racial Traits
+        if (Object.keys(this.races).includes(response.Race)) {
+          for (let [name, trait] of Object.entries(this.races[response.Race].traits)) {
+            trait.name = name;
+            trait.extras = { showMain: false, active: true, category: "Race" };
+            creature.abilities.push(trait);
           }
         }
-        // Subtypes
-        for (let i = 1; i < 7; i++) {
-          if (response[`subtype${i}`]) {
-            creature.basics.type.subtypes.push(response[`subtype${i}`]);
-          }
+
+        if (racialHD > 0) {
+          type.levels = racialHD;
+          type.bab = this.rules.creature_types[response.Type].bab,
+          type.hd = this.rules.creature_types[response.Type].hd,
+          type.saves = this.rules.creature_types[response.Type].saves,
+          type.magic = {
+            style: "Spontaneous Arcane",
+            castingAtr: "Cha",
+            spellsPerDay: 0,
+            remainingCasts: 0
+          } // end Class Has Magic
+
+          creature.classes[0] = ( type );
         }
 
         /***************************\
@@ -551,37 +649,36 @@ export default {
           Cha: { base: (response.Cha == "-" ? 0 : response.Cha) }
         }
 
-        /***************************\
-        *                           *
-        *          HEALTH           *
-        *                           *
-        \***************************/
-        let health = { total: 0, damage: 0, nonlethal: 0, sources: [] };
-        let firstLevel = true;
-
-        // Racial HD Check
-        if (creature.basics.type.hd) {
-          for (let i = 1; i < creature.basics.type.levels+1; i++) {
-            firstLevel = false;
-            health.total += creature.basics.type.hd / 2 + 0.5;
-          }
-          health.sources.push( `+${creature.basics.type.levels}d${creature.basics.type.hd}` );
-        }
-
-        // Class Loop
-        for (let [cName, cClass] of Object.entries(creature.classes)) {
-          if ([ "adept", "aristocrat", "commoner ", "expert", "warrior" ].includes(cName)) { firstLevel = false; }
-          let levels = cClass.levels;
-          cClass = this.classes[cName] ? this.classes[cName] : { "hd": 0 };
-          health.sources.push( `+${levels}d${cClass.hd}` );
-          // Level Loop
-          for (let i = 1; i < levels+1; i++) {
-            health.total += firstLevel ? cClass.hd : cClass.hd / 2 + 0.5;
-            firstLevel = false;
-          }
-        }
-        health.total = Math.floor(health.total);
-        creature.health = health;
+        // /***************************\
+        // *                           *
+        // *          HEALTH           *
+        // *                           *
+        // \***************************/
+        // let health = { damage: 0, nonlethal: 0 };
+        //
+        // // Racial HD Check
+        // if (creature.basics.type.hd) {
+        //   for (let i = 1; i < creature.basics.type.levels+1; i++) {
+        //     firstLevel = false;
+        //     health.total += creature.basics.type.hd / 2 + 0.5;
+        //   }
+        //   health.sources.push( `+${creature.basics.type.levels}d${creature.basics.type.hd}` );
+        // }
+        //
+        // // Class Loop
+        // for (let [cName, cClass] of Object.entries(creature.classes)) {
+        //   if ([ "adept", "aristocrat", "commoner ", "expert", "warrior" ].includes(cName)) { firstLevel = false; }
+        //   let levels = cClass.levels;
+        //   cClass = this.classes[cName] ? this.classes[cName] : { "hd": 0 };
+        //   health.sources.push( `+${levels}d${cClass.hd}` );
+        //   // Level Loop
+        //   for (let i = 1; i < levels+1; i++) {
+        //     health.total += firstLevel ? cClass.hd : cClass.hd / 2 + 0.5;
+        //     firstLevel = false;
+        //   }
+        // }
+        // health.total = Math.floor(health.total);
+        // creature.health = health;
 
         /***************************\
         *                           *
@@ -719,10 +816,11 @@ export default {
           for (let name of response.Feats.split(',')) {
             let isBonus, feat = {
               description: "",
+              shortText: "",
+              location: "self",
               trigger: "Continuous",
-              benefit: { text: "", target: "self" },
               bonuses: {},
-              extras: { active: false, showMain: false, source: "Feat" }
+              extras: { showMain: false, active: false, category: "Feat", notes: [] }
             };
             name = name.trim();
             if (name.indexOf('(') > 0) { name = name.slice(0, name.indexOf('(')-1); }
@@ -735,15 +833,16 @@ export default {
             if (this.feats[name]) {
               feat = this.feats[name];
               feat.extras = {
-                active: (this.feats[name].trigger == "Continuous") ? true : false,
                 showMain: (this.feats[name].trigger == "Continuous") ? false : true,
-                source: isBonus ? "Class" : "Feat"
+                active: (this.feats[name].trigger == "Continuous") ? true : false,
+                category: isBonus ? "Class" : "Feat",
+                notes: []
               };
             }
-            creature.abilities[name] = feat;
+            feat.name = name;
+            creature.abilities.push(feat);
           }
         }
-
         // Natural Armor
         let tempAC = response.AC - 10;
         tempAC -= Math.floor((response.Dex - 10) / 2);
@@ -755,26 +854,31 @@ export default {
           if (item.value["AC Bonus"]) { tempAC -= item.value["AC Bonus"]; }
         }
         if (tempAC > 0) {
-          creature.abilities["Natural Armor"] = {
-            trigger: "Continuous",
+          creature.abilities.push({
+            name: "Natural Armor",
             description: "This creature is naturally tough, granting additional armor.",
-            benefit: { target: "self", text: "" },
+            shortText: "",
+            location: "self",
+            trigger: "Continuous",
             bonuses: {
               "Natural Armor": { value: tempAC, type: "Natural Armor", targets: this.rules.bonuses["Natural Armor"].targets }
             },
-            extras: { active: true, showMain: false, source: "Trait" }
-          };
+            extras: { showMain: false, active: true, category: "Race", notes: [] }
+          });
         }
         // Special Qualities
         if (response.SQ) {
           for (let abil of response.SQ.split(',')) {
-            creature.abilities[abil] = {
-              trigger: "Standard",
+            creature.abilities.push({
+              name: abil.trim(),
               description: "",
-              benefit: { target: "self", text: "" },
+              shortText: "",
+              location: "self",
+              trigger: "Standard",
               bonuses: {},
-              extras: { active: false, showMain: false, source: "Race" }
-            }
+              extras: { showMain: false, active: false, category: "Trait", notes: [] }
+
+            });
           }
         }
 
@@ -891,23 +995,33 @@ export default {
         \***************************/
         creature.skills = {};
         // set up class skills array
-        let classSkills = this.rules.creature_types[creature.basics.type.name].skills
-        for (let cls of Object.keys(creature.classes)) {
-          this.classes[cls].skills.forEach(skill => {
-            if (!classSkills.includes(skill)) {
+        let classSkills = [];
+        creature.classes.forEach(cls => {
+          // Add type class skills
+          if (cls.hd) {
+            this.rules.creature_types[creature.basics.type].skills.forEach(skill => {
               classSkills.push(skill);
-            }
-          });
-        }
-        // set up all skills
-        for (let [name, skill] of Object.entries(this.rules.skills)) {
-          // Languages
-          if (name == "Linguistics" && response.Languages) {
-            skill.extras = { languages: response.Languages.split(',') };
+            });
           }
-          skill.ranks = 0
-          skill.class = classSkills.includes(name);
-          skill.extras = { notes: "" };
+          // add class skills
+          if (this.classes[cls.name]) {
+            this.classes[cls.name].skills.forEach(skill => {
+              if (!classSkills.includes(skill)) {
+                classSkills.push(skill);
+              }
+            });
+          }
+        });
+        // set up all skills
+        for (let name of Object.keys(this.rules.skills)) {
+          let skill = {
+            ranks: 0,
+            class: classSkills.includes(name),
+            extras: {},
+          };
+          if (name == "Linguistics" && response.Languages) {
+            skill.extras.languages = response.Languages.split(',');
+          }
           creature.skills[name] = skill;
         }
         // Get skill ranks
@@ -949,6 +1063,7 @@ export default {
           creature.skills[name].ranks = bonus;
         }); // End skill ranks for each
 
+        console.log(creature);
         this.creature = creature; // update the val sent to CreatureCard AT THE END
         this.monsterVisible = true;
       })

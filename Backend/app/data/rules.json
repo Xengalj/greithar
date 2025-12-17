@@ -674,15 +674,17 @@
       "skills": [ "Climb", "Disguise", "Fly", "Intimidate", "Knowledge (arcana)", "Knowledge (religion)", "Perception", "Sense Motive", "Spellcraft", "Stealth" ],
       "traits": {
         "Darkvision": {
-          "trigger": "Continuous",
           "description": "Undead can see in the dark up to 60 feet.",
-          "benefit": { "target": "senses", "text": "Darkvision 60 ft." },
+          "shortText": "Darkbision 60 ft.",
+          "location": "senses",
+          "trigger": "Continuous",
           "bonuses": {}
         },
         "Undead Immunities": {
-          "trigger": "Continuous",
           "description": "Undead are immune to a number of afects and abilities, mostly related to injuries the living may sustain like diseases.",
-          "benefit": { "target": "immunities", "text": "nonlethal damage, mind effects, bleed, disease, sleep, paralysis, poison, stunning, exhaustion, fatigue, death effects, physical ability damage, ability drain, energy drain" },
+          "shortText": "nonlethal damage, mind effects, bleed, disease, sleep, paralysis, poison, stunning, exhaustion, fatigue, death effects, physical ability damage, ability drain, energy drain",
+          "location": "immunities",
+          "trigger": "Continuous",
           "bonuses": {}
         }
       }
@@ -697,15 +699,16 @@
       "skills": [],
       "traits": {
         "Darkvision": {
-          "trigger": "Continuous",
           "description": "Vermin can see in the dark up to 60 feet.",
-          "benefit": { "target": "senses", "text": "Darkvision 60 ft." },
+          "shortText": "Darkvision 60 ft.",
+          "location": "senses",
           "bonuses": {}
         },
         "Mindless": {
-          "trigger": "Continuous",
           "description": "Vermin have no intelligence score, and immunity to all mind-affecting effects.",
-          "benefit": { "targtet": "immunities", "text": "mind effects" },
+          "shortText": "mind effects",
+          "location": "immunities",
+          "trigger": "Continuous",
           "bonuses": {}
         }
       }
