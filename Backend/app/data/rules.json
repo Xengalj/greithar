@@ -452,9 +452,10 @@
       "skills": [ "Acrobatics", "Climb", "Escape Artist", "Fly", "Intimidate", "Perception", "Spellcraft", "Stealth", "Survival", "Swim" ],
       "traits": {
         "Darkvision": {
-          "trigger": "Continuous",
           "description": "Aberrations can see in the dark up to 60 feet.",
-          "benefit": { "target": "senses", "text": "Darkvision 60 ft." },
+          "shortText": "Darkvision 60 ft.",
+          "location": "senses",
+          "trigger": "Continuous",
           "bonuses": {}
         }
       }
@@ -469,9 +470,10 @@
       "skills": [ "Acrobatics", "Climb", "Fly", "Perception", "Stealth", "Swim" ],
       "traits": {
         "Low-light Vision": {
-          "trigger": "Continuous",
           "description": "Animals can see color in dim light.",
-          "benefit": { "target": "senses", "text": "Low-Light Vision" },
+          "shortText": "Low-Light Vision",
+          "location": "senses",
+          "trigger": "Continuous",
           "bonuses": {}
         }
       }
@@ -486,21 +488,24 @@
       "skills": [],
       "traits": {
         "Darkvision": {
-          "trigger": "Continuous",
           "description": "Constructs can see in the dark up to 60 feet.",
-          "benefit": { "target": "senses", "text": "Darkvision 60 ft." },
+          "shortText": "Darkvision 60 ft.",
+          "location": "senses",
+          "trigger": "Continuous",
           "bonuses": {}
         },
         "Low-light Vision": {
-          "trigger": "Continuous",
           "description": "Constructs can see color in dim light.",
-          "benefit": { "target": "senses", "text": "Low-Light Vision" },
+          "shortText": "Low-Light Vision",
+          "location": "senses",
+          "trigger": "Continuous",
           "bonuses": {}
         },
         "Construct Immunities": {
-          "trigger": "Continuous",
           "description": "Constructs is a magically animated or artificially created creatures, granting them a number of immunities.",
-          "benefit": { "target": "immunities", "text": "nonlethal damage, necromancy, fatigue, exhaustion, stunning, paralysis, sleep, poison, mind effects, disease, ability damage, death effects, ability drain, energy drain" },
+          "shortText": "nonlethal damage, necromancy, fatigue, exhaustion, stunning, paralysis, sleep, poison, mind effects, disease, ability damage, death effects, ability drain, energy drain",
+          "location": "immunities",
+          "trigger": "Continuous",
           "bonuses": {}
         }
       }
@@ -515,21 +520,24 @@
       "skills": [ "Appraise", "Bluff", "Climb", "Craft", "Diplomacy", "Fly", "Heal", "Intimidate", "Knowledge (arcana)", "Knowledge (dungeoneering)", "Knowledge (engineering)", "Knowledge (geography)", "Knowledge (history)", "Knowledge (local)", "Knowledge (nature)", "Knowledge (nobility)", "Knowledge (planes)", "Knowledge (religion)", "Linguistics", "Perception", "Sense Motive", "Spellcraft", "Stealth", "Survival", "Swim", "Use Magic Device" ],
       "traits": {
         "Darkvision": {
-          "trigger": "Continuous",
           "description": "Dragons can see in the dark up to 60 feet.",
-          "benefit": { "target": "senses", "text": "Darkvision 60 ft." },
+          "shortText": "Darkvision 60 ft.",
+          "location": "senses",
+          "trigger": "Continuous",
           "bonuses": {}
         },
         "Low-light Vision": {
-          "trigger": "Continuous",
           "description": "Dragons can see color in dim light.",
-          "benefit": { "target": "senses", "text": "Low-Light Vision" },
+          "shortText": "Low-Light Vision",
+          "location": "senses",
+          "trigger": "Continuous",
           "bonuses": {}
         },
         "Dragon Immunities": {
-          "trigger": "Continuous",
           "description": "Dragons are immune to magical sleep and paralysis.",
-          "benefit": { "target": "immunities", "text": "paralysis, sleep" },
+          "shortText": "paralysis, sleep",
+          "location": "immunities",
+          "trigger": "Continuous",
           "bonuses": {}
         }
       }
@@ -544,9 +552,10 @@
       "skills": [ "Acrobatics", "Bluff", "Climb", "Craft", "Diplomacy", "Disguise", "Escape Artist", "Fly", "Knowledge (geography)", "Knowledge (local)", "Knowledge (nature)", "Perception", "Perform", "Sense Motive", "Sleight of Hand", "Stealth", "Swim", "Use Magic Device" ],
       "traits": {
         "Low-light Vision": {
-          "trigger": "Continuous",
           "description": "Fey can see color in dim light.",
-          "benefit": { "target": "senses", "text": "Low-Light Vision" },
+          "shortText": "Low-Light Vision",
+          "location": "senses",
+          "trigger": "Continuous",
           "bonuses": {}
         }
       }
@@ -571,15 +580,17 @@
       "skills": [ "Acrobatics", "Climb", "Fly", "Perception", "Stealth", "Swim" ],
       "traits": {
         "Darkvision": {
-          "trigger": "Continuous",
           "description": "Magical Beasts can see in the dark up to 60 feet.",
-          "benefit": { "target": "senses", "text": "Darkvision 60 ft." },
+          "shortText": "Darkvision 60 ft.",
+          "location": "senses",
+          "trigger": "Continuous",
           "bonuses": {}
         },
         "Low-light Vision": {
-          "trigger": "Continuous",
           "description": "Magical Beasts can see color in dim light.",
-          "benefit": { "target": "senses", "text": "Low-Light Vision" },
+          "shortText": "Low-Light Vision",
+          "location": "senses",
+          "trigger": "Continuous",
           "bonuses": {}
         }
       }
@@ -594,9 +605,10 @@
       "skills": [ "Climb", "Craft", "Fly", "Intimidate", "Perception", "Ride", "Stealth", "Survival", "Swim" ],
       "traits": {
         "Darkvision": {
-          "trigger": "Continuous",
           "description": "Monstrous Humanoids can see in the dark up to 60 feet.",
-          "benefit": { "target": "senses", "text": "Darkvision 60 ft." },
+          "shortText": "Darkvision 60 ft.",
+          "location": "senses",
+          "trigger": "Continuous",
           "bonuses": {}
         }
       }
@@ -611,15 +623,17 @@
       "skills": [],
       "traits": {
         "Blind": {
-          "trigger": "Continuous",
           "description": "Oozes are blind, they have no eyes but do possess blindsight.",
-          "benefit": { "target": "senses", "text": "Blindsight 60 ft." },
+          "shortText": "Blindsight 60 ft.",
+          "location": "senses",
+          "trigger": "Continuous",
           "bonuses": {}
         },
         "Ooze Immunities": {
-          "trigger": "Continuous",
           "description": "Oozes have no Intelligence score, giving them immunity to mind effects, they also have a number of other immunities.",
-          "benefit": { "target": "immunities", "text": "critical hits, flanking, illusions, paralysis, poison, sleep, stunning, mind effects, polymorph, precision damage, gaze attacks, visual effects" },
+          "shortText": "critical hits, flanking, illusions, paralysis, poison, sleep, stunning, mind effects, polymorph, precision damage, gaze attacks, visual effects",
+          "location": "immunities",
+          "trigger": "Continuous",
           "bonuses": {}
         }
       }
@@ -634,9 +648,10 @@
       "skills": [ "Bluff", "Craft", "Knowledge (planes)", "Perception", "Sense Motive", "Stealth" ],
       "traits": {
         "Darkvision": {
-          "trigger": "Continuous",
           "description": "Outsiders can see in the dark up to 60 feet.",
-          "benefit": { "target": "senses", "text": "Darkvision 60 ft." },
+          "shortText": "Darkvision 60 ft.",
+          "location": "senses",
+          "trigger": "Continuous",
           "bonuses": {}
         }
       }
@@ -651,15 +666,17 @@
       "skills": [ "Perception", "Stealth" ],
       "traits": {
         "Low-light Vision": {
-          "trigger": "Continuous",
           "description": "Plants can see color in dim light.",
-          "benefit": { "target": "senses", "text": "Low-Light Vision" },
+          "shortText": "Low-Light Vision",
+          "location": "senses",
+          "trigger": "Continuous",
           "bonuses": {}
         },
         "Plant Immunities": {
-          "trigger": "Continuous",
           "description": "Plants are immune to a number of afects and abilities, mostly related to poisons or mind effects.",
-          "benefit": { "target": "immunities", "text": "mind effects, paralysis, poison, polymorph, sleep, stunning" },
+          "shortText": "mind effects, paralysis, poison, polymorph, sleep, stunning",
+          "location": "immunities",
+          "trigger": "Continuous",
           "bonuses": {}
         }
       }
