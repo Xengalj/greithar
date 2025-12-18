@@ -204,6 +204,13 @@ export default {
         type: "humanoid",
         subtypes: [ "Reptilian" ],
         race: "Kobold",
+        speed: {
+          base:     { total: 30, sources: [ `+Kobold Racial Base` ] },
+          swim:     { total: 0, sources: [] },
+          climb:    { total: 0, sources: [] },
+          fly:      { total: 0, sources: [] },
+          burrow:   { total: 0, sources: [] }
+        },
         alignment: "LE",
         appearance: {
           age: "18",
@@ -237,19 +244,10 @@ export default {
           // tracks innate magic, feats, abil increases, total level
           name: "Kobold", // Race / Type
           levels: 0,
-              // only if we have levels
-          // bab: 0.75,
-          // hd: 8,
-          // saves: {
-          //   fort: { mult: 0.33, bonus: 0 },
-          //   ref: { mult: 0.33, bonus: 0 },
-          //   will: { mult: 0.33, bonus: 0 }
-          // },
           magic: {
             // Innate is only Spontaneous
             style: "Spontaneous Arcane",
             castingAtr: "Cha",
-
             // Spontaneous Casters
             remainingCasts: [ ],
             spellsPerDay: [ ],

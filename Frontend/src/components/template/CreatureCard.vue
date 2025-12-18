@@ -121,7 +121,7 @@
 
   <el-col :xs="24" :span="12">
     <div class="center-horz">
-      <g-icon iconSize="128px" :icon-name="this.creature.basics.type.name" :key="this.creature.basics.type.name"/>
+      <g-icon iconSize="128px" :icon-name="this.creature.basics.type" :key="this.creature.basics.type"/>
     </div>
 
     <el-row :gutter="10">
@@ -133,26 +133,27 @@
           <el-col :span="12">
             {{ this.creature.basics.alignment }} {{ capFirsts(this.creature.basics.size) }} ({{ this.sizeStats.space }})
           </el-col>
+
           <el-col :span="12">
-            <el-tooltip v-if="this.creature.basics.type.levels" placement="top" effect="light">
-              <el-tag size="small" effect="dark" type="primary">{{ capFirsts(this.creature.basics.type.name) }}</el-tag>
+            <el-tooltip v-if="this.creature.classes[0].hd" placement="top" effect="light">
+              <el-tag size="small" effect="dark" type="primary">{{ capFirsts(this.creature.basics.type) }}</el-tag>
               <template #content>
-                {{ this.creature.basics.type.levels }} HD (1d{{ this.creature.basics.type.hd }})
+                {{ this.creature.classes[0].levels }} HD (1d{{ this.creature.classes[0].hd }})
               </template>
             </el-tooltip>
-            <el-tag v-else-if="this.creature.basics.type.name == 'humanoid'" size="small" effect="dark" type="primary">{{ this.creature.basics.race }}</el-tag>
-            <el-tag v-else size="small" effect="dark" type="primary">{{ this.creature.basics.type.name }}</el-tag>
+            <el-tag v-else-if="this.creature.basics.type == 'humanoid'" size="small" effect="dark" type="primary">{{ this.creature.basics.race }}</el-tag>
+            <el-tag v-else size="small" effect="dark" type="primary">{{ this.creature.basics.type }}</el-tag>
           </el-col>
         </el-row>
 
         <el-row>
-          <el-tooltip placement="top" effect="light" v-for="(cClass, name) in creature.classes" :key="name">
-            <el-tag size="small" effect="dark" type="primary" style="margin: 0 1px 0 0;">{{ capFirsts(name) }} {{ cClass.levels }}</el-tag>
+          <el-tooltip placement="top" effect="light" v-for="cClass in creature.classes" :key="cClass.name">
+            <el-tag size="small" effect="dark" type="primary" style="margin: 0 1px 0 0;">{{ capFirsts(cClass.name) }} {{ cClass.levels }}</el-tag>
             <template #content>
               {{ cClass.levels }} HD (1d{{ cClass.hd }})
             </template>
           </el-tooltip>
-          <el-tag size="small" effect="dark" type="info" v-for="subtype in this.creature.basics.type.subtypes" :key="subtype" style="margin: 0 1px 0 2px;">
+          <el-tag size="small" effect="dark" type="info" v-for="subtype in this.creature.basics.subtypes" :key="subtype" style="margin: 0 1px 0 2px;">
             {{ capFirsts(subtype) }}
           </el-tag>
         </el-row>
@@ -191,7 +192,7 @@
         </el-tooltip>
       </el-col>
       <el-col :xs="9" :sm="9">
-        <el-button @click="saveCreature()" type="primary" round> Open Drawer </el-button>
+        <el-button @click="openDrawer()" type="primary" round> Open Drawer </el-button>
       </el-col>
     </el-row>
   </el-col>
@@ -246,7 +247,7 @@
                 <el-tag size="large" effect="dark" type="danger"> Damage </el-tag>
               </el-col>
               <el-col :span="10">
-                <el-input-number v-model="creature.health.damage" :min="0" :max="health.total + attributes.Cha.total" v-if="creature.basics.type.name == 'undead'" @change="healthCheck()" aria-label="Current Damage" />
+                <el-input-number v-model="creature.health.damage" :min="0" :max="health.total + attributes.Cha.total" v-if="creature.basics.type == 'undead'" @change="healthCheck()" aria-label="Current Damage" />
                 <el-input-number v-model="creature.health.damage" :min="0" :max="health.total + attributes.Con.total" v-else @change="healthCheck()" aria-label="Current Damage" />
               </el-col>
             </el-row>
@@ -382,7 +383,7 @@
               <g-icon iconSize="20px" v-if="data.extras && data.extras.icon" :iconName="data.extras.icon" />
               <span v-else> • </span>
             </el-col>
-            <el-col :xs="10" :sm="5" :md="4">
+            <el-col :xs="10" :sm="5" :md="5">
               <el-tooltip v-if="data.value" placement="left" effect="light">
                 <el-button @click="actionBtn(data)" size="small" type="primary">
                   <span v-if="data.value.extras.AtkNum"> {{ data.value.extras.AtkNum }} &nbsp; </span>
@@ -490,19 +491,19 @@
               <span v-if="data.value.range"> {{ data.value.range }} ft. </span>
             </el-col>
 
+            <!-- Special Abilities -->
+            <el-col v-if="data.value && data.value.shortText" :span="14">
+              {{ data.value.shortText }}
+            </el-col>
+
             <!-- Notes -->
-            <el-col v-if="data.value && data.value.extras" :xs="0" :span="2">
-              <el-tooltip v-if="data.value.extras.notes" placement="left" effect="light">
+            <el-col v-if="data.value && data.value.extras && data.value.extras.notes" :xs="0" :span="2">
+              <el-tooltip v-if="data.value.extras.notes.length" placement="left" effect="light">
                 <el-tag size="small" effect="dark" type="primary"> Notes </el-tag>
                 <template #content>
                   {{ data.value.extras.notes }}
                 </template>
               </el-tooltip>
-            </el-col>
-
-            <!-- Special Abilities -->
-            <el-col v-if="data.value && data.value.benefit" :span="14">
-              {{ data.value.benefit.text }}
             </el-col>
           </template>
         </el-tree>
@@ -1309,6 +1310,7 @@ import GAbility from '@/components/template/GAbility.vue'
 export default {
   name: "CreatureCard",
   components: { HexGraph, GItem, GAbility },
+  emits: [ 'openDrawer' ],
   props: { source: { type: Object } },
   data() {
     return {
@@ -1637,9 +1639,11 @@ export default {
 
         // Level Loop
         for (let i = 1; i < cClass.levels+1; i++) {
-          health.total += firstLevel ? cClass.hd : cClass.hd / 2 + 0.5;
-          bonus += this.attributes[hpMod].mod;
-          firstLevel = false;
+          if (cClass.hd) {
+            health.total += firstLevel ? cClass.hd : cClass.hd / 2 + 0.5;
+            bonus += this.attributes[hpMod].mod;
+            firstLevel = false;
+          }
         }
 
         health.sources.push( `+${cClass.levels}d${cClass.hd}` );
@@ -1647,9 +1651,7 @@ export default {
 
       // HP Mod
       health.total += bonus;
-      // if (!health.sources.includes(`+${bonus} ${hpMod}`)) {
-        health.sources.push( `+${bonus} ${hpMod}` );
-      // }
+      health.sources.push( `+${bonus} ${hpMod}` );
       health.total = Math.floor(health.total);
 
       this.bonusLoop(health, "HP");
@@ -1698,8 +1700,8 @@ export default {
         bonus = 0;
         switch (name) {
           case "fort":
-            bonus += (this.creature.basics.type.name == "undead") ? this.attributes.Cha.mod : this.attributes.Con.mod;
-            bName = (this.creature.basics.type.name == "undead") ? "Cha" : "Con";
+            bonus += (this.creature.basics.type == "undead") ? this.attributes.Cha.mod : this.attributes.Con.mod;
+            bName = (this.creature.basics.type == "undead") ? "Cha" : "Con";
             break;
           case "ref":
             bonus += this.attributes.Dex.mod;
@@ -1715,7 +1717,7 @@ export default {
 
         // Racial HD Check
         if (this.creature.basics.type.levels) {
-          bName = this.creature.basics.type.name;
+          bName = this.creature.basics.type;
           bonus = 0;
           let saveMult = this.rules.creature_types[bName][name].mult;
           bonus += saveMult * this.creature.basics.type.levels;
@@ -1724,16 +1726,15 @@ export default {
           this.applyBonus(bName, bonus, save);
         }
         // Class Loop
-        for (let [cName, cClass] of Object.entries(this.creature.classes)) {
-          if (this.classes[cName]) {
+        for (let cClass of this.creature.classes) {
+          if (cClass.saves) {
             let levels = cClass.levels;
-            cClass = this.classes[cName];
             bonus = 0;
-            let saveMult = cClass[name].mult;
+            let saveMult = cClass.saves[name].mult;
             bonus += saveMult * levels;
-            bonus += cClass[name].bonus;
+            bonus += cClass.saves[name].bonus;
             bonus = Math.floor(bonus);
-            this.applyBonus(cName, bonus, save);
+            this.applyBonus(cClass.name, bonus, save);
           }
         }
       }
@@ -1828,15 +1829,11 @@ export default {
     // USES: basics, cClasses
     bab() {
       let bab = 0;
-      // Racial HD Check
-      if (this.creature.basics.type.levels) {
-        let racialBAB = this.rules.creature_types ? this.rules.creature_types[this.creature.basics.type.name].bab : 0;
-        bab += racialBAB * this.creature.basics.type.levels;
-      }
-      // Class Loop
-      for (let [name, cClass] of Object.entries(this.creature.classes)) {
-        let classBAB = this.classes[name] ? this.classes[name].bab : 0;
-        bab += classBAB * cClass.levels;
+      // Class Loop (includes racial hd)
+      for (let cClass of this.creature.classes) {
+        if (cClass.bab) {
+          bab += cClass.bab * cClass.levels;
+        }
       }
       bab = Math.floor(bab);
       return bab;
@@ -1854,11 +1851,12 @@ export default {
       *      Special Actions      *
       *                           *
       \***************************/
+      // console.log(this.creature.abilities);
       // Abilities, like cleave, into 'special actions'
-      for (const [name, abil] of Object.entries(this.abilities)) {
+      for (const abil of this.abilities) {
         if (abil.extras.showMain) {
           actions[2].children.push({
-            "label": name, "value": abil
+            "label": abil.name, "value": abil
           });
         }
       }
@@ -1980,18 +1978,13 @@ export default {
               range: weapon.value["Critical"].split("/")[0],
               mult: weapon.value["Critical"].split("/")[1]
             },
-            range: weapon.value.range
+            range: weapon.value.range,
             // notes: weapon.value["Extras"]["Notes"]
+            extras: (weapon.value.Extras) ? weapon.value.Extras : []
           }
         };
 
-        newAtk.value.crit = {};
-        newAtk.value.crit.range = weapon.value.Critical.split("/")[0];
-        newAtk.value.crit.mult = weapon.value.Critical.split("/")[1];
-        newAtk.value.extras = (weapon.value.Extras) ? weapon.value.Extras : [];
-
         // Attack Bonus
-
         this.applyBonus("BAB", this.bab, newAtk.value.atkBonus);
         this.applyBonus("Size", this.sizeStats["ac / atk"], newAtk.value.atkBonus);
         // Add mwk or magic enhancements to atk bonus
@@ -2085,7 +2078,7 @@ export default {
         }
       }
 
-      // console.log(actions);
+      console.log(actions);
       return actions;
     },
     // USES: basics, inventory, bonusLoop(bonuses), attributes
@@ -2180,7 +2173,7 @@ export default {
     *                           *
     \***************************/
     capFirsts(string) {
-      // return string;
+      if (Number.isInteger(string)) { string = string.toString(); }
       return string ? string.replace(/(^\w|\s\w)/g, m => m.toUpperCase()) : "";
     },
     bonusLoop(object, tString) {
@@ -2243,9 +2236,9 @@ export default {
     },
     healthCheck() {
       let deathNum, curr = this.health.total - this.health.damage;
-      if (this.creature.basics.type.name == "construct") {
+      if (this.creature.basics.type == "construct") {
         deathNum = 0;
-      } else if (this.creature.basics.type.name == "undead") {
+      } else if (this.creature.basics.type == "undead") {
         deathNum = 0 - this.attributes.Cha.total;
       } else {
         deathNum = 0 - this.attributes.Con.total;
@@ -2310,6 +2303,8 @@ export default {
       // .then((response) => { this.$message({ message: `${response.character.name} updated`, type: 'success', }); })
       // .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
     },
+
+    openDrawer() { this.$emit('open-drawer'); },
 
     /***************************\
     *                           *

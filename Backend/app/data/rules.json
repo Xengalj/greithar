@@ -446,9 +446,11 @@
       "hd": 8,
       "ranks": 4,
       "bab": 0.75,
-      "fort": { "mult": 0.33, "bonus": 0 },
-      "ref": { "mult": 0.33, "bonus": 0 },
-      "will": { "mult": 0.5, "bonus": 2 },
+      "saves": {
+        "fort": { "mult": 0.33, "bonus": 0 },
+        "ref": { "mult": 0.33, "bonus": 0 },
+        "will": { "mult": 0.5, "bonus": 2 }
+      },
       "skills": [ "Acrobatics", "Climb", "Escape Artist", "Fly", "Intimidate", "Perception", "Spellcraft", "Stealth", "Survival", "Swim" ],
       "traits": {
         "Darkvision": {
@@ -464,9 +466,11 @@
       "hd": 8,
       "ranks": 2,
       "bab": 0.75,
-      "fort": { "mult": 0.5, "bonus": 2 },
-      "ref": { "mult": 0.5, "bonus": 2 },
-      "will": { "mult": 0.33, "bonus": 0 },
+      "saves": {
+        "fort": { "mult": 0.5, "bonus": 2 },
+        "ref": { "mult": 0.5, "bonus": 2 },
+        "will": { "mult": 0.33, "bonus": 0 }
+      },
       "skills": [ "Acrobatics", "Climb", "Fly", "Perception", "Stealth", "Swim" ],
       "traits": {
         "Low-light Vision": {
@@ -482,9 +486,11 @@
       "hd": 10,
       "ranks": 2,
       "bab": 1,
-      "fort": { "mult": 0.33, "bonus": 0 },
-      "ref": { "mult": 0.33, "bonus": 0 },
-      "will": { "mult": 0.33, "bonus": 0 },
+      "saves": {
+        "fort": { "mult": 0.33, "bonus": 0 },
+        "ref": { "mult": 0.33, "bonus": 0 },
+        "will": { "mult": 0.33, "bonus": 0 }
+      },
       "skills": [],
       "traits": {
         "Darkvision": {
@@ -514,9 +520,11 @@
       "hd": 12,
       "ranks": 6,
       "bab": 1,
-      "fort": { "mult": 0.5, "bonus": 2 },
-      "ref": { "mult": 0.5, "bonus": 2 },
-      "will": { "mult": 0.5, "bonus": 2 },
+      "saves": {
+        "fort": { "mult": 0.5, "bonus": 2 },
+        "ref": { "mult": 0.5, "bonus": 2 },
+        "will": { "mult": 0.5, "bonus": 2 }
+      },
       "skills": [ "Appraise", "Bluff", "Climb", "Craft", "Diplomacy", "Fly", "Heal", "Intimidate", "Knowledge (arcana)", "Knowledge (dungeoneering)", "Knowledge (engineering)", "Knowledge (geography)", "Knowledge (history)", "Knowledge (local)", "Knowledge (nature)", "Knowledge (nobility)", "Knowledge (planes)", "Knowledge (religion)", "Linguistics", "Perception", "Sense Motive", "Spellcraft", "Stealth", "Survival", "Swim", "Use Magic Device" ],
       "traits": {
         "Darkvision": {
@@ -546,9 +554,11 @@
       "hd": 6,
       "ranks": 6,
       "bab": 0.5,
-      "fort": { "mult": 0.33, "bonus": 2 },
-      "ref": { "mult": 0.5, "bonus": 2 },
-      "will": { "mult": 0.5, "bonus": 2 },
+      "saves": {
+        "fort": { "mult": 0.33, "bonus": 2 },
+        "ref": { "mult": 0.5, "bonus": 2 },
+        "will": { "mult": 0.5, "bonus": 2 }
+      },
       "skills": [ "Acrobatics", "Bluff", "Climb", "Craft", "Diplomacy", "Disguise", "Escape Artist", "Fly", "Knowledge (geography)", "Knowledge (local)", "Knowledge (nature)", "Perception", "Perform", "Sense Motive", "Sleight of Hand", "Stealth", "Swim", "Use Magic Device" ],
       "traits": {
         "Low-light Vision": {
@@ -564,9 +574,11 @@
       "hd": 8,
       "ranks": 2,
       "bab": 0.75,
-      "fort": { "mult": 0.33, "bonus": 0 },
-      "ref": { "mult": 0.33, "bonus": 0 },
-      "will": { "mult": 0.33, "bonus": 0 },
+      "saves": {
+        "fort": { "mult": 0.33, "bonus": 0 },
+        "ref": { "mult": 0.33, "bonus": 0 },
+        "will": { "mult": 0.33, "bonus": 0 }
+      },
       "skills": [ "Climb", "Craft", "Handle Animal", "Heal", "Profession", "Ride", "Survival" ],
       "traits": {}
     },
@@ -574,9 +586,11 @@
       "hd": 10,
       "ranks": 2,
       "bab": 1,
-      "fort": { "mult": 0.5, "bonus": 2 },
-      "ref": { "mult": 0.5, "bonus": 2 },
-      "will": { "mult": 0.33, "bonus": 0 },
+      "saves": {
+        "fort": { "mult": 0.5, "bonus": 2 },
+        "ref": { "mult": 0.5, "bonus": 2 },
+        "will": { "mult": 0.33, "bonus": 0 }
+      },
       "skills": [ "Acrobatics", "Climb", "Fly", "Perception", "Stealth", "Swim" ],
       "traits": {
         "Darkvision": {
@@ -599,9 +613,11 @@
       "hd": 10,
       "ranks": 4,
       "bab": 1,
-      "fort": { "mult": 0.33, "bonus": 0 },
-      "ref": { "mult": 0.5, "bonus": 2 },
-      "will": { "mult": 0.5, "bonus": 2 },
+      "saves": {
+        "fort": { "mult": 0.33, "bonus": 0 },
+        "ref": { "mult": 0.5, "bonus": 2 },
+        "will": { "mult": 0.5, "bonus": 2 }
+      },
       "skills": [ "Climb", "Craft", "Fly", "Intimidate", "Perception", "Ride", "Stealth", "Survival", "Swim" ],
       "traits": {
         "Darkvision": {
@@ -617,9 +633,11 @@
       "hd": 8,
       "ranks": 2,
       "bab": 0.75,
-      "fort": { "mult": 0.33, "bonus": 0 },
-      "ref": { "mult": 0.33, "bonus": 0 },
-      "will": { "mult": 0.33, "bonus": 0 },
+      "saves": {
+        "fort": { "mult": 0.33, "bonus": 0 },
+        "ref": { "mult": 0.33, "bonus": 0 },
+        "will": { "mult": 0.33, "bonus": 0 }
+      },
       "skills": [],
       "traits": {
         "Blind": {
@@ -642,9 +660,11 @@
       "hd": 10,
       "ranks": 6,
       "bab": 1,
-      "fort": { "mult": 0.33, "bonus": 0 },
-      "ref": { "mult": 0.33, "bonus": 0 },
-      "will": { "mult": 0.33, "bonus": 0 },
+      "saves": {
+        "fort": { "mult": 0.33, "bonus": 0 },
+        "ref": { "mult": 0.33, "bonus": 0 },
+        "will": { "mult": 0.33, "bonus": 0 }
+      },
       "skills": [ "Bluff", "Craft", "Knowledge (planes)", "Perception", "Sense Motive", "Stealth" ],
       "traits": {
         "Darkvision": {
@@ -660,9 +680,11 @@
       "hd": 8,
       "ranks": 2,
       "bab": 0.75,
-      "fort": { "mult": 0.5, "bonus": 2 },
-      "ref": { "mult": 0.33, "bonus": 0 },
-      "will": { "mult": 0.33, "bonus": 0 },
+      "saves": {
+        "fort": { "mult": 0.5, "bonus": 2 },
+        "ref": { "mult": 0.33, "bonus": 0 },
+        "will": { "mult": 0.33, "bonus": 0 }
+      },
       "skills": [ "Perception", "Stealth" ],
       "traits": {
         "Low-light Vision": {
@@ -685,9 +707,12 @@
       "hd": 8,
       "ranks": 4,
       "bab": 0.75,
-      "fort": { "mult": 0.33, "bonus": 0 },
-      "ref": { "mult": 0.33, "bonus": 0 },
-      "will": { "mult": 0.5, "bonus": 2 },
+      "saves": {},
+      "saves": {
+        "fort": { "mult": 0.33, "bonus": 0 },
+        "ref": { "mult": 0.33, "bonus": 0 },
+        "will": { "mult": 0.5, "bonus": 2 }
+      },
       "skills": [ "Climb", "Disguise", "Fly", "Intimidate", "Knowledge (arcana)", "Knowledge (religion)", "Perception", "Sense Motive", "Spellcraft", "Stealth" ],
       "traits": {
         "Darkvision": {
@@ -710,9 +735,11 @@
       "hd": 8,
       "ranks": 2,
       "bab": 0.75,
-      "fort": { "mult": 0.5, "bonus": 2 },
-      "ref": { "mult": 0.33, "bonus": 0 },
-      "will": { "mult": 0.33, "bonus": 0 },
+      "saves": {
+        "fort": { "mult": 0.5, "bonus": 2 },
+        "ref": { "mult": 0.33, "bonus": 0 },
+        "will": { "mult": 0.33, "bonus": 0 }
+      },
       "skills": [],
       "traits": {
         "Darkvision": {

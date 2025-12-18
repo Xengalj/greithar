@@ -142,7 +142,7 @@
   <br><br><br>
 
   <el-dialog :width="creatureWidth" v-model="monsterVisible" :before-close="monsterClose">
-    <CreatureCard :source="creature"></CreatureCard>
+    <CreatureCard :source="creature" @open-drawer="drawer = true;"></CreatureCard>
     <!-- <template #footer>
       <div class="dialog-footer">
         <el-button @click="monsterClose()"> Close </el-button>
@@ -598,7 +598,7 @@ export default {
 
         // Load Class[race/type]
         let type = {
-          name: response.Race ? response.Race : response.Type,
+          name: (response.Type == 'humanoid') ? response.Race : response.Type,
           levels: 0,
           magic: {},
           abilites: []
