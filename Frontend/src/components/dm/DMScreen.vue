@@ -135,7 +135,7 @@
   <el-button type="primary" circle @click="loadMonster('Adult Red Dragon')">
     <g-icon iconSize="24px" iconName="dragon" />
   </el-button>
-  <el-button type="primary" circle @click="loadMonster('Shoreline Cleric')">
+  <el-button type="primary" circle @click="creatureWidth = 355; loadMonster('Adult Red Dragon')">
     <g-icon iconSize="24px" iconName="runeStone" />
   </el-button>
 
