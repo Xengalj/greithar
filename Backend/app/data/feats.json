@@ -2,7 +2,7 @@
   "Harvest Parts": {
     "description": "You may extract crafting resources from a monster's carcass with a Craft or Heal check (DC 15 + CR). This provides a value equal to the creature's CR^2 × 10 gp.",
     "shortText": "Harvest crafting resources with a Craft / Heal check, DC 15 + CR",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {},
     "extras": {
@@ -13,7 +13,7 @@
   "Grisly Ornament": {
     "description": "You may create and use ornaments from your foes granting a moral bonus (CR / 4), using a Craft or Heal check (DC 15 + CR). The bonus applies to all creatures of the same type, and has a +1 against the same variety.",
     "shortText": "Create ornaments with a Craft / Heal check, DC 15 + CR",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {},
     "extras": {
@@ -24,7 +24,7 @@
   "Scribe Scroll": {
     "description": "You can create a scroll of any spell that you know. See magic item creation rules for more information.",
     "shortText": "You can create magic scrolls",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {},
     "extras": {
@@ -35,7 +35,7 @@
   "Craft Poppet": {
     "description": "You can create poppet constructs and are treated as having both Craft Magic Arms and Craft Wonderous Item to fill the prerequisites for Craft Construct.",
     "shortText": "You can craft poppets and add augmentations to existing poppets that you control",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {},
     "extras": {
@@ -46,7 +46,7 @@
   "Brew Potion": {
     "description": "You can create magic potions of any 3rd-level or lower spell that you know.",
     "shortText": "You can magic potions",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {},
     "extras": {
@@ -57,7 +57,7 @@
   "Craft Wondrous Item": {
     "description": "You can create a wide variety of magic wondrous items. See magic item creation rules for more information.",
     "shortText": "You can create wondrous items, a type of magic item",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {},
     "extras": {
@@ -68,7 +68,7 @@
   "Craft Wand": {
     "description": "You can create a wand of any 4th-level or lower spell that you know, and a new wand has 50 charges. See magic item creation rules for more information.",
     "shortText": "You can create magic wands",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {},
     "extras": {
@@ -79,7 +79,7 @@
   "Craft Magic Arms and Armor": {
     "description": "You can create magic weapons, armor, or shields. See magic item creation rules for more information.",
     "shortText": "You can create magic armor, shields, and weapons",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {},
     "extras": {
@@ -90,7 +90,7 @@
   "Craft Construct": {
     "description": "You can create any construct whose prerequisites you meet. See construct creation rules for more information.",
     "shortText": "You can create construct creatures like golems",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {},
     "extras": {
@@ -101,7 +101,7 @@
   "Forge Ring": {
     "description": "You can create magic rings. See magic item creation rules for more information.",
     "shortText": "You can create magic rings",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {},
     "extras": {
@@ -112,7 +112,7 @@
   "Craft Rod": {
     "description": "Rods are scepter-like devices that have unique magical powers. See magic item creation rules for more information.",
     "shortText": "You can create magic rods",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {},
     "extras": {
@@ -123,7 +123,7 @@
   "Craft Staff": {
     "description": "You can create a staff that stores several spells with 10 charges. See magic item creation rules for more information.",
     "shortText": "You can create magic staves",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {},
     "extras": {
@@ -139,7 +139,7 @@
   "Combat Casting": {
     "description": "You get a +4 bonus on concentration checks made to cast a spell or use a spell-like ability when casting on the defensive or while grappled.",
     "shortText": "+4 to grappled or defensive casting concentration checks",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {
       "Combat Casting": { "value": 4, "type": "Feat", "targets": [ "concentration" ] }
@@ -152,7 +152,7 @@
   "Diehard": {
     "description": "When your hit point total is below 0, but you are not dead, you automatically stabilize, and you do not need to make a Constitution check each round to avoid losing additional hit points.",
     "shortText": "Stabilize automatically when below 0 hit points",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {},
     "extras": {
@@ -163,7 +163,7 @@
   "Run": {
     "description": "When running, you move five times your normal speed (if wearing medium, light, or no armor and carrying no more than a medium load) or four times your speed (if wearing heavy armor or carrying a heavy load). If you make a jump after a running start (see Acrobatics), you gain a +4 bonus on your Acrobatics check. While running, you retain your Dexterity bonus to your Armor Class.",
     "shortText": "You may run five times your normal speed",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {},
     "extras": {
@@ -174,7 +174,7 @@
   "Spell Penetration": {
     "description": "Your spells break through spell resistance more easily than most. You get a +2 bonus on caster level checks (1d20 + caster level) made to overcome a creature’s spell resistance.",
     "shortText": "+2 to caster level checks vs Spell Resistance",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {
       "Spell Penetration": { "value": 2, "type": "Feat", "targets": [ "spellPenetration" ] }
@@ -187,7 +187,7 @@
   "Toughness": {
     "description": "You have enhanced physical stamina, granting you +3 hit points, and an additional hit point for every Hit Die beyond 3.",
     "shortText": "You gain +1 hit point per level",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {
       "Toughness": { "value": 1, "type": "Feat", "targets": [ "health" ] }
@@ -202,7 +202,7 @@
   "Bloody Assault": {
     "description": "You can choose to take a –5 penalty on all melee attack rolls and CMB to inflict an additional 1d4 bleed damage (this happens at the start of each turn for the target, but does not stack).",
     "shortText": "+1d4 bleed damage at a -5 to hit",
-    "location": "self",
+    "location": "special",
     "trigger": "toggle",
     "bonuses": {
       "Bloddy Assault": { "value": -5, "type": "Feat", "targets": [ "MeleeAtkBonus", "cmb" ] }
@@ -215,7 +215,7 @@
   "Cleave": {
     "description": "As a standard action, you can make a single attack at your full base attack bonus against a foe within reach. If you hit, you deal damage normally and can make an additional attack (using your full base attack bonus) against a foe that is adjacent to the first and also within reach. You can only make one additional attack per round with this feat. When you use this feat, you take a –2 penalty to your Armor Class until your next turn.",
     "shortText": "You can strike two adjacent foes with a single swing",
-    "location": "self",
+    "location": "special",
     "trigger": "Standard",
     "bonuses": {
       "Cleave": { "value": -2, "type": "Feat", "targets": [ "totalAC", "touchAC", "flatAC" ] }
@@ -228,7 +228,7 @@
   "Combat Expertise": {
     "description": "You can choose to take a –1 penalty on all melee attack rolls and combat maneuver checks to gain a +1 dodge bonus to AC (Increases with higher BAB, and must be used with a melee weapon).",
     "shortText": "You can take a -1 to hit for a +1 to AC.",
-    "location": "self",
+    "location": "special",
     "trigger": "Free",
     "bonuses": {
       "Combat Expertise +": { "value": 1, "type": "Dodge", "targets": [ "totalAC", "touchAC" ] },
@@ -242,7 +242,7 @@
   "Distance Thrower": {
     "description": "With a thrown weapon, you reduce your penalty on ranged attack rolls due to range by 2.",
     "shortText": "Reduce range penalties by 2",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {},
     "extras": {
@@ -253,7 +253,7 @@
   "Death or Glory": {
     "description": "Against a creature of size Large or larger, you can make a single melee attack as a full-round action, gaining a +4 on the attack roll, damage roll, and critical confirmation roll. After you resolve your attack, the opponent you attack can spend an immediate action to make a single melee attack against you with the same bonuses.",
     "shortText": "+4 against a Large or bigger creature, but they also get a free +4 attack on you",
-    "location": "self",
+    "location": "special",
     "trigger": "Full-Round",
     "bonuses": {
       "Death or Glory": { "value": 4, "type": "Feat", "targets": [ "MeleeAtkBonus", "MeleeDmgBonus" ] }
@@ -266,7 +266,7 @@
   "Dodge": {
     "description": "Your training and reflexes allow you to react swiftly to avoid an opponent's attacks. A condition that makes you lose your Dex bonus to AC also makes you lose the benefits of this feat.",
     "shortText": "You gain a +1 dodge bonus to your AC",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {
       "Dodge": { "value": 1, "type": "Dodge", "targets": [ "totalAC", "touchAC" ] }
@@ -279,7 +279,7 @@
   "Far Shot": {
     "description": "You only suffer a –1 penalty per full range increment instead of the usual -2.",
     "shortText": "-1 per range increment instead of -2",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {},
     "extras": {
@@ -290,7 +290,7 @@
   "Hammer the Gap": {
     "description": "Each consecutive hit on the same opponent deals extra damage equal to the number of previous consecutive hits made this turn. This damage is multiplied on a crit.",
     "shortText": "Each consecutive hit on the same opponent deals extra damage",
-    "location": "self",
+    "location": "special",
     "trigger": "Full-Attack",
     "bonuses": {},
     "extras": {
@@ -301,7 +301,7 @@
   "Improved Initiative": {
     "description": "Your quick reflexes allow you to react to react rapidly to danger.",
     "shortText": "You get a +4 bonus on initiative checks",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {
       "Improved Initiative": { "value": 4, "type": "Feat", "targets": [ "initiative" ] }
@@ -314,7 +314,7 @@
   "Mounted Combat": {
     "description": "You are adept at guiding your mount through combat, and can make ride checks to avoid damage (Once per round, with the DC equal to the Attack Roll).",
     "shortText": "1/round, when hit, make a ride check to avoid damage (DC = Attack Roll)",
-    "location": "self",
+    "location": "special",
     "trigger": "Move",
     "bonuses": {},
     "extras": {
@@ -325,7 +325,7 @@
   "Point-Blank Shot": {
     "description": "You get a +1 bonus on attack and damage rolls with ranged weapons (and ranged touch spells) at ranges of up to 30 feet.",
     "shortText": "+1 to attack and damage rolls with ranged weapons",
-    "location": "self",
+    "location": "special",
     "trigger": "Free",
     "bonuses": {
       "Point-Blank Shot": { "value": 1, "type": "Feat", "targets": [ "RangedAtkBonus", "RangedDmgBonus" ] }
@@ -338,7 +338,7 @@
   "Power Attack": {
     "description": "You can choose to take a –1 penalty on all melee attack rolls and combat maneuver checks to gain a +2 bonus on all melee damage rolls (Increases with higher BAB).",
     "shortText": "You can take a -1 to hit for a +2 to damage.",
-    "location": "self",
+    "location": "special",
     "trigger": "Free",
     "bonuses": {
       "Power Attack +": { "value": 2, "type": "Feat", "targets": [ "MeleeDmgBonus" ] },
@@ -352,7 +352,7 @@
   "Precise Shot": {
     "description": "You are adept at firing ranged attacks into melee.",
     "shortText": "You don't take the -4 for firing into melee",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {},
     "extras": {
@@ -363,7 +363,7 @@
   "Quick Draw": {
     "description": "You can draw weapons faster than most, becoming a free action from a move action. You may also draw a hidden weapon as a move action instead of a standard action.",
     "shortText": "Draw a weapon as a free action.",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {},
     "extras": {
@@ -374,7 +374,7 @@
   "Two-Weapon Fighting": {
     "description": "You are adept at fighting with two weapons at once, reducing the penalty for your main hand by 2 and your off hand by 6.",
     "shortText": "You can attack with 2 weapons, with reduced penalties",
-    "location": "self",
+    "location": "special",
     "trigger": "Free",
     "bonuses": {},
     "extras": {
@@ -385,7 +385,7 @@
   "Vital Strike": {
     "description": "With a standard attack action (not full-round attack), you can make one attack at your highest base attack bonus that deals additional damage (roll weapon damage an additional time, not affected by crit).",
     "shortText": "Make one attack with full BAB & roll damage twice",
-    "location": "self",
+    "location": "special",
     "trigger": "Standard",
     "bonuses": {},
     "extras": {
@@ -396,7 +396,7 @@
   "Weapon Finesse": {
     "description": "With a light weapon, elven curve blade, rapier, whip, or spiked chain made for a creature of your size category, you may use your Dexterity modifier instead of your Strength modifier on attack rolls.",
     "shortText": "You may use your DexMod, instead of StrMod, on attack rolls for certain weapons",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {},
     "extras": {
@@ -407,7 +407,7 @@
   "Weapon Focus": {
     "description": "Choose one type of weapon (or unarmed strike, grapple or ray), you may select this feat multiple times, choosing a new weapon each time. You gain a +1 bonus on all attack rolls made using your selection.",
     "shortText": "+1 bonus on all attack rolls made using your selection",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {},
     "extras": {
@@ -423,7 +423,7 @@
   "Raging Vitality": {
     "description": "Whenever you are raging, the morale bonus to your Constitution increases by +2. Your rage does not end if you become unconscious. While unconscious you must still expend rounds of rage per day each round.",
     "shortText": "+2 to the morale bonus to Constitution while raging",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {},
     "extras": {
@@ -434,7 +434,7 @@
   "Lingering Performance": {
     "description": "The bonuses and penalties from your bardic performance continue for 2 rounds after you cease performing, as long as all other requirements are still met.",
     "shortText": "Bardic Performance lingers for 2 rounds",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {},
     "extras": {
@@ -445,7 +445,7 @@
   "Selective Channeling": {
     "description": "When you channel energy, you can choose a number of targets in the area up to your Charisma modifier. These targets are not affected by your channeled energy.",
     "shortText": "Can exclude targets from Channel Energy",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {},
     "extras": {
@@ -456,7 +456,7 @@
   "Natural Spell": {
     "description": "You can complete the verbal and somatic components of spells while using wild shape. You substitute various noises and gestures for the normal verbal and somatic components of a spell. You can also use any material components or focuses you possess, even if such items are melded within your current form.",
     "shortText": "Can cast spells in wild shape",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {},
     "extras": {
@@ -467,7 +467,7 @@
   "Bleeding Attack": {
     "description": "When you damage an opponent with an unarmed strike, you deal an extra 1d4 bleed damage.",
     "shortText": "+1d4 bleed with an unarmed strike",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {},
     "extras": {
@@ -478,7 +478,7 @@
   "Word of Healing": {
     "description": "You may use your lay on hands to heal another creature at a range of 30 feet as a standard action that does not provoke an attack of opportunity. You must be able to speak and have a free hand to use this ability. The target heals half the amount they would have healed if you had touched them, but gains the benefits of your mercies as normal.",
     "shortText": "Use lay on hands up to 30 ft away",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {},
     "extras": {
@@ -487,9 +487,9 @@
     }
   },
   "Favored Defense": {
-    "location": "self",
     "description": "Choose one of your favored enemy types. You add half your favored enemy bonus to your CMD and as a dodge bonus to AC when attacked by that favored enemy type.",
     "shortText": "+1/2 your favored enemy bonus to your CMD and AC",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {},
     "extras": {
@@ -500,7 +500,7 @@
   "Improved Feint": {
     "description": "You can make a Bluff check to Feint as a move action.",
     "shortText": "Feint (Bluff) as a move action",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {},
     "extras": {
@@ -511,7 +511,7 @@
   "Sorcerous Bloodstrike": {
     "description": "Once per day, as an immediate action upon reducing a creature to 0 or fewer hit points with one of your sorcerer spells, you can regain one usage of a sorcerer bloodline power that has a limited number of uses per day. The slain creature must have at least half as many Hit Dice as your sorcerer level.",
     "shortText": "Regin a blodline power use on a kill",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {},
     "extras": {
@@ -522,7 +522,7 @@
   "Improved Familiar": {
     "description": "When choosing a familiar, you may choose a more powerful creature from those listed (on the wiki).",
     "shortText": "Your familiar is stronger than most",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {},
     "extras": {
@@ -533,7 +533,7 @@
   "Expanded Arcana": {
     "description": "When choosing a familiar, you may choose a more powerful creature from those listed (on the wiki).",
     "shortText": "You get an extra spell or spells?",
-    "location": "self",
+    "location": "special",
     "trigger": "Continuous",
     "bonuses": {},
     "extras": {

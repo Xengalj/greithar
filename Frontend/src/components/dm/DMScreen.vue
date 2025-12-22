@@ -113,7 +113,7 @@
 
   <br><br>
 
-  <el-button type="primary" circle @click="creatureWidth = 355; loadMonster('Vrock Demon')">
+  <el-button type="primary" circle @click="creatureWidth = 355; loadMonster('Skeletal Champion')">
     <g-icon iconSize="24px" iconName="undead" />
   </el-button>
 
@@ -607,7 +607,13 @@ export default {
         // ABILITIES <- Creature Type Traits
         for (let [name, trait] of Object.entries(this.rules.creature_types[response.Type.toLowerCase()].traits)) {
           trait.name = name;
-          trait.extras = { showMain: false, active: true, category: "Race" };
+          trait.extras = {
+                          showMain: false,
+                          active: true,
+                          category: "Race",
+                          source: { class: "", level: 0 },
+                          notes: []
+                        }
           creature.abilities.push(trait);
         }
 
@@ -615,7 +621,13 @@ export default {
         if (Object.keys(this.races).includes(response.Race)) {
           for (let [name, trait] of Object.entries(this.races[response.Race].traits)) {
             trait.name = name;
-            trait.extras = { showMain: false, active: true, category: "Race" };
+            trait.extras = {
+                            showMain: false,
+                            active: true,
+                            category: "Race",
+                            source: { class: "", level: 0 },
+                            notes: []
+                          }
             creature.abilities.push(trait);
           }
         }
@@ -628,8 +640,9 @@ export default {
           type.magic = {
             style: "Spontaneous Arcane",
             castingAtr: "Cha",
-            spellsPerDay: 0,
-            remainingCasts: 0
+            casterLevel: racialHD,
+            spellsPerDay: [ '∞', 7, 7, 5 ],
+            remainingCasts: [ 1, 7, 7, 5 ]
           } // end Class Has Magic
 
           creature.classes[0] = ( type );
@@ -820,7 +833,13 @@ export default {
               location: "self",
               trigger: "Continuous",
               bonuses: {},
-              extras: { showMain: false, active: false, category: "Feat", notes: [] }
+              extras: {
+                showMain: false,
+                active: false,
+                category: "Feat",
+                source: { class: "", level: 0 },
+                notes: []
+              }
             };
             name = name.trim();
             if (name.indexOf('(') > 0) { name = name.slice(0, name.indexOf('(')-1); }
@@ -836,6 +855,7 @@ export default {
                 showMain: (this.feats[name].trigger == "Continuous") ? false : true,
                 active: (this.feats[name].trigger == "Continuous") ? true : false,
                 category: isBonus ? "Class" : "Feat",
+                source: { class: "", level: 0 },
                 notes: []
               };
             }
@@ -863,7 +883,13 @@ export default {
             bonuses: {
               "Natural Armor": { value: tempAC, type: "Natural Armor", targets: this.rules.bonuses["Natural Armor"].targets }
             },
-            extras: { showMain: false, active: true, category: "Race", notes: [] }
+            extras: {
+              showMain: false,
+              active: true,
+              category: "Race",
+              source: { class: "Innate", level: 0 },
+              notes: []
+            }
           });
         }
         // Special Qualities
@@ -876,8 +902,13 @@ export default {
               location: "self",
               trigger: "Standard",
               bonuses: {},
-              extras: { showMain: false, active: false, category: "Trait", notes: [] }
-
+              extras: {
+                showMain: false,
+                active: false,
+                category: "Trait",
+                source: { class: "Innate", level: 0 },
+                notes: []
+              }
             });
           }
         }

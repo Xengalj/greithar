@@ -47,6 +47,9 @@
 
     <el-input-number v-model="inputNumber" :min="0" :max="10" @change="onChangeEvent" aria-label="inputNumberName" />
 
+    <el-switch v-model="boolean" active-text="ON TEXT" inactive-text="OFF TEXT" inline-prompt />
+
+
     <!-- value-key needed for objects, not arrays -->
     <el-select v-model="selectArray/Object" value-key="objectKey" placeholder="placeholderName" aria-label="selectName" multiple>
       <template #tag>

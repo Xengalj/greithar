@@ -58,13 +58,11 @@
   "bonuses": {
     "Alchemical": {
       "description": "An alchemical bonus is granted by the use of a non-magical, alchemical substance such as antitoxin.",
-      "targets": [ "fort", "ref", "will", "Ability Scores", "Saves" ],
-      "subtargets": [ "fort", "ref", "will" ]
+      "targets": [ "fort", "ref", "will", "Ability Scores", "Saves" ]
     },
     "Armor": {
       "description": "An armor bonus applies to armor class and is granted by armor or by a spell or magical effect that mimics armor. Armor bonuses stack with all other bonuses to armor class (even with natural armor bonuses) except other armor bonuses. An armor bonus doesn’t apply against touch attacks, except for armor bonuses granted by force effects (such as the mage armor spell) which apply against incorporeal touch attacks, such as that of a shadow.",
-      "targets": [ "totalAC", "flatAC" ],
-      "subtargets": [ "flat" ]
+      "targets": [ "totalAC", "flatAC" ]
     },
     "Circumstance": {
       "description": "A circumstance bonus (or penalty) arises from specific conditional factors impacting the success of the task at hand. Circumstance bonuses stack with all other bonuses, including other circumstance bonuses, unless they arise from essentially the same source.",
@@ -72,63 +70,51 @@
     },
     "Competence": {
       "description": "A competence bonus (or penalty) affects a character’s performance of a particular task, as in the case of the bardic ability to inspire competence. Multiple competence bonuses don’t stack; only the highest bonus applies.",
-      "targets": [ "fort", "ref", "will", "atkBonus", "Checks", "Saves" ],
-      "subtargets": [ "fort", "ref", "will" ]
+      "targets": [ "fort", "ref", "will", "atkBonus", "Checks", "Saves" ]
     },
     "Deflection": {
       "description": "A deflection bonus affects armor class and is granted by a spell or magic effect that makes attacks veer off harmlessly. Deflection bonuses stack with all other bonuses to AC except other deflection bonuses. A deflection bonus applies against touch attacks.",
-      "targets": [ "totalAC", "touchAC", "flatAC", "cmd" ],
-      "subtargets": [ "touch", "flat" ]
+      "targets": [ "totalAC", "touchAC", "flatAC", "cmd" ]
     },
     "Enhancement": {
       "description": "An enhancement bonus represents an increase in the effectiveness of armor, natural armor, weapon, or a general bonus to an ability score. Multiple enhancement bonuses on the same object (in the case of armor and weapons), creature (in the case of natural armor), or ability score do not stack. Only the highest enhancement bonus applies.",
-      "targets": [ "totalAC", "touchAC", "flatAC", "fort", "ref", "will", "atkBonus", "dmgBonus", "baseSpeed", "Str", "Dex", "Con", "Int", "Wis", "Cha" ],
-      "subtargets": [ "touch", "flat", "fort", "ref", "will" ]
+      "targets": [ "totalAC", "touchAC", "flatAC", "fort", "ref", "will", "atkBonus", "dmgBonus", "baseSpeed", "Str", "Dex", "Con", "Int", "Wis", "Cha" ]
     },
     "Insight": {
       "description": "An insight bonus improves performance of a given activity by granting the character an almost precognitive knowledge of what might occur. Multiple insight bonuses on the same character or object do not stack. Only the highest insight bonus applies.",
-      "targets": [ "totalAC", "touchAC", "flatAC", "fort", "ref", "will", "atkBonus", "cmd", "Checks" ],
-      "subtargets": [ "touch", "flat", "fort", "ref", "will" ]
+      "targets": [ "totalAC", "touchAC", "flatAC", "fort", "ref", "will", "atkBonus", "cmd", "Checks" ]
     },
     "Luck": {
       "description": "A luck bonus represents good (or bad) fortune. Multiple luck bonuses on the same character or object do not stack. Only the highest luck bonus applies.",
-      "targets": [ "totalAC", "touchAC", "flatAC", "fort", "ref", "will", "atkBonus", "dmgBonus", "cmd", "Checks" ],
-      "subtargets": [ "touch", "flat", "fort", "ref", "will" ]
+      "targets": [ "totalAC", "touchAC", "flatAC", "fort", "ref", "will", "atkBonus", "dmgBonus", "cmd", "Checks" ]
     },
     "Morale": {
       "description": "A morale bonus represents the effects of greater hope, courage, and determination (or hopelessness, cowardice, and despair in the case of a morale penalty). Multiple morale bonuses on the same character do not stack. Only the highest morale bonus applies. Non-intelligent creatures (creatures with an Intelligence of 0 or no Intelligence at all) cannot benefit from morale bonuses.",
-      "targets": [ "fort", "ref", "will", "atkBonus", "dmgBonus", "cmd", "Str", "Con", "Dex", "Checks" ],
-      "subtargets": [ "fort", "ref", "will" ]
+      "targets": [ "fort", "ref", "will", "atkBonus", "dmgBonus", "cmd", "Str", "Con", "Dex", "Checks" ]
     },
     "Natural Armor": {
       "description": "A natural armor bonus improves armor class resulting from a creature’s naturally tough hide. Natural armor bonuses stack with all other bonuses to armor class (even with armor bonuses) except other natural armor bonuses. Some magical effects (such as the barkskin spell) grant an enhancement bonus to the creature’s existing natural armor bonus, which has the effect of increasing the natural armor’s overall bonus to armor class. A natural armor bonus doesn’t apply against touch attacks.",
-      "targets": [ "totalAC", "flatAC" ],
-      "subtargets": [ "flat" ]
+      "targets": [ "totalAC", "flatAC" ]
     },
     "Profane": {
       "description": "A profane bonus (or penalty) stems from the power of evil. Multiple profane bonuses on the same character or object do not stack. Only the highest profane bonus applies.",
-      "targets": [ "totalAC", "touchAC", "flatAC", "fort", "ref", "will", "dmgBonus", "cmd", "DCs", "Checks" ],
-      "subtargets": [ "touch", "flat", "fort", "ref", "will" ]
+      "targets": [ "totalAC", "touchAC", "flatAC", "fort", "ref", "will", "dmgBonus", "cmd", "DCs", "Checks" ]
     },
     "Resistance": {
       "description": "A resistance bonus affects saving throws, providing extra protection against harm. Multiple resistance bonuses on the same character or object do not stack. Only the highest resistance bonus applies.",
-      "targets": [ "fort", "ref", "will" ],
-      "subtargets": [ "fort", "ref", "will" ]
+      "targets": [ "fort", "ref", "will" ]
     },
     "Sacred": {
       "description": "A sacred bonus (or penalty) stems from the power of good. Multiple sacred bonuses on the same character or object do not stack. Only the highest sacred bonus applies.",
-      "targets": [ "totalAC", "touchAC", "flatAC", "fort", "ref", "will", "dmgBonus", "cmd", "DCs", "Checks" ],
-      "subtargets": [ "touch", "flat", "fort", "ref", "will" ]
+      "targets": [ "totalAC", "touchAC", "flatAC", "fort", "ref", "will", "dmgBonus", "cmd", "DCs", "Checks" ]
     },
     "Shield": {
       "description": "A shield bonus improves armor class and is granted by a shield or by a spell or magic effect that mimics a shield. Shield bonuses stack with all other bonuses to AC except other shield bonuses. A magic shield typically grants an enhancement bonus to the shield’s shield bonus, which has the effect of increasing the shield’s overall bonus to AC.",
-      "targets": [ "totalAC", "flatAC" ],
-      "subtargets": [ "flat" ]
+      "targets": [ "totalAC", "flatAC" ]
     },
     "Size": {
       "description": "A size bonus or penalty is derived from a creature’s size category. Size modifiers of different kinds apply to armor class, attack rolls, Stealth checks, combat maneuver checks, and various other checks.",
-      "targets": [ "totalAC", "touchAC", "flatAC", "atkBonus", "Str", "Dex" ],
-      "subtargets": [ "touch", "flat" ]
+      "targets": [ "totalAC", "touchAC", "flatAC", "atkBonus", "Str", "Dex" ]
     },
     "Trait": {
       "description": "A trait bonus is a bonus granted via a character trait. Character traits are an optional additional character defining feature like feats but less powerful (typically about half as strong as a feat.) As with other named bonuses, trait bonuses do not “stack” with other trait bonuses.",
@@ -717,7 +703,7 @@
       "traits": {
         "Darkvision": {
           "description": "Undead can see in the dark up to 60 feet.",
-          "shortText": "Darkbision 60 ft.",
+          "shortText": "Darkvision 60 ft.",
           "location": "senses",
           "trigger": "Continuous",
           "bonuses": {}
