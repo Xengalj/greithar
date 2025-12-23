@@ -1869,7 +1869,7 @@ export default {
         }
       }
 
-      for (const [name, atk] of Object.entries(this.character.attacks)) {
+      for (const [name, atk] of Object.entries(this.character.actions)) {
         let newAtk = {
           "label": name,
           "value": {
@@ -2256,6 +2256,7 @@ export default {
       this.disabledCastPSPells();
 
       // add Rest button to tabs
+      console.log(this.$refs.mainTabs.$el.children[1]);
       const mainTabs = this.$refs.mainTabs.$el.children[1].querySelector('.el-tabs__nav-scroll');
       mainTabs.appendChild(this.$refs.restBtn.$el);
 

@@ -8,7 +8,7 @@
         </el-divider>
 
         <!-- Actions -->
-        <el-button @click=" console.log(`this.$router.push({ name: 'dm-screen', params: { id: character.id } });`); " type="primary" size="large">
+        <el-button @click="this.$router.push({ name: 'dm-screen', params: { campaign: encounter.campaignId, encounter: encounter.id } });" type="primary" size="large">
           View <g-icon iconName="eye" iconSize="24px" iconColor="#CCC" />
         </el-button>
         <el-button @click="saveEncounter" type="primary" size="large">

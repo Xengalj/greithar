@@ -1609,6 +1609,7 @@ export default {
   data() {
     return {
       loading: true,
+      character: {},
       advanced: this.$store.state.auth.user.roles.includes('admin'),
       sectionsCollapse: [ '' ],
       users: {},
@@ -1649,7 +1650,21 @@ export default {
       encounter: {},
       encountersLoading: false,
 
-      character: {},
+
+
+      // dialog: false,
+      // dialogWidth: 750,
+      // abil: {},
+      // showAbil: false,
+      // item: {},
+      // showItem: false,
+
+
+
+
+
+
+
     };
   },
   computed: {
@@ -1794,6 +1809,42 @@ export default {
       this.character = response.character;
       if (!this.character.user) { this.character.user = {} }
       if (!this.character.campaign) { this.character.campaign = {} }
+
+      // Restructure classes & basics
+      if (!Array.isArray(response.character.classes)) {
+        let classList = [];
+        let innate = {
+          name: (response.character.basics.type.name == 'humanoid') ? response.character.basics.race : response.character.basics.type.name,
+          levels: 0,
+          bab: 0,
+          hd: 0,
+          saves: { fort: { mult: 0, bonus: 0 }, ref: { mult: 0, bonus: 0 }, will: { mult: 0, bonus: 0 } },
+          abilites: [],
+          magic: {
+            style: "Spontaneous Arcane",
+            castingAtr: "Cha",
+            casterLevel: 1,
+            spellsPerDay: [],
+            remainingCasts: []
+          }
+        };
+        classList.push(innate);
+        for (let [cName, cClass] of Object.entries(response.character.classes)) {
+          cClass.name = cName;
+
+// TODO: sub obj magic
+
+          classList.push(cClass);
+        }
+        console.log(classList);
+
+        // this.character.classes = classList;
+        // this.character.basics.subtypes = response.character.basics.type.subtypes;
+        // this.character.basics.type = response.character.basics.type.name;
+      }
+
+
+
       this.loading = false;
     })
     .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })

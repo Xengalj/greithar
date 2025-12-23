@@ -484,6 +484,19 @@ export default {
             creature.basics.subtypes.push(response[`subtype${i}`]);
           }
         }
+        // Speeds
+        if (response.Swim_Speed) {
+          creature.basics.speed.swim = { total: response.Swim_Speed, sources: [ `+${response.Swim_Speed} Racial Base` ] }
+        }
+        if (response.Climb_Speed) {
+          creature.basics.speed.climb = { total: response.Climb_Speed, sources: [ `+${response.Climb_Speed} Racial Base` ] }
+        }
+        if (response.Fly_Speed) {
+          creature.basics.speed.fly = { total: response.Fly_Speed, sources: [ `+${response.Fly_Speed} Racial Base` ] }
+        }
+        if (response.Burrow_Speed) {
+          creature.basics.speed.burrow = { total: response.Burrow_Speed, sources: [ `+${response.Burrow_Speed} Racial Base` ] }
+        }
 
 
         /***************************\
@@ -661,37 +674,6 @@ export default {
           Wis: { base: (response.Wis == "-" ? 0 : response.Wis) },
           Cha: { base: (response.Cha == "-" ? 0 : response.Cha) }
         }
-
-        // /***************************\
-        // *                           *
-        // *          HEALTH           *
-        // *                           *
-        // \***************************/
-        // let health = { damage: 0, nonlethal: 0 };
-        //
-        // // Racial HD Check
-        // if (creature.basics.type.hd) {
-        //   for (let i = 1; i < creature.basics.type.levels+1; i++) {
-        //     firstLevel = false;
-        //     health.total += creature.basics.type.hd / 2 + 0.5;
-        //   }
-        //   health.sources.push( `+${creature.basics.type.levels}d${creature.basics.type.hd}` );
-        // }
-        //
-        // // Class Loop
-        // for (let [cName, cClass] of Object.entries(creature.classes)) {
-        //   if ([ "adept", "aristocrat", "commoner ", "expert", "warrior" ].includes(cName)) { firstLevel = false; }
-        //   let levels = cClass.levels;
-        //   cClass = this.classes[cName] ? this.classes[cName] : { "hd": 0 };
-        //   health.sources.push( `+${levels}d${cClass.hd}` );
-        //   // Level Loop
-        //   for (let i = 1; i < levels+1; i++) {
-        //     health.total += firstLevel ? cClass.hd : cClass.hd / 2 + 0.5;
-        //     firstLevel = false;
-        //   }
-        // }
-        // health.total = Math.floor(health.total);
-        // creature.health = health;
 
         /***************************\
         *                           *
@@ -918,7 +900,7 @@ export default {
         *          ATTACKS          *
         *                           *
         \***************************/
-        creature.attacks = {};
+        creature.actions = {};
         // MELEE
         if (response.Melee) {
           for (let atk of response.Melee.split(',')) {
@@ -971,7 +953,7 @@ export default {
             newAtk.Extras.naturalAtk = true;
             newAtk.style = "Melee";
 
-            creature.attacks[atkName] = newAtk;
+            creature.actions[atkName] = newAtk;
           }
         }
 
@@ -1015,7 +997,7 @@ export default {
             newAtk.Extras = extras;
             newAtk.Extras.naturalAtk = true;
             newAtk.style = "Ranged";
-            creature.attacks[atkName] = newAtk;
+            creature.actions[atkName] = newAtk;
           }
         }
 
@@ -1052,6 +1034,16 @@ export default {
           };
           if (name == "Linguistics" && response.Languages) {
             skill.extras.languages = response.Languages.split(',');
+          }
+          if (name == "Fly" && response.Maneuverability) {
+            /*
+            Clumsy –8
+            Poor –4
+            Average +0
+            Good +4
+            Perfect +8
+            */
+
           }
           creature.skills[name] = skill;
         }

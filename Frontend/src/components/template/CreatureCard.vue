@@ -1300,7 +1300,6 @@ export default {
   props: { source: { type: Object } },
   data() {
     return {
-      loading: true,
       original: { name: "", val: "" },
       creature: {},
 
@@ -1844,7 +1843,7 @@ export default {
         }
       }
 
-      for (const [name, atk] of Object.entries(this.creature.attacks)) {
+      for (const [name, atk] of Object.entries(this.creature.actions)) {
         let newAtk = {
           "label": name,
           "value": {
@@ -2213,8 +2212,6 @@ export default {
     },
 
 
-
-
   },
   beforeMount(){
     this.original.name = this.source.name;
@@ -2547,9 +2544,9 @@ export default {
     },
     updateAction(draggingNode, dropNode) {
       let action = draggingNode.data.label;
-      if (this.creature.attacks[action]) {
+      if (this.creature.actions[action]) {
         let style = ['Melee', 'Ranged', 'Special'].includes(dropNode.data.label) ? dropNode.data.label : dropNode.parent.data.label;
-        this.creature.attacks[action].style = style;
+        this.creature.actions[action].style = style;
       }
     },
 
