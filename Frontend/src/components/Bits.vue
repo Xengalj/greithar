@@ -154,42 +154,16 @@ export default {
 
     // TODO:
     /*
-    use a tree for class ability manninpulation
-    level #
-      [input abil name]
-      [input abil name]
-    level #
-      [input abil name]
+    - add maneuverability to fly { extras: { maneuverability: "average" }}
+        Clumsy –8
+        Poor –4
+        Average +0
+        Good +4
+        Perfect +8
+        
+
     */
 
-    /*
-    computed health
-    let firstLevel = true;
-
-    // Racial HD Check
-    if (creature.basics.type.hd) {
-      for (let i = 1; i < creature.basics.type.levels+1; i++) {
-        firstLevel = false;
-        health.total += creature.basics.type.hd / 2 + 0.5;
-      }
-      health.sources.push( `+${creature.basics.type.levels}d${creature.basics.type.hd}` );
-    }
-
-    // Class Loop
-    for (let [cName, cClass] of Object.entries(creature.classes)) {
-      if ([ "adept", "aristocrat", "commoner ", "expert", "warrior" ].includes(cName)) { firstLevel = false; }
-      let levels = cClass.levels;
-      cClass = this.classes[cName] ? this.classes[cName] : { "hd": 0 };
-      health.sources.push( `+${levels}d${cClass.hd}` );
-      // Level Loop
-      for (let i = 1; i < levels+1; i++) {
-        health.total += firstLevel ? cClass.hd : cClass.hd / 2 + 0.5;
-        firstLevel = false;
-      }
-    }
-    health.total = Math.floor(health.total);
-    creature.health = health;
-    */
 
 
 

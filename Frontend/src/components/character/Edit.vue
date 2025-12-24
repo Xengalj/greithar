@@ -1305,6 +1305,21 @@
           </el-col>
         </el-row>
       </el-collapse-item>
+
+      <!-- ADMIN EDIT -->
+      <el-collapse-item name="8" v-if="advanced">
+        <template #title>
+          <el-divider style="max-width:50%">
+            <h4> <g-icon iconSize="32px" iconName="lockedBook" /> Admin Edit </h4>
+          </el-divider>
+        </template>
+
+
+        <el-input type="textarea" v-model="temp" :autosize="{ minRows: 5 }" aria-label="Admin JSON Input" />
+
+      </el-collapse-item>
+
+
     </el-collapse>
 
     <!-- FOOTER -->
@@ -1610,9 +1625,9 @@ export default {
     return {
       loading: true,
       character: {},
+      users: {},
       advanced: this.$store.state.auth.user.roles.includes('admin'),
       sectionsCollapse: [ '' ],
-      users: {},
       healthColors: [ { color: '#f56c6c', percentage: 30 }, { color: '#e6a23c', percentage: 60 }, { color: '#5cb87a', percentage: 100 } ],
 
       addingLevel: false,
@@ -1620,22 +1635,14 @@ export default {
 
       abilityCollapse: [],
       abilityTypes: [ "Race", "Trait", "Class", "Feat", "Other" ],
-      addAbil: false,
-      abilName: "",
-      editingAbil: false,
-      abil: {},
 
-      atkName: "",
       atkNum: 0,
+      atkName: "",
 
       resourceName: "",
 
       newCondition: {},
       addingCondition: false,
-
-      editingItem: false,
-      item: {},
-      itemFilter: "",
 
       spellsTab: "",
       newSpell: { name: "", level: 0, class: "" },
@@ -1650,20 +1657,15 @@ export default {
       encounter: {},
       encountersLoading: false,
 
+      dialog: false,
+      dialogWidth: 750,
+      abil: {},
+      showAbil: false,
+      item: {},
+      showItem: false,
+      itemFilter: "",
 
-
-      // dialog: false,
-      // dialogWidth: 750,
-      // abil: {},
-      // showAbil: false,
-      // item: {},
-      // showItem: false,
-
-
-
-
-
-
+      temp: '',
 
     };
   },
@@ -1832,11 +1834,11 @@ export default {
         for (let [cName, cClass] of Object.entries(response.character.classes)) {
           cClass.name = cName;
 
-// TODO: sub obj magic
+          // TODO:  add magic sub object
 
           classList.push(cClass);
         }
-        console.log(classList);
+        // console.log(classList);
 
         // this.character.classes = classList;
         // this.character.basics.subtypes = response.character.basics.type.subtypes;
@@ -1914,6 +1916,8 @@ export default {
       }
     },
     saveCharacter() {
+      console.log(JSON.stringify(this.character));
+      this.temp = JSON.stringify(this.character);
       CharacterService.updateCharacter(this.character)
       .then((response) => { this.$message({ message: `${response.character.name} updated`, type: 'success', }); })
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
