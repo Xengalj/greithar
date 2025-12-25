@@ -1314,9 +1314,39 @@
           </el-divider>
         </template>
 
+        <el-row :gutter="10" align="middle">
+          <el-col :xs="24" :sm="6" :md="4">
+            <el-row :gutter="10">
+              <el-col :xs="12" class="center-horz">
+                <el-button @click="copySection(character)" type="info"> Copy Character </el-button>
+              </el-col>
+              <el-col :xs="12" class="center-horz">
+                <el-button @click="loadJSON(characterJSON)" type="primary"> Update Character </el-button>
+              </el-col>
+            </el-row>
+          </el-col>
+          <el-col :xs="24" :sm="18" :md="20">
+            <el-input type="textarea" v-model="characterJSON" :autosize="{ minRows: 5, maxRows: 20 }" aria-label="Admin Character JSON Input" />
+          </el-col>
+        </el-row>
 
-        <el-input type="textarea" v-model="temp" :autosize="{ minRows: 5 }" aria-label="Admin JSON Input" />
-
+        <div v-for="(section, name) in character" :key="name">
+          <el-row v-if="['inventory', 'basics', 'notes', 'classes', 'abilities', 'actions', 'skills', 'spells' ].includes(name)" :gutter="10" justify="center" align="middle">
+            <el-col :xs="24" :sm="6" :md="4">
+              <el-row :gutter="10">
+                <el-col :xs="12" class="center-horz">
+                  <el-button @click="copySection(character[name])" type="info"> Copy {{ capFirsts(name) }} </el-button>
+                </el-col>
+                <el-col :xs="12" class="center-horz">
+                  <el-button @click="loadJSON(sectionsJSON[name])" type="primary"> Update {{ capFirsts(name) }} </el-button>
+                </el-col>
+              </el-row>
+            </el-col>
+            <el-col :xs="24" :sm="18" :md="20">
+              <el-input type="textarea" v-model="sectionsJSON[name]" :autosize="{ minRows: 5, maxRows: 20 }" :aria-label="`Admin ${name} JSON Input`" />
+            </el-col>
+          </el-row>
+        </div>
       </el-collapse-item>
 
 
@@ -1657,6 +1687,9 @@ export default {
       encounter: {},
       encountersLoading: false,
 
+      characterJSON: {},
+      sectionsJSON: {},
+
       dialog: false,
       dialogWidth: 750,
       abil: {},
@@ -1916,8 +1949,6 @@ export default {
       }
     },
     saveCharacter() {
-      console.log(JSON.stringify(this.character));
-      this.temp = JSON.stringify(this.character);
       CharacterService.updateCharacter(this.character)
       .then((response) => { this.$message({ message: `${response.character.name} updated`, type: 'success', }); })
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
@@ -2331,6 +2362,21 @@ export default {
     },
 
 
+    /***************************\
+    *                           *
+    *        ADMIN EDIT         *
+    *                           *
+    \***************************/
+    copySection(Obj) {
+      console.log(Obj);
+
+      navigator.clipboard.writeText(JSON.stringify(Obj))
+      .then(() => { this.$message({ message: `Coppied to clipboard`, type: 'success', }); })
+      .catch(err => { console.error('Could not copy text: ', err); });
+    },
+    loadJSON(obj) {
+      console.log(obj);
+    },
 
   }
 }

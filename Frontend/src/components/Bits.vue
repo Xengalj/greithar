@@ -26,7 +26,6 @@
     <el-button @click="onClickEvent" size="large" type="primary" circle>
       CONTENT
     </el-button>
-    <el-button v-loading="loading">Test 2</el-button>
 
     <el-input v-model="inputString" @input="onChangeEvent" aria-label="inputName">
       <template #prepend>
@@ -160,7 +159,7 @@ export default {
         Average +0
         Good +4
         Perfect +8
-        
+
 
     */
 
