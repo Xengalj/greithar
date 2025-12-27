@@ -142,6 +142,40 @@
   <br><br><br>
 
   <el-dialog :width="creatureWidth" v-model="monsterVisible" :before-close="monsterClose">
+
+    <div v-for="item in campaigns" :key="item.id">
+      {{ item.name }}
+    </div>
+
+
+    <el-select
+      v-model="campaign"
+      @change="loadEncounters"
+      filterable
+      placeholder="Choose a Campaign"
+      aria-label="Select Campaign">
+      <el-option v-for="campaign in campaigns" :key="campaign.id" :label="campaign.name" :value="campaign" >
+        {{ campaign.user.username }}'s {{ campaign.name }} ({{ campaign.id }})
+      </el-option>
+    </el-select>
+
+    <el-select
+      v-model="encounter"
+      filterable
+      placeholder="Choose an Encounter"
+      aria-label="Select Encounter">
+      <el-option v-for="encounter in encounters" :key="encounter.id" :label="encounter.name" :value="encounter" />
+    </el-select>
+
+    <el-button v-if="encounter.id"
+    @click="encounter.monsters.push(creature); saveEncounter();"
+    type="primary" size="small" aria-label="Join Encounter"> Join </el-button>
+
+
+
+
+
+
     <CreatureCard :source="creature" @open-drawer="drawer = true;"></CreatureCard>
     <!-- <template #footer>
       <div class="dialog-footer">
@@ -313,16 +347,19 @@ export default {
       tempName: {},
 
       campaigns: [],
-      campaign: {},
+      campaign: "",
       characters: [],
 
       encounters: [],
-      encounter: {},
+      encounter: "",
       encounterCollapse: [ '' ],
 
       monsterVisible: false,
       creatureWidth: 750,
       creature: {},
+
+      monCampaign: "",
+      monEncounter: "",
     }
   },
   computed: {
@@ -338,16 +375,16 @@ export default {
   mounted() {
     if (!this.rules.size) { this.$router.push("/"); }
 
-    // if (this.$route.params.campaign) {
-    //   this.loadCampaign(this.$route.params.campaign);
-    //   if (this.$route.params.encounter) {
-    //     this.loadEncounter(this.$route.params.encounter);
-    //   } else {
-    //     this.loadEncounters();
-    //   }
-    // } else {
-    //   this.loadCampaigns();
-    // }
+    if (this.$route.params.campaign) {
+      this.loadCampaign(this.$route.params.campaign);
+      if (this.$route.params.encounter) {
+        this.loadEncounter(this.$route.params.encounter);
+      } else {
+        this.loadEncounters();
+      }
+    } else {
+      this.loadCampaigns();
+    }
 
   },
   methods: {
@@ -380,11 +417,11 @@ export default {
       })
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
     },
-    // update weather, player notes
     saveCampaign() {
       CampaignService.updateCampaign(this.campaign)
       .then((response) => { this.$message({ message: `${response.campaign.name} updated`, type: 'success', }); })
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
+      this.saveEncounter();
     },
 
     /***************************\
@@ -411,6 +448,11 @@ export default {
         this.encounter = response.encounter;
       })
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
+    },
+    saveEncounter() {
+      EncounterService.updateEncounter(this.encounter)
+      .then((response) => { this.$message({ message: `${response.encounter.name} updated`, type: 'success', }); })
+      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
     },
 
     /***************************\

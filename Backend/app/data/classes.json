@@ -4,9 +4,11 @@
     "proficiency": [ "simple weapons", "bombs", "light armor" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "hd": 8, "ranks": 4, "bab":  0.75,
-    "fort": { "mult": 0.5, "bonus": 2 },
-    "ref":  { "mult": 0.33, "bonus": 0 },
-    "will": { "mult": 0.33, "bonus": 0 },
+    "saves": {
+      "fort": { "mult": 0.5, "bonus": 2 },
+      "ref":  { "mult": 0.33, "bonus": 0 },
+      "will": { "mult": 0.33, "bonus": 0 }
+    },
     "special": [ [],
       [ "Alchemy (Su)", "Bomb (Su)", "Brew Potion (Ex)", "Mutagen (Su)", "Throw Anything (Ex)" ], [ "Poison Resistance (Ex)", "Poison Use (Ex)", "Discovery (Su) (REPLACE)" ], [ "Swift Alchemy (Ex)" ], [ "Discovery (Su) (REPLACE)" ], [],
       [ "Swift Poisoning (Ex)", "Discovery (Su) (REPLACE)" ], [], [ "Discovery (Su) (REPLACE)" ], [], [ "Poison Immunity (Ex)", "Discovery (Su) (REPLACE)" ],
@@ -38,9 +40,11 @@
     "proficiency": [ "simple weapons" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "bab":  0.5, "hd": 6, "ranks": 2,
-    "fort": { "mult": 0.33, "bonus": 0 },
-    "ref":  { "mult": 0.33, "bonus": 0 },
-    "will": { "mult": 0.5, "bonus": 2 },
+    "saves": {
+      "fort": { "mult": 0.33, "bonus": 0 },
+      "ref":  { "mult": 0.33, "bonus": 0 },
+      "will": { "mult": 0.5, "bonus": 2 }
+    },
     "special": [ [],
       [ "Cantrips", "Arcane Reservoir (Su)", "Consume Spells (Su)", "Arcanist Exploit (REPLACE)" ], [], [ "Arcanist Exploit (REPLACE)" ], [], [ "Arcanist Exploit (REPLACE)" ],
       [], [ "Arcanist Exploit (REPLACE)" ], [], [ "Arcanist Exploit (REPLACE)" ], [],
@@ -78,9 +82,11 @@
     "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "shields" ],
     "alignment": [ "NG", "CG", "N", "CN", "NE", "CE" ],
     "bab":  1, "hd": 12, "ranks": 4,
-    "fort": { "mult": 0.5, "bonus": 2 },
-    "ref":  { "mult": 0.33, "bonus": 0 },
-    "will": { "mult": 0.33, "bonus": 0 },
+    "saves": {
+      "fort": { "mult": 0.5, "bonus": 2 },
+      "ref":  { "mult": 0.33, "bonus": 0 },
+      "will": { "mult": 0.33, "bonus": 0 }
+    },
     "special": [ [],
       [ "Fast Movement (Ex)", "Rage (Ex)" ], [ "Rage Power (Ex) (REPLACE)", "Uncanny Dodge (Ex)" ], [ "Trap Sense (Ex)" ], [ "Rage Power (Ex) (REPLACE)" ], [ "Improved Uncanny Dodge (Ex)" ],
       [ "Rage Power (Ex) (REPLACE)" ], [ "Damage Reduction (Ex)" ], [ "Rage Power (Ex) (REPLACE)" ], [], [ "Rage Power (Ex) (REPLACE)" ],
@@ -95,9 +101,11 @@
     "proficiency": [ "simple weapons", "longsword", "rapier", "sap", "shortsword", "shortbow", "whip", "light armor", "shields" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "bab":  0.75, "hd": 8, "ranks": 6,
-    "fort": { "mult": 0.33, "bonus": 0 },
-    "ref":  { "mult": 0.5, "bonus": 2 },
-    "will": { "mult": 0.5, "bonus": 2 },
+    "saves": {
+      "fort": { "mult": 0.33, "bonus": 0 },
+      "ref":  { "mult": 0.5, "bonus": 2 },
+      "will": { "mult": 0.5, "bonus": 2 }
+    },
     "special": [ [],
       [ "Bardic Knowledge (Ex)", "Bardic Performance", "Countersong (Su)", "Distraction (Su)", "Fascinate (Su)", "Inspire Courage (Su)" ], [ "Versatile Performance (Ex) (REPLACE)", "Well-Versed (Ex)" ], [ "Inspire Competence (Su)" ], [], [ "Lore Master (Ex)" ],
       [ "Suggestion (Sp)", "Versatile Performance (Ex) (REPLACE)" ], [], [ "Dirge of Doom (Su)" ], [ "Inspire Greatness (Su)" ], [ "Jack-of-all-Trades (Ex)", "Versatile Performance (Ex) (REPLACE)" ],
@@ -133,9 +141,11 @@
     "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "shields" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "bab":  1, "hd": 10, "ranks": 4,
-    "fort": { "mult": 0.5, "bonus": 2 },
-    "ref":  { "mult": 0.33, "bonus": 0 },
-    "will": { "mult": 0.33, "bonus": 0 },
+    "saves": {
+      "fort": { "mult": 0.5, "bonus": 2 },
+      "ref":  { "mult": 0.33, "bonus": 0 },
+      "will": { "mult": 0.33, "bonus": 0 }
+    },
     "special": [ [],
       [ "Fast Movement (Ex)", "Bloodrage (Su)", "Bloodline (REPLACE)", "Bloodline Power (REPLACE)" ], [ "Uncanny Dodge" ], [ "Blood Sanctuary (Su)" ], [ "Blood Casting (Su)", "Eschew Materials", "Bloodline Power (REPLACE)" ], [ "Improved Uncanny Dodge (Ex)" ],
       [ "Bloodline Feat (REPLACE)" ], [ "Damage Reduction (Ex)", "Bloodline Spell (REPLACE)" ], [ "Bloodline Power (REPLACE)" ], [ "Bloodline Feat (REPLACE)" ], [ "Bloodline Spell (REPLACE)" ],
@@ -172,9 +182,11 @@
     "proficiency": [ "simple weapons", "handaxe", "short sword", "close weapon group", "light armor", "snields" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "hd": 10, "ranks": 4, "bab":  1,
-    "fort": { "mult": 0.5, "bonus": 2 },
-    "ref":  { "mult": 0.5, "bonus": 2 },
-    "will": { "mult": 0.33, "bonus": 0 },
+    "saves": {
+      "fort": { "mult": 0.5, "bonus": 2 },
+      "ref":  { "mult": 0.5, "bonus": 2 },
+      "will": { "mult": 0.33, "bonus": 0 }
+    },
     "special": [ [],
       [ "Brawler’s Cunning (Ex)", "Martial Flexibility (Ex)", "Martial Training (Ex)", "Unarmed Strike" ], [ "Bonus Combat Feat (REPLACE)", "Brawler’s Flurry (Ex)" ], [ "Maneuver Training (Ex)" ], [	"AC Bonus (Ex)", "Knockout (Ex)" ], [  "Bonus Combat Feat (REPLACE)", "Brawler’s Strike (Ex)", "Close Weapon Mastery (Ex)" ],
       [], [], [ "Bonus Combat Feat (REPLACE)" ], [], [],
@@ -189,9 +201,11 @@
     "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "heavy armor", "shields" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "bab":  1, "hd": 10, "ranks": 4,
-    "fort": { "mult": 0.5, "bonus": 2 },
-    "ref":  { "mult": 0.33, "bonus": 0 },
-    "will": { "mult": 0.33, "bonus": 0 },
+    "saves": {
+      "fort": { "mult": 0.5, "bonus": 2 },
+      "ref":  { "mult": 0.33, "bonus": 0 },
+      "will": { "mult": 0.33, "bonus": 0 }
+    },
     "special": [ [],
       [ "Challenge (Ex)", "Mount (Ex)", "Order (Ex)", "Tactician (Ex)" ], [ "Order Ability (REPLACE)" ], [ "Cavalier’s Charge (Ex)" ], [ "Expert Trainer (Ex)" ], [ "Banner (Ex)" ],
       [ "Bonus Combat Feat (REPLACE)" ], [], [ "Order Ability (REPLACE)" ], [ "Greater Tactician (Ex)" ], [],
@@ -206,9 +220,11 @@
     "proficiency": [ "simple weapons", "light armor", "medium armor", "shields" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "bab":  0.75, "hd": 8, "ranks": 2,
-    "fort": { "mult": 0.5, "bonus": 2 },
-    "ref":  { "mult": 0.33, "bonus": 0 },
-    "will": { "mult": 0.5, "bonus": 2 },
+    "saves": {
+      "fort": { "mult": 0.5, "bonus": 2 },
+      "ref":  { "mult": 0.33, "bonus": 0 },
+      "will": { "mult": 0.5, "bonus": 2 }
+    },
     "special": [ [],
       [ "Aura (Ex)", "Channel Energy (Su)", "Domain (REPLACE)", "Domain (REPLACE)", "Spontaneous Casting", "Bonus Languages" ], [], [], [], [],
       [], [], [], [], [],
@@ -241,9 +257,11 @@
     "proficiency": [ "club", "dagger", "dart", "quarterstaff", "scimitar", "scythe", "sickle", "shortspear", "sling", "spear", "natural attacks", "light armor", "medium armor", "shields" ],
     "alignment": [ "NG", "LN", "N", "CN", "NE" ],
     "bab":  0.75, "hd": 8, "ranks": 4,
-    "fort": { "mult": 0.5, "bonus": 2 },
-    "ref":  { "mult": 0.33, "bonus": 0 },
-    "will": { "mult": 0.5, "bonus": 2 },
+    "saves": {
+      "fort": { "mult": 0.5, "bonus": 2 },
+      "ref":  { "mult": 0.33, "bonus": 0 },
+      "will": { "mult": 0.5, "bonus": 2 }
+    },
     "special": [ [],
       [ "Nature Bond (Ex)", "Nature Sense (Ex)", "Wild Empathy (Ex)", "Spontaneous Casting", "Bonus Languages" ], [ "Woodland Stride (Ex)" ], [ "Trackless Step (Ex)" ], [ "Resist Nature's Lure (Ex)", "Wild Shape (Su)" ], [],
       [], [], [], [ "Venom Imunity (Ex)" ], [],
@@ -275,9 +293,11 @@
     "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "heavy armor", "shields" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "bab":  1, "hd": 10, "ranks": 2,
-    "fort": { "mult": 0.5, "bonus": 2 },
-    "ref":  { "mult": 0.33, "bonus": 0 },
-    "will": { "mult": 0.33, "bonus": 0 },
+    "saves": {
+      "fort": { "mult": 0.5, "bonus": 2 },
+      "ref":  { "mult": 0.33, "bonus": 0 },
+      "will": { "mult": 0.33, "bonus": 0 }
+    },
     "special": [ [],
       [ "Bonus Combat Feat (REPLACE)" ], [ "Bonus Combat Feat (REPLACE)", "Bravery (Ex)" ], [ "Armor Training (Ex)" ], [ "Bonus Combat Feat (REPLACE)" ], [ "Weapon Training (Ex) (REPLACE)" ],
       [ "Bonus Combat Feat (REPLACE)" ], [ "Armor Training (Ex) (REPLACE)" ], [ "Bonus Combat Feat (REPLACE)" ], [ "Weapon Training (Ex) (REPLACE)" ], [ "Bonus Combat Feat (REPLACE)" ],
@@ -293,9 +313,11 @@
     "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "shields" ],
     "alignment": [ "NG", "LN", "N", "CN", "NE" ],
     "hd": 8, "ranks": 6, "bab":  0.75,
-    "fort": { "mult": 0.5, "bonus": 2 },
-    "ref":  { "mult": 0.5, "bonus": 2 },
-    "will": { "mult": 0.33, "bonus": 0 },
+    "saves": {
+      "fort": { "mult": 0.5, "bonus": 2 },
+      "ref":  { "mult": 0.5, "bonus": 2 },
+      "will": { "mult": 0.33, "bonus": 0 }
+    },
     "special": [ [],
       [ "Animal Companion (Ex)", "Animal Focus (Su)", "Nature Training (Ex)", "Wild Empathy (Ex)" ], [ "Precise Companion (Ex)", "Track (Ex)" ], [ "Hunter Tactics (Ex)", "Bonus Teamwork Feat (REPALCE)" ], [ "Improved Empathic Link (Su)" ], [ "Woodland Stride (Ex)" ],
       [ "Bonus Teamwork Feat (REPALCE)" ], [ "Bonus Tricks (Ex)" ], [ "Second Animal Focus (Su)", "Swift Tracker (Ex)" ], [ "Bonus Teamwork Feat (REPALCE)" ], [ "Raise Animal Companion (Sp)" ],
@@ -331,9 +353,11 @@
     "proficiency": [ "simple weapons", "hand crossbow", "longbow", "repeating crossbow", "shortbow", "favored weapon", "light armor", "medium armor", "shields" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "hd": 8, "ranks": 6, "bab":  0.75,
-    "fort": { "mult": 0.5, "bonus": 2 },
-    "ref":  { "mult": 0.33, "bonus": 0 },
-    "will": { "mult": 0.5, "bonus": 2 },
+    "saves": {
+      "fort": { "mult": 0.5, "bonus": 2 },
+      "ref":  { "mult": 0.33, "bonus": 0 },
+      "will": { "mult": 0.5, "bonus": 2 }
+    },
     "special": [ [],
       [ "Domain", "Judgment (Su)", "Monster Lore (Ex)", "Stern Gaze (Ex)" ], [ "Cunning Initiative (Ex)", "Detect Alignment (Sp)", "Track (Ex)" ], [ "Solo Tactics (Ex)", "Bonus Teamwork Feat (REPLACE)" ], [], [ "Bane (Su)", "Discern Lies (Sp)" ],
       [ "Bonus Teamwork Feat (REPLACE)" ], [], [ "Second Judgment (Ex)" ], [ "Bonus Teamwork Feat (REPLACE)" ], [],
@@ -370,9 +394,11 @@
     "proficiency": [ "simple weapons", "hand crossbow", "rapier", "sap", "shortbow", "short sword", "sword cane", "light armor" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "hd": 8, "ranks": 6, "bab":  0.75,
-    "fort": { "mult": 0.33, "bonus": 0 },
-    "ref":  { "mult": 0.5, "bonus": 2 },
-    "will": { "mult": 0.5, "bonus": 2 },
+    "saves": {
+      "fort": { "mult": 0.33, "bonus": 0 },
+      "ref":  { "mult": 0.5, "bonus": 2 },
+      "will": { "mult": 0.5, "bonus": 2 }
+    },
     "special": [ [],
       [ "Alchemy (Su)", "Inspiration (Ex)", "Trapfinding" ], [ "Poison Lore (Ex)", "Poison Resistance (Ex)" ], [ "Keen Recollection", "Trap Sense (Ex)", "Investigator Talent (REPLACE)" ], [ "Studied Combat (Ex)", "Studied Strike (Ex)", "Swift Alchemy (Ex)" ], [ "Investigator Talent (REPLACE)" ],
       [], [ "Investigator Talent (REPLACE)" ], [], [ "Investigator Talent (REPLACE)" ], [],
@@ -403,9 +429,11 @@
     "proficiency": [ "simple weapons", "martial weapons", "light armor" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "bab":  0.75, "hd": 8, "ranks": 2,
-    "fort": { "mult": 0.5, "bonus": 2 },
-    "ref":  { "mult": 0.33, "bonus": 0 },
-    "will": { "mult": 0.5, "bonus": 2 },
+    "saves": {
+      "fort": { "mult": 0.5, "bonus": 2 },
+      "ref":  { "mult": 0.33, "bonus": 0 },
+      "will": { "mult": 0.5, "bonus": 2 }
+    },
     "special": [ [],
       [ "Cantrips", "Arcane Pool (Su)", "Spell Combat (Ex)" ], [ "Spellstrike (Su)" ], [ "Magus Arcana (REPLACE)" ], [ "Spell Recall (Su)" ], [ "Bonus Feat (REPLACE)" ],
       [ "Magus Arcana (REPLACE)" ], [	"Knowledge Pool (Su)", "Medium Armor (Ex)" ], [ "Improved Spell Combat (Ex)" ], [ "Magus Arcana (REPLACE)" ], [ "Fighter Training (Ex)" ],
@@ -436,9 +464,11 @@
     "proficiency": [ "brass knuckles, cestus, club, crossbow (light or heavy), dagger, handaxe, javelin, kama, nunchaku, quarterstaff, sai, shortspear, short sword, shuriken, siangham, sling, spear and temple sword" ],
     "alignment": [ "LG", "LN", "LE" ],
     "bab":  0.75, "hd": 8, "ranks": 4,
-    "fort": { "mult": 0.5, "bonus": 2 },
-    "ref":  { "mult": 0.5, "bonus": 2 },
-    "will": { "mult": 0.5, "bonus": 2 },
+    "saves": {
+      "fort": { "mult": 0.5, "bonus": 2 },
+      "ref":  { "mult": 0.5, "bonus": 2 },
+      "will": { "mult": 0.5, "bonus": 2 }
+    },
     "special": [ [],
       [ "AC Bonus (Ex)", "Flurry of Blows (Ex)", "Unarmed Strike", "Stunning Fist (Ex)", "Bonus Feat (REPLACE)" ], [ "Evasion (Ex)", "Bonus Feat (REPLACE)" ], [ "Fast Movement (Ex)", "Maneuver Training (Ex)", "Still Mind (Ex)" ], [ "Ki Pool (Su)", "Slow Fall (Ex)" ], [ "High Jump (Ex)", "Purity of Body (Ex)" ],
       [ "Bonus Feat (REPLACE)" ], [ "Wholeness of Body (Su)" ], [], [ "Improved Evasion (Ex)" ], [ "Bonus Feat (REPLACE)" ],
@@ -453,9 +483,11 @@
     "proficiency": [ "simple weapons", "light armor", "medium armor", "shields" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "bab":  0.75, "hd": 8, "ranks": 4,
-    "fort": { "mult": 0.33, "bonus": 0 },
-    "ref":  { "mult": 0.33, "bonus": 0 },
-    "will": { "mult": 0.5, "bonus": 2 },
+    "saves": {
+      "fort": { "mult": 0.33, "bonus": 0 },
+      "ref":  { "mult": 0.33, "bonus": 0 },
+      "will": { "mult": 0.5, "bonus": 2 }
+    },
     "special": [ [],
       [ "Mystery", "Oracle's Curse (Ex)",  "Revelation" ], [ "Mystery Spell (REPLACE)" ], [ "Revelation (REPLACE)" ], [ "Mystery Spell (REPLACE)" ], [],
       [ "Mystery Spell (REPLACE)" ], [ "Revelation (REPLACE)" ], [ "Mystery Spell (REPLACE)" ], [], [ "Mystery Spell (REPLACE)" ],
@@ -490,9 +522,11 @@
     "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "heavy armor", "shields" ],
     "alignment": [ "LG" ],
     "bab":  1, "hd": 10, "ranks": 2,
-    "fort": { "mult": 0.5, "bonus": 2 },
-    "ref":  { "mult": 0.33, "bonus": 0 },
-    "will": { "mult": 0.5, "bonus": 2 },
+    "saves": {
+      "fort": { "mult": 0.5, "bonus": 2 },
+      "ref":  { "mult": 0.33, "bonus": 0 },
+      "will": { "mult": 0.5, "bonus": 2 }
+    },
     "special": [ [],
       [ "Aura of Good (Ex)", "Detect Evil (Sp)", "Smite Evil (Su)" ], [ "Divine Grace (Su)", "Lay on Hands (Su)" ], [ "Aura of Courage (Su)", "Divine Health (Ex)", "Mercy (Su) (REPLACE)" ], [ "Channel Positive Energy (Su)" ], [ "Divine Bond (Sp)" ],
       [ "Mercy (Su) (REPLACE)" ], [], [ "Aura of Resolve (Su)" ], [ "Mercy (Su) (REPLACE)" ], [],
@@ -522,9 +556,11 @@
     "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "shields" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "bab":  1, "hd": 10, "ranks": 6,
-    "fort": { "mult": 0.5, "bonus": 2 },
-    "ref":  { "mult": 0.5, "bonus": 2 },
-    "will": { "mult": 0.33, "bonus": 0 },
+    "saves": {
+      "fort": { "mult": 0.5, "bonus": 2 },
+      "ref":  { "mult": 0.5, "bonus": 2 },
+      "will": { "mult": 0.33, "bonus": 0 }
+    },
     "special": [ [],
       [ "Favored Enemy (Ex) (REPLACE)", "Track (Ex)", "Wild Empathy (Ex)" ], [ "Combat Style Feat (Ex) (REPLACE)" ], [ "Endurance", "Favored Terrain (Ex) (REPLACE)" ], [ "Hunter's Bond (Ex)" ], [ "Favored Enemy (Ex) (REPLACE)" ],
       [ "Combat Style Feat (Ex) (REPLACE)" ], [ "Woodland Stride (Ex)" ], [ "Swift Tracker (Ex)", "Favored Terain (Ex) (REPLACE)" ], [ "Evasion (Ex)" ], [ "Favored Enemy (Ex) (REPLACE)", "Combat Style Feat (Ex) (REPLACE)" ],
@@ -554,9 +590,11 @@
     "proficiency": [ "simple weapons", "hand crossbow", "rapier", "sap", "shortbow", "short sword", "light armor" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "bab":  0.75, "hd": 8, "ranks": 8,
-    "fort": { "mult": 0.33, "bonus": 0 },
-    "ref":  { "mult": 0.5, "bonus": 2 },
-    "will": { "mult": 0.33, "bonus": 0 },
+    "saves": {
+      "fort": { "mult": 0.33, "bonus": 0 },
+      "ref":  { "mult": 0.5, "bonus": 2 },
+      "will": { "mult": 0.33, "bonus": 0 }
+    },
     "special": [ [],
       [ "Sneak Attack", "Trapfinding" ], [ "Evasion (Ex)", "Rougue Talent (REPLACE)" ], [ "Trapsense (Ex)" ], [ "Rougue Talent (REPLACE)", "Uncanny Dodge (Ex)" ], [],
       [ "Rougue Talent (REPLACE)" ], [], [ "Improved Uncanny Dodge (Ex)", "Rougue Talent (REPLACE)" ], [], [ "Advanced Talents", "Rougue Talent (REPLACE)" ],
@@ -572,9 +610,11 @@
     "proficiency": [ "simple weapons", "light armor", "medium armor" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "hd": 8, "ranks": 4, "bab":  0.75,
-    "fort": { "mult": 0.33, "bonus": 0 },
-    "ref":  { "mult": 0.33, "bonus": 0 },
-    "will": { "mult": 0.5, "bonus": 2 },
+    "saves": {
+      "fort": { "mult": 0.33, "bonus": 0 },
+      "ref":  { "mult": 0.33, "bonus": 0 },
+      "will": { "mult": 0.5, "bonus": 2 }
+    },
     "special": [ [],
       [ "Spirit (Su)", "Spirit Animal (Ex)", "Spirit Magic" ], [ "Hex (REPLACE)" ], [], [ "Wandering Spirit (Su)", "Hex (REPLACE)" ], [],
       [ "Wandering Hex", "Hex (REPLACE)" ], [], [ "Hex (REPLACE)" ], [], [ "Hex (REPLACE)" ],
@@ -604,10 +644,11 @@
     "proficiency": [ "club", "dagger", "dart", "quarterstaff", "scimitar", "scythe", "sickle", "shortspear", "sling", "spear", "natural attacks", "light armor", "medium armor", "shields" ],
     "alignment": [ "NG", "LN", "N", "CN", "NE" ],
     "bab":  1, "hd": 10, "ranks": 4,
-    "fort": { "mult": 0.5, "bonus": 2 },
-    "ref":  { "mult": 0.5, "bonus": 2 },
-    "will": { "mult": 0.33, "bonus": 0 },
-
+    "saves": {
+      "fort": { "mult": 0.5, "bonus": 2 },
+      "ref":  { "mult": 0.5, "bonus": 2 },
+      "will": { "mult": 0.33, "bonus": 0 }
+    },
     "special": [ [],
       [ "Shifter Aspect (Su)", "Shifter Claws (Su)", "Wild Empahy (Ex)", "Bonus Languages" ], [ "Defensive Instinct (Ex)", "Track (Ex)" ], [ "Woodland Stride (Ex)" ], [ "Wild Shape (Su)" ], [ "Trackless Step (Ex)" ],
       [ "Shifter’s Fury (Ex)" ], [], [], [ "Chimeric Aspect (Su)" ], [],
@@ -624,9 +665,11 @@
     "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "shields" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "hd": 8, "ranks": 4, "bab":  0.75,
-    "fort": { "mult": 0.5, "bonus": 2 },
-    "ref":  { "mult": 0.33, "bonus": 0 },
-    "will": { "mult": 0.5, "bonus": 2 },
+    "saves": {
+      "fort": { "mult": 0.5, "bonus": 2 },
+      "ref":  { "mult": 0.33, "bonus": 0 },
+      "will": { "mult": 0.5, "bonus": 2 }
+    },
     "special": [ [],
       [ "Bardic Knowledge (Ex)", "Scribe Scroll", "Raging Song (Su)", "Inspired Rage (Su)" ], [ "Versatile Performance (Ex)", "Well-Versed (Ex)" ], [ "Song of Marching (Su)", "Rage Power (Ex) (REPLACE)" ], [ "Uncanny Dodge (Ex)" ], [ "Spell Kenning (Su)" ],
       [ "Song of Strength (Su)", "Rage Power (Ex) (REPLACE)" ], [ "Lore Master (Ex)" ], [ "Improved Uncanny Dodge (Ex)" ], [ "Damage Reduction (Ex)", "Rage Power (Ex) (REPLACE)" ], [ "Dirge of Doom (Su)" ],
@@ -662,9 +705,11 @@
     "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "shields" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "hd": 10, "ranks": 6, "bab":  1,
-    "fort": { "mult": 0.5, "bonus": 2 },
-    "ref":  { "mult": 0.5, "bonus": 0 },
-    "will": { "mult": 0.33, "bonus": 0 },
+    "saves": {
+      "fort": { "mult": 0.5, "bonus": 2 },
+      "ref":  { "mult": 0.5, "bonus": 0 },
+      "will": { "mult": 0.33, "bonus": 0 }
+    },
     "special": [ [],
       [ "Studied Target (Ex)", "Track (Ex)" ], [ "Slayer Talent (REPALCE)" ], [ "Sneak Attack" ], [ "Slayer Talent (REPALCE)" ], [],
       [ "Slayer Talent (REPALCE)" ], [ "Stalker (Ex)" ], [ "Slayer Talent (REPALCE)" ], [], [ "Advanced Talents", "Slayer Talent (REPLACE)" ],
@@ -679,9 +724,11 @@
     "proficiency": [ "simple weapons" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "bab":  0.5, "hd": 6, "ranks": 2,
-    "fort": { "mult": 0.33, "bonus": 0 },
-    "ref":  { "mult": 0.33, "bonus": 0 },
-    "will": { "mult": 0.5, "bonus": 2 },
+    "saves": {
+      "fort": { "mult": 0.33, "bonus": 0 },
+      "ref":  { "mult": 0.33, "bonus": 0 },
+      "will": { "mult": 0.5, "bonus": 2 }
+    },
     "special": [ [],
       [ "Eschew Materials", "Bloodline (REPLACE)", "Bloodline Power (REPLACE)" ], [], [ "Bloodline Power (REPLACE)", "Bloodline Spell (REPLACE)" ], [], [ "Bloodline Spell (REPLACE)" ],
       [], [ "Bloodline Feat (REPLACE)", "Bloodline Spell (REPLACE)" ], [], [ "Bloodline Power (REPLACE)", "Bloodline Spell (REPLACE)" ], [],
@@ -716,9 +763,11 @@
     "proficiency": [ "simple weapons", "light armor" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "bab":  0.75, "hd": 8, "ranks": 2,
-    "fort": { "mult": 0.33, "bonus": 0 },
-    "ref":  { "mult": 0.33, "bonus": 0 },
-    "will": { "mult": 0.5, "bonus": 2 },
+    "saves": {
+      "fort": { "mult": 0.33, "bonus": 0 },
+      "ref":  { "mult": 0.33, "bonus": 0 },
+      "will": { "mult": 0.5, "bonus": 2 }
+    },
     "special": [ [],
       [ "Eidolon", "Life Link (Su)", "Summon Monster (Sp)" ], [ "Bond Senses (Su)" ], [], [ "Shield Ally (Ex)" ], [],
       [ "Maker's Call (Su)" ], [], [ "Transposition (Su)" ], [], [ "Aspect (Su)" ],
@@ -754,9 +803,11 @@
     "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "heavy armor", "shields" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "hd": 8, "ranks": 2, "bab":  0.75,
-    "fort": { "mult": 0.5, "bonus": 2 },
-    "ref":  { "mult": 0.33, "bonus": 0 },
-    "will": { "mult": 0.5, "bonus": 2 },
+    "saves": {
+      "fort": { "mult": 0.5, "bonus": 2 },
+      "ref":  { "mult": 0.33, "bonus": 0 },
+      "will": { "mult": 0.5, "bonus": 2 }
+    },
     "special": [ [],
       [ "Aura (Ex)", "Blessing (Su) (REPLACE)", "Blessing (Su) (REPLACE)", "Focus Weapon", "Sacred Weapon (Su)", "Spontaneous Casting", "Bonus Languages"  ], [ "Fervor (Su)" ], [ "Bonus Combat Feat (REPLACE)" ], [ "Channel Energy (Su)" ], [],
       [ "Bonus Combat Feat (REPLACE)" ], [ "Sacred Armor (Su)" ], [], [ "Bonus Combat Feat (REPLACE)" ], [],
@@ -788,9 +839,11 @@
     "proficiency": [ "simple weapons" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "hd": 6, "ranks": 2, "bab":  0.5,
-    "fort": { "mult": 0.33, "bonus": 0 },
-    "ref":  { "mult": 0.33, "bonus": 0 },
-    "will": { "mult": 0.5, "bonus": 2 },
+    "saves": {
+      "fort": { "mult": 0.33, "bonus": 0 },
+      "ref":  { "mult": 0.33, "bonus": 0 },
+      "will": { "mult": 0.5, "bonus": 2 }
+    },
     "special": [ [],
       [ "Patron Spells", "Witch’s Familiar (Ex)", "Hex (REPLACE)" ], [ "Hex (REPLACE)" ], [], [ "Hex (REPLACE)" ], [],
       [ "Hex (REPLACE)" ], [], [ "Hex (REPLACE)" ], [], [ "Major Hex", "Hex (REPLACE)" ],
@@ -821,9 +874,11 @@
     "proficiency": [ "club", "dagger", "heavy crossbow", "quarterstaff" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "hd": 6, "ranks": 2, "bab":  0.5,
-    "fort": { "mult": 0.33, "bonus": 0 },
-    "ref":  { "mult": 0.33, "bonus": 0 },
-    "will": { "mult": 0.5, "bonus": 2 },
+    "saves": {
+      "fort": { "mult": 0.33, "bonus": 0 },
+      "ref":  { "mult": 0.33, "bonus": 0 },
+      "will": { "mult": 0.5, "bonus": 2 }
+    },
     "special": [ [],
       [ "Arcane Bond (Ex or Sp)", "Arcane School", "Scribe Scroll", "Bonus Languages" ], [], [], [], [ "Bonus Metamagic Feat (REPLACE)" ],
       [], [], [], [], [ "Bonus Metamagic Feat (REPLACE)" ],
@@ -855,9 +910,11 @@
     "proficiency": [ "simple weapons" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "hd": 6, "ranks": 2, "bab": 0.5,
-    "fort": { "mult": 0.33, "bonus": 0 },
-    "ref": { "mult": 0.33, "bonus": 0 },
-    "will": { "mult": 0.5, "bonus": 2 },
+    "saves": {
+      "fort": { "mult": 0.33, "bonus": 0 },
+      "ref": { "mult": 0.33, "bonus": 0 },
+      "will": { "mult": 0.5, "bonus": 2 }
+    },
     "special": [ [], [ "Spells" ], [ "Summon Familiar"] ],
     "magic": {
       "style": "Prepared Divine",
@@ -875,36 +932,43 @@
     "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "heavy armor", "shields" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "hd": 8, "ranks": 4, "bab": 0.75,
-    "fort": { "mult": 0.33, "bonus": 0 },
-    "ref": { "mult": 0.33, "bonus": 0 },
-    "will": { "mult": 0.5, "bonus": 2 }
-  },
+    "saves": {
+      "fort": { "mult": 0.33, "bonus": 0 },
+      "ref": { "mult": 0.33, "bonus": 0 },
+      "will": { "mult": 0.5, "bonus": 2 }
+    },
   "commoner": {
     "skills": [ "Climb", "Craft", "Handle Animal", "Perception", "Profession", "Ride", "Swim" ],
     "proficiency": [ "one simple weapon" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "hd": 6, "ranks": 2, "bab": 0.5,
-    "fort": { "mult": 0.33, "bonus": 0 },
-    "ref": { "mult": 0.33, "bonus": 0 },
-    "will": { "mult": 0.33, "bonus": 0 }
+    "saves": {
+      "fort": { "mult": 0.33, "bonus": 0 },
+      "ref": { "mult": 0.33, "bonus": 0 },
+      "will": { "mult": 0.33, "bonus": 0 }
+    }
   },
   "expert": {
     "skills": [],
     "proficiency": [ "simple weapons", "light armor" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "hd": 8, "ranks": 6, "bab": 0.75,
-    "fort": { "mult": 0.33, "bonus": 0 },
-    "ref": { "mult": 0.33, "bonus": 0 },
-    "will": { "mult": 0.5, "bonus": 2 }
+    "saves": {
+      "fort": { "mult": 0.33, "bonus": 0 },
+      "ref": { "mult": 0.33, "bonus": 0 },
+      "will": { "mult": 0.5, "bonus": 2 }
+    }
   },
   "warrior": {
     "skills": [ "Climb", "Craft", "Handle Animal", "Intimidate", "Profession", "Ride", "Swim" ],
     "proficiency": [ "simple weapons", "martial weapons", "light armor", "medium armor", "heavy armor", "shields" ],
     "alignment": [ "LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE" ],
     "hd": 10, "ranks": 2, "bab": 1,
-    "fort": { "mult": 0.5, "bonus": 2 },
-    "ref": { "mult": 0.33, "bonus": 0 },
-    "will": { "mult": 0.33, "bonus": 0 }
+    "saves": {
+      "fort": { "mult": 0.5, "bonus": 2 },
+      "ref": { "mult": 0.33, "bonus": 0 },
+      "will": { "mult": 0.33, "bonus": 0 }
+    }
   },
 
 

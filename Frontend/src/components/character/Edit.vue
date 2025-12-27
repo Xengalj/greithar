@@ -1318,10 +1318,10 @@
           <el-col :xs="24" :sm="6" :md="4">
             <el-row :gutter="10">
               <el-col :xs="12" class="center-horz">
-                <el-button @click="copySection(character)" type="info"> Copy Character </el-button>
+                <el-button @click="copySection('character', character)" type="info"> Copy Character </el-button>
               </el-col>
               <el-col :xs="12" class="center-horz">
-                <el-button @click="loadJSON(characterJSON)" type="primary"> Update Character </el-button>
+                <el-button @click="loadJSON('character', characterJSON)" type="warning"> Update Character </el-button>
               </el-col>
             </el-row>
           </el-col>
@@ -1335,10 +1335,10 @@
             <el-col :xs="24" :sm="6" :md="4">
               <el-row :gutter="10">
                 <el-col :xs="12" class="center-horz">
-                  <el-button @click="copySection(character[name])" type="info"> Copy {{ capFirsts(name) }} </el-button>
+                  <el-button @click="copySection(name, character[name])" type="info"> Copy {{ capFirsts(name) }} </el-button>
                 </el-col>
                 <el-col :xs="12" class="center-horz">
-                  <el-button @click="loadJSON(sectionsJSON[name])" type="primary"> Update {{ capFirsts(name) }} </el-button>
+                  <el-button @click="loadJSON(name, sectionsJSON[name])" type="warning"> Update {{ capFirsts(name) }} </el-button>
                 </el-col>
               </el-row>
             </el-col>
@@ -1687,7 +1687,7 @@ export default {
       encounter: {},
       encountersLoading: false,
 
-      characterJSON: {},
+      characterJSON: "",
       sectionsJSON: {},
 
       dialog: false,
@@ -2367,15 +2367,19 @@ export default {
     *        ADMIN EDIT         *
     *                           *
     \***************************/
-    copySection(Obj) {
-      console.log(Obj);
-
-      navigator.clipboard.writeText(JSON.stringify(Obj))
-      .then(() => { this.$message({ message: `Coppied to clipboard`, type: 'success', }); })
+    copySection(name, obj) {
+      navigator.clipboard.writeText(JSON.stringify(obj))
+      .then(() => { this.$message({ message: `${this.capFirsts(name)} coppied to clipboard`, type: 'success', }); })
       .catch(err => { console.error('Could not copy text: ', err); });
     },
-    loadJSON(obj) {
-      console.log(obj);
+    loadJSON(name, obj) {
+      try {
+        this.character[name] = JSON.parse(obj);
+        this.$message({ message: `${this.capFirsts(name)} updated`, type: 'success', });
+      } catch (e) {
+        console.error(e);
+        this.$message({ message: e, type: 'error', });
+      }
     },
 
   }
