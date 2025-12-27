@@ -1048,8 +1048,8 @@
                   <el-col :span="11">
                     <el-tooltip placement="top" effect="light">
                       <el-progress :text-inside="true" :stroke-width="24" :color="healthColors"
-                        :percentage=" Math.floor( ( cClass.magic.remainingCasts[lvl] / (cClass.magic.spellsPerDay[lvl] == '∞' ? 1 : cClass.magic.spellsPerDay[lvl]) ) * 100 ) ">
-                        {{ cClass.magic.remainingCasts[lvl] }} / {{ cClass.magic.spellsPerDay[lvl] }}
+                        :percentage=" Math.floor( ( cClass.magic.remainingCasts[lvl] / (cClass.magic.spellsPerDay[lvl] == -1 ? 1 : cClass.magic.spellsPerDay[lvl]) ) * 100 ) ">
+                        {{ cClass.magic.spellsPerDay[lvl] == -1 ? "∞" : cClass.magic.spellsPerDay[lvl] }} / {{ cClass.magic.spellsPerDay[lvl] == -1 ? "∞" : cClass.magic.spellsPerDay[lvl] }}
                       </el-progress>
                       <template #content> Remaining Spell Slots </template>
                     </el-tooltip>
@@ -1296,7 +1296,7 @@ import GAbility from '@/components/template/GAbility.vue'
 export default {
   name: "CreatureCard",
   components: { HexGraph, GItem, GAbility },
-  emits: [ 'openDrawer' ],
+  emits: [ 'open-drawer', 'save-creature' ],
   props: { source: { type: Object } },
   data() {
     return {
@@ -2371,7 +2371,7 @@ export default {
       this.$message({ message: "Resting for 8 hours", type: "success" });
     },
     saveCreature() {
-      console.log(this.creature);
+      this.$emit('save-creature', this.creature);
 
       // CharacterService.updateCharacter(this.creature)
       // .then((response) => { this.$message({ message: `${response.character.name} updated`, type: 'success', }); })

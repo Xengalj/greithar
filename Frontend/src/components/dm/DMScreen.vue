@@ -1,332 +1,284 @@
 <template>
+  <div>
 
-  <!-- PARTY -->
-  <el-row justify="space-around">
-    <el-card v-for="(character, index) in campaign.characters" :key="index" style="max-width: 200px">
-      <template #header>
-        <div class="card-header">
-          <el-tag :color="character.color" size="large" effect="dark">
-            <span>{{ character.name }} ({{ character.user }})</span>
+    <!-- PARTY -->
+    <el-row justify="space-around">
+      <el-card v-for="(character, index) in campaign.characters" :key="index" style="max-width: 200px">
+        <template #header>
+          <div class="card-header">
+            <el-tag :color="character.color" size="large" effect="dark">
+              <span>{{ character.name }} ({{ character.user }})</span>
+            </el-tag>
+          </div>
+        </template>
+
+        <el-input v-model="campaign.extras.playerNotes[character.id].alignment" aria-label="Character AC">
+          <template #prepend> Alignment </template>
+        </el-input>
+        <el-input v-model="campaign.extras.playerNotes[character.id].HP" aria-label="Character Max Health">
+          <template #prepend>
+            <el-tag type="danger" effect="dark" style="color: black"> HP </el-tag>
+          </template>
+        </el-input>
+        <el-input v-model="campaign.extras.playerNotes[character.id].AC" aria-label="Character Total AC">
+          <template #prepend>
+            <el-tag color="#42d4f4" effect="dark"> AC </el-tag>
+          </template>
+        </el-input>
+        <el-input v-model="campaign.extras.playerNotes[character.id].perception" aria-label="Character Percpeption">
+          <template #prepend> Perception </template>
+        </el-input>
+        <el-button @click=" this.$router.push({ name: 'character-view', params: { id: character.id } }); " type="info" style="margin:0 10px" circle>
+          <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
+        </el-button>
+        <el-tag v-for="cClass in character.classes" :key="cClass.name" size="large" effect="dark" type="primary" >
+          {{ capFirsts(cClass.name) }} {{ cClass.levels }}
+        </el-tag>
+      </el-card>
+    </el-row>
+
+    <!-- Weather & Encounter -->
+    <el-card>
+      <el-row :gutter="10" justify="center" align="middle" class="campaignExtras">
+        <el-col :xs="24" :sm="12" :md="6">
+          <el-input v-if="campaign.extras" v-model="campaign.extras.time" aria-label="campaignTime">
+            <template #prepend> Current Time </template>
+          </el-input>
+        </el-col>
+        <el-col :xs="24" :sm="12" :md="6">
+          <el-input v-if="campaign.extras" v-model="campaign.extras.weather" aria-label="campaignWeather">
+            <template #prepend> Weather </template>
+          </el-input>
+        </el-col>
+        <el-col :xs="24" :sm="12" :md="6">
+          <el-input type="textarea" v-if="campaign.extras" v-model="campaign.extras.weatherNotes" :autosize="{ minRows: 1, maxRows: 4 }" placeholder="Weather notes..." aria-label="campaignWeatherNotes" />
+        </el-col>
+        <el-col :xs="24" :sm="12" :md="6" class="center-horz">
+          <el-button @click="saveCampaign" size="large" type="primary">
+            Save <g-icon iconName="rolledScroll" iconSize="24px" iconColor="#CCC" />
+          </el-button>
+          <el-button @click="drawer = true" size="large" type="primary" >
+            Open Drawer
+          </el-button>
+        </el-col>
+      </el-row>
+
+      <el-row :gutter="10" justify="center">
+        <el-tag size="large" effect="dark" type="info">
+          <h3>
+            Random Name Generator
+          </h3>
+        </el-tag>
+      </el-row>
+
+      <el-row :gutter="10" align="middle">
+        <el-col :xs="12" :sm="8" :md="4">
+          Race
+          <el-select v-model="tempName.race" size="large" placeholder="Choose Race">
+            <el-option v-for="(race, name) in races" :key="name" :label="name" :value="name" />
+          </el-select>
+        </el-col>
+
+        <el-col :xs="12" :sm="8" :md="4">
+          <div v-if="tempName.race">
+            Gender (♀, ♂, ⚨)
+            <el-select v-model="tempName.gender" size="large" placeholder="Choose Gender">
+              <el-option v-if="races[tempName.race].female" key="female" label="♀ female" value="female" />
+              <el-option v-if="races[tempName.race].male" key="male" label="♂ male" value="male" />
+              <el-option v-if="races[tempName.race].agender" key="agender" label="⚨ agender" value="agender" />
+            </el-select>
+          </div>
+        </el-col>
+
+        <el-col :xs="24" :sm="8" :md="4">
+          <div v-if="tempName.gender" class="center-horz">
+            <br>
+            <el-button type="primary" @click="genRandomName()"> Random Name! </el-button>
+          </div>
+        </el-col>
+        <el-col :xs="24" :sm="24" :md="6" class="center-horz">
+          <br>
+          <el-tag v-if="tempName.fName" size="large" effect="plain" type="success" style="font-size: 16px;">
+            {{ tempName.fName }} {{ tempName.surname }}
           </el-tag>
-        </div>
+        </el-col>
+      </el-row>
+    </el-card>
+
+
+    <br><br>
+    <el-button type="info" circle @click="creatureWidth = 355; loadMonster('Skeletal Champion')">
+      <g-icon iconSize="24px" iconName="undead" />
+    </el-button>
+    <el-button type="primary" circle @click="loadMonster('Skeletal Champion')">
+      <g-icon iconSize="24px" iconName="undead" />
+    </el-button>
+
+    <el-button type="info" circle @click="creatureWidth = 355; loadMonster('Adult Red Dragon')">
+      <g-icon iconSize="24px" iconName="runeStone" />
+    </el-button>
+    <el-button type="primary" circle @click="loadMonster('Adult Red Dragon')">
+      <g-icon iconSize="24px" iconName="dragon" />
+    </el-button>
+
+    <el-dialog :width="creatureWidth" v-model="monsterVisible" :before-close="monsterClose">
+
+      <el-row :gutter="10" justify="center">
+        <el-col :xs="12" :sm="8">
+          <el-select v-model="campaign" @change="loadEncounters" filterable placeholder="Choose a Campaign" aria-label="Select Campaign">
+            <el-option v-for="campaign in campaigns" :key="campaign.id" :label="campaign.name" :value="campaign" >
+              {{ campaign.user.username }}'s {{ campaign.name }} ({{ campaign.id }})
+            </el-option>
+          </el-select>
+        </el-col>
+        <el-col :xs="12" :sm="8">
+          <el-select v-model="encounter" filterable placeholder="Choose an Encounter" aria-label="Select Encounter">
+            <el-option v-for="encounter in encounters" :key="encounter.id" :label="encounter.name" :value="encounter" />
+          </el-select>
+        </el-col>
+        <el-col :xs="24" :sm="12" class="center-horz" style="margin:5px;">
+          <el-button v-if="encounter.id" @click="encounter.monsters.push(creature); saveEncounter();" type="success" size="large" aria-label="Join Encounter"> Join </el-button>
+        </el-col>
+      </el-row>
+
+      <CreatureCard :source="creature" @save-creature="saveCreature(creature);" @open-drawer="drawer = true;"></CreatureCard>
+    </el-dialog>
+
+
+    <el-drawer v-model="drawer" direction="rtl">
+      <template #header>
+        <h4>{{ encounter.name }}</h4>
       </template>
 
-      <el-input v-model="campaign.extras.playerNotes[character.id].alignment" aria-label="Character AC">
-        <template #prepend> Alignment </template>
-      </el-input>
-      <el-input v-model="campaign.extras.playerNotes[character.id].HP" aria-label="Character Max Health">
-        <template #prepend>
-          <el-tag type="danger" effect="dark" style="color: black"> HP </el-tag>
-        </template>
-      </el-input>
-      <el-input v-model="campaign.extras.playerNotes[character.id].AC" aria-label="Character Total AC">
-        <template #prepend>
-          <el-tag color="#42d4f4" effect="dark"> AC </el-tag>
-        </template>
-      </el-input>
-      <el-input v-model="campaign.extras.playerNotes[character.id].perception" aria-label="Character Percpeption">
-        <template #prepend> Perception </template>
-      </el-input>
-      <el-button @click=" this.$router.push({ name: 'character-view', params: { id: character.id } }); " type="info" style="margin:0 10px" circle>
-        <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
-      </el-button>
-      <el-tag v-for="cClass in character.classes" :key="cClass.name" size="large" effect="dark" type="primary" >
-        {{ capFirsts(cClass.name) }} {{ cClass.levels }}
-      </el-tag>
-    </el-card>
-  </el-row>
+      <template #default>
+        <div v-if="encounter.name">
+          <el-collapse v-model="encounterCollapse">
 
-  <!-- Weather & Encounter -->
-  <el-card>
-    <el-row :gutter="10" justify="center" align="middle" class="campaignExtras">
-      <el-col :xs="24" :sm="12" :md="6">
-        <el-input v-if="campaign.extras" v-model="campaign.extras.time" aria-label="campaignTime">
-          <template #prepend> Current Time </template>
-        </el-input>
-      </el-col>
-      <el-col :xs="24" :sm="12" :md="6">
-        <el-input v-if="campaign.extras" v-model="campaign.extras.weather" aria-label="campaignWeather">
-          <template #prepend> Weather </template>
-        </el-input>
-      </el-col>
-      <el-col :xs="24" :sm="12" :md="6">
-        <el-input type="textarea" v-if="campaign.extras" v-model="campaign.extras.weatherNotes" :autosize="{ minRows: 1, maxRows: 4 }" placeholder="Weather notes..." aria-label="campaignWeatherNotes" />
-      </el-col>
-      <el-col :xs="24" :sm="12" :md="6" class="center-horz">
-        <el-button @click="saveCampaign" size="large" type="primary">
-          Save <g-icon iconName="rolledScroll" iconSize="24px" iconColor="#CCC" />
-        </el-button>
-        <el-button @click="drawer = true" size="large" type="primary" >
-          Open Drawer
-        </el-button>
-      </el-col>
-    </el-row>
+            <!-- Encounter Notes -->
+            <el-collapse-item name="1">
+              <template #title>
+                <el-divider style="max-width:75%"> <g-icon iconSize="20px" iconName="openScroll" /> Notes </el-divider>
+              </template>
 
-    <el-row :gutter="10" justify="center">
-      <el-tag size="large" effect="dark" type="info">
-        <h3>
-          Random Name Generator
-        </h3>
-      </el-tag>
-    </el-row>
+              <el-input
+                v-for="(note, index) in encounter.notes" :key="index"
+                v-model="encounter.notes[index]"
+                :autosize="{ minRows: 2, maxRows: 5 }"
+                type="textarea"
+                aria-label="textAreaName" />
+              <el-button @click="encounter.notes.push('')" size="large" type="primary">
+                Add Note
+                <g-icon iconName="createScroll" iconSize="24px" iconColor="#CCC" />
+              </el-button>
+            </el-collapse-item>
 
-    <el-row :gutter="10" align="middle">
-      <el-col :xs="12" :sm="8" :md="4">
-        Race
-        <el-select v-model="tempName.race" size="large" placeholder="Choose Race">
-          <el-option v-for="(race, name) in races" :key="name" :label="name" :value="name" />
-        </el-select>
-      </el-col>
+            <!-- Encounter NPCs -->
+            <el-collapse-item name="2">
+              <template #title>
+                <el-divider style="max-width:75%"> <g-icon iconSize="20px" iconName="userList" /> NPCs </el-divider>
+              </template>
 
-      <el-col :xs="12" :sm="8" :md="4">
-        <div v-if="tempName.race">
-          Gender (♀, ♂, ⚨)
-          <el-select v-model="tempName.gender" size="large" placeholder="Choose Gender">
-            <el-option v-if="races[tempName.race].female" key="female" label="♀ female" value="female" />
-            <el-option v-if="races[tempName.race].male" key="male" label="♂ male" value="male" />
-            <el-option v-if="races[tempName.race].agender" key="agender" label="⚨ agender" value="agender" />
+              <el-table :data="this.encounter.npcs" stripe >
+                <el-table-column label="Type" min-width="55">
+                  <template #default="scope">
+                    <g-icon :iconName="scope.row.type" iconSize="24px" />
+                  </template>
+                </el-table-column>
+                <el-table-column prop="name" label="Name" min-width="120" sortable />
+                <el-table-column prop="alignment" label="Align" min-width="90" sortable />
+                <el-table-column prop="hp" label="HP" sortable />
+                <el-table-column label="Actions" fixed="right">
+                  <template #default="scope">
+                    <el-row class="row-bg" justify="space-between">
+                      <el-button @click="loadCharacter(scope.row.id)" type="info" style="margin:0" circle>
+                        <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
+                      </el-button>
+                    </el-row>
+                  </template>
+                </el-table-column>
+              </el-table>
+            </el-collapse-item>
+
+            <!-- Encounter Monsters -->
+            <el-collapse-item name="3">
+              <template #title>
+                <el-divider style="max-width:75%"> <g-icon iconSize="20px" iconName="magical beast" /> Monsters </el-divider>
+              </template>
+
+              <el-table :data="this.encounter.monsters" stripe >
+                <el-table-column label="Type" min-width="55">
+                  <template #default="scope">
+                    <g-icon :iconName="scope.row.type" iconSize="24px" />
+                  </template>
+                </el-table-column>
+                <el-table-column prop="name" label="Name" min-width="120" sortable />
+                <el-table-column prop="alignment" label="Align" min-width="90" sortable />
+                <el-table-column prop="hp" label="HP" sortable />
+                <el-table-column label="Actions" fixed="right">
+                  <template #default="scope">
+                    <el-row class="row-bg" justify="space-between">
+                      <el-button @click="loadMonster(scope.row.name)" type="info" style="margin:0" circle>
+                        <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
+                      </el-button>
+                    </el-row>
+                  </template>
+                </el-table-column>
+              </el-table>
+            </el-collapse-item>
+
+            <!-- Encounter Extras -->
+            <el-collapse-item name="4">
+              <template #title>
+                <el-divider style="max-width:75%"> <g-icon iconSize="20px" iconName="map" /> Extras </el-divider>
+              </template>
+
+              <el-row>
+                <el-col :span="19">
+                  <el-input v-model="encounter.extras.prev.name" disabled>
+                    <template #prepend> Prev </template>
+                  </el-input>
+                </el-col>
+                <el-col :span="5" class="center-horz">
+                  <el-button @click="this.$router.push({ name: 'dm-screen', params: { campaign: campaign.id, encounter: encounter.extras.prev.id } });" type="info" style="margin:0" circle>
+                    <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
+                  </el-button>
+                </el-col>
+              </el-row>
+              <el-row>
+                <el-col :span="19">
+                  <el-input v-model="encounter.extras.next.name" disabled>
+                    <template #prepend> Next </template>
+                  </el-input>
+                </el-col>
+                <el-col :span="5" class="center-horz">
+                  <el-button @click="this.$router.push({ name: 'dm-screen', params: { campaign: campaign.id, encounter: encounter.extras.next.id } });" type="info" style="margin:0" circle>
+                    <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
+                  </el-button>
+                </el-col>
+              </el-row>
+            </el-collapse-item>
+          </el-collapse>
+        </div>
+
+        <div v-else>
+          <el-select v-model="campaign" :change="loadEncounters()" filterable>
+            <el-option v-for="cam in campaigns" :key="cam.id" :label="cam.name" :value="cam" />
+          </el-select>
+          <el-select v-model="encounter" filterable>
+            <el-option v-for="enc in encounters" :key="enc.id" :label="enc.name" :value="enc" />
           </el-select>
         </div>
-      </el-col>
 
-      <el-col :xs="24" :sm="8" :md="4">
-        <div v-if="tempName.gender" class="center-horz">
-          <br>
-          <el-button type="primary" @click="genRandomName()"> Random Name! </el-button>
+      </template>
+      <template #footer>
+        <div style="flex: auto">
+          <el-button @click="console.log('nope')">cancel</el-button>
+          <el-button type="primary" @click="console.log('yep')">confirm</el-button>
         </div>
-      </el-col>
-      <el-col :xs="24" :sm="24" :md="6" class="center-horz">
-        <br>
-        <el-tag v-if="tempName.fName" size="large" effect="plain" type="success" style="font-size: 16px;">
-          {{ tempName.fName }} {{ tempName.surname }}
-        </el-tag>
-      </el-col>
-    </el-row>
-  </el-card>
+      </template>
+    </el-drawer>
 
-
-
-
-
-
-
-
-  <br><br>
-
-  <el-button type="primary" circle @click="creatureWidth = 355; loadMonster('Skeletal Champion')">
-    <g-icon iconSize="24px" iconName="undead" />
-  </el-button>
-
-  <el-button type="primary" circle @click="loadMonster('Skeletal Champion')">
-    <g-icon iconSize="24px" iconName="undead" />
-  </el-button>
-  <el-button type="primary" circle @click="loadMonster('Death Worm')">
-    <g-icon iconSize="24px" iconName="magical beast" />
-  </el-button>
-  <el-button type="primary" circle @click="loadMonster('Ochre Jelly')">
-    <g-icon iconSize="24px" iconName="ooze" />
-  </el-button>
-  <el-button type="primary" circle @click="loadMonster('Giant Isopod')">
-    <g-icon iconSize="24px" iconName="vermin" />
-  </el-button>
-  <el-button type="primary" circle @click="loadMonster('Bat')">
-    <g-icon iconSize="24px" iconName="animal" />
-  </el-button>
-  <el-button type="primary" circle @click="loadMonster('Adult Red Dragon')">
-    <g-icon iconSize="24px" iconName="dragon" />
-  </el-button>
-  <el-button type="primary" circle @click="creatureWidth = 355; loadMonster('Adult Red Dragon')">
-    <g-icon iconSize="24px" iconName="runeStone" />
-  </el-button>
-
-  <br><br><br>
-
-  <el-dialog :width="creatureWidth" v-model="monsterVisible" :before-close="monsterClose">
-
-    <div v-for="item in campaigns" :key="item.id">
-      {{ item.name }}
-    </div>
-
-
-    <el-select
-      v-model="campaign"
-      @change="loadEncounters"
-      filterable
-      placeholder="Choose a Campaign"
-      aria-label="Select Campaign">
-      <el-option v-for="campaign in campaigns" :key="campaign.id" :label="campaign.name" :value="campaign" >
-        {{ campaign.user.username }}'s {{ campaign.name }} ({{ campaign.id }})
-      </el-option>
-    </el-select>
-
-    <el-select
-      v-model="encounter"
-      filterable
-      placeholder="Choose an Encounter"
-      aria-label="Select Encounter">
-      <el-option v-for="encounter in encounters" :key="encounter.id" :label="encounter.name" :value="encounter" />
-    </el-select>
-
-    <el-button v-if="encounter.id"
-    @click="encounter.monsters.push(creature); saveEncounter();"
-    type="primary" size="small" aria-label="Join Encounter"> Join </el-button>
-
-
-
-
-
-
-    <CreatureCard :source="creature" @open-drawer="drawer = true;"></CreatureCard>
-    <!-- <template #footer>
-      <div class="dialog-footer">
-        <el-button @click="monsterClose()"> Close </el-button>
-        <el-button type="primary" @click="addMonster()"> Add to Session </el-button>
-      </div>
-    </template> -->
-  </el-dialog>
-
-
-  <el-drawer v-model="drawer" direction="rtl">
-    <template #header>
-      <h4>{{ encounter.name }}</h4>
-    </template>
-
-    <template #default>
-      <div v-if="encounter.name">
-        <el-collapse v-model="encounterCollapse">
-
-          <!-- Encounter Notes -->
-          <el-collapse-item name="1">
-            <template #title>
-              <el-divider style="max-width:75%">
-                <g-icon iconSize="20px" iconName="openScroll" /> Notes
-              </el-divider>
-            </template>
-
-            <el-input
-              v-for="(note, index) in encounter.notes" :key="index"
-              v-model="encounter.notes[index]"
-              :autosize="{ minRows: 2, maxRows: 5 }"
-              type="textarea"
-              aria-label="textAreaName" />
-            <el-button @click="encounter.notes.push('')" size="large" type="primary">
-              Add Note
-              <g-icon iconName="createScroll" iconSize="24px" iconColor="#CCC" />
-            </el-button>
-          </el-collapse-item>
-
-          <!-- Encounter NPCs -->
-          <el-collapse-item name="2">
-            <template #title>
-              <el-divider style="max-width:75%">
-                <g-icon iconSize="20px" iconName="userList" /> NPCs
-              </el-divider>
-            </template>
-
-            <el-table :data="this.encounter.npcs" stripe >
-              <el-table-column label="Type" min-width="55">
-                <template #default="scope">
-                  <g-icon :iconName="scope.row.type" iconSize="24px" />
-                </template>
-              </el-table-column>
-              <el-table-column prop="name" label="Name" min-width="120" sortable />
-              <el-table-column prop="alignment" label="Align" min-width="90" sortable />
-              <el-table-column prop="hp" label="HP" sortable />
-              <el-table-column label="Actions" fixed="right">
-                <template #default="scope">
-                  <el-row class="row-bg" justify="space-between">
-                    <el-button @click="loadCharacter(scope.row.id)" type="info" style="margin:0" circle>
-                      <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
-                    </el-button>
-                  </el-row>
-                </template>
-              </el-table-column>
-            </el-table>
-          </el-collapse-item>
-
-          <!-- Encounter Monsters -->
-          <el-collapse-item name="3">
-            <template #title>
-              <el-divider style="max-width:75%">
-                <g-icon iconSize="20px" iconName="magical beast" /> Monsters
-              </el-divider>
-            </template>
-
-            <el-table :data="this.encounter.monsters" stripe >
-              <el-table-column label="Type" min-width="55">
-                <template #default="scope">
-                  <g-icon :iconName="scope.row.type" iconSize="24px" />
-                </template>
-              </el-table-column>
-              <el-table-column prop="name" label="Name" min-width="120" sortable />
-              <el-table-column prop="alignment" label="Align" min-width="90" sortable />
-              <el-table-column prop="hp" label="HP" sortable />
-              <el-table-column label="Actions" fixed="right">
-                <template #default="scope">
-                  <el-row class="row-bg" justify="space-between">
-                    <el-button @click="loadMonster(scope.row.name)" type="info" style="margin:0" circle>
-                      <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
-                    </el-button>
-                  </el-row>
-                </template>
-              </el-table-column>
-            </el-table>
-          </el-collapse-item>
-
-          <!-- Encounter Extras -->
-          <el-collapse-item name="4">
-            <template #title>
-              <el-divider style="max-width:75%">
-                <g-icon iconSize="20px" iconName="map" /> Extras
-              </el-divider>
-            </template>
-
-            <el-row>
-              <el-col :span="19">
-                <el-input v-model="encounter.extras.prev.name" disabled>
-                  <template #prepend> Prev </template>
-                </el-input>
-              </el-col>
-              <el-col :span="5" class="center-horz">
-                <el-button @click="this.$router.push({ name: 'dm-screen', params: { campaign: campaign.id, encounter: encounter.extras.prev.id } });" type="info" style="margin:0" circle>
-                  <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
-                </el-button>
-              </el-col>
-            </el-row>
-            <el-row>
-              <el-col :span="19">
-                <el-input v-model="encounter.extras.next.name" disabled>
-                  <template #prepend> Next </template>
-                </el-input>
-              </el-col>
-              <el-col :span="5" class="center-horz">
-                <el-button @click="this.$router.push({ name: 'dm-screen', params: { campaign: campaign.id, encounter: encounter.extras.next.id } });" type="info" style="margin:0" circle>
-                  <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
-                </el-button>
-              </el-col>
-            </el-row>
-          </el-collapse-item>
-        </el-collapse>
-      </div>
-
-      <div v-else>
-        <el-select v-model="campaign" :change="loadEncounters()" filterable>
-          <el-option v-for="cam in campaigns" :key="cam.id" :label="cam.name" :value="cam" />
-        </el-select>
-        <el-select v-model="encounter" filterable>
-          <el-option v-for="enc in encounters" :key="enc.id" :label="enc.name" :value="enc" />
-        </el-select>
-      </div>
-
-    </template>
-    <template #footer>
-      <div style="flex: auto">
-        <el-button @click="console.log('nope')">cancel</el-button>
-        <el-button type="primary" @click="console.log('yep')">confirm</el-button>
-      </div>
-    </template>
-  </el-drawer>
-
+  </div>
 </template>
 
 <script>
@@ -696,7 +648,7 @@ export default {
             style: "Spontaneous Arcane",
             castingAtr: "Cha",
             casterLevel: racialHD,
-            spellsPerDay: [ '∞', 7, 7, 5 ],
+            spellsPerDay: [ -1, 7, 7, 5 ],
             remainingCasts: [ 1, 7, 7, 5 ]
           } // end Class Has Magic
 
@@ -1137,10 +1089,11 @@ export default {
 
 
     },
-    monsterClose() {
-      this.monsterVisible = false;
-    },
+    monsterClose() { this.monsterVisible = false; },
 
+    saveCreature(creature) {
+      console.log(creature);
+    },
 
     // End Methods
   }
@@ -1148,5 +1101,9 @@ export default {
 </script>
 
 <style>
-.el-card .el-row, .el-card .el-input, .el-card .el-textarea { margin-bottom: 10px; }
+.el-card .el-row,
+.el-card .el-input,
+.el-card .el-textarea {
+  margin-bottom: 10px;
+}
 </style>
