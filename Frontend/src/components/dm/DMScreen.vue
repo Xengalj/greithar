@@ -22,7 +22,7 @@
         </el-input>
         <el-input v-model="campaign.extras.playerNotes[character.id].AC" aria-label="Character Total AC">
           <template #prepend>
-            <el-tag color="#42d4f4" effect="dark"> AC </el-tag>
+            <el-tag color="#42d4f4" effect="dark" style="color: black"> AC </el-tag>
           </template>
         </el-input>
         <el-input v-model="campaign.extras.playerNotes[character.id].perception" aria-label="Character Percpeption">
