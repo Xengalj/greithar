@@ -4,9 +4,9 @@
     <!-- FILTERS -->
     <el-row :gutter="10">
       <el-col :span="6">
-        <el-input v-model="tableSearch" @change="nameSearch" placeholder="Type to search names" aria-label="Search Monsters">
+        <el-input v-model="filterChoices.Name" @change="handleFilter" placeholder="Type to search names" aria-label="Search Monsters">
           <template #append>
-            <el-button @click="nameSearch" text> Search </el-button>
+            <el-button @click="handleFilter" text> Search </el-button>
           </template>
         </el-input>
       </el-col>
@@ -95,7 +95,7 @@ export default {
     return {
       loading: false,
 
-      tableSearch: "",
+      // tableSearch: "",
       sortState: ref({
         'Name': TableV2SortOrder.DESC,
         'CR': TableV2SortOrder.DESC,
@@ -117,7 +117,6 @@ export default {
         { label: 'Undead', value: 'undead' },
         { label: 'Vermin', value: 'vermin' },
       ],
-      typeChoices: [],
       alignmentFilter: [
         { label: 'LG', value: 'LG' },
         { label: 'NG', value: 'NG' },
@@ -129,7 +128,6 @@ export default {
         { label: 'NE', value: 'NE' },
         { label: 'CE', value: 'CE' },
       ],
-      alignChoices: [],
       environFilter: [
         { label: "Any", value: "any" },
         { label: "Cold", value: "cold" },
@@ -152,7 +150,13 @@ export default {
         { label: "Urban", value: "urban" },
         { label: "Underground", value: "underground" }
       ],
-      environChoices: [],
+
+      filterChoices: {
+        Name: "",
+        Type: [],
+        Alignment: [],
+        Environments: []
+      }
 
       columns: [
         { dataKey: "Name", title: 'Name', width: 180, sortable: true, fixed: true },
@@ -188,7 +192,7 @@ export default {
                   {  trigger: 'click', width: 200 },
                   { default: () => [
                     h(checkboxGroup,
-                      { class: 'filter-list', modelValue: this.typeChoices, 'onUpdate:modelValue': (val) => { this.typeChoices = val; }, onChange: (val) => { this.handleFilter('Type', val); } },
+                      { class: 'filter-list', modelValue: this.filterChoices.Type, 'onUpdate:modelValue': (val) => { this.filterChoice.Type = val; }, onChange: (val) => { this.handleFilter(); } },
                       { default: () =>
                         this.typeFilter.map(item => {
                           return h(checkbox, { label: item.label, value: item.value })
@@ -224,7 +228,7 @@ export default {
                   {  trigger: 'click', width: 236 }, // 236 and no flex gives 3x3
                   { default: () => [
                     h(checkboxGroup,
-                      { class: 'filter-list', modelValue: this.alignChoices, 'onUpdate:modelValue': (val) => { this.alignChoices = val; }, onChange: (val) => { this.handleFilter('Alignment', val); } },
+                      { class: 'filter-list', modelValue: this.filterChoices.Alignment, 'onUpdate:modelValue': (val) => { this.filterChoices.Alignment = val; }, onChange: (val) => { this.handleFilter(); } },
                       { default: () => this.alignmentFilter.map(item => { return h(checkbox, { label: item.label, value: item.value }) }) }
                     ),
                   ], // end popOver content (default)
@@ -273,7 +277,7 @@ export default {
                   {  trigger: 'click', width: 200 }, // 236 and no flex gives 3x3
                   { default: () => [
                     h(checkboxGroup,
-                      { class: 'filter-list', modelValue: this.environChoices, 'onUpdate:modelValue': (val) => { this.environChoices = val; }, onChange: (val) => { this.handleFilter('Environment', val); } },
+                      { class: 'filter-list', modelValue: this.filterChoices.Environment, 'onUpdate:modelValue': (val) => { this.filterChoices.Environment = val; }, onChange: (val) => { this.handleFilter(); } },
                       { default: () => this.environFilter.map(item => { return h(checkbox, { label: item.label, value: item.value }) }) }
                     ),
                   ], // end popOver content (default)
@@ -369,39 +373,35 @@ export default {
 
 
 
-    handleFilter(key, value) {
-      console.log(key, value);
+    handleFilter() {
       this.loading = true;
 
-
-      this.typeChoices
-
-
-      let mons = document.getElementsByClassName('el-table-v2__row');
+      let mons = this.allMonsters;
       console.log(mons);
 
       for (let i = 0; i < mons.length; i++) {
         console.log( mons[i] );
-        if (mons[i].hidden) { continue; }
+        let hidden = false;
 
-        switch (key) {
-          case 'Type':
-            console.log(mons[i].children[1]);
+        for (let (prop, choices) in Object.entries(this.filterChoices)) {
+          console.log(prop, choices);
 
-            // if (value.includes( mon[i][key] )) {
-            //   // this.tableData.push(mons[i]);
-            //   // mon[i] = not hidden
-            // }
+          for (let choice in choices) {
+            console.log(choice);
 
-            break;
-          case 'Align':
-            console.log(mons[i][2]);
-            break;
-          case 'Environment':
-            console.log(mons[i][6]);
-            break;
+            if ( !mons[i][prop].includes(choice) ) {
+              hidden = true;
+            }
+
+          }
         }
-      }
+        
+        if (!hidden) {
+          this.tableData.push(mons[i]);
+          // continue;
+        }
+
+      } // end mons loop
 
 
       this.loading = false;
