@@ -121,7 +121,7 @@
 
   <el-col :xs="24" :span="12">
     <div class="center-horz">
-      <g-icon iconSize="128px" :icon-name="this.creature.basics.type" :key="this.creature.basics.type"/>
+      <g-icon iconSize="128px" :icon-name="creature.basics.type" :key="creature.basics.type"/>
     </div>
 
     <el-row :gutter="10">
@@ -131,29 +131,31 @@
       <el-col :span="20">
         <el-row>
           <el-col :span="12">
-            {{ this.creature.basics.alignment }} {{ capFirsts(this.creature.basics.size) }} ({{ this.sizeStats.space }})
+            {{ creature.basics.alignment }} {{ capFirsts(creature.basics.size) }} ({{ sizeStats.space }})
           </el-col>
 
           <el-col :span="12">
-            <el-tooltip v-if="this.creature.classes[0].hd" placement="top" effect="light">
-              <el-tag size="small" effect="dark" type="primary">{{ capFirsts(this.creature.basics.type) }}</el-tag>
+            <el-tooltip v-if="creature.classes[creature.basics.type].hd" placement="top" effect="light">
+              <el-tag size="small" effect="dark" type="primary">{{ capFirsts(creature.basics.type) }}</el-tag>
               <template #content>
-                {{ this.creature.classes[0].levels }} HD (1d{{ this.creature.classes[0].hd }})
+                {{ creature.classes[creature.basics.type].levels }} HD (1d{{ creature.classes[creature.basics.type].hd }})
               </template>
             </el-tooltip>
-            <el-tag v-else-if="this.creature.basics.type == 'humanoid'" size="small" effect="dark" type="primary">{{ this.creature.basics.race }}</el-tag>
-            <el-tag v-else size="small" effect="dark" type="primary">{{ this.creature.basics.type }}</el-tag>
+            <el-tag v-else-if="creature.basics.type == 'humanoid'" size="small" effect="dark" type="primary">{{ creature.basics.race }}</el-tag>
+            <el-tag v-else size="small" effect="dark" type="primary">{{ creature.basics.type }}</el-tag>
           </el-col>
         </el-row>
 
         <el-row>
-          <el-tooltip placement="top" effect="light" v-for="cClass in creature.classes" :key="cClass.name">
-            <el-tag size="small" effect="dark" type="primary" style="margin: 0 1px 0 0;">{{ capFirsts(cClass.name) }} {{ cClass.levels }}</el-tag>
-            <template #content>
-              {{ cClass.levels }} HD (1d{{ cClass.hd }})
-            </template>
-          </el-tooltip>
-          <el-tag size="small" effect="dark" type="info" v-for="subtype in this.creature.basics.subtypes" :key="subtype" style="margin: 0 1px 0 2px;">
+          <span v-for="(cClass, cName) in creature.classes" :key="cName">
+            <el-tooltip v-if="cName != creature.basics.type" placement="top" effect="light">
+              <el-tag size="small" effect="dark" type="primary" style="margin: 0 1px 0 0;">{{ capFirsts(cName) }} {{ cClass.levels }}</el-tag>
+              <template #content>
+                {{ cClass.levels }} HD (1d{{ cClass.hd }})
+              </template>
+            </el-tooltip>
+          </span>
+          <el-tag size="small" effect="dark" type="info" v-for="subtype in creature.basics.subtypes" :key="subtype" style="margin: 0 1px 0 2px;">
             {{ capFirsts(subtype) }}
           </el-tag>
         </el-row>
@@ -850,14 +852,14 @@
         <el-input-number v-model="newSpell.level" :min="0" :max="9" size="small" aria-label="New Spell Level" />
         Class: <br>
         <el-select v-model="newSpell.class" aria-label="New Spell Class">
-          <el-option v-for="cClass in creature.classes" :key="cClass.name" :label="capFirsts(cClass.name)" :value="cClass.name" />
+          <el-option v-for="(cClass, cName) in creature.classes" :key="cName" :label="capFirsts(cName)" :value="cName" />
         </el-select>
         <el-button type="primary" size="small" @click="confirm" :disabled="newSpell.name == '' || newSpell.class == ''">Yes</el-button>
       </template>
     </el-popconfirm>
 
     <el-tabs v-model="spellTabs" type="card" style="padding-top:10px;">
-      <el-tab-pane v-for="cClass in creature.classes" :key="cClass.name" :label="capFirsts(cClass.name)" :name="cClass.name" >
+      <el-tab-pane v-for="(cClass, cName) in creature.classes" :key="cName" :label="capFirsts(cName)" :name="cName" >
         <div v-if="cClass.magic">
           <el-row :gutter="10" style="margin-bottom:10px" align="middle">
             <el-col :span="12">
@@ -899,10 +901,10 @@
                 <el-col :span="12">
                   <el-tooltip placement="top" effect="light">
                     <el-tag effect="dark" type="primary" size="large">
-                      Concentration: +{{ concentration[cClass.name].total }}
+                      Concentration: +{{ concentration[cName].total }}
                     </el-tag>
                     <template #content>
-                      <span v-for="bonus in concentration[cClass.name].sources" :key="bonus"> {{ bonus+" " }} </span>
+                      <span v-for="bonus in concentration[cName].sources" :key="bonus"> {{ bonus+" " }} </span>
                     </template>
                   </el-tooltip>
                 </el-col>
@@ -962,7 +964,7 @@
                 -->
                 <el-row v-for="(spell, index) in spells" :key="index" :gutter="10" align="middle" style="margin-bottom:15px;">
                   <el-col :span="4" class="center-horz">
-                    <el-popconfirm :title="`Cast ${spell}`" @confirm="castPSpell(cClass.name, lvl, spell, index)" hide-icon>
+                    <el-popconfirm :title="`Cast ${spell}`" @confirm="castPSpell(cName, lvl, spell, index)" hide-icon>
                       <template #reference>
                         <el-button :ref="`${spell}-${index}`" type="primary" plain> {{ spell }} </el-button>
                       </template>
@@ -1017,7 +1019,7 @@
           <!-- Spontaneous Spell List -->
           <div v-else-if="cClass.magic.style.includes('Spontaneous') && !cClass.magic.useGaldur">
             <el-collapse v-model="spellsCollapse">
-              <el-collapse-item v-for="(spells, lvl) in creature.spells[cClass.name]" :key="lvl" :name="lvl">
+              <el-collapse-item v-for="(spells, lvl) in creature.spells[cName]" :key="lvl" :name="lvl">
                 <template #title>
                   <el-row :gutter="10" justify="space-between">
                     <el-col :xs="11" :sm="6">
@@ -1110,7 +1112,7 @@
           <!-- Galdur Spell List -->
           <div v-else>
             <el-collapse v-model="spellsCollapse">
-              <el-collapse-item v-for="(spells, lvl) in creature.spells[cClass.name]" :key="lvl" :name="lvl">
+              <el-collapse-item v-for="(spells, lvl) in creature.spells[cName]" :key="lvl" :name="lvl">
                 <template #title>
                   <el-row :gutter="10">
                     <el-col :span="7">
@@ -1598,8 +1600,9 @@ export default {
       // Type / Racial / Class HD
       let firstLevel = true;
       let bonus = 0;
-      this.creature.classes.forEach((cClass, i) => {
-        if (i == 0) {
+      for (let [cName, cClass] of Object.entries(this.creature.classes)) {
+
+        if (cName == this.creature.basics.type) {
           firstLevel = false;
           if (this.creature.basics.type == "construct") {
             switch (this.creature.basics.size) {
@@ -1617,19 +1620,18 @@ export default {
             hpMod = "Con";
           }
         }
-        if ([ "adept", "aristocrat", "commoner ", "expert", "warrior" ].includes(cClass.name)) { firstLevel = false; }
+        if ([ "adept", "aristocrat", "commoner ", "expert", "warrior" ].includes(cName)) { firstLevel = false; }
 
         // Level Loop
         for (let i = 1; i < cClass.levels+1; i++) {
           if (cClass.hd) {
             health.total += firstLevel ? cClass.hd : cClass.hd / 2 + 0.5;
-            bonus += this.attributes[hpMod].mod;
+            if (hpMod) { bonus += this.attributes[hpMod].mod; }
             firstLevel = false;
           }
         }
-
         health.sources.push( `+${cClass.levels}d${cClass.hd}` );
-      }); // end classes loop
+      }
 
       // HP Mod
       health.total += bonus;
@@ -1708,7 +1710,7 @@ export default {
           this.applyBonus(bName, bonus, save);
         }
         // Class Loop
-        for (let cClass of this.creature.classes) {
+        for (let [cName, cClass] of Object.entries(this.creature.classes)) {
           if (cClass.saves) {
             let levels = cClass.levels;
             bonus = 0;
@@ -1716,7 +1718,7 @@ export default {
             bonus += saveMult * levels;
             bonus += cClass.saves[name].bonus;
             bonus = Math.floor(bonus);
-            this.applyBonus(cClass.name, bonus, save);
+            this.applyBonus(cName, bonus, save);
           }
         }
       }
@@ -1812,7 +1814,7 @@ export default {
     bab() {
       let bab = 0;
       // Class Loop (includes racial hd)
-      for (let cClass of this.creature.classes) {
+      for (let cClass of Object.values(this.creature.classes)) {
         if (cClass.bab) {
           bab += cClass.bab * cClass.levels;
         }
@@ -2109,12 +2111,12 @@ export default {
     // USES: bonusLoop(bonuses), attributes
     concentration() {
       let classes = {};
-      for (let cClass of this.creature.classes) {
+      for (let [cName, cClass] of Object.entries(this.creature.classes)) {
         if (!cClass.magic) { continue; }
-        classes[cClass.name] = { "total": 0, "sources": [] };
-        this.applyBonus(`${this.capFirsts(cClass.name)} Caster Level`, cClass.magic.casterLevel, classes[cClass.name]);
-        this.applyBonus(`${cClass.magic.castingAtr}Mod`, this.attributes[cClass.magic.castingAtr].mod, classes[cClass.name]);
-        this.bonusLoop(classes[cClass.name], `${this.capFirsts(cClass.name)} Concentration`);
+        classes[cName] = { "total": 0, "sources": [] };
+        this.applyBonus(`${this.capFirsts(cName)} Caster Level`, cClass.magic.casterLevel, classes[cName]);
+        this.applyBonus(`${cClass.magic.castingAtr}Mod`, this.attributes[cClass.magic.castingAtr].mod, classes[cName]);
+        this.bonusLoop(classes[cName], `${this.capFirsts(cName)} Concentration`);
       } // end class loop
       return classes;
     },
@@ -2361,7 +2363,7 @@ export default {
         }
       }
       // reset S spells
-      for (const cClass of this.creature.classes) {
+      for (let cClass of Object.values(this.creature.classes)) {
         if (cClass.magic.remainingCasts) {
           cClass.magic.remainingCasts = Array.from(cClass.magic.spellsPerDay);
           cClass.magic.remainingCasts[0] = 1;
