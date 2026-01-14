@@ -399,6 +399,18 @@
               <span v-else> {{ data.label }} </span>
             </el-col>
 
+            <!-- CMB -->
+            <el-col v-if="data.label == 'Special'" :span="3">
+              <el-tooltip placement="top" effect="light">
+                <el-tag size="small" effect="dark" type="primary">
+                  CMB: {{ cmb.total }}
+                </el-tag>
+                <template #content>
+                  <span v-for="bonus in cmb.sources" :key="bonus"> {{ bonus+" " }} </span>
+                </template>
+              </el-tooltip>
+            </el-col>
+
             <!-- Attack Bonus (To Hit) -->
             <el-col v-if="data.value && data.value.atkBonus" :span="3">
               <el-row :gutter="10" justify="center">
@@ -597,12 +609,12 @@
         <el-input v-model="itemFilter" class="w-60 mb-2" placeholder="Item Search" aria-label="Item Search" />
       </el-col>
       <el-col :xs="7" :span="4">
-        <el-button type="primary" @click="editItem({label:'', value:{}})">Add Item</el-button>
+        <el-button type="primary" @click="addItem">Add Item</el-button>
       </el-col>
     </el-row>
 
     <el-tree
-      :data="creature.inventory"
+      :data="inventory"
       :default-expanded-keys="creature.settings.expandInventory"
       :filter-node-method="filterNode"
       :allow-drag="allowDrag"
@@ -635,7 +647,7 @@
           </el-tag>
         </el-col>
         <el-col :xs="0" :sm="5" :lg="3">
-          <el-input-number v-if="data.value && data.value.Amount" v-model="data.value.Amount" :min="0" size="small" aria-label="Number of Items" />
+          <el-input-number v-if="data.value && Number.isInteger(data.value.Amount)" v-model="data.value.Amount" :min="0" @change="refresh++" size="small" aria-label="Number of Items" />
         </el-col>
         <el-col :xs="7" :sm="4" :lg="3">
           <div class="custom-tree-node" v-if="data.value">
@@ -962,11 +974,11 @@
                     {{ sName }}
                   </el-button>
                 -->
-                <el-row v-for="(spell, index) in spells" :key="index" :gutter="10" align="middle" style="margin-bottom:15px;">
+                <el-row v-for="(spell, sName) in spells" :key="sName" :gutter="10" align="middle" style="margin-bottom:15px;">
                   <el-col :span="4" class="center-horz">
-                    <el-popconfirm :title="`Cast ${spell}`" @confirm="castPSpell(cName, lvl, spell, index)" hide-icon>
+                    <el-popconfirm :title="`Cast ${spell}`" @confirm="castPSpell(cName, lvl, spell, sName)" hide-icon>
                       <template #reference>
-                        <el-button :ref="`${spell}-${index}`" type="primary" plain> {{ spell }} </el-button>
+                        <el-button :ref="`${spell}-${sName}`" type="primary" plain> {{ spell }} </el-button>
                       </template>
                       <template #actions="{ confirm }">
                         <el-button @click="confirm" size="small" type="primary"> Yes </el-button>
@@ -1216,7 +1228,6 @@
           </div>
 
         </div>
-
       </el-tab-pane>
     </el-tabs>
   </el-tab-pane>
@@ -1279,15 +1290,13 @@
   </el-tab-pane>
 </el-tabs>
 
-
-  <!-- Edit Item Dialog -->
+  <!-- Dialog -->
   <el-dialog v-model="dialog" :width="dialogWidth">
     <g-item     v-if="showItem" :source="item" @save-item="saveItem"/>
     <g-ability  v-if="showAbil" :source="abil" @save-abil="saveAbility"/>
   </el-dialog>
 
 </div>
-
 </template>
 
 <script>
@@ -1328,15 +1337,12 @@ export default {
       gFatigue: "",
       metamagic: null,
 
-
-
       dialog: false,
       dialogWidth: 750,
       abil: {},
       showAbil: false,
       item: {},
       showItem: false,
-
 
     }
   },
@@ -1405,8 +1411,8 @@ export default {
       // Equipped Items
       let armor = this.inventory[1].children[0].children[0];
       if (armor) {
-        invTotal.value += armor.value.Cost;
-        invTotal.weight += armor.value.Weight;
+        invTotal.value += armor.value.Cost * armor.value.Amount;
+        invTotal.weight += armor.value.Weight * armor.value.Amount;
         if (invTotal.maxDex > armor.value["Max Dex"]) {
           invTotal.maxDex = armor.value["Max Dex"];
         }
@@ -1417,8 +1423,8 @@ export default {
       }
       for (let slot of Object.values(this.inventory[1].children[1].children)) {
         for (let item of Object.values(slot.children)) {
-          invTotal.value += item.value.Cost;
-          invTotal.weight += item.value.Weight;
+          invTotal.value += item.value.Cost * item.value.Amount;
+          invTotal.weight += item.value.Weight * item.value.Amount;
           if (slot.label == "Hands" && item.value.Penalty) {
             if (invTotal.maxDex > item.value["Max Dex"]) {
               invTotal.maxDex = item.value["Max Dex"];
@@ -1589,7 +1595,7 @@ export default {
       }
       return attributes;
     },
-    // USES: attributes, bonusLoop(bonuses)
+    // USES: bonusLoop(bonuses), attributes
     health() {
       let hpMod, health = { total: 0, damage: 0, nonlethal: 0, sources: [] };
       // health.total += this.creature.health.total;
@@ -1641,7 +1647,7 @@ export default {
       this.bonusLoop(health, "HP");
       return health;
     },
-    // USES: inventory, bonusLoop(bonuses), attributes
+    // USES: bonusLoop(bonuses), attributes, inventory, sizeStats
     ac() {
       let ac = { "total": { "total": 10, "sources": [] }, "touch": { "total": 10, "sources": [] }, "flat": { "total": 10, "sources": [] } };
       let armor = this.inventory[1].children[0].children[0];
@@ -1674,7 +1680,7 @@ export default {
       this.bonusLoop(ac.flat, "flatAC");
       return ac;
     },
-    // USES: basics, bonusLoop(bonuses), attributes
+    // USES: bonusLoop(bonuses), attributes
     saves() {
       let saves = { "fort": { "total": 0, "sources": [] }, "ref": { "total": 0, "sources": [] }, "will": { "total": 0, "sources": [] } };
       let bonus, bName = "";
@@ -1732,7 +1738,7 @@ export default {
       saves.will.total = Math.floor(saves.will.total);
       return saves;
     },
-    // USES: basics, bab, bonusLoop(bonuses), attributes
+    // USES: bonusLoop(bonuses), attributes, bab, sizeStats
     cmd() {
       let cmd = { "total": 10, "sources": [] };
       this.applyBonus("BAB", this.bab, cmd);
@@ -1742,7 +1748,7 @@ export default {
       this.bonusLoop(cmd, "cmd");
       return cmd;
     },
-    // USES: basics, bab, bonusLoop(bonuses), attributes
+    // USES: bonusLoop(bonuses), attributes, bab, sizeStats
     cmb() {
       let cmb = { "total": 0, "sources": [] };
       this.applyBonus("BAB", this.bab, cmb);
@@ -1762,7 +1768,7 @@ export default {
       this.bonusLoop(init, "initiative");
       return init;
     },
-    // USES: basics, bonusLoop(bonuses)
+    // USES: bonusLoop(bonuses), abilities
     speed() {
       let speed = {};
       speed = this.creature.basics.speed;
@@ -1810,7 +1816,6 @@ export default {
       return defenses
     },
 
-    // USES: basics, cClasses
     bab() {
       let bab = 0;
       // Class Loop (includes racial hd)
@@ -1822,7 +1827,7 @@ export default {
       bab = Math.floor(bab);
       return bab;
     },
-    // USES: inventory, bab, bonusLoop(bonuses), attributes
+    // USES: bonusLoop(bonuses), abilities, attributes, bab, sizeStats, inventory
     actions() {
       let actions = [
         { "label": "Melee", "extras": { "icon": "meleeSword", "capacity": 50 }, "children": [] },
@@ -1835,7 +1840,6 @@ export default {
       *      Special Actions      *
       *                           *
       \***************************/
-      // console.log(this.creature.abilities);
       // Abilities, like cleave, into 'special actions'
       for (const abil of this.abilities) {
         if (abil.extras.showMain) {
@@ -2065,7 +2069,7 @@ export default {
       // console.log(actions);
       return actions;
     },
-    // USES: basics, inventory, bonusLoop(bonuses), attributes
+    // USES: bonusLoop(bonuses), attributes, inventory, sizeStats
     skills() {
       let skills = {};
 
@@ -2108,6 +2112,13 @@ export default {
       return skills;
     },
 
+    castingClasses() {
+      let classes = [];
+      for (let [cName, cClass] of Object.entries(this.creature.classes)) {
+        if (cClass.levels && cClass.magic) { classes.push(cName); }
+      }
+      return classes;
+    },
     // USES: bonusLoop(bonuses), attributes
     concentration() {
       let classes = {};
@@ -2120,7 +2131,7 @@ export default {
       } // end class loop
       return classes;
     },
-    // USES: abilites
+    // USES: abilities
     knownMetas() {
       let knownMetas = [];
       let metas = [
@@ -2213,8 +2224,9 @@ export default {
       return knownMetas;
     },
 
-
   },
+
+
   beforeMount(){
     this.original.name = this.source.name;
     this.original.val = JSON.stringify(this.source);
@@ -2227,12 +2239,18 @@ export default {
     if (window.innerWidth > 360) {
       tabs[1].appendChild( document.getElementById('restBtn') );
     }
+
+    // hide non magic classes from spells tab
+    for (let button of Object.values( tabs[0].children[0].children )) {
+      if (!this.castingClasses.includes(button.innerText.toLowerCase())) {
+        button.hidden = true;
+      }
+    }
     // Put Add Spell button in class spells tabs
     tabs[0].appendChild( document.getElementById('addSpell') );
   },
   updated() {
     if (this.original.name != this.source.name) {
-      console.log(this.creature);
       this.original.name = this.source.name;
       this.original.val = JSON.stringify(this.source);
       this.creature = this.source;
@@ -2422,7 +2440,7 @@ export default {
     recursiveInventory(container, invTotal, BagOfHolding){
       for (let item of Object.values(container)) {
         if (item.value) {
-          invTotal.value += item.value.Cost;
+          invTotal.value += item.value.Cost * item.value.Amount;
           invTotal.weight += BagOfHolding ? 0 : item.value.Weight * (item.value.Amount ? item.value.Amount : 1);
         }
         if (item.children && item.children.length) {
@@ -2464,27 +2482,28 @@ export default {
         return false;
       }
     },
-    saveItem(item) {
+    addItem() {
+      let item = {
+        label: 'New Item',
+        value: {
+          Description: '',
+          Cost: 1,
+          Weight: 1,
+          Ammount: 1,
+          Extras: { Notes: [] } }
+        };
       this.inventory[2].children.push(item);
-      this.editingItem = false;
+      this.editItem(item);
     },
     editItem(item) {
-      this.addItem = false;
-      if (!Object.keys(item).length) {
-        item = {
-          label: "",
-          value: {
-            Description: "",
-            Cost: 0,
-            Weight: 0,
-            Extras: {
-              Notes: []
-            }
-          }
-        };
-      }
+      this.item = {};
       this.item = item;
-      this.editingItem = true;
+      this.showItem = true;
+      this.dialog = true;
+    },
+    saveItem() {
+      this.showItem = false;
+      this.dialog = false;
     },
     deleteItem(node, data) {
       const parent = node.parent;
@@ -2525,6 +2544,7 @@ export default {
           notes: []
         }
       };
+      this.abilities.push(this.abil);
       this.showAbil = true;
       this.dialog = true;
     },
@@ -2533,7 +2553,6 @@ export default {
       this.abil = ability;
       this.showAbil = true;
       this.dialog = true;
-      // this.editingAbil = true;
     },
     saveAbility() {
       this.showAbil = false;

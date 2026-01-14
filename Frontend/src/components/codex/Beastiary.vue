@@ -35,41 +35,110 @@
     <el-auto-resizer style="height: 600px">
       <template #default="{ width }">
         <el-dialog v-model="creatureVisible" :width="width" style="margin-top: 75px" >
-          <CreatureCard :source="creature" @save-creature="saveCreature(creature);" @open-drawer="console.log('open drawer')"></CreatureCard>
+          <CreatureCard :source="creature" @save-creature="openDrawer" @open-drawer="openDrawer"></CreatureCard>
         </el-dialog>
       </template>
     </el-auto-resizer>
 
+    <!-- DRAWER -->
+    <el-drawer v-model="drawer" :size="360" direction="rtl">
+      <template #header> <h4> Add monster to encounter </h4> </template>
+      <template #default>
+        <el-select v-model="campaign" @change="loadEncounters" filterable placeholder="Choose a Campaign" aria-label="Select Campaign">
+          <el-option v-for="campaign in campaigns" :key="campaign.id" :label="campaign.name" :value="campaign" >
+            {{ campaign.user.username }}'s {{ campaign.name }}
+          </el-option>
+        </el-select>
+        <el-select v-model="encounter" filterable placeholder="Choose an Encounter" aria-label="Select Encounter">
+          <el-option v-for="encounter in encounters" :key="encounter.id" :label="encounter.name" :value="encounter" />
+        </el-select>
 
+        <div v-if="encounter.name">
 
+          [ View Encounter ]
 
-    <!--
+          <el-collapse v-model="encounterCollapse">
+            <!-- Encounter Notes -->
+            <el-collapse-item name="1">
+              <template #title>
+                <el-divider style="max-width:75%"> <g-icon iconSize="20px" iconName="openScroll" /> Notes </el-divider>
+              </template>
+              <el-input
+                v-for="(note, index) in encounter.notes" :key="index"
+                v-model="encounter.notes[index]"
+                :autosize="{ minRows: 2, maxRows: 5 }"
+                type="textarea"
+                aria-label="textAreaName" />
+              <el-button @click="encounter.notes.push('')" size="large" type="primary">
+                Add Note
+                <g-icon iconName="createScroll" iconSize="24px" iconColor="#CCC" />
+              </el-button>
+            </el-collapse-item>
 
-    <el-dialog :width="creatureWidth" v-model="monsterVisible" :before-close="monsterClose">
+            <!-- Encounter NPCs -->
+            <el-collapse-item name="2">
+              <template #title>
+                <el-divider style="max-width:75%"> <g-icon iconSize="20px" iconName="userList" /> NPCs </el-divider>
+              </template>
+              <el-table :data="this.encounter.npcs" stripe >
+                <el-table-column label="Type" min-width="55">
+                  <template #default="scope">
+                    <g-icon :iconName="scope.row.type" iconSize="24px" />
+                  </template>
+                </el-table-column>
+                <el-table-column prop="name" label="Name" min-width="120" sortable />
+                <el-table-column prop="alignment" label="Align" min-width="90" sortable />
+                <el-table-column prop="hp" label="HP" sortable />
+                <el-table-column label="Actions" fixed="right">
+                  <template #default="scope">
+                    <el-row class="row-bg" justify="space-between">
+                      <el-button @click="loadCharacter(scope.row.id)" type="info" style="margin:0" circle>
+                        <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
+                      </el-button>
+                    </el-row>
+                  </template>
+                </el-table-column>
+              </el-table>
+            </el-collapse-item>
 
-      <el-row :gutter="10" justify="center">
-        <el-col :xs="12" :sm="8">
-          <el-select v-model="campaign" @change="loadEncounters" filterable placeholder="Choose a Campaign" aria-label="Select Campaign">
-            <el-option v-for="campaign in campaigns" :key="campaign.id" :label="campaign.name" :value="campaign" >
-              {{ campaign.user.username }}'s {{ campaign.name }} ({{ campaign.id }})
-            </el-option>
-          </el-select>
-        </el-col>
-        <el-col :xs="12" :sm="8">
-          <el-select v-model="encounter" filterable placeholder="Choose an Encounter" aria-label="Select Encounter">
-            <el-option v-for="encounter in encounters" :key="encounter.id" :label="encounter.name" :value="encounter" />
-          </el-select>
-        </el-col>
-        <el-col :xs="24" :sm="12" class="center-horz" style="margin:5px;">
-          <el-button v-if="encounter.id" @click="encounter.monsters.push(creature); saveEncounter();" type="success" size="large" aria-label="Join Encounter"> Join </el-button>
-        </el-col>
-      </el-row>
+            <!-- Encounter Monsters -->
+            <el-collapse-item name="3">
+              <template #title>
+                <el-divider style="max-width:75%"> <g-icon iconSize="20px" iconName="magical beast" /> Beasts </el-divider>
+              </template>
+              <el-table :data="encounter.monsters" stripe >
+                <el-table-column label="Type" min-width="55">
+                  <template #default="scope">
+                    <g-icon :iconName="scope.row.type" iconSize="24px" />
+                  </template>
+                </el-table-column>
+                <el-table-column prop="name" label="Name" min-width="120" sortable />
+                <el-table-column prop="alignment" label="Align" min-width="90" sortable />
+                <el-table-column prop="hp" label="HP" sortable />
+              </el-table>
+            </el-collapse-item>
 
-      <CreatureCard :source="creature" @save-creature="saveCreature(creature);" @open-drawer="drawer = true;"></CreatureCard>
-    </el-dialog>
+            <!-- Displayed Monster -->
+            <el-collapse-item name="4">
+              <template #title>
+                <el-divider style="max-width:75%"> {{ creature.name }} </el-divider>
+              </template>
+              <div v-for="(section, name) in creatureJSON" :key="name">
+                <span>{{ capFirsts(name) }}</span>
+                <el-input type="textarea" v-model="creatureJSON[name]" :autosize="{ minRows: 5, maxRows: 20 }" :aria-label="`Admin ${name} JSON Input`" />
+              </div>
+            </el-collapse-item>
+          </el-collapse>
+        </div>
+      </template>
 
-    -->
-
+      <template #footer>
+        <div style="flex: auto">
+          <el-button @click="drawer = false;"> Cancel </el-button>
+          <el-button type="primary" @click="addCreature()" aria-label="Add creature and save encounter"> Confirm </el-button>
+        </div>
+      </template>
+    </el-drawer>
 
   </div>
 </template>
@@ -77,6 +146,8 @@
 <script>
 import DataService from "@/services/data.service";
 import CreatureCard from "@/components/template/CreatureCard.vue";
+import CampaignService from "@/services/campaign.service";
+import EncounterService from "@/services/encounter.service";
 import { h, resolveComponent, ref } from "vue";
 import { TableV2SortOrder } from 'element-plus';
 
@@ -97,7 +168,6 @@ export default {
     return {
       loading: false,
 
-      // tableSearch: "",
       sortState: ref({
         'Name': TableV2SortOrder.DESC,
         'CR': TableV2SortOrder.DESC,
@@ -300,11 +370,11 @@ export default {
                 h( btn,
                   { type: 'primary', circle: true, onClick: () => this.viewCreature(val.rowIndex) },
                   { default: () => [ h( icon, { iconSize: '24px', iconName: 'eye' } ) ]}
-                ),
-                h( btn,
-                  { type: 'info', circle: true, onClick: () => this.editCreature(val.rowIndex) },
-                  { default: () => [ h( icon, { iconSize: '24px', iconName: 'quill', iconColor: "#000" } ) ]}
                 )
+                // h( btn,
+                //   { type: 'info', circle: true, onClick: () => this.editCreature(val.rowIndex) },
+                //   { default: () => [ h( icon, { iconSize: '24px', iconName: 'quill', iconColor: "#000" } ) ]}
+                // )
               ]} // end row children
             );
           }, // end cell render
@@ -316,12 +386,24 @@ export default {
 
       // MONSTER MODAL
       creatureVisible: false,
-      creature: {}
+      creature: {},
+
+      // DRAWER
+      drawer: false,
+      campaigns: [],
+      campaign: "",
+      characters: [],
+      encounters: [],
+      encounter: "",
+      encounterCollapse: [ '' ],
+      creatureJSON: {},
+
     };
   },
 
   mounted() {
     this.getBeastiary();
+    this.loadCampaigns();
   },
   methods: {
     async getBeastiary() {
@@ -334,6 +416,11 @@ export default {
       })
       .catch(err => { console.error(err); });
     },
+    capFirsts(string) {
+      if (Number.isInteger(string)) { string = string.toString(); }
+      return string ? string.replace(/(^\w|\s\w)/g, m => m.toUpperCase()) : "";
+    },
+
 
     /***************************\
     *                           *
@@ -398,10 +485,7 @@ export default {
     *          CREATURE         *
     *                           *
     \***************************/
-
     loadCreature(monster) {
-      console.log("CSV", monster);
-
       /***************************\
       *                           *
       *          BASICS           *
@@ -471,7 +555,16 @@ export default {
         }
       }
       let innate = (monster.Type == 'humanoid') ? monster.Race : monster.Type;
-      creature.classes[innate] = { levels: 0, magic: {}, abilites: [] };
+      creature.classes[innate] = {
+        levels: 0,
+        magic: {
+          style: "Spontaneous Arcane",
+          castingAtr: "Cha",
+          spellsPerDay: [],
+          remainingCasts: []
+        },
+        abilites: []
+      };
 
       // Load Class 1
       if (monster.Class1) {
@@ -581,16 +674,10 @@ export default {
       let type = creature.classes[innate]
       if (racialHD > 0) {
         type.levels = racialHD;
-        type.bab = this.rules.creature_types[monster.Type].bab,
-        type.hd = this.rules.creature_types[monster.Type].hd,
-        type.saves = this.rules.creature_types[monster.Type].saves,
-        type.magic = {
-          style: "Spontaneous Arcane",
-          castingAtr: "Cha",
-          casterLevel: racialHD,
-          spellsPerDay: [],
-          remainingCasts: []
-        }
+        type.bab = this.rules.creature_types[monster.Type].bab;
+        type.hd = this.rules.creature_types[monster.Type].hd;
+        type.saves = this.rules.creature_types[monster.Type].saves;
+        type.magic.casterLevel = racialHD;
       }
 
       /***************************\
@@ -658,8 +745,9 @@ export default {
         // Masterwork items
         i = item.indexOf('masterwork');
         if (i > -1) { extras["Masterwork"] = true; item = item.slice(i+10); }
-        // Remove leading any whitespace & capitalize
-        item = item[0] === " " ? item.slice(1) : item;
+
+        // Remove whitespace & capitalize
+        item = item.trim();
         item = item.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
 
         // Add items to equipment
@@ -680,7 +768,6 @@ export default {
             creature.inventory[2].children.push({ label: item, value: newArmor });
           }
         }
-
         // Weapons
         else if ( Object.keys(this.equipment.Weapons).includes(item) ) {
           // creature.inventory[equipped].children[weapons]
@@ -851,6 +938,7 @@ export default {
           let dmg = atk.slice(atk.indexOf("(")+1);
           dmg = dmg.slice(0, dmg.indexOf('+'));
           atk = atk.slice(0, atk.indexOf('+')-1);
+          atk = atk.slice(0, atk.indexOf('-')-1);
 
           // Strip off masterwork & leading whitespace
           atk = atk.replace(/(mwk|masterwork|Mwk|Masterwork)\s/gm, "").trim();
@@ -1027,36 +1115,59 @@ export default {
       this.creature = creature; // update the val sent to CreatureCard AT THE END
 
     },
-
     viewCreature(index) {
       console.log(`View ${this.tableData[index].Name}`);
       this.loadCreature(this.tableData[index]);
       this.creatureVisible = true;
     },
-    editCreature(index) {
-      console.log(`Edit ${this.tableData[index].Name}`);
-      console.log(this.tableData[index]);
+    // overwrite the creature with the JSON, then add the updated creature to the encounter
+    addCreature() {
+      for (const key of Object.keys(this.creature)) {
+        this.creature[key] = JSON.parse(this.creatureJSON[key]);
+      }
+      this.encounter.monsters.push(this.creature);
+      this.saveEncounter();
     },
 
-
-
-
-
-
-    saveCreature(creature) {
-      console.log(creature);
+    /***************************\
+    *                           *
+    *          DRAWER           *
+    *                           *
+    \***************************/
+    openDrawer() {
+      this.creatureJSON = {};
+      for (const [key, value] of Object.entries(this.creature)) {
+        this.creatureJSON[key] = JSON.stringify(value);
+      }
+      this.drawer = true;
+    },
+    loadCampaigns() {
+      CampaignService.getCampaignList(this.userID, 0, 100)
+      .then(response => {
+        let tmp = JSON.parse(response.campaigns);
+        this.campaigns = tmp.rows;
+      })
+      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
+    },
+    loadEncounters() {
+      if (this.campaign.id) {
+        let title = document.getElementsByClassName('jumbotron')[0];
+        title.innerHTML = this.campaign.name;
+        EncounterService.getEncounterList(this.campaign.id, 0, 100)
+        .then(response => {
+          let tmp = response.encounters;
+          this.totalEncounters = tmp.count;
+          this.encounters = tmp.rows;
+        })
+        .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
+      }
+    },
+    saveEncounter() {
+      EncounterService.updateEncounter(this.encounter)
+      .then((response) => { this.$message({ message: `${response.encounter.name} updated`, type: 'success', }); })
+      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
     },
 
-
-
-
-
-
-
-
-    closeMonster() {
-      this.monsterVisible = false;
-    }
   }
 };
 </script>

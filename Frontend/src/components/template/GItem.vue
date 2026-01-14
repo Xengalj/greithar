@@ -180,10 +180,10 @@
         <el-row v-for="(damage, name) in item.value.Extras['extraDamages']" :key="name" :gutter="10"  style="margin-top:5px;">
           <el-col :span="6"> {{ name }} </el-col>
           <el-col :span="7">
-            <el-input v-model="item.value.Extras.extraDamages[name].Damage" :aria-label="`${capFirsts(name)} Damage Input`" />
+            <el-input v-model="item.value.Extras.extraDamages[name].Damage" placeholder="Dmg Die" :aria-label="`${capFirsts(name)} Damage Input`" />
           </el-col>
           <el-col :span="7">
-            <el-input v-model="damage.Type" :aria-label="`${capFirsts(name)} Type Input`" />
+            <el-input v-model="damage.Type" placeholder="Dmg Type" :aria-label="`${capFirsts(name)} Type Input`" />
           </el-col>
           <el-col :span="2">
             <el-button @click="delete item.value.Extras['extraDamages'][name]" circle>
@@ -235,9 +235,7 @@
 export default {
   name: 'g-item',
   emits: ['save-item'],
-  props: {
-    source: { type: Object }
-  },
+  props: { source: { type: Object } },
   data() {
     return {
       advanced: this.$store.state.auth.user.roles.includes('admin'),
@@ -272,7 +270,7 @@ export default {
     addNote() { this.item.value.Extras['Notes'].push(''); },
     deleteNote(index) { this.item.value.Extras['Notes'].splice(index, 1); },
 
-    saveItem() { this.$emit('save-item', this.item); },
+    saveItem() { this.$emit('save-item'); },
     reset() {
       let old = JSON.parse(this.original);
       this.item.label = old.label;

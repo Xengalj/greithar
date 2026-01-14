@@ -127,11 +127,22 @@
           </el-col>
         </el-row>
 
+        <el-row v-if="ability.extras.category" :gutter="10" style="margin-bottom:5px;">
+          <el-col :xs="12" :sm="8"> Category </el-col>
+          <el-col :xs="12" :sm="12">
+            <el-select v-model="ability.extras.category">
+              <el-option v-for="trigger in selects.abilityTypes" :key="trigger" :label="trigger" :value="trigger" >
+                {{ trigger }}
+              </el-option>
+            </el-select>
+          </el-col>
+        </el-row>
+
         <el-row v-if="!ability.extras.uses" :gutter="10" justify="center" style="margin-bottom:5px;">
           <el-col :xs="12" :sm="8"> </el-col>
           <el-col :xs="12" :sm="12">
-          <el-button size="small" type="success" @click="ability.extras.uses = { left: 0, total: 0, label: '', color: '' }"> Add Uses </el-button>
-        </el-col>
+            <el-button size="small" type="success" @click="ability.extras.uses = { left: 0, total: 0, label: '', color: '' }"> Add Uses </el-button>
+          </el-col>
         </el-row>
 
         <el-row v-if="ability.extras.uses" :gutter="10" style="margin-bottom:5px;">
@@ -237,7 +248,7 @@
 <script>
 export default {
   name: 'g-ability',
-  emits: ['saveAbil'],
+  emits: ['save-abil'],
   props: { source: { type: Object } },
   data() {
     return {
@@ -277,11 +288,7 @@ export default {
     rules() { return JSON.parse(localStorage.getItem('rules')); },
   },
   methods: {
-    saveAbil() {
-      // let newAbil = {};
-      // newAbil = this.ability;
-      this.$emit('save-abil');
-    },
+    saveAbil() { this.$emit('save-abil'); },
     addBonus() {
       this.ability.bonuses[this.ability.name.concat(" ", Object.keys(this.ability.bonuses).length+1)] = {
         value: 0,
