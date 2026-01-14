@@ -560,6 +560,7 @@ export default {
         magic: {
           style: "Spontaneous Arcane",
           castingAtr: "Cha",
+          casterLevel: 0,
           spellsPerDay: [],
           remainingCasts: []
         },
@@ -580,6 +581,7 @@ export default {
           creature.classes[monster.Class1].magic = {
             style: this.classes[monster.Class1].magic.style,
             castingAtr: this.classes[monster.Class1].magic.castingAtr,
+            casterLevel: monster.Class1_Lvl,
             useGaldur: false,
             openTotal: Math.floor( this.classes[monster.Class1].magic.galdurTotal[monster.Class1_Lvl] / 2 ),
             openRemaining: Math.floor( this.classes[monster.Class1].magic.galdurTotal[monster.Class1_Lvl] / 2 ),
@@ -619,6 +621,7 @@ export default {
           creature.classes[monster.Class2].magic = {
             style: this.classes[monster.Class2].magic.style,
             castingAtr: this.classes[monster.Class2].magic.castingAtr,
+            casterLevel: monster.Class1_Lv2,
             useGaldur: false,
             openTotal: Math.floor( this.classes[monster.Class2].magic.galdurTotal[monster.Class2_Lvl] / 2 ),
             openRemaining: Math.floor( this.classes[monster.Class2].magic.galdurTotal[monster.Class2_Lvl] / 2 ),

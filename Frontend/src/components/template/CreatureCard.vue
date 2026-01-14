@@ -2115,7 +2115,7 @@ export default {
     castingClasses() {
       let classes = [];
       for (let [cName, cClass] of Object.entries(this.creature.classes)) {
-        if (cClass.levels && cClass.magic) { classes.push(cName); }
+        if (cClass.magic) { classes.push(cName); }
       }
       return classes;
     },
@@ -2240,12 +2240,6 @@ export default {
       tabs[1].appendChild( document.getElementById('restBtn') );
     }
 
-    // hide non magic classes from spells tab
-    for (let button of Object.values( tabs[0].children[0].children )) {
-      if (!this.castingClasses.includes(button.innerText.toLowerCase())) {
-        button.hidden = true;
-      }
-    }
     // Put Add Spell button in class spells tabs
     tabs[0].appendChild( document.getElementById('addSpell') );
   },
@@ -2254,6 +2248,15 @@ export default {
       this.original.name = this.source.name;
       this.original.val = JSON.stringify(this.source);
       this.creature = this.source;
+      console.log(this.creature);
+    }
+
+    // hide non magic classes from spells tab
+    let tabs = document.getElementsByClassName('el-tabs__nav-scroll');
+    for (let button of Object.values( tabs[0].children[0].children )) {
+      if (!this.castingClasses.includes(button.innerText.toLowerCase())) {
+        button.hidden = true;
+      }
     }
   },
 
