@@ -160,7 +160,8 @@ export default {
         Good +4
         Perfect +8
 
-
+    - setup resources section
+    
     */
 
 

@@ -526,6 +526,15 @@
       <!-- Resources -->
       <el-collapse-item name="resources">
         <template #title> <g-icon iconName="star" /> Resources </template>
+
+        <div v-for="(abil, index) in abilities" :key="index">
+          {{ abil.name }} : {{ abil }}
+          <!--
+          if abil.extras.uses
+          blah
+         -->
+        </div>
+
         <div v-for="(res, name) in creature.resources" :key="name">
           <el-row :gutter="10" style="margin-bottom:10px">
             <el-col :span="6" class="center-horz">
@@ -1789,8 +1798,8 @@ export default {
       let senses = [];
       senses.push(`Perception ${this.skills.Perception.bonus.total}`);
       Object.values(this.abilities).forEach(abil => {
-        if (abil.benefit && abil.benefit.target == "senses") {
-          senses.push(abil.benefit.text);
+        if (abil.location == "senses") {
+          senses.push(abil.shortText);
         }
       });
       return senses;
