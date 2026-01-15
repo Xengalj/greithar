@@ -1,0 +1,2307 @@
+{
+  "types": {
+    "aberration": {
+      "hd": 8,
+      "ranks": 4,
+      "bab": 0.75,
+      "saves": {
+        "fort": { "mult": 0.33, "bonus": 0 },
+        "ref": { "mult": 0.33, "bonus": 0 },
+        "will": { "mult": 0.5, "bonus": 2 }
+      },
+      "skills": [ "Acrobatics", "Climb", "Escape Artist", "Fly", "Intimidate", "Perception", "Spellcraft", "Stealth", "Survival", "Swim" ],
+      "traits": {
+        "Darkvision": {
+          "description": "Aberrations can see in the dark up to 60 feet.",
+          "shortText": "Darkvision 60 ft.",
+          "location": "senses",
+          "trigger": "Continuous",
+          "bonuses": {}
+        }
+      }
+    },
+    "animal": {
+      "hd": 8,
+      "ranks": 2,
+      "bab": 0.75,
+      "saves": {
+        "fort": { "mult": 0.5, "bonus": 2 },
+        "ref": { "mult": 0.5, "bonus": 2 },
+        "will": { "mult": 0.33, "bonus": 0 }
+      },
+      "skills": [ "Acrobatics", "Climb", "Fly", "Perception", "Stealth", "Swim" ],
+      "traits": {
+        "Low-light Vision": {
+          "description": "Animals can see color in dim light.",
+          "shortText": "Low-Light Vision",
+          "location": "senses",
+          "trigger": "Continuous",
+          "bonuses": {}
+        }
+      }
+    },
+    "construct": {
+      "hd": 10,
+      "ranks": 2,
+      "bab": 1,
+      "saves": {
+        "fort": { "mult": 0.33, "bonus": 0 },
+        "ref": { "mult": 0.33, "bonus": 0 },
+        "will": { "mult": 0.33, "bonus": 0 }
+      },
+      "skills": [],
+      "traits": {
+        "Darkvision": {
+          "description": "Constructs can see in the dark up to 60 feet.",
+          "shortText": "Darkvision 60 ft.",
+          "location": "senses",
+          "trigger": "Continuous",
+          "bonuses": {}
+        },
+        "Low-light Vision": {
+          "description": "Constructs can see color in dim light.",
+          "shortText": "Low-Light Vision",
+          "location": "senses",
+          "trigger": "Continuous",
+          "bonuses": {}
+        },
+        "Construct Immunities": {
+          "description": "Constructs are magically animated or artificially created creatures, granting them a number of immunities.",
+          "shortText": "nonlethal damage, necromancy, fatigue, exhaustion, stunning, paralysis, sleep, poison, mind effects, disease, ability damage, death effects, ability drain, energy drain, fort saves",
+          "location": "immunities",
+          "trigger": "Continuous",
+          "bonuses": {}
+        }
+      }
+    },
+    "dragon": {
+      "hd": 12,
+      "ranks": 6,
+      "bab": 1,
+      "saves": {
+        "fort": { "mult": 0.5, "bonus": 2 },
+        "ref": { "mult": 0.5, "bonus": 2 },
+        "will": { "mult": 0.5, "bonus": 2 }
+      },
+      "skills": [ "Appraise", "Bluff", "Climb", "Craft", "Diplomacy", "Fly", "Heal", "Intimidate", "Knowledge (arcana)", "Knowledge (dungeoneering)", "Knowledge (engineering)", "Knowledge (geography)", "Knowledge (history)", "Knowledge (local)", "Knowledge (nature)", "Knowledge (nobility)", "Knowledge (planes)", "Knowledge (religion)", "Linguistics", "Perception", "Sense Motive", "Spellcraft", "Stealth", "Survival", "Swim", "Use Magic Device" ],
+      "traits": {
+        "Darkvision": {
+          "description": "Dragons can see in the dark up to 60 feet.",
+          "shortText": "Darkvision 60 ft.",
+          "location": "senses",
+          "trigger": "Continuous",
+          "bonuses": {}
+        },
+        "Low-light Vision": {
+          "description": "Dragons can see color in dim light.",
+          "shortText": "Low-Light Vision",
+          "location": "senses",
+          "trigger": "Continuous",
+          "bonuses": {}
+        },
+        "Dragon Immunities": {
+          "description": "Dragons are immune to magical sleep and paralysis.",
+          "shortText": "paralysis, sleep",
+          "location": "immunities",
+          "trigger": "Continuous",
+          "bonuses": {}
+        }
+      }
+    },
+    "fey": {
+      "hd": 6,
+      "ranks": 6,
+      "bab": 0.5,
+      "saves": {
+        "fort": { "mult": 0.33, "bonus": 2 },
+        "ref": { "mult": 0.5, "bonus": 2 },
+        "will": { "mult": 0.5, "bonus": 2 }
+      },
+      "skills": [ "Acrobatics", "Bluff", "Climb", "Craft", "Diplomacy", "Disguise", "Escape Artist", "Fly", "Knowledge (geography)", "Knowledge (local)", "Knowledge (nature)", "Perception", "Perform", "Sense Motive", "Sleight of Hand", "Stealth", "Swim", "Use Magic Device" ],
+      "traits": {
+        "Low-light Vision": {
+          "description": "Fey can see color in dim light.",
+          "shortText": "Low-Light Vision",
+          "location": "senses",
+          "trigger": "Continuous",
+          "bonuses": {}
+        }
+      }
+    },
+    "humanoid": {
+      "hd": 8,
+      "ranks": 2,
+      "bab": 0.75,
+      "saves": {
+        "fort": { "mult": 0.33, "bonus": 0 },
+        "ref": { "mult": 0.33, "bonus": 0 },
+        "will": { "mult": 0.33, "bonus": 0 }
+      },
+      "skills": [ "Climb", "Craft", "Handle Animal", "Heal", "Profession", "Ride", "Survival" ],
+      "traits": {}
+    },
+    "magical beast": {
+      "hd": 10,
+      "ranks": 2,
+      "bab": 1,
+      "saves": {
+        "fort": { "mult": 0.5, "bonus": 2 },
+        "ref": { "mult": 0.5, "bonus": 2 },
+        "will": { "mult": 0.33, "bonus": 0 }
+      },
+      "skills": [ "Acrobatics", "Climb", "Fly", "Perception", "Stealth", "Swim" ],
+      "traits": {
+        "Darkvision": {
+          "description": "Magical Beasts can see in the dark up to 60 feet.",
+          "shortText": "Darkvision 60 ft.",
+          "location": "senses",
+          "trigger": "Continuous",
+          "bonuses": {}
+        },
+        "Low-light Vision": {
+          "description": "Magical Beasts can see color in dim light.",
+          "shortText": "Low-Light Vision",
+          "location": "senses",
+          "trigger": "Continuous",
+          "bonuses": {}
+        }
+      }
+    },
+    "monstrous humanoid": {
+      "hd": 10,
+      "ranks": 4,
+      "bab": 1,
+      "saves": {
+        "fort": { "mult": 0.33, "bonus": 0 },
+        "ref": { "mult": 0.5, "bonus": 2 },
+        "will": { "mult": 0.5, "bonus": 2 }
+      },
+      "skills": [ "Climb", "Craft", "Fly", "Intimidate", "Perception", "Ride", "Stealth", "Survival", "Swim" ],
+      "traits": {
+        "Darkvision": {
+          "description": "Monstrous Humanoids can see in the dark up to 60 feet.",
+          "shortText": "Darkvision 60 ft.",
+          "location": "senses",
+          "trigger": "Continuous",
+          "bonuses": {}
+        }
+      }
+    },
+    "ooze": {
+      "hd": 8,
+      "ranks": 2,
+      "bab": 0.75,
+      "saves": {
+        "fort": { "mult": 0.33, "bonus": 0 },
+        "ref": { "mult": 0.33, "bonus": 0 },
+        "will": { "mult": 0.33, "bonus": 0 }
+      },
+      "skills": [],
+      "traits": {
+        "Blind": {
+          "description": "Oozes are blind, they have no eyes but do possess blindsight.",
+          "shortText": "Blindsight 60 ft.",
+          "location": "senses",
+          "trigger": "Continuous",
+          "bonuses": {}
+        },
+        "Ooze Immunities": {
+          "description": "Oozes have no Intelligence score, giving them immunity to mind effects, they also have a number of other immunities.",
+          "shortText": "mind effects, gaze attacks, visual effects, illusions, poison, sleep, paralysis, polymorph, stunning, critical hits, flanking, precision damage",
+          "location": "immunities",
+          "trigger": "Continuous",
+          "bonuses": {}
+        }
+      }
+    },
+    "outsider": {
+      "hd": 10,
+      "ranks": 6,
+      "bab": 1,
+      "saves": {
+        "fort": { "mult": 0.33, "bonus": 0 },
+        "ref": { "mult": 0.33, "bonus": 0 },
+        "will": { "mult": 0.33, "bonus": 0 }
+      },
+      "skills": [ "Bluff", "Craft", "Knowledge (planes)", "Perception", "Sense Motive", "Stealth" ],
+      "traits": {
+        "Darkvision": {
+          "description": "Outsiders can see in the dark up to 60 feet.",
+          "shortText": "Darkvision 60 ft.",
+          "location": "senses",
+          "trigger": "Continuous",
+          "bonuses": {}
+        }
+      }
+    },
+    "plant": {
+      "hd": 8,
+      "ranks": 2,
+      "bab": 0.75,
+      "saves": {
+        "fort": { "mult": 0.5, "bonus": 2 },
+        "ref": { "mult": 0.33, "bonus": 0 },
+        "will": { "mult": 0.33, "bonus": 0 }
+      },
+      "skills": [ "Perception", "Stealth" ],
+      "traits": {
+        "Low-light Vision": {
+          "description": "Plants can see color in dim light.",
+          "shortText": "Low-Light Vision",
+          "location": "senses",
+          "trigger": "Continuous",
+          "bonuses": {}
+        },
+        "Plant Immunities": {
+          "description": "Plants are immune to a number of afects and abilities, mostly related to poisons or mind effects.",
+          "shortText": "mind effects, paralysis, poison, polymorph, sleep, stunning",
+          "location": "immunities",
+          "trigger": "Continuous",
+          "bonuses": {}
+        }
+      }
+    },
+    "undead": {
+      "hd": 8,
+      "ranks": 4,
+      "bab": 0.75,
+      "saves": {},
+      "saves": {
+        "fort": { "mult": 0.33, "bonus": 0 },
+        "ref": { "mult": 0.33, "bonus": 0 },
+        "will": { "mult": 0.5, "bonus": 2 }
+      },
+      "skills": [ "Climb", "Disguise", "Fly", "Intimidate", "Knowledge (arcana)", "Knowledge (religion)", "Perception", "Sense Motive", "Spellcraft", "Stealth" ],
+      "traits": {
+        "Darkvision": {
+          "description": "Undead can see in the dark up to 60 feet.",
+          "shortText": "Darkvision 60 ft.",
+          "location": "senses",
+          "trigger": "Continuous",
+          "bonuses": {}
+        },
+        "Undead Immunities": {
+          "description": "Undead are immune to a number of afects and abilities, mostly related to injuries the living may sustain like diseases.",
+          "shortText": " mind effects, bleed, death effects, disease, paralysis, poison, sleep, stunning, nonlethal damage, ability drain, energy drain, physical ability damage, exhaustion, fatigue, fort saves",
+          "location": "immunities",
+          "trigger": "Continuous",
+          "bonuses": {}
+        }
+      }
+    },
+    "vermin": {
+      "hd": 8,
+      "ranks": 2,
+      "bab": 0.75,
+      "saves": {
+        "fort": { "mult": 0.5, "bonus": 2 },
+        "ref": { "mult": 0.33, "bonus": 0 },
+        "will": { "mult": 0.33, "bonus": 0 }
+      },
+      "skills": [],
+      "traits": {
+        "Darkvision": {
+          "description": "Vermin can see in the dark up to 60 feet.",
+          "shortText": "Darkvision 60 ft.",
+          "location": "senses",
+          "bonuses": {}
+        },
+        "Mindless": {
+          "description": "Vermin have no intelligence score, and immunity to all mind-affecting effects.",
+          "shortText": "mind effects",
+          "location": "immunities",
+          "trigger": "Continuous",
+          "bonuses": {}
+        }
+      }
+    }
+  },
+  "subtypes": {
+    "Aeon": {
+      "Aeon Immunities": {
+        "description": "Aeons gain a number of immunities.",
+        "shortText": "cold, poison, critical hits",
+        "location": "immunities",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Aeon Resistances": {
+        "description": "Aeons gain a number of resistances.",
+        "shortText": "electricity 10, fire 10",
+        "location": "resistances",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+
+      "Envisaging (Su)": {
+        "description": "UPDATE",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Extension of All (Ex)": {
+        "description": "UPDATE",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Void Form (Su)": {
+        "description": "UPDATE",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Continuous",
+        "bonuses": {}
+      }
+    },
+    "Agathion": {
+      "Realm": "Nirvana",
+      "Agathion Immunities": {
+        "description": "Agathions gain a number of immunities.",
+        "shortText": "electricity, petrification",
+        "location": "immunities",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Agathion Resistances": {
+        "description": "Agathion gain a number of resistances.",
+        "shortText": "cold 10, sonic 10",
+        "location": "resistances",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Low-light Vision": {
+        "description": "Plants can see color in dim light.",
+        "shortText": "Low-Light Vision",
+        "location": "senses",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+
+      "Lay on Hands": {
+        "description": "UPDATE",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Poison Resistance": {
+        "description": "Agathions gain a +4 racial bonus to saves against poison.",
+        "shortText": "+4 racial bonus vs poison",
+        "location": "self",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Agathion Tongues": {
+        "description": "Agathions speak Celestial, Infernal, and Draconic",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Speak with Animals (Su)": {
+        "description": "UPDATE (works like the spell, CL = HD, no verbal)",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Free",
+        "bonuses": {}
+      },
+      "Truespeech (Su)": {
+        "description": "Agathions can speak with any creature that has a language, as though using tongues (CL = HD)",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Continuous",
+        "bonuses": {}
+      }
+    },
+    "Air": {
+      "Realm": "Elemental Plane of Air",
+      "Air Walk": {
+        "description": "Air creatures have fly speeds and usually have perfect maneuverability, as well as gain Fly as a class skill.",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Continuous",
+        "bonuses": {}
+      }
+    },
+    "Angel": {
+      "Realm": "Heaven, Nirvana, Elysium"
+    },
+    "Aquatic": {},
+    "Archon": {
+      "Realm": "Heaven"
+    },
+    "Asura": {},
+    "Augmented": {},
+    "Automaton": {},
+    "Azata": {
+      "Realm": "Elysium"
+    },
+    "Behemoth": {},
+    "Catfolk": {},
+    "Chaotic": {
+      "Realm": "Elysium, Limbo, Abyss"
+    },
+    "Clockwork": {},
+    "Cold": {},
+    "Colossus": {},
+    "Daemon": {
+      "Realm": "Abaddon"
+    },
+    "Dark Folk": {},
+    "Deep One": {},
+    "Demodand": {
+      "Realm": "Abyss"
+    },
+    "Demon": {
+      "Realm": "Abyss"
+    },
+    "Devil": {
+      "Realm": "Hell"
+    },
+    "Div": {
+      "Realm": "Abaddon"
+    },
+    "Dwarf": {},
+    "Earth": {
+      "Realm": "Elemental Plane of Earth"
+    },
+    "Elemental": {},
+    "Elf": {},
+    "Evil": {
+      "Realm": "Hell, Abaddon, Abyss"
+    },
+    "Extraplanar": {},
+    "Fire": {
+      "Realm": "Elemental Plane of Fire"
+    },
+    "Giant": {},
+    "Gnome": {},
+    "Goblinoid": {},
+    "Godspawn": {},
+    "Good": {
+      "Realm": "Heaven, Nirvana, Elysium"
+    },
+    "Great Old One": {},
+    "Halfling": {},
+    "Herald": {},
+    "Hive": {},
+    "Human": {},
+    "Incorporeal": {},
+    "Inevitable": {},
+    "Kaiju": {},
+    "Kami": {},
+    "Kasaha": {},
+    "Kitsuen": {},
+    "Kyton": {
+      "Realm": "Plane of Shadow"
+    },
+    "Lawful": {
+      "Realm": "Heaven, Utopia, Hell"
+    },
+    "Leshy": {},
+    "Mortic": {},
+    "Mythic": {},
+    "Native": {},
+    "Nightshade": {},
+    "Oni": {{},
+    "Orc": {},
+    "Protean": {
+      "Realm": "Limbo"
+    },
+    "Psychopomp": {},
+    "Qlippoth": {
+      "Realm": "Abyss"
+    },
+    "Rakshasa": {},
+    "Ratfolk": {},
+    "Reptilian": {},
+    "Robot": {},
+    "Samsaran": {},
+    "Sasquatch": {},
+    "Shapechanger": {},
+    "Swarm": {},
+    "Troop": {},
+    "Udaeus": {},
+    "Unbreathing": {},
+    "Vanara": {},
+    "Vishkayna": {},
+    "Water": {
+      "Realm": "Elemental Plane of Water"
+    },
+    "Wayang": {
+      "Realm": "Plane of Shadow"
+    },
+    "Wild Hunt": {}
+  },
+  "races": {
+
+	"Amaru": {
+		"rp": 12,
+		"age": {
+			"Adulthood": 20,
+			"Intuitive": "+1d4 (21 – 24 years)",
+			"Self-Taught": "+1d6 years (21 – 26 years)",
+			"Trained": "+2d6 years (22 – 32 years)",
+			"Middle Age": "35 years",
+			"Old Age": "50 years",
+			"Venerable": "70 years",
+			"Max Age": "70 +2d20 years"
+		},
+		"surnames": {
+			"Ashcraft": "Common: Fire Worker",
+			"Challwaq": "Quechua: Fisher",
+			"Heitala": "",
+			"Herrero": "Quechua: Smith",
+			"Musuqari": "Quechua: New Man",
+			"Nina'Chuqcha": "Quechua: Fire Fang",
+			"Qulqi'Niqi": "Quechua: Silver Scale",
+			"Qumpana": "Quechua: Green Hood",
+			"Sacha-Sacha'Qari": "Quechua: Woods Man (Cutter)",
+			"Wadé XX": "Quechua: Child Of"
+		},
+		"male": {
+			"height": "6'3\" +2d10 inches (6'5\" - 8'1\")  (4.5 - 6.5 x2)",
+			"weight": "200 lbs. +2d10×5 lbs. (210 – 300 lbs.)",
+			"names": [ "Akwa", "Awank'ay", "Huch'uy", "Ka'Dra", "Kaipa", "Killa", "Kuri", "Llapo'ma", "Mit'a", "Na'tsu", "Orthradus", "Pillku", "Rawa", "Rulik'Sha", "Sayri", "Scoperus", "Sonk'o", "Sotax", "Tin'Kupuma", "Tomayro" ]
+		},
+		"female": {
+			"height": "6'6\" +2d10 inches (6'8\" - 8'4\")  (5 - 7 x2)",
+			"weight": "225 lbs. +2d10×5 lbs. (235 – 325 lbs.)",
+			"names": [ "Auka", "Caipa", "Chalco", "Chinpu", "Kucha", "Llo'Que", "Nyusta", "Ophiiphelia", "Pari", "Phoexis", "Qatquil", "Qori", "Rauwa", "Shero", "Talla", "Tamia", "Thiesla", "Uluqu'u", "Usqu", "Wayna" ]
+		},
+		"abilityMods": {
+			"Dex": 2,
+			"Int": 2,
+			"Str": -2
+		},
+		"size": "medium",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Humanoid",
+			"subtypes": [ "Reptilian" ]
+		},
+		"speed": 30,
+		"languages": ["Common", "Risko"],
+		"bonusLanguages": ["Draconic", "Dwarven", "Elvish", "Gnomish", "Ignan", "Kamago", "Undercommon"],
+		"traits": {
+			"Stability": {
+				"trigger": "Continuous",
+				"description": "An amaru gets a +4 racial bonus to CMD when resisting bull rush or trip attempts.",
+				"benefit": { "target": "self", "text": "You have a +4 bonus to CMD vs Trips & Bull Rush" },
+				"bonuses": {}
+			},
+			"Stalker": {
+				"trigger": "Continuous",
+				"description": "Perception and stealth are always considered class skills for an amaru.",
+				"benefit": { "target": "self", "text": "Perception and stealth are class skills" },
+				"bonuses": {}
+			},
+			"Pyromaniac": {
+				"trigger": "Continuous",
+				"description": "An amaru is treated as 1 level higher when casting spells with the fire descriptor or that deal fire damage. In addition, Amarus with a charisma score of 11 or higher gain dancing lights, flare, prestidigitaion, and produce flame, as spell-like abilities, usable once per day.",
+				"benefit": { "target": "self", "text": "Treat your caster level as 1 higher for fire spells" },
+				"bonuses": {}
+			},
+			"Hypnotic Gaze": {
+				"trigger": "Standard",
+				"description": "Amarus can cast hypnotism once a day, for 1 round.",
+				"benefit": { "target": "self", "text": "Hypnotize enemies" },
+				"bonuses": {}
+			},
+			"Darkvision": {
+				"trigger": "Continuous",
+				"description": "An amaru can see 60 feet in total darkness.",
+				"benefit": { "target": "senses", "text": "Darkvision 60 ft." },
+				"bonuses": {}
+			},
+			"Prehensile Tail": {
+				"trigger": "Continuous",
+				"description": "Amarus can use their tail to carry objects. They cannot wield weapons with their tails, but can retrieve small, stored objects carried on them as a swift action.",
+				"benefit": { "target": "self", "text": "Retrieve small items as a swift action" },
+				"bonuses": {}
+			}
+		},
+		"alternateTraits": {
+			"Slapping Tail": {
+				"trigger": "Standard",
+				"description": "An amaru can use their tail to make a secondary natural attack that deals 1d8 + their strength modifier bludgeoning damage.",
+				"benefit": { "target": "self", "text": "Make a slam attack (1d8 + StrMod)" },
+				"bonuses": {},
+				"replaces": ["Pyromaniac"]
+			}
+		}
+	},
+	"Avaar": {
+		"rp": 12,
+		"age": {
+			"Adulthood": 12,
+			"Intuitive": "+1d4 (13 – 16 years)",
+			"Self-Taught": "+1d6 years (13 – 18 years)",
+			"Trained": "+2d6 years (14 – 24 years)",
+			"Middle Age": "20 years",
+			"Old Age": "30 years",
+			"Venerable": "40 years",
+			"Max Age": "40 +1d20 years"
+		},
+		"surnames": {
+			"Dahabiaj": "Arabic: Gold Crown",
+			"Gaabzaraq": "Arabic: Blue Forest",
+			"Gutaj-Ru": "",
+			"Hadaad": "Arabic: Smithy",
+			"Hitab": "Arabic: Woodsman",
+			"Ibs XX": "Arabic: Child Of",
+			"Ravala": "",
+			"Sammahamra": "Arabic: Red Sky",
+			"Sayaad": "Arabic: Fisher",
+			"Taayir-Alfiniq": "Arabic: Phoenix"
+		},
+		"male": {
+			"names": [ "Aabak", "Arm-Uus", "Aki-Ke", "Azim", "Barid", "Bat-Saikhan", "Belor", "Hadzi", "Hanbal", "Kjell", "Merhet-Nets", "Nefer-Skai", "Nonek", "Pateba", "Ra-Kheper-Ka", "Seb", "Tachus", "Tezman", "Vaelyth", "Zylys" ],
+			"height": "5'5\" +2d8 inches (5'7\" - 6'9\")",
+			"weight": "120 lbs. +2d4×5 lbs. (130 – 160 lbs.)"
+		},
+		"female": {
+			"names": [ "Aula", "Aurera", "Bleka", "Challa", "Femi", "Elliolis", "Eopi", "Kamshi", "Kistra", "Leyla", "Meeka", "Naytu", "Pappi", "Rhoot", "Ronri", "Safira", "Sefu", "Sephyris", "Shafira", "Thiti" ],
+			"height": "5'3\" +2d8 inches (5'5\" - 6'7\")",
+			"weight": "110 lbs. +2d4×5 lbs. (120 – 150 lbs.)"
+		},
+		"abilityMods": {
+			"Dex": 2,
+			"Int": 2,
+			"Con": -2
+		},
+		"size": "medium",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Humanoid",
+			"subtypes": [ "Harpy" ]
+		},
+		"speed": 30,
+		"languages": ["Common"],
+		"bonusLanguages": ["Auran", "Draconic", "Elvish", "Gnomish", "Goblin", "Kamago", "Matoran", "Necriil", "Risko", "Sylvan", "Ulumi"],
+		"traits": {
+			"Eagle Eyes": {
+				"trigger": "Continuous",
+				"description": "Avaar gain a +2 racial bonus on Perception checks and treat Perception as a class skill.",
+				"benefit": { "target": "self", "text": "+2 bonus to Perception and treat is as a class skill" },
+				"bonuses": {
+					"Eagle Eyes": { "value": 2, "type": "Racial", "targets": [ "perception" ] }
+				}
+			},
+			"Envoy": {
+				"trigger": "Continuous",
+				"description": "Avaar with an Intelligence score of 11 or higher gain comprehend languages, detect magic, detect poison, and read magic as spell-like abilities that can be used once a day.",
+				"benefit": { "target": "self", "text": "Bonus abilities with high Intelligence" },
+				"bonuses": {}
+			},
+			"Flight": {
+				"trigger": "Continuous",
+				"description": "Avaar have a fly speed of 50 feet with average maneuverability.",
+				"benefit": { "target": "move", "text": "Fly 50 ft. (average)" },
+				"bonuses": {}
+			}
+		},
+		"alternateTraits": {
+			"Tropical Plumage": {
+				"trigger": "Standard",
+				"description": "Some avaar from equitorial islands have more vibrant plumage and can use it to cast hypnotism once per day as a spell-like ability.",
+				"benefit": { "target": "self", "text": "Hypnotize enemies" },
+				"bonuses": {},
+				"replaces": ["Envoy"]
+			},
+			"Owl Heritage": {
+				"trigger": "Continuous",
+				"description": "Some avaar have specialized into nocturnalism, and can see in the dark (darkvision), up to 120 feet.",
+				"benefit": { "target": "senses", "text": "Darvision 120 ft." },
+				"bonuses": {},
+				"replaces": ["Eagle Eyes"]
+			}
+		}
+	},
+	"Cæth": {
+		"rp": 12,
+		"age": {
+			"Adulthood": 14,
+			"Intuitive": "+1d4 (15 – 18 years)",
+			"Self-Taught": "+1d6 years (15 – 20 years)",
+			"Trained": "+2d6 years (16 – 26 years)",
+			"Middle Age": "35 years",
+			"Old Age": "53 years",
+			"Venerable": "70 years",
+			"Max Age": "70 +2d20 years"
+		},
+		"surnames": {
+			"Canyrhaf": "Welsh: Summersong",
+			"Coediwr": "Welsh: Woodsman",
+			"Curiadwyn": "Welsh: Spring Beat",
+			"Enaidgaeaf": "Welsh: Winter Soul",
+			"Foxelster": "",
+			"Gof": "Welsh: Smith",
+			"Hydrefcalon": "Welsh: AutumnHeart",
+			"Mab-XX": "Welsh: Child Of",
+			"Pysgotwr": "Welsh: Fisher",
+			"Tanganika": ""
+		},
+		"male": {
+			"names": [ "Aethlyn", "Anda", "Caladrel", "Fezzez", "Heldalel", "Katsuo", "Kieron", "Lanliss", "Lloyd", "Meirdarel", "Revalor", "Rhys", "Seldon", "Talathel", "Taji", "Tauwir", "Thaucaxius", "Theo", "Tom", "Variel" ],
+			"height": "4'10\" +2d8 inches (5'0\" - 6'9\")",
+			"weight": "120 lbs. +2d8×5 lbs. (130 – 200 lbs.)"
+		},
+		"female": {
+			"names": [ "Alys", "Amelia", "Amrunelara", "Ceri", "Chie", "Daralla", "Elora", "Faenia", "Fezieso", "Jathal", "Kamy", "Oparal", "Merisiel", "Renna", "Skeeko", "Solianna", "Soumral", "Tessara", "Yalanduri", "Ziziesh" ],
+			"height": "4'5\" +2d8 inches (5'5\" - 6'7\")",
+			"weight": "85 lbs. +2d8×5 lbs. (95 – 165 lbs.)"
+		},
+		"abilityMods": {
+			"Dex": 2,
+			"Cha": 2,
+			"Int": -2
+		},
+		"size": "medium",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Humanoid",
+			"subtypes": [ "Catfolk" ]
+		},
+		"speed": 30,
+		"languages": ["Common"],
+		"bonusLanguages": ["Dwarven", "Elvish", "Gnomish", "Kamago", "Risko", "Sylvan", "Ulumi", "Undercommon"],
+		"traits": {
+			"Cat's Luck": {
+				"trigger": "Free",
+				"description": "Once per day, before making a Reflex saving throw, a cæth can roll twice and take the better result.",
+				"benefit": { "target": "self", "text": "Roll twice on Reflex Save" },
+				"bonuses": {}
+			},
+			"Curiosity": {
+				"trigger": "Continuous",
+				"description": "Cæth gain a +4 racial bonus on Diplomacy checks and treat Knowledge (history and local) as class skills. If either is already a class skill, they get a +2 racial bonus instead.",
+				"benefit": { "target": "self", "text": "Gain a +4 to Diplomacy" },
+				"bonuses": {
+					"Curiosity": { "value": 4, "type":  "Racial", "targets": [ "diplomacy" ] }
+				}
+			},
+			"Stalker": {
+				"trigger": "Continuous",
+				"description": "Perception and Stealth are always class skills for cæth.",
+				"benefit": { "target": "self", "text": "Perception and Stealth are class skills" },
+				"bonuses": {}
+			},
+			"Jumper": {
+				"trigger": "Continuous",
+				"description": "Cæth are always considered to have a running start when making an Acrobatics check to jump (DCs are doubled without a running start).",
+				"benefit": { "target": "self", "text": "You always have a running start for jumps" },
+				"bonuses": {}
+			},
+			"Claws": {
+				"trigger": "Standard",
+				"description": "Cæth have strong claws that they can use as a primary natural attacks. They can make 2 attacks per turn that deal 1d4 + their strength modifier slashing damage.",
+				"benefit": { "target": "self", "text": "2 Claws (1d4 + StrMod Slashing)" },
+				"bonuses": {}
+			},
+			"Low-Light Vision": {
+				"trigger": "Continuous",
+				"description": "Caeth can see in color up to 60 feet away in dim light.",
+				"benefit": { "target": "senses", "text": "Low-Light Vision 60 ft." },
+				"bonuses": {}
+			}
+		},
+		"alternateTraits": {
+			"Climber": {
+				"trigger": "Continuous",
+				"description": "Some cæth possess a climb speed of 20 feet and gain a +8 racial bonus on climb checks from having a climb speed.",
+				"benefit": { "target": "move", "text": "Climb 20 ft." },
+				"bonuses": {
+					"Climber": { "value": 8, "type": "Racial", "targets": [ "Climb" ] }
+				},
+				"replaces": ["Jumper"]
+			}
+		}
+	},
+	"Geit": {
+		"rp": 12,
+		"age": {
+			"Adulthood": 14,
+			"Intuitive": "+1d4 (15 – 18 years)",
+			"Self-Taught": "+1d6 years (15 – 20 years)",
+			"Trained": "+2d6 years (16 – 26 years)",
+			"Middle Age": "35 years",
+			"Old Age": "53 years",
+			"Venerable": "70 years",
+			"Max Age": "70 +2d20 years"
+		},
+		"surnames": {
+			"Bergquist": "??: Mountain Quest",
+			"Bikonnen": "??: Two Horn",
+			"Kjellman": "",
+			"Moyryla": "",
+			"Rafisk": "Norse: Fisher",
+			"Smith": "Norse: Smith",
+			"Thouin": "",
+			"Van Dan Elzan": "??: From the Elzan (river)",
+			"Van Vleet": "??: From Ships",
+			"XX-Son": "Norse: Child Of"
+		},
+		"male": {
+			"names": [ "Bem'rik", "Brodir", "Dolgrin", "Dullurdex", "Feratos", "Grunyar", "Harsk", "Jomar", "Kazmuk", "Leiknir", "Morgrym", "Rogar", "Skamkel", "Thorodd", "Torsten", "Tosorthros", "Varin", "Vastrium", "Vulthun", "Xeth" ],
+			"height": "4'10\" +2d4 inches (5'0\" - 5'6\")",
+			"weight": "150 lbs. +2d4×7 lbs. (164 – 206 lbs.)"
+		},
+		"female": {
+			"names": [ "Afini", "Agna", "Arnkatla", "Æstrid", "Beth'an", "Bjartney", "Bodill", "Dila", "Freygerd", "Guthny", "Ingegard", "Ingra", "Kelis", "Kotri", "Ljufu", "Runa", "Rusilka", "Shumdranae", "Skuld", "Yangrit" ],
+			"height": "4'5\" +2d4 inches (4'7\" - 5'1\")",
+			"weight": "120 lbs. +2d4×7 lbs. (134 – 176 lbs.)"
+		},
+		"abilityMods": {
+			"Str": 2,
+			"Con": 2,
+			"Wis": -2
+		},
+		"size": "medium",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Humanoid",
+			"subtypes": [ "Faun" ]
+		},
+		"speed": 30,
+		"languages": ["Common"],
+		"bonusLanguages": ["Draconic", "Dwarven", "Gnomish", "Goblin", "Kamago", "Matoran", "Risko", "Terran", "Undercommon"],
+		"traits": {
+			"Healthy": {
+				"trigger": "Continuous",
+				"description": "Geiter gain a +4 racial bonus on Fortitude saves against disease and poison, including magical diseases.",
+				"benefit": { "target": "self", "text": "+4 vs Disease and Poisons" },
+				"bonuses": {}
+			},
+			"Mountain-Born": {
+				"trigger": "Continuous",
+				"description": "Geiter gain a +2 racial bonus on Acrobatics checks made to cross narrow ledges.",
+				"benefit": { "target": "self", "text": "+2 vs crossing narrow ledges" },
+				"bonuses": {}
+			},
+			"Craftsman": {
+				"trigger": "Continuous",
+				"description": "Geiter gain a +2 racial bonus on Craft and Profession checks when using metal or stone.",
+				"benefit": { "target": "self", "text": "+2 Craft and Profession when using metal or stone" },
+				"bonuses": {}
+			},
+			"Stonecunning": {
+				"trigger": "Continuous",
+				"description": "Geiter gain a +2 racial bonus on Perception checks to notice unusual stonework, such as traps and hidden doors. They recieve a check to notice such features whenever they pass within 10 feet, whether or not they are actively looking.",
+				"benefit": { "target": "self", "text": "+2 to Perception vs unusual stonework" },
+				"bonuses": {}
+			},
+			"Mountaineer": {
+				"trigger": "Continuous",
+				"description": "Geiter are immune to altitude sickness and do not lose their Dexterity bonus to AC when making Climb or Acrobatics checks to cross narrow or slippery surfaces.",
+				"benefit": { "target": "self", "text": "You don't lose your Dex bonus when crossing narrow srufaces" },
+				"bonuses": {}
+			},
+			"Rock Stepper": {
+				"trigger": "Continuous",
+				"description": "Geiter can skillfully navigate rocky terrain, ignoring difficult terrain caused by rubble, broken ground, or steep stairs.",
+				"benefit": { "target": "self", "text": "Ignore difficult terrain from rubble" },
+				"bonuses": {}
+			},
+			"Hatred": {
+				"trigger": "Continuous",
+				"description": "Geiter gain a +1 racial bonus on attack rolls made against Plant creatures.",
+				"benefit": { "target": "self", "text": "+1 to hit Plant creatures" },
+				"bonuses": {}
+			},
+			"Weapon Familiarity": {
+				"trigger": "Continuous",
+				"description": "Geiter are always proficient with Warhammers and Dwarven weapons.",
+				"benefit": { "target": "self", "text": "Proficient with warhammers and Dwarven weapons" },
+				"bonuses": {}
+			},
+			"Darkvision": {
+				"trigger": "Continuous",
+				"description": "Geiter can see 60 feet in total darkness, this vision is black and white.",
+				"benefit": { "target": "senses", "text": "Darkvision 60 ft." },
+				"bonuses": {}
+			}
+		},
+		"alternateTraits": {
+			"Frenzy": {
+				"trigger": "Free",
+				"description": "Geiter who are trained for battle from birth can go into a frenzy upon taking damage. This frenzy lasts for 1 minute (10 rounds) and adds a +2 racial bonus to Constitution and Strength, but a -2 to AC.",
+				"benefit": { "target": "senses", "text": "Frenzy (+2 to Con & Str, -2 to AC) for 10 rounds upon taking damage" },
+				"bonuses": {
+					"Frenzy(+)": { "value": 2, "type":  "Racial", "targets": [ "Con", "Str" ] },
+					"Frenzy(-)": { "value": -2, "type":  "Racial", "targets": [ "totalAC", "touchAC", "flatAC" ] }
+				},
+				"replaces": ["Healthy"]
+			}
+		}
+	},
+	"Kame": {
+		"rp": 12,
+		"age": {
+			"Adulthood": 25,
+			"Intuitive": "+1d6 (26 – 31 years)",
+			"Self-Taught": "+2d6 years (27 – 37 years)",
+			"Trained": "+3d6 years (28 – 43 years)",
+			"Middle Age": "75 years",
+			"Old Age": "150 years",
+			"Venerable": "250 years",
+			"Max Age": "250 +3d20 years"
+		},
+		"surnames": {
+			"Akaigara": "Japanese: Red Shell",
+			"Chairoko": "Japanese: Brown Scales",
+			"Kajiya": "Japanese: Smithy",
+			"Kojoto": "Japanese: Mill Person",
+			"Midorifu": "Japanese: Green Skin",
+			"Noko-": "Japanese: Child Of",
+			"Ryoshi": "Japanese: Fisher",
+			"Shinjuha": "Japanese: Pearl Tooth",
+			"Shizuka": "",
+			"Yeo": ""
+		},
+		"male": {
+			"names": [ "Adi", "Darma", "Dwi", "Haru", "Hirostugu", "Juichi", "Kaito", "Muljoto", "Naphtali", "Okubo", "Pludott", "Shogo", "Takamichi", "Tsumemasa", "Uldat", "Xelshul", "Xozat", "Yapip", "Yoshii", "Yuto" ],
+			"height": "3'9\" +2d4 inches (3'11\" - 4'5\")",
+			"weight": "200 lbs. +2d4×7 lbs. (214 – 256 lbs.)"
+		},
+		"female": {
+			"names": [ "Akari", "Akoto", " Behtari", "Chika", "Chizu", "Erisa", "Erlin", "Fumiko", "Hadassah", "Himari", "Irta", "Kaede", "Kazumi", "Kimiko", "Risa", "Ruka", "Ti", "Utari", "Yelbar", "Yuuma" ],
+			"height": "3'7\" +2d4 inches (3'9\" - 4'3\")",
+			"weight": "180 lbs. +2d4×7 lbs. (194 – 236 lbs.)"
+		},
+		"abilityMods": {
+			"Con": 2,
+			"Wis": 2,
+			"Dex": -2
+		},
+		"size": "medium",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Humanoid",
+			"subtypes": [ "Reptilian" ]
+		},
+		"speed": 30,
+		"languages": ["Common", "Kamago"],
+		"bonusLanguages": ["Aquan", "Draconic", "Dwarven", "Elvish", "Gnomish", "Goblin", "Matoran", "Necriil", "Risko", "Undercommon"],
+		"traits": {
+			"Shell": {
+				"trigger": "Continuous",
+				"description": "Kame gain a +3 natural armor bonus to AC.",
+				"benefit": { "target": "self", "text": "+3 Natural Armor Bonus" },
+				"bonuses": {
+					"Shell": { "value": 3, "type": "Natural Armor", "targets": [ "totalAC", "flatAC" ] }
+				}
+			},
+			"Historian": {
+				"trigger": "Continuous",
+				"description": "Kame gain a +2 racial bonus on Knowledge (History) checks and treat it as a class skill.",
+				"benefit": { "target": "self", "text": "+2 Knowledge (History)" },
+				"bonuses": {
+					"Historian": { "value": 2, "type":  "Racial", "targets": [ "Knowledge (History)" ] }
+				}
+			},
+			"Skill Training": {
+				"trigger": "Continuous",
+				"description": "Kame treat Knowledge (Geography) and Knowledge (Nature) as class skills.",
+				"benefit": { "target": "self", "text": "Knowledge (Geo) and Knowledge (Nature) are class skills" },
+				"bonuses": {}
+			},
+			"Swim": {
+				"trigger": "Continuous",
+				"description": "Kame have a swim speed of 30 feet and get a +8 racial bonus on swim checks from the swim seed.",
+				"benefit": { "target": "move", "text": "Swim 30 ft." },
+				"bonuses": {
+					"Swim": { "value": 8, "type": "Racial", "targets": [ "Swim" ] }
+				}
+			},
+			"Amphibious": {
+				"trigger": "Continuous",
+				"description": "Kame can breathe both air and water.",
+				"benefit": { "target": "self", "text": "Can breathe both air and water" },
+				"bonuses": {}
+			}
+		},
+		"alternateTraits": {
+			"Water Sense": {
+				"trigger": "Continuous",
+				"description": "Ryui-Kame can sense vibrations in water, granting them blindsense for 30 feet against creatures that are touching the same body of water.",
+				"benefit": { "target": "senses", "text": "Water Sense 30 ft." },
+				"bonuses": {},
+				"replaces": ["Skill Training"]
+			}
+		}
+	},
+	"Zikaru": {
+		"rp": 12,
+		"age": {
+			"Adulthood": 16,
+			"Intuitive": "+1d4 (17 – 20 years)",
+			"Self-Taught": "+1d6 years (17 – 22 years)",
+			"Trained": "+2d6 years (18 – 28 years)",
+			"Middle Age": "35 years",
+			"Old Age": "50 years",
+			"Venerable": "60 years",
+			"Max Age": "60 +1d20 years"
+		},
+		"surnames": {
+			"Bandumu": "Akkadian: SMall",
+			"Barbarulibu": "Akkadian: Wolf Heart",
+			"Gidru": "Akkadian: Strike",
+			"Inmar": "Akkadian: Child Of",
+			"Kibtusum": "Akkadian: Wheat Fresh",
+			"Nevins": "",
+			"Nunulu": "Akkadian: Fish Man",
+			"Samu": "Akkadian: Sky",
+			"Uqnumsinnu": "Akkadian: Blue Tooth",
+			"Warquisum": "Akkadian: Green Wood"
+		},
+		"male": {
+			"names": [ "Aakif", "Andrezi", "Bahram", "Baolo", "Dolok", "Garidan", "Jaali", "Kousei", "Kronug", "Menas", "Mitabu", "Qorchi", "Rubani", "Seckor", "Shokamb", "Teruawa", "Tormorbataar", "Urson", "Vjorchek", "Zanlin" ],
+			"height": "4'10\" +2d10 inches (5'0\" - 6'6\")",
+			"weight": "120 lbs. +2d10×5 lbs. (130 – 220 lbs.)"
+		},
+		"female": {
+			"names": [ "Alinza", "Beshkee", "Chammady", "Eshe", "Eudomia", "Gerda", "Izora", "Jalket", "Jayazi", "Kalizama", "Kamshi", "Lestari", "Meilin", "Nalmida", "Pontia", "Shivkah", "Udara", "Valki", "Waajida", "Zova" ],
+			"height": "4'5\" +2d10 inches (4'7\" - 6'1\")",
+			"weight": "85 lbs. +2d10×5 lbs. (95 – 185 lbs.)"
+		},
+		"abilityMods": {
+			"Str": 2,
+			"Wis": 2,
+			"Cha": -2
+		},
+		"size": "medium",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Humanoid",
+			"subtypes": [ "Human" ]
+		},
+		"speed": 30,
+		"languages": ["Common"],
+		"bonusLanguages": ["Kamago", "Risko", "Ulumi", "Undercommon"],
+		"traits": {
+			"Animal Friend": {
+				"trigger": "Continuous",
+				"description": "Zikari always treat Handle Animal and Ride as class skills.",
+				"benefit": { "target": "self", "text": "Handle Animal and Ride are class skills" },
+				"bonuses": {}
+			},
+			"Animal Minded": {
+				"trigger": "Continuous",
+				"description": "Zikari get a +2 racial bonus on Handle Animal checks.",
+				"benefit": { "target": "self", "text": "+2 racial bonus on Handle Animal" },
+				"bonuses": {
+					"Animal Minded": { "value": 2, "type": "Racial", "targets": [ "Handle Animal" ] }
+				}
+			},
+			"Natural Rider": {
+				"trigger": "Continuous",
+				"description": "Zikari get a +2 racial bonus on Ride checks.",
+				"benefit": { "target": "self", "text": "+2 racial bonus on Ride" },
+				"bonuses": {
+					"Natural Rider": { "value": 2, "type": "Racial", "targets": [ "Ride" ] }
+				}
+			},
+			"Change Shape": {
+				"trigger": "Move",
+				"description": "All zikaru have an animal form they can change into. A zikaru can shift to and from this form as a move action that does not provoke AoO. This ability functions as Beast Shape II, with no components or duration, but the zikaru reverts back to their humanoid form when unconcious or dead.",
+				"benefit": { "target": "self", "text": "Change into chosen animal" },
+				"bonuses": {}
+			},
+			"Gatecrasher": {
+				"trigger": "Continuous",
+				"description": "Zikari gain a +2 racial bonus on Strength checks to break objects and a +2 racial bonus on combat maneuver checks to sunder.",
+				"benefit": { "target": "self", "text": "+2 to break or sunder an object" },
+				"bonuses": {}
+			}
+		},
+		"alternateTraits": {
+			"Quick Reflexes": {
+				"trigger": "Continuous",
+				"description": "Some zikari are more agile than they are brutish, they recieve Improved Initiative as a bonus feat.",
+				"benefit": { "target": "self", "text": "Gain Improved Initiative" },
+				"bonuses": {},
+				"replaces": ["Gatecrasher"]
+			}
+		}
+	},
+
+
+
+
+	"Tembo": {
+		"rp": 12,
+		"age": {
+			"Adulthood": 15,
+			"Intuitive": "+1d4 (16 – 19 years)",
+			"Self-Taught": "+1d6 years (16 – 21 years)",
+			"Trained": "+2d6 years (17 – 27 years)",
+			"Middle Age": "35 years",
+			"Old Age": "53 years",
+			"Venerable": "70 years",
+			"Max Age": "70 +2d20 years"
+		},
+		"surnames": {
+			"Wagar": ""
+		},
+		"male": {
+			"names": [ "Baraka", "Elea", "Jaha", "Jalopy", "Jiona", "Kesi", "Kinja", "Kontij", "Kwashi", "Malkia", "Olri", "Oolyey", "Rolyu", "Saada", "Silnoo", "Sudin", "Tontil", "Unyel", "Zakiya", "Zurus" ],
+			"height": "9'4\" +2d8 inches (9'6\" - 10'8\")",
+			"weight": "460 lbs. +2d8×10 lbs. (680 – 620 lbs.)"
+		},
+		"female": {
+			"names": [ "Amani", "Atieno", "Bwana Mkubwa", "Boonjos", "Din", "Dremooj", "Drooldrom", "Faraji", "Hajon", "Jamba", "Khalfani", "Mbita", "Moyo", "Ogol", "Sogon", "Svelos", "Telrus", "Torduroj", "Zanruv", "Zawadi" ],
+			"height": "9'3\" +2d8 inches (9'5\" - 10'7\")",
+			"weight": "450 lbs. +2d8×10 lbs. (470 – 630 lbs.)"
+		},
+		"abilityMods": {
+			"Str": 2,
+			"Int": 2,
+			"Cha": -2
+		},
+		"size": "large",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Humanoid",
+			"subtypes": [ "Loxodon" ]
+		},
+		"speed": 30,
+		"languages": ["Ulumi", "Common"],
+		"bonusLanguages": ["Draconic", "Dwarven", "Giantish", "Kamago", "Risko", "Undercommon"],
+		"traits": {
+			"Plagueborn": {
+				"trigger": "Continuous",
+				"description": "Tembo gain a +2 racial bonus on saving throws against disease, ingested poisons, and becoming nauseated or sickened.",
+				"benefit": { "target": "self", "text": "+2 bonus vs disease, ingested poisons, nauseated, & sickened" },
+				"bonuses": {}
+			},
+			"Sprinter": {
+				"trigger": "Continuous",
+				"description": "Tembo gain a +10 foot racial bonus to their speed when charging, running, or withdrawing (but not double moving).",
+				"benefit": { "target": "self", "text": "+10 ft when charging, running, or withdrawing" },
+				"bonuses": {}
+			},
+			"Tusks": {
+				"trigger": "Standard",
+				"description": "Tembo can use their tusks as a primary natural attack. They can make one gore attack per round that deals 1d8 + half their Strength modifier piercing damage.",
+				"benefit": { "target": "self", "text": "Gore (1d8 + Str/2 Piercing)" },
+				"bonuses": {}
+			},
+			"Stampede": {
+				"trigger": "Continuous",
+				"description": "A tembo deals 2d8 + one and a half times thier Strength modifier when using their tusks as part of a charge.",
+				"benefit": { "target": "self", "text": "Gore does 2d8 + Str when part of a charge" },
+				"bonuses": {}
+			}
+		},
+		"alternateTraits": {}
+	},
+	"Perwhüa": {
+		"rp": 12,
+		"age": {
+			"Adulthood": 14,
+			"Intuitive": "+1d4 (15 – 18 years)",
+			"Self-Taught": "+1d6 years (15 – 20 years)",
+			"Trained": "+2d6 years (16 – 26 years)",
+			"Middle Age": "30 years",
+			"Old Age": "45 years",
+			"Venerable": "60 years",
+			"Max Age": "60 +2d20 years"
+		},
+		"surnames": {
+			"Ao'Uri": "Maori: World Offspring",
+			"Glossata": "??: Suborder of Lepidoptera",
+			"Kahuku": "Maori: Dark",
+			"Kahu'Kōwhai": "Maori: Yellow Dress",
+			"Kahu'Kura": "Maori: School Uniform",
+			"Mokarakare": "Maori: Lazy",
+			"Pepe'Ma": "Maori: White Baby (Butterfly)",
+			"Pepe'Parahua": "Maori: Dirty Baby",
+			"Pepe'Para'Riki": "Maori: Baby Onion",
+			"Pepe'Pouri": "Maori: Sad Baby"
+		},
+		"male": {
+			"names": [ "Ahuru", "Arachnaut", "Itu", "Maro", "Nahi ", "Otikoro", "Paipau", "Poto", "Taanga", "Tupai" ],
+			"height": "3'8\" +2d4 inches (3'10\" - 4.4\")",
+			"weight": "30 lbs. +2d4 lbs. (32 – 38 lbs.)"
+		},
+		"female": {
+			"names": [ "Ano'Matao", "Areta ", "Aroha", "Ataahua", "Eitu", "Huhana", "Ilphstra", "Ruhi", "Tai'omi", "Te Puru" ],
+			"height": "3'6\" +2d4 inches (3'8\" - 4'2\")",
+			"weight": "20 lbs. +2d4 lbs. (22 – 28 lbs.)"
+		},
+		"abilityMods": {
+			"Dex": 2,
+			"Cha": 2,
+			"Con": -4
+		},
+		"size": "small",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Fey",
+			"subtypes": []
+		},
+		"speed": 20,
+		"languages": ["Common", "Perwhüa"],
+		"bonusLanguages": ["Draconic", "Elvish", "Gnomish", "Kamago", "Risko", "Sylvan"],
+		"traits": {
+			"Flight": {
+				"trigger": "Continuous",
+				"description": "Perwhüa have a fly speed of 30 feet with clumsy maneuverability.",
+				"benefit": { "target": "move", "text": "Fly 30 ft. (Clumsy)" },
+				"bonuses": {}
+			},
+			"Low-Light Vision": {
+				"trigger": "Continuous",
+				"description": "Perwhüa can see twice as far (60 feet) in dim light.",
+				"benefit": { "target": "senses", "text": "Low-Light Vision 60 ft." },
+				"bonuses": {}
+			},
+			"Slow Speed": {
+				"trigger": "Continuous",
+				"description": "Perwhüa are a slow people and have a base speed of 20 feet, which is never modified by armor or encumbrance.",
+				"benefit": { "target": "move", "text": "Base speed is 20 ft." },
+				"bonuses": {}
+			},
+			"Multi-Armed": {
+				"trigger": "Continuous",
+				"description": "Perwhüa have additional arms. They have 1 primary hand, but can wield weapons in their off hands. They have a total of 4 arms.",
+				"benefit": { "target": "self", "text": "You have 4 arms instead of 2" },
+				"bonuses": {}
+			}
+		},
+		"alternateTraits": {}
+	},
+	"Kets'Rir": {
+		"rp": 12,
+		"age": {
+			"Adulthood": 14,
+			"Intuitive": "+1d4 (15 – 18 years)",
+			"Self-Taught": "+1d6 years (15 – 20 years)",
+			"Trained": "+2d6 years (16 – 26 years)",
+			"Middle Age": "30 years",
+			"Old Age": "45 years",
+			"Venerable": "60 years",
+			"Max Age": "60 +2d20 years"
+		},
+		"surnames": {
+			"": ""
+		},
+		"male": {
+			"names": [ "Aimo", "Pekka", "Jarmo", "Elias", "Migoš", "Ártor", "Ásllat", "Vuollá", "Ahti", "Reino" ],
+			"height": "7'2\" +2d8 inches (7'4\" - 8'6\")",
+			"weight": "440 lbs. +2d10×5 lbs. (450 – 540 lbs.)"
+		},
+		"female": {
+			"names": [ "Amanda", "Iŋgá", "Lejá", "Máddji", "Márgu", "Pirkko", "Ristiinná", "Saana", "Soila", "Virve" ],
+			"height": "7'0\" +2d8 inches (7'2\" - 8'4\")",
+			"weight": "420 lbs. +2d10×5 lbs. (430 – 520 lbs.)"
+		},
+		"abilityMods": {
+			"Dex": 2,
+			"Wis": 2,
+			"Str": -4
+		},
+		"size": "large",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Fey",
+			"subtypes": []
+		},
+		"speed": 40,
+		"languages": ["Common"],
+		"bonusLanguages": ["Draconic", "Elvish", "Gnomish", "Necriil", "Risko", "Sylvan"],
+		"traits": {
+			"Aura-Touched": {
+				"trigger": "Standard",
+				"description": "Kets'Rir may cast prestidigitation at will.",
+				"benefit": { "target": "self", "text": "Cast Prestidigitaion" },
+				"bonuses": {}
+			},
+			"Low-Light Vision": {
+				"trigger": "Continuous",
+				"description": "Kets'Rir can see twice as far (60 feet) in dim light.",
+				"benefit": { "target": "senses", "text": "Low-Light Vision 60 ft." },
+				"bonuses": {}
+			},
+			"Quadruped": {
+				"trigger": "Continuous",
+				"description": "Kets'Rir have 4 legs and two arms, giving them a +4 racial bonus to CMD against trip attempts. They also use armor and weapons as if they were medium creatures.",
+				"benefit": { "target": "self", "text": "4 legs, 2 arms, and a +4 racial bonus vs Trip" },
+				"bonuses": {}
+			}
+		},
+		"alternateTraits": {}
+	},
+	"Gargoyles": {
+		"rp": 12,
+		"age": {
+			"Adulthood": 24,
+			"Intuitive": "+1d12 (25 – 36 years)",
+			"Self-Taught": "+2d12 years (26 – 48 years)",
+			"Trained": "+3d12 years (27 – 60 years)",
+			"Middle Age": "120 years",
+			"Old Age": "400 years",
+			"Venerable": "500 years",
+			"Max Age": "500 +4d20 years"
+		},
+		"surnames": { "": "Gargoyles don't typically have family names and are usually solitary" },
+		"agender": {
+			"names": [ "Aherras", "Delva", "Ezivo", "Fera", "Jodokri", "Reilvex", "Robol", "Saakorum", "Udu", "Zamraaval" ],
+			"height": "5'6\" +1d12 inches (5'7\" - 6'6\")",
+			"weight": "460 lbs. +2d8×10 lbs. (480 – 620 lbs.)"
+		},
+		"abilityMods": {
+			"Con": 4,
+			"Int": -2,
+			"Wis": -2,
+			"Cha": -2
+		},
+		"size": "medium",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Monstrous Humanoid",
+			"subtypes": []
+		},
+		"speed": 30,
+		"languages": ["Undercommon"],
+		"bonusLanguages": ["Common", "Draconic", "Dwarven", "Giantish", "Goblin", "Risko", "Terran"],
+		"traits": {
+			"Stone Skin": {
+				"trigger": "Continuous",
+				"description": "Gargoyles get a +2 natural armor bonus to AC.",
+				"benefit": { "target": "self", "text": "+2 Natural Armor Bonus" },
+				"bonuses": {
+					"Stone Skin": { "value": 2, "type": "Natural Armor", "targets": [ "totalAC", "flatAC" ] }
+				}
+			},
+			"Flight": {
+				"trigger": "Continuous",
+				"description": "Gargoyles have a speed of 30 feet with clumsy maneuverability.",
+				"benefit": { "target": "self", "text": "Fly 30 ft. (Clumsy)" },
+				"bonuses": {}
+			},
+			"Flight 2": {
+				"trigger": "Continuous",
+				"description": "Most gargoyles have well developed wings, granting a +10 to their fly speed and increasing their maneuverability to poor.",
+				"benefit": { "target": "move", "text": "Fly 40 ft. (Poor)" },
+				"bonuses": {}
+			},
+			"Darkvision": {
+				"trigger": "Continuous",
+				"description": "Gargoyles can see 60 feet in total darkness in black and white vision.",
+				"benefit": { "target": "senses", "text": "Darkvision 60 ft." },
+				"bonuses": {}
+			}
+		},
+		"alternateTraits": {
+			"Crystaline Form": {
+				"trigger": "Standard",
+				"description": "Some gargoyles have reflective, crystaline skin that grants them a +2 racial bonus to AC against rays. Once per day, they can reflect a single ray attack targeted at them as if they were using the deflect arrows feat.",
+				"benefit": { "target": "self", "text": "+2 AC vs rays, can reflect rays once a day" },
+				"bonuses": {},
+				"replaces": ["Flight 2"]
+			}
+		}
+	},
+	"Ents": {
+		"rp": 12,
+		"age": {
+			"Adulthood": 100,
+			"Intuitive": "+4d6 (104 – 124 years)",
+			"Self-Taught": "+6d6 years (106 – 136 years)",
+			"Trained": "+10d6 years (110 – 160 years)",
+			"Middle Age": "175 years",
+			"Old Age": "263 years",
+			"Venerable": "350 years",
+			"Max Age": "350 +5d100 years"
+		},
+		"surnames": {
+			"Adoxaceae": "??: Moschatel Family - Elder",
+			"Aquifoliaceae": "??: Holly Family - Holly",
+			"Araliaceae": "??: Ivy Family - Ivy",
+			"Betulaceae": "??: Birch Family - Alder",
+			"Fagaceae": "??: Beech Family - Oak",
+			"Oleaceae": "??: Olive Family - Ash",
+			"Pinaceae": "??: Pine Family - Spruce",
+			"Rosaceae": "??: Rose Family - Rowan",
+			"Salicaceae": "??: Willow Family - Willow",
+			"Wattieza": "??: Earliest Known Tree"
+		},
+		"agender": {
+			"names": [ "Aracorn", "Christofern", "Cleaford", "Collinwood", "Forest", "Latreefa", "Oakly", "Trent" ],
+			"height": "7'0\" +2d8 inches (7'2\" - 8'4\")",
+			"weight": "675 lbs. +2d10×5 lbs. (385 – 475 lbs.)"
+		},
+		"abilityMods": {
+			"Con": 4,
+			"Dex": -2,
+			"Cha": -2
+		},
+		"size": "medium",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Plant",
+			"subtypes": []
+		},
+		"speed": 20,
+		"languages": ["Common", "Entish"],
+		"bonusLanguages": ["Dwarven", "Elvish", "Gnomish", "Kamago", "Matoran", "Risko", "Sylvan", "Undercommon"],
+		"traits": {
+			"Plant Immunity": {
+				"trigger": "Continuous",
+				"description": "Ents are immune to all mind-affecting effects (charms, compulsions, morale effects, patterns, and phantasms).",
+				"benefit": { "target": "immunities", "text": "charms, compulsions, morale effects, patterns, phantasms" },
+				"bonuses": {}
+			},
+			"Plant Immunity 2": {
+				"trigger": "Continuous",
+				"description": "Ents are immune to paralysis, poison, polymorph, sleep effects, and stunning.",
+				"benefit": { "target": "immunities", "text": "paralysis, poison, polymorph, sleep effects, stunning" },
+				"bonuses": {}
+			},
+			"Camouflage": {
+				"trigger": "Continuous",
+				"description": "Ents gain a +4 racial bonus to stealth checks when within a forest.",
+				"benefit": { "target": "self", "text": "+4 Stealth in forests" },
+				"bonuses": {}
+			},
+			"Low-Light Vision": {
+				"trigger": "Continuous",
+				"description": "Ents can see twice as far (60 feet) in dim light.",
+				"benefit": { "target": "self", "text": "Low-Light Vision 60 ft." },
+				"bonuses": {}
+			},
+			"Slow Speed": {
+				"trigger": "Continuous",
+				"description": "Ents are a slow people and have a base speed of 20 feet which is never modified by armor or encumbrance.",
+				"benefit": { "target": "move", "text": "Base speed 20 ft." },
+				"bonuses": {}
+			},
+			"Flammable": {
+				"trigger": "Continuous",
+				"description": "Ents are vulnerable to fire and take +50% damage fire based effects.",
+				"benefit": { "target": "vulnerablities", "text": "Fire" },
+				"bonuses": {}
+			},
+			"Treespeech": {
+				"trigger": "Continuous",
+				"description": "Ents are able to converse with plants as if they were constantly using the speak with plants spell.",
+				"benefit": { "target": "languages", "text": "Treespeech" },
+				"bonuses": {}
+			}
+		},
+		"alternateTraits": {}
+	},
+	"Matoran": {
+		"rp": 12,
+		"age": { "Adulthood": 100000 },
+		"surnames": { "": "Matoran don't have surnames" },
+		"agender": {
+			"names": [],
+			"height": "2'8\" +1d4 inches (2'9\" - 3'2\")",
+			"weight": "30 lbs. +1d4×5 lbs. (35 – 55 lbs.)"
+		},
+		"abilityMods": {},
+		"size": "small",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Half-Construct",
+			"subtypes": []
+		},
+		"speed": 30,
+		"languages": ["Matoran"],
+		"bonusLanguages": ["Aquan", "Auran", "Common", "Dwarven", "Elvish", "Gnomish", "Ignan", "Kamago", "Risko", "Terran", "Ulumi", "Undercommon"],
+		"traits": {
+			"Construct Resistance": {
+				"trigger": "Continuous",
+				"description": "Matoran get a +2 racial bonus on saving throws against disease, mind effects, poison, and effects that cause exhaustion or fatigue.",
+				"benefit": { "target": "self", "text": "+2 vs disease, mind effects, poison, exhaustion, and fatigue" },
+				"bonuses": {}
+			},
+			"Swarming": {
+				"trigger": "Continuous",
+				"description": "Matoran are used to living and fighting communally with other matoran. Up to two matoran can share the same square, and if they attack the same foe while they are sharing a square, they are considered to be flanking that foe.",
+				"benefit": { "target": "self", "text": "Can share a 5-foot square with other matoran, grants flanking" },
+				"bonuses": {}
+			},
+			"Weapon Familiarity": {
+				"trigger": "Continuous",
+				"description": "Matoran are proficient with Kanoka-Disks and Kanoka Disk Launchers.",
+				"benefit": { "target": "self", "text": "Proficient with Kanoka-Disks and Launchers" },
+				"bonuses": {}
+			},
+			"Elemental Typing": {
+				"trigger": "Continuous",
+				"description": "Each matoran has an afinity with a specific element from their home plane. This determines their racial ability bonus, and often coincides with their name, home, and physical appearance such as armor color.",
+				"benefit": { "target": "self", "text": "Elemental type determines extra features" },
+				"bonuses": {}
+			}
+		},
+		"alternateTraits": {},
+		"sub-types": {
+			"Ta-Matoran": {
+				"names": [],
+				"abilityMods": { "Cha": 2 },
+				"traits": {
+					"Heart of Fire": {
+						"trigger": "Continuous",
+						"description": "Ta-Matoran gain fire resistance 5.",
+						"benefit": { "target": "resistances", "text": "Fire Resistance 5" },
+						"bonuses": {}
+					},
+					"Master Tinkerer": {
+						"trigger": "Continuous",
+						"description": "Ta-Matoran gain a +1 racial bonus on Disable Device and Knowledge (Engineering) checks, as well as having proficiency with any weapon they create.",
+						"benefit": { "target": "self", "text": "+1 bonus on Disable Device and Knowledge (Engineering)" },
+						"bonuses": {
+							"Master Tinkerer": {
+								"value": 1, "type": "Racial", "targets": [ "Disable Device", "Knowledge (Engineering)" ]
+							}
+						}
+					}
+				}
+			},
+			"Ga-Matoran": {
+				"names": [],
+				"abilityMods": { "Int": 2 },
+				"traits": {
+					"Learner": {
+						"trigger": "Continuous",
+						"description": "Ga-Matoran with an Intelligence score of 11 or higher gain comprehend languages, detect magic, detect poison, and read magic as spell-like abilities that cna be used once per day.",
+						"benefit": { "target": "self", "text": "High intelligence grants bonus spells" },
+						"bonuses": {}
+					},
+					"Swimmer": {
+						"trigger": "Continuous",
+						"description": "Ga-Matoran have a swim speed of 30 feet and gain the +8 racial bonus on swim checks that come with having a swim speed.",
+						"benefit": { "target": "move", "text": "Swim 30 ft." },
+						"bonuses": {
+							"Swimmer": { "value": 8, "type": "Racial", "targets": [ "Swim" ] }
+						}
+					}
+				}
+			},
+			"Le-Matoran": {
+				"names": [],
+				"abilityMods": { "Dex": 2 },
+				"traits": {
+					"Tree-Topper": {
+						"trigger": "Continuous",
+						"description": "Once a day, Le-Matoran can roll a reflex saving throw twice and take the better result, this must be decided before rolling the saving throw.",
+						"benefit": { "target": "self", "text": "Roll twice before Reflex Save" },
+						"bonuses": {}
+					},
+					"Quick-Wit": {
+						"trigger": "Continuous",
+						"description": "Le-Matoran gain Improved Initiative as a bonus feat, granting them a +4 bonus to initiative.",
+						"benefit": { "target": "self", "text": "Gain Improved Initiative" },
+						"bonuses": {}
+					}
+				}
+			},
+			"Po-Matoran": {
+				"names": [],
+				"abilityMods": { "Str": 2 },
+				"traits": {
+					"Carver": {
+						"trigger": "Continuous",
+						"description": "Po-Matoran gain a +2 racial bonus on all Craft and Profession checks to create objects from metal or stone.",
+						"benefit": { "target": "self", "text": "+2 Craft and Profession when using stone or metal" },
+						"bonuses": {}
+					},
+					"Stoneseer": {
+						"trigger": "Continuous",
+						"description": "Po-Matoran add +1 to the caster level of any spell they cast with the earth descriptior as well as gaining magic stone, stone shape, and steone tell as spell-like abilities, uasable once a day.",
+						"benefit": { "target": "self", "text": "Treat your caster level as 1 higher for earth spells" },
+						"bonuses": {}
+					}
+				}
+			},
+			"Onu-Matoran": {
+				"names": [],
+				"abilityMods": { "Con": 2 },
+				"traits": {
+					"Stonecunnign": {
+						"trigger": "Continuous",
+						"description": "Onu-Matoran gain a +2 racial bonus on Perception checks to notice unsual stonework, like traps and hidden doors.",
+						"benefit": { "target": "self", "text": "+2 Perception for unusual stonework" },
+						"bonuses": {}
+					},
+					"Minesight": {
+						"trigger": "Continuous",
+						"description": "Onu-Matoran gain darkvision 90 feet, however they are dazzled in bright light and take a -2 penalty on saving throws against effects with the light descriptor.",
+						"benefit": { "target": "senses", "text": "Darkvision 90 ft." },
+						"bonuses": {}
+					}
+				}
+			},
+			"Ko-Matoran": {
+				"names": [],
+				"abilityMods": { "Wis": 2 },
+				"traits": {
+					"Ice Heart": {
+						"trigger": "Continuous",
+						"description": "Ko-Matoran gain cold resistance 5.",
+						"benefit": { "target": "resistances", "text": "Cold Resistance 5" },
+						"bonuses": {}
+					},
+					"Stalker": {
+						"trigger": "Continuous",
+						"description": "Ko-Matoran always treat Perception and Stealth as class skills.",
+						"benefit": { "target": "self", "text": "Perception and Stealth are class skills" },
+						"bonuses": {}
+					},
+					"Watch-Guard": {
+						"trigger": "Continuous",
+						"description": "Ko-Matoran can use keep watch as a spell-like ability once a day.",
+						"benefit": { "target": "self", "text": "May cast Keep Watch once a day" },
+						"bonuses": {}
+					}
+				}
+			}
+		}
+	},
+
+
+
+	"Dwarf": {
+		"rp": 11,
+		"age": {
+			"Adulthood": 40,
+			"Intuitive": "+3d6 (43 – 58 years)",
+			"Self-Taught": "+5d6 years (45 – 70 years)",
+			"Trained": "+7d6 years (47 – 82 years)",
+			"Middle Age": "125 years",
+			"Old Age": "188 years",
+			"Venerable": "250 years",
+			"Max Age": "250 +2d100 years"
+		},
+		"surnames": { "": "" },
+		"male": {
+			"names": [ "Dolgrin", "Grunyar", "Harsk", "Kazmuk", "Morgrym", "Rogar" ],
+			"height": "3'9\" +2d4 inches (3'11\" - 4'5\")",
+			"weight": "150 lbs. +2d4×7 lbs. (164 – 206 lbs.)"
+		},
+		"female": {
+			"names": [ "Agna", "Bodill", "Ingra", "Kotri", "Rusilka", "Yangrit" ],
+			"height": "3'7\" +2d4 inches (3'9\" - 4'3\")",
+			"weight": "120 lbs. +2d4×7 lbs. (134 – 176 lbs.)"
+		},
+		"abilityMods": {
+			"Con": 2,
+			"Wis": 2,
+			"Cha": -2
+		},
+		"size": "medium",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Humanoid",
+			"subtypes": [ "Dwarf" ]
+		},
+		"speed": 20,
+		"languages": [ "Common", "Dwarven" ],
+		"bonusLanguages": [ "Giantish", "Gnomish", "Goblin", "Terran", "Ulumi", "Undercommon" ],
+		"traits": {
+			"Defensive Training": {
+				"trigger": "Continuous",
+				"description": "Dwarves gain a +4 dodge bonus to AC against monsters of the giant subtype.",
+				"benefit": { "target": "self", "text": "+4 Dodge vs Giant Subtype" },
+				"bonuses": {}
+			},
+			"Hardy": {
+				"trigger": "Continuous",
+				"description": "Dwarves gain a +2 racial bonus on saving throws against poison, spells, and spell-like abilities.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			},
+			"Stability": {
+				"trigger": "Continuous",
+				"description": "Dwarves gain a +4 racial bonus to their Combat Maneuver Defense when resisting a bull rush or trip attempt while standing on the ground.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			},
+			"Greed": {
+				"trigger": "Continuous",
+				"description": "Dwarves gain a +2 racial bonus on Appraise checks made to determine the price of non-magical goods that contain precious metals or gemstones.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			},
+			"Stonecunning": {
+				"trigger": "Continuous",
+				"description": "Dwarves gain a +2 bonus on Perception checks to notice unusual stonework, such as traps and hidden doors located in stone walls or floors. They receive a check to notice such features whenever they pass within 10 feet of them, whether or not they are actively looking.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			},
+			"Darkvision": {
+				"trigger": "Continuous",
+				"description": "Dwarves can see perfectly in the dark up to 60 feet.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			},
+			"Hatred": {
+				"trigger": "Continuous",
+				"description": "Dwarves gain a +1 racial bonus on attack rolls against humanoid creatures of the orc and goblinoid subtypes because of their special training against these hated foes.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			},
+			"Weapon Familiarity": {
+				"trigger": "Continuous",
+				"description": "Dwarves are proficient with battleaxes, heavy picks, and warhammers, and treat any weapon with the word “dwarven” in its name as a martial weapon.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			}
+		},
+		"alternateTraits": {
+			"Craftsman": {
+				"trigger": "Continuous",
+				"description": "Dwarves are known for their superior craftsmanship when it comes to metallurgy and stonework. Dwarves with this racial trait receive a +2 racial bonus on all Craft or Profession checks related to metal or stone.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {},
+				"replaces": ["Greed"]
+			}
+		}
+	},
+	"Elf": {
+		"rp": 10,
+		"age": {
+			"Adulthood": 110,
+			"Intuitive": "+4d6 (114 – 134 years)",
+			"Self-Taught": "+6d6 years (116 – 146 years)",
+			"Trained": "+10d6 years (120 – 170 years)",
+			"Middle Age": "175 years",
+			"Old Age": "263 years",
+			"Venerable": "350 years",
+			"Max Age": "350 +4d100 years"
+		},
+		"male": {
+			"names": [ "Caladrel", "Heldalel", "Lanliss", "Meirdrarel", "Seldlon", "Talathel", "Variel", "Zordlon" ],
+			"height": "5'4\" +2d8 inches (5'6\" - 6'8\")",
+			"weight": "110 lbs. +2d8×3 lbs. (116 – 158 lbs.)"
+		},
+		"female": {
+			"names": [ "Amrunelara", "Dardlara", "Faunra", "Jathal", "Merisiel", "Oparal", "Soumral", "Tessara", "Yalandlara" ],
+			"height": "5'4\" +2d6 inches (5'6\" - 6'4\")",
+			"weight": "90 lbs. +2d6×3 lbs. (96 – 126 lbs.)"
+		},
+		"abilityMods": {
+			"Dex": 2,
+			"Int": 2,
+			"Con": -2
+		},
+		"size": "medium",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Humanoid",
+			"subtypes": [ "Elf" ]
+		},
+		"speed": 30,
+		"languages": ["Common", "Elvish"],
+		"bonusLanguages": [ "Celestial", "Draconic", "Gnomish", "Goblin", "Kamago", "Risko", "Sylvan" ],
+		"traits": {
+			"Elven Immunities": {
+				"trigger": "Continuous",
+				"description": "Elves are immune to magic sleep effects and gain a +2 racial saving throw bonus against enchantment spells and effects.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			},
+			"Keen Senses": {
+				"trigger": "Continuous",
+				"description": "Elves receive a +2 racial bonus on Perception checks.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			},
+			"Elven Magic": {
+				"trigger": "Continuous",
+				"description": "Elves receive a +2 racial bonus on caster level checks made to overcome spell resistance. In addition, elves receive a +2 racial bonus on Spellcraft skill checks made to identify the properties of magic items.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			},
+			"Weapon Familiarity": {
+				"trigger": "Continuous",
+				"description": "Elves are proficient with longbows (including composite longbows), longswords, rapiers, and shortbows (including composite shortbows), and treat any weapon with the word “elven” in its name as a martial weapon.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			},
+			"Low-Light Vision": {
+				"trigger": "Continuous",
+				"description": "Elves can see twice as far as humans in conditions of dim light.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			}
+		},
+		"alternateTraits": {
+			"Arcane Focus": {
+				"trigger": "Continuous",
+				"description": "Some elven families have such long traditions of producing wizards (and other arcane spellcasters) that they raise their children with the assumption each is destined to be a powerful magic-user, with little need for mundane concerns such as skill with weapons. Elves with this racial trait gain a +2 racial bonus on concentration checks made to cast arcane spells defensively.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {},
+				"replaces": [ "Weapon Familiarity" ]
+			}
+		}
+	},
+	"Gnome": {
+		"rp": 10,
+		"age": {
+			"Adulthood": 40,
+			"Intuitive": "+4d6 (44 – 64 years)",
+			"Self-Taught": "+6d6 years (46 – 76 years)",
+			"Trained": "+9d6 years (49 – 94 years)",
+			"Middle Age": "100 years",
+			"Old Age": "150 years",
+			"Venerable": "200 years",
+			"Max Age": "200 +3d100 years"
+		},
+		"male": {
+			"names": [ "Abroshtor", "Bastargre", "Halungalom", "Krolmnite", "Poshment", "Zarzuket", "Zatqualmie" ],
+			"height": "3'0\" +2d4 inches (3'2\" - 3'8\")",
+			"weight": "35 lbs. +2d4 lbs. (37 – 43 lbs.)"
+		},
+		"female": {
+			"names": [ "Besh", "Fijit", "Lini", "Majet", "Neji", "Pai", "Queck", "Trig" ],
+			"height": "2'10\" +2d4 inches (3'0\" - 3'6\")",
+			"weight": "30 lbs. +2d4 lbs. (32 – 38 lbs.)"
+		},
+		"abilityMods": {
+			"Con": 2,
+			"Cha": 2,
+			"Str": -2
+		},
+		"size": "small",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Humanoid",
+			"subtypes": [ "Gnome" ]
+		},
+		"speed": 20,
+		"languages": [ "Common", "Gnomish", "Sylvan" ],
+		"bonusLanguages": [ "Draconic", "Dwarven", "Elven", "Giantish", "Goblin", "Risko", "Ulumi" ],
+		"traits": {
+			"Defensive Training": {
+				"trigger": "Continuous",
+				"description": "Gnomes gain a +4 dodge bonus to AC against monsters of the giant subtype.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			},
+			"Illusion Resistance": {
+				"trigger": "Continuous",
+				"description": "Gnomes gain a +2 racial saving throw bonus against illusion spells and effects.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			},
+			"Keen Senses": {
+				"trigger": "Continuous",
+				"description": "Gnomes receive a +2 racial bonus on Perception checks.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			},
+			"Obsessive": {
+				"trigger": "Continuous",
+				"description": "Gnomes receive a +2 racial bonus on a Craft or Profession skill of their choice.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			},
+			"Gnome Magic": {
+				"trigger": "Continuous",
+				"description": "Gnomes add +1 to the DC of any saving throws for illusion spells that they cast. Gnomes with Charisma scores of 11 or higher also gain the following spell-like abilities: 1/day—dancing lights, ghost sound, prestidigitation, and speak with animals. The caster level is equal to the gnome’s level and the DC is equal to 10 + the spell’s level + the gnome’s Charisma modifier.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			},
+			"Hatred": {
+				"trigger": "Continuous",
+				"description": "Gnomes receive a +1 bonus on attack rolls against humanoid creatures of the reptilian and goblinoid subtypes because of their special training against these hated foes.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			},
+			"Weapon Familiarity": {
+				"trigger": "Continuous",
+				"description": "Gnomes treat any weapon with the word “gnome” in its name as a martial weapon.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			},
+			"Low-Light Vision": {
+				"trigger": "Continuous",
+				"description": "Gnomes can see twice as far as humans in conditions of dim light.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			}
+		},
+		"alternateTraits": {
+			"Eternal Hope": {
+				"trigger": "Continuous",
+				"description": "Gnomes rarely lose hope and are always confident that even hopeless situations will work out. Gnomes with this racial trait receive a +2 racial bonus on saving throws against fear and despair effects. Once per day, after rolling a 1 on a d20, the gnome may reroll and use the second result.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {},
+				"replaces": ["Hatred"]
+			}
+		}
+	},
+	"Halfling": {
+		"rp": 9,
+		"age": {
+			"Adulthood": 20,
+			"Intuitive": "+2d4 (22 – 28 years)",
+			"Self-Taught": "+3d6 years (23 – 38 years)",
+			"Trained": "+4d6 years (24 – 44 years)",
+			"Middle Age": "50 years",
+			"Old Age": "75 years",
+			"Venerable": "100 years",
+			"Max Age": "100 +5d20 years"
+		},
+		"male": {
+			"names": [ "Antal", "Boram", "Hyrgan", "Jamir", "Lem", "Miro", "Sumak", "Tribin", "Uldar", "Vraxim" ],
+			"height": "2'8\" +2d4 inches (2'10\" - 3'4\")",
+			"weight": "30 lbs. +2d4 lbs. (32 – 38 lbs.)"
+		},
+		"female": {
+			"names": [ "Anafa", "Bellis", "Etune", "Filiu", "Irlana", "Marra", "Pressi", "Rilka", "Sistra", "Wyssal", "Yamyra" ],
+			"height": "2'6\" +2d4 inches (2'8\" - 3'2\")",
+			"weight": "25 lbs. +2d4 lbs. (27 – 33 lbs.)"
+		},
+		"abilityMods": {
+			"Dex": 2,
+			"Cha": 2,
+			"Str": -2
+		},
+		"size": "small",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Humanoid",
+			"subtypes": [ "Halfling" ]
+		},
+		"speed": 20,
+		"languages": [ "Common" ],
+		"bonusLanguages": [ "Dwarven", "Elven", "English", "Gnomish", "Goblin", "Kamago", "Risko" ],
+		"traits": {
+			"Fearless": {
+				"trigger": "Continuous",
+				"description": "Halflings receive a +2 racial bonus on all saving throws against fear. This bonus stacks with the bonus granted by halfling luck.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			},
+			"Halfling Luck": {
+				"trigger": "Continuous",
+				"description": "Halflings receive a +1 racial bonus on all saving throws.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			},
+			"Sure-Footed": {
+				"trigger": "Continuous",
+				"description": "Halflings receive a +2 racial bonus on Acrobatics and Climb checks.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			},
+			"Weapon Familiarity": {
+				"trigger": "Continuous",
+				"description": "Halflings are proficient with slings and treat any weapon with the word “halfling” in its name as a martial weapon.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			},
+			"Keen Senses": {
+				"trigger": "Continuous",
+				"description": "Halflings receive a +2 racial bonus on Perception checks.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			}
+		},
+		"alternateTraits": {
+			"Human Shadow": {
+				"trigger": "Continuous",
+				"description": "Halflings seem to pop up wherever humans are found, in part because they actively support and move with human explorers, settlers, and travelers without drawing attention to themselves. These halflings can use Stealth to hide behind creatures at least one size category larger than themselves, without any other source of concealment or cover. As long as the halflings are within 30 feet of a human, they gain a +2 racial bonus on Sleight of Hand checks and Stealth checks.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {},
+				"replaces": ["Keen Senses", "Sure-Footed"]
+			}
+		}
+	},
+	"Human": {
+		"rp": 9,
+		"age": {
+			"Adulthood": 15,
+			"Intuitive": "+1d4 (16 – 19 years)",
+			"Self-Taught": "+1d6 years (16 – 21 years)",
+			"Trained": "+2d6 years (17 – 27 years)",
+			"Middle Age": "35 years",
+			"Old Age": "53 years",
+			"Venerable": "70 years",
+			"Max Age": "70 +2d20 years"
+		},
+		"male": {
+			"names": [ "Dave" ],
+			"height": "4'10\" +2d10 inches (5'6\" - 6'6\")",
+			"weight": "120 lbs. +2d10×5 lbs. (130 – 220 lbs.)"
+		},
+		"female": {
+			"names": [ "Lily" ],
+			"height": "4'5\" +2d10 inches (4'7\" - 6'1\")",
+			"weight": "85 lbs. +2d10×5 lbs. (95 – 185 lbs.)"
+		},
+		"abilityMods": { "Choose": 2 },
+		"size": "medium",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Humanoid",
+			"subtypes": [ "Human" ]
+		},
+		"speed": 30,
+		"languages": [ "Common" ],
+		"bonusLanguages": [ "Aboleth", "Abyssal", "Aquan", "Auran", "Celestial", "Draconic", "Dwarven", "Elvish", "English", "Entish", "Giantish", "Gnomish", "Goblin", "Ignan", "Infernal", "Kamago", "Matoran", "Necriil", "Perwhüa", "Risko", "Sylvan", "Terran", "Ulumi", "Undercommon" ],
+		"traits": {
+			"Bonus Feat": {
+				"trigger": "Continuous",
+				"description": "Humans select one extra feat at 1st level.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			},
+			"Skilled": {
+				"trigger": "Continuous",
+				"description": "Humans gain an additional skill rank at first level and one additional rank whenever they gain a level.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			}
+		},
+		"alternateTraits": {
+			"Wayfarer": {
+				"trigger": "Continuous",
+				"description": "Humans maintain the largest trade networks and the farthest-reaching civilizations, putting them in contact with a huge number of cultures. Humans with this racial trait gain a +2 racial bonus on Survival checks to avoid becoming lost, Knowledge (geography) checks, and Knowledge (local) checks. Whenever these humans gain a rank in Linguistics, they learn two languages rather than one.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {},
+				"replaces": ["Skilled"]
+			}
+		}
+	},
+
+
+
+
+	"Kobold": {
+		"rp": 5,
+		"age": {
+			"Adulthood": 14,
+			"Intuitive": "+1d4 (15 – 18 years)",
+			"Self-Taught": "+1d6 years (15 – 20 years)",
+			"Trained": "+2d6 years (16 – 26 years)",
+			"Middle Age": "20 years",
+			"Old Age": "30 years",
+			"Venerable": "40 years",
+			"Max Age": "40 +1d20 years"
+		},
+		"male": {
+			"names": [ "Draahzin", "Eadoo", "Ipmeerk", "Jamada", "Kib", "Makroo", "Olp", "Yraalik", "Zornesk" ],
+			"height": "2'6\" +2d4 inches (2'8\" - 3'2\")",
+			"weight": "25 lbs. +2d4 lbs. (27 – 33 lbs.)"
+		},
+		"female": {
+			"names": [ "Adriaak", "Harkail", "Neeral", "Ozula", "Poro", "Saassraa", "Tarka" ],
+			"height": "2'4\" +2d4 inches (2'6\" - 3'0\")",
+			"weight": "20 lbs. +2d4 lbs. (22 – 28 lbs.)"
+		},
+		"abilityMods": {
+			"Dex": 2,
+			"Str": -4,
+			"Con": -2
+		},
+		"size": "small",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Humanoid",
+			"subtypes": [ "Reptilian" ]
+		},
+		"speed": 30,
+		"languages": [ "Draconic" ],
+		"bonusLanguages": [ "Common", "Dwarven", "Gnomish", "Goblin", "Risko", "Undercommon" ],
+		"traits": {
+			"Armor": {
+				"trigger": "Continuous",
+				"description": "Kobolds' naturally scaly skin grants them a +1 natural armor bonus.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {
+					"Kobold Scales": { "value": 1, "type": "Racial", "targets": [ "totalAC", "flatAC" ] }
+				}
+			},
+			"Crafty": {
+				"trigger": "Continuous",
+				"description": "Kobolds gain a +2 racial bonus on Craft (trapmaking), Perception, and Profession (miner) checks. Craft (trapmaking) and Stealth are always class skills for a kobold.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			},
+			"Darkvision": {
+				"trigger": "Continuous",
+				"description": "Kobolds can see perfectly in the dark up to 60 feet.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			},
+			"Light Sensitivity": {
+				"trigger": "Continuous",
+				"description": "Kobolds lives in darkness have caused them to suffer from light sensitivity.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			}
+		},
+		"alternateTraits": {
+			"Day Raider": {
+				"trigger": "Continuous",
+				"description": "You’re one of the few kobolds born with a greater tolerance for sunlight. You don’t have light sensitivity, and you have low-light vision instead of darkvision.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {},
+				"replaces": ["Light Sensitivity", "Darkvision"]
+			},
+			"Dragonmaw": {
+				"trigger": "Continuous",
+				"description": "Your draconic heritage grants you a bite attack that deals 1d4 piercing damage. Once per day, you can deal 1d6 points of additional energy damage with your bite attack dependant on your color.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {},
+				"replaces": ["Armor"]
+			}
+		}
+	},
+	"Goblin": {
+		"rp": 10,
+		"age": {
+			"Adulthood": 12,
+			"Intuitive": "+1d4 (13 – 16 years)",
+			"Self-Taught": "+1d6 years (13 – 18 years)",
+			"Trained": "+2d6 years (14 – 24 years)",
+			"Middle Age": "20 years",
+			"Old Age": "30 years",
+			"Venerable": "40 years",
+			"Max Age": "40 +1d20 years"
+		},
+		"male": {
+			"names": [ "Boorgub", "Chuffy", "Churkus", "Drubbus", "Gawg", "Ghorg", "Gogmurch", "Irnk", "Kavak", "Mogmurch", "Mogawg", "Nurpus", "Pogus", "Poog", "Ronk", "Rotfoot", "Unk", "Vogun", "Zobmaggle", "Zord" ],
+			"height": "2'8\" +2d4 inches (2'10\" - 3'4\")",
+			"weight": "30 lbs. +2d4 lbs. (32 – 38 lbs.)"
+		},
+		"female": {
+			"names": [ "Aka", "Chee", "Fevva", "Geedra", "Goomluga", "Gretcha", "Hoglob", "Janka", "Klongy", "Luckums", "Lupi", "Medge", "Namby", "Olba", "Rempy", "Reta", "Ruxi", "Vruta", "Yalla", "Ziku" ],
+			"height": "2'6\" +2d4 inches (2'8\" - 3'2\")",
+			"weight": "25 lbs. +2d4 lbs. (27 – 33 lbs.)"
+		},
+		"abilityMods": {
+			"Dex": 4,
+			"Str": -2,
+			"Cha": -2
+		},
+		"size": "small",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Humanoid",
+			"subtypes": [ "Goblinoid" ]
+		},
+		"speed": 30,
+		"languages": [ "Goblin" ],
+		"bonusLanguages": [ "Common", "Draconic", "Dwarven", "Gnomish", "Risko", "Ulumi" ],
+		"traits": {
+			"Skilled": {
+				"trigger": "Continuous",
+				"description": "Goblins gain a +4 racial bonus on Ride and Stealth checks.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			},
+			"Fast Movement": {
+				"trigger": "Continuous",
+				"description": "Goblins gain a +10 foot bonus to their base speed (this is already added to their Base Speed above.)",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			},
+			"Darkvision": {
+				"trigger": "Continuous",
+				"description": "Goblins see perfectly in the dark up to 60 feet.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			}
+		},
+		"alternateTraits": {
+			"Weapon Familiarity": {
+				"trigger": "Continuous",
+				"description": "Goblins’ traditional weapons are the dogslicer and the horsechopper, weapons designed specifically to bring down their most hated foes. Goblins with this trait are proficient with the dogslicer and the horsechopper, and treat any weapon with the word “goblin” in it as martial weapons.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {},
+				"replaces": ["Skilled"]
+			}
+		}
+	},
+	"Hobgoblin": {
+		"rp": 9,
+		"age": {
+			"Adulthood": 15,
+			"Intuitive": "+1d4 (16 – 19 years)",
+			"Self-Taught": "+1d6 years (16 – 21 years)",
+			"Trained": "+2d6 years (17 – 27 years)",
+			"Middle Age": "30 years",
+			"Old Age": "45 years",
+			"Venerable": "60 years",
+			"Max Age": "60 +2d10 years"
+		},
+		"male": {
+			"names": [ "Arak", "Bekri", "Doruk", "Fethi", "Grung", "Hagla", "Haluk", "Kurat", "Malgrim", "Mevlut", "Oktar", "Saltuk", "Tooblur", "Turgut" ],
+			"height": "4'2\" +2d8 inches (4'4\" - 5'6\")",
+			"weight": "165 lbs. +2d8×5 lbs. (175 – 245 lbs.)"
+		},
+		"female": {
+			"names": [ "Afet", "Ceyda", "Ela", "Esma", "Huri", "Kurmu", "Maral", "Masal", "Melda", "Nisa", "Nural", "Sekla", "Sena", "Tansu", "Vesile" ],
+			"height": "4'0\" +2d8 inches (4'2\" - 5'4\")",
+			"weight": "145 lbs. +2d8×5 lbs. (155 – 255 lbs.)"
+		},
+		"abilityMods": {
+			"Dex": 2,
+			"Con": 2
+		},
+		"size": "medium",
+		"type": {
+			"hd": 0,
+			"levels": 0,
+			"name": "Humanoid",
+			"subtypes": [ "Goblinoid" ]
+		},
+		"speed": 30,
+		"languages": [ "Common", "Goblin" ],
+		"bonusLanguages": [ "Draconic", "Dwarven", "Infernal", "Giantish", "Ulumi" ],
+		"traits": {
+			"Sneaky": {
+				"trigger": "Continuous",
+				"description": "Hobgoblins receive a +4 racial bonus on Stealth checks.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			},
+			"Darkvision": {
+				"trigger": "Continuous",
+				"description": "Hobgoblins can see perfectly in the dark up to 60 feet.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {}
+			}
+		},
+		"alternateTraits": {
+			"Authoritative": {
+				"trigger": "Continuous",
+				"description": "Hobgoblins often develop a knack for controlling others. They gain a +2 racial bonus on Diplomacy and Intimidate checks. Both skills are always class skills for them.",
+				"benefit": { "target": "self", "text": "SHORT_BLURB" },
+				"bonuses": {},
+				"replaces": ["Sneaky"]
+			}
+		}
+	}
+
+  }
+}
