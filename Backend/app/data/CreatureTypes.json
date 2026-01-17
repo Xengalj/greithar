@@ -316,8 +316,11 @@
       }
     }
   },
+
+	
   "subtypes": {
     "Aeon": {
+			"Realm": "Astral Plane, Utopia",
       "Aeon Immunities": {
         "description": "Aeons gain a number of immunities.",
         "shortText": "cold, poison, critical hits",
@@ -332,23 +335,22 @@
         "trigger": "Continuous",
         "bonuses": {}
       },
-
       "Envisaging (Su)": {
-        "description": "UPDATE",
-        "shortText": "",
+        "description": "Aeons do not speak and instead use a form of non-verbal telepathy. For instance, an aeon seeking to raze a city communicates this concept to non-aeons by sending them a vivid image of the city crumbling to ash.",
+        "shortText": "Non-verbal telepathy",
         "location": "self",
         "trigger": "Continuous",
         "bonuses": {}
       },
       "Extension of All (Ex)": {
-        "description": "UPDATE",
+        "description": "Aeons are connected to the mltiverse itself and through it eachother, this grants them great knowlesge in the form of a racial bonus equal to half their racial Hit Dice on all Knowledge skill checks.",
         "shortText": "",
         "location": "self",
         "trigger": "Continuous",
         "bonuses": {}
       },
       "Void Form (Su)": {
-        "description": "UPDATE",
+        "description": "Aoens are semi-tangible, granting them a deflection bonus equal to 25% their HD.Though aeons aren’t incorporeal , their forms are only a semi-tangible manifestation of something greater. An aeon’s void form grants it a deflection bonus equal to 1/4 its Hit Dice (rounded down).",
         "shortText": "",
         "location": "self",
         "trigger": "Continuous",
@@ -372,18 +374,17 @@
         "bonuses": {}
       },
       "Low-light Vision": {
-        "description": "Plants can see color in dim light.",
+        "description": "Agathions can see color in dim light.",
         "shortText": "Low-Light Vision",
         "location": "senses",
         "trigger": "Continuous",
         "bonuses": {}
       },
-
       "Lay on Hands": {
-        "description": "UPDATE",
+        "description": "Agathions can use Lay on Hands as a paladin of the same level as their HD. You may touch a creature as a standard action to infuse 1d6 every 2 HD. You may touch yourself as a swift action.",
         "shortText": "",
         "location": "self",
-        "trigger": "Continuous",
+        "trigger": "Standard",
         "bonuses": {}
       },
       "Poison Resistance": {
@@ -401,7 +402,7 @@
         "bonuses": {}
       },
       "Speak with Animals (Su)": {
-        "description": "UPDATE (works like the spell, CL = HD, no verbal)",
+        "description": "Agathions may cast speak with animals, with caster level equal to their HD and not requiring any sound.",
         "shortText": "",
         "location": "self",
         "trigger": "Free",
@@ -426,11 +427,117 @@
       }
     },
     "Angel": {
-      "Realm": "Heaven, Nirvana, Elysium"
+      "Realm": "Heaven, Nirvana, Elysium",
+			"Darkvision": {
+        "description": "Angels can see in the dark up to 60 feet.",
+        "shortText": "Darkvision 60 ft.",
+        "location": "senses",
+				"trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Low-light Vision": {
+        "description": "Angels can see color in dim light.",
+        "shortText": "Low-Light Vision",
+        "location": "senses",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+			"Angelic Immunities": {
+        "description": "Angels gain a number of immunities.",
+        "shortText": "acid, cold, petrification",
+        "location": "immunities",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Angelic Resistances": {
+        "description": "Angels gain a number of resistances.",
+        "shortText": "electricity 10, fire 10",
+        "location": "resistances",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Poison Resistance": {
+        "description": "Angels gain a +4 racial bonus to saves against poison.",
+        "shortText": "+4 racial bonus vs poison",
+        "location": "self",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Protective Aura (Su)": {
+        "description": "Anyone within 20 ft of the angel gets a +4 deflection bonus to AC and a +4 resistance bonus to saves vs evil creatures. This aura also acts as a magic circle against evil and a lesser globe of invulnerability (suppresses spells and spell-like abilities [Sp] of up to 3rd level) both with a radius of 20 ft.",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Free",
+        "bonuses": {}
+      },
+      "Truespeech (Su)": {
+        "description": "Angels can speak with any creature that has a language, as though using tongues (CL = HD)",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Continuous",
+        "bonuses": {}
+      }
     },
-    "Aquatic": {},
+    "Aquatic": {
+			"Aquatic": {
+        "description": "Aquatic creatures have swim speeds and can move in water without making swim checks. They also gain Swim as a class skill, but cannot breathe air and instead breathes water.",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Continuous",
+        "bonuses": {}
+      }
+		},
     "Archon": {
-      "Realm": "Heaven"
+      "Realm": "Heaven",
+			"Darkvision": {
+        "description": "Archons can see in the dark up to 60 feet.",
+        "shortText": "Darkvision 60 ft.",
+        "location": "senses",
+				"trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Low-light Vision": {
+        "description": "Archons can see color in dim light.",
+        "shortText": "Low-Light Vision",
+        "location": "senses",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+			"Archon Immunities": {
+        "description": "Archons gain a number of immunities.",
+        "shortText": "electricity, petrification",
+        "location": "immunities",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Poison Resistance": {
+        "description": "Archons gain a +4 racial bonus to saves against poison.",
+        "shortText": "+4 racial bonus vs poison",
+        "location": "self",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Aura of Menace (Su)": {
+        "description": "When fighting or angry, archons generate an aura requiring a DC # Will save for hostiles. Failure inflicts a -2 to attacks, AC, and saves for 24 hours or until they hit the archon.",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Free",
+        "bonuses": {}
+      },
+			"Teleport (Sp)": {
+        "description": "Archons can use greater teleport at will (CL 14), except that the creature can transport only itself and up to 50 pounds of carried objects.",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Free",
+        "bonuses": {}
+      },
+      "Truespeech (Su)": {
+        "description": "Archons can speak with any creature that has a language, as though using tongues (CL 14)",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Continuous",
+        "bonuses": {}
+      }
     },
     "Asura": {},
     "Augmented": {},
@@ -489,7 +596,9 @@
     "Hive": {},
     "Human": {},
     "Incorporeal": {},
-    "Inevitable": {},
+    "Inevitable": {
+			"Realm": "Utoipa"
+		},
     "Kaiju": {},
     "Kami": {},
     "Kasaha": {},
