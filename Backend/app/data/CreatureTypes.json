@@ -322,14 +322,14 @@
     "Aeon": {
 			"Realm": "Astral Plane, Utopia",
       "Aeon Immunities": {
-        "description": "Aeons gain a number of immunities.",
+        "description": "Aeons are immune to cold, poison, and critical hits.",
         "shortText": "cold, poison, critical hits",
         "location": "immunities",
         "trigger": "Continuous",
         "bonuses": {}
       },
       "Aeon Resistances": {
-        "description": "Aeons gain a number of resistances.",
+        "description": "Aeons gain resistance to electricity and fire.",
         "shortText": "electricity 10, fire 10",
         "location": "resistances",
         "trigger": "Continuous",
@@ -360,14 +360,14 @@
     "Agathion": {
       "Realm": "Nirvana",
       "Agathion Immunities": {
-        "description": "Agathions gain a number of immunities.",
+        "description": "Agathions are immune to electricity and petrification.",
         "shortText": "electricity, petrification",
         "location": "immunities",
         "trigger": "Continuous",
         "bonuses": {}
       },
       "Agathion Resistances": {
-        "description": "Agathion gain a number of resistances.",
+        "description": "Agathion gain resistance to cold and sonic.",
         "shortText": "cold 10, sonic 10",
         "location": "resistances",
         "trigger": "Continuous",
@@ -443,14 +443,14 @@
         "bonuses": {}
       },
 			"Angelic Immunities": {
-        "description": "Angels gain a number of immunities.",
+        "description": "Angels are immune to acid, cold, and petrification.",
         "shortText": "acid, cold, petrification",
         "location": "immunities",
         "trigger": "Continuous",
         "bonuses": {}
       },
       "Angelic Resistances": {
-        "description": "Angels gain a number of resistances.",
+        "description": "Angels gain resistance tp electricity and fire.",
         "shortText": "electricity 10, fire 10",
         "location": "resistances",
         "trigger": "Continuous",
@@ -479,7 +479,7 @@
       }
     },
     "Aquatic": {
-			"Aquatic": {
+	  "Aquatic": {
         "description": "Aquatic creatures have swim speeds and can move in water without making swim checks. They also gain Swim as a class skill, but cannot breathe air and instead breathes water.",
         "shortText": "",
         "location": "self",
@@ -504,7 +504,7 @@
         "bonuses": {}
       },
 			"Archon Immunities": {
-        "description": "Archons gain a number of immunities.",
+        "description": "Archons are immune to electricity and petrification.",
         "shortText": "electricity, petrification",
         "location": "immunities",
         "trigger": "Continuous",
@@ -539,11 +539,177 @@
         "bonuses": {}
       }
     },
-    "Asura": {},
+    "Asura": {
+      "Asura Immunities": {
+        "description": "Asuras are immune to curses, disease and poison.",
+        "shortText": "curses, disease, poison",
+        "location": "immunities",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+	  "Asura Resistances": {
+        "description": "Asuras gain a number of resistances.",
+        "shortText": "acid 10, electricity 10",
+        "location": "resistances",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+		"Asura Will": {
+			"description": "Asuras gain a +2 racial bonus on saving throws against enchantment spells.",
+			"shortText": "+2 vs enchantment",
+			"location": "self",
+			"trigger": "Continuous",
+			"bonuses": {}
+		},
+		"Telepathy (Su)": {
+			"description": "Asuras can mentally communicate with other creatures that have a language, and may address multiple creatures at once (with difficulty).",
+			"shortText": "",
+			"location": "self",
+			"trigger": "Standard",
+			"bonuses": {}
+		},
+	  "Elusive Aura (Su)": {
+        "description": "Asuras exude an aura that affects creatures with a nondetection spell.",
+        "shortText": "",
+        "location": "",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+	  "Regeneration (Ex)": {
+        "description": "Asuras can regenerate at varying rates, with Good weaopns and spells being able to kill them.",
+        "shortText": "",
+        "location": "",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+	  "Spell resistance (Ex)": {
+        "description": "Asuras are resistant to magic, (SR = 11 + CR).",
+        "shortText": "SR #",
+        "location": "self",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+	  "Summon (Sp)": {
+        "description": "Asuras can summon other asuras, usually one of the same or a few weaker ones.",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+     "Asura Skills": {
+        "description": "Asuras gain a +6 racial bonus to Escape Artist and a +4 racial bonus to Perception.",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Continuous",
+        "bonuses": {
+			"Asura Escape": { "value": 6, "type": "Racial", "targets": [ "Escape Artist" ] },
+     		"Asura Perception": { "value": 4, "type":  "Racial", "targets": [ "Perception" ] }
+		}
+      },
+	},
     "Augmented": {},
-    "Automaton": {},
+    "Automaton": {
+			"Darkvision": {
+        "description": "Automatons can see in the dark up to 120 feet.",
+        "shortText": "Darkvision 120 ft.",
+        "location": "senses",
+				"trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Low-light Vision": {
+        "description": "Automatons can see color in dim light.",
+        "shortText": "Low-Light Vision",
+        "location": "senses",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+			"Automaton Immunities": {
+        "description": "Automatons are immune to electricity.",
+        "shortText": "electricity",
+        "location": "immunities",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Automaton Resistances": {
+        "description": "Automatons are resistant to cold and sonic.",
+        "shortText": "cold 10, sonic 10",
+        "location": "resistances",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+			  "Spell resistance (Ex)": {
+        "description": "Automatons are resistant to magic, (SR = 11 + CR).",
+        "shortText": "SR #",
+        "location": "self",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+				"Telepathy (Su)": {
+			"description": "Automatons can mentally communicate with other creatures that have a language, and may address multiple creatures at once (with difficulty).",
+			"shortText": "",
+			"location": "self",
+			"trigger": "Standard",
+			"bonuses": {}
+		},
+		"Automaton Core (Ex)": {
+			"description": "Automatons are powered by a core infused with life energy, which is left behind after an automaton is destroyed.",
+			"shortText": "",
+			"location": "self",
+			"trigger": "Standard",
+			"bonuses": {}
+		},
+		"Intelligent Construct (Ex)": {
+			"description": "Automatons are intelligent constructs and can take class levels. They also get Climb, Craft, Diplomacy, Fly, Intimidate, Knowlegde (all), Perception, Sense Motive, Spellcradt, Stealth, and Use Magic Device as class skills.",
+			"shortText": "",
+			"location": "self",
+			"trigger": "Standard",
+			"bonuses": {}
+		},
+		"Vulnerable Mind (Ex)": {
+			"description": "Automatons are not immune to mind effects.",
+			"shortText": "",
+			"location": "self",
+			"trigger": "Standard",
+			"bonuses": {}
+		},
+	},
     "Azata": {
-      "Realm": "Elysium"
+      "Realm": "Elysium",
+		"Darkvision": {
+        "description": "Azatas can see in the dark up to 60 feet.",
+        "shortText": "Darkvision 60 ft.",
+        "location": "senses",
+				"trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Low-light Vision": {
+        "description": "Azatas can see color in dim light.",
+        "shortText": "Low-Light Vision",
+        "location": "senses",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+			"Azata Immunities": {
+        "description": "Azatas are immune to electricity and petrification.",
+        "shortText": "electricity, petrification",
+        "location": "immunities",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Azata Resistances": {
+        "description": "Azatas are resistant to cold and fire.",
+        "shortText": "cold 10, fire 10",
+        "location": "resistances",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+		      "Truespeech (Su)": {
+        "description": "Azatas can speak with any creature that has a language, as though using tongues (CL 14)",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Continuous",
+        "bonuses": {}
+      }
     },
     "Behemoth": {},
     "Catfolk": {},
