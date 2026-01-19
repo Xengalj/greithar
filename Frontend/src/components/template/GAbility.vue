@@ -41,7 +41,17 @@
           <template #prepend> Short Text </template>
         </el-input>
         <el-input v-model="ability.location" placeholder="Where text goes" :disabled="!advanced">
-          <template #prepend> Location </template>
+          <template #prepend>
+
+            <el-tooltip placement="top" effect="light">
+              Location
+              <template #content>
+                Possible options:
+                "self", "senses", "immunities", "weaknesses", "specialDef"
+              </template>
+            </el-tooltip>
+
+          </template>
         </el-input>
       </el-col>
     </el-row>

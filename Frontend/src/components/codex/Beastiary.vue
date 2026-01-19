@@ -54,9 +54,6 @@
         </el-select>
 
         <div v-if="encounter.name">
-
-          [ View Encounter ]
-
           <el-collapse v-model="encounterCollapse">
             <!-- Encounter Notes -->
             <el-collapse-item name="1">
@@ -69,10 +66,12 @@
                 :autosize="{ minRows: 2, maxRows: 5 }"
                 type="textarea"
                 aria-label="textAreaName" />
-              <el-button @click="encounter.notes.push('')" size="large" type="primary">
-                Add Note
-                <g-icon iconName="createScroll" iconSize="24px" iconColor="#CCC" />
-              </el-button>
+                <div class="center-horz">
+                  <el-button @click="encounter.notes.push('')" size="large" type="primary">
+                    Add Note
+                    <g-icon iconName="createScroll" iconSize="24px" iconColor="#CCC" />
+                  </el-button>
+                </div>
             </el-collapse-item>
 
             <!-- Encounter NPCs -->
@@ -121,7 +120,7 @@
             <!-- Displayed Monster -->
             <el-collapse-item name="4">
               <template #title>
-                <el-divider style="max-width:75%"> {{ creature.name }} </el-divider>
+                <el-divider style="max-width:75%"> <g-icon iconSize="20px" iconName="dragon" /> </el-divider>
               </template>
               <div v-for="(section, name) in creatureJSON" :key="name">
                 <span>{{ capFirsts(name) }}</span>
@@ -486,6 +485,7 @@ export default {
     *                           *
     \***************************/
     loadCreature(monster) {
+      // console.log('CSV', monster);
       /***************************\
       *                           *
       *          BASICS           *
@@ -925,26 +925,28 @@ export default {
         if (monster.Melee) {
           for (let atk of monster.Melee.split(',')) {
             atk = atk.toLowerCase();
-
             // abilities (poison, bleed, frost)
-            let extras = {};
-            let i = atk.indexOf('plus');
+            let i, dmg, extras = {};
+            i = atk.indexOf('plus');
             if (i > -1) {
               extras.notes = atk.slice(i);
               extras.notes = extras.notes.slice(0, -1); // remove trailing ')'
               atk = atk.slice(0, i);
             }
-
             // Dmg Die
-            let dmg = atk.slice(atk.indexOf("(")+1);
-            dmg = dmg.slice(0, dmg.indexOf('+'));
-            atk = atk.slice(0, atk.indexOf('+')-1);
-            atk = atk.slice(0, atk.indexOf('-')-1);
+            i = atk.indexOf("(");
+            if (i > -1) {
+              dmg = atk.slice(i+1);
+              dmg = dmg.slice(0, dmg.indexOf('+'));
+            }
+            i = atk.indexOf("+");
+            if (i > -1) { atk = atk.slice(0, i-1); }
+            i = atk.indexOf("-");
+            if (i > -1) { atk = atk.slice(0, i-1); }
 
             // Strip off masterwork & leading whitespace
             atk = atk.replace(/(mwk|masterwork|Mwk|Masterwork)\s/gm, "").trim();
             atk = atk.replace(/(^\w|\s\w)/g, m => m.toUpperCase()); // cap first letters
-
             // Add only Natural Attacks
             // item = equipment . equipped . hands . 'main hand'
             let item = creature.inventory[1].children[1].children[0].children[0];
@@ -1118,7 +1120,6 @@ export default {
       this.creature = creature; // update the val sent to CreatureCard AT THE END
     },
     viewCreature(index) {
-      console.log(`View ${this.tableData[index].Name}`);
       this.loadCreature(this.tableData[index]);
       this.creatureVisible = true;
     },

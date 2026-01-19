@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
 
     <!-- PARTY -->
     <el-row justify="space-around">
@@ -106,70 +106,71 @@
     </el-card>
 
 
-    <br><br>
-    <el-button type="info" circle @click="creatureWidth = 355; loadMonster('Skeletal Champion')">
-      <g-icon iconSize="24px" iconName="undead" />
-    </el-button>
-    <el-button type="primary" circle @click="loadMonster('Skeletal Champion')">
-      <g-icon iconSize="24px" iconName="undead" />
-    </el-button>
+    <el-card v-if="encounter">
+      <el-input
+        v-for="(note, index) in encounter.notes" :key="index"
+        v-model="encounter.notes[index]"
+        :autosize="{ minRows: 2, maxRows: 5 }"
+        type="textarea"
+        aria-label="textAreaName" />
+        <div class="center-horz">
+          <el-button @click="encounter.notes.push('')" size="large" type="primary">
+            Add Note
+            <g-icon iconName="createScroll" iconSize="24px" iconColor="#CCC" />
+          </el-button>
+        </div>
+    </el-card>
 
-    <el-button type="info" circle @click="creatureWidth = 355; loadMonster('Adult Red Dragon')">
-      <g-icon iconSize="24px" iconName="runeStone" />
-    </el-button>
-    <el-button type="primary" circle @click="loadMonster('Adult Red Dragon')">
-      <g-icon iconSize="24px" iconName="dragon" />
-    </el-button>
 
-    <el-dialog :width="creatureWidth" v-model="monsterVisible" :before-close="monsterClose">
+    <!-- MONSTER MODAL -->
+    <el-auto-resizer style="height: 10px">
+      <template #default="{ width }">
+        <el-dialog v-model="creatureVisible" :width="width" style="margin-top: 75px" >
+          <CreatureCard :source="creature" @save-creature="saveCreature(creature)" @open-drawer="openDrawer"></CreatureCard>
+        </el-dialog>
+      </template>
+    </el-auto-resizer>
 
-      <el-row :gutter="10" justify="center">
-        <el-col :xs="12" :sm="8">
+    <!-- DRAWER -->
+    <el-drawer v-model="drawer" direction="rtl">
+      <template #header> <h4>{{ encounter.name }}</h4> </template>
+      <template #default>
+        <div v-if="!encounter.name">
           <el-select v-model="campaign" @change="loadEncounters" filterable placeholder="Choose a Campaign" aria-label="Select Campaign">
             <el-option v-for="campaign in campaigns" :key="campaign.id" :label="campaign.name" :value="campaign" >
-              {{ campaign.user.username }}'s {{ campaign.name }} ({{ campaign.id }})
+              {{ campaign.user.username }}'s {{ campaign.name }}
             </el-option>
           </el-select>
-        </el-col>
-        <el-col :xs="12" :sm="8">
           <el-select v-model="encounter" filterable placeholder="Choose an Encounter" aria-label="Select Encounter">
             <el-option v-for="encounter in encounters" :key="encounter.id" :label="encounter.name" :value="encounter" />
           </el-select>
-        </el-col>
-        <el-col :xs="24" :sm="12" class="center-horz" style="margin:5px;">
-          <el-button v-if="encounter.id" @click="encounter.monsters.push(creature); saveEncounter();" type="success" size="large" aria-label="Join Encounter"> Join </el-button>
-        </el-col>
-      </el-row>
+        </div>
 
-      <CreatureCard :source="creature" @save-creature="saveCreature(creature);" @open-drawer="drawer = true;"></CreatureCard>
-    </el-dialog>
+        <div v-else>
+          <div class="center-horz">
+            <el-button @click="$router.push({ name: 'encounter-edit', params: { id: encounter.id } })" type="primary">
+              <g-icon iconName="quill" iconSize="24px" iconColor="#CCC" /> Edit
+            </el-button>
+          </div>
 
-
-    <el-drawer v-model="drawer" direction="rtl">
-      <template #header>
-        <h4>{{ encounter.name }}</h4>
-      </template>
-
-      <template #default>
-        <div v-if="encounter.name">
           <el-collapse v-model="encounterCollapse">
-
             <!-- Encounter Notes -->
             <el-collapse-item name="1">
               <template #title>
                 <el-divider style="max-width:75%"> <g-icon iconSize="20px" iconName="openScroll" /> Notes </el-divider>
               </template>
-
               <el-input
                 v-for="(note, index) in encounter.notes" :key="index"
                 v-model="encounter.notes[index]"
                 :autosize="{ minRows: 2, maxRows: 5 }"
                 type="textarea"
                 aria-label="textAreaName" />
-              <el-button @click="encounter.notes.push('')" size="large" type="primary">
-                Add Note
-                <g-icon iconName="createScroll" iconSize="24px" iconColor="#CCC" />
-              </el-button>
+                <div class="center-horz">
+                  <el-button @click="encounter.notes.push('')" size="large" type="primary">
+                    Add Note
+                    <g-icon iconName="createScroll" iconSize="24px" iconColor="#CCC" />
+                  </el-button>
+                </div>
             </el-collapse-item>
 
             <!-- Encounter NPCs -->
@@ -177,7 +178,6 @@
               <template #title>
                 <el-divider style="max-width:75%"> <g-icon iconSize="20px" iconName="userList" /> NPCs </el-divider>
               </template>
-
               <el-table :data="this.encounter.npcs" stripe >
                 <el-table-column label="Type" min-width="55">
                   <template #default="scope">
@@ -190,7 +190,7 @@
                 <el-table-column label="Actions" fixed="right">
                   <template #default="scope">
                     <el-row class="row-bg" justify="space-between">
-                      <el-button @click="loadCharacter(scope.row.id)" type="info" style="margin:0" circle>
+                      <el-button @click="loadCharacter(scope.row.id, scope.$index)" type="info" style="margin:0" circle>
                         <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
                       </el-button>
                     </el-row>
@@ -204,7 +204,6 @@
               <template #title>
                 <el-divider style="max-width:75%"> <g-icon iconSize="20px" iconName="magical beast" /> Monsters </el-divider>
               </template>
-
               <el-table :data="this.encounter.monsters" stripe >
                 <el-table-column label="Type" min-width="55">
                   <template #default="scope">
@@ -217,7 +216,7 @@
                 <el-table-column label="Actions" fixed="right">
                   <template #default="scope">
                     <el-row class="row-bg" justify="space-between">
-                      <el-button @click="loadMonster(scope.row.name)" type="info" style="margin:0" circle>
+                      <el-button @click="viewCreature(scope.row, scope.$index)" type="info" style="margin:0" circle>
                         <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
                       </el-button>
                     </el-row>
@@ -231,7 +230,6 @@
               <template #title>
                 <el-divider style="max-width:75%"> <g-icon iconSize="20px" iconName="map" /> Extras </el-divider>
               </template>
-
               <el-row>
                 <el-col :span="19">
                   <el-input v-model="encounter.extras.prev.name" disabled>
@@ -258,22 +256,7 @@
               </el-row>
             </el-collapse-item>
           </el-collapse>
-        </div>
 
-        <div v-else>
-          <el-select v-model="campaign" :change="loadEncounters()" filterable>
-            <el-option v-for="cam in campaigns" :key="cam.id" :label="cam.name" :value="cam" />
-          </el-select>
-          <el-select v-model="encounter" filterable>
-            <el-option v-for="enc in encounters" :key="enc.id" :label="enc.name" :value="enc" />
-          </el-select>
-        </div>
-
-      </template>
-      <template #footer>
-        <div style="flex: auto">
-          <el-button @click="console.log('nope')">cancel</el-button>
-          <el-button type="primary" @click="console.log('yep')">confirm</el-button>
         </div>
       </template>
     </el-drawer>
@@ -282,40 +265,16 @@
 </template>
 
 <script>
-import DataService from "@/services/data.service";
+// import DataService from "@/services/data.service";
 import CreatureCard from '@/components/template/CreatureCard.vue'
 import CampaignService from "@/services/campaign.service";
 import EncounterService from "@/services/encounter.service";
+import CharacterService from "@/services/character.service";
 
 export default {
   name: "DM Screen",
-  components: {
-    CreatureCard
-  },
-  data() {
-    return {
-      content: "DM Screen",
-      drawer: false,
-      tempName: {},
-
-      campaigns: [],
-      campaign: "",
-      characters: [],
-
-      encounters: [],
-      encounter: "",
-      encounterCollapse: [ '' ],
-
-      monsterVisible: false,
-      creatureWidth: 750,
-      creature: {},
-
-      monCampaign: "",
-      monEncounter: "",
-    }
-  },
+  components: { CreatureCard },
   computed: {
-    // currentUser() { return this.$store.state.auth.user; },
     rules() { return JSON.parse(localStorage.getItem('rules')); },
     races() { return JSON.parse(localStorage.getItem('races')); },
     classes() { return JSON.parse(localStorage.getItem('classes')); },
@@ -323,6 +282,26 @@ export default {
     feats() { return JSON.parse(localStorage.getItem('feats')); },
     actions() { return JSON.parse(localStorage.getItem('actions')); },
     conditions() { return JSON.parse(localStorage.getItem('conditions')); },
+  },
+  data() {
+    return {
+      tempName: {},
+
+      // DRAWER
+      drawer: false,
+      campaigns: [],
+      campaign: "",
+      characters: [],
+      encounters: [],
+      encounter: "",
+      encounterCollapse: [ '' ],
+
+      // MONSTER MODAL
+      creatureVisible: false,
+      creature: {},
+      index: -1,
+
+    }
   },
   mounted() {
     if (!this.rules.size) { this.$router.push("/"); }
@@ -346,6 +325,7 @@ export default {
     *                           *
     \***************************/
     capFirsts(string) { return string ? string.replace(/(^\w|\s\w)/g, m => m.toUpperCase()) : ""; },
+    openDrawer() { this.drawer = true; },
 
     /***************************\
     *                           *
@@ -424,675 +404,39 @@ export default {
       this.tempName.surname = Object.keys(surnames)[rand];
     },
 
-    monsterOpen(name) { console.log(name); },
-    loadCharacter(id) {
+    loadCharacter(id, index) {
       console.log(id);
-    },
-    loadMonster(name) {
-      DataService.getMonster({"Name": name})
-      .then(response => {
-        console.log("CSV", response);
+      this.index = index;
 
-        /***************************\
-        *                           *
-        *          BASICS           *
-        *                           *
-        \***************************/
-        let creature = {
-          name: response.Name,
-          basics: {
-            cr: response.CR,
-            size: response.Size.toLowerCase(),
-            type: response.Type.toLowerCase(),
-            subtypes: [],
-            race: response.Race,
-            speed: {
-              base:     { total: response.Base_Speed, sources: [ `+${response.Base_Speed} Racial Base` ] },
-              swim:     { total: 0, sources: [] },
-              climb:    { total: 0, sources: [] },
-              fly:      { total: 0, sources: [] },
-              burrow:   { total: 0, sources: [] }
-            },
-            alignment: response.Alignment,
-            environment: response.Environment,
-          },
-          notes: "",
-          health: { damage: 0, nonlethal: 0 },
-          classes: [ {} ],
-          abilities: [],
-          conditions: [],
-          resources: {},
-          coins: { "cp": 0, "sp": 0, "gp": 0, "pp": 0 },
-          spells: {},
-          settings: {
-            isNPC: false,
-            isMonster: true,
-            cardTab: "Main",
-            mainSections: [  "defense", "actions" ],
-            expandInventory: [ "Equipped", "Armor", "Weapons", "Hands", "Back", "Items" ]
-          },
-        };
-        // Subtypes
-        for (let i = 1; i < 7; i++) {
-          if (response[`subtype${i}`]) {
-            creature.basics.subtypes.push(response[`subtype${i}`]);
-          }
-        }
-        // Speeds
-        if (response.Swim_Speed) {
-          creature.basics.speed.swim = { total: response.Swim_Speed, sources: [ `+${response.Swim_Speed} Racial Base` ] }
-        }
-        if (response.Climb_Speed) {
-          creature.basics.speed.climb = { total: response.Climb_Speed, sources: [ `+${response.Climb_Speed} Racial Base` ] }
-        }
-        if (response.Fly_Speed) {
-          creature.basics.speed.fly = { total: response.Fly_Speed, sources: [ `+${response.Fly_Speed} Racial Base` ] }
-        }
-        if (response.Burrow_Speed) {
-          creature.basics.speed.burrow = { total: response.Burrow_Speed, sources: [ `+${response.Burrow_Speed} Racial Base` ] }
-        }
+      CharacterService.getCharacter(id)
+      .then((response) => {
+        console.log('response', response);
+        this.viewCreature(response.character);
 
-
-        /***************************\
-        *                           *
-        *          CLASSES          *
-        *                           *
-        \***************************/
-        // Prep Racial HD
-        let racialHD = 0;
-        let strings = response.HD.split(";");
-        strings = strings[1] ? strings[1] : strings[0];
-        strings = strings.split("+");
-        for (var str of strings) {
-          str = str.trimStart();
-          if (str.includes('d')) {
-            str = str.split("d");
-            racialHD += parseInt(str[0]);
-          }
-        }
-
-        // Load Class 1
-        if (response.Class1) {
-          let c1 = {
-            name: response.Class1,
-            levels: response.Class1_Lvl,
-            bab: this.classes[response.Class1].bab,
-            hd: this.classes[response.Class1].hd,
-            saves: {
-              fort: this.classes[response.Class1].fort,
-              ref: this.classes[response.Class1].ref,
-              will: this.classes[response.Class1].will,
-            },
-            abilites: []
-          };
-
-          if (this.classes[response.Class1].magic) {
-            c1.magic = {
-              style: this.classes[response.Class1].magic.style,
-              castingAtr: this.classes[response.Class1].magic.castingAtr,
-
-              useGaldur: false,
-              openTotal: Math.floor( this.classes[response.Class1].magic.galdurTotal[response.Class1_Lvl] / 2 ),
-              openRemaining: Math.floor( this.classes[response.Class1].magic.galdurTotal[response.Class1_Lvl] / 2 ),
-              reserveTotal: Math.ceil( this.classes[response.Class1].magic.galdurTotal[response.Class1_Lvl] / 2 ),
-              reserveRemaining: Math.ceil( this.classes[response.Class1].magic.galdurTotal[response.Class1_Lvl] / 2 ),
-            };
-
-
-            if (c1.magic.style.includes('Spontaneous')) {
-              c1.magic.spellsPerDay = this.classes[response.Class1].magic.spellsPerDay[response.Class1_Lvl];
-              c1.magic.remainingCasts = this.classes[response.Class1].magic.spellsPerDay[response.Class1_Lvl]
-            }
-
-            else if (c1.magic.style.includes('Prepared')) {
-              c1.magic.preparedSpells = [];
-              this.classes[response.Class1].magic.spellsPerDay[response.Class1_Lvl].forEach((numOfSpells, lvl) => {
-                console.log(lvl, numOfSpells);
-                c1.magic.preparedSpells[lvl] = [];
-                for (let i = 0; i < numOfSpells-1; i++) {
-                  c1.magic.preparedSpells[lvl].push("");
-                }
-              });
-            }
-          } // end Class Has Magic
-          creature.classes.push( c1 );
-          // Subtract Class HD from total HD to find racialHD
-          racialHD -= response.Class1_Lvl;
-        }
-
-        // Load Class 2
-        if (response.Class2) {
-          let c2 = {
-            name: response.Class2,
-            levels: response.Class2_Lvl,
-            bab: this.classes[response.Class2].bab,
-            hd: this.classes[response.Class2].hd,
-            saves: {
-              fort: this.classes[response.Class2].fort,
-              ref: this.classes[response.Class2].ref,
-              will: this.classes[response.Class2].will,
-            },
-            abilites: []
-          };
-
-          if (this.classes[response.Class2].magic) {
-            c2.magic = {
-              style: this.classes[response.Class2].magic.style,
-              castingAtr: this.classes[response.Class2].magic.castingAtr,
-              useGaldur: false,
-              openTotal: Math.floor( this.classes[response.Class2].magic.galdurTotal[response.Class2_Lvl] / 2 ),
-              openRemaining: Math.floor( this.classes[response.Class2].magic.galdurTotal[response.Class2_Lvl] / 2 ),
-              reserveTotal: Math.ceil( this.classes[response.Class2].magic.galdurTotal[response.Class2_Lvl] / 2 ),
-              reserveRemaining: Math.ceil( this.classes[response.Class2].magic.galdurTotal[response.Class2_Lvl] / 2 ),
-            };
-            if (c2.magic.style.includes('Spontaneous')) {
-              c2.magic.spellsPerDay = this.classes[response.Class2].magic.spellsPerDay[response.Class2_Lvl];
-              c2.magic.remainingCasts = this.classes[response.Class2].magic.spellsPerDay[response.Class2_Lvl]
-            }
-            else if (c2.magic.style.includes('Prepared')) {
-              c2.magic.preparedSpells = [];
-              this.classes[response.Class2].magic.spellsPerDay[response.Class2_Lvl].forEach((numOfSpells, lvl) => {
-                c2.magic.preparedSpells[lvl] = [];
-                for (let i = 0; i < numOfSpells-1; i++) {
-                  c2.magic.preparedSpells[lvl].push("");
-                }
-              });
-            }
-          } // end Class Has Magic
-          creature.classes.push( c2 );
-          racialHD -= response.Class2_Lvl;
-        }
-
-        // Load Class[race/type]
-        let type = {
-          name: (response.Type == 'humanoid') ? response.Race : response.Type,
-          levels: 0,
-          magic: {},
-          abilites: []
-        };
-
-        // ABILITIES <- Creature Type Traits
-        for (let [name, trait] of Object.entries(this.rules.creature_types[response.Type.toLowerCase()].traits)) {
-          trait.name = name;
-          trait.extras = {
-                          showMain: false,
-                          active: true,
-                          category: "Race",
-                          source: { class: "", level: 0 },
-                          notes: []
-                        }
-          creature.abilities.push(trait);
-        }
-
-        // ABILITIES <- Racial Traits
-        if (Object.keys(this.races).includes(response.Race)) {
-          for (let [name, trait] of Object.entries(this.races[response.Race].traits)) {
-            trait.name = name;
-            trait.extras = {
-                            showMain: false,
-                            active: true,
-                            category: "Race",
-                            source: { class: "", level: 0 },
-                            notes: []
-                          }
-            creature.abilities.push(trait);
-          }
-        }
-
-        if (racialHD > 0) {
-          type.levels = racialHD;
-          type.bab = this.rules.creature_types[response.Type].bab,
-          type.hd = this.rules.creature_types[response.Type].hd,
-          type.saves = this.rules.creature_types[response.Type].saves,
-          type.magic = {
-            style: "Spontaneous Arcane",
-            castingAtr: "Cha",
-            casterLevel: racialHD,
-            spellsPerDay: [ -1, 7, 7, 5 ],
-            remainingCasts: [ 1, 7, 7, 5 ]
-          } // end Class Has Magic
-
-          creature.classes[0] = ( type );
-        }
-
-        /***************************\
-        *                           *
-        *        ATTRIBUTES         *
-        *                           *
-        \***************************/
-        creature.attributes = {
-          Str: { base: (response.Str == "-" ? 0 : response.Str) },
-          Dex: { base: (response.Dex == "-" ? 0 : response.Dex) },
-          Con: { base: (response.Con == "-" ? 0 : response.Con) },
-          Int: { base: (response.Int == "-" ? 0 : response.Int) },
-          Wis: { base: (response.Wis == "-" ? 0 : response.Wis) },
-          Cha: { base: (response.Cha == "-" ? 0 : response.Cha) }
-        }
-
-        /***************************\
-        *                           *
-        *         EQUIPMENT         *
-        *                           *
-        \***************************/
-        creature.inventory = [
-          { 'label': 'Magic Items',  'extras': { 'icon': "amulet" }, 'children': [] },
-          { 'label': 'Equipped',     'extras': { 'icon': 'equipment' }, 'children': [
-            { 'label': 'Armor',      'extras': { 'icon': 'armor', 'capacity': 1 }, 'children': [] },
-            { 'label': 'Weapons',    'extras': { 'icon': 'weapons' }, 'children': [
-              { 'label': 'Hands',    'extras': { 'icon': 'abilityPalm', 'capacity': 2 }, 'children': [] },
-              { 'label': 'Back',     'extras': { 'icon': 'swordShield', 'capacity': 2 }, 'children': [] },
-            ] }
-          ] },
-          { 'label': 'Items',        'extras': { 'icon': 'inventory', 'capacity': 100 }, 'children': [] },
-        ];
-
-        let items = [];
-        // let treasure = response.Treasure;
-        if (response.Treasure.includes("(")) {
-          // treasure = treasure.split('(')[0];
-          let equip = response.Treasure.split('(').pop().split(')')[0];
-          items = items.concat(equip.split(','));
-        }
-        if (response.Gear) {
-          response.Gear.split(',').forEach(piece => {
-            if (!items.includes(piece)) {
-              items.push(piece);
-            }
-          });
-        }
-        if (response.OtherGear) {
-          response.OtherGear.split(',').forEach(piece => {
-            if (!items.includes(piece)) {
-              items.push(piece);
-            }
-          });
-        }
-
-        for (let item of items) {
-          let i, extras = { "Masterwork": false, "Enhancement": 0, "Notes": [] };
-          item = item.toLowerCase();
-          // "With" abilities (poison, bleed, frost)
-          i = item.indexOf('with');
-          if (i > -1) { extras["Notes"].push(item.slice(i)); item = item.slice(0, i); }
-          // +# Magic items (can't go over +5)
-          i = item.indexOf('+');
-          if (i > -1) { extras["Enhancement"] = item.slice(i+1); item = item.slice(i+2); }
-          // Masterwork items
-          i = item.indexOf('masterwork');
-          if (i > -1) { extras["Masterwork"] = true; item = item.slice(i+10); }
-          // Remove leading any whitespace & capitalize
-          item = item[0] === " " ? item.slice(1) : item;
-          item = item.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
-
-          // Add items to equipment
-          // Armor
-          if ( Object.keys(this.equipment.Armor).includes(item) ) {
-            // creature.inventory[equipped].children[armor].children
-            let armor = creature.inventory[1].children[0].children;
-            let newArmor = this.equipment.Armor[item];
-            let notes = newArmor.Extras.Notes;
-            if (notes.length) { extras.Notes.concat(notes); }
-            newArmor.Amount = 1;
-            newArmor.Extras = extras;
-            newArmor.targets = this.rules.bonuses.Armor.targets;
-            if (!armor.length) {
-              armor.push({ label: item, value: newArmor });
-            } else {
-              // creature.inventory[loot].children
-              creature.inventory[2].children.push({ label: item, value: newArmor });
-            }
-          }
-
-          // Weapons
-          else if ( Object.keys(this.equipment.Weapons).includes(item) ) {
-            // creature.inventory[equipped].children[weapons]
-            let weapons = creature.inventory[1].children[1].children;
-            let newWpn = this.equipment.Weapons[item];
-            let notes = newWpn.Extras.Notes;
-            if (notes.length) { extras.Notes.push(notes); }
-            newWpn.Amount = 1;
-            newWpn.Extras = extras;
-            if (weapons[0].children.length < 2) {
-              // if weapons[hands].children < 2
-              weapons[0].children.push({ label: item, value: newWpn });
-            } else if (weapons[1].children.length < 2) {
-              // if weapons[back].children < 2
-              weapons[1].children.push({ label: item, value: newWpn });
-            } else {
-              // add weapon to creature.inventory[loot].children
-              creature.inventory[2].children.push({ label: item, value: newWpn });
-            }
-          }
-
-          // Shields
-          else if ( Object.keys(this.equipment.Shields).includes(item) ) {
-            // creature.inventory[equipped].children[weapons]
-            let weapons = creature.inventory[1].children[1].children;
-            let newWpn = this.equipment.Shields[item];
-            let notes = newWpn.Extras.Notes;
-            if (notes.length) { extras.Notes.push(notes); }
-            newWpn.Amount = 1;
-            newWpn.Extras = extras;
-            newWpn.targets = this.rules.bonuses.Shield.targets;
-            if (weapons[0].children.length < 2) {
-              // if weapons[hands].children
-              weapons[0].children.push({ label: item, value: newWpn });
-            } else if (weapons[1].children.length < 2) {
-              // if weapons[back].children
-              weapons[1].children.push({ label: item, value: newWpn });
-            } else {
-              // add shield to creature.inventory[loot].children
-              creature.inventory[2].children.push({ label: item, value: newWpn });
-            }
-          }
-
-          // Others
-          else {
-            creature.inventory[2].children.push({
-              label: item,
-              value: { "Cost": 1, "Weight": 0, "Description": "", "Amount": 1, "Extras": { "Notes": [] } }
-            });
-          }
-        } // End items loop
-
-        /***************************\
-        *                           *
-        *         ABILITIES         *
-        *                           *
-        \***************************/
-        // Feats
-        if (response.Feats) {
-          for (let name of response.Feats.split(',')) {
-            let isBonus, feat = {
-              description: "",
-              shortText: "",
-              location: "self",
-              trigger: "Continuous",
-              bonuses: {},
-              extras: {
-                showMain: false,
-                active: false,
-                category: "Feat",
-                source: { class: "", level: 0 },
-                notes: []
-              }
-            };
-            name = name.trim();
-            if (name.indexOf('(') > 0) { name = name.slice(0, name.indexOf('(')-1); }
-            // Remove 'B' from bonus feat names
-            if (name[name.length-1] == 'B') {
-              isBonus = true;
-              name = name.slice(0, -1);
-            }
-            // if the feat is in the feats json, load it's data
-            if (this.feats[name]) {
-              feat = this.feats[name];
-              feat.extras = {
-                showMain: (this.feats[name].trigger == "Continuous") ? false : true,
-                active: (this.feats[name].trigger == "Continuous") ? true : false,
-                category: isBonus ? "Class" : "Feat",
-                source: { class: "", level: 0 },
-                notes: []
-              };
-            }
-            feat.name = name;
-            creature.abilities.push(feat);
-          }
-        }
-        // Natural Armor
-        let tempAC = response.AC - 10;
-        tempAC -= Math.floor((response.Dex - 10) / 2);
-        tempAC -= this.rules.size[creature.basics.size]["ac / atk"];
-        let armor = creature.inventory[1].children[0].children[0];
-        if (armor) { tempAC -= armor.value["AC Bonus"]; }
-        for (const item of creature.inventory[1].children[1].children[0].children) {
-          // Shields : for items in equipment . equipped . hands
-          if (item.value["AC Bonus"]) { tempAC -= item.value["AC Bonus"]; }
-        }
-        if (tempAC > 0) {
-          creature.abilities.push({
-            name: "Natural Armor",
-            description: "This creature is naturally tough, granting additional armor.",
-            shortText: "",
-            location: "self",
-            trigger: "Continuous",
-            bonuses: {
-              "Natural Armor": { value: tempAC, type: "Natural Armor", targets: this.rules.bonuses["Natural Armor"].targets }
-            },
-            extras: {
-              showMain: false,
-              active: true,
-              category: "Race",
-              source: { class: "Innate", level: 0 },
-              notes: []
-            }
-          });
-        }
-        // Special Qualities
-        if (response.SQ) {
-          for (let abil of response.SQ.split(',')) {
-            creature.abilities.push({
-              name: abil.trim(),
-              description: "",
-              shortText: "",
-              location: "self",
-              trigger: "Standard",
-              bonuses: {},
-              extras: {
-                showMain: false,
-                active: false,
-                category: "Trait",
-                source: { class: "Innate", level: 0 },
-                notes: []
-              }
-            });
-          }
-        }
-
-        /***************************\
-        *                           *
-        *          ATTACKS          *
-        *                           *
-        \***************************/
-        creature.actions = {};
-        // MELEE
-        if (response.Melee) {
-          for (let atk of response.Melee.split(',')) {
-            atk = atk.toLowerCase();
-
-            // abilities (poison, bleed, frost)
-            let extras = {};
-            let i = atk.indexOf('plus');
-            if (i > -1) {
-              extras.notes = atk.slice(i);
-              extras.notes = extras.notes.slice(0, -1); // remove trailing ')'
-              atk = atk.slice(0, i);
-            }
-
-            // Dmg Die
-            let dmg = atk.slice(atk.indexOf("(")+1);
-            dmg = dmg.slice(0, dmg.indexOf('+'));
-            atk = atk.slice(0, atk.indexOf('+')-1);
-
-            // Strip off masterwork & leading whitespace
-            atk = atk.replace(/(mwk|masterwork|Mwk|Masterwork)\s/gm, "").trim();
-            atk = atk.replace(/(^\w|\s\w)/g, m => m.toUpperCase()); // cap first letters
-
-            // Add only Natural Attacks
-            // item = equipment . equipped . hands . 'main hand'
-            let item = creature.inventory[1].children[1].children[0].children[0];
-            if (item && item.label == atk) { continue; }
-            // item = equipment . equipped . hands . 'off hand'
-            item = creature.inventory[1].children[1].children[0].children[1];
-            if (item && item.label == atk) { continue; }
-
-            let NAs = this.rules.natural_attacks;
-            let atkName = atk;
-            // get Nat Atk name, for searching (no #, no trailing 's')
-            if (parseInt(atkName[0]) > 1) {
-              extras['AtkNum'] = atk[0];
-              atkName = atkName.slice(2);
-              atkName = atkName.slice(0, -1);
-            }
-            let NAdmg, newAtk = {};
-            if (Object.keys(NAs).includes(atkName)) {
-              newAtk = NAs[atkName];
-              NAdmg = NAs[atkName].Damage[creature.basics.size];
-            } else {
-              newAtk = NAs['Other'];
-              NAdmg = NAs['Other'].Damage[creature.basics.size];
-            }
-            if (NAdmg != dmg) { newAtk.Damage[creature.basics.size] = dmg; }
-            newAtk.Extras = extras;
-            newAtk.Extras.naturalAtk = true;
-            newAtk.style = "Melee";
-
-            creature.actions[atkName] = newAtk;
-          }
-        }
-
-        // RANGED
-        if (response.Ranged) {
-          for (let atk of response.Ranged.split(',')) {
-            // Same as melee, see above section for comments
-            atk = atk.toLowerCase();
-            let extras = {};
-            let i = atk.indexOf('plus');
-            if (i > -1) {
-              extras.notes = atk.slice(i);
-              extras.notes = extras.notes.slice(0, -1);
-              atk = atk.slice(0, i);
-            }
-            let dmg = atk.slice(atk.indexOf("(")+1);
-            dmg = dmg.slice(0, dmg.indexOf('+'));
-            atk = atk.slice(0, atk.indexOf('+')-1);
-            atk = atk.replace(/(mwk|masterwork|Mwk|Masterwork)\s/gm, "");
-            atk = atk.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
-            let item = creature.inventory[1].children[1].children[0].children[0];
-            if (item && item.label == atk) { continue; }
-            item = creature.inventory[1].children[1].children[0].children[1];
-            if (item && item.label == atk) { continue; }
-            let NAs = this.rules.natural_attacks;
-            let atkName = atk;
-            if (parseInt(atk[0]) > 1) {
-              extras['AtkNum'] = atk[0];
-              atkName = atk.slice(2);
-              atkName = atk.slice(0, -1);
-            }
-            let NAdmg, newAtk ={};
-            if (Object.keys(NAs).includes(atkName)) {
-              newAtk = NAs[atkName];
-              NAdmg = NAs[atkName].Damage[creature.basics.size];
-            } else {
-              newAtk = NAs['Other'];
-              NAdmg = NAs['Other'].Damage[creature.basics.size];
-            }
-            if (NAdmg != dmg) { newAtk.Damage[creature.basics.size] = dmg; }
-            newAtk.Extras = extras;
-            newAtk.Extras.naturalAtk = true;
-            newAtk.style = "Ranged";
-            creature.actions[atkName] = newAtk;
-          }
-        }
-
-        /***************************\
-        *                           *
-        *          SKILLS           *
-        *                           *
-        \***************************/
-        creature.skills = {};
-        // set up class skills array
-        let classSkills = [];
-        creature.classes.forEach(cls => {
-          // Add type class skills
-          if (cls.hd) {
-            this.rules.creature_types[creature.basics.type].skills.forEach(skill => {
-              classSkills.push(skill);
-            });
-          }
-          // add class skills
-          if (this.classes[cls.name]) {
-            this.classes[cls.name].skills.forEach(skill => {
-              if (!classSkills.includes(skill)) {
-                classSkills.push(skill);
-              }
-            });
-          }
-        });
-        // set up all skills
-        for (let name of Object.keys(this.rules.skills)) {
-          let skill = {
-            ranks: 0,
-            class: classSkills.includes(name),
-            extras: {},
-          };
-          if (name == "Linguistics" && response.Languages) {
-            skill.extras.languages = response.Languages.split(',');
-          }
-          if (name == "Fly" && response.Maneuverability) {
-            /*
-            Clumsy –8
-            Poor –4
-            Average +0
-            Good +4
-            Perfect +8
-            */
-
-          }
-          creature.skills[name] = skill;
-        }
-        // Get skill ranks
-        let skills = response.Skills.split(',');
-        skills.forEach(skill => {
-          let name = skill.slice(0, skill.search(/[+|-]/g)).trim();
-          name = name.replace("Knowl.", "Knowledge");
-          if (name.indexOf('(') > 0) {
-            let tmpName = name.slice(0, name.indexOf('(')).trim();
-            if ( ['Artistry', 'Craft', 'Lore', 'Perform', 'Profession'].includes(tmpName) ) {
-              name = tmpName;
-            }
-            creature.skills[name].extras.specialty = name.slice(name.indexOf('(')+1, name.indexOf(')'));
-          }
-          let bonus = skill.slice(skill.search(/[+|-]/g)-1);
-          if (bonus.indexOf('(') > 0) { bonus = bonus.slice(0, bonus.indexOf('(')-1); }
-          // total - ability mod
-          let abil = this.rules.skills[name].ability;
-          bonus -= Math.floor( (creature.attributes[abil].base -10) / 2);
-          //class skill: total - 3;
-          bonus += classSkills.includes(name) ? -3 : 0
-          // total - Armor Penalty(s)
-          if (this.rules.skills[name].armor_pen) {
-            // creature.inventory[equipped].children[armor].children
-            let armor = creature.inventory[1].children[0].children;
-            if ( armor[0] ) { bonus -= armor[0].value.Penalty; }
-            // creature.inventory[equipped].children[Weapons].children[Hands]
-            for (let item of creature.inventory[1].children[1].children[0].children) {
-              if ( Object.keys(this.equipment.Shields).includes(item.label) ) {
-                bonus -= item.value.Penalty;
-              }
-            }
-          }
-          // total - Size Mod
-          if (name == "Stealth" || name == "Fly") {
-            bonus -= this.rules.size[creature.basics.size][name.toLowerCase()];
-          }
-
-          creature.skills[name].ranks = bonus;
-        }); // End skill ranks for each
-
-        console.log(creature);
-        this.creature = creature; // update the val sent to CreatureCard AT THE END
-        this.monsterVisible = true;
+        // this.character = response.character;
+        // document.getElementsByClassName('title')[0].innerHTML = this.character.name;
+        // this.spellTabs = Object.keys(this.character.spells)[0];
+        //
+        // this.loading = false;
       })
-      .catch(err => { console.error(err); });
-
+      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
 
 
     },
-    monsterClose() { this.monsterVisible = false; },
 
+    viewCreature(creature, index) {
+      this.drawer = false;
+      this.creature = creature;
+      this.index = index;
+      this.creatureVisible = true;
+    },
     saveCreature(creature) {
-      console.log(creature);
+      if (creature.settings.isMonster) {
+        this.encounter.monsters[this.index] = creature;
+      } else if (creature.settings.isNPC) {
+        this.encounter.npcs[this.index] = creature;
+      }
+      this.saveEncounter();
     },
 
     // End Methods

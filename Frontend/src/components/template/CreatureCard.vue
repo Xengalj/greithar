@@ -353,7 +353,7 @@
           </el-col>
         </el-row>
 
-        <!-- Immunities & Weaknesses -->
+        <!-- Immunities, Weaknesses, Specials -->
         <el-row v-for="(type, name) in defenses" :key="name">
           <el-col :xs="6" :span="3" v-if="type.length"> {{ capFirsts(name) }} </el-col>
           <el-col :xs="18" :span="21" >
@@ -526,37 +526,28 @@
       <!-- Resources -->
       <el-collapse-item name="resources">
         <template #title> <g-icon iconName="star" /> Resources </template>
-
         <div v-for="(abil, index) in abilities" :key="index">
-          {{ abil.name }} : {{ abil }}
-          <!--
-          if abil.extras.uses
-          blah
-         -->
-        </div>
-
-        <div v-for="(res, name) in creature.resources" :key="name">
-          <el-row :gutter="10" style="margin-bottom:10px">
+          <el-row v-if="abil.extras.uses" :gutter="10" style="margin-bottom:10px">
             <el-col :span="6" class="center-horz">
-              <el-tag size="large" effect="dark" type="primary"> {{ name }} </el-tag>
+              <el-tag size="large" effect="dark" type="primary"> {{ abil.name }} </el-tag>
             </el-col>
             <el-col :span="17" class="center-horz">
               <el-progress
-                :percentage="Math.floor((res.left/res.total)*100)"
-                :color="res.color"
+                :percentage="Math.floor((abil.extras.uses.left/abil.extras.uses.total)*100)"
+                :color="abil.extras.uses.color"
                 :text-inside="true"
                 :striped="true"
                 :stroke-width="30">
-                {{ res.left }} / {{ res.total }} {{ res.units }}
+                {{ abil.extras.uses.left }} / {{ abil.extras.uses.total }} {{ abil.extras.uses.label }}
               </el-progress>
             </el-col>
           </el-row>
-          <el-row :gutter="10" align="middle"  style="margin-bottom:10px">
+          <el-row v-if="abil.extras.uses" :gutter="10" align="middle"  style="margin-bottom:10px">
             <el-col :span="6" class="center-horz">
-              <el-input-number v-model="res.left" :min="0" :max="res.total" :aria-label="`Remaining ${name}`" />
+              <el-input-number v-model="abil.extras.uses.left" :min="0" :max="abil.extras.uses.total" :aria-label="`Remaining ${abil.name}`" />
             </el-col>
             <el-col :span="17">
-              <el-input v-model="res.notes" :autosize="{ minRows: 1, maxRows: 4 }" :aria-label="`${name} Notes`" type="textarea" />
+              <el-input v-model="abil.extras.notes" :autosize="{ minRows: 1, maxRows: 4 }" :aria-label="`${abil.name} Notes`" type="textarea" />
             </el-col>
           </el-row>
         </div>
@@ -780,7 +771,7 @@
     <el-divider style="margin-top: 5px;" />
     <el-collapse v-model="abilityCollapse">
       <el-collapse-item v-for="type in abilityTypes" :key="type" :title="type" :name="type">
-        <div v-for="(abil, index) in abilities" :key="abil.name">
+        <div v-for="(abil, index) in abilities" :key="index">
           <el-row v-if="abil.extras.category == type" :gutter="5" style="margin-bottom:5px;" justify="space-between">
             <el-col :xs="10" :sm="5"> <el-tag size="small" effect="dark" type="primary"> {{ abil.name }} </el-tag> </el-col>
             <el-col :xs="0" :sm="12" :span="14"> {{ abil.description }} </el-col>
@@ -1333,7 +1324,7 @@ export default {
         bonuses: {}
       },
 
-      abilityCollapse: [],
+      abilityCollapse: [ "Race", "Trait", "Class", "Feat", "Other" ],
       abilityTypes: [ "Race", "Trait", "Class", "Feat", "Other" ],
 
       newCondition: {},
@@ -1808,18 +1799,16 @@ export default {
     defenses() {
       let defenses = { immunities: [], weaknesses: [], special: [] };
       Object.values(this.abilities).forEach(abil => {
-        if (abil.benefit) {
-          switch (abil.benefit.target) {
-            case "immunities":
-              defenses.immunities.push(abil.benefit.text.split(','));
-              break;
-            case "weakness":
-              defenses.weaknesses.push(abil.benefit.text.split(','));
-              break;
-            case "specialDef":
-              defenses.special.push(abil.benefit.text);
-              break;
-          }
+        switch (abil.location) {
+          case "immunities":
+            defenses.immunities.push(abil.shortText.split(','));
+            break;
+          case "weaknesses":
+            defenses.weaknesses.push(abil.shortText.split(','));
+            break;
+          case "specialDef":
+            defenses.special.push([abil.shortText]);
+            break;
         }
       });
       return defenses
@@ -2075,7 +2064,6 @@ export default {
         }
       }
 
-      // console.log(actions);
       return actions;
     },
     // USES: bonusLoop(bonuses), attributes, inventory, sizeStats
@@ -2293,7 +2281,6 @@ export default {
 
         for (let [name, bonus] of Object.entries(this.bonuses)) {
           prefix = (bonus.value > 0) ? "+" : "";
-          // console.log(name, bonus);
           if (Object.keys(this.rules.bonuses).includes(bonus.type)) {
             // If the bonus type doesn't stack
             if (typedBonuses[bonus.type]) {

@@ -147,9 +147,6 @@ export default {
     *           IDEAS           *
     *                           *
     \***************************/
-    /*
-    - Remove redundant grey abil totals
-    */
 
     // TODO:
     /*
@@ -160,8 +157,13 @@ export default {
         Good +4
         Perfect +8
 
-    - setup resources section
-    
+
+    - set up character/view to update a toon to use new format
+      - setup character/view to use CreatureCard
+
+    - set up group loot
+
+
     */
 
 
