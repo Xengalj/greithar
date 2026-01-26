@@ -2,12 +2,15 @@
   <div v-if="!loading" class="container">
 
     <el-row :gutter="10" justify="center">
+      <!-- Actions -->
       <el-col :xs="24" :sm="10" :md="6" class="center-horz">
         <el-divider >
           <g-icon iconSize="32px" iconName="map" />
         </el-divider>
 
-        <!-- Actions -->
+
+        <!-- this.$router.push({ name: 'encounter-view', params: { id: id } }); -->
+
         <el-button @click="this.$router.push({ name: 'dm-screen', params: { campaign: encounter.campaignId, encounter: encounter.id } });" type="primary" size="large">
           View <g-icon iconName="eye" iconSize="24px" iconColor="#CCC" />
         </el-button>
@@ -68,8 +71,8 @@
       </el-col>
     </el-row>
 
-    <!-- Monsters -->
     <el-row :gutter="10" justify="center" align="middle">
+      <!-- Monsters -->
       <el-col :xs="24" :sm="12">
         <el-divider >
           <el-col :xs="24" :span="0">
@@ -92,10 +95,10 @@
           <el-table-column label="Actions" width="135" fixed="right">
             <template #default="scope">
               <el-row class="row-bg" justify="space-between">
-                <el-button @click="viewMonster(scope.row.id)" type="info" style="margin:0" circle>
+                <el-button @click="viewCreature(scope.row, scope.$index)" type="info" style="margin:0" circle>
                   <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
                 </el-button>
-                <el-button @click="editMonster(scope.row.id)" type="primary" style="margin:0" circle>
+                <el-button @click="index=scope.$index;creature=scope.row; openDrawer(scope.row)" type="primary" style="margin:0" circle>
                   <g-icon iconSize="24px" iconColor="#000" iconName="quill" />
                 </el-button>
                 <el-popconfirm :title="`Delete Monster?`">
@@ -162,39 +165,64 @@
     </el-row>
 
 
-    <br>
-    <br>
-    <div v-for="(item, name) in encounter" :key="name">
-      {{ name }} : {{ item }}
-      <br>
-    </div>
+    <!-- MONSTER MODAL -->
+    <el-auto-resizer style="height: 10px">
+      <template #default="{ width }">
+        <el-dialog v-model="creatureVisible" :width="width" style="margin-top: 75px" >
+          <CreatureCard :source="creature" @save-creature="saveCreature(creature)" @open-drawer="openDrawer(creature)"></CreatureCard>
+        </el-dialog>
+      </template>
+    </el-auto-resizer>
 
-    <!-- EDIT ITEM DIALOG -->
-    <!-- <el-dialog v-model="editingItem" width="800">
-      <g-item :source="item" @save-item="saveItem"/>
-    </el-dialog> -->
+    <!-- DRAWER -->
+    <el-drawer v-model="drawer" direction="rtl">
+      <template #header> <h4>{{ creature.name }}</h4> </template>
+      <template #default>
+        <div v-if="creature.name">
+          <div class="center-horz">
+            <el-button @click="adminUpdate" type="primary"> Update </el-button>
+          </div>
+          <div v-for="(section, name) in creatureJSON" :key="name">
+            <span>{{ capFirsts(name) }}</span>
+            <el-input type="textarea" v-model="creatureJSON[name]" :autosize="{ minRows: 5, maxRows: 20 }" :aria-label="`Admin ${name} JSON Input`" />
+          </div>
+        </div>
+      </template>
+    </el-drawer>
 
   </div>
 </template>
 
 <script>
 import EncounterService from "@/services/encounter.service";
+import CreatureCard from '@/components/template/CreatureCard.vue'
 
 export default {
   name: "Edit Encounter",
-  data() {
-    return {
-      loading: true,
-      monsters: [],
-      NPCs: [],
-
-      siblings: [], // other encounters within the campaign
-      encounter: {},
-    };
-  },
+  components: { CreatureCard },
   computed: {
     rules() { return JSON.parse(localStorage.getItem('rules')); },
     currentUser() { return this.$store.state.auth.user; },
+  },
+  data() {
+    return {
+      loading: true,
+      encounter: {},
+
+      monsters: [],
+      NPCs: [],
+      siblings: [], // other encounters within the campaign
+
+      // MONSTER MODAL
+      creatureVisible: false,
+      creature: {},
+      creatureJSON: {},
+      index: -1,
+
+      // DRAWER
+      drawer: false,
+
+    };
   },
   mounted() {
     if (!this.rules.size) { this.$router.push("/"); }
@@ -224,39 +252,44 @@ export default {
   methods: {
     // Helper Methods
     capFirsts(string) { return string ? string.replace(/(^\w|\s\w)/g, m => m.toUpperCase()) : ""; },
-
-
-
     saveEncounter() {
       EncounterService.updateEncounter(this.encounter)
       .then((response) => { this.$message({ message: `${response.encounter.name} updated`, type: 'success', }); })
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
     },
 
-    viewEncounter() {
-      console.log('load into DM Screen');
-      // EncounterService.updateEncounter(this.campaign)
-      // .then((response) => { this.$message({ message: `${response.campaign.name} updated`, type: 'success', }); })
-      // .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
-    },
-
-
-
-
-
-
     /***************************\
     *                           *
     *         MONSTERS          *
     *                           *
     \***************************/
-    viewMonster(id) {
-      console.log('view monster', id);
-      // this.$router.push({ name: 'encounter-view', params: { id: id } });
+    // opens the drawer to allow AdminEdit mode
+    openDrawer() {
+      this.creatureJSON = {};
+      for (const [key, value] of Object.entries(this.creature)) {
+        this.creatureJSON[key] = JSON.stringify(value);
+      }
+      this.drawer = true;
     },
-    editMonster(id) {
-      console.log('edit monster', id);
-      // this.$router.push({ name: 'encounter-edit', params: { id: id } });
+    viewCreature(creature, index) {
+      this.drawer = false;
+      this.creature = creature;
+      this.index = index;
+      this.creatureVisible = true;
+    },
+    saveCreature(creature) {
+      if (creature.settings.isMonster) {
+        this.encounter.monsters[this.index] = creature;
+      } else if (creature.settings.isNPC) {
+        this.encounter.npcs[this.index] = creature;
+      }
+      this.saveEncounter();
+    },
+    adminUpdate() {
+      for (const key of Object.keys(this.creature)) {
+        this.creature[key] = JSON.parse(this.creatureJSON[key]);
+      }
+      this.saveEncounter();
     },
     deleteMonster(rowIndex) {
       this.encounter.monsters.splice(rowIndex, 1);

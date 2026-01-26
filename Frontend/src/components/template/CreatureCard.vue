@@ -805,7 +805,7 @@
                   <el-button type="info" size="small" @click="dialogWidth = 355; editAbility(abil)">
                     <g-icon iconSize="16px" iconColor="#000" iconName="quill" />
                   </el-button>
-                  <el-popconfirm title="Are you sure to delete this?">
+                  <el-popconfirm :title="`Are you sure to delete ${abil.name}?`">
                     <template #reference>
                       <el-button type="danger" size="small" style="margin:0">
                         <g-icon iconSize="16px" iconColor="#000" iconName="trash" />
@@ -824,8 +824,8 @@
     </el-collapse>
     <!-- Conditions -->
     <el-row :gutter="10" style="margin-top:7px;" justify="space-between">
-      <el-col :xs="9" :sm="5" :span="4"> <g-icon iconSize="32px" iconName="dizzyStar" /> Conditions </el-col>
-      <el-col :xs="10" :span="8">
+      <el-col :xs="9" :sm="5"> <g-icon iconSize="32px" iconName="dizzyStar" /> Conditions </el-col>
+      <el-col :xs="10" :sm="8">
         <el-select v-model="creature.conditions" value-key="name" multiple placeholder="Common Conditions" aria-label="Conditions Select">
           <template #tag>
             <el-tag v-for="(condition, index) in creature.conditions" :key="condition" effect="dark" closable @close="creature.conditions.splice(index, 1)"> {{ condition.name }} </el-tag>
@@ -834,18 +834,25 @@
             <el-tag type="primary" style="margin-right: 8px" size="small" effect="dark"> {{ item.name }} </el-tag>
           </el-option>
           <template #footer>
-            <el-button v-if="!addingCondition" text bg size="small" @click="addNewContion()"> Add custom condition </el-button>
+            <el-button text bg size="small" @click="addNewContion()"> Add custom condition </el-button>
           </template>
         </el-select>
       </el-col>
     </el-row>
     <el-divider> Active </el-divider>
-    <el-row v-for="condition in creature.conditions" :key="condition.name">
-      <el-col :span="6" class="center-vert">
+    <el-row v-for="condition in creature.conditions" :key="condition.name" justify="space-between" align="middle">
+      <el-col :xs="12" :sm="6">
         <el-tag type="info" size="large" effect="dark"> {{ condition.name }} </el-tag>
       </el-col>
-      <el-col :span="18" class="center-vert">
-        {{ condition.description }}
+      <el-col :xs="0" :sm="12"> {{ condition.description }} </el-col>
+      <el-col :xs="3" :sm="6">
+        <el-tag v-if="condition.extras && condition.extras.duration" size="small" effect="dark" type="warning" style="color:black">
+          {{ condition.extras.duration.left }} {{ condition.extras.duration.label }}
+        </el-tag>
+        &nbsp;
+        <el-button type="info" size="small" circle @click="editCondition(condition)">
+          <g-icon iconSize="16px" iconColor="#000" iconName="quill" />
+        </el-button>
       </el-col>
     </el-row>
   </el-tab-pane>
@@ -1292,8 +1299,9 @@
 
   <!-- Dialog -->
   <el-dialog v-model="dialog" :width="dialogWidth">
-    <g-item     v-if="showItem" :source="item" @save-item="saveItem"/>
-    <g-ability  v-if="showAbil" :source="abil" @save-abil="saveAbility"/>
+    <g-item v-if="showItem" :source="item" @save-item="saveItem"/>
+    <g-ability v-if="showAbil" :source="abil" @save-abil="saveAbility"/>
+    <g-condition v-if="showCondition" :source="condition" @save-condition="saveCondition"/>
   </el-dialog>
 
 </div>
@@ -1303,10 +1311,11 @@
 import HexGraph from '@/components/template/HexGraph.vue'
 import GItem from '@/components/template/GItem.vue'
 import GAbility from '@/components/template/GAbility.vue'
+import GCondition from '@/components/template/GCondition.vue'
 
 export default {
   name: "CreatureCard",
-  components: { HexGraph, GItem, GAbility },
+  components: { HexGraph, GItem, GAbility, GCondition },
   emits: [ 'open-drawer', 'save-creature' ],
   props: { source: { type: Object } },
   data() {
@@ -1327,9 +1336,6 @@ export default {
       abilityCollapse: [ "Race", "Trait", "Class", "Feat", "Other" ],
       abilityTypes: [ "Race", "Trait", "Class", "Feat", "Other" ],
 
-      newCondition: {},
-      addingCondition: false,
-
       spellTabs: "",
       newSpell: { name: "", level: 0, class: "" },
       spellsCollapse: [],
@@ -1343,6 +1349,8 @@ export default {
       showAbil: false,
       item: {},
       showItem: false,
+      condition: {},
+      showCondition: false,
 
     }
   },
@@ -1699,7 +1707,7 @@ export default {
             break;
           case "will":
             bonus += this.attributes.Wis.mod;
-            bName = "Dex";
+            bName = "Wis";
             break;
         }
         bonus = Math.floor(bonus);
@@ -1814,6 +1822,7 @@ export default {
       return defenses
     },
 
+    // USES: bonusLoop(bonuses)
     bab() {
       let bab = 0;
       // Class Loop (includes racial hd)
@@ -1840,7 +1849,7 @@ export default {
       \***************************/
       // Abilities, like cleave, into 'special actions'
       for (const abil of this.abilities) {
-        if (abil.extras.showMain) {
+        if (abil.extras.showMain && ![ "immunities", "weaknesses", "specialDef" ].includes(abil.location)) {
           actions[2].children.push({
             "label": abil.name, "value": abil
           });
@@ -1901,6 +1910,9 @@ export default {
         this.bonusLoop(newAtk.value.dmgBonus, "rangedDmgBonus");
         this.bonusLoop(newAtk.value.atkBonus, "specialAtkBonus");
         this.bonusLoop(newAtk.value.dmgBonus, "specialDmgBonus");
+        // Weapon Specific Bonuses (like for Weapon Focus)
+        this.bonusLoop(newAtk.value.atkBonus, newAtk.label.concat("AtkBonus"));
+        this.bonusLoop(newAtk.value.dmgBonus, newAtk.label.concat("DmgBonus"));
 
         // set damage types
         for (const category of Object.values(this.rules["Damage Types"])) {
@@ -2270,60 +2282,54 @@ export default {
       if (Number.isInteger(string)) { string = string.toString(); }
       return string ? string.replace(/(^\w|\s\w)/g, m => m.toUpperCase()) : "";
     },
+    /*
+    object = the bonus object we are adding to: { total: #, sources: [] }
+    tString = the target string we match to add to the bonus object: "atkBonus"
+    */
     bonusLoop(object, tString) {
-      // console.log(tString, object);
-      // object = the bonus object we are adding to: { total: #, sources: [] }
-      // tString = the target string we match to add to the bonus object: "atkBonus"
-      // Add Active Bonuses
+      let debug = "TrevTest";
+      if (tString.includes(debug)) { console.log(tString, object); }
+
       let typedBonuses = {};
       let prefix = "";
+      for (let [name, bonus] of Object.entries(this.bonuses)) {
+        if (tString.includes(debug)) { console.log(name, bonus); }
+        if (tString.includes(debug)) { console.log(typedBonuses); }
 
-
-        for (let [name, bonus] of Object.entries(this.bonuses)) {
-          prefix = (bonus.value > 0) ? "+" : "";
-          if (Object.keys(this.rules.bonuses).includes(bonus.type)) {
-            // If the bonus type doesn't stack
-            if (typedBonuses[bonus.type]) {
-              // If we have the type of bonus already
-              if (typedBonuses[bonus.type].value > bonus.value) {
-                // If the current is higher, skip
-                // addBonus = false;
-                continue;
-              } else {
-                // remove current bonus & value
-                bonus.targets.forEach(target => {
-                  if (target == tString) {
-                    object.total -= typedBonuses[bonus.type].value;
-                    // loop on sources looking for the one to remove
-                    object.sources.forEach((source, i) => {
-                      if ( source.includes(typedBonuses[bonus.type].name) ) {
-                        object.sources.splice(i, 1);
-                      }
-                    });
+        if (bonus.targets.includes(tString)) {
+          if (bonus.value > 0) {
+            prefix = "+";
+            if (this.rules.bonuses[bonus.type] && !this.rules.bonuses[bonus.type].stacks) {
+              // if this is a non stacking bonus
+              if (typedBonuses[bonus.type] && typedBonuses[bonus.type].value < bonus.value) {
+                // if the existing bonus is smaller and should be replaced
+                if (tString.includes(debug)) { console.log(`replace ${typedBonuses[bonus.type].value} ${typedBonuses[bonus.type].name}`); }
+                object.total -= typedBonuses[bonus.type].val;
+                object.sources.forEach((source, i) => {
+                  if (source.includes(typedBonuses[bonus.type].name)) {
+                    object.sources.splice(i, 1);
                   }
                 });
-              }
+                // update existing typed, non-stacking bonus
+                typedBonuses[bonus.type] = { name: name, value: bonus.value };
+              } else {
+                if (tString.includes(debug)) { console.log(`current bonus is higher/doesn't exist`); }
+                continue;
+              } // end remove lower bonus
             }
-            typedBonuses[bonus.type] = { name: name, value: bonus.value };
-          }
+          } // end prefix = "+"
           if (!object.sources.includes(`${prefix}${bonus.value} ${name}`)) {
-            // if we dont already have that specific bonus applied, add it
-            bonus.targets.forEach(target => {
-              if (target == tString) {
-                // If bonus.targets includes tString, apply it
-                object.total += parseInt(bonus.value);
-                object.sources.push(`${prefix}${bonus.value} ${name}`);
-              }
-            });
-
+            if (tString.includes(debug)) { console.log(`add ${prefix}${bonus.value} ${name}`); }
+            object.total += parseInt(bonus.value);
+            object.sources.push(`${prefix}${bonus.value} ${name}`);
           }
-        } // End Bonuses Loop
-
+        }
+      } // End Bonuses Loop
     },
     applyBonus(name, value, obj) {
       if (value != 0) {
         let prefix = (value > 0) ? "+" : "";
-        obj.total += value;
+        obj.total += parseInt(value);
         obj.sources.push(`${prefix}${value} ${name}`);
       }
     },
@@ -2398,36 +2404,6 @@ export default {
     },
 
     openDrawer() { this.$emit('open-drawer'); },
-
-    /***************************\
-    *                           *
-    *         CONDITIONS        *
-    *                           *
-    \***************************/
-    addNewContion() {
-      this.addingCondition = true;
-      this.newCondition = {
-        name: "",
-        description: "",
-        bonuses: {}
-      };
-    },
-    addNewConditionBonus() {
-      let name = this.newCondition.name;
-      if (name) {
-        this.newCondition.bonuses[name.concat(" ", Object.keys(this.newCondition.bonuses).length)] = {
-          type: "Condition",
-          value: 0,
-          targets: []
-        };
-      } else {
-        this.$message({ message: "Input Condition Name First", type: "error" });
-      }
-    },
-    addCondition() {
-      this.conditions.push(this.newCondition);
-      this.addingCondition = false;
-    },
 
     /***************************\
     *                           *
@@ -2569,6 +2545,37 @@ export default {
         this.creature.actions[action].style = style;
       }
     },
+
+    /***************************\
+    *                           *
+    *         CONDITIONS        *
+    *                           *
+    \***************************/
+    addNewContion() {
+      this.condition = {
+        name: "NEW CONDITION",
+        description: "",
+        bonuses: {},
+        extras: {
+          notes: []
+        }
+      };
+      this.conditions.push(this.condition);
+      this.activeConditions.push(this.condition);
+      this.showCondition = true;
+      this.dialog = true;
+    },
+    editCondition(condition) {
+      this.condition = {};
+      this.condition = condition;
+      this.showCondition = true;
+      this.dialog = true;
+    },
+    saveCondition() {
+      this.showCondition = false;
+      this.dialog = false;
+    },
+    // DELETE DONE BY REMOVING FROM SLECT
 
     /***************************\
     *                           *

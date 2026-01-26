@@ -287,6 +287,11 @@ export default {
     return {
       tempName: {},
 
+      // MONSTER MODAL
+      creatureVisible: false,
+      creature: {},
+      index: -1,
+
       // DRAWER
       drawer: false,
       campaigns: [],
@@ -295,11 +300,6 @@ export default {
       encounters: [],
       encounter: "",
       encounterCollapse: [ '' ],
-
-      // MONSTER MODAL
-      creatureVisible: false,
-      creature: {},
-      index: -1,
 
     }
   },

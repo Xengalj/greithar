@@ -16,7 +16,7 @@
       </el-col>
       <el-col :xs="24" :sm="12">
         <div class="center-horz"> Description </div>
-        <el-input type="textarea" v-model="ability.description" :autosize="{ minRows: 1, maxRows: 4 }" placeholder="Enter item description" />
+        <el-input type="textarea" v-model="ability.description" :autosize="{ minRows: 1, maxRows: 4 }" placeholder="Enter ability description" />
       </el-col>
     </el-row>
 
@@ -285,6 +285,7 @@ export default {
   mounted() {
     this.selects.targets = this.rules.targets;
     this.selects.bonusTypes = Object.keys(this.rules.bonuses);
+    this.selects.bonusTypes.push( "Untyped" );
     this.ability = this.source;
     this.original = JSON.stringify(this.source);
   },
@@ -302,7 +303,7 @@ export default {
     addBonus() {
       this.ability.bonuses[this.ability.name.concat(" ", Object.keys(this.ability.bonuses).length+1)] = {
         value: 0,
-        type: "Morale",
+        type: "Untyped",
         targets: []
       };
     },
