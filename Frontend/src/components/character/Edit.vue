@@ -2,7 +2,7 @@
   <div v-if="!loading" class="container">
 
     <!-- NAME & ADVANCED -->
-    <el-row :gutter="10">
+    <el-row :gutter="10" align="middle">
       <el-col :span="12">
         <h3>
           {{ character.name }}
@@ -10,7 +10,7 @@
             ID : {{ character.id }}
           </el-tag>
           <span v-if="character.basics.race && ['male','female','agender'].includes(character.basics.appearance.gender)">
-            <el-button type="primary" @click="genRandomName()"> Random Name! </el-button>
+            <el-button @click="genRandomName()" type="primary" size="small"> Random Name! </el-button>
           </span>
         </h3>
       </el-col>
@@ -219,14 +219,12 @@
                 <!-- Strength -->
                 <el-col :span="2" class="center-vert">Str:</el-col>
                 <el-col :span="3">
-                  <el-badge :max="5" :value="attributes.Str.sources.length" v-if="attributes.Str.sources[0]">
-                    <el-tooltip placement="top" effect="light">
-                      <el-tag size="large" effect="dark" type="primary">{{attributes.Str.total}}</el-tag>
-                      <template #content> <span v-for="bonus in attributes.Str.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
-                    </el-tooltip>
-                  </el-badge>
-                  <el-tag size="large" effect="dark" type="info" v-else>{{attributes.Str.total}}</el-tag>
-                  <el-tag size="small" effect="dark" type="primary">{{ Math.floor((attributes.Str.total-10)/2) }}</el-tag>
+                  <el-tooltip v-if="attributes.Str.sources[0]" placement="top" effect="light">
+                    <el-tag size="large" effect="dark" type="info"> {{ attributes.Str.total }} </el-tag>
+                    <template #content> <span v-for="bonus in attributes.Str.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
+                  </el-tooltip>
+                  <el-tag v-else size="large" effect="dark" type="info"> {{ attributes.Str.total }} </el-tag>
+                  <el-tag size="small" effect="dark" type="primary"> {{ attributes.Str.mod }} </el-tag>
                 </el-col>
                 <el-col :span="6">
                   <el-input-number v-model="character.attributes.Str.base" :min="1" aria-label="Base Strength Input" />
@@ -234,14 +232,12 @@
                 <!-- Intelligence -->
                 <el-col :span="2" :offset="1" class="center-vert">Int:</el-col>
                 <el-col :span="3">
-                  <el-badge :max="5" :value="attributes.Int.sources.length" v-if="attributes.Int.sources[0]">
-                    <el-tooltip placement="top" effect="light">
-                      <el-tag size="large" effect="dark" type="primary">{{attributes.Int.total}}</el-tag>
-                      <template #content> <span v-for="bonus in attributes.Int.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
-                    </el-tooltip>
-                  </el-badge>
-                  <el-tag size="large" effect="dark" type="info" v-else>{{attributes.Int.total}}</el-tag>
-                  <el-tag size="small" effect="dark" type="primary">{{ Math.floor((attributes.Int.total-10)/2) }}</el-tag>
+                  <el-tooltip v-if="attributes.Int.sources[0]" placement="top" effect="light">
+                    <el-tag size="large" effect="dark" type="info"> {{ attributes.Int.total }} </el-tag>
+                    <template #content> <span v-for="bonus in attributes.Int.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
+                  </el-tooltip>
+                  <el-tag v-else size="large" effect="dark" type="info"> {{ attributes.Int.total }} </el-tag>
+                  <el-tag size="small" effect="dark" type="primary"> {{ attributes.Int.mod }} </el-tag>
                 </el-col>
                 <el-col :span="6">
                   <el-input-number v-model="character.attributes.Int.base" :min="1" aria-label="Base Intelligence Input" />
@@ -252,14 +248,12 @@
                 <!-- Dexterity -->
                 <el-col :span="2" class="center-vert">Dex:</el-col>
                 <el-col :span="3">
-                  <el-badge :max="5" :value="attributes.Dex.sources.length" v-if="attributes.Dex.sources[0]">
-                    <el-tooltip placement="top" effect="light">
-                      <el-tag size="large" effect="dark" type="primary">{{attributes.Dex.total}}</el-tag>
-                      <template #content> <span v-for="bonus in attributes.Dex.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
-                    </el-tooltip>
-                  </el-badge>
-                  <el-tag size="large" effect="dark" type="info" v-else>{{attributes.Dex.total}}</el-tag>
-                  <el-tag size="small" effect="dark" type="primary">{{ Math.floor((attributes.Dex.total-10)/2) }}</el-tag>
+                  <el-tooltip v-if="attributes.Dex.sources[0]" placement="top" effect="light">
+                    <el-tag size="large" effect="dark" type="info"> {{ attributes.Dex.total }} </el-tag>
+                    <template #content> <span v-for="bonus in attributes.Dex.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
+                  </el-tooltip>
+                  <el-tag v-else size="large" effect="dark" type="info"> {{ attributes.Dex.total }} </el-tag>
+                  <el-tag size="small" effect="dark" type="primary"> {{ attributes.Dex.mod }} </el-tag>
                 </el-col>
                 <el-col :span="6">
                   <el-input-number v-model="character.attributes.Dex.base" :min="1" aria-label="Base Dexterity Input" />
@@ -267,14 +261,12 @@
                 <!-- Wisdom -->
                 <el-col :span="2" :offset="1" class="center-vert">Wis:</el-col>
                 <el-col :span="3">
-                  <el-badge :max="5" :value="attributes.Wis.sources.length" v-if="attributes.Wis.sources[0]">
-                    <el-tooltip placement="top" effect="light">
-                      <el-tag size="large" effect="dark" type="primary">{{attributes.Wis.total}}</el-tag>
-                      <template #content> <span v-for="bonus in attributes.Wis.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
-                    </el-tooltip>
-                  </el-badge>
-                  <el-tag size="large" effect="dark" type="info" v-else>{{attributes.Wis.total}}</el-tag>
-                  <el-tag size="small" effect="dark" type="primary">{{ Math.floor((attributes.Wis.total-10)/2) }}</el-tag>
+                  <el-tooltip v-if="attributes.Wis.sources[0]" placement="top" effect="light">
+                    <el-tag size="large" effect="dark" type="info"> {{ attributes.Wis.total }} </el-tag>
+                    <template #content> <span v-for="bonus in attributes.Wis.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
+                  </el-tooltip>
+                  <el-tag v-else size="large" effect="dark" type="info"> {{ attributes.Wis.total }} </el-tag>
+                  <el-tag size="small" effect="dark" type="primary"> {{ attributes.Wis.mod }} </el-tag>
                 </el-col>
                 <el-col :span="6">
                   <el-input-number v-model="character.attributes.Wis.base" :min="1" aria-label="Base Wisdom Input" />
@@ -285,14 +277,12 @@
                 <!-- Constitution -->
                 <el-col :span="2" class="center-vert">Con:</el-col>
                 <el-col :span="3">
-                  <el-badge :max="5" :value="attributes.Con.sources.length" v-if="attributes.Con.sources[0]">
-                    <el-tooltip placement="top" effect="light">
-                      <el-tag size="large" effect="dark" type="primary">{{attributes.Con.total}}</el-tag>
-                      <template #content> <span v-for="bonus in attributes.Con.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
-                    </el-tooltip>
-                  </el-badge>
-                  <el-tag size="large" effect="dark" type="info" v-else>{{attributes.Con.total}}</el-tag>
-                  <el-tag size="small" effect="dark" type="primary">{{ Math.floor((attributes.Con.total-10)/2) }}</el-tag>
+                  <el-tooltip v-if="attributes.Con.sources[0]" placement="top" effect="light">
+                    <el-tag size="large" effect="dark" type="info"> {{ attributes.Con.total }} </el-tag>
+                    <template #content> <span v-for="bonus in attributes.Con.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
+                  </el-tooltip>
+                  <el-tag v-else size="large" effect="dark" type="info"> {{ attributes.Con.total }} </el-tag>
+                  <el-tag size="small" effect="dark" type="primary"> {{ attributes.Con.mod }} </el-tag>
                 </el-col>
                 <el-col :span="6">
                   <el-input-number v-model="character.attributes.Con.base" :min="1" aria-label="Base Constitution Input" />
@@ -300,14 +290,12 @@
                 <!-- Charisma -->
                 <el-col :span="2" :offset="1" class="center-vert">Cha:</el-col>
                 <el-col :span="3">
-                  <el-badge :max="5" :value="attributes.Cha.sources.length" v-if="attributes.Cha.sources[0]">
-                    <el-tooltip placement="top" effect="light">
-                      <el-tag size="large" effect="dark" type="primary">{{attributes.Cha.total}}</el-tag>
-                      <template #content> <span v-for="bonus in attributes.Cha.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
-                    </el-tooltip>
-                  </el-badge>
-                  <el-tag size="large" effect="dark" type="info" v-else>{{attributes.Cha.total}}</el-tag>
-                  <el-tag size="small" effect="dark" type="primary">{{ Math.floor((attributes.Cha.total-10)/2) }}</el-tag>
+                  <el-tooltip v-if="attributes.Cha.sources[0]" placement="top" effect="light">
+                    <el-tag size="large" effect="dark" type="info"> {{ attributes.Cha.total }} </el-tag>
+                    <template #content> <span v-for="bonus in attributes.Cha.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
+                  </el-tooltip>
+                  <el-tag v-else size="large" effect="dark" type="info"> {{ attributes.Cha.total }} </el-tag>
+                  <el-tag size="small" effect="dark" type="primary"> {{ attributes.Cha.mod }} </el-tag>
                 </el-col>
                 <el-col :span="6">
                   <el-input-number v-model="character.attributes.Cha.base" :min="1" aria-label="Base Charisma Input" />
@@ -371,15 +359,15 @@
                 </el-descriptions-item>
                 <el-descriptions-item>
                   <template #label> Fort </template>
-                  +{{ Math.floor(cClass.levels * classes[cName].fort.mult) + classes[cName].fort.bonus }}
+                  +{{ Math.floor(cClass.levels * classes[cName].saves.fort.mult) + classes[cName].saves.fort.bonus }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                   <template #label> Reflex </template>
-                  +{{ Math.floor(cClass.levels * classes[cName].ref.mult) + classes[cName].ref.bonus }}
+                  +{{ Math.floor(cClass.levels * classes[cName].saves.ref.mult) + classes[cName].saves.ref.bonus }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                   <template #label> Will </template>
-                  +{{ Math.floor(cClass.levels * classes[cName].will.mult) + classes[cName].will.bonus }}
+                  +{{ Math.floor(cClass.levels * classes[cName].saves.will.mult) + classes[cName].saves.will.bonus }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                   <template #label> Ranks </template>
@@ -427,6 +415,7 @@
           </el-row>
 
           <!-- Magic -->
+          <!--
           <el-row v-if="classes[cName].magic" :gutter="10">
             <el-col :span="8">
               <el-descriptions :column="1" border >
@@ -576,6 +565,7 @@
               </div>
             </el-col>
           </el-row>
+        -->
         </div>
       </el-collapse-item>
 
@@ -587,62 +577,63 @@
           </el-divider>
         </template>
 
-        <el-row class="center-horz" id="abilities" :gutter="5">
-          <el-col :span="5">Name</el-col>
-          <el-col :span="14">Description</el-col>
-          <el-col :span="5">
+        <el-row :gutter="5" justify="space-between">
+          <el-col :xs="4" :sm="2" :span="5">Name</el-col>
+          <el-col :xs="0" :sm="14" :span="14" class="center-horz">Description</el-col>
+          <el-col :xs="8" :sm="4" :span="5">
             Actions
-            <el-popconfirm title="Add New Ability?" @confirm="addNewAbility" hide-icon>
-              <template #reference>
-                <el-button type="primary" size="small">New</el-button>
-              </template>
-              <template #actions="{ confirm }">
-                <el-input v-model="abilName" size="small" placeholder="Ability Name" style="margin-bottom:5px;" aria-label="New Ability Name" />
-                <el-button type="primary" size="small" @click="confirm" :disabled="abilName == ''" aria-label="Create New Ability">Yes</el-button>
-              </template>
-            </el-popconfirm>
+            <el-button type="success" size="small" @click="addNewAbility()"> New </el-button>
           </el-col>
         </el-row>
         <el-divider style="margin-top: 5px;" />
         <el-collapse v-model="abilityCollapse">
-
-          <!-- abilities -->
           <el-collapse-item v-for="type in abilityTypes" :key="type" :title="type" :name="type">
-            <div v-for="(abil, name) in abilities" :key="name">
-              <el-row v-if="abil.extras.source == type" :gutter="5" style="margin-bottom:5px;">
-                <el-col :span="5">
-                  <el-tag size="small" effect="dark" type="primary"> {{ name }} </el-tag>
-                </el-col>
-                <el-col :span="14"> {{ abil.description }} </el-col>
-                <el-col :span="3">
-                  <el-button size="small" style="width:95%; margin: 0;"
-                    :type="abil.extras.active?'primary':'info'"
-                    :disabled="abil.trigger=='Continuous'?true:false"
-                    @click="toggleAbility(name, abil)"
-                  >
-                    {{ abil.trigger == "Toggle" ? "Free" : abil.trigger }}
-                  </el-button>
-                  <el-button size="small" style="width:95%; margin: 0;"
-                    :type="abil.extras.showMain?'primary':'info'"
-                    @click="abilShowMain(name, abil)"
-                  >
-                    {{ abil.extras.showMain ? "On Main" : "Just Here" }}
-                  </el-button>
-                </el-col>
-                <el-col :span="2" class="center-horz;">
-                  <el-button type="info" size="small" @click="editAbility(name, abil)">
-                    <g-icon iconSize="16px" iconColor="#000" iconName="quill" />
-                  </el-button>
-                  <el-popconfirm title="Are you sure to delete this?">
-                    <template #reference>
-                      <el-button type="danger" size="small" style="margin:0">
-                        <g-icon iconSize="16px" iconColor="#000" iconName="trash" />
+            <div v-for="(abil, index) in abilities" :key="index">
+              <el-row v-if="abil.extras.category == type" :gutter="5" style="margin-bottom:5px;" justify="space-between">
+                <el-col :xs="10" :sm="5"> <el-tag size="small" effect="dark" type="primary"> {{ abil.name }} </el-tag> </el-col>
+                <el-col :xs="0" :sm="12" :span="14"> {{ abil.description }} </el-col>
+                <el-col :xs="10" :sm="6">
+                  <el-row>
+                    <el-col :xs="14" :span="16" class="center-horz">
+                      <el-button size="small" style="width:95%; margin: 0;"
+                        :type="abil.extras.active?'primary':'info'"
+                        :disabled="abil.trigger=='Continuous'?true:false"
+                        @click="toggleAbility(abil)" >
+                        {{ abil.trigger == "Toggle" ? "Free" : abil.trigger }}
                       </el-button>
-                    </template>
-                    <template #actions="">
-                      <el-button type="danger" size="small" @click="deleteAbil(name)">Yes</el-button>
-                    </template>
-                  </el-popconfirm>
+                      <el-switch v-model="abil.extras.showMain" active-text="On Main" inactive-text="Just Here" inline-prompt />
+                    </el-col>
+                    <el-col :xs="0" :span="8" class="center-horz;">
+                      <el-button type="info" size="small" @click="editAbility(abil)">
+                        <g-icon iconSize="16px" iconColor="#000" iconName="quill" />
+                      </el-button>
+                      <el-popconfirm title="Are you sure to delete this?">
+                        <template #reference>
+                          <el-button type="danger" size="small" style="margin:0">
+                            <g-icon iconSize="16px" iconColor="#000" iconName="trash" />
+                          </el-button>
+                        </template>
+                        <template #actions="">
+                          <el-button type="danger" size="small" @click="deleteAbil(index)">Yes</el-button>
+                        </template>
+                      </el-popconfirm>
+                    </el-col>
+                    <el-col :xs="10" :span="0" class="center-horz;">
+                      <el-button type="info" size="small" @click="dialogWidth = 355; editAbility(abil)">
+                        <g-icon iconSize="16px" iconColor="#000" iconName="quill" />
+                      </el-button>
+                      <el-popconfirm :title="`Are you sure to delete ${abil.name}?`">
+                        <template #reference>
+                          <el-button type="danger" size="small" style="margin:0">
+                            <g-icon iconSize="16px" iconColor="#000" iconName="trash" />
+                          </el-button>
+                        </template>
+                        <template #actions="">
+                          <el-button type="danger" size="small" @click="deleteAbil(index)">Yes</el-button>
+                        </template>
+                      </el-popconfirm>
+                    </el-col>
+                  </el-row>
                 </el-col>
               </el-row>
             </div>
@@ -651,7 +642,7 @@
           <!-- Attacks -->
           <el-collapse-item name="atacks">
             <template #title>
-              <g-icon iconSize="32px" iconName="swordShield" /> Special Attacks
+              <g-icon iconSize="32px" iconName="swordShield" /> Special Actions
             </template>
             <el-row :gutter="10" justify="space-between">
               <el-col :span="16">
@@ -660,7 +651,7 @@
               <el-col :span="3">
                 <el-popconfirm title="Add New Attack?" @confirm="addNewAttack" hide-icon>
                   <template #reference>
-                    <el-button type="primary" size="small">New</el-button>
+                    <el-button type="success" size="small">New</el-button>
                   </template>
                   <template #actions="{ confirm }">
                     <el-tooltip content="Number of Attacks" effect="light" placement="top">
@@ -673,7 +664,7 @@
               </el-col>
             </el-row>
             <el-divider />
-            <el-row v-for="(atk, name) in character.attacks" :key="name" :gutter="10">
+            <el-row v-for="(atk, name) in character.actions" :key="name" :gutter="10">
               <el-col :span="2" class="center-horz">
                 <el-tag size="large" effect="dark" type="primary">
                   {{ atk.atkNum > 1 ? atkNum : '' }}  {{ name }}
@@ -685,7 +676,7 @@
                     </el-button>
                   </template>
                   <template #actions="">
-                    <el-button type="danger" size="small" @click="delete character.attacks[name]; this.$message({ message: `${name} was removed from attacks`, type: 'warning' });">Yes</el-button>
+                    <el-button type="danger" size="small" @click="delete character.actions[name]; this.$message({ message: `${name} was removed from attacks`, type: 'warning' });">Yes</el-button>
                   </template>
                 </el-popconfirm>
               </el-col>
@@ -736,13 +727,9 @@
               </el-col>
               <el-col :span="7">
                 Extras {{ atk.Extras }}
-
                 <el-row v-for="(extra, index) in atk.Extras" :key="index" :gutter="5">
                   <el-col :span="24">
-                    <el-input
-                      v-model="atk.Extras[index]"
-                      :aria-label="`Extra ${index+1} Input`"
-                    >
+                    <el-input v-model="atk.Extras[index]" :aria-label="`Extra ${index+1} Input`">
                       <template #append>
                         <el-button @click="deleteAtkExtra(name, index)" style="display: flex;">
                           <g-icon iconSize="16px" iconColor="#f56c6c" iconName="trash" />
@@ -752,72 +739,6 @@
                   </el-col>
                 </el-row>
                 <el-button size="small" type="primary" @click="addAtkExtra(name)"> Add Note </el-button>
-              </el-col>
-
-
-            </el-row>
-          </el-collapse-item>
-
-          <!-- Resources -->
-          <el-collapse-item name="resources">
-            <template #title>
-              <g-icon iconSize="32px" iconName="star" /> Resources
-            </template>
-            <el-row :gutter="10" justify="space-between">
-              <el-col :span="16">
-                This section is for any resources your character may use, like rounds of rage, or a Monk's Ki pool
-              </el-col>
-              <el-col :span="3">
-                <el-popconfirm title="Add New Attack?" @confirm="addNewResource" hide-icon>
-                  <template #reference>
-                    <el-button type="primary" size="small">New</el-button>
-                  </template>
-                  <template #actions="{ confirm }">
-                    <el-input v-model="resourceName" size="small" style="margin-bottom:5px;" placeholder="Resource Name" aria-label="New Resource Name" />
-                    <el-button @click="confirm" :disabled="resourceName == ''" type="primary" size="small" aria-label="Create New Resource">Yes</el-button>
-                  </template>
-                </el-popconfirm>
-              </el-col>
-            </el-row>
-            <el-divider />
-            <el-row v-for="(res, name) in character.resources" :key="name" :gutter="10" align="middle">
-              <el-col :span="2" class="center-horz">
-                <el-tag size="large" effect="dark" type="primary">
-                  {{ name }}
-                </el-tag>
-              </el-col>
-              <el-col :span="3">
-                <el-tooltip :content="`Remaining ${name}`" effect="light" placement="top">
-                  <el-input-number v-model="res.left" :min="0" size="small" :aria-label="`${name} Remaining`" />
-                </el-tooltip>
-              </el-col>
-              <el-col :span="3">
-                <el-tooltip :content="`Total ${name}`" effect="light" placement="top">
-                  <el-input-number v-model="res.total" :min="1" size="small" :aria-label="`${name} Total`" />
-                </el-tooltip>
-              </el-col>
-              <el-col :span="4">
-                <el-input v-model="res.units" size="small" :aria-label="`${name} Units`">
-                  <template #prepend> Units </template>
-                </el-input>
-              </el-col>
-              <el-col :span="1">
-                <el-color-picker v-model="res.color" :predefine="[ '#4167F0', '#FFDE0A', '#E63415', '#bfef45', '#ADD8E6', '#42d4f4', '#E63415', '#911eb4', '#f032e6', '#71797E' ]" />
-              </el-col>
-              <el-col :span="8">
-                <el-input v-model="res.notes" size="small" type="textarea" :autosize="{ minRows: 3, maxRows: 4 }" aria-label="`${name} Notes`" />
-              </el-col>
-              <el-col :offset="1" :span="2" class="center-horz;">
-                <el-popconfirm title="Are you sure to delete this?">
-                  <template #reference>
-                    <el-button type="danger" size="small" style="margin:0">
-                      <g-icon iconSize="16px" iconColor="#000" iconName="trash" />
-                    </el-button>
-                  </template>
-                  <template #actions="">
-                    <el-button type="danger" size="small" @click="delete character.resources[name]; this.$message({ message: `${name} was removed from resources`, type: 'warning' });">Yes</el-button>
-                  </template>
-                </el-popconfirm>
               </el-col>
             </el-row>
           </el-collapse-item>
@@ -837,18 +758,25 @@
                     <el-tag type="primary" style="margin-right: 8px" size="small" effect="dark"> {{ item.name }} </el-tag>
                   </el-option>
                   <template #footer>
-                    <el-button v-if="!addingCondition" text bg size="small" @click="addNewContion()"> Add custom condition </el-button>
+                    <el-button text bg size="small" @click="addNewContion()"> Add custom condition </el-button>
                   </template>
                 </el-select>
               </el-col>
             </el-row>
             <el-divider> Active </el-divider>
-            <el-row v-for="condition in character.conditions" :key="condition.name">
-              <el-col :span="6" class="center-vert">
+            <el-row v-for="condition in character.conditions" :key="condition.name" justify="space-between" align="middle">
+              <el-col :xs="12" :sm="6">
                 <el-tag type="info" size="large" effect="dark"> {{ condition.name }} </el-tag>
               </el-col>
-              <el-col :span="18" class="center-vert">
-                {{ condition.description }}
+              <el-col :xs="0" :sm="12"> {{ condition.description }} </el-col>
+              <el-col :xs="3" :sm="6">
+                <el-tag v-if="condition.extras && condition.extras.duration" size="small" effect="dark" type="warning" style="color:black">
+                  {{ condition.extras.duration.left }} {{ condition.extras.duration.label }}
+                </el-tag>
+                &nbsp;
+                <el-button type="info" size="small" circle @click="editCondition(condition)">
+                  <g-icon iconSize="16px" iconColor="#000" iconName="quill" />
+                </el-button>
               </el-col>
             </el-row>
           </el-collapse-item>
@@ -1360,6 +1288,20 @@
       <el-button @click="saveCharacter()" type="primary"> Save Changes </el-button>
     </div>
 
+    <!-- Dialog -->
+    <el-auto-resizer style="height: 10px">
+      <template #default="{ width }">
+        <el-dialog v-model="dialog" :width="width">
+          <g-item v-if="showItem" :source="item" @save-item="saveItem"/>
+          <g-ability v-if="showAbil" :source="abil" @save-abil="saveAbility"/>
+          <g-condition v-if="showCondition" :source="condition" @save-condition="saveCondition"/>
+        </el-dialog>
+      </template>
+    </el-auto-resizer>
+
+
+
+
     <!-- LEVEL UP DIALOG -->
     <el-dialog v-model="addingLevel" width="800">
       <h2> <g-icon iconName="magicSwirl" />
@@ -1569,17 +1511,17 @@
     </el-dialog>
 
     <!-- EDIT ITEM DIALOG -->
-    <el-dialog v-model="editingItem" width="800">
+    <!-- <el-dialog v-model="editingItem" width="800">
       <g-item :source="item" @save-item="saveItem"/>
-    </el-dialog>
+    </el-dialog> -->
 
     <!-- EDIT ABILITY DIALOG -->
-    <el-dialog v-model="editingAbil" width="800">
+    <!-- <el-dialog v-model="editingAbil" width="800">
       <g-ability :newAbil="addAbil" :name="abilName" :source="abil" @save-abil="saveAbility"/>
-    </el-dialog>
+    </el-dialog> -->
 
     <!-- ADD NEW CONDITION DIALOG -->
-    <el-dialog v-model="addingCondition" title="New Condition" width="800">
+    <!-- <el-dialog v-model="addingCondition" title="New Condition" width="800">
       <el-row :gutter="10">
         <el-col :span="5">
           <el-input v-model="newCondition.name" size="small" placeholder="Condition Name" aria-label="Condition Name" />
@@ -1588,7 +1530,7 @@
           <el-input v-model="newCondition.description" :rows="2" type="textarea" placeholder="Enter condition description" aria-label="Condition Description" />
         </el-col>
       </el-row>
-      <!-- New Condition Bonuses -->
+      New Condition Bonuses
       <el-divider> Bonuses </el-divider>
       <el-row class="center-horz" :gutter="5" style="margin-bottom:5px;">
         <el-col :span="5"> Name </el-col>
@@ -1634,7 +1576,14 @@
         <el-button size="small" type="primary" @click="addCondition()" style="margin-left:auto"> Confirm </el-button>
         <el-button size="small" type="info" @click="newCondition = {}; addingCondition = false;"> Cancel </el-button>
       </el-row>
-    </el-dialog>
+    </el-dialog> -->
+
+    <!--
+
+    <el-drawer v-model="drawer" direction="rtl">
+      <template #header> <h4>{{ encounter.name }}</h4> </template>
+      <template #default>
+   -->
 
   </div>
 </template>
@@ -1644,24 +1593,25 @@ import UserService from "@/services/user.service";
 import CharacterService from "@/services/character.service";
 import CampaignService from "@/services/campaign.service";
 import EncounterService from "@/services/encounter.service";
+
 import HexGraph from '@/components/template/HexGraph.vue';
 import GItem from '@/components/template/GItem.vue';
 import GAbility from '@/components/template/GAbility.vue';
+import GCondition from '@/components/template/GCondition.vue';
 
 export default {
   name: "Edit Character",
-  components: { HexGraph, GItem, GAbility },
+  components: { HexGraph, GItem, GAbility, GCondition },
   data() {
     return {
       loading: true,
       character: {},
       users: {},
       advanced: this.$store.state.auth.user.roles.includes('admin'),
+
       sectionsCollapse: [ '' ],
       healthColors: [ { color: '#f56c6c', percentage: 30 }, { color: '#e6a23c', percentage: 60 }, { color: '#5cb87a', percentage: 100 } ],
 
-      addingLevel: false,
-      newLevel: { class: '' },
 
       abilityCollapse: [],
       abilityTypes: [ "Race", "Trait", "Class", "Feat", "Other" ],
@@ -1670,9 +1620,10 @@ export default {
       atkName: "",
 
       resourceName: "",
+      itemFilter: "",
 
-      newCondition: {},
-      addingCondition: false,
+                newCondition: {},
+                addingCondition: false,
 
       spellsTab: "",
       newSpell: { name: "", level: 0, class: "" },
@@ -1687,16 +1638,22 @@ export default {
       encounter: {},
       encountersLoading: false,
 
-      characterJSON: "",
-      sectionsJSON: {},
-
+      // Dialogs
       dialog: false,
       dialogWidth: 750,
       abil: {},
       showAbil: false,
       item: {},
       showItem: false,
-      itemFilter: "",
+      condition: {},
+      showCondition: false,
+
+      addingLevel: false,
+      newLevel: { class: '' },
+
+      // Drawer
+      characterJSON: "",
+      sectionsJSON: {},
 
       temp: '',
 
@@ -1845,39 +1802,69 @@ export default {
       if (!this.character.user) { this.character.user = {} }
       if (!this.character.campaign) { this.character.campaign = {} }
 
-      // Restructure classes & basics
-      if (!Array.isArray(response.character.classes)) {
-        let classList = [];
-        let innate = {
-          name: (response.character.basics.type.name == 'humanoid') ? response.character.basics.race : response.character.basics.type.name,
-          levels: 0,
-          bab: 0,
-          hd: 0,
-          saves: { fort: { mult: 0, bonus: 0 }, ref: { mult: 0, bonus: 0 }, will: { mult: 0, bonus: 0 } },
-          abilites: [],
-          magic: {
-            style: "Spontaneous Arcane",
-            castingAtr: "Cha",
-            casterLevel: 1,
-            spellsPerDay: [],
-            remainingCasts: []
+      // Restructure classes
+      for (let [cName, cClass] of Object.entries(response.character.classes)) {
+        if (!cClass.bab) {
+          let newClass = {
+            "levels": cClass.levels,
+            "abilities": [],
+            "bab": this.classes[cName].bab,
+            "hd": this.classes[cName].hd,
+            "saves": this.classes[cName].saves
+          };
+          if (this.classes[cName].magic) {
+            newClass.magic = {
+              "style": this.classes[cName].magic.style,
+              "castingAtr": this.classes[cName].magic.castingAtr,
+              "casterLevel": cClass.levels,
+
+              "spellsPerDay": this.classes[cName].magic.spellsPerDay[cClass.levels],
+              "remainingCasts": response.remainingCasts,
+
+              "useGaldur": response.useGaldur,
+              "galdur": {
+                "openTotal": 22,
+                "openRemaining": 22,
+                "reserveTotal": 22,
+                "reserveRemaining": 22
+              }
+            };
+
+            if (this.classes[cName].magic.style.includes("Prepared")) {
+              newClass.magic.preparedSpells = response.preparedSpells;
+            }
           }
-        };
-        classList.push(innate);
-        for (let [cName, cClass] of Object.entries(response.character.classes)) {
-          cClass.name = cName;
+          this.character.classes[cName] = newClass;
+        } // end new class structure
+      } // end class for loop
 
-          // TODO:  add magic sub object
+      // Restructure abilities
+      let abils = [];
+      if (Array.) {
 
-          classList.push(cClass);
-        }
-        // console.log(classList);
-
-        // this.character.classes = classList;
-        // this.character.basics.subtypes = response.character.basics.type.subtypes;
-        // this.character.basics.type = response.character.basics.type.name;
       }
-
+      for (let [name, abil] of Object.entries(response.character.abilities)) {
+        console.log(name);
+        if (!abil.location) {
+          let newAbil = {
+            name: name,
+            description: abil.description ? abil.description : "",
+            shortText: abil.benefit ? abil.benefit.text : "",
+            location: abil.benefit ? abil.benefit.target : "",
+            trigger: abil.trigger ? abil.trigger : "",
+            bonuses: abil.bonuses ? abil.bonuses : {},
+            extras: {
+              active: abil.extras.active ? abil.extras.active : "",
+              showMain: abil.extras.showMain ? abil.extras.showMain : "",
+              category: abil.extras.category ? abil.extras.category : "",
+              source: abil.extras.source ? abil.extras.source : { class: "", level: 0 },
+              notes: []
+            }
+          };
+          abils.push(newAbil);
+        }
+      }
+      this.character.abilities = abils;
 
 
       this.loading = false;
@@ -1895,49 +1882,47 @@ export default {
   methods: {
     // Helper Methods
     capFirsts(string) { return string ? string.replace(/(^\w|\s\w)/g, m => m.toUpperCase()) : ""; },
+    /*
+    object = the bonus object we are adding to: { total: #, sources: [] }
+    tString = the target string we match to add to the bonus object: "atkBonus"
+    */
     bonusLoop(object, tString) {
-      // object = the bonus object we are adding to: { total: #, sources: [] }
-      // tString = the target string we match to add to the bonus object: "atkBonus" || "Str" || "touchAC"
-      // Add Active Bonuses
+      let debug = "TrevTest";
+      if (tString.includes(debug)) { console.log(tString, object); }
+
       let typedBonuses = {};
       let prefix = "";
-
       for (let [name, bonus] of Object.entries(this.bonuses)) {
-        prefix = (bonus.value > 0) ? "+" : "";
-        if (Object.keys(this.rules.bonuses).includes(bonus.type)) {
-          // If the bonus type doesn't stack
-          if (typedBonuses[bonus.type]) {
-            // If we have the type of bonus already
-            if (typedBonuses[bonus.type].value > bonus.value) {
-              // If the current is higher, skip
-              continue;
-            } else {
-              // remove current bonus & value
-              bonus.targets.forEach(target => {
-                if (target == tString) {
-                  object.total -= typedBonuses[bonus.type].value;
-                  // loop on sources looking for the one to remove
-                  object.sources.forEach((source, i) => {
-                    if ( source.includes(typedBonuses[bonus.type].name) ) {
-                      object.sources.splice(i, 1);
-                    }
-                  });
-                }
-              });
-            }
-          }
-          typedBonuses[bonus.type] = { name: name, value: bonus.value };
-        } // End typed bonus prep
+        if (tString.includes(debug)) { console.log(name, bonus); }
+        if (tString.includes(debug)) { console.log(typedBonuses); }
 
-        if (!object.sources.includes(`${prefix}${bonus.value} ${name}`)) {
-          // if we dont already have that specific bonus applied, add it
-          bonus.targets.forEach(target => {
-            if (target == tString) {
-              // If bonus.targets includes tString, apply it
-              object.total += parseInt(bonus.value);
-              object.sources.push(`${prefix}${bonus.value} ${name}`);
+        if (bonus.targets.includes(tString)) {
+          if (bonus.value > 0) {
+            prefix = "+";
+            if (this.rules.bonuses[bonus.type] && !this.rules.bonuses[bonus.type].stacks) {
+              // if this is a non stacking bonus
+              if (typedBonuses[bonus.type] && typedBonuses[bonus.type].value < bonus.value) {
+                // if the existing bonus is smaller and should be replaced
+                if (tString.includes(debug)) { console.log(`replace ${typedBonuses[bonus.type].value} ${typedBonuses[bonus.type].name}`); }
+                object.total -= typedBonuses[bonus.type].val;
+                object.sources.forEach((source, i) => {
+                  if (source.includes(typedBonuses[bonus.type].name)) {
+                    object.sources.splice(i, 1);
+                  }
+                });
+                // update existing typed, non-stacking bonus
+                typedBonuses[bonus.type] = { name: name, value: bonus.value };
+              } else {
+                if (tString.includes(debug)) { console.log(`current bonus is higher/doesn't exist`); }
+                continue;
+              } // end remove lower bonus
             }
-          });
+          } // end prefix = "+"
+          if (!object.sources.includes(`${prefix}${bonus.value} ${name}`)) {
+            if (tString.includes(debug)) { console.log(`add ${prefix}${bonus.value} ${name}`); }
+            object.total += parseInt(bonus.value);
+            object.sources.push(`${prefix}${bonus.value} ${name}`);
+          }
         }
       } // End Bonuses Loop
     },
@@ -2118,56 +2103,54 @@ export default {
     *         ABILITIES         *
     *                           *
     \***************************/
-    toggleAbility(name, abil) {
-      if (this.activeConditions[name]) {
-        delete this.activeConditions[name];
-        this.actions.special[name].extras.active = false;
+    toggleAbility(abil) {
+      if (this.activeConditions[abil.name]) {
+        delete this.activeConditions[abil.name];
+        abil.extras.active = false;
       } else {
-        this.activeConditions[name] = abil;
-        this.actions.special[name].extras.active = true;
+        this.activeConditions[abil.name] = abil;
+        abil.extras.active = true;
       }
     },
     abilShowMain(name, abil) { abil.extras.showMain = abil.extras.showMain ? false : true; },
     addNewAbility() {
-      this.addAbil = true;
       this.abil = {
-        trigger: "Standard",
+        name: "NEW ABILITY",
         description: "",
-        benefit: { target: "Self", text: "" },
+        shortText: "",
+        location: "Self",
+        trigger: "Standard",
         bonuses: {},
-        extras: { active: true, source: "Feat", showMain: false }
+        extras: {
+          active: false,
+          showMain: false,
+          category: "Feat",
+          source: { class: "", level: 0 },
+          notes: []
+        }
       };
-      this.editingAbil = true;
+      this.abilities.push(this.abil);
+      this.showAbil = true;
+      this.dialog = true;
     },
-    saveAbility(abil) {
-      let name = Object.keys(abil)[0];
-      this.abilities[name] = abil[name];
-      this.editingAbil = false;
-    },
-    editAbility(name, ability) {
-      this.addAbil = false;
-      this.abilName = name;
+    editAbility(ability) {
       this.abil = {};
-      if (!Object.keys(ability).length) {
-        ability = {};
-        ability[name] = {
-          trigger: "Standard",
-          description: "",
-          benefit: { target: "Self", text: "" },
-          bonuses: {},
-          Extras: { active: true, source: "Feat" }
-        };
-      }
       this.abil = ability;
-      this.editingAbil = true;
+      this.showAbil = true;
+      this.dialog = true;
     },
-    deleteAbil(name) {
-      delete this.abilities[name];
+    saveAbility() {
+      this.showAbil = false;
+      this.dialog = false;
+    },
+    deleteAbil(index) {
+      let name = this.abilities[index].name;
+      this.abilities.splice(index, 1);
       this.$message({ message: `${name} was removed from abilities`, type: "warning" });
     },
 
     addNewAttack() {
-      this.character.attacks[this.atkName] = {
+      this.character.actions[this.atkName] = {
         atkNum: this.atkNum,
         "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "2d8",  "colossal": "4d6"  },
         "Critical": "20/x2",
@@ -2178,8 +2161,8 @@ export default {
         "Extras": [],
       };
     },
-    addAtkExtra(atkName) { this.character.attacks[atkName].Extras.push('New Note'); },
-    deleteAtkExtra(atkName, index) { this.character.attacks[atkName].Extras.splice(index, 1); },
+    addAtkExtra(atkName) { this.character.actions[atkName].Extras.push('New Note'); },
+    deleteAtkExtra(atkName, index) { this.character.actions[atkName].Extras.splice(index, 1); },
     addNewResource() {
       this.character.resources[this.resourceName] = {
         units: 'rounds',
@@ -2195,29 +2178,28 @@ export default {
     *                           *
     \***************************/
     addNewContion() {
-      this.addingCondition = true;
-      this.newCondition = {
-        name: "",
+      this.condition = {
+        name: "NEW CONDITION",
         description: "",
-        bonuses: {}
+        bonuses: {},
+        extras: { notes: [] }
       };
+      this.conditions.push(this.condition);
+      this.activeConditions.push(this.condition);
+      this.showCondition = true;
+      this.dialog = true;
     },
-    addNewConditionBonus() {
-      let name = this.newCondition.name;
-      if (name) {
-        this.newCondition.bonuses[name.concat(" ", Object.keys(this.newCondition.bonuses).length)] = {
-          type: "Condition",
-          value: 0,
-          targets: []
-        };
-      } else {
-        this.$message({ message: "Input Condition Name First", type: "error" });
-      }
+    editCondition(condition) {
+      this.condition = {};
+      this.condition = condition;
+      this.showCondition = true;
+      this.dialog = true;
     },
-    addCondition() {
-      this.conditions.push(this.newCondition);
-      this.addingCondition = false;
+    saveCondition() {
+      this.showCondition = false;
+      this.dialog = false;
     },
+    // DELETE DONE BY REMOVING FROM SLECT
 
     /***************************\
     *                           *

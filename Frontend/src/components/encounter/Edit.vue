@@ -5,27 +5,20 @@
       <!-- Actions -->
       <el-col :xs="24" :sm="10" :md="6" class="center-horz">
         <el-divider >
-          <g-icon iconSize="32px" iconName="map" />
+          <g-icon iconSize="32px" iconName="abilityPalm" />
         </el-divider>
 
-
-        <!-- this.$router.push({ name: 'encounter-view', params: { id: id } }); -->
-
-        <el-button @click="this.$router.push({ name: 'dm-screen', params: { campaign: encounter.campaignId, encounter: encounter.id } });" type="primary" size="large">
-          View <g-icon iconName="eye" iconSize="24px" iconColor="#CCC" />
-        </el-button>
-        <el-button @click="saveEncounter" type="primary" size="large">
-          Save <g-icon iconName="rolledScroll" iconSize="24px" iconColor="#CCC" />
-        </el-button>
-
         <!-- Title -->
-        <el-input v-model="encounter.name">
-          <template #prepend> Title </template>
-        </el-input>
-        <br>
+        <el-row justify="center" align="middle">
+          <el-col :span="24">
+            <el-input v-model="encounter.name">
+              <template #prepend> Title </template>
+            </el-input>
+          </el-col>
+        </el-row>
 
         <!-- Prev / Next -->
-        <el-row>
+        <el-row justify="center" align="middle">
           <el-col :span="5">
             <el-tag size="large" effect="dark" type="info"> Prev </el-tag>
           </el-col>
@@ -36,7 +29,7 @@
           </el-col>
         </el-row>
 
-        <el-row>
+        <el-row justify="center" align="middle">
           <el-col :span="5">
             <el-tag size="large" effect="dark" type="info"> Next </el-tag>
           </el-col>
@@ -44,6 +37,27 @@
             <el-select v-model="encounter.extras.next" value-key="id" filterable>
               <el-option v-for="sib in siblings" :key="sib.id" :label="sib.name" :value="sib" />
             </el-select>
+          </el-col>
+        </el-row>
+
+        <!-- DM Screen, Save, Campaign -->
+        <el-row justify="space-between" align="middle">
+          <el-col :span="12">
+            <el-button @click="this.$router.push({ name: 'dm-screen', params: { campaign: encounter.campaignId, encounter: encounter.id } });" type="primary" size="large">
+              DM Screen <g-icon iconName="map" iconSize="24px" iconColor="#CCC" />
+            </el-button>
+          </el-col>
+          <el-col :span="12">
+            <el-button @click="saveEncounter" type="primary" size="large">
+              Save <g-icon iconName="rolledScroll" iconSize="24px" iconColor="#CCC" />
+            </el-button>
+          </el-col>
+        </el-row>
+        <el-row justify="center" align="middle">
+          <el-col :span="24">
+            <el-button @click="this.$router.push({ name: 'campaign-edit', params: { id: encounter.campaignId } });" type="primary" size="large">
+              Campaign <g-icon iconName="eye" iconSize="24px" iconColor="#CCC" />
+            </el-button>
           </el-col>
         </el-row>
       </el-col>
@@ -181,6 +195,7 @@
         <div v-if="creature.name">
           <div class="center-horz">
             <el-button @click="adminUpdate" type="primary"> Update </el-button>
+            <el-button @click="adminCopy" type="primary"> Copy JSON </el-button>
           </div>
           <div v-for="(section, name) in creatureJSON" :key="name">
             <span>{{ capFirsts(name) }}</span>
@@ -291,6 +306,11 @@ export default {
       }
       this.saveEncounter();
     },
+    adminCopy() {
+      navigator.clipboard.writeText(JSON.stringify(this.creatureJSON))
+      .then(() => { this.$message({ message: `${this.capFirsts(name)} coppied to clipboard`, type: 'success', }); })
+      .catch(err => { console.error('Could not copy text: ', err); });
+    },
     deleteMonster(rowIndex) {
       this.encounter.monsters.splice(rowIndex, 1);
       this.saveEncounter();
@@ -320,4 +340,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.el-row {
+  margin-bottom: 5px;
+}
 </style>

@@ -49,21 +49,6 @@ const routes = [
     },
   },
 
-
-
-  // {
-  //   path: "/admin",
-  //   name: "admin",
-  //   // lazy-loaded
-  //   component: () => import("./components/dm/DMScreen.vue"),
-  //   meta: {
-  //     breadcrumb: "Admin",
-  //     title: "Admin",
-  //   },
-  // },
-
-
-
   /***************************\
   *                           *
   *        USER ROUTES        *
@@ -178,15 +163,15 @@ const routes = [
           title: "Campaign List",
         }
       },
-      {
-        path: "view/:id",
-        name: "campaign-view",
-        component: () => import("./components/campaign/View.vue"),
-        meta: {
-          breadcrumb: "View Campaign",
-          title: "View Campaign",
-        }
-      },
+      // {
+      //   path: "view/:id",
+      //   name: "campaign-view",
+      //   component: () => import("./components/campaign/View.vue"),
+      //   meta: {
+      //     breadcrumb: "View Campaign",
+      //     title: "View Campaign",
+      //   }
+      // },
       {
         path: "edit/:id",
         name: "campaign-edit",

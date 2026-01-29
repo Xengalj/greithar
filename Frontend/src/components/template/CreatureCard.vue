@@ -1297,21 +1297,21 @@
   </el-tab-pane>
 </el-tabs>
 
-  <!-- Dialog -->
-  <el-dialog v-model="dialog" :width="dialogWidth">
-    <g-item v-if="showItem" :source="item" @save-item="saveItem"/>
-    <g-ability v-if="showAbil" :source="abil" @save-abil="saveAbility"/>
-    <g-condition v-if="showCondition" :source="condition" @save-condition="saveCondition"/>
-  </el-dialog>
+<!-- Dialog -->
+<el-dialog v-model="dialog" :width="dialogWidth">
+  <g-item v-if="showItem" :source="item" @save-item="saveItem"/>
+  <g-ability v-if="showAbil" :source="abil" @save-abil="saveAbility"/>
+  <g-condition v-if="showCondition" :source="condition" @save-condition="saveCondition"/>
+</el-dialog>
 
 </div>
 </template>
 
 <script>
-import HexGraph from '@/components/template/HexGraph.vue'
-import GItem from '@/components/template/GItem.vue'
-import GAbility from '@/components/template/GAbility.vue'
-import GCondition from '@/components/template/GCondition.vue'
+import HexGraph from '@/components/template/HexGraph.vue';
+import GItem from '@/components/template/GItem.vue';
+import GAbility from '@/components/template/GAbility.vue';
+import GCondition from '@/components/template/GCondition.vue';
 
 export default {
   name: "CreatureCard",
