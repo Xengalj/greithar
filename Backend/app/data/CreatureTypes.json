@@ -811,8 +811,10 @@
     },
     "Wild Hunt": {}
   },
-  "races": {
 
+
+
+  "races": {
     "Amaru": {
       "rp": 12,
       "age": {
@@ -826,16 +828,16 @@
         "Max Age": "70 +2d20 years"
       },
       "surnames": {
-        "Ashcraft": "Common: Fire Worker",
-        "Challwaq": "Quechua: Fisher",
-        "Heitala": "",
-        "Herrero": "Quechua: Smith",
-        "Musuqari": "Quechua: New Man",
-        "Nina'Chuqcha": "Quechua: Fire Fang",
-        "Qulqi'Niqi": "Quechua: Silver Scale",
-        "Qumpana": "Quechua: Green Hood",
-        "Sacha-Sacha'Qari": "Quechua: Woods Man (Cutter)",
-        "Wadé XX": "Quechua: Child Of"
+        "Ashcraft": { "source": "Vibes", "meaning": "Fire Worker" },
+        "Challwaq": { "source": "Quechua", "meaning": "Fisher" },
+        "Heitala": { "source": "Vibes", "meaning": "" },
+        "Herrero": { "source": "Quechua", "meaning": "Smith" },
+        "Musuqari": { "source": "Quechua", "meaning": "New Man" },
+        "Nina'Chuqcha": { "source": "Quechua", "meaning": "Fire Fang" },
+        "Qulqi'Niqi": { "source": "Quechua", "meaning": "Silver Scale" },
+        "Qumpana": { "source": "Quechua", "meaning": "Green Hood" },
+        "Sacha-Sacha'Qari": { "source": "Quechua", "meaning": "Woods Man (Cutter)" },
+        "Wadé XX": { "source": "Quechua", "meaning": "Child Of" }
       },
       "male": {
         "height": "6'3\" +2d10 inches (6'5\" - 8'1\")  (4.5 - 6.5 x2)",
@@ -847,66 +849,54 @@
         "weight": "225 lbs. +2d10×5 lbs. (235 – 325 lbs.)",
         "names": [ "Auka", "Caipa", "Chalco", "Chinpu", "Kucha", "Llo'Que", "Nyusta", "Ophiiphelia", "Pari", "Phoexis", "Qatquil", "Qori", "Rauwa", "Shero", "Talla", "Tamia", "Thiesla", "Uluqu'u", "Usqu", "Wayna" ]
       },
-      "abilityMods": {
-        "Dex": 2,
-        "Int": 2,
-        "Str": -2
-      },
+      "abilityMods": { "Dex": 2, "Int": 2, "Str": -2 },
       "size": "medium",
-      "type": {
-        "hd": 0,
-        "levels": 0,
-        "name": "Humanoid",
-        "subtypes": [ "Reptilian" ]
-      },
+      "type": { "name": "Humanoid", "subtypes": [ "Reptilian" ] },
       "speed": 30,
       "languages": ["Common", "Risko"],
       "bonusLanguages": ["Draconic", "Dwarven", "Elvish", "Gnomish", "Ignan", "Kamago", "Undercommon"],
       "traits": {
         "Stability": {
-          "trigger": "Continuous",
           "description": "An amaru gets a +4 racial bonus to CMD when resisting bull rush or trip attempts.",
-          "benefit": { "target": "self", "text": "You have a +4 bonus to CMD vs Trips & Bull Rush" },
+          "shortText": "You have a +4 bonus to CMD vs Trips & Bull Rush",
+          "location": "self",
+          "trigger": "Continuous",
           "bonuses": {}
         },
         "Stalker": {
-          "trigger": "Continuous",
           "description": "Perception and stealth are always considered class skills for an amaru.",
-          "benefit": { "target": "self", "text": "Perception and stealth are class skills" },
+          "shortText": "Perception and Stealth are class skills",
+          "location": "self",
+          "trigger": "Continuous",
           "bonuses": {}
         },
         "Pyromaniac": {
-          "trigger": "Continuous",
           "description": "An amaru is treated as 1 level higher when casting spells with the fire descriptor or that deal fire damage. In addition, Amarus with a charisma score of 11 or higher gain dancing lights, flare, prestidigitaion, and produce flame, as spell-like abilities, usable once per day.",
-          "benefit": { "target": "self", "text": "Treat your caster level as 1 higher for fire spells" },
+          "shortText": "Treat your Caster Level as 1 higher for fire spells",
+          "location": "self",
+          "trigger": "Continuous",
           "bonuses": {}
         },
         "Hypnotic Gaze": {
-          "trigger": "Standard",
           "description": "Amarus can cast hypnotism once a day, for 1 round.",
-          "benefit": { "target": "self", "text": "Hypnotize enemies" },
+          "shortText": "Hypnotize enemies",
+          "location": "self",
+          "trigger": "Continuous",
           "bonuses": {}
         },
         "Darkvision": {
+          "description": "An amaru can see in the dark up to 60 feet.",
+          "shortText": "Darkvision 60 ft.",
+          "location": "senses",
           "trigger": "Continuous",
-          "description": "An amaru can see 60 feet in total darkness.",
-          "benefit": { "target": "senses", "text": "Darkvision 60 ft." },
           "bonuses": {}
         },
         "Prehensile Tail": {
-          "trigger": "Continuous",
           "description": "Amarus can use their tail to carry objects. They cannot wield weapons with their tails, but can retrieve small, stored objects carried on them as a swift action.",
-          "benefit": { "target": "self", "text": "Retrieve small items as a swift action" },
+          "shortText": "Retrieve small items as a swift action",
+          "location": "self",
+          "trigger": "Continuous",
           "bonuses": {}
-        }
-      },
-      "alternateTraits": {
-        "Slapping Tail": {
-          "trigger": "Standard",
-          "description": "An amaru can use their tail to make a secondary natural attack that deals 1d8 + their strength modifier bludgeoning damage.",
-          "benefit": { "target": "self", "text": "Make a slam attack (1d8 + StrMod)" },
-          "bonuses": {},
-          "replaces": ["Pyromaniac"]
         }
       }
     },
@@ -923,16 +913,16 @@
         "Max Age": "40 +1d20 years"
       },
       "surnames": {
-        "Dahabiaj": "Arabic: Gold Crown",
-        "Gaabzaraq": "Arabic: Blue Forest",
-        "Gutaj-Ru": "",
-        "Hadaad": "Arabic: Smithy",
-        "Hitab": "Arabic: Woodsman",
-        "Ibs XX": "Arabic: Child Of",
-        "Ravala": "",
-        "Sammahamra": "Arabic: Red Sky",
-        "Sayaad": "Arabic: Fisher",
-        "Taayir-Alfiniq": "Arabic: Phoenix"
+        "Dahabiaj": { "source": "Arabic", "meaning": "Gold Crown" },
+        "Gaabzaraq": { "source": "Arabic", "meaning": "Blue Forest" },
+        "Gutaj-Ru": { "source": "Vibes", "meaning": "" },
+        "Hadaad": { "source": "Arabic", "meaning": "Smithy" },
+        "Hitab": { "source": "Arabic", "meaning": "Woodsman" },
+        "Ibs XX": { "source": "Arabic", "meaning": "Child Of" },
+        "Ravala": { "source": "Vibes", "meaning": "" },
+        "Sammahamra": { "source": "Arabic", "meaning": "Red Sky" },
+        "Sayaad": { "source": "Arabic", "meaning": "Fisher" },
+        "Taayir-Alfiniq": { "source": "Arabic", "meaning": "Phoenix" }
       },
       "male": {
         "names": [ "Aabak", "Arm-Uus", "Aki-Ke", "Azim", "Barid", "Bat-Saikhan", "Belor", "Hadzi", "Hanbal", "Kjell", "Merhet-Nets", "Nefer-Skai", "Nonek", "Pateba", "Ra-Kheper-Ka", "Seb", "Tachus", "Tezman", "Vaelyth", "Zylys" ],
@@ -944,57 +934,35 @@
         "height": "5'3\" +2d8 inches (5'5\" - 6'7\")",
         "weight": "110 lbs. +2d4×5 lbs. (120 – 150 lbs.)"
       },
-      "abilityMods": {
-        "Dex": 2,
-        "Int": 2,
-        "Con": -2
-      },
+      "abilityMods": { "Dex": 2, "Int": 2, "Con": -2 },
       "size": "medium",
-      "type": {
-        "hd": 0,
-        "levels": 0,
-        "name": "Humanoid",
-        "subtypes": [ "Harpy" ]
-      },
+      "type": { "name": "Humanoid", "subtypes": [ "Harpy" ] },
       "speed": 30,
       "languages": ["Common"],
       "bonusLanguages": ["Auran", "Draconic", "Elvish", "Gnomish", "Goblin", "Kamago", "Matoran", "Necriil", "Risko", "Sylvan", "Ulumi"],
       "traits": {
         "Eagle Eyes": {
-          "trigger": "Continuous",
           "description": "Avaar gain a +2 racial bonus on Perception checks and treat Perception as a class skill.",
-          "benefit": { "target": "self", "text": "+2 bonus to Perception and treat is as a class skill" },
+          "shortText": "+2 bonus to Perception and treat it as a class skill",
+          "location": "self",
+          "trigger": "Continuous",
           "bonuses": {
-            "Eagle Eyes": { "value": 2, "type": "Racial", "targets": [ "perception" ] }
+            "Eagle Eyes": { "value": 2, "type": "Racial", "targets": [ "Perception" ] }
           }
         },
         "Envoy": {
-          "trigger": "Continuous",
           "description": "Avaar with an Intelligence score of 11 or higher gain comprehend languages, detect magic, detect poison, and read magic as spell-like abilities that can be used once a day.",
-          "benefit": { "target": "self", "text": "Bonus abilities with high Intelligence" },
+          "shortText": "Bonus abilities (Su) with high Intelligence",
+          "location": "self",
+          "trigger": "Continuous",
           "bonuses": {}
         },
         "Flight": {
-          "trigger": "Continuous",
           "description": "Avaar have a fly speed of 50 feet with average maneuverability.",
-          "benefit": { "target": "move", "text": "Fly 50 ft. (average)" },
-          "bonuses": {}
-        }
-      },
-      "alternateTraits": {
-        "Tropical Plumage": {
-          "trigger": "Standard",
-          "description": "Some avaar from equitorial islands have more vibrant plumage and can use it to cast hypnotism once per day as a spell-like ability.",
-          "benefit": { "target": "self", "text": "Hypnotize enemies" },
-          "bonuses": {},
-          "replaces": ["Envoy"]
-        },
-        "Owl Heritage": {
+          "shortText": "Fly 50 Ft. (average)",
+          "location": "move",
           "trigger": "Continuous",
-          "description": "Some avaar have specialized into nocturnalism, and can see in the dark (darkvision), up to 120 feet.",
-          "benefit": { "target": "senses", "text": "Darvision 120 ft." },
-          "bonuses": {},
-          "replaces": ["Eagle Eyes"]
+          "bonuses": {}
         }
       }
     },
@@ -1011,16 +979,16 @@
         "Max Age": "70 +2d20 years"
       },
       "surnames": {
-        "Canyrhaf": "Welsh: Summersong",
-        "Coediwr": "Welsh: Woodsman",
-        "Curiadwyn": "Welsh: Spring Beat",
-        "Enaidgaeaf": "Welsh: Winter Soul",
-        "Foxelster": "",
-        "Gof": "Welsh: Smith",
-        "Hydrefcalon": "Welsh: AutumnHeart",
-        "Mab-XX": "Welsh: Child Of",
-        "Pysgotwr": "Welsh: Fisher",
-        "Tanganika": ""
+        "Canyrhaf": { "source": "Welsh", "meaning": "Summersong" },
+        "Coediwr": { "source": "Welsh", "meaning": "Woodsman" },
+        "Curiadwyn": { "source": "Welsh", "meaning": "Spring Beat" },
+        "Enaidgaeaf": { "source": "Welsh", "meaning": "Winter Soul" },
+        "Foxelster": { "source": "Vibes", "meaning": "" },
+        "Gof": { "source": "Welsh", "meaning": "Smith" },
+        "Hydrefcalon": { "source": "Welsh", "meaning": "AutumnHeart" },
+        "Mab-XX": { "source": "Welsh", "meaning": "Child Of" },
+        "Pysgotwr": { "source": "Welsh", "meaning": "Fisher" },
+        "Tanganika": { "source": "Vibes", "meaning": "" }
       },
       "male": {
         "names": [ "Aethlyn", "Anda", "Caladrel", "Fezzez", "Heldalel", "Katsuo", "Kieron", "Lanliss", "Lloyd", "Meirdarel", "Revalor", "Rhys", "Seldon", "Talathel", "Taji", "Tauwir", "Thaucaxius", "Theo", "Tom", "Variel" ],
@@ -1032,70 +1000,56 @@
         "height": "4'5\" +2d8 inches (5'5\" - 6'7\")",
         "weight": "85 lbs. +2d8×5 lbs. (95 – 165 lbs.)"
       },
-      "abilityMods": {
-        "Dex": 2,
-        "Cha": 2,
-        "Int": -2
-      },
+      "abilityMods": { "Dex": 2, "Cha": 2, "Int": -2 },
       "size": "medium",
-      "type": {
-        "hd": 0,
-        "levels": 0,
-        "name": "Humanoid",
-        "subtypes": [ "Catfolk" ]
-      },
+      "type": { "name": "Humanoid", "subtypes": [ "Catfolk" ] },
       "speed": 30,
       "languages": ["Common"],
       "bonusLanguages": ["Dwarven", "Elvish", "Gnomish", "Kamago", "Risko", "Sylvan", "Ulumi", "Undercommon"],
       "traits": {
         "Cat's Luck": {
-          "trigger": "Free",
           "description": "Once per day, before making a Reflex saving throw, a cæth can roll twice and take the better result.",
-          "benefit": { "target": "self", "text": "Roll twice on Reflex Save" },
+          "shortText": "Roll twice on a Reflex Save",
+          "location": "self",
+          "trigger": "Free",
           "bonuses": {}
         },
         "Curiosity": {
-          "trigger": "Continuous",
           "description": "Cæth gain a +4 racial bonus on Diplomacy checks and treat Knowledge (history and local) as class skills. If either is already a class skill, they get a +2 racial bonus instead.",
-          "benefit": { "target": "self", "text": "Gain a +4 to Diplomacy" },
-          "bonuses": {
-            "Curiosity": { "value": 4, "type":  "Racial", "targets": [ "diplomacy" ] }
-          }
-        },
-        "Stalker": {
+          "shortText": "Gain a +4 bonus to Diplomacy",
+          "location": "self",
           "trigger": "Continuous",
+          "bonuses": {
+            "Curiosity": { "value": 4, "type":  "Racial", "targets": [ "Diplomacy" ] }            
+          }
+        },        
+        "Stalker": {
           "description": "Perception and Stealth are always class skills for cæth.",
-          "benefit": { "target": "self", "text": "Perception and Stealth are class skills" },
+          "shortText": "Perception and Stealth are class skills",
+          "location": "self",
+          "trigger": "Continuous",
           "bonuses": {}
         },
         "Jumper": {
-          "trigger": "Continuous",
           "description": "Cæth are always considered to have a running start when making an Acrobatics check to jump (DCs are doubled without a running start).",
-          "benefit": { "target": "self", "text": "You always have a running start for jumps" },
+          "shortText": "You always have a running start for jumps",
+          "location": "self",
+          "trigger": "Continuous",
           "bonuses": {}
         },
         "Claws": {
-          "trigger": "Standard",
           "description": "Cæth have strong claws that they can use as a primary natural attacks. They can make 2 attacks per turn that deal 1d4 + their strength modifier slashing damage.",
-          "benefit": { "target": "self", "text": "2 Claws (1d4 + StrMod Slashing)" },
+          "shortText": "2 Claws (1d4 + StrMod Slashing)",
+          "location": "self",
+          "trigger": "Standard",
           "bonuses": {}
         },
         "Low-Light Vision": {
-          "trigger": "Continuous",
           "description": "Caeth can see in color up to 60 feet away in dim light.",
-          "benefit": { "target": "senses", "text": "Low-Light Vision 60 ft." },
-          "bonuses": {}
-        }
-      },
-      "alternateTraits": {
-        "Climber": {
+          "shortText": "Low-Light Vision 60 Ft.",
+          "location": "senses",
           "trigger": "Continuous",
-          "description": "Some cæth possess a climb speed of 20 feet and gain a +8 racial bonus on climb checks from having a climb speed.",
-          "benefit": { "target": "move", "text": "Climb 20 ft." },
-          "bonuses": {
-            "Climber": { "value": 8, "type": "Racial", "targets": [ "Climb" ] }
-          },
-          "replaces": ["Jumper"]
+          "bonuses": {}
         }
       }
     },
@@ -1112,16 +1066,16 @@
         "Max Age": "70 +2d20 years"
       },
       "surnames": {
-        "Bergquist": "??: Mountain Quest",
-        "Bikonnen": "??: Two Horn",
-        "Kjellman": "",
-        "Moyryla": "",
-        "Rafisk": "Norse: Fisher",
-        "Smith": "Norse: Smith",
-        "Thouin": "",
-        "Van Dan Elzan": "??: From the Elzan (river)",
-        "Van Vleet": "??: From Ships",
-        "XX-Son": "Norse: Child Of"
+        "Bergquist": { "source": "Vibes", "meaning": "Mountain Quest" },
+        "Bikonnen": { "source": "Vibes", "meaning": "Two Horn" },
+        "Kjellman": { "source": "Vibes", "meaning": "" },
+        "Moyryla": { "source": "Vibes", "meaning": "" },
+        "Rafisk": { "source": "Norse", "meaning": "Fisher" },
+        "Smith": { "source": "Norse", "meaning": "Smith" },
+        "Thouin": { "source": "Vibes", "meaning": "" },
+        "Van Dan Elzan": { "source": "Vibes", "meaning": "From the Elzan (river)" },
+        "Van Vleet": { "source": "Vibes", "meaning": "From Ships" },
+        "XX-Son": { "source": "Norse", "meaning": "Child Of" }
       },
       "male": {
         "names": [ "Bem'rik", "Brodir", "Dolgrin", "Dullurdex", "Feratos", "Grunyar", "Harsk", "Jomar", "Kazmuk", "Leiknir", "Morgrym", "Rogar", "Skamkel", "Thorodd", "Torsten", "Tosorthros", "Varin", "Vastrium", "Vulthun", "Xeth" ],
@@ -1149,6 +1103,15 @@
       "languages": ["Common"],
       "bonusLanguages": ["Draconic", "Dwarven", "Gnomish", "Goblin", "Kamago", "Matoran", "Risko", "Terran", "Undercommon"],
       "traits": {
+        
+        "Low-Light Vision": {
+          "description": "Caeth can see in color up to 60 feet away in dim light.",
+          "shortText": "Low-Light Vision 60 Ft.",
+          "location": "senses",
+          "trigger": "Continuous",
+          "bonuses": {}
+        }
+        
         "Healthy": {
           "trigger": "Continuous",
           "description": "Geiter gain a +4 racial bonus on Fortitude saves against disease and poison, including magical diseases.",
