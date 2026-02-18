@@ -353,43 +353,43 @@
                   <template #label> Levels </template>
                   {{ cClass.levels }}
                 </el-descriptions-item>
-                <el-descriptions-item>
+                <el-descriptions-item v-if="cClass.hd">
                   <template #label> HD </template>
-                  {{ cClass.levels }}d{{ classes[cName].hd }}
+                  {{ cClass.levels }}d{{ cClass.hd }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                   <template #label> Fort </template>
-                  +{{ Math.floor(cClass.levels * classes[cName].saves.fort.mult) + classes[cName].saves.fort.bonus }}
+                  +{{ Math.floor(cClass.levels * cClass.saves.fort.mult) + cClass.saves.fort.bonus }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                   <template #label> Reflex </template>
-                  +{{ Math.floor(cClass.levels * classes[cName].saves.ref.mult) + classes[cName].saves.ref.bonus }}
+                  +{{ Math.floor(cClass.levels * cClass.saves.ref.mult) + cClass.saves.ref.bonus }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                   <template #label> Will </template>
-                  +{{ Math.floor(cClass.levels * classes[cName].saves.will.mult) + classes[cName].saves.will.bonus }}
+                  +{{ Math.floor(cClass.levels * cClass.saves.will.mult) + cClass.saves.will.bonus }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                   <template #label> Ranks </template>
-                  {{ cClass.levels * classes[cName].ranks }}
+                  {{ cClass.levels * cClass.ranks }}
                 </el-descriptions-item>
               </el-descriptions>
             </el-col>
 
             <el-col :span="6">
-              <div v-if="classes[cName].alignment.length < 9">
+              <div v-if="classes[cName] && classes[cName].alignment.length < 9">
                 Allowed Alignments <br>
                 <el-tag size="small" effect="dark" type="primary" v-for="name in classes[cName].alignment" :key="name" style="margin-left:10px;">
                   {{ name }}
                 </el-tag>
               </div>
-              <div>
+              <div v-if="classes[cName]">
                 Class Skills <br>
                 <el-tag size="small" effect="dark" type="primary" v-for="name in classes[cName].skills" :key="name" style="margin-left:10px;">
                   {{ name }}
                 </el-tag>
               </div>
-              <div>
+              <div v-if="classes[cName]">
                 Proficiencies <br>
                 <el-tag size="small" effect="dark" type="primary" v-for="item in classes[cName].proficiency" :key="item" style="margin-left:10px;">
                   {{ item }}
@@ -400,7 +400,11 @@
             <el-col :span="14">
               Special Abilities <br>
               <div class="class-abils">
-                <span v-for="(abilities, level) in classes[cName].special" :key="level">
+                {{ cClass.abilities }}
+                <span v-for="(abilities, level) in cClass.abilities" :key="level">
+
+                  {{ abilities }}
+
                   <span v-if="level > 0 && level <= cClass.levels">
                     <span v-for="(abil, index) in abilities" :key="index">
                       <el-input v-model="classes[cName].special[level][index]" class="class-abil" :aria-label="`Class Ability: ${abil}`" disabled>
@@ -1800,9 +1804,7 @@ export default {
       if (!Array.isArray(response.character.abilities)) {
         let abils = [];
         for (let [name, abil] of Object.entries(response.character.abilities)) {
-          console.log(name, abil);
           this.abilID++;
-          console.log(this.abilID);
           if (!abil.location) {
             let newAbil = {
               name: name,
