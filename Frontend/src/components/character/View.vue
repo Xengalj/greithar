@@ -1,10 +1,5 @@
 <template>
   <div v-if="!loading" class="container">
-    <!--
-    upload a file (profile)
-    https://serversideup.net/uploading-files-vuejs-axios/
-    -->
-
 
     <!-- Basics -->
     <el-row :gutter="20" style="margin-bottom: 15px;">
@@ -1323,6 +1318,8 @@
 
 <script>
 import CharacterService from "@/services/character.service";
+// import CreatureCard from '@/components/template/CreatureCard.vue'
+
 import HexGraph from '@/components/template/HexGraph.vue';
 import GItem from '@/components/template/GItem.vue';
 import GAbility from '@/components/template/GAbility.vue';
@@ -1330,7 +1327,7 @@ import GAbility from '@/components/template/GAbility.vue';
 
 export default {
   name: "View Character",
-  components: { HexGraph, GItem, GAbility },
+  components: {  HexGraph, GItem, GAbility },
   data() {
     return {
       loading: true,
@@ -1725,9 +1722,9 @@ export default {
             let levels = cClass.levels;
             cClass = this.classes[cName];
             bonus = 0;
-            let saveMult = cClass[name].mult;
+            let saveMult = cClass.saves[name].mult;
             bonus += saveMult * levels;
-            bonus += cClass[name].bonus;
+            bonus += cClass.saves[name].bonus;
             bonus = Math.floor(bonus);
             this.applyBonus(cName, bonus, save);
           }
@@ -2144,7 +2141,7 @@ export default {
       } // end class loop
       return classes;
     },
-    // USES: abilites
+    // USES: abilities
     knownMetas() {
       let knownMetas = [];
       let metas = [

@@ -158,14 +158,14 @@
       "castingAtr": "Cha",
       "spellsKnown": {
         "byLevel": [ [],
-          [0], [0], [0], [2], [3],
-          [4], [4, 2], [4, 3], [5, 4], [5, 4, 2],
-          [5, 4, 3], [6, 5, 4], [6, 5, 4, 2], [6, 5, 4, 3], [6, 6, 5, 4],
-          [6, 6, 5, 4], [6, 6, 5, 4], [6, 6, 6, 5], [6, 6, 6, 5], [6, 6, 6 ,5]
+          [0], [0], [0], [0, 2], [0, 3],
+          [0, 4], [0, 4, 2], [0, 4, 3], [0, 5, 4], [0, 5, 4, 2],
+          [0, 5, 4, 3], [0, 6, 5, 4], [0, 6, 5, 4, 2], [0, 6, 5, 4, 3], [0, 6, 6, 5, 4],
+          [0, 6, 6, 5, 4], [0, 6, 6, 5, 4], [0, 6, 6, 6, 5], [0, 6, 6, 6, 5], [0, 6, 6, 6 ,5]
         ]
       },
-      "galdur":       [ 0, 6, 3,  3,  3,  3,      4,  4,  4,  5,  5,      7,  8,  9, 10, 11,         12,  13,  14,  15,  16 ],
-      "galdurTotal":  [ 0, 6, 9, 12, 15, 18,     22, 26, 30, 35, 40,     47, 55, 64, 74, 85,         97, 110, 124, 139, 155 ],
+      "galdur":      [ 0, 0, 0, 0, 2, 1,          1, 1, 1, 1, 1,          2,  2,  2,  3,  3,          3,  3,  3,  3,  3 ],
+      "galdurTotal": [ 0, 0, 0, 0, 2, 3,          4, 5, 6, 7, 8,         10, 12, 14, 17, 20,         23, 26, 29, 32, 35 ],
       "spellsPerDay": [ [],
         [0], [0], [0], [1], [1],
         [1], [1, 1], [1, 1], [2, 1], [2, 1, 1],
@@ -236,8 +236,7 @@
       "style": "Prepared Divine",
       "castingAtr": "Wis",
       "spellsKnown": {
-        "total": "A cleric may prepare any spell, of appropriate level, on the cleric spell list.",
-        "spontaneousSpells": "Inflict or Cure spells"
+        "total": "A cleric may prepare any spell, of appropriate level, on the cleric spell list."
       },
       "galdur":       [ 0, 5, 3,  3,  3,  3,      4,  4,  5,  5, 7,       9, 11, 12, 13,  14,         15,  16,  17,  18,  19 ],
       "galdurTotal":  [ 0, 5, 8, 11, 14, 17,     21, 25, 30, 35, 42,     51, 62, 74, 87, 101,        116, 132, 149, 167, 186 ],
@@ -273,8 +272,7 @@
       "style": "Prepared Divine",
       "castingAtr": "Wis",
       "spellsKnown": {
-        "total": "A druid may prepare any spell, of appropriate level, on the druid spell list.",
-        "spontaneousSpells": "Summon Nature’s Ally spells"
+        "total": "A druid may prepare any spell, of appropriate level, on the druid spell list."
       },
       "galdur":       [ 0, 5, 3,  3,  3,  3,      4,  4,  5,  5, 7,       9, 11, 12, 13,  14,         15,  16,  17,  18,  19 ],
       "galdurTotal":  [ 0, 5, 8, 11, 14, 17,     21, 25, 30, 35, 42,     51, 62, 74, 87, 101,        116, 132, 149, 167, 186 ],
@@ -328,7 +326,6 @@
       "style": "Spontaneous Divine",
       "castingAtr": "Wis",
       "spellsKnown": {
-        "spontaneousSpells": "Summon Nature’s Ally spells",
         "byLevel":  [ [],
           [4, 2], [5, 3], [6, 4], [6, 4, 2], [6, 4, 3],
           [6, 4, 4], [6, 5, 4, 2], [6, 5, 4, 3], [6, 5, 4, 4], [6, 5, 5, 4, 2],
@@ -971,7 +968,23 @@
       "will": { "mult": 0.33, "bonus": 0 }
     }
   },
-
+  "total": {
+    "skills": [],
+    "proficiency": [],
+    "alignment": [],
+    "hd": 0, "ranks": 0, "bab":  0,
+    "saves": {
+      "fort": { "mult": 0, "bonus": 0 },
+      "ref":  { "mult": 0, "bonus": 0 },
+      "will": { "mult": 0, "bonus": 0 }
+    },
+    "special": [ [],
+      [ "Feat (REPLACE)" ], [], [ "Feat (REPLACE)" ], [ "Ability Score Increase 1" ], [ "Feat (REPLACE)" ],
+      [], [ "Feat (REPLACE)" ], [ "Ability Score Increase 2" ], [ "Feat (REPLACE)" ], [],
+      [ "Feat (REPLACE)" ], [ "Ability Score Increase 3" ], [ "Feat (REPLACE)" ], [], [ "Feat (REPLACE)" ],
+      [ "Ability Score Increase 4" ], [ "Feat (REPLACE)" ], [], [ "Feat (REPLACE)" ], [ "Ability Score Increase 5" ]
+    ]
+  },
 
 
 
@@ -993,7 +1006,7 @@
       "galdurTotal": [ 0, 2, 4, 6, 8, 11,        14, 17, 22, 27, 32,     38, 44, 50, 58, 64,         72, 80, 89, 98, 108 ],
       "galdur":      [ 0, 2, 2, 2, 2,  3,         3,  3,  5,  5,  5,      6,  6,  6,  8,  6,          8,  8,  9,  9,  10 ]
     },
-    "Paladin / Ranger / Bloodrager": {
+    "Paladin / Ranger / Bloodrager*": {
       "galdurTotal": [ 0, 0, 0, 0, 1, 2,          3, 4, 5, 6, 8,         10, 12, 14, 17, 20,         23, 26, 29, 32, 35 ],
       "galdur":      [ 0, 0, 0, 0, 1, 1,          1, 1, 1, 1, 2,          2,  2,  2,  3,  3,          3,  3,  3,  3,  3 ]
     }

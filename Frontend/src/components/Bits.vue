@@ -163,6 +163,7 @@ export default {
 
     - set up group loot
 
+    - update user obj that is added to other things (stop sending pass to client)
 
     */
 
@@ -231,7 +232,7 @@ export default {
             remainingCasts: [ ],
             spellsPerDay: [ ],
           },
-          abilites: [
+          abilities: [
             [ "", "" ]
           ]
         },
@@ -348,10 +349,106 @@ export default {
       }
     };
 
+    // edit toon basics collapse
+    /*
+    <!-- BASICS -->
+    <el-collapse-item name="0">
+      <template #title>
+        <el-divider style="max-width:50%">
+          <h4> <g-icon iconSize="32px" :iconName="character.basics.type.name" /> Basics </h4>
+        </el-divider>
+      </template>
+
+
+      [name] [btn]              [user]
+      [type] [race] [subtypes] [gender]
+      align   size    speed
+      age     height    weight    diety
+
+      <el-row :gutter="10" align="middle">
+
+        <el-col :xs="24" :sm="12" :md="6">
+          <el-input v-model="character.name" aria-label="Character Name">
+            <template #prepend>Name</template>
+          </el-input>
+        </el-col>
+        <el-col :xs="24" :sm="12" :md="6">
+          <el-select v-model="character.basics.race" @change="onRaceChange()" size="small" placeholder="Choose Race" aria-label="Race Select">
+            <template #label="{ label }">
+              <span style="float: left">{{ label }}</span>
+              <span style="float: right">
+                <el-tag size="small" effect="dark" type="primary">{{ capFirsts(character.basics.type.name) }}</el-tag>
+                <el-tag v-for="subtype in character.basics.type.subtypes" :key="subtype" size="small" effect="dark" type="info" style="margin-left:5px;"> {{ subtype }} </el-tag>
+              </span>
+            </template>
+            <el-option v-for="(race, name) in races" :key="name" :label="name" :value="name">
+              <span style="float: left">{{ name }}</span>
+              <span style="float: right">
+                <el-tag size="small" effect="dark" type="primary">{{ capFirsts(race.type.name) }}</el-tag>
+              </span>
+            </el-option>
+          </el-select>
+        </el-col>
+      </el-row>
 
 
 
 
+
+      <!-- Name -->
+      <el-col :span="8">
+      </el-col>
+      <!-- Race / Type (subtype) -->
+      <el-col :span="8">
+      </el-col>
+      <!-- Gender -->
+      <el-col :span="6">
+        <div v-if="advanced">
+          <el-input v-model="character.basics.appearance.gender" aria-label="Custom Gender Input" />
+        </div>
+        <div v-else>
+          <el-select v-model="character.basics.appearance.gender" size="small" aria-label="Gender Select">
+            <el-option v-if="races[character.basics.race].male" label="Male" value="male" />
+            <el-option v-if="races[character.basics.race].female" label="Female" value="female" />
+            <el-option v-if="races[character.basics.race].agender" label="Agender" value="agender" />
+          </el-select>
+        </div>
+      </el-col>
+
+      <!-- Alignment -->
+      <el-col :span="8">
+        <el-input v-model="character.basics.alignment" aria-label="Alignment Input">
+          <template #prepend>Alignment</template>
+        </el-input>
+      </el-col>
+      <!-- Size -->
+      <el-col :span="8">
+        <el-input v-model="character.basics.size" disabled aria-label="Size Display">
+          <template #suffix>
+            <span style="float: right; color: var(--el-text-color-secondary); font-size: 13px;">
+              Space: {{ rules.size[character.basics.size].space }}
+            </span>
+          </template>
+        </el-input>
+      </el-col>
+      <!-- Speeds -->
+      <el-col :span="8">
+        <span v-for="(mode, name) in character.basics.speed" :key="name">
+          <span v-if="mode.total">
+            <el-tooltip placement="top" effect="light">
+              <el-tag size="large" effect="dark" type="info" style="margin-left:5px;"> {{ capFirsts(name) }}: {{ mode.total }} ft. </el-tag>
+              <template #content>
+                <span v-for="bonus in mode.sources" :key="bonus"> {{ bonus+" " }} </span>
+              </template>
+            </el-tooltip>
+          </span>
+        </span>
+      </el-col>
+
+
+
+    </el-collapse-item>
+    */
 
 
 

@@ -2077,7 +2077,7 @@ export default {
       return classes;
     },
 
-    // USES: abilites
+    // USES: abilities
     knownMetas() {
       let knownMetas = [];
       let metas = [

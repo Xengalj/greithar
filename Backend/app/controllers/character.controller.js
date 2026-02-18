@@ -1,6 +1,7 @@
 const db = require("../models");
 const Character = db.character;
 const User = db.user;
+const Campaign = db.campaign;
 const Op = db.Sequelize.Op;
 
 /***************************\
@@ -37,7 +38,13 @@ exports.create = (req, res) => {
 exports.read = (req, res) => {
   // get specific character
   if (req.body.character_id) {
-    Character.findOne({ where: { id: req.body.character_id }, include: User })
+    Character.findOne({
+      where: { id: req.body.character_id },
+      include: [
+        { model: User, attributes: ['id', 'username'] },
+        { model: Campaign, attributes: ['id', 'name' ] }
+      ]
+    })
     .then(character => {
       if (!character) { return res.status(404).send({ message: "Character not found!" }); }
       res.status(200).send({ character: character });
@@ -60,7 +67,7 @@ exports.read = (req, res) => {
   // get all characters
   } else {
     Character.findAndCountAll({
-      include: User,
+      include: { model: User, attributes: ['id', 'username'] },
       offset: req.body.offset,
       limit: req.body.limit
     })
@@ -85,7 +92,7 @@ exports.update = (req, res) => {
       for (let i = 0; i < roles.length; i++) {
         if (roles[i].name === "admin") { isAdmin = true; }
       }
-      Character.findOne({ where: { id: req.body.id }, include: User })
+      Character.findOne({ where: { id: req.body.id }, include: { model: User, attributes: ['id', 'username'] } })
       .then(character => {
         if (!character) { return res.status(404).send({ message: "Character not found!" }); }
 
@@ -126,7 +133,7 @@ exports.delete = (req, res) => {
       }
 
       // Do the deleting
-      Character.findOne({ where: { id: req.body.id }, include: User })
+      Character.findOne({ where: { id: req.body.id }, include: { model: User, attributes: ['id', 'username'] } })
       .then(character => {
         if (!character) { return res.status(404).send({ message: "Character not found!" }); }
         if (isAdmin || req.userId == character.userId) {

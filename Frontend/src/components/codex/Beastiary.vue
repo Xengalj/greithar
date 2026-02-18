@@ -567,7 +567,7 @@ export default {
             spellsPerDay: [],
             remainingCasts: []
           },
-          abilites: []
+          abilities: []
         };
 
         // Load Class 1
@@ -577,7 +577,7 @@ export default {
             bab: this.classes[monster.Class1].bab,
             hd: this.classes[monster.Class1].hd,
             saves: this.classes[monster.Class1].saves,
-            abilites: []
+            abilities: []
           };
           if (this.classes[monster.Class1].magic) {
             creature.classes[monster.Class1].magic = {
@@ -612,7 +612,7 @@ export default {
             bab: this.classes[monster.Class2].bab,
             hd: this.classes[monster.Class2].hd,
             saves: this.classes[monster.Class2].saves,
-            abilites: []
+            abilities: []
           };
           if (this.classes[monster.Class2].magic) {
             creature.classes[monster.Class2].magic = {
