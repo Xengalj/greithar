@@ -210,7 +210,16 @@ exports.deleteCampaign = (req, res) => {
 \***************************/
 exports.getLock = (req, res) => {
   console.log("******************** GET LOOT LOCK");
-  // { id: #, username: xx, color: user.meta.fave }
+  /*
+  Campaign.findByPk( req.body.id )
+  .then(campaign => {
+    if (!campaign) { return res.status(404).send({ message: "Campaign not found!" }); }
+    // if relaese time > now, unset the lock
+    // { id: #, username: xx, color: user.meta.fave }
+    res.status(200).send({ lock: campaign.loot_lock });
+  })
+  .catch(err => { res.status(500).send({ message: err.message }); });
+  */
   return res.status(404).send({ message: "GET LOOT LOCK NOT SET UP!" });
 };
 
@@ -221,6 +230,32 @@ exports.getLock = (req, res) => {
 \***************************/
 exports.setLock = (req, res) => {
   console.log("******************** SET LOOT LOCK");
+
+  /*
+
+  Campaign.findByPk( req.body.id )
+  .then(campaign => {
+    if (!campaign) { return res.status(404).send({ message: "Campaign not found!" }); }
+    let lock = campaign.loot_lock;
+    
+    if (!lock.id) {
+      lock = {
+        'id': req.userId,
+        'username': 'temp'
+      };
+    }
+    if not set
+      set with userID, userName, color, releaseTime
+
+    if set
+      if userID == lock.id
+        release / renew
+
+    // only let users edit their own, or admins edit any
+    let lock = campaign.loot_lock;
+    if (lock.id == req.userId) {
+
+  
   return res.status(404).send({ message: "SET LOOT LOCK NOT SETUP!" });
 };
 
