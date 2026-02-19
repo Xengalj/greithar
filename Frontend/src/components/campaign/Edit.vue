@@ -258,14 +258,9 @@ export default {
     },
 
     editLoot() {
-      console.log('edit');
-
       if (!this.campaign.loot_lock.id) {
-       // this.$router.push({ name: 'character-view', params: { id: character.id } })
-       console.log(this.campaign.loot_lock);
-
+        this.$router.push({ name: 'campaign-loot', params: { id: this.campaign.id } });
       }
-
     },
 
     /***************************\

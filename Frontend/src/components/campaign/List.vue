@@ -40,18 +40,12 @@
       </el-table-column>
       -->
 
-      <el-table-column label="Loot" width="100">
+      <el-table-column label="Loot" width="55">
         <template #default="scope">
           <el-row class="row-bg" justify="space-between">
-
-            <el-button @click="viewLoot(scope.row.id)" type="info" style="margin:0" circle>
+            <el-button @click="viewLoot(scope.row)" type="info" style="margin:0" circle>
               <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
             </el-button>
-
-            <el-button @click="editLoot(scope.row.id)" type="info" style="margin:0" circle>
-              <g-icon iconSize="24px" iconColor="#000" iconName="quill" />
-            </el-button>
-
           </el-row>
         </template>
       </el-table-column>
@@ -108,16 +102,43 @@
       </el-col>
     </el-row>
 
-    {{ campaigns }}
+    <!-- {{ campaigns }} -->
+
+
+    <!-- DRAWER -->
+    <el-drawer v-model="drawer" direction="rtl">
+      <template #header> <h4>{{ campaign.name }}</h4> </template>
+      <template #default>
+
+        <h4>
+          <g-icon iconSize="32px" iconName="inventory" />
+          Group Loot
+          <el-tooltip v-if="campaign.loot_lock.username" placement="top" effect="light">
+            <el-button type="warning" style="margin:0" circle>
+              <g-icon iconSize="32px" iconColor="#000" iconName="lock" />
+            </el-button>
+            <template #content>
+              <el-tag :color="campaign.loot_lock.color" size="small" effect="dark">
+                {{ campaign.loot_lock.username }}
+              </el-tag>
+            </template>
+          </el-tooltip>
+        </h4>
+        <g-loot :source="campaign.loot" @edit-loot="editLoot"/>
+
+      </template>
+    </el-drawer>
 
   </div>
 </template>
 
 <script>
 import CampaignService from "@/services/campaign.service";
+import GLoot from '@/components/template/GLoot.vue';
 
 export default {
   name: "List Campaigns",
+  components: { GLoot },
   computed: {
     currentUser() { return this.$store.state.auth.user; }
   },
@@ -136,6 +157,11 @@ export default {
       totalCampaigns: 0,
 
       campaigns: [],
+
+      // DRAWER
+      drawer: false,
+      campaign: {},
+
     }
   },
 
@@ -154,7 +180,6 @@ export default {
       CampaignService.getCampaignList(this.userID, offset, this.pageSize)
       .then(response => {
         let tmp = JSON.parse(response.campaigns);
-console.log(tmp);
         this.totalCampaigns = tmp.count;
         this.campaigns = tmp.rows;
         this.loading = false;
@@ -170,7 +195,7 @@ console.log(tmp);
       })
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err.message); });
     },
-    viewCampaign(id) { this.$router.push({ name: 'campaign-view', params: { id: id } }); },
+    // viewCampaign(id) { this.$router.push({ name: 'campaign-view', params: { id: id } }); },
     editCampaign(id) { this.$router.push({ name: 'campaign-edit', params: { id: id } }); },
     deleteCampaign(id, rowIndex) {
       console.log('deleteCampaign', id);
@@ -178,6 +203,16 @@ console.log(tmp);
       CampaignService.deleteCampaign(id)
       .then(response => { this.$message({ message: response, type: 'warning' }); this.campaigns.splice(rowIndex, 1); })
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
+    },
+
+    viewLoot(campaign) {
+      this.campaign = campaign;
+      this.drawer = true;
+    },
+    editLoot() {
+      if (!this.campaign.loot_lock.id) {
+       this.$router.push({ name: 'campaign-loot', params: { id: this.campaign.id } });
+      }
     },
 
     /***************************\

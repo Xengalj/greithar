@@ -60,9 +60,9 @@
         </span>
 
         <span v-if="user.roles.includes('storyteller')">
-          <router-link to="/dm-screen" class="nav-link">
+          <router-link :to="{ name: 'campaign-list', params: { id: user.id } }" class="nav-link">
             <el-button type="primary">
-              <g-icon iconSize="24px" iconName="map" /> Your Campaigns
+              <g-icon iconSize="24px" iconName="spellBook" /> Your Campaigns
             </el-button>
           </router-link>
         </span>

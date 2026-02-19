@@ -88,7 +88,7 @@ exports.readCampaign = async (req, res) => {
     })
     .then(campaigns => {
       if (!campaigns) { return res.status(404).send({ message: "No campaigns found!" }); }
-      res.status(200).send({ campaigns: campaigns });
+      res.status(200).send({ campaigns: JSON.stringify(campaigns) });
       // res.status(200).send({ campaigns: JSON.stringify(campaigns) });
     })
     .catch(err => { res.status(500).send({ message: err.message }); });
