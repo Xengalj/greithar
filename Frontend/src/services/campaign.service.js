@@ -84,6 +84,11 @@ class CampaignService {
     .catch(err => { return err; });
   }
 
+/***************************\
+*                           *
+*         LOOT LOCK         *
+*                           *
+\***************************/
   getLock(campaign_id) {
     return axios.post(API_URL + 'getLock',
     { campaign_id: campaign_id },
@@ -92,11 +97,12 @@ class CampaignService {
     .catch(err => { return err; });
   }
 
-  setLock(campaign_id, user) {
+  setLock(campaign_id, user, state) {
     return axios.post(API_URL + 'setLock',
     {
       campaign_id: campaign_id,
-      user: user
+      user: user,
+      action: state
     },
     { headers: authHeader() })
     .then(response => { return response.data; })
