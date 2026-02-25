@@ -1,66 +1,211 @@
 <template>
   <div v-if="!loading" class="container">
 
-
-<!--
-
-
-<el-tree
-  :data="campaign.loot"
-  ref="tree"
-  node-key="label"
-  :filter-node-method="filterNode"
->
-  <template #default="{ node, data }">
-    <el-col :span="2" style="text-align: center; margin-right:2px;">
-      <g-icon iconSize="20px" v-if="data.extras && data.extras.icon" :iconName="data.extras.icon" />
-      <span v-else> • </span>
-    </el-col>
-    <el-col :sm="9" :md="7">
-      {{ node.label }}
-    </el-col>
-    <el-col :sm="3" :md="3">
-      <el-tag v-if="data.value" color="#FFDE0A" style="color:black; border:none;">
-        {{ data.value.Cost }} gp
+    <div class="center-horz">
+      <el-tag :color="lock.color" size="large" effect="dark">
+        <g-icon iconSize="24px" iconName="lock" iconColor="#000" />
+        Locked by {{ lock.username }} until {{ new Date(lock.releaseTime).getHours() }}:{{ new Date(lock.releaseTime).getMinutes() }}
       </el-tag>
-    </el-col>
-    <el-col :sm="2" :md="3">
-      <el-tag v-if="data.value" type="info" effect="dark">
-        {{ data.value.Weight }} lbs.
-      </el-tag>
-    </el-col>
-    <el-col :sm="5" :md="3">
-      <el-tag v-if="data.value" type="info" effect="dark">
-        x 1
-      </el-tag>
-      <el-tag v-if="data.value && data.value.Ammount" type="info" effect="dark">
-        x {{ data.value.Ammount }}
-      </el-tag>
-    </el-col>
-  </template>
-</el-tree>
-
- -->
-
-    <!-- Edit Item Dialog -->
-    <el-dialog v-model="editingItem" width="750">
-      <g-item :source="item" @save-item="saveItem"/>
-    </el-dialog>
-
-
-    <!--
-    <el-divider />
-    <div v-for="(item, name) in this.character" :key="name">
-      {{ name }} : {{ item }}
-      <br><br>
     </div>
-    -->
+    <br><br>
 
+    <!-- ACTIONS -->
+    <el-row :gutter="10" justify="center" align="middle">
+      <el-col :xs="24" :sm="10" :md="6" class="center-horz">
+        <el-button type="success" @click="addItem">Add Item</el-button>
+        <el-button type="success" @click="drawer=true">Add Horde</el-button>
+      </el-col>
+      <el-col :xs="24" :sm="10" :md="6" class="center-horz">
+        <el-button type="primary" @click="renewLock">Renew Lock</el-button>
+        <el-button type="warning" @click="releaseLock">Release Lock</el-button>
+      </el-col>
+    </el-row>
+    <br><br>
+
+    <!-- TOTALS & COINS -->
+    <el-row :gutter="10" justify="center" align="middle">
+      <el-col :xs="24" :sm="6" :md="4" class="center-horz">
+        <el-tag size="large" effect="dark" color="#FFDE0A" style="color:black; --el-tag-border-color: none;">
+          <g-icon iconSize="24px" iconName="treasure" iconColor="#000" />
+          {{ invTotal.value }} (gp) Total
+        </el-tag>
+        <el-tag size="large" effect="dark" :type="invTotal.color" style="color:black">
+          <g-icon iconSize="24px" iconName="weight" iconColor="#000" />
+          {{ invTotal.weight }} (lbs) Total
+        </el-tag>
+      </el-col>
+      <el-col :xs="24" :span="9">
+        <el-input v-model="campaign.extras.coins.pp" aria-label="Platinum Pieces Input" >
+          <template #prepend> Platinum </template>
+          <template #suffix> Coins </template>
+          <template #append> {{ (campaign.extras.coins.pp / 50) }} lbs. </template>
+        </el-input>
+        <el-input v-model="campaign.extras.coins.gp" aria-label="Gold Pieces Input" >
+          <template #prepend> Gold </template>
+          <template #suffix> Coins </template>
+          <template #append> {{ (campaign.extras.coins.gp / 50) }} lbs. </template>
+        </el-input>
+      </el-col>
+      <el-col :xs="24" :span="9">
+        <el-input v-model="campaign.extras.coins.sp" aria-label="Silver Pieces Input" >
+          <template #prepend> Silver </template>
+          <template #suffix> Coins </template>
+          <template #append> {{ (campaign.extras.coins.sp / 50) }} lbs. </template>
+        </el-input>
+        <el-input v-model="campaign.extras.coins.cp" aria-label="Copper Pieces Input" >
+          <template #prepend> Copper </template>
+          <template #suffix> Coins </template>
+          <template #append> {{ (campaign.extras.coins.cp / 50) }} lbs. </template>
+        </el-input>
+      </el-col>
+    </el-row>
+
+    <!-- ITEMS -->
+    <el-row :gutter="10" justify="center">
+      <el-col :xs="24" :sm="12" :md="10">
+        <el-input v-model="itemFilter" class="w-60 mb-2" placeholder="Item Search" aria-label="Item Search">
+          <template #prefix>
+            <g-icon iconSize="20px" iconName="search" />
+          </template>
+          <template #append>
+            <el-button type="warning" @click="itemFilter = ''"> Reset </el-button>
+          </template>
+        </el-input>
+      </el-col>
+    </el-row>
+
+    <el-row :gutter="10" justify="center">
+      <el-col :span="24">
+        <el-tree :data="campaign.loot" ref="tree" node-key="label" :filter-node-method="filterNode" >
+          <template #default="{ node, data }">
+
+            <el-col :span="2" style="text-align: center; margin-right:2px;">
+              <g-icon iconSize="20px" v-if="data.extras && data.extras.icon" :iconName="data.extras.icon" />
+              <span v-else> • </span>
+            </el-col>
+            <el-col :xs="12" :sm="9" :md="7">
+              {{ node.label }}
+            </el-col>
+            <el-col :xs="0" :sm="3" :md="2">
+              <el-tag v-if="data.value" color="#FFDE0A" style="color:black; border:none;">
+                {{ data.value.Cost }} gp
+              </el-tag>
+            </el-col>
+            <el-col :xs="0" :sm="3" :md="2">
+              <el-tag v-if="data.value" type="primary" effect="dark">
+                {{ data.value.Weight }} lbs.
+              </el-tag>
+            </el-col>
+            <el-col :xs="0" :sm="2" :md="2">
+              <el-tag v-if="data.value && data.value.Amount" type="info" effect="dark">
+                x {{ data.value.Amount }}
+              </el-tag>
+              <el-tag v-else type="info" effect="dark">
+                x 1
+              </el-tag>
+            </el-col>
+            <el-col :xs="0" :sm="0" :md="4">
+              <div v-if="data.value && data.value.Extras && data.value.Extras.Notes && data.value.Extras.Notes.length">
+                <el-input v-model="data.value.Extras.Notes[0]" disabled />
+              </div>
+            </el-col>
+            <el-col :xs="5" :sm="2" :md="3">
+              <!-- Edit Item (in modal component) -->
+              <el-button type="info" circle size="small" @click="editItem(data)">
+                <g-icon iconSize="16px" iconColor="#000" iconName="quill" />
+              </el-button>
+
+              <!-- Delete Item -->
+              <el-popconfirm title="Are you sure to delete this?" hide-icon>
+                <template #reference>
+                  <el-button type="danger" circle size="small">
+                    <g-icon iconSize="16px" iconColor="#000" iconName="trash" />
+                  </el-button>
+                </template>
+                <template #actions="">
+                  <el-button type="danger" size="small" @click="deleteItem(node, data)">Yes</el-button>
+                </template>
+              </el-popconfirm>
+
+              <!-- Send to Toon -->
+              <el-popconfirm title="Send to whom?" @confirm="sendToPlayer" hide-icon :hide-after="2000">
+                <template #reference>
+                  <el-button type="warning" circle size="small">
+                    <g-icon iconSize="16px" iconColor="#000" iconName="userAdd" />
+                  </el-button>
+                </template>
+                <template #actions="{ confirm }">
+                  <el-select v-model="transferToon" aria-label="Recipient Toon" style="margin-bottom:5px">
+                    <el-option v-for="toon in campaign.characters" :key="toon.id" :label="capFirsts(toon.name)" :value="toon.id" />
+                  </el-select>
+                  <el-button type="success" size="small" @click="confirm">Send</el-button>
+                </template>
+              </el-popconfirm>
+            </el-col>
+
+          </template>
+        </el-tree>
+      </el-col>
+    </el-row>
+
+
+    <!-- Dialog -->
+    <el-auto-resizer style="height: 10px">
+      <template #default="{ width }">
+        <el-dialog v-model="dialog" :width="width">
+          <g-item v-if="showItem" :source="item" @save-item="saveItem"/>
+        </el-dialog>
+      </template>
+    </el-auto-resizer>
+
+
+
+    <!-- DRAWER -->
+    <el-drawer v-model="drawer" direction="rtl">
+      <template #header> <h4>Add Horde</h4> </template>
+      <template #default>
+
+        <el-collapse v-model="bulkAddCollapse">
+          <el-collapse-item name="1">
+            <template #title>
+              <el-divider style="max-width:75%"> <g-icon iconSize="20px" iconName="treasure" /> Coins </el-divider>
+            </template>
+            <el-input type="textarea" v-model="horde.coins" :autosize="{ minRows: 1, maxRows: 4 }" :aria-label="`Bulk Coins Input`" />
+          </el-collapse-item>
+
+          <el-collapse-item name="2">
+            <template #title>
+              <el-divider style="max-width:75%"> <g-icon iconSize="20px" iconName="equipment" /> Itmes </el-divider>
+            </template>
+
+            <el-input type="textarea" v-model="horde.items" :autosize="{ minRows: 5, maxRows: 20 }" :aria-label="`Bulk Items Input`" />
+          </el-collapse-item>
+        </el-collapse>
+      </template>
+      <template #footer>
+        <el-button @click="addHorde" size="large" type="success">
+          Add Horde
+        </el-button>
+      </template>
+    </el-drawer>
 
   </div>
+
+
+  <div v-else>
+    Someone else has locked this loot for editing. please wait until {{ new Date(lock.releaseTime) }}
+    <br>
+
+    <el-button @click="this.$router.back()" size="large" type="primary">
+      Return
+    </el-button>
+  </div>
+
+
 </template>
 
 <script>
+import CampaignService from "@/services/campaign.service";
 import GItem from '@/components/template/GItem.vue';
 
 export default {
@@ -70,40 +215,60 @@ export default {
     return {
       loading: true,
 
-      editingItem: false,
-      item: {},
+      campaign: {},
+      lock: {},
+      loot: {},
       itemFilter: "",
+
+      transferToon: {}, // toon to send item to
+
+      // Dialogs
+      dialog: false,
+      item: {},
+      showItem: false,
+
+      drawer: false,
+      bulkAddCollapse: [],
+      horde: { coins: "", items: "" },
 
     };
   },
   computed:{
     rules() { return JSON.parse(localStorage.getItem('rules')); },
     equipment() { return JSON.parse(localStorage.getItem('equipment')); },
-
+    currentUser() { return this.$store.state.auth.user; },
+    invTotal() {
+      let invTotal = { "value": 0, "weight": 0 };
+      // Coins
+      invTotal.value += (this.campaign.extras.coins.pp * 10)
+                        + (this.campaign.extras.coins.gp * 1)
+                        + (this.campaign.extras.coins.sp * 0.1)
+                        + (this.campaign.extras.coins.cp * 0.01);
+      invTotal.weight += (this.campaign.extras.coins.pp / 50)
+                        + (this.campaign.extras.coins.gp / 50)
+                        + (this.campaign.extras.coins.sp / 50)
+                        + (this.campaign.extras.coins.cp / 50);
+      // Other Items
+      this.recursiveInventory(this.loot, invTotal, false);
+      return invTotal;
+    },
   },
   mounted() {
     if (!this.rules) { this.$router.push("/"); }
 
+    CampaignService.getCampaign(this.$route.params.id)
+    .then((response) => {
+      console.log('campaign', response);
+      this.lock = response.campaign.loot_lock;
 
-    // get lock,
-        // if no id, set {id: toon_id, name:username}
-        // edit
-        // on save, release lock & nav to view toon
-    // if locked, go to view toon
-
-
-
-
-    // CharacterService.getCharacter(this.$route.params.id)
-    // .then((response) => {
-    //   console.log('response', response);
-    //   this.character = response.character;
-    //   document.getElementsByClassName('title')[0].innerHTML = this.character.name;
-    //   this.spellTabs = Object.keys(this.character.spells)[0];
-    //
-    //   this.loading = false;
-    // })
-    // .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
+      if (!this.lock.id || this.lock.id == this.currentUser.id) {
+        this.renewLock();
+        this.campaign = response.campaign;
+        this.loot = this.campaign.loot;
+        this.loading = false;
+      }
+    })
+    .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
 
   },
   watch: {
@@ -117,20 +282,27 @@ export default {
     \***************************/
     capFirsts(string) { return string ? string.replace(/(^\w|\s\w)/g, m => m.toUpperCase()) : ""; },
 
-    // saveCharacter() {
-    //   console.log(this.character);
-    //
-    //   CharacterService.updateCharacter(this.character)
-    //   .then((response) => { this.$message({ message: `${response.character.name} updated`, type: 'success', }); })
-    //   .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
-    // },
+    renewLock() {
+      CampaignService.setLock(this.$route.params.id)
+      .then((response) => {
+        this.lock = response.lock;
+      })
+      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
+    },
+    releaseLock() {
+      CampaignService.releaseLock(this.campaign.id)
+      .then((response) => {
+        if (!response.campaign.loot_lock.id) {
+          this.$router.back();
+        }
+      })
+      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
+    },
 
+    sendToPlayer() {
+      console.log(this.transferToon);
+    },
 
-    /***************************\
-    *                           *
-    *         INVENTORY         *
-    *                           *
-    \***************************/
     // Loops through all containers (in iitems, like backpacks) to add their value and weight
     // handles Bags of Holding and Handy Haversacks
     recursiveInventory(container, invTotal, BagOfHolding){
@@ -149,6 +321,11 @@ export default {
       }
     },
 
+    /***************************\
+    *                           *
+    *          FILTERS          *
+    *                           *
+    \***************************/
     filterNode(value, data) {
       if (!value) return true;
       return data.label.indexOf(value) !== -1;
@@ -171,16 +348,31 @@ export default {
         return false;
       }
     },
-    saveItem(item) {
-      // console.log(item);
-      // console.log( this.$refs['tree'].getNode(item.label) );
 
-      if (this.$refs['tree'].getNode(item.label)) {
-        this.$message({ message: `${item.label} Updated`, type: "success" });
-      } else {
-        this.character.inventory[2].children.push(item);
-      }
-      this.editingItem = false;
+    /***************************\
+    *                           *
+    *          ITEMS            *
+    *                           *
+    \***************************/
+    addHorde() {
+
+      console.log(this.horde);
+
+
+      // this.drawer = false;
+    },
+    addItem() {
+      let item = {
+        label: 'New Item',
+        value: {
+          Description: '',
+          Cost: 1,
+          Weight: 1,
+          Ammount: 1,
+          Extras: { Notes: [] } }
+        };
+      this.loot.push(item);
+      this.editItem(item);
     },
     editItem(item) {
       if (!Object.keys(item).length) {
@@ -196,7 +388,12 @@ export default {
         };
       }
       this.item = item;
-      this.editingItem = true;
+      this.showItem = true;
+      this.dialog = true;
+    },
+    saveItem() {
+      this.showAbil = false;
+      this.dialog = false;
     },
     deleteItem(node, data) {
       const parent = node.parent;
@@ -206,6 +403,15 @@ export default {
       this.$message({ message: `${data.label} was removed from inventory`, type: "warning" });
     },
 
+
+
+
+
   }
 };
 </script>
+<style>
+.el-row {
+  margin-bottom: 10px;
+}
+</style>

@@ -113,7 +113,7 @@
             </el-tooltip>
           </h4>
         </el-divider>
-        <g-loot :source="campaign.loot" @edit-loot="editLoot"/>
+        <g-loot :source="campaign.loot" :lock="campaign.loot_lock" @edit-loot="editLoot"/>
       </el-col>
 
       <!-- Encounters -->
@@ -237,8 +237,9 @@ export default {
     if ( this.currentUser.roles.includes("storyteller") ) {
       CampaignService.getCampaign(this.$route.params.id)
       .then((response) => {
-        console.log(response);
+        console.log('campaign', response);
         this.campaign = response.campaign;
+        this.getLock();
         this.loadEncounters();
       })
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
@@ -255,12 +256,6 @@ export default {
       CampaignService.updateCampaign(this.campaign)
       .then((response) => { this.$message({ message: `${response.campaign.name} updated`, type: 'success', }); })
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
-    },
-
-    editLoot() {
-      if (!this.campaign.loot_lock.id) {
-        this.$router.push({ name: 'campaign-loot', params: { id: this.campaign.id } });
-      }
     },
 
     /***************************\
@@ -293,6 +288,32 @@ export default {
       }
     },
     clearFilter() { this.encounterFilter = ""; this.searchByName(""); },
+
+    /***************************\
+    *                           *
+    *           LOOT            *
+    *                           *
+    \***************************/
+    getLock() {
+      CampaignService.getLock(this.campaign.id)
+      .then((response) => {
+        console.log('lock', response);
+        // this.campaign = response.campaign;
+        // this.getLock();
+        // this.loadEncounters();
+      })
+      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
+
+
+    },
+    setLock() {
+      console.log('set lock');
+    },
+    editLoot() {
+      if (!this.campaign.loot_lock.id) {
+        this.$router.push({ name: 'campaign-loot', params: { id: this.campaign.id } });
+      }
+    },
 
     /***************************\
     *                           *

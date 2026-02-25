@@ -209,18 +209,18 @@ exports.deleteCampaign = (req, res) => {
 *                           *
 \***************************/
 exports.getLock = (req, res) => {
-  console.log("******************** GET LOOT LOCK");
-  /*
-  Campaign.findByPk( req.body.id )
+  Campaign.findByPk( req.body.campaign_id )
   .then(campaign => {
     if (!campaign) { return res.status(404).send({ message: "Campaign not found!" }); }
-    // if relaese time > now, unset the lock
-    // { id: #, username: xx, color: user.meta.fave }
+
+    // if relaese time < now, unset the lock
+    if (campaign.loot_lock.releaseTime < Date.now()) {
+      campaign.loot_lock = {};
+      campaign.update();
+    }
     res.status(200).send({ lock: campaign.loot_lock });
   })
   .catch(err => { res.status(500).send({ message: err.message }); });
-  */
-  return res.status(404).send({ message: "GET LOOT LOCK NOT SET UP!" });
 };
 
 /***************************\
@@ -229,10 +229,7 @@ exports.getLock = (req, res) => {
 *                           *
 \***************************/
 exports.setLock = (req, res) => {
-  console.log("******************** SET LOOT LOCK");
-
   User.findByPk(req.userId).then(user => {
-
     Campaign.findByPk( req.body.campaign_id ).then(campaign => {
       if (!campaign) { return res.status(404).send({ message: "Campaign not found!" }); }
       let update, lock = campaign.loot_lock;
@@ -244,24 +241,22 @@ exports.setLock = (req, res) => {
           'color': user.usermeta.faveColor,
           'releaseTime': Date.now() + 600000
         };
-        // update = true;
+        update = true;
 
       } else {
         if (lock.id == user.id) {
-          if (req.body.action == "renew") {
-            lock.releaseTime = Date.now() + 600000;
+          lock.releaseTime = Date.now() + 600000;
+          update = true;
 
-          } else if (req.body.action == "release") {
-            lock = {};
-          }
-          // update = true;
+        } else {
+          res.status(403).send({ message: "You do not control the lock right now" });
         }
       }
 
-      console.log(update);
       if (update) {
         campaign.loot_lock = lock;
         campaign.save();
+        res.status(200).send({ lock });
       }
 
     })
@@ -269,7 +264,36 @@ exports.setLock = (req, res) => {
   })
   .catch(err => { res.status(500).send({ message: err.message }); });
 
-  return res.status(404).send({ message: "SET LOOT LOCK NOT SETUP!" });
+  // return res.status(404).send({ message: "SET LOOT LOCK NOT SETUP!" });
+};
+
+/***************************\
+*                           *
+*     RELEASE LOOT LOCK     *
+*                           *
+\***************************/
+exports.releaseLock = (req, res) => {
+  User.findByPk(req.userId).then(user => {
+    Campaign.findByPk( req.body.campaign_id ).then(campaign => {
+      if (!campaign) { return res.status(404).send({ message: "Campaign not found!" }); }
+      let lock = campaign.loot_lock;
+
+      if (lock.id == user.id) {
+        lock = {};
+        campaign.loot_lock = lock;
+        campaign.save();
+        res.status(200).send({ campaign });
+
+      } else {
+        res.status(403).send({ message: "You do not control the lock right now" });
+      }
+
+    })
+    .catch(err => { res.status(500).send({ message: err.message }); });
+  })
+  .catch(err => { res.status(500).send({ message: err.message }); });
+  //
+  // return res.status(404).send({ message: "SET LOOT LOCK NOT SETUP!" });
 };
 
 

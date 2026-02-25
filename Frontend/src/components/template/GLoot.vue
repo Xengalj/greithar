@@ -60,7 +60,8 @@ export default {
   name: "g-loot",
   emits: ['edit-loot'],
   props: {
-    source: { type: Object }
+    source: { type: Object },
+    lock: { type: Object }
   },
   data() {
     return {
@@ -76,6 +77,14 @@ export default {
     // Loot search part 1
     itemFilter(val) { this.$refs.tree.filter(val); }
   },
+
+  mounted() {
+
+    console.log(this.source);
+    console.log(this.lock);
+
+  },
+
   methods: {
     // Loot search part 2
     filterNode(value, data) {

@@ -45,8 +45,12 @@ module.exports = function(app) {
     controller.deleteCampaign
   );
 
-  // Loot
-    app.post(
+  /***************************\
+  *                           *
+  *         LOOT_LOCK         *
+  *                           *
+  \***************************/
+  app.post(
     "/api/campaign/getLock",
     [ authJwt.verifyToken ],
     controller.getLock
@@ -55,6 +59,11 @@ module.exports = function(app) {
     "/api/campaign/setLock",
     [ authJwt.verifyToken ],
     controller.setLock
+  );
+  app.post(
+    "/api/campaign/releaseLock",
+    [ authJwt.verifyToken ],
+    controller.releaseLock
   );
 
   /***************************\

@@ -97,17 +97,20 @@ class CampaignService {
     .catch(err => { return err; });
   }
 
-  setLock(campaign_id, user, state) {
+  setLock(campaign_id) {
     return axios.post(API_URL + 'setLock',
-    {
-      campaign_id: campaign_id,
-      user: user,
-      action: state
-    },
+    { campaign_id: campaign_id },
     { headers: authHeader() })
     .then(response => { return response.data; })
     .catch(err => { return err; });
+  }
 
+  releaseLock(campaign_id) {
+    return axios.post(API_URL + 'releaseLock',
+    { campaign_id: campaign_id },
+    { headers: authHeader() })
+    .then(response => { return response.data; })
+    .catch(err => { return err; });
   }
 }
 
