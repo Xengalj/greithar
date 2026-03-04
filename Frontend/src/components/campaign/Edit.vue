@@ -17,165 +17,192 @@
     <el-row :gutter="10" justify="center">
       <!-- Characters -->
       <el-col :xs="24" :sm="12">
-        <el-divider >
-          <el-col :xs="24" :span="0">
-            <g-icon iconSize="26px" iconName="userList" style="margin:0" /> Characters
-          </el-col>
-          <el-col :xs="0" :sm="24">
-            <g-icon iconSize="32px" iconName="userList" /> Characters
-          </el-col>
-        </el-divider>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;" >
-          <el-card v-for="(character, index) in campaign.characters" :key="index" style="max-width: 200px">
-            <template #header>
-              <div class="card-header">
-                <el-tag :color="character.color" size="large" effect="dark">
-                  <span>{{ character.name }} ({{ character.user }})</span>
-                </el-tag>
-              </div>
+        <el-collapse v-model="collapse.characters">
+          <el-collapse-item name="1">
+            <template #title>
+              <el-divider >
+                <el-col :xs="24" :span="0">
+                  <g-icon iconSize="26px" iconName="userList" style="margin:0" /> Toons
+                </el-col>
+                <el-col :xs="0" :sm="24">
+                  <g-icon iconSize="32px" iconName="userList" /> Characters
+                </el-col>
+              </el-divider>
             </template>
 
-            <el-input v-model="campaign.extras.playerNotes[character.id].alignment" aria-label="Character AC">
-              <template #prepend> Alignment </template>
-            </el-input>
-            <el-input v-model="campaign.extras.playerNotes[character.id].HP" aria-label="Character Max Health">
-              <template #prepend>
-                <el-tag type="danger" effect="dark" style="color: black"> HP </el-tag>
-              </template>
-            </el-input>
-            <el-input v-model="campaign.extras.playerNotes[character.id].AC" aria-label="Character Total AC">
-              <template #prepend>
-                <el-tag color="#42d4f4" effect="dark"> AC </el-tag>
-              </template>
-            </el-input>
-            <el-input v-model="campaign.extras.playerNotes[character.id].perception" aria-label="Character Percpeption">
-              <template #prepend> Perception </template>
-            </el-input>
-            <el-button @click=" this.$router.push({ name: 'character-view', params: { id: character.id } }); " type="info" style="margin:0 10px" circle>
-              <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
-            </el-button>
-            <el-tag v-for="cClass in character.classes" :key="cClass.name" size="large" effect="dark" type="primary" >
-              {{ capFirsts(cClass.name) }} {{ cClass.levels }}
-            </el-tag>
-          </el-card>
-        </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;" >
+              <el-card v-for="(character, index) in campaign.characters" :key="index" style="max-width: 200px">
+                <template #header>
+                  <div class="card-header">
+                    <el-tag :color="character.color" size="large" effect="dark">
+                      <span>{{ character.name }} ({{ character.user }})</span>
+                    </el-tag>
+                  </div>
+                </template>
+                <el-input v-model="campaign.extras.playerNotes[character.id].alignment" aria-label="Character AC">
+                  <template #prepend> Alignment </template>
+                </el-input>
+                <el-input v-model="campaign.extras.playerNotes[character.id].HP" aria-label="Character Max Health">
+                  <template #prepend>
+                    <el-tag type="danger" effect="dark" style="color: black"> HP </el-tag>
+                  </template>
+                </el-input>
+                <el-input v-model="campaign.extras.playerNotes[character.id].AC" aria-label="Character Total AC">
+                  <template #prepend>
+                    <el-tag color="#42d4f4" effect="dark"> AC </el-tag>
+                  </template>
+                </el-input>
+                <el-input v-model="campaign.extras.playerNotes[character.id].perception" aria-label="Character Percpeption">
+                  <template #prepend> Perception </template>
+                </el-input>
+                <el-button @click=" this.$router.push({ name: 'character-view', params: { id: character.id } }); " type="info" style="margin:0 10px" circle>
+                  <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
+                </el-button>
+                <el-tag v-for="cClass in character.classes" :key="cClass.name" size="large" effect="dark" type="primary" >
+                  {{ capFirsts(cClass.name) }} {{ cClass.levels }}
+                </el-tag>
+              </el-card>
+            </div>
+          </el-collapse-item>
+        </el-collapse>
       </el-col>
 
       <!-- Notes -->
       <el-col :xs="24" :sm="12" class="center-horz">
-        <el-divider >
-          <h4> <g-icon iconSize="32px" iconName="openScroll" /> Notes </h4>
-        </el-divider>
-        <el-button @click="campaign.notes.push('')" size="large" type="primary">
-          Add Note
-          <g-icon iconName="createScroll" iconSize="24px" iconColor="#CCC" />
-        </el-button>
-        <el-row v-for="(note, index) in campaign.notes" :key="index" align="middle">
-          <el-col :span="21">
-            <el-input
-              v-model="campaign.notes[index]"
-              :autosize="{ minRows: 2, maxRows: 5 }"
-              type="textarea"
-              aria-label="textAreaName" />
-          </el-col>
-          <el-col :span="3">
-            <el-popconfirm :title="`Delete Note?`">
-              <template #reference>
-                <el-button type="danger" style="margin:0" circle>
-                  <g-icon iconSize="24px" iconColor="#000" iconName="trash" />
-                </el-button>
-              </template>
-              <template #actions="">
-                <el-button @click="campaign.notes.splice(index, 1);" type="danger" size="small"> Yes </el-button>
-              </template>
-            </el-popconfirm>
-          </el-col>
-        </el-row>
-      </el-col>
-    </el-row>
+        <el-collapse v-model="collapse.notes">
+          <el-collapse-item name="1">
+            <template #title>
+              <el-divider >
+                <el-col :xs="24" :span="0">
+                  <g-icon iconSize="26px" iconName="openScroll" style="margin:0" /> Notes
+                </el-col>
+                <el-col :xs="0" :sm="24">
+                  <g-icon iconSize="32px" iconName="openScroll" /> Notes
+                </el-col>
+              </el-divider>
+            </template>
 
-    <el-row :gutter="10" justify="center" align="middle">
-      <!-- Group Loot -->
-      <el-col :xs="24" :sm="12">
-        <el-divider >
-          <h4>
-            <g-icon iconSize="32px" iconName="inventory" />
-            Group Loot
-            <el-tooltip v-if="campaign.loot_lock.username" placement="top" effect="light">
-              <el-button type="warning" style="margin:0" circle>
-                <g-icon iconSize="32px" iconColor="#000" iconName="lock" />
+            <el-row :gutter="10" justify="center" align="middle">
+              <el-button @click="campaign.notes.push('')" size="large" type="success" plain>
+                Add Note
+                <g-icon iconName="createScroll" iconSize="24px" iconColor="#CCC" />
               </el-button>
-              <template #content>
-                <el-tag :color="campaign.loot_lock.color" size="small" effect="dark">
-                  {{ campaign.loot_lock.username }}
-                </el-tag>
-              </template>
-            </el-tooltip>
-          </h4>
-        </el-divider>
-        <g-loot :source="campaign.loot" :lock="campaign.loot_lock" @edit-loot="editLoot"/>
-      </el-col>
-
-      <!-- Encounters -->
-      <el-col :xs="24" :sm="12">
-        <el-divider>
-          <h4> <g-icon iconSize="32px" iconName="weapons" /> Encounters </h4>
-        </el-divider>
-        <el-row :gutter="10" justify="space-between">
-          <el-col :xs="24" :span="14">
-            <el-input v-model="encounterFilter" @input="searchByName" id="nameFilter" placeholder="Encounter Name" aria-label="Encounter Name Filter">
-              <template #prefix>
-                <g-icon iconSize="20px" iconName="search" />
-              </template>
-              <template #append>
-                <el-button type="warning" @click="clearFilter"> Reset </el-button>
-              </template>
-            </el-input>
-          </el-col>
-          <el-col :span="6">
-            <el-button @click="createEncounter" plain>
-              Add Encounter
-            </el-button>
-          </el-col>
-        </el-row>
-
-        <el-table
-          v-loading="loading"
-          :data="encounters"
-          max-height="600"
-          id="encounterTable"
-          stripe
-        >
-          <el-table-column prop="name" label="Name" min-width="120" sortable />
-          <el-table-column prop="id" label="Id" sortable />
-
-          <el-table-column label="Actions" width="135" fixed="right">
-            <template #default="scope">
-              <el-row class="row-bg" justify="space-between">
-                <el-button @click="viewEncounter(scope.row.id)" type="info" style="margin:0" circle>
-                  <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
-                </el-button>
-                <el-button @click="editEncounter(scope.row.id)" type="primary" style="margin:0" circle>
-                  <g-icon iconSize="24px" iconColor="#000" iconName="quill" />
-                </el-button>
-                <el-popconfirm :title="`Delete Encounter?`">
+            </el-row>
+            <el-row v-for="(note, index) in campaign.notes" :key="index" align="middle">
+              <el-col :span="21">
+                <el-input v-model="campaign.notes[index]" :autosize="{ minRows: 2, maxRows: 5 }" type="textarea" aria-label="textAreaName" />
+              </el-col>
+              <el-col :span="3">
+                <el-popconfirm :title="`Delete Note?`">
                   <template #reference>
                     <el-button type="danger" style="margin:0" circle>
                       <g-icon iconSize="24px" iconColor="#000" iconName="trash" />
                     </el-button>
                   </template>
                   <template #actions="">
-                    <el-button @click="deleteEncounter(scope.row.id, scope.$index)" type="danger" size="small"> Yes </el-button>
+                    <el-button @click="campaign.notes.splice(index, 1);" type="danger" size="small"> Yes </el-button>
                   </template>
                 </el-popconfirm>
-              </el-row>
-             </template>
-           </el-table-column>
-        </el-table>
+              </el-col>
+            </el-row>
+          </el-collapse-item>
+        </el-collapse>
+      </el-col>
 
-        <el-row justify="center" class="char-pager">
-          <el-col :xs="19" :span="0">
-            <el-pagination
+      <!-- Group Loot -->
+      <el-col :xs="24" :sm="12">
+        <el-collapse v-model="collapse.loot">
+          <el-collapse-item name="1">
+            <template #title>
+              <el-divider >
+                <el-col :xs="24" :span="0">
+                  <g-icon iconSize="26px" iconName="inventory" style="margin:0" /> Loot
+                </el-col>
+                <el-col :xs="0" :sm="24">
+                  <g-icon iconSize="32px" iconName="inventory" /> Group Loot
+                </el-col>
+              </el-divider>
+            </template>
+
+            <el-row v-if="campaign.loot_lock.id" :gutter="10" justify="center" align="middle">
+              <el-tag :color="campaign.loot_lock.color" size="large" effect="dark">
+                <g-icon iconSize="24px" iconName="lock" iconColor="#000" />
+                Locked by {{ campaign.loot_lock.username }} until {{ new Date(campaign.loot_lock.releaseTime).getHours() }}:{{ new Date(campaign.loot_lock.releaseTime).getMinutes() }}
+              </el-tag>
+            </el-row>
+            <g-loot :source="campaign.loot" :lock="campaign.loot_lock" @edit-loot="editLoot"/>
+          </el-collapse-item>
+        </el-collapse>
+      </el-col>
+
+      <!-- Encounters -->
+      <el-col :xs="24" :sm="12">
+        <el-collapse v-model="collapse.encounters">
+          <el-collapse-item name="1">
+            <template #title>
+              <el-divider >
+                <el-col :xs="24" :span="0">
+                  <g-icon iconSize="26px" iconName="weapons" style="margin:0" /> Events
+                </el-col>
+                <el-col :xs="0" :sm="24">
+                  <g-icon iconSize="32px" iconName="weapons" /> Encounters
+                </el-col>
+              </el-divider>
+            </template>
+
+            <el-row :gutter="10" justify="space-between">
+              <el-col :xs="24" :span="14">
+                <el-input v-model="encounterFilter" @input="searchByName" id="nameFilter" placeholder="Encounter Name" aria-label="Encounter Name Filter">
+                  <template #prefix>
+                    <g-icon iconSize="20px" iconName="search" />
+                  </template>
+                  <template #append>
+                    <el-button type="warning" @click="clearFilter"> Reset </el-button>
+                  </template>
+                </el-input>
+              </el-col>
+              <el-col :span="6">
+                <el-button @click="createEncounter" type="success" plain> Add Encounter </el-button>
+              </el-col>
+            </el-row>
+
+            <el-table
+            v-loading="loading"
+            :data="encounters"
+            max-height="600"
+            id="encounterTable"
+            stripe
+            >
+            <el-table-column prop="name" label="Name" min-width="120" sortable />
+            <el-table-column prop="id" label="Id" sortable />
+
+            <el-table-column label="Actions" width="135" fixed="right">
+              <template #default="scope">
+                <el-row class="row-bg" justify="space-between">
+                  <el-button @click="viewEncounter(scope.row.id)" type="info" style="margin:0" circle>
+                    <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
+                  </el-button>
+                  <el-button @click="editEncounter(scope.row.id)" type="primary" style="margin:0" circle>
+                    <g-icon iconSize="24px" iconColor="#000" iconName="quill" />
+                  </el-button>
+                  <el-popconfirm :title="`Delete Encounter?`">
+                    <template #reference>
+                      <el-button type="danger" style="margin:0" circle>
+                        <g-icon iconSize="24px" iconColor="#000" iconName="trash" />
+                      </el-button>
+                    </template>
+                    <template #actions="">
+                      <el-button @click="deleteEncounter(scope.row.id, scope.$index)" type="danger" size="small"> Yes </el-button>
+                    </template>
+                  </el-popconfirm>
+                </el-row>
+              </template>
+            </el-table-column>
+          </el-table>
+
+          <el-row justify="center" class="char-pager">
+            <el-col :xs="19" :span="0">
+              <el-pagination
               v-model:current-page="currentPage"
               v-model:page-size="pageSize"
               :background="true"
@@ -184,10 +211,10 @@
               @current-change="loadEncounters"
               @size-change="loadEncounters"
               hide-on-single-page
-            />
-          </el-col>
-          <el-col :xs="0"  :span="11">
-            <el-pagination
+              />
+            </el-col>
+            <el-col :xs="0"  :span="11">
+              <el-pagination
               v-model:current-page="currentPage"
               v-model:page-size="pageSize"
               :page-sizes="[10, 25, 50, 100]"
@@ -197,9 +224,12 @@
               @current-change="loadEncounters"
               @size-change="loadEncounters"
               hide-on-single-page
-            />
-          </el-col>
-        </el-row>
+              />
+            </el-col>
+          </el-row>
+
+          </el-collapse-item>
+        </el-collapse>
       </el-col>
     </el-row>
 
@@ -225,7 +255,14 @@ export default {
       totalEncounters: 0,
 
       campaign: {},
-      encounters: []
+      encounters: [],
+
+      collapse: {
+        characters: ['1'],
+        notes: ['1'],
+        loot: ['1'],
+        encounters: ['1']
+      }
     };
   },
   computed: {
@@ -296,21 +333,12 @@ export default {
     \***************************/
     getLock() {
       CampaignService.getLock(this.campaign.id)
-      .then((response) => {
-        console.log('lock', response);
-        // this.campaign = response.campaign;
-        // this.getLock();
-        // this.loadEncounters();
-      })
+      .then((response) => { if (!response.lock.id) { this.campaign.loot_lock = {}; } })
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
-
-
-    },
-    setLock() {
-      console.log('set lock');
     },
     editLoot() {
-      if (!this.campaign.loot_lock.id) {
+      if ( !this.campaign.loot_lock.id ||
+        this.campaign.loot_lock.id == this.currentUser.id ) {
         this.$router.push({ name: 'campaign-loot', params: { id: this.campaign.id } });
       }
     },
@@ -352,6 +380,9 @@ export default {
 
 <style lang="css" scoped>
 .el-card .el-input {
+  margin-bottom: 10px;
+}
+.el-row {
   margin-bottom: 10px;
 }
 </style>

@@ -86,6 +86,13 @@
       </template>
     </el-popconfirm>
 
+    <el-collapse v-model="array">
+      <el-collapse-item name="1">
+        <template #title> title, could be html
+        </template>
+      </el-collapse-item>
+    </el-collapse>
+
   </div>
 </template>
 <script>

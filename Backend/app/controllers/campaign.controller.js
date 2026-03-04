@@ -216,7 +216,7 @@ exports.getLock = (req, res) => {
     // if relaese time < now, unset the lock
     if (campaign.loot_lock.releaseTime < Date.now()) {
       campaign.loot_lock = {};
-      campaign.update();
+      campaign.save();
     }
     res.status(200).send({ lock: campaign.loot_lock });
   })
