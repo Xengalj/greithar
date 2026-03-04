@@ -50,7 +50,7 @@
 
 
     <!-- value-key needed for objects, not arrays -->
-    <el-select v-model="selectArray/Object" value-key="objectKey" placeholder="placeholderName" aria-label="selectName" multiple>
+    <el-select v-model="selectArray/Object, (startWith'')" value-key="objectKey" placeholder="placeholderName" aria-label="selectName" multiple>
       <template #tag>
         <el-tag v-for="(item, index) in selectArray/Object" :key="index" @close="closeEvent" effect="dark" closable>
           {{ selectArray/Object.name }}
@@ -164,6 +164,10 @@ export default {
     - set up group loot
 
     - update user obj that is added to other things (stop sending pass to client)
+
+
+
+    - Edit loot -> sendToPlayer (make default select option blank)
 
     */
 

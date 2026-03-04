@@ -86,6 +86,17 @@ class CharacterService {
     .catch(err => { return err; });
   }
 
+  addItem(character_id, item) {
+    return axios.post(API_URL + 'addItem',
+    {
+      character_id: character_id,
+      item: item
+    },
+    { headers: authHeader() })
+    .then(response => { return response.data; })
+    .catch(err => { return err; });
+  }
+
 }
 
 export default new CharacterService();

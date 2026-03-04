@@ -146,5 +146,22 @@ exports.delete = (req, res) => {
       .catch(err => { res.status(500).send({ message: err.message }); });
     });
   });
+};
 
-}
+/***************************\
+*                           *
+*     CHARACTER DELETE      *
+*                           *
+\***************************/
+// Updates a character, given by character_id
+exports.addItem = (req, res) => {
+  Character.findOne({ where: { id: req.body.character_id }, include: { model: User, attributes: ['id', 'username'] } })
+  .then(toon => {
+    if (!toon) { return res.status(404).send({ message: "Character not found!" }); }
+    let items = toon.inventory;
+    items[2].children.push(req.body.item);
+    toon.update({ inventory: items })
+    .then(character => { res.status(200).send({ character }) });
+  })
+  .catch(err => { res.status(500).send({ message: err.message }); });
+};

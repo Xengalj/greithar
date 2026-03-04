@@ -176,7 +176,6 @@
             <el-input-number v-model="item.value.Extras['Enhancement']" size="small" aria-label="Is Item Magic?" />
           </el-col>
         </el-row>
-
         <el-row v-for="(damage, name) in item.value.Extras['extraDamages']" :key="name" :gutter="10"  style="margin-top:5px;">
           <el-col :span="6"> {{ name }} </el-col>
           <el-col :span="7">

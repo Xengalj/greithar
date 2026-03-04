@@ -16,6 +16,9 @@
         <el-button type="success" @click="drawer=true">Add Horde</el-button>
       </el-col>
       <el-col :xs="24" :sm="10" :md="6" class="center-horz">
+        <el-button type="primary" @click="saveCampaign"> Save Changes </el-button>
+      </el-col>
+      <el-col :xs="24" :sm="10" :md="6" class="center-horz">
         <el-button type="primary" @click="renewLock">Renew Lock</el-button>
         <el-button type="warning" @click="releaseLock">Release Lock</el-button>
       </el-col>
@@ -76,7 +79,15 @@
 
     <el-row :gutter="10" justify="center">
       <el-col :span="24">
-        <el-tree :data="campaign.loot" ref="tree" node-key="label" :filter-node-method="filterNode" >
+        <el-tree
+          :data="campaign.loot"
+          :filter-node-method="filterNode"
+          :allow-drag="allowDrag"
+          :allow-drop="allowDrop"
+          ref="tree"
+          node-key="label"
+          draggable
+          render-after-expand >
           <template #default="{ node, data }">
 
             <el-col :span="2" style="text-align: center; margin-right:2px;">
@@ -128,14 +139,14 @@
               </el-popconfirm>
 
               <!-- Send to Toon -->
-              <el-popconfirm title="Send to whom?" @confirm="sendToPlayer" hide-icon :hide-after="2000">
+              <el-popconfirm title="Send to whom?" @confirm="sendToPlayer(node, data)" hide-icon :hide-after="2000">
                 <template #reference>
                   <el-button type="warning" circle size="small">
                     <g-icon iconSize="16px" iconColor="#000" iconName="userAdd" />
                   </el-button>
                 </template>
                 <template #actions="{ confirm }">
-                  <el-select v-model="transferToon" aria-label="Recipient Toon" style="margin-bottom:5px">
+                  <el-select v-model="transferToon" placeholder="Select" aria-label="Recipient Toon" style="margin-bottom:5px">
                     <el-option v-for="toon in campaign.characters" :key="toon.id" :label="capFirsts(toon.name)" :value="toon.id" />
                   </el-select>
                   <el-button type="success" size="small" @click="confirm">Send</el-button>
@@ -206,6 +217,7 @@
 
 <script>
 import CampaignService from "@/services/campaign.service";
+import CharacterService from "@/services/character.service";
 import GItem from '@/components/template/GItem.vue';
 
 export default {
@@ -220,7 +232,7 @@ export default {
       loot: {},
       itemFilter: "",
 
-      transferToon: {}, // toon to send item to
+      transferToon: '', // toon to send item to
 
       // Dialogs
       dialog: false,
@@ -228,7 +240,7 @@ export default {
       showItem: false,
 
       drawer: false,
-      bulkAddCollapse: [],
+      bulkAddCollapse: [ "1", "2" ],
       horde: { coins: "", items: "" },
 
     };
@@ -281,28 +293,6 @@ export default {
     *                           *
     \***************************/
     capFirsts(string) { return string ? string.replace(/(^\w|\s\w)/g, m => m.toUpperCase()) : ""; },
-
-    renewLock() {
-      CampaignService.setLock(this.$route.params.id)
-      .then((response) => {
-        this.lock = response.lock;
-      })
-      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
-    },
-    releaseLock() {
-      CampaignService.releaseLock(this.campaign.id)
-      .then((response) => {
-        if (!response.campaign.loot_lock.id) {
-          this.$router.back();
-        }
-      })
-      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
-    },
-
-    sendToPlayer() {
-      console.log(this.transferToon);
-    },
-
     // Loops through all containers (in iitems, like backpacks) to add their value and weight
     // handles Bags of Holding and Handy Haversacks
     recursiveInventory(container, invTotal, BagOfHolding){
@@ -355,11 +345,53 @@ export default {
     *                           *
     \***************************/
     addHorde() {
+      let coins, skip, items = this.horde.items.split("\n");
 
-      console.log(this.horde);
+      // add coins
+      coins = parseInt(this.horde.coins.match(/\d+ ?cp/gm)[0]);
+      this.campaign.extras.coins.cp = coins + parseInt(this.campaign.extras.coins.cp);
+      coins = parseInt(this.horde.coins.match(/\d+ ?sp/gm)[0]);
+      this.campaign.extras.coins.sp = coins + parseInt(this.campaign.extras.coins.sp);
+      coins = parseInt(this.horde.coins.match(/\d+ ?gp/gm)[0]);
+      this.campaign.extras.coins.gp = coins + parseInt(this.campaign.extras.coins.gp);
+      coins = parseInt(this.horde.coins.match(/\d+ ?pp/gm)[0]);
+      this.campaign.extras.coins.pp = coins + parseInt(this.campaign.extras.coins.pp);
 
+      items.forEach(item => {
+        skip = item == '' ? true : false;
+        // skip any rows that are headers or totals
+        [ 'Art Objects', 'Coins', 'Gems', 'Magic Items', 'Masterwork Items', 'Total' ].forEach(category => {
+          if (item.includes(category)) {
+            skip = true;
+          }
+        });
 
-      // this.drawer = false;
+        if (!skip) {
+          // get the value
+          const regex = /(\d+ ?(pp|gp|sp|cp))/gmi; // matches ""### gp"
+          let value = parseInt(item.match(regex)[0]);
+          // chop up the string
+          let i = item.indexOf('(');
+          let name = item.slice(0, i).trim();
+          let notes = item.slice(i);
+          // add it to inventory
+          let thing = {
+            'label': name,
+            'value': {
+              'Description': '',
+              'Cost': value,
+              'Weight': 1,
+              'Ammount': 1,
+              'Extras': { 'Notes': [ notes ] }
+            }
+          };
+          this.loot.push(thing);
+        }
+
+      });
+
+      this.horde = {};
+      this.drawer = false;
     },
     addItem() {
       let item = {
@@ -403,7 +435,40 @@ export default {
       this.$message({ message: `${data.label} was removed from inventory`, type: "warning" });
     },
 
-
+    /***************************\
+    *                           *
+    *         CAMPAIGNS         *
+    *                           *
+    \***************************/
+    saveCampaign() {
+      CampaignService.updateCampaign(this.campaign)
+      .then((response) => { this.$message({ message: `${response.campaign.name} updated`, type: 'success', }); })
+      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
+    },
+    renewLock() {
+      CampaignService.setLock(this.$route.params.id)
+      .then((response) => {
+        this.lock = response.lock;
+      })
+      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
+    },
+    releaseLock() {
+      CampaignService.releaseLock(this.campaign.id)
+      .then((response) => {
+        if (!response.campaign.loot_lock.id) {
+          this.$router.back();
+        }
+      })
+      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
+    },
+    sendToPlayer(node, data) {
+      CharacterService.addItem(this.transferToon, data)
+      .then((response) => {
+        this.$message({ message: `${response.character.name} updated`, type: 'success', });
+        this.deleteItem(node, data);
+      })
+      .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
+    },
 
 
 
