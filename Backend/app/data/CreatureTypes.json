@@ -712,57 +712,172 @@
       }
     },
     "Behemoth": {
-      "Darkvision": {
-        "description": "XX can see in the dark up to 60 feet.",
-        "shortText": "Darkvision 60 ft.",
+      "Blindsense": {
+        "description": "Behemoths can sense (but not accurately see) things in its vicinity. This does not overcome concealment.",
+        "shortText": "Blindsense 60 ft.",
         "location": "senses",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Behemoth Immunities": {
+        "description": "Behemoths are immune to ability damage, aging, bleed, disease, energy drain, fire, mind-affects, negative levels, paralysis, permanent wounds, petrification, poison, and polymorph.",
+        "shortText": "ability damage, aging, bleed, disease, energy drain, fire, mind-affects, negative levels, paralysis, permanent wounds, petrification, poison, polymorph",
+        "location": "immunities",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Behemoth Resistances": {
+        "description": "Behemoths are resistant to most physical damage.",
+        "shortText": "DR 15/epic",
+        "location": "resistances",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Behemoth Spell Resistance": {
+        "description": "Behemoths are resistant to magic and gain SR 11 + the behemoth's CR.",
+        "shortText": "SR #",
+        "location": "resistances",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Behemoth Languages": {
+        "description": "Behemoths understand Aklo, but cannot speak.",
+        "shortText": "",
+        "location": "",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Behemoth Regeneration (Ex)": {
+        "description": "No form of attack can supress a behemoth's regeneration. If it fails a saving throw that would kill it instantly, it rises from death 3 rounds later with 1 HP.",
+        "shortText": "",
+        "location": "",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Behemoth Vulnerability (Su)": {
+        "description": "Behemoths is particularly weak to the spells wish and miracle. When casting either a spellcaster gains a +6 bonus to overcome the behemoth's SR, and the behemoth suffers a -6 to the saves. The spells can also negate a behemoth's regeneration for 1d4 rounds.",
+        "shortText": "",
+        "location": "",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+
+      "Ruinous (Su)": {
+        "description": "A behemoths natural attacks overcome DR as epic and magic, and ignore 20 hardness for objects. As a swift action, on a hit, it can dispell 1 random spell effect (as if casting greater dispel magic, CL 20).",
+        "shortText": "",
+        "location": "",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Unstoppable (Ex)": {
+        "description": "Behemoths recover from the following conditions at the start of every turn: blind, confused, dazed, deafened, dazzled, exhaused, fatigued, nauseated, sickened, slowed, staggered, and stunned.",
+        "shortText": "",
+        "location": "",
         "trigger": "Continuous",
         "bonuses": {}
       }
     },
-    "Catfolk": {
-      "Darkvision": {
-        "description": "XX can see in the dark up to 60 feet.",
-        "shortText": "Darkvision 60 ft.",
-        "location": "senses",
-        "trigger": "Continuous",
-        "bonuses": {}
-      }
-    },
+    "Catfolk": {},
     "Chaotic": {
       "Realm": "Elysium, Limbo, Abyss",
-      "Darkvision": {
-        "description": "XX can see in the dark up to 60 feet.",
-        "shortText": "Darkvision 60 ft.",
-        "location": "senses",
+      "Chaotic Blood": {
+        "description": "A chaotic creature is always considered to have a chaotic alignment for any effects that rely on alignment and any weapons they wield are chaotically aligned.",
+        "shortText": "",
+        "location": "",
         "trigger": "Continuous",
         "bonuses": {}
       }
     },
     "Clockwork": {
-      "Darkvision": {
-        "description": "XX can see in the dark up to 60 feet.",
-        "shortText": "Darkvision 60 ft.",
-        "location": "senses",
+      "Clockwork Vulnerabilities": {
+        "description": "Clockwork constructs take 150% more damage from electricity attacks.",
+        "shortText": "electricity",
+        "location": "weaknesses",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Winding (Ex)": {
+        "description": "Clockwork constructs must be wound with special keys in order to function. In general, a full wind lasts for 1 day per HD.",
+        "shortText": "",
+        "location": "",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Swift Reactions (Ex)": {
+        "description": "Clockwork constructs react exceptionally fast, gaining Improved Initiative and Lightning Reflexes as bonus feats, as well as a +2 dodge bonus to AC.",
+        "shortText": "",
+        "location": "",
+        "trigger": "Continuous",
+        "bonuses": {
+          "Swift Reactions": { "value": 2, "type": "Dodge", "targets": [ "totalAC", "touchAC" ] }
+          }
+        }
+      },
+      "Difficult to Create (Ex)": {
+        "description": "The time and gp costs to create a clockwork is 150% the normal price.",
+        "shortText": "",
+        "location": "",
         "trigger": "Continuous",
         "bonuses": {}
       }
     },
     "Cold": {
-      "Darkvision": {
-        "description": "XX can see in the dark up to 60 feet.",
-        "shortText": "Darkvision 60 ft.",
-        "location": "senses",
+      "Cold Immunity": {
+        "description": "Cold creatures are immune to cold damage.",
+        "shortText": "cold",
+        "location": "immunities",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Cold Vulnerability": {
+        "description": "Cold creatures are vulnerable to fire damage.",
+        "shortText": "fire",
+        "location": "weaknesses",
         "trigger": "Continuous",
         "bonuses": {}
       }
     },
     "Colossus": {
-      "Darkvision": {
-        "description": "XX can see in the dark up to 60 feet.",
-        "shortText": "Darkvision 60 ft.",
-        "location": "senses",
+      "Selective Antimagic Aura (Su)": {
+        "description": "Colossi exude a constant antimagic field, as the spell, with a radius equal to its reach. A colossus's own abilities are unaffected.",
+        "shortText": "",
+        "location": "",
         "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Alternate Form (Ex)": {
+        "description": "Colossi have the ability to change into some other shape. This transformation is non-magical and not revealed by True Seeing or similar magic.",
+        "shortText": "",
+        "location": "",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Mythic Quickening (Sp)": {
+        "description": "As a swift action, Colossi can expend one use of Mythic Power to cast or activate one of its spell-like abilities as a free action.",
+        "shortText": "",
+        "location": "",
+        "trigger": "Swift",
+        "bonuses": {}
+      },
+      "Pinning Stomp (Ex)": {
+        "description": "When a colossus is in it's normal form, as a swift action, it can make one attack, at full BAB, against a creature 3 or more sizes smaller than itself. It deals x2 damage plus 1.5 x Str Mod, and gains a free grapple check to pin the opponent dealing damage equal to the colossus's slam each turn.",
+        "shortText": "",
+        "location": "",
+        "trigger": "Swift",
+        "bonuses": {}
+      },
+      "Mythic Creation (Ex)": {
+        "description": "A colossus can only be created by a creator with a Mythic Tier or rank equal or greater than that of the colossus they are trying to create.",
+        "shortText": "",
+        "location": "",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Mythis Resilience (Ex)": {
+        "description": "A colossus can expend one use of Mythic Power as a swift action to double its damage reduction for 1 round.",
+        "shortText": "Mythic Power -> Double DR",
+        "location": "",
+        "trigger": "Swift",
         "bonuses": {}
       }
     },
