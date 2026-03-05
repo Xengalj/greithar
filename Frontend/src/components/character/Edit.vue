@@ -3,207 +3,205 @@
 
     <!-- NAME & ADVANCED -->
     <el-row :gutter="10" align="middle">
-      <el-col :span="12">
+      <el-col :xs="24" :span="12">
         <h3>
           {{ character.name }}
-          <el-tag v-if="advanced" effect="dark" type="info" style="margin-right:10px;">
-            ID : {{ character.id }}
-          </el-tag>
-          <span v-if="character.basics.race && ['male','female','agender'].includes(character.basics.appearance.gender)">
-            <el-button @click="genRandomName()" type="primary" size="small"> Random Name! </el-button>
-          </span>
+          <el-tag v-if="advanced" type="info" plain> ID : {{ character.id }} </el-tag>
         </h3>
       </el-col>
-      <el-col :xs="3" :sm="2" :md="1"> <span v-if="advanced"> User: </span> </el-col>
-      <el-col :xs="9" :sm="4" :md="4">
-        <el-select v-if="advanced && $store.state.auth.user.roles.includes('admin')" v-model="character.user.id" size="small" placeholder="Choose User" aria-label="User Select">
-          <template #label="{ label }">
-            <span>{{ label }}</span>
-          </template>
-          <el-option v-for="user in users" :key="user.id" :label="user.username" :value="user.id">
-            <span>{{ user.username }}</span>
-          </el-option>
-        </el-select>
-      </el-col>
-      <el-col :offset="1" :xs="7" :sm="3" :md="2" style="display: flex; justify-content: space-evenly;">
+      <el-col :xs="0" :sm="9" :md="10"></el-col>
+      <el-col :xs="24" :sm="3" :md="2" style="display: flex; justify-content: space-evenly;">
         <el-switch v-model="advanced" inline-prompt active-text=" Advanced " inactive-text=" Normal " aria-label="Advanced Mode Switch" />
       </el-col>
     </el-row>
 
-    <!-- BASICS -->
-    <div>
-      <el-row>
-        <el-col :span="18">
-          <el-row :gutter="10">
-            <!-- Name -->
-            <el-col :span="8">
-              <el-input v-model="character.name" aria-label="Character Name">
-                <template #prepend>Name</template>
-              </el-input>
-            </el-col>
-            <!-- Race / Type (subtype) -->
-            <el-col :span="8">
-              <el-select v-model="character.basics.race" @change="onRaceChange()" size="small" placeholder="Choose Race" aria-label="Race Select">
-                <template #label="{ label }">
-                  <span style="float: left">{{ label }}</span>
-                  <span style="float: right">
-                    <el-tag size="small" effect="dark" type="primary">{{ capFirsts(character.basics.type.name) }}</el-tag>
-                    <el-tag v-for="subtype in character.basics.type.subtypes" :key="subtype" size="small" effect="dark" type="info" style="margin-left:5px;"> {{ subtype }} </el-tag>
-                  </span>
-                </template>
-                <el-option v-for="(race, name) in races" :key="name" :label="name" :value="name">
-                  <span style="float: left">{{ name }}</span>
-                  <span style="float: right">
-                    <el-tag size="small" effect="dark" type="primary">{{ capFirsts(race.type.name) }}</el-tag>
-                  </span>
-                </el-option>
-              </el-select>
-            </el-col>
-            <!-- Gender -->
-            <el-col :span="6">
-              <div v-if="advanced">
-                <el-input v-model="character.basics.appearance.gender" aria-label="Custom Gender Input" />
-              </div>
-              <div v-else>
-                <el-select v-model="character.basics.appearance.gender" size="small" aria-label="Gender Select">
-                  <el-option v-if="races[character.basics.race].male" label="Male" value="male" />
-                  <el-option v-if="races[character.basics.race].female" label="Female" value="female" />
-                  <el-option v-if="races[character.basics.race].agender" label="Agender" value="agender" />
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-          <el-row :gutter="10">
-            <!-- Alignment -->
-            <el-col :span="8">
-              <el-input v-model="character.basics.alignment" aria-label="Alignment Input">
-                <template #prepend>Alignment</template>
-              </el-input>
-            </el-col>
-            <!-- Size -->
-            <el-col :span="8">
-              <el-input v-model="character.basics.size" disabled aria-label="Size Display">
-                <template #suffix>
-                  <span style="float: right; color: var(--el-text-color-secondary); font-size: 13px;">
-                    Space: {{ rules.size[character.basics.size].space }}
-                  </span>
-                </template>
-              </el-input>
-            </el-col>
-            <!-- Speeds -->
-            <el-col :span="8">
-              <span v-for="(mode, name) in character.basics.speed" :key="name">
-                <span v-if="mode.total">
-                  <el-tooltip placement="top" effect="light">
-                    <el-tag size="large" effect="dark" type="info" style="margin-left:5px;"> {{ capFirsts(name) }}: {{ mode.total }} ft. </el-tag>
-                    <template #content>
-                      <span v-for="bonus in mode.sources" :key="bonus"> {{ bonus+" " }} </span>
-                    </template>
-                  </el-tooltip>
-                </span>
-              </span>
-            </el-col>
-          </el-row>
-
-          <el-row :gutter="10">
-            <!-- Age -->
-            <el-col :span="8">
-              <el-tooltip placement="top" effect="light">
-                <el-input v-model="character.basics.appearance.age" :min="1" aria-label="Age Input">
-                  <template #prepend>Age</template>
-                </el-input>
-                <template #content v-if="character.basics.race">
-                  <span v-for="(range, name) in races[character.basics.race].age" :key="name">
-                    {{ name }} : {{ range }} <br>
-                  </span>
-                </template>
-              </el-tooltip>
-            </el-col>
-            <!-- Height -->
-            <el-col :span="8">
-              <el-tooltip placement="right" effect="light">
-                <el-input v-model="character.basics.appearance.height" aria-label="Height Input">
-                  <template #prepend>Height</template>
-                </el-input>
-                <template #content>
-                  <span v-if="['male','female','agander'].includes(character.basics.appearance.gender)">
-                    {{ races[character.basics.race][character.basics.appearance.gender].height }}
-                  </span>
-                  <span v-else>Choose within reason</span>
-                </template>
-              </el-tooltip>
-            </el-col>
-          </el-row>
-
-          <el-row :gutter="10">
-            <!-- Diety -->
-            <el-col :span="8">
-              <el-input v-model="character.basics.diety" aria-label="Worship Input">
-                <template #prepend>Diety</template>
-              </el-input>
-            </el-col>
-            <el-col :span="8">
-              <!-- Weight -->
-              <el-tooltip placement="right" effect="light">
-                <el-input v-model="character.basics.appearance.weight" aria-label="Weight Input">
-                  <template #prepend>Weight</template>
-                </el-input>
-                <template #content>
-                  <span v-if="['male','female','agander'].includes(character.basics.appearance.gender)">
-                    {{ races[character.basics.race][character.basics.appearance.gender].weight }}
-                  </span>
-                  <span v-else>Choose within reason</span>
-                </template>
-              </el-tooltip>
-            </el-col>
-          </el-row>
-        </el-col>
-
-        <!-- Favored Class Bonus & Level -->
-        <el-col :span="6">
-          <el-row class="center-horz">
-            <el-col :span="12">
-              <el-input v-model="character.basics.cr" aria-label="Character Level" disabled>
-                <template #prepend>Level</template>
-              </el-input>
-            </el-col>
-            <el-col :span="12">
-              <el-popconfirm title="Choose a class" @confirm="openLevelDialog" hide-icon :hide-after="2000">
-                <template #reference>
-                  <el-button type="primary">
-                    <g-icon iconSize="24px" iconName="sparkle" />
-                    <span style="padding:5px"> Level Up </span>
-                  </el-button>
-                </template>
-                <template #actions="{ confirm }">
-                  <el-select v-model="newLevel.class" aria-label="New Level Class" style="margin-bottom:5px">
-                    <el-option v-for="(cClass, cName) in classes" :key="cName" :label="capFirsts(cName)" :value="cName" />
-                  </el-select>
-                  <el-button type="primary" size="small" @click="confirm" :disabled="newLevel.class == ''"> Go! </el-button>
-                </template>
-              </el-popconfirm>
-            </el-col>
-          </el-row>
-          <el-row>
-            <span style="font-size:16px;">
-              <g-icon iconName="magicSwirl" iconSize="24"/> Favored Class Bonus
-            </span>
-            <el-select v-model="character.basics.favoredClass.name" aria-label="Favored Class Select">
-              <el-option v-for="(cClass, cName) in classes" :key="cName" :label="cName" :value="cName" />
-            </el-select>
-            <el-input v-model="character.basics.favoredClass.bonus" aria-label="Favored Class Bonus Input" />
-          </el-row>
-        </el-col>
-      </el-row>
-    </div>
-
     <el-collapse v-model="sectionsCollapse" v-if="!loading">
+      <!-- BASICS -->
+      <el-collapse-item name="0">
+        <template #title>
+          <el-divider style="max-width:75%"> <h4>
+            <el-col :xs="24" :span="0">
+              <g-icon iconSize="26px" :iconName="character.basics.type.name" style="margin:0" /> Basics
+            </el-col>
+            <el-col :xs="0" :sm="24">
+              <g-icon iconSize="32px" :iconName="character.basics.type.name" /> Basics
+            </el-col>
+          </h4> </el-divider>
+        </template>
+
+        <el-row :gutter="10" align="middle" class="basics">
+          <!-- Name -->
+          <el-col :xs="24" :sm="10" :md="6">
+            <el-input v-model="character.name" aria-label="Character Name">
+              <template #prepend>Name</template>
+            </el-input>
+          </el-col>
+          <el-col :xs="24" :sm="4" :md="3" v-if="character.basics.race && ['male','female','agender'].includes(character.basics.appearance.gender)" class="center-horz">
+            <el-button @click="genRandomName()" type="primary" size="small" aria-label="Create Random Name"> Random Name! </el-button>
+          </el-col>
+          <el-col :xs="24" :sm="0" :md="9"></el-col>
+          <!-- User -->
+          <el-col :xs="24" :sm="10" :md="6">
+            <el-select v-if="advanced && $store.state.auth.user.roles.includes('admin')" v-model="character.user.id" placeholder="Choose User" aria-label="User Select">
+              <template #label="{ label }">
+                <span>{{ label }}</span>
+              </template>
+              <el-option v-for="user in users" :key="user.id" :label="user.username" :value="user.id">
+                <span>{{ user.username }}</span>
+              </el-option>
+            </el-select>
+          </el-col>
+
+          <!-- Gender -->
+          <el-col :xs="24" :sm="12" :md="6">
+            <div v-if="advanced">
+              <el-input v-model="character.basics.appearance.gender" aria-label="Custom Gender Input" />
+            </div>
+            <div v-else>
+              <el-select v-model="character.basics.appearance.gender" aria-label="Gender Select">
+                <el-option v-if="races[character.basics.race].male" label="Male" value="male" />
+                <el-option v-if="races[character.basics.race].female" label="Female" value="female" />
+                <el-option v-if="races[character.basics.race].agender" label="Agender" value="agender" />
+              </el-select>
+            </div>
+          </el-col>
+          <!-- Race -->
+          <el-col :xs="24" :sm="12" :md="6">
+            <el-select v-model="character.basics.race" @change="onRaceChange()" placeholder="Choose Race" aria-label="Race Select">
+              <el-option v-for="(race, name) in races" :key="name" :label="name" :value="name" />
+            </el-select>
+          </el-col>
+          <!-- Creature Type -->
+          <el-col :xs="24" :sm="12" :md="6">
+            <el-input v-model="character.basics.type" disabled aria-label="Creature Type">
+              <template #prepend> Type </template>
+            </el-input>
+          </el-col>
+          <!-- Subtype(s) -->
+          <el-col :xs="24" :sm="12" :md="6">
+            <el-select v-model="character.basics.subtypes" multiple filterable allow-create aria-label="Subtypes Select">
+              <el-option label="Lamia" value="Lamia" />
+              <el-option label="Harpy" value="Harpy" />
+              <el-option label="Catfolk" value="Catfolk" />
+              <el-option label="Satyr" value="Satyr" />
+              <el-option label="Reptilian" value="Reptialian" />
+              <el-option label="Human" value="Human" />
+            </el-select>
+          </el-col>
+
+          <!-- Age -->
+          <el-col :xs="24" :sm="12" :md="6">
+            <el-tooltip placement="top" effect="light">
+              <el-input v-model="character.basics.appearance.age" :min="1" aria-label="Age Input">
+                <template #prepend>Age</template>
+              </el-input>
+              <template #content v-if="character.basics.race">
+                <span v-for="(range, name) in races[character.basics.race].age" :key="name">
+                  {{ name }} : {{ range }} <br>
+                </span>
+              </template>
+            </el-tooltip>
+          </el-col>
+          <!-- Height -->
+          <el-col :xs="24" :sm="12" :md="6">
+            <el-tooltip placement="right" effect="light">
+              <el-input v-model="character.basics.appearance.height" aria-label="Height Input">
+                <template #prepend>Height</template>
+              </el-input>
+              <template #content>
+                <span v-if="['male','female','agander'].includes(character.basics.appearance.gender)">
+                  {{ races[character.basics.race][character.basics.appearance.gender].height }}
+                </span>
+                <span v-else>Choose within reason</span>
+              </template>
+            </el-tooltip>
+          </el-col>
+          <!-- Weight -->
+          <el-col :xs="24" :sm="12" :md="6">
+            <el-tooltip placement="right" effect="light">
+              <el-input v-model="character.basics.appearance.weight" aria-label="Weight Input">
+                <template #prepend>Weight</template>
+                <template #suffix>lbs.</template>
+              </el-input>
+              <template #content>
+                <span v-if="['male','female','agander'].includes(character.basics.appearance.gender)">
+                  {{ races[character.basics.race][character.basics.appearance.gender].weight }}
+                </span>
+                <span v-else>Choose within reason</span>
+              </template>
+            </el-tooltip>
+          </el-col>
+          <!-- Size -->
+          <el-col :xs="24" :sm="12" :md="6">
+            <el-input v-model="character.basics.size" disabled aria-label="Size Display">
+              <template #suffix>
+                <span style="float: right; color: var(--el-text-color-secondary); font-size: 13px;">
+                  Space: {{ rules.size[character.basics.size].space }}
+                </span>
+              </template>
+            </el-input>
+          </el-col>
+
+          <!-- Alignment -->
+          <el-col :xs="24" :sm="12" :md="6">
+            <el-input v-model="character.basics.alignment" aria-label="Alignment Input">
+              <template #prepend>Alignment</template>
+            </el-input>
+          </el-col>
+          <!-- Diety -->
+          <el-col :xs="24" :sm="12" :md="6">
+            <el-input v-model="character.basics.diety" aria-label="Worship Input">
+              <template #prepend>Diety</template>
+            </el-input>
+          </el-col>
+          <!-- Speed -->
+          <el-col :xs="24" :sm="12" :md="6">
+            <el-input v-model="character.basics.speed.base.total" disabled aria-label="Base Speed">
+              <template #prepend>Speed</template>
+              <template #suffix>ft.</template>
+            </el-input>
+          </el-col>
+        </el-row>
+        <br>
+
+
+        <!-- Level Up -->
+        <el-row :gutter="10" justify="center">
+          <el-col :xs="12" :sm="6" :md="6">
+            <el-input v-model="character.basics.cr" aria-label="Character Level" disabled>
+              <template #prepend>Level</template>
+            </el-input>
+          </el-col>
+          <el-col :xs="12" :sm="5" :md="3">
+            <el-popconfirm title="Choose a class" @confirm="openLevelDialog" hide-icon :hide-after="2000">
+              <template #reference>
+                <el-button type="primary">
+                  <g-icon iconSize="24px" iconName="sparkle" />
+                  <span style="padding:5px"> Level Up </span>
+                </el-button>
+              </template>
+              <template #actions="{ confirm }">
+                <el-select v-model="newLevel.class" aria-label="New Level Class" style="margin-bottom:5px">
+                  <el-option v-for="(cClass, cName) in classes" :key="cName" :label="capFirsts(cName)" :value="cName" />
+                </el-select>
+                <el-button type="primary" size="small" @click="confirm" :disabled="newLevel.class == ''"> Go! </el-button>
+              </template>
+            </el-popconfirm>
+          </el-col>
+        </el-row>
+      </el-collapse-item>
+
       <!-- ATTRIBUTES (ABILITIES) -->
       <el-collapse-item name="1">
         <template #title>
-          <el-divider style="max-width:50%">
-            <h4> <g-icon iconSize="32px" iconName="Compass" /> Attributes </h4>
-          </el-divider>
+          <el-divider style="max-width:75%"> <h4>
+            <el-col :xs="24" :span="0">
+              <g-icon iconSize="26px" iconName="Compass" style="margin:0" /> Attributes
+            </el-col>
+            <el-col :xs="0" :sm="24">
+              <g-icon iconSize="32px" iconName="Compass" /> Attributes
+            </el-col>
+          </h4> </el-divider>
         </template>
 
         <el-row style="padding-top:10px;">
@@ -338,9 +336,14 @@
       <!-- CLASSES -->
       <el-collapse-item name="2">
         <template #title>
-          <el-divider style="max-width:50%">
-            <h4> <g-icon iconSize="32px" iconName="magicSwirl" /> Classes </h4>
-          </el-divider>
+          <el-divider style="max-width:75%"> <h4>
+            <el-col :xs="24" :span="0">
+              <g-icon iconSize="26px" iconName="magicSwirl" style="margin:0" /> Classes
+            </el-col>
+            <el-col :xs="0" :sm="24">
+              <g-icon iconSize="32px" iconName="magicSwirl" /> Classes
+            </el-col>
+          </h4> </el-divider>
         </template>
 
         <div v-for="(cClass, cName) in character.classes" :key="cName">
@@ -566,9 +569,14 @@
       <!-- ABILITIES -->
       <el-collapse-item name="3">
         <template #title>
-          <el-divider style="max-width:50%">
-            <h4> <g-icon iconSize="32px" iconName="abilityPalm" /> Abilities </h4>
-          </el-divider>
+          <el-divider style="max-width:75%"> <h4>
+            <el-col :xs="24" :span="0">
+              <g-icon iconSize="26px" iconName="abilityPalm" style="margin:0" /> Abilities
+            </el-col>
+            <el-col :xs="0" :sm="24">
+              <g-icon iconSize="32px" iconName="abilityPalm" /> Abilities
+            </el-col>
+          </h4> </el-divider>
         </template>
         <el-row :gutter="5" justify="space-between">
           <el-col :xs="4" :sm="2" :span="5">Name</el-col>
@@ -779,9 +787,14 @@
       <!-- SKILLS -->
       <el-collapse-item name="4">
         <template #title>
-          <el-divider style="max-width:50%">
-            <h4> <g-icon iconSize="32px" iconName="sparkle" /> Skills </h4>
-          </el-divider>
+          <el-divider style="max-width:75%"> <h4>
+            <el-col :xs="24" :span="0">
+              <g-icon iconSize="26px" iconName="sparkle" style="margin:0" /> Skills
+            </el-col>
+            <el-col :xs="0" :sm="24">
+              <g-icon iconSize="32px" iconName="sparkle" /> Skills
+            </el-col>
+          </h4> </el-divider>
         </template>
         <el-row id="skills" v-if="character.skills.Linguistics && character.skills.Linguistics.extras">
           <el-col :span="2"> Languages: </el-col>
@@ -889,9 +902,14 @@
       <!-- INVENTORY -->
       <el-collapse-item name="5">
         <template #title>
-          <el-divider style="max-width:50%">
-            <h4> <g-icon iconSize="32px" iconName="chest" /> Inventory </h4>
-          </el-divider>
+          <el-divider style="max-width:75%"> <h4>
+            <el-col :xs="24" :span="0">
+              <g-icon iconSize="26px" iconName="chest" style="margin:0" /> Inventory
+            </el-col>
+            <el-col :xs="0" :sm="24">
+              <g-icon iconSize="32px" iconName="chest" /> Inventory
+            </el-col>
+          </h4> </el-divider>
         </template>
         <!-- Coins -->
         <el-row :gutter="10">
@@ -992,9 +1010,14 @@
       <!-- SPELLS KNOWN -->
       <el-collapse-item name="6">
         <template #title>
-          <el-divider style="max-width:50%">
-            <h4> <g-icon iconSize="32px" iconName="spellBook" /> Spells Known </h4>
-          </el-divider>
+          <el-divider style="max-width:75%"> <h4>
+            <el-col :xs="24" :span="0">
+              <g-icon iconSize="26px" iconName="spellBook" style="margin:0" /> Spells Known
+            </el-col>
+            <el-col :xs="0" :sm="24">
+              <g-icon iconSize="32px" iconName="spellBook" /> Spells Known
+            </el-col>
+          </h4> </el-divider>
         </template>
 
         <el-popconfirm title="Learn New Spell?" @confirm="addSpell" hide-icon :hide-after="1000">
@@ -1112,9 +1135,14 @@
       <!-- CHARACTER EXTRAS -->
       <el-collapse-item name="7">
         <template #title>
-          <el-divider style="max-width:50%">
-            <h4> <g-icon iconSize="32px" iconName="openScroll" /> Extras </h4>
-          </el-divider>
+          <el-divider style="max-width:75%"> <h4>
+            <el-col :xs="24" :span="0">
+              <g-icon iconSize="26px" iconName="openScroll" style="margin:0" /> Extras
+            </el-col>
+            <el-col :xs="0" :sm="24">
+              <g-icon iconSize="32px" iconName="openScroll" /> Extras
+            </el-col>
+          </h4> </el-divider>
         </template>
 
         <el-row :gutter="10" justify="center">
@@ -1127,7 +1155,6 @@
                     <template #label> Player / NPC </template>
                     <el-switch v-model="character.settings.isNPC" inline-prompt active-text=" NPC " inactive-text=" PLAYER " aria-label="Player / NPC Switch" />
                   </el-descriptions-item>
-
                   <el-descriptions-item >
                     <template #label> Campaigns </template>
                     <el-row :gutter="10" justify="space-between" align="middle">
@@ -1163,7 +1190,6 @@
                       </el-col>
                     </el-row>
                   </el-descriptions-item>
-
                   <el-descriptions-item v-if="character.settings.isNPC" >
                     <template #label> Encounter </template>
                     <el-row justify="space-between" align="middle">
@@ -1177,7 +1203,6 @@
                       </el-col>
                     </el-row>
                   </el-descriptions-item>
-
                   <el-descriptions-item>
                     <template #label> Hero Points </template>
                     <el-input-number v-model="character.settings.heroPoints" :min="0" :max="4" size="small" aria-label="Hero Points" />
@@ -1193,7 +1218,6 @@
                       <el-option label="Edit" value="Edit" />
                     </el-select>
                   </el-descriptions-item>
-
                   <el-descriptions-item>
                     <template #label> Open Main Secions </template>
                     <el-select v-model="character.settings.mainSections" multiple size="small" aria-label="View's main tab open sections">
@@ -1202,7 +1226,6 @@
                       <el-option label="Resources" value="resources" />
                     </el-select>
                   </el-descriptions-item>
-
                   <el-descriptions-item>
                     <template #label> Open Inventory Sections </template>
                     <el-select v-model="character.settings.expandInventory" multiple size="small" aria-label="Gender Select">
@@ -1235,6 +1258,27 @@
                   </el-col>
                 </el-row>
               </el-collapse-item>
+
+              <el-collapse-item title="Favored Class Bonus" name="Favored Class Bonus">
+
+                <el-row>
+                  <span style="font-size:16px;">
+                    <g-icon iconName="magicSwirl" iconSize="24"/> Favored Class Bonus
+                  </span>
+                  <el-select v-model="character.basics.favoredClass.name" aria-label="Favored Class Select">
+                    <el-option v-for="(cClass, cName) in classes" :key="cName" :label="cName" :value="cName" />
+                  </el-select>
+                  <el-input v-model="character.basics.favoredClass.bonus" aria-label="Favored Class Bonus Input" />
+                </el-row>
+
+                <!-- <el-row>
+                  <el-col :span="4" class="center-vert"> Notes </el-col>
+                  <el-col :span="20">
+                    <el-input v-model="character.notes" type="textarea" :autosize="{ minRows: 2, maxRows: 20 }" aria-label="Notes Textarea" />
+                  </el-col>
+                </el-row> -->
+
+              </el-collapse-item>
             </el-collapse>
           </el-col>
 
@@ -1262,9 +1306,14 @@
       <!-- ADMIN EDIT -->
       <el-collapse-item name="8" v-if="advanced">
         <template #title>
-          <el-divider style="max-width:50%">
-            <h4> <g-icon iconSize="32px" iconName="lockedBook" /> Admin Edit </h4>
-          </el-divider>
+          <el-divider style="max-width:75%"> <h4>
+            <el-col :xs="24" :span="0">
+              <g-icon iconSize="26px" iconName="lockedBook" style="margin:0" /> Admin Edit
+            </el-col>
+            <el-col :xs="0" :sm="24">
+              <g-icon iconSize="32px" iconName="lockedBook" /> Admin Edit
+            </el-col>
+          </h4> </el-divider>
         </template>
 
         <el-row :gutter="10" align="middle">
@@ -1749,82 +1798,89 @@ export default {
       console.log(response);
       this.character = response.character;
       if (!this.character.user) { this.character.user = {} }
-      // setup abil ID
-      this.character.abilities.forEach(abil => {
-        if (this.abilID < abil.extras.id) {
-          this.abilID = abil.extras.id;
-        }
-      });
 
-      // Restructure classes
-      for (let [cName, cClass] of Object.entries(response.character.classes)) {
-        if (!cClass.bab) {
-          let newClass = {
-            "levels": cClass.levels,
-            "abilities": [],
-            "bab": this.classes[cName].bab,
-            "hd": this.classes[cName].hd,
-            "saves": this.classes[cName].saves
-          };
-          if (this.classes[cName].magic) {
-            newClass.magic = {
-              "style": this.classes[cName].magic.style,
-              "castingAtr": this.classes[cName].magic.castingAtr,
-              "casterLevel": cClass.levels,
-              "spellsPerDay": this.classes[cName].magic.spellsPerDay[cClass.levels],
+      if (Array.isArray(response.character.abilities)) {
+        // setup abil ID
+        this.character.abilities.forEach(abil => {
+          if (this.abilID < abil.extras.id) {
+            this.abilID = abil.extras.id;
+          }
+        });
 
-              "useGaldur": response.useGaldur,
-              "galdur": {
-                "openTotal": 0,
-                "openRemaining": 0,
-                "reserveTotal": 0,
-                "reserveRemaining": 0
-              }
+      } else {
+        console.warn('Restructuring Old Character');
+        // Restructure classes
+        for (let [cName, cClass] of Object.entries(response.character.classes)) {
+          if (!cClass.bab) {
+            let newClass = {
+              "levels": cClass.levels,
+              "abilities": [],
+              "bab": this.classes[cName].bab,
+              "hd": this.classes[cName].hd,
+              "saves": this.classes[cName].saves
             };
+            if (this.classes[cName].magic) {
+              newClass.magic = {
+                "style": this.classes[cName].magic.style,
+                "castingAtr": this.classes[cName].magic.castingAtr,
+                "casterLevel": cClass.levels,
+                "spellsPerDay": this.classes[cName].magic.spellsPerDay[cClass.levels],
 
-            if (this.classes[cName].magic.style.includes("Prepared")) {
-              newClass.magic.preparedSpells = [];
-              if (response.preparedSpells) {
-                newClass.magic.preparedSpells = response.preparedSpells;
+                "useGaldur": response.useGaldur,
+                "galdur": {
+                  "openTotal": 0,
+                  "openRemaining": 0,
+                  "reserveTotal": 0,
+                  "reserveRemaining": 0
+                }
+              };
+
+              if (this.classes[cName].magic.style.includes("Prepared")) {
+                newClass.magic.preparedSpells = [];
+                if (response.preparedSpells) {
+                  newClass.magic.preparedSpells = response.preparedSpells;
+                } else {
+                  this.classes[cName].magic.spellsPerDay[cClass.levels].forEach((spellSlots, lvl) => {
+                    for (let i = 0; i < spellSlots; i++) {
+                      newClass.magic.preparedSpells[lvl] = "";
+                    }
+                  });
+                }
               } else {
-                this.classes[cName].magic.spellsPerDay[cClass.levels].forEach((spellSlots, lvl) => {
-                  for (let i = 0; i < spellSlots; i++) {
-                    newClass.magic.preparedSpells[lvl] = "";
-                  }
-                });
+                newClass.magic.remainingCasts = response.remainingCasts;
               }
-            } else {
-              newClass.magic.remainingCasts = response.remainingCasts;
+            }
+            this.character.classes[cName] = newClass;
+          } // end if response.class ! contain bab
+        }
+        // Restructure abilities
+        if (!Array.isArray(response.character.abilities)) {
+          let abils = [];
+          for (let [name, abil] of Object.entries(response.character.abilities)) {
+            this.abilID++;
+            if (!abil.location) {
+              let newAbil = {
+                name: name,
+                description: abil.description ? abil.description : "",
+                shortText: abil.benefit ? abil.benefit.text : "",
+                location: abil.benefit ? abil.benefit.target : "",
+                trigger: abil.trigger ? abil.trigger : "",
+                bonuses: abil.bonuses ? abil.bonuses : {},
+                extras: {
+                  active: abil.extras.active ? abil.extras.active : "",
+                  showMain: abil.extras.showMain ? abil.extras.showMain : "",
+                  category: abil.extras.category ? abil.extras.category : "Other",
+                  id: this.abilID,
+                  notes: []
+                }
+              };
+              abils.push(newAbil);
             }
           }
-          this.character.classes[cName] = newClass;
-        } // end if response.class ! contain bab
-      }
-      // Restructure abilities
-      if (!Array.isArray(response.character.abilities)) {
-        let abils = [];
-        for (let [name, abil] of Object.entries(response.character.abilities)) {
-          this.abilID++;
-          if (!abil.location) {
-            let newAbil = {
-              name: name,
-              description: abil.description ? abil.description : "",
-              shortText: abil.benefit ? abil.benefit.text : "",
-              location: abil.benefit ? abil.benefit.target : "",
-              trigger: abil.trigger ? abil.trigger : "",
-              bonuses: abil.bonuses ? abil.bonuses : {},
-              extras: {
-                active: abil.extras.active ? abil.extras.active : "",
-                showMain: abil.extras.showMain ? abil.extras.showMain : "",
-                category: abil.extras.category ? abil.extras.category : "Other",
-                id: this.abilID,
-                notes: []
-              }
-            };
-            abils.push(newAbil);
-          }
+          this.character.abilities = abils;
         }
-        this.character.abilities = abils;
+
+
       }
 
       this.loading = false;
@@ -2332,6 +2388,7 @@ export default {
 <style lang="css" scoped>
 h4 { margin: 0; }
 .el-row { margin-bottom: 10px; }
+.basics .el-col { margin-bottom: 10px; }
 .el-row label { margin: 0; }
 
 .stat-controls > :not(:last-child) { margin-bottom: 20px; }

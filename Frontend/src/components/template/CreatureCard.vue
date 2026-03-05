@@ -2296,7 +2296,7 @@ export default {
         if (tString.includes(debug)) { console.log(name, bonus); }
         if (tString.includes(debug)) { console.log(typedBonuses); }
 
-        if (bonus.targets.includes(tString)) {
+        if (bonus.targets && bonus.targets.includes(tString)) {
           if (bonus.value > 0) {
             prefix = "+";
             if (this.rules.bonuses[bonus.type] && !this.rules.bonuses[bonus.type].stacks) {
