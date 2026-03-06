@@ -486,6 +486,7 @@ export default {
     \***************************/
     loadCreature(monster) {
       // console.log('CSV', monster);
+      let abilID = 0;
       /***************************\
       *                           *
       *          BASICS           *
@@ -545,7 +546,7 @@ export default {
       *                           *
       \***************************/
       let innate = (monster.Type == 'humanoid') ? monster.Race : monster.Type;
-      if (creature.classes) {
+      if (creature.classes) { // just used to be able to condense section
         // Prep Racial HD
         let racialHD = 0;
         let strings = monster.HD.split(";");
@@ -558,6 +559,7 @@ export default {
             racialHD += parseInt(str[0]);
           }
         }
+        creature.classes.total = { levels: 0, abilites: [] };
         creature.classes[innate] = {
           levels: 0,
           magic: {
@@ -643,12 +645,13 @@ export default {
 
         // ABILITIES <- Creature Type Traits
         for (let [name, trait] of Object.entries(this.rules.creature_types[monster.Type.toLowerCase()].traits)) {
+          abilID++;
           trait.name = name;
           trait.extras = {
-            showMain: false,
+            id: abilID,
             active: true,
             category: "Race",
-            source: { class: "", level: 0 },
+            showMain: false,
             notes: []
           }
           creature.abilities.push(trait);
@@ -656,12 +659,13 @@ export default {
         // ABILITIES <- Racial Traits
         if (Object.keys(this.races).includes(monster.Race)) {
           for (let [name, trait] of Object.entries(this.races[monster.Race].traits)) {
+            abilID++;
             trait.name = name;
             trait.extras = {
-              showMain: false,
+              id: abilID,
               active: true,
               category: "Race",
-              source: { class: "", level: 0 },
+              showMain: false,
               notes: []
             }
             creature.abilities.push(trait);
@@ -675,6 +679,13 @@ export default {
           type.hd = this.rules.creature_types[monster.Type].hd;
           type.saves = this.rules.creature_types[monster.Type].saves;
           type.magic.casterLevel = racialHD;
+        }
+
+        // Get total levels
+        for (let [cName, cClass] of Object.entries(creature.classes)) {
+          if (cName != 'total') {
+            creature.classes.total.levels += cClass.levels;
+          }
         }
       }
 
@@ -828,6 +839,7 @@ export default {
         // Feats
         if (monster.Feats) {
           for (let name of monster.Feats.split(',')) {
+            abilID++;
             let isBonus, feat = {
               description: "",
               shortText: "",
@@ -835,10 +847,10 @@ export default {
               trigger: "Continuous",
               bonuses: {},
               extras: {
-                showMain: false,
+                id: abilID,
                 active: false,
                 category: "Feat",
-                source: { class: "", level: 0 },
+                showMain: false,
                 notes: []
               }
             };
@@ -853,10 +865,10 @@ export default {
             if (this.feats[name]) {
               feat = this.feats[name];
               feat.extras = {
-                showMain: (this.feats[name].trigger == "Continuous") ? false : true,
+                id: abilID,
                 active: (this.feats[name].trigger == "Continuous") ? true : false,
                 category: isBonus ? "Class" : "Feat",
-                source: { class: "", level: 0 },
+                showMain: (this.feats[name].trigger == "Continuous") ? false : true,
                 notes: []
               };
             }
@@ -875,6 +887,7 @@ export default {
           if (item.value["AC Bonus"]) { tempAC -= item.value["AC Bonus"]; }
         }
         if (tempAC > 0) {
+          abilID++;
           creature.abilities.push({
             name: "Natural Armor",
             description: "This creature is naturally tough, granting additional armor.",
@@ -885,10 +898,10 @@ export default {
               "Natural Armor": { value: tempAC, type: "Natural Armor", targets: this.rules.bonuses["Natural Armor"].targets }
             },
             extras: {
-              showMain: false,
+              id: abilID,
               active: true,
               category: "Race",
-              source: { class: "Innate", level: 0 },
+              showMain: false,
               notes: []
             }
           });
@@ -896,6 +909,7 @@ export default {
         // Special Qualities
         if (monster.SQ) {
           for (let abil of monster.SQ.split(',')) {
+            abilID++;
             creature.abilities.push({
               name: abil.trim(),
               description: "",
@@ -904,10 +918,10 @@ export default {
               trigger: "Standard",
               bonuses: {},
               extras: {
-                showMain: false,
+                id: abilID,
                 active: false,
                 category: "Trait",
-                source: { class: "Innate", level: 0 },
+                showMain: false,
                 notes: []
               }
             });

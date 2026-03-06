@@ -169,6 +169,10 @@ export default {
       - setup character/view to use CreatureCard
 
 
+    - set up encounters to have characters
+      + characters belongsTo encounters (many to many)
+
+    - Beastiary -> change ability.extras.source to abil.ext.id
 
     */
 
@@ -176,40 +180,26 @@ export default {
 
 
 
-
-    let toon = {
+    let combined = {
       // primaryKey of id is auto made
       // belongsTo ( user )
-      // belongsTo ( campaign )
-      id: 4,
-      name: "Tarka",
+      // manyToMany ( campaign, encounter )
+      name: "Tzirzhalir",
       basics: {
-        cr: 9,
-        size: "small",
-        type: "humanoid",
-        subtypes: [ "Reptilian" ],
-        race: "Kobold",
+        cr: 20,
+        size: "colossal",
+        type: "undead",
+        subtypes: [ "Behemoth" ],
+        race: null, // or String
         speed: {
-          base:     { total: 30, sources: [ `+Kobold Racial Base` ] },
+          base:     { total: 0, sources: [] },
           swim:     { total: 0, sources: [] },
           climb:    { total: 0, sources: [] },
           fly:      { total: 0, sources: [] },
           burrow:   { total: 0, sources: [] }
         },
-        alignment: "LE",
-        appearance: {
-          age: "18",
-          gender: "female",
-          height: `2'8"`,
-          weight: "24lbs."
-        },
-        environment: "Urban",
-        backstory: "When I was, a young boy...",
-        diety: "Tiamat",
-        favoredClass: {
-          name: "witch",
-          bonus: "+1 Galdur per Level"
-        }
+        alignment: "NE",
+        environment: "Any",
       },
       notes: "",
       attributes: {
@@ -224,70 +214,69 @@ export default {
         damage: 0,
         nonlethal: 0
       },
-      classes: [
-        {
-          // tracks innate magic, feats, abil increases, total level
-          name: "Kobold", // Race / Type
-          levels: 0,
+      classes:{
+        total: {
+          // tracks innate magic, level feats, abil increases
+          levels: 17,
+          abilites: [
+            [], [ `ABILITY_ID` ], [], [ "Feat (REPLACE)" ], [ "Ability Score Increase" ]
+          ],
+        },
+        undead: {
+          levels: 17,
+          hd: 12,
+          bab: 1,
+          saves: {
+            fort: { mult: 0.5, bonus: 0 },
+            ref: { mult: 0.5, bonus: 0 },
+            will: { mult: 0.5, bonus: 0 }
+          },
+          abilites: [],
           magic: {
-            // Innate is only Spontaneous
             style: "Spontaneous Arcane",
             castingAtr: "Cha",
-            // Spontaneous Casters
-            remainingCasts: [ ],
-            spellsPerDay: [ ],
-          },
-          abilities: [
-            [ "", "" ]
-          ]
-        },
-        {
-          witch: {
-            levels: 9,
-            // Galdur Casters
-            useGaldur: true,
-            openRemaining: 22,
-            openTotal: 22,
-            reserveRemaining: 22,
-            reserveTotal: 22,
-            // Spontaneous Casters
-            remainingCasts: [ 1, 4, 4, 3, 2, 1 ],
-            spellsPerDay: [ 4, 4, 4, 3, 2, 1 ],
-            // Prepared Casters
-            preparedSpells: [
-              0: [ [], [], [], [] ],
-              1: [ [], [], [], [] ],
-              2: [ [], [], [], [] ],
-              3: [ [], [], [] ],
-              4: [ [], [] ],
-              5: [ [] ],
-            ],
+            casterLevel: 17,
+            spellsPerDay: [],
+            remainingCasts: []
           }
+        },
+        barbarian: {
+          levels: 0,
+          hd: 12,
+          bab: 1,
+          saves: {
+            fort: { mult: 0.5, bonus: 0 },
+            ref: { mult: 0.5, bonus: 0 },
+            will: { mult: 0.5, bonus: 0 }
+          },
+          abilites: []
         }
-      ],
-      abilities: [
+      },
+      abilites: [
         {
-          name: "Armor",
-          description: "Kobolds' naturally scaly skin grants them a +1 natural armor bonus.",
+          name: "Dodge",
+          description: "+1 dodge bonus to AC",
           shortText: "",
           location: "",
           trigger: "Continuous",
           bonuses: {
-            "Armor 0": { value: 1, type: "Natural Armor", targets: [ "flatAC", "totalAC" ] }
+            "Dodge 0": {
+              type: "Dodge",
+              value: 1,
+              targets: [ "touchAC", "totalAC" ]
+            }
           },
           extras: {
-            showMain: false,
+            id: 1,
             active: true,
-            category: "Race",
+            category: "Other",
+            showMain: "",
             notes: []
           }
-        },
-        { Dodge: {…} },
-        { Cackle: {…} },
+        }
       ],
-      conditions: [ {…}, {…}, {…} ],
-      actions: { // renamed from actions
-        "Bite": {
+      actions: {
+        Bite: {
           Damage: { "fine": "1", "diminuitive": "1d2", "tiny": "1d3", "small": "1d4", "medium": "1d6", "large": "2d8", "huge": "2d6", "gargantuan": "2d8", "colossal": "4d6" },
           Critical: "20/x2",
           Range: 0,
@@ -295,1157 +284,88 @@ export default {
           Proficiency: "Natural",
           Category: "Primary",
           Extras: {
-            notes: "plus poison",
-            // naturalAtk: true
+            notes: "plus poison"
           },
           style: "Melee" // used to sort [ Melee, Range, Special ]
-        },
-        "Electrical Jolt": {
-          Damage: { "fine": "0", "diminuitive": "1", "tiny": "1d2", "small": "1d3", "medium": "1d4", "large": "4d6", "huge": "1d8", "gargantuan": "2d6", "colossal": "2d8" },
-          Critical: "20/x2",
-          Range: 0,
-          "Damage Type": [ "Electricity", ],
-
-          Proficiency: "Natural",
-          Category: "Secondary",
-          Extras: {},
-          style: "Ranged"
         }
       },
-      ​
-      resources: {
-        "Rage": {
-          color: "#CCC", // New
-          left: 1,
-          total: 1,
-          units: "rounds",
-          notes: "Notes"
-        }
-      },
-
-      skills: { Acrobatics: { ranks: 0, class: false, extras: { notes: "" } }, Heal: {}, Lore: {} },
-      coins: { cp: 0, sp: 0, gp: 0, pp: 0 },
-      inventory: [ {}, {}, {} ],
-
-      spells: {
-        innate: [],
-        witch: […]
-      },
-
-
-      settings: {
-        isNPC: true,
-        heroPoints: 0,
-        cardTab: "Main",
-        mainSections: [ "defense", "actions", "resources" ],
-        expandInventory: [ 'Equipped', 'Armor', 'Weapons', 'Hands', 'Back', 'Items' ],
-      },
-
-
-
-
-      userId: 2,
-
-      // Loaded with character
-      user: {
-        id: 2,
-        username: "Xengalj",
-        usermeta: Object { hero: 1, darkmode: true, faveColor: "#1a8d8d" }
-      }
-    };
-
-    let dragon = {
-      "name": "Mature Adult Green Dragon",
-      "basics": {
-        "cr": 13,
-        "size": "huge",
-        "type": "dragon",
-        "subtypes": [ "air" ],
-        "race": null,
-        "speed": {
-          "base": { "total": 40, "sources": [ "+40 Racial Base" ] },
-          "swim": { "total": 40, "sources": [ "+40 Racial Base" ] },
-          "climb": { "total": 0, "sources": [] },
-          "fly": { "total": 200, "sources": [ "+200 Racial Base" ] },
-          "burrow": { "total": 0, "sources": [] }
-        },
-        "alignment": "LE",
-        "environment": "temperate forests"
-      },
-      "notes": "test",
-      "health": { "damage": 0, "nonlethal": 0 },
-      "actions": {
-        "Bite": {
-          "Damage": {
-            "fine": "1",
-            "diminuitive": "1d2",
-            "tiny": "1d3",
-            "small": "1d4",
-            "medium": "1d6",
-            "large": "1d8",
-            "huge": "2d8",
-            "gargantuan": "2d8",
-            "colossal": "4d6"
-          },
-          "Critical": "19/x2",
-          "Range": 0,
-          "Damage Type": [
-            "Bludgeoning",
-            "Piercing",
-            "Slashing"
-          ],
-          "Proficiency": "Natural",
-          "Category": "Primary",
-          "Extras": { "naturalAtk": true },
-          "style": "Melee"
-        },
-        "Claw": {
-          "Damage": {
-            "fine": "0",
-            "diminuitive": "1",
-            "tiny": "1d2",
-            "small": "1d3",
-            "medium": "1d4",
-            "large": "1d6",
-            "huge": "2d6",
-            "gargantuan": "2d6",
-            "colossal": "2d8"
-          },
-          "Critical": "19/x2",
-          "Range": 0,
-          "Damage Type": [ "Bludgeoning", "Slashing" ],
-          "Proficiency": "Natural",
-          "Category": "Primary",
-          "Extras": { "AtkNum": "2", "naturalAtk": true },
-          "style": "Melee"
-        },
-        "Wing": {
-          "Damage": {
-            "fine": "0",
-            "diminuitive": "1",
-            "tiny": "1d2",
-            "small": "1d3",
-            "medium": "1d4",
-            "large": "1d6",
-            "huge": "1d8",
-            "gargantuan": "2d6",
-            "colossal": "2d8"
-          },
-          "Critical": "20/x2",
-          "Range": 0,
-          "Damage Type": [ "Bludgeoning" ],
-          "Proficiency": "Natural",
-          "Category": "Secondary",
-          "Extras": { "AtkNum": "2", "naturalAtk": true },
-          "style": "Melee"
-        },
-        "Tail Slap": {
-          "Damage": {
-            "fine": "1",
-            "diminuitive": "1d2",
-            "tiny": "1d3",
-            "small": "1d4",
-            "medium": "1d6",
-            "large": "1d8",
-            "huge": "2d6",
-            "gargantuan": "2d8",
-            "colossal": "4d6"
-          },
-          "Critical": "20/x2",
-          "Range": 0,
-          "Damage Type": [ "Bludgeoning" ],
-          "Proficiency": "Natural",
-          "Category": "Secondary",
-          "Extras": { "naturalAtk": true },
-          "style": "Melee"
-        }
-      },
-      "classes": {
-        "total": {
-          "levels": 17,
-          "abilities": [ [],
-            [ "Feat (REPLACE)" ], [], [ "Feat (REPLACE)" ]
-          ]
-        },
-        "dragon": {
-          "levels": 17,
-          "magic": {
-            "style": "Spontaneous Arcane",
-            "castingAtr": "Cha",
-            "casterLevel": 17,
-            "spellsPerDay": [],
-            "remainingCasts": []
-          },
-          "abilites": [],
-          "bab": 1, "hd": 12,
-          "saves": {
-            "fort": { "mult": 0.5, "bonus": 2 },
-            "ref": { "mult": 0.5, "bonus": 2 },
-            "will": { "mult": 0.5, "bonus": 2 }
-          }
-        }
-      },
-      "abilities": [
+      conditions: [
         {
-          "description": "Dragons can see in the dark up to 60 feet.",
-          "shortText": "Darkvision 60 ft.",
-          "location": "senses",
-          "trigger": "Continuous",
-          "bonuses": {},
-          "name": "Darkvision",
-          "extras": {
-            "showMain": true,
-            "active": true,
-            "category": "Race",
-            "source": {
-              "class": "",
-              "level": 0
-            },
-            "notes": []
-          }
-        },
-        {
-          "description": "Dragons can see color in dim light.",
-          "shortText": "Low-Light Vision",
-          "location": "senses",
-          "trigger": "Continuous",
-          "bonuses": {},
-          "name": "Low-light Vision",
-          "extras": {
-            "showMain": true,
-            "active": true,
-            "category": "Race",
-            "source": {
-              "class": "",
-              "level": 0
-            },
-            "notes": []
-          }
-        },
-        {
-          "description": "Dragons are immune to magical sleep and paralysis.",
-          "shortText": "acid, paralysis, sleep",
-          "location": "immunities",
-          "trigger": "Continuous",
-          "bonuses": {},
-          "name": "Dragon Immunities",
-          "extras": {
-            "showMain": true,
-            "active": true,
-            "category": "Race",
-            "source": {
-              "class": "",
-              "level": 0
-            },
-            "notes": []
-          }
-        },
-        {
-          "description": "Bonus to Perception and Sense Motive",
-          "shortText": "",
-          "location": "self",
-          "trigger": "Continuous",
-          "bonuses": {},
-          "extras": {
-            "showMain": false,
-            "active": true,
-            "category": "Feat",
-            "source": {
-              "class": "",
-              "level": 0
-            },
-            "notes": []
-          },
-          "name": "Alertness"
-        },
-        {
-          "description": "As a standard action, you can make a single attack at your full base attack bonus against a foe within reach. If you hit, you deal damage normally and can make an additional attack (using your full base attack bonus) against a foe that is adjacent to the first and also within reach. You can only make one additional attack per round with this feat. When you use this feat, you take a –2 penalty to your Armor Class until your next turn.",
-          "shortText": "You can strike two adjacent foes with a single swing",
-          "location": "special",
-          "trigger": "Standard",
-          "bonuses": {
-            "Cleave": {
-              "value": -2,
-              "type": "Feat",
-              "targets": [
-              "totalAC",
-              "touchAC",
-              "flatAC"
-              ]
-            }
-          },
-          "extras": {
-            "showMain": true,
-            "active": false,
-            "category": "Feat",
-            "source": {
-              "class": "",
-              "level": 0
-            },
-            "notes": []
-          },
-          "name": "Cleave"
-        },
-        {
-          "description": "Can move, attack, and finish moving",
-          "shortText": "",
-          "location": "self",
-          "trigger": "Continuous",
-          "bonuses": {},
-          "extras": {
-            "showMain": false,
-            "active": true,
-            "category": "Feat",
-            "source": {
-              "class": "",
-              "level": 0
-            },
-            "notes": []
-          },
-          "name": "Flyby Attack"
-        },
-        {
-          "description": "",
-          "shortText": "",
-          "location": "self",
-          "trigger": "Continuous",
-          "bonuses": {},
-          "extras": {
-            "showMain": false,
-            "active": false,
-            "category": "Feat",
-            "source": {
-              "class": "",
-              "level": 0
-            },
-            "notes": []
-          },
-          "name": "Great Cleave"
-        },
-        {
-          "description": "",
-          "shortText": "",
-          "location": "self",
-          "trigger": "Continuous",
-          "bonuses": {},
-          "extras": {
-            "showMain": false,
-            "active": true,
-            "category": "Feat",
-            "source": {
-              "class": "",
-              "level": 0
-            },
-            "notes": []
-          },
-          "name": "Improved Critical (Bite)"
-        },
-        {
-          "description": "",
-          "shortText": "",
-          "location": "self",
-          "trigger": "Continuous",
-          "bonuses": {},
-          "extras": {
-            "showMain": false,
-            "active": true,
-            "category": "Feat",
-            "source": {
-              "class": "",
-              "level": 0
-            },
-            "notes": []
-          },
-          "name": "Improved Critical (Claws)"
-        },
-        {
-          "description": "+2 to will saves",
-          "shortText": "",
-          "location": "self",
-          "trigger": "Continuous",
-          "bonuses": {
-            "Iron Will 1": {
-              "value": 2,
-              "type": "Untyped",
-              "targets": [
-              "will"
-              ]
-            }
-          },
-          "extras": {
-            "showMain": false,
-            "active": true,
-            "category": "Feat",
-            "source": {
-              "class": "",
-              "level": 0
-            },
-            "notes": []
-          },
-          "name": "Iron Will"
-        },
-        {
-          "description": "Secondary attacks are made at only -2 BAB",
-          "shortText": "",
-          "location": "self",
-          "trigger": "Continuous",
-          "bonuses": {
-            "Multiattack 1": {
-              "value": 3,
-              "type": "Feat",
-              "targets": [
-              "WingAtkBonus",
-              "Tail SlapAtkBonus"
-              ]
-            }
-          },
-          "extras": {
-            "showMain": false,
-            "active": true,
-            "category": "Feat",
-            "source": {
-              "class": "",
-              "level": 0
-            },
-            "notes": []
-          },
-          "name": "Multiattack"
-        },
-        {
-          "description": "You can choose to take a –1 penalty on all melee attack rolls and combat maneuver checks to gain a +2 bonus on all melee damage rolls (Increases with higher BAB).",
-          "shortText": "You can take a -1 to hit for a +2 to damage.",
-          "location": "special",
-          "trigger": "Free",
-          "bonuses": {
-            "Power Attack +": {
-              "value": 2,
-              "type": "Feat",
-              "targets": [
-              "MeleeDmgBonus"
-              ]
-            },
-            "Power Attack -": {
-              "value": -1,
-              "type": "Feat",
-              "targets": [
-              "MeleeAtkBonus",
-              "cmb"
-              ]
-            }
-          },
-          "extras": {
-            "showMain": true,
-            "active": false,
-            "category": "Feat",
-            "source": {
-              "class": "",
-              "level": 0
-            },
-            "notes": []
-          },
-          "name": "Power Attack"
-        },
-        {
-          "name": "Natural Armor",
-          "description": "This creature is naturally tough, granting additional armor.",
-          "shortText": "",
-          "location": "self",
-          "trigger": "Continuous",
-          "bonuses": {
-            "Natural Armor": {
-              "value": 22,
-              "type": "Natural Armor",
-              "targets": [
-              "totalAC",
-              "flatAC"
-              ]
-            }
-          },
-          "extras": {
-            "showMain": false,
-            "active": true,
-            "category": "Race",
-            "source": {
-              "class": "Innate",
-              "level": 0
-            },
-            "notes": []
-          }
-        },
-        {
-          "name": "trackless step",
-          "description": "",
-          "shortText": "",
-          "location": "self",
-          "trigger": "Standard",
-          "bonuses": {},
-          "extras": {
-            "showMain": false,
-            "active": false,
-            "category": "Trait",
-            "source": {
-              "class": "Innate",
-              "level": 0
-            },
-            "notes": []
-          }
-        },
-        {
-          "name": "water breathing",
-          "description": "",
-          "shortText": "",
-          "location": "self",
-          "trigger": "Standard",
-          "bonuses": {},
-          "extras": {
-            "showMain": false,
-            "active": false,
-            "category": "Trait",
-            "source": {
-              "class": "Innate",
-              "level": 0
-            },
-            "notes": []
-          }
-        },
-        {
-          "name": "woodland stride",
-          "description": "",
-          "shortText": "",
-          "location": "self",
-          "trigger": "Standard",
-          "bonuses": {},
-          "extras": {
-            "showMain": false,
-            "active": false,
-            "category": "Trait",
-            "source": {
-              "class": "Innate",
-              "level": 0
-            },
-            "notes": []
-          }
-        },
-        {
-          "name": "Frightful Presence",
-          "description": "As a free action, the dragon can frighten all within 210 ft, giving the shaken condition for 5d6 rounds.",
-          "shortText": "210 ft, DC 21 Will -> Shaken (-2 atks, saves, skills, abils) [5d6 rounds]",
-          "location": "Self",
-          "trigger": "Free",
-          "bonuses": {},
-          "extras": {
-            "active": false,
-            "showMain": true,
-            "category": "Race",
-            "source": {
-              "class": "",
-              "level": 0
-            },
-            "notes": []
-          }
-        },
-        {
-          "name": "Damage Resistance",
-          "description": "DR 10/magic",
-          "shortText": "DR 10/magic",
-          "location": "specialDef",
-          "trigger": "Continuous",
-          "bonuses": {},
-          "extras": {
-            "active": true,
-            "showMain": true,
-            "category": "Race",
-            "source": {
-              "class": "",
-              "level": 0
-            },
-            "notes": []
-          }
-        },
-        {
-          "name": "Spell Resistance",
-          "description": "Dragons are resistant to spells, requiring a Caster Level check (DC 24)",
-          "shortText": "SR 24",
-          "location": "specialDef",
-          "trigger": "Continuous",
-          "bonuses": {},
-          "extras": {
-            "active": true,
-            "showMain": true,
-            "category": "Race",
-            "source": {
-              "class": "",
-              "level": 0
-            },
-            "notes": []
-          }
-        },
-        {
-          "name": "Draconic Might",
-          "description": "Dragons apply 1-1/2 x StrMod to their bite attacks",
-          "shortText": "",
-          "location": "Self",
-          "trigger": "Continuous",
-          "bonuses": {
-            "Draconic Might 2": {
-              "value": 4,
-              "type": "Untyped",
-              "targets": [
-              "BiteDmgBonus",
-              "Tail SlapDmgBonus"
-              ]
-            }
-          },
-          "extras": {
-            "active": true,
-            "showMain": false,
-            "category": "Race",
-            "source": {
-              "class": "",
-              "level": 0
-            },
-            "notes": []
-          }
-        }
-      ],
-      "conditions": [
-        {
-          "name": "Orb of Utter Chaos",
-          "description": "Bestows a neg level to lawful",
-          "bonuses": {
+          name: "Orb of Utter Chaos",
+          description: "Bestows a neg level to lawful",
+          bonuses: {
             "Orb of Utter Chaos 1": {
-              "value": -1,
-              "type": "Untyped",
-              "targets": [
-                "cmd",
-                "fort",
-                "ref",
-                "will",
-                "cmb",
-                "meleeAtkBonus",
-                "rangedAtkBonus",
-                "skills"
-              ]
+              value: -1,
+              type: "Untyped",
+              targets: [ "cmd", "fort", "ref", "will", "cmb", "meleeAtkBonus", "rangedAtkBonus", "skills" ]
             }
           },
-          "extras": { "notes": [] }
+          extras: { "notes": [] }
         }
-      ],
-      "coins": {
-        "cp": 0,
-        "sp": 0,
-        "gp": 0,
-        "pp": 0
-      },
-      "skills": {
-        "Acrobatics": {
-          "ranks": 0,
-          "class": false,
-          "extras": {},
-          "bonus": {
-            "total": "+0",
-            "sources": []
-          }
-        },
-        "Bluff": {
-          "ranks": 0,
-          "class": true,
-          "extras": {},
-          "bonus": {
-            "total": "+3",
-            "sources": [
-              "+3 ChaMod"
-            ]
-          }
-        },
-        "Climb": {
-          "ranks": 0,
-          "class": true,
-          "extras": {},
-          "bonus": {
-            "total": "+9",
-            "sources": [
-              "+9 StrMod"
-            ]
-          }
-        },
-        "Diplomacy": {
-          "ranks": 0,
-          "class": true,
-          "extras": {},
-          "bonus": {
-            "total": "+3",
-            "sources": [
-              "+3 ChaMod"
-            ]
-          }
-        },
-        "Disable Device": {
-          "ranks": 0,
-          "class": false,
-          "extras": {},
-          "bonus": {
-            "total": "+0",
-            "sources": []
-          }
-        },
-        "Disguise": {
-          "ranks": 0,
-          "class": false,
-          "extras": {},
-          "bonus": {
-            "total": "+3",
-            "sources": [
-            "+3 ChaMod"
-            ]
-          }
-        },
-        "Escape Artist": {
-          "ranks": 0,
-          "class": false,
-          "extras": {},
-          "bonus": {
-            "total": "+0",
-            "sources": []
-          }
-        },
-        "Fly": {
-          "ranks": 13,
-          "class": true,
-          "extras": {},
-          "bonus": {
-            "total": "+12",
-            "sources": [
-            "-4 Size",
-            "+13 Ranks",
-            "+3 Class Skill"
-            ]
-          }
-        },
-        "Heal": {
-          "ranks": 0,
-          "class": true,
-          "extras": {},
-          "bonus": {
-            "total": "+3",
-            "sources": [
-            "+3 WisMod"
-            ]
-          }
-        },
-        "Intimidate": {
-          "ranks": 0,
-          "class": true,
-          "extras": {},
-          "bonus": {
-            "total": "+3",
-            "sources": [
-            "+3 ChaMod"
-            ]
-          }
-        },
-        "Knowledge (arcana)": {
-          "ranks": 17,
-          "class": true,
-          "extras": {
-            "specialty": "arcana"
-          },
-          "bonus": {
-            "total": "+23",
-            "sources": [
-            "+17 Ranks",
-            "+3 Class Skill",
-            "+3 IntMod"
-            ]
-          }
-        },
-        "Knowledge (dungeoneering)": {
-          "ranks": 0,
-          "class": true,
-          "extras": {},
-          "bonus": {
-            "total": "+3",
-            "sources": [
-            "+3 IntMod"
-            ]
-          }
-        },
-        "Knowledge (local)": {
-          "ranks": 0,
-          "class": true,
-          "extras": {},
-          "bonus": {
-            "total": "+3",
-            "sources": [
-            "+3 IntMod"
-            ]
-          }
-        },
-        "Knowledge (nature)": {
-          "ranks": 17,
-          "class": true,
-          "extras": {
-            "specialty": "nature"
-          },
-          "bonus": {
-            "total": "+23",
-            "sources": [
-            "+17 Ranks",
-            "+3 Class Skill",
-            "+3 IntMod"
-            ]
-          }
-        },
-        "Knowledge (planes)": {
-          "ranks": 0,
-          "class": true,
-          "extras": {},
-          "bonus": {
-            "total": "+3",
-            "sources": [
-            "+3 IntMod"
-            ]
-          }
-        },
-        "Knowledge (religion)": {
-          "ranks": 0,
-          "class": true,
-          "extras": {},
-          "bonus": {
-            "total": "+3",
-            "sources": [
-            "+3 IntMod"
-            ]
-          }
-        },
-        "Perception": {
-          "ranks": 21,
-          "class": true,
-          "extras": {},
-          "bonus": {
-            "total": "+27",
-            "sources": [
-            "+21 Ranks",
-            "+3 Class Skill",
-            "+3 WisMod"
-            ]
-          }
-        },
-        "Ride": {
-          "ranks": 0,
-          "class": false,
-          "extras": {},
-          "bonus": {
-            "total": "+0",
-            "sources": []
-          }
-        },
-        "Sense Motive": {
-          "ranks": 0,
-          "class": true,
-          "extras": {},
-          "bonus": {
-            "total": "+3",
-            "sources": [
-            "+3 WisMod"
-            ]
-          }
-        },
-        "Spellcraft": {
-          "ranks": 17,
-          "class": true,
-          "extras": {},
-          "bonus": {
-            "total": "+23",
-            "sources": [
-            "+17 Ranks",
-            "+3 Class Skill",
-            "+3 IntMod"
-            ]
-          }
-        },
-        "Stealth": {
-          "ranks": 17,
-          "class": true,
-          "extras": {},
-          "bonus": {
-            "total": "+12",
-            "sources": [
-            "-8 Size",
-            "+17 Ranks",
-            "+3 Class Skill"
-            ]
-          }
-        },
-        "Survival": {
-          "ranks": 17,
-          "class": true,
-          "extras": {},
-          "bonus": {
-            "total": "+23",
-            "sources": [
-            "+17 Ranks",
-            "+3 Class Skill",
-            "+3 WisMod"
-            ]
-          }
-        },
-        "Swim": {
-          "ranks": 25,
-          "class": true,
-          "extras": {},
-          "bonus": {
-            "total": "+37",
-            "sources": [
-            "+25 Ranks",
-            "+3 Class Skill",
-            "+9 StrMod"
-            ]
-          }
-        },
-        "Use Magic Device": {
-          "ranks": 17,
-          "class": true,
-          "extras": {},
-          "bonus": {
-            "total": "+23",
-            "sources": [
-            "+17 Ranks",
-            "+3 Class Skill",
-            "+3 ChaMod"
-            ]
-          }
-        },
-        "Appraise": {
-          "ranks": 0,
-          "class": true,
-          "extras": {},
-          "bonus": {
-            "total": "+3",
-            "sources": [
-            "+3 IntMod"
-            ]
-          }
-        },
-        "Artistry": {
-          "ranks": 0,
-          "class": false,
-          "extras": {},
-          "bonus": {
-            "total": "+3",
-            "sources": [
-            "+3 IntMod"
-            ]
-          }
-        },
-        "Craft": {
-          "ranks": 0,
-          "class": true,
-          "extras": {},
-          "bonus": {
-            "total": "+3",
-            "sources": [
-            "+3 IntMod"
-            ]
-          }
-        },
-        "Handle Animal": {
-          "ranks": 0,
-          "class": false,
-          "extras": {},
-          "bonus": {
-            "total": "+3",
-            "sources": [
-            "+3 ChaMod"
-            ]
-          }
-        },
-        "Knowledge (engineering)": {
-          "ranks": 0,
-          "class": true,
-          "extras": {},
-          "bonus": {
-            "total": "+3",
-            "sources": [
-            "+3 IntMod"
-            ]
-          }
-        },
-        "Knowledge (geography)": {
-          "ranks": 0,
-          "class": true,
-          "extras": {},
-          "bonus": {
-            "total": "+3",
-            "sources": [
-            "+3 IntMod"
-            ]
-          }
-        },
-        "Knowledge (history)": {
-          "ranks": 0,
-          "class": true,
-          "extras": {},
-          "bonus": {
-            "total": "+3",
-            "sources": [
-            "+3 IntMod"
-            ]
-          }
-        },
-        "Knowledge (nobility)": {
-          "ranks": 0,
-          "class": true,
-          "extras": {},
-          "bonus": {
-            "total": "+3",
-            "sources": [
-            "+3 IntMod"
-            ]
-          }
-        },
-        "Linguistics": {
-          "ranks": 0,
-          "class": true,
-          "extras": {
-            "languages": [
-            "Common",
-            " Draconic",
-            " Elven",
-            " Sylvan"
-            ]
-          },
-          "bonus": {
-            "total": "+3",
-            "sources": [
-            "+3 IntMod"
-            ]
-          }
-        },
-        "Lore": {
-          "ranks": 0,
-          "class": false,
-          "extras": {},
-          "bonus": {
-            "total": "+3",
-            "sources": [
-            "+3 IntMod"
-            ]
-          }
-        },
-        "Perform": {
-          "ranks": 0,
-          "class": false,
-          "extras": {},
-          "bonus": {
-            "total": "+3",
-            "sources": [
-            "+3 ChaMod"
-            ]
-          }
-        },
-        "Profession": {
-          "ranks": 0,
-          "class": false,
-          "extras": {},
-          "bonus": {
-            "total": "+3",
-            "sources": [
-            "+3 WisMod"
-            ]
-          }
-        },
-        "Sleight of Hand": {
-          "ranks": 0,
-          "class": false,
-          "extras": {},
-          "bonus": {
-            "total": "+0",
-            "sources": []
-          }
-        }
-      },
-      "spells": {},
-      "settings": {
-        "isNPC": false,
-        "isMonster": true,
-        "cardTab": "Abilities",
-        "mainSections": [
-          "defense",
-          "actions"
         ],
-        "expandInventory": [
-          "Equipped",
-          "Armor",
-          "Weapons",
-          "Hands",
-          "Back",
-          "Items"
-        ]
-      },
-      "attributes": { "Str": { "base": 29 }, "Dex": { "base": 10 }, "Con": { "base": 21 }, "Int": { "base": 16 }, "Wis": { "base": 17 }, "Cha": { "base": 16 } },
-      "inventory": [
+        skills: {
+          Acrobatics: {
+            ranks: 0,
+            class: false,
+            extras: {}
+          }
+        },
+        coins: { cp: 0, sp: 0, gp: 0, pp: 0 },
+        inventory: [
         {
-          "label": "Magic Items",
-          "extras": {
-            "icon": "amulet"
-          },
-          "children": []
+          label: "Magic Items",
+          extras: { icon: "amulet" },
+          children: [] // holds neck, rings, etc
         },
         {
-          "label": "Equipped",
-          "extras": {
-            "icon": "equipment"
+          label: "Equipped",
+          extras: { icon: "equipment" },
+          children: [
+          {
+            label: "Armor",
+            extras: { icon: "armor", capacity: 1 },
+            children: []
           },
-          "children": [
+          {
+            label: "Weapons",
+            extras: { icon: "weapons" },
+            children: [
             {
-              "label": "Armor",
-              "extras": {
-                "icon": "armor",
-                "capacity": 1
-              },
-              "children": []
+              label: "Hands",
+              extras: { icon: "abilityPalm", capacity: 2 },
+              children: []
             },
             {
-              "label": "Weapons",
-              "extras": {
-                "icon": "weapons"
-              },
-              "children": [
-                {
-                  "label": "Hands",
-                  "extras": {
-                    "icon": "abilityPalm",
-                    "capacity": 2
-                  },
-                  "children": []
-                },
-                {
-                  "label": "Back",
-                  "extras": {
-                    "icon": "swordShield",
-                    "capacity": 2
-                  },
-                  "children": []
-                }
-              ]
+              label: "Back",
+              extras: { icon: "swordShield", capacity: 2 },
+              children: []
             }
+            ]
+          }
           ]
         },
         {
-          "label": "Items",
-          "extras": {
-            "icon": "inventory",
-            "capacity": 100
-          },
-          "children": []
+          label: "Items",
+          extras: { icon: "inventory", capacity: 100 },
+          children: []
         }
-        ]
+        ],
+        spells: {},
+        settings: {
+          isNPC: false,
+          isMonster: true,
+          cardTab: "Abilities",
+          mainSections: [ "defense", "actions" ],
+          expandInventory: [ "Equipped", "Armor", "Weapons", "Hands", "Back", "Items" ],
+
+          favoredClass: null, // or Object
+          appearance: null, // or Object
+          backstory: "",
+          diety: "",
+        }
       }
+
     };
-
-
-
   },
 };
 </script>
