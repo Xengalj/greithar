@@ -593,7 +593,7 @@
         "description": "Asuras can summon other asuras, usually one of the same or a few weaker ones.",
         "shortText": "",
         "location": "self",
-        "trigger": "Continuous",
+        "trigger": "Standard",
         "bonuses": {}
       },
       "Asura Skills": {
@@ -761,7 +761,6 @@
         "trigger": "Continuous",
         "bonuses": {}
       },
-
       "Ruinous (Su)": {
         "description": "A behemoths natural attacks overcome DR as epic and magic, and ignore 20 hardness for objects. As a swift action, on a hit, it can dispell 1 random spell effect (as if casting greater dispel magic, CL 20).",
         "shortText": "",
@@ -883,75 +882,241 @@
     },
     "Daemon": {
       "Realm": "Abaddon",
-      "Darkvision": {
-        "description": "XX can see in the dark up to 60 feet.",
-        "shortText": "Darkvision 60 ft.",
-        "location": "senses",
+      "Daemon Immunities": {
+        "description": "Daemons are immune to acid, death effects, disease, and poison.",
+        "shortText": "acid, death, disease, poison",
+        "location": "immunities",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Daemon Resistances": {
+        "description": "Daemons are resistant to cold, electricity, and fire.",
+        "shortText": "cold 10, electricity 10, fire 10",
+        "location": "resistances",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Summon (Sp)": {
+        "description": "Daemons share the ability to summon other daemons, usually one of the same or a few weaker ones.",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Standard",
+        "bonuses": {}
+      },
+      "Telepathy (Su)": {
+        "description": "Daemons can mentally communicate with other creatures that have a language, and may address multiple creatures at once (with difficulty).",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Daemon Languages": {
+        "description": "Daemons often speak Abyssal, Draconic, and Infernal.",
+        "shortText": "",
+        "location": "self",
         "trigger": "Continuous",
         "bonuses": {}
       }
     },
-    "Dark Folk": {
-      "Darkvision": {
-        "description": "XX can see in the dark up to 60 feet.",
-        "shortText": "Darkvision 60 ft.",
-        "location": "senses",
-        "trigger": "Continuous",
-        "bonuses": {}
-      }
-    },
-    "Deep One": {
-      "Darkvision": {
-        "description": "XX can see in the dark up to 60 feet.",
-        "shortText": "Darkvision 60 ft.",
-        "location": "senses",
-        "trigger": "Continuous",
-        "bonuses": {}
-      }
-    },
+    "Dark Folk": {},
+    "Deep One": {},
     "Demodand": {
       "Realm": "Abyss",
-      "Darkvision": {
-        "description": "XX can see in the dark up to 60 feet.",
-        "shortText": "Darkvision 60 ft.",
-        "location": "senses",
+      "Demodand Immunities": {
+        "description": "Demodands are immune to acid and poison.",
+        "shortText": "acid, poison",
+        "location": "immunities",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Daemon Resistances": {
+        "description": "Demodands are resistant to fire and cold.",
+        "shortText": "fire 10, cold 10",
+        "location": "resistances",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Summon (Sp)": {
+        "description": "Demodands share the ability to summon other demodands, usually one of the same or a few weaker ones.",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Standard",
+        "bonuses": {}
+      },
+      "Faith-Stealing Strike (Su)": {
+        "description": "When a demodand lands a melee attack on a divine caster, they must make a Will save or be unable to cast divine spells for 1 round. The caster is immune for 24 hours after saving. (DC is charisma based).",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Heretical Soul (Ex)": {
+        "description": "Demodands get a +4 bonus on saving throws vs divine spells, and they do not appear during scrying with divine magic.",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Demodand Languages": {
+        "description": "Demodands often speak Abyssal, Celestial, and Common.",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Demodand Weaponry": {
+        "description": "Weapons (including natural) wielded by demodands are treated as chaotic and evil for overcoming damage reduction.",
+        "shortText": "",
+        "location": "self",
         "trigger": "Continuous",
         "bonuses": {}
       }
     },
     "Demon": {
       "Realm": "Abyss",
-      "Darkvision": {
-        "description": "XX can see in the dark up to 60 feet.",
-        "shortText": "Darkvision 60 ft.",
-        "location": "senses",
+      "Demon Immunities": {
+        "description": "Demons are immune to electricity and poison.",
+        "shortText": "electricity, poison",
+        "location": "immunities",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Demon Resistances": {
+        "description": "Demons are resistant to acid, cold, and fire.",
+        "shortText": "acid 10, cold 10, fire 10",
+        "location": "resistances",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Summon (Sp)": {
+        "description": "Demons share the ability to summon other demons, usually one of the same or a few weaker ones.",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Standard",
+        "bonuses": {}
+      },
+      "Telepathy (Su)": {
+        "description": "Demons can mentally communicate with other creatures that have a language, and may address multiple creatures at once (with difficulty).",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Demon Languages": {
+        "description": "Demons often speak Abyssal, Celestial, and Draconic.",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Demon Weaponry": {
+        "description": "Weapons (including natural) wielded by demons are treated as chaotic and evil for overcoming damage reduction.",
+        "shortText": "",
+        "location": "self",
         "trigger": "Continuous",
         "bonuses": {}
       }
     },
     "Devil": {
       "Realm": "Hell",
-      "Darkvision": {
-        "description": "XX can see in the dark up to 60 feet.",
-        "shortText": "Darkvision 60 ft.",
-        "location": "senses",
+      "Devil Immunities": {
+        "description": "Devils are immune to fire and poison.",
+        "shortText": "fire, poison",
+        "location": "immunities",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Devil Resistances": {
+        "description": "Devils are resistant to acid and cold.",
+        "shortText": "acid 10, cold 10",
+        "location": "resistances",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "See in Darkness (Su)": {
+        "description": "Some devils can see perfectly in all darkness, even that made by spells.",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Summon (Sp)": {
+        "description": "Devils share the ability to summon other devils, usually one of the same or a few weaker ones.",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Standard",
+        "bonuses": {}
+      },
+      "Telepathy (Su)": {
+        "description": "Devils can mentally communicate with other creatures that have a language, and may address multiple creatures at once (with difficulty).",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Devil Languages": {
+        "description": "Devils often speak Celestial, Draconic, and Infernal.",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Devil Weaponry": {
+        "description": "Weapons (including natural) wielded by devils are treated as lawful and evil for overcoming damage reduction.",
+        "shortText": "",
+        "location": "self",
         "trigger": "Continuous",
         "bonuses": {}
       }
     },
     "Div": {
       "Realm": "Abaddon",
-      "Darkvision": {
-        "description": "XX can see in the dark up to 60 feet.",
-        "shortText": "Darkvision 60 ft.",
-        "location": "senses",
+      "Div Immunities": {
+        "description": "Divs are immune to fire and poison.",
+        "shortText": "fire, poison",
+        "location": "immunities",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Div Resistances": {
+        "description": "Divs are resistant to acid and electricity.",
+        "shortText": "acid 10, electricity 10",
+        "location": "resistances",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "See in Darkness (Su)": {
+        "description": "Some divss can see perfectly in all darkness, even that made by spells.",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Summon (Sp)": {
+        "description": "Divs share the ability to summon other divs, usually one of the same or a few weaker ones.",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Standard",
+        "bonuses": {}
+      },
+      "Telepathy (Su)": {
+        "description": "Divs can mentally communicate with other creatures that have a language, and may address multiple creatures at once (with difficulty).",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Div Languages": {
+        "description": "Divs often speak Abyssal, Celestial, and Infernal.",
+        "shortText": "",
+        "location": "self",
         "trigger": "Continuous",
         "bonuses": {}
       }
     },
     "Dwarf": {
       "Darkvision": {
-        "description": "XX can see in the dark up to 60 feet.",
+        "description": "Dwarves can see in the dark up to 60 feet.",
         "shortText": "Darkvision 60 ft.",
         "location": "senses",
         "trigger": "Continuous",
