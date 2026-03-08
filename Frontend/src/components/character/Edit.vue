@@ -36,7 +36,7 @@
               <template #prepend>Name</template>
             </el-input>
           </el-col>
-          <el-col :xs="24" :sm="4" :md="3" v-if="character.basics.race && ['male','female','agender'].includes(character.basics.appearance.gender)" class="center-horz">
+          <el-col :xs="24" :sm="4" :md="3" v-if="character.basics.race && ['male','female','agender'].includes(character.settings.appearance.gender)" class="center-horz">
             <el-button @click="genRandomName()" type="primary" size="small" aria-label="Create Random Name"> Random Name! </el-button>
           </el-col>
           <el-col :xs="24" :sm="0" :md="9"></el-col>
@@ -55,20 +55,22 @@
           <!-- Gender -->
           <el-col :xs="24" :sm="12" :md="6">
             <div v-if="advanced">
-              <el-input v-model="character.basics.appearance.gender" aria-label="Custom Gender Input" />
+              <el-input v-model="character.settings.appearance.gender" aria-label="Custom Gender Input">
+                <template #prepend>Gender</template>
+              </el-input>
             </div>
             <div v-else>
-              <el-select v-model="character.basics.appearance.gender" aria-label="Gender Select">
-                <el-option v-if="races[character.basics.race].male" label="Male" value="male" />
-                <el-option v-if="races[character.basics.race].female" label="Female" value="female" />
-                <el-option v-if="races[character.basics.race].agender" label="Agender" value="agender" />
+              <el-select v-model="character.settings.appearance.gender" aria-label="Gender Select">
+                <el-option v-if="races.races[character.basics.race].male" label="Male" value="male" />
+                <el-option v-if="races.races[character.basics.race].female" label="Female" value="female" />
+                <el-option v-if="races.races[character.basics.race].agender" label="Agender" value="agender" />
               </el-select>
             </div>
           </el-col>
           <!-- Race -->
           <el-col :xs="24" :sm="12" :md="6">
             <el-select v-model="character.basics.race" @change="onRaceChange()" placeholder="Choose Race" aria-label="Race Select">
-              <el-option v-for="(race, name) in races" :key="name" :label="name" :value="name" />
+              <el-option v-for="(race, name) in races.races" :key="name" :label="name" :value="name" />
             </el-select>
           </el-col>
           <!-- Creature Type -->
@@ -92,11 +94,11 @@
           <!-- Age -->
           <el-col :xs="24" :sm="12" :md="6">
             <el-tooltip placement="top" effect="light">
-              <el-input v-model="character.basics.appearance.age" :min="1" aria-label="Age Input">
+              <el-input v-model="character.settings.appearance.age" :min="1" aria-label="Age Input">
                 <template #prepend>Age</template>
               </el-input>
               <template #content v-if="character.basics.race">
-                <span v-for="(range, name) in races[character.basics.race].age" :key="name">
+                <span v-for="(range, name) in races.races[character.basics.race].age" :key="name">
                   {{ name }} : {{ range }} <br>
                 </span>
               </template>
@@ -105,12 +107,12 @@
           <!-- Height -->
           <el-col :xs="24" :sm="12" :md="6">
             <el-tooltip placement="right" effect="light">
-              <el-input v-model="character.basics.appearance.height" aria-label="Height Input">
+              <el-input v-model="character.settings.appearance.height" aria-label="Height Input">
                 <template #prepend>Height</template>
               </el-input>
               <template #content>
-                <span v-if="['male','female','agander'].includes(character.basics.appearance.gender)">
-                  {{ races[character.basics.race][character.basics.appearance.gender].height }}
+                <span v-if="['male','female','agander'].includes(character.settings.appearance.gender)">
+                  {{ races.races[character.basics.race][character.settings.appearance.gender].height }}
                 </span>
                 <span v-else>Choose within reason</span>
               </template>
@@ -119,13 +121,13 @@
           <!-- Weight -->
           <el-col :xs="24" :sm="12" :md="6">
             <el-tooltip placement="right" effect="light">
-              <el-input v-model="character.basics.appearance.weight" aria-label="Weight Input">
+              <el-input v-model="character.settings.appearance.weight" aria-label="Weight Input">
                 <template #prepend>Weight</template>
                 <template #suffix>lbs.</template>
               </el-input>
               <template #content>
-                <span v-if="['male','female','agander'].includes(character.basics.appearance.gender)">
-                  {{ races[character.basics.race][character.basics.appearance.gender].weight }}
+                <span v-if="['male','female','agander'].includes(character.settings.appearance.gender)">
+                  {{ races.races[character.basics.race][character.settings.appearance.gender].weight }}
                 </span>
                 <span v-else>Choose within reason</span>
               </template>
@@ -168,7 +170,7 @@
         <!-- Level Up -->
         <el-row :gutter="10" justify="center">
           <el-col :xs="12" :sm="6" :md="6">
-            <el-input v-model="character.basics.cr" aria-label="Character Level" disabled>
+            <el-input v-model="character.classes.total.levels" aria-label="Character Level" disabled>
               <template #prepend>Level</template>
             </el-input>
           </el-col>
@@ -360,19 +362,19 @@
                   <template #label> HD </template>
                   {{ cClass.levels }}d{{ cClass.hd }}
                 </el-descriptions-item>
-                <el-descriptions-item>
+                <el-descriptions-item v-if="cClass.hd">
                   <template #label> Fort </template>
                   +{{ Math.floor(cClass.levels * cClass.saves.fort.mult) + cClass.saves.fort.bonus }}
                 </el-descriptions-item>
-                <el-descriptions-item>
+                <el-descriptions-item v-if="cClass.hd">
                   <template #label> Reflex </template>
                   +{{ Math.floor(cClass.levels * cClass.saves.ref.mult) + cClass.saves.ref.bonus }}
                 </el-descriptions-item>
-                <el-descriptions-item>
+                <el-descriptions-item v-if="cClass.hd">
                   <template #label> Will </template>
                   +{{ Math.floor(cClass.levels * cClass.saves.will.mult) + cClass.saves.will.bonus }}
                 </el-descriptions-item>
-                <el-descriptions-item>
+                <el-descriptions-item v-if="cClass.hd">
                   <template #label> Ranks </template>
                   {{ cClass.levels * cClass.ranks }}
                 </el-descriptions-item>
@@ -380,24 +382,26 @@
             </el-col>
 
             <el-col :span="6">
-              <div v-if="classes[cName] && classes[cName].alignment.length < 9">
-                Allowed Alignments <br>
-                <el-tag size="small" effect="dark" type="primary" v-for="name in classes[cName].alignment" :key="name" style="margin-left:10px;">
-                  {{ name }}
-                </el-tag>
-              </div>
-              <div v-if="classes[cName]">
-                Class Skills <br>
-                <el-tag size="small" effect="dark" type="primary" v-for="name in classes[cName].skills" :key="name" style="margin-left:10px;">
-                  {{ name }}
-                </el-tag>
-              </div>
-              <div v-if="classes[cName]">
-                Proficiencies <br>
-                <el-tag size="small" effect="dark" type="primary" v-for="item in classes[cName].proficiency" :key="item" style="margin-left:10px;">
-                  {{ item }}
-                </el-tag>
-              </div>
+              <span v-if="cClass.hd">
+                <div v-if="classes[cName] && classes[cName].alignment.length < 9">
+                  Allowed Alignments <br>
+                  <el-tag size="small" effect="dark" type="primary" v-for="name in classes[cName].alignment" :key="name" style="margin-left:10px;">
+                    {{ name }}
+                  </el-tag>
+                </div>
+                <div v-if="classes[cName]">
+                  Class Skills <br>
+                  <el-tag size="small" effect="dark" type="primary" v-for="name in classes[cName].skills" :key="name" style="margin-left:10px;">
+                    {{ name }}
+                  </el-tag>
+                </div>
+                <div v-if="classes[cName]">
+                  Proficiencies <br>
+                  <el-tag size="small" effect="dark" type="primary" v-for="item in classes[cName].proficiency" :key="item" style="margin-left:10px;">
+                    {{ item }}
+                  </el-tag>
+                </div>
+              </span>
             </el-col>
 
             <el-col :span="14">
@@ -877,7 +881,7 @@
                   </span>
                   <span v-if="name == 'Linguistics'">
                     <el-select v-model="character.skills.Linguistics.extras.languages" multiple filterable allow-create default-first-option :reserve-keyword="false" aria-label="Languages Select">
-                      <el-option v-for="name in races[character.basics.race].languages" :key="name" :label="name" :value="name" >
+                      <el-option v-for="name in races.races[character.basics.race].languages" :key="name" :label="name" :value="name" >
                         {{ name }}
                       </el-option>
                     </el-select>
@@ -1265,10 +1269,10 @@
                   <span style="font-size:16px;">
                     <g-icon iconName="magicSwirl" iconSize="24"/> Favored Class Bonus
                   </span>
-                  <el-select v-model="character.basics.favoredClass.name" aria-label="Favored Class Select">
+                  <el-select v-model="character.settings.favoredClass.name" aria-label="Favored Class Select">
                     <el-option v-for="(cClass, cName) in classes" :key="cName" :label="cName" :value="cName" />
                   </el-select>
-                  <el-input v-model="character.basics.favoredClass.bonus" aria-label="Favored Class Bonus Input" />
+                  <el-input v-model="character.settings.favoredClass.bonus" aria-label="Favored Class Bonus Input" />
                 </el-row>
 
                 <!-- <el-row>
@@ -1548,7 +1552,7 @@
                       :max="(character.basics.cr+1) - (character.skills[name].ranks + newLevel.skills[name].backgroundRanks?newLevel.skills[name].backgroundRanks:0)"
                       size="small" aria-label="New Ranks">
                       <template #suffix>
-                        <g-icon v-if="newLevel.skills[name].newRanks>0" iconSize="24px" iconName="sparkle" iconColor="var(--el-color-warning)" />
+                        <g-icon v-if="newLevel.skills[name].newRanks>0" iconSize="20px" iconName="sparkle" iconColor="var(--el-color-warning)" />
                         </template>
                       </el-input-number>
                     </el-col>
@@ -1676,7 +1680,7 @@ export default {
       let bonuses = {};
       if (this.loading) { return bonuses; }
 
-      for (let [name, val] of Object.entries(this.races[this.character.basics.race].abilityMods)) {
+      for (let [name, val] of Object.entries(this.races.races[this.character.basics.race].abilityMods)) {
         bonuses[`Racial ${name} Bonus`] = {};
         bonuses[`Racial ${name} Bonus`].type = "Racial";
         bonuses[`Racial ${name} Bonus`].targets = [ name ];
@@ -1795,7 +1799,7 @@ export default {
 
     CharacterService.getCharacter(this.$route.params.id)
     .then((response) => {
-      console.log(response);
+      console.log("Character", response);
       this.character = response.character;
       if (!this.character.user) { this.character.user = {} }
 
@@ -1958,29 +1962,40 @@ export default {
     // Racial Methods
     onRaceChange() {
       let basics = this.character.basics;
-      basics.type = this.races[basics.race].type;
-      basics.speed.base.total = this.races[basics.race].speed;
-      basics.size = this.races[basics.race].size;
+      basics.type = this.races.races[basics.race].type;
+      basics.subtypes = this.races.races[basics.race].subtypes;
+      basics.speed.base.total = this.races.races[basics.race].speed;
+      basics.size = this.races.races[basics.race].size;
+
       // replace racial traits
-      for (const [name, trait] of Object.entries(this.character.abilities)) {
-        if (trait.extras.source == "Race") {
-          delete this.character.abilities[name];
+      for( let i = this.character.abilities.length-1; i>=0; i--) {
+        if (this.character.abilities[i].extras.category == "Race") {
+          this.character.abilities.splice(i, 1);
         }
       }
-      for (const [name, trait] of Object.entries(this.races[basics.race].traits)) {
-        this.character.abilities[name] = trait;
-        this.character.abilities[name].extras = { "active": true, "showMain": false, "source": "Race" };
+
+      for (const [name, trait] of Object.entries(this.races.races[basics.race].traits)) {
+        this.abilID++;
+        trait.name = name;
+        trait.extras = {
+          id: this.abilID,
+          active: true,
+          category: "Race",
+          showMain: false,
+          notes: []
+        }
+        this.character.abilities.push(trait);
       }
     },
     genRandomName() {
       let fNames, surnames, rand = 0;
 
-      fNames = this.races[this.character.basics.race][this.character.basics.appearance.gender].names;
+      fNames = this.races.races[this.character.basics.race][this.character.settings.appearance.gender].names;
       rand = Math.floor(Math.random() * fNames.length);
       this.character.name = fNames[rand];
 
-      if (this.races[this.character.basics.race].surnames) {
-        surnames = this.races[this.character.basics.race].surnames;
+      if (this.races.races[this.character.basics.race].surnames) {
+        surnames = this.races.races[this.character.basics.race].surnames;
         rand = Math.floor(Math.random() * Object.keys(surnames).length);
         this.character.name += " " + Object.keys(surnames)[rand];
       }
@@ -2010,8 +2025,28 @@ export default {
 
       // abilities
       this.abilID++;
+      let newAbil = {
+        'name': this.classes.total.special[this.character.classes.total.levels+1],
+        'description': "",
+        extras: {
+          id: this.abilID,
+          active: true,
+          category: "Feat",
+          showMain: false,
+          notes: []
+        }
+      };
+      lvl.abilities.push(newAbil);
+
       this.classes[lvl.class].special[lvl.level].forEach(abil => {
-        let newAbil = { 'name': abil, 'description': "", extras: { 'id': this.abilID } };
+        this.abilID++;
+        let newAbil = { 'name': abil, 'description': "", extras: {
+          id: this.abilID,
+          active: true,
+          category: "Class",
+          showMain: false,
+          notes: []
+        } };
         lvl.abilities.push(newAbil);
       });
 
@@ -2038,23 +2073,33 @@ export default {
       this.dialog = true;
     },
     addLevel() {
-      // New abilities
-      this.newLevel.abilities.forEach(newAbil => {
-        this.character.abilities[newAbil.name] = {
-          "trigger": "Continuous",
-          "description": newAbil.description,
-          "benefit": {},
-          "bonuses": {},
-          "extras": { "active": true, "showMain": false, "source": "Class" },
-        }
-      });
-
       // Class
       let source = this.classes[this.newLevel.class];
       // if toon doesn't have a level in the given class yet, make a new obj for it
-      if ( !this.character.classes[this.newLevel.class] ) { this.character.classes[this.newLevel.class] = {}; }
+      if ( !this.character.classes[this.newLevel.class] ) {
+        this.character.classes[this.newLevel.class] = {
+          levels: 0,
+          hd: source.hd,
+          bab: source.bab,
+          saves: source.saves,
+          abilities: [ [] ]
+        };
+      }
       let cClass = this.character.classes[this.newLevel.class];
       cClass.levels = this.newLevel.level;
+      cClass.abilities[this.newLevel.level] = [];
+
+      // New abilities
+      this.newLevel.abilities.forEach(newAbil => {
+        newAbil.shortText = "";
+        newAbil.location = "";
+        newAbil.trigger = "Continuous";
+        newAbil.bonuses = {};
+        this.character.abilities.push( newAbil );
+        if (newAbil.extras.category == "Class") {
+          cClass.abilities[this.newLevel.level].push( newAbil.extras.id );
+        }
+      });
 
       this.character.health.total += (this.newLevel.level == 1) ? source.hd : source.hd / 2;
 
@@ -2114,8 +2159,9 @@ export default {
         }
       }
 
-      this.character.basics.cr++;
+      this.character.classes.total.levels++;
       this.addingLevel = false;
+      this.dialog = false;
     },
 
     /***************************\
@@ -2403,4 +2449,8 @@ h4 { margin: 0; }
 .el-input-number span {
   font-size: 24px;
 }
+
+/* Skill Sparkle in levelup */
+.el-input__suffix svg { margin: 0; }
+
 </style>

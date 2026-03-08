@@ -9,7 +9,7 @@
         </el-input>
       </el-col>
       <el-col :xs="9" :span="3">
-        <el-button @click="openModal">
+        <el-button @click="openModal" type="success">
           <g-icon iconSize="24px" iconName="userAdd" style="margin-right: 5px;" /> Create
         </el-button>
       </el-col>

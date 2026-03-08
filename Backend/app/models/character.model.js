@@ -11,22 +11,18 @@ module.exports = (sequelize, Sequelize) => {
       defaultValue: {
         "cr": 0,
         "size": "medium",
+        "type": "humanoid",
+        "subtypes": [ "Harpy" ],
         "race": "Avaar",
-        "subtypes": [],
-        "alignment": "N",
-        "appearance": {
-          "age": 21,
-          "gender": "",
-          "height": "",
-          "weight": "",
+        "speed": {
+          "base":     { "total": 0, "sources": [] },
+          "swim":     { "total": 0, "sources": [] },
+          "climb":    { "total": 0, "sources": [] },
+          "fly":      { "total": 0, "sources": [] },
+          "burrow":   { "total": 0, "sources": [] }
         },
-        "environment": "Urban",
-        "backstory": "When I was, a young boy...",
-        "diety": "",
-        "favoredClass": {
-          "name": "",
-          "bonus": "+1 HP, Skill, or Galdur per Level"
-        }
+        "alignment": "N",
+        "environment": "Urban"
       }
     },
     notes: {
@@ -52,30 +48,35 @@ module.exports = (sequelize, Sequelize) => {
     },
     classes: {
       type: Sequelize.JSON,
-      defaultValue: [
-        {
-          // tracks innate magic, feats, abil increases, total level
-          name: "Innate",
+      defaultValue: {
+        total: {
+          // tracks innate magic, level feats, abil increases
           levels: 0,
-          bab: 0,
-          hd: 0,
-          saves: {
-            fort: { mult: 0, bonus: 0 },
-            ref: { mult: 0, bonus: 0 },
-            will: { mult: 0, bonus: 0 }
-          },
-          magic: {
-            castingAtr: "Cha",
-            style: "Spontaneous Arcane",
-
-            // Innate is only Spontaneous
-            // Spontaneous Casters
-            remainingCasts: [ ],
-            spellsPerDay: [ ],
-          },
-          abilites: []
+          abilites: [ [] ],
         }
-      ]
+        // {
+        //   // tracks innate magic, HD from creature type
+        //   name: "humanoid",
+        //   levels: 0,
+        //   bab: 0,
+        //   hd: 0,
+        //   saves: {
+        //     fort: { mult: 0, bonus: 0 },
+        //     ref: { mult: 0, bonus: 0 },
+        //     will: { mult: 0, bonus: 0 }
+        //   },
+        //   magic: {
+        //     castingAtr: "Cha",
+        //     style: "Spontaneous Arcane",
+        //
+        //     // Innate is only Spontaneous
+        //     // Spontaneous Casters
+        //     remainingCasts: [ ],
+        //     spellsPerDay: [ ],
+        //   },
+        //   abilites: []
+        // ]
+      }
     },
     abilities: {
       type: Sequelize.JSON,
@@ -189,10 +190,22 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.JSON,
       defaultValue: {
         "isNPC": false,
-        "heroPoints": 0,
+        "isMonster": false,
         "cardTab": "Main",
         "mainSections": [ "defense", "actions", "resources" ],
-        "expandInventory": ['Equipped', 'Armor', 'Weapons', 'Hands', 'Back', 'Items'],
+        "expandInventory": [ "Equipped", "Armor", "Weapons", "Hands", "Back", "Items" ],
+        "favoredClass": {
+          "name": "",
+          "bonus": "+1 HP, Skill, or Galdur per Level"
+        },
+        "appearance": {
+          "age": 21,
+          "gender": "",
+          "height": "",
+          "weight": "",
+        },
+        "backstory": "When I was, a young boy...",
+        "diety": ""
       }
     },
 

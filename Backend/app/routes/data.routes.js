@@ -5,7 +5,8 @@ const Papa = require('papaparse');
 const Rules =   require('../data/rules.json');
 const Classes =   require('../data/classes.json');
 const Feats =   require('../data/feats.json');
-const Races =   require('../data/races.json');
+// const Races =   require('../data/races.json');
+const Races =   require('../data/creatureTypes.json');
 const actionsAndConditions =   require('../data/actionsAndConditions.json');
 
 const Armor =     require('../data/equipment/armor.json');
@@ -152,7 +153,7 @@ module.exports = function(app) {
     }
   );
 
-  // return the races json in /data
+  // return the creatureTypes json in /data
   app.get(
     "/api/data/races",
     (req, res) => {

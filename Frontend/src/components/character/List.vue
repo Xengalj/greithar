@@ -13,7 +13,7 @@
         </el-input>
       </el-col>
       <el-col :offset="8" :span="3">
-        <el-button @click="createCharacter" plain>
+        <el-button @click="createCharacter" type="success" plain>
           <g-icon iconSize="24px" iconName="userAdd" style="margin-right: 5px;" /> New
         </el-button>
       </el-col>
@@ -35,8 +35,10 @@
           <el-tag effect="dark">
             <span v-if="Object.keys(scope.row.classes).length == 0"> Level 0 </span>
             <span v-for="(cClass, cName, index) in scope.row.classes" :key="cName">
-              {{ capFirsts(cName) }} {{ cClass.levels }}
-              <span v-if="index < Object.keys(scope.row.classes).length-1"> / </span>
+              <span v-if="cName != 'total' && cClass.levels > 0">
+                {{ capFirsts(cName) }} {{ cClass.levels }}
+                <span v-if="index < Object.keys(scope.row.classes).length-1"> / </span>
+              </span>
             </span>
           </el-tag>
         </template>

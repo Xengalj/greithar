@@ -120,8 +120,8 @@ class DataService {
     });
   }
 
-  // return the list of races
-  getRaces() {
+  // return the list of Creature Types, Subtypes, and Races
+  getCreatureTypes() {
     return axios.get(API_URL + 'races',
     { headers: authHeader() })
     .then(response => {

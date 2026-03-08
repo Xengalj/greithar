@@ -270,7 +270,7 @@ export default {
             id: 1,
             active: true,
             category: "Other",
-            showMain: "",
+            showMain: false,
             notes: []
           }
         }

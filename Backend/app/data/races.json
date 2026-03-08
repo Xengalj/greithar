@@ -39,12 +39,8 @@
 			"Str": -2
 		},
 		"size": "medium",
-		"type": {
-			"hd": 0,
-			"levels": 0,
-			"name": "Humanoid",
-			"subtypes": [ "Lamia" ]
-		},
+		"type": "Humanoid",
+		"subtypes": [ "Lamia" ],
 		"speed": 30,
 		"languages": ["Common", "Risko"],
 		"bonusLanguages": ["Draconic", "Dwarven", "Elvish", "Gnomish", "Ignan", "Kamago", "Undercommon"],
@@ -136,12 +132,8 @@
 			"Con": -2
 		},
 		"size": "medium",
-		"type": {
-			"hd": 0,
-			"levels": 0,
-			"name": "Humanoid",
-			"subtypes": [ "Harpy" ]
-		},
+		"type": "Humanoid",
+		"subtypes": [ "Harpy" ],
 		"speed": 30,
 		"languages": ["Common"],
 		"bonusLanguages": ["Auran", "Draconic", "Elvish", "Gnomish", "Goblin", "Kamago", "Matoran", "Necriil", "Risko", "Sylvan", "Ulumi"],
@@ -224,12 +216,8 @@
 			"Int": -2
 		},
 		"size": "medium",
-		"type": {
-			"hd": 0,
-			"levels": 0,
-			"name": "Humanoid",
-			"subtypes": [ "Catfolk" ]
-		},
+		"type": "Humanoid",
+		"subtypes": [ "Catfolk" ],
 		"speed": 30,
 		"languages": ["Common"],
 		"bonusLanguages": ["Dwarven", "Elvish", "Gnomish", "Kamago", "Risko", "Sylvan", "Ulumi", "Undercommon"],
@@ -325,12 +313,8 @@
 			"Wis": -2
 		},
 		"size": "medium",
-		"type": {
-			"hd": 0,
-			"levels": 0,
-			"name": "Humanoid",
-			"subtypes": [ "Faun" ]
-		},
+		"type": "Humanoid",
+		"subtypes": [ "Faun" ],
 		"speed": 30,
 		"languages": ["Common"],
 		"bonusLanguages": ["Draconic", "Dwarven", "Gnomish", "Goblin", "Kamago", "Matoran", "Risko", "Terran", "Undercommon"],
@@ -443,12 +427,8 @@
 			"Dex": -2
 		},
 		"size": "medium",
-		"type": {
-			"hd": 0,
-			"levels": 0,
-			"name": "Humanoid",
-			"subtypes": [ "Reptilian" ]
-		},
+		"type": "Humanoid",
+		"subtypes": [ "Reptilian" ],
 		"speed": 30,
 		"languages": ["Common", "Kamago"],
 		"bonusLanguages": ["Aquan", "Draconic", "Dwarven", "Elvish", "Gnomish", "Goblin", "Matoran", "Necriil", "Risko", "Undercommon"],
@@ -540,12 +520,8 @@
 			"Cha": -2
 		},
 		"size": "medium",
-		"type": {
-			"hd": 0,
-			"levels": 0,
-			"name": "Humanoid",
-			"subtypes": [ "Human" ]
-		},
+		"type": "Humanoid",
+		"subtypes": [ "Human" ],
 		"speed": 30,
 		"languages": ["Common"],
 		"bonusLanguages": ["Kamago", "Risko", "Ulumi", "Undercommon"],
@@ -630,12 +606,8 @@
 			"Cha": -2
 		},
 		"size": "large",
-		"type": {
-			"hd": 0,
-			"levels": 0,
-			"name": "Humanoid",
-			"subtypes": [ "Loxodon", "Giant" ]
-		},
+		"type": "Humanoid",
+		"subtypes": [ "Loxodon", "Giant" ],
 		"speed": 30,
 		"languages": ["Ulumi", "Common"],
 		"bonusLanguages": ["Draconic", "Dwarven", "Giantish", "Kamago", "Risko", "Undercommon"],
@@ -707,12 +679,8 @@
 			"Con": -4
 		},
 		"size": "small",
-		"type": {
-			"hd": 0,
-			"levels": 0,
-			"name": "Fey",
-			"subtypes": []
-		},
+		"type": "Fey",
+		"subtypes": [],
 		"speed": 20,
 		"languages": ["Common", "Perwhüa"],
 		"bonusLanguages": ["Draconic", "Elvish", "Gnomish", "Kamago", "Risko", "Sylvan"],
@@ -775,12 +743,8 @@
 			"Str": -4
 		},
 		"size": "large",
-		"type": {
-			"hd": 0,
-			"levels": 0,
-			"name": "Fey",
-			"subtypes": []
-		},
+		"type": "Fey",
+		"subtypes": [],
 		"speed": 40,
 		"languages": ["Common"],
 		"bonusLanguages": ["Draconic", "Elvish", "Gnomish", "Necriil", "Risko", "Sylvan"],
@@ -831,12 +795,8 @@
 			"Cha": -2
 		},
 		"size": "medium",
-		"type": {
-			"hd": 0,
-			"levels": 0,
-			"name": "Monstrous Humanoid",
-			"subtypes": []
-		},
+		"type": "Monstrous Humanoid",
+		"subtypes": [],
 		"speed": 30,
 		"languages": ["Undercommon"],
 		"bonusLanguages": ["Common", "Draconic", "Dwarven", "Giantish", "Goblin", "Risko", "Terran"],
@@ -913,12 +873,8 @@
 			"Cha": -2
 		},
 		"size": "medium",
-		"type": {
-			"hd": 0,
-			"levels": 0,
-			"name": "Plant",
-			"subtypes": []
-		},
+		"type": "Plant",
+		"subtypes": [],
 		"speed": 20,
 		"languages": ["Common", "Entish"],
 		"bonusLanguages": ["Dwarven", "Elvish", "Gnomish", "Kamago", "Matoran", "Risko", "Sylvan", "Undercommon"],
@@ -979,12 +935,8 @@
 		},
 		"abilityMods": {},
 		"size": "small",
-		"type": {
-			"hd": 0,
-			"levels": 0,
-			"name": "Half-Construct",
-			"subtypes": []
-		},
+		"type": "Half-Construct",
+		"subtypes": [],
 		"speed": 30,
 		"languages": ["Matoran"],
 		"bonusLanguages": ["Aquan", "Auran", "Common", "Dwarven", "Elvish", "Gnomish", "Ignan", "Kamago", "Risko", "Terran", "Ulumi", "Undercommon"],
@@ -1170,12 +1122,8 @@
 			"Cha": -2
 		},
 		"size": "medium",
-		"type": {
-			"hd": 0,
-			"levels": 0,
-			"name": "Humanoid",
-			"subtypes": [ "Dwarf" ]
-		},
+		"type": "Humanoid",
+		"subtypes": [ "Dwarf" ],
 		"speed": 20,
 		"languages": [ "Common", "Dwarven" ],
 		"bonusLanguages": [ "Giantish", "Gnomish", "Goblin", "Terran", "Ulumi", "Undercommon" ],
@@ -1267,12 +1215,8 @@
 			"Con": -2
 		},
 		"size": "medium",
-		"type": {
-			"hd": 0,
-			"levels": 0,
-			"name": "Humanoid",
-			"subtypes": [ "Elf" ]
-		},
+		"type": "Humanoid",
+		"subtypes": [ "Elf" ],
 		"speed": 30,
 		"languages": ["Common", "Elvish"],
 		"bonusLanguages": [ "Celestial", "Draconic", "Gnomish", "Goblin", "Kamago", "Risko", "Sylvan" ],
@@ -1346,12 +1290,8 @@
 			"Str": -2
 		},
 		"size": "small",
-		"type": {
-			"hd": 0,
-			"levels": 0,
-			"name": "Humanoid",
-			"subtypes": [ "Gnome" ]
-		},
+		"type": "Humanoid",
+		"subtypes": [ "Gnome" ],
 		"speed": 20,
 		"languages": [ "Common", "Gnomish", "Sylvan" ],
 		"bonusLanguages": [ "Draconic", "Dwarven", "Elven", "Giantish", "Goblin", "Risko", "Ulumi" ],
@@ -1443,12 +1383,8 @@
 			"Str": -2
 		},
 		"size": "small",
-		"type": {
-			"hd": 0,
-			"levels": 0,
-			"name": "Humanoid",
-			"subtypes": [ "Halfling" ]
-		},
+		"type": "Humanoid",
+		"subtypes": [ "Halfling" ],
 		"speed": 20,
 		"languages": [ "Common" ],
 		"bonusLanguages": [ "Dwarven", "Elven", "English", "Gnomish", "Goblin", "Kamago", "Risko" ],
@@ -1518,12 +1454,8 @@
 		},
 		"abilityMods": { "Choose": 2 },
 		"size": "medium",
-		"type": {
-			"hd": 0,
-			"levels": 0,
-			"name": "Humanoid",
-			"subtypes": [ "Human" ]
-		},
+		"type": "Humanoid",
+		"subtypes": [ "Human" ],
 		"speed": 30,
 		"languages": [ "Common" ],
 		"bonusLanguages": [ "Aboleth", "Abyssal", "Aquan", "Auran", "Celestial", "Draconic", "Dwarven", "Elvish", "English", "Entish", "Giantish", "Gnomish", "Goblin", "Ignan", "Infernal", "Kamago", "Matoran", "Necriil", "Perwhüa", "Risko", "Sylvan", "Terran", "Ulumi", "Undercommon" ],
@@ -1583,12 +1515,8 @@
 			"Con": -2
 		},
 		"size": "small",
-		"type": {
-			"hd": 0,
-			"levels": 0,
-			"name": "Humanoid",
-			"subtypes": [ "Reptilian" ]
-		},
+		"type": "Humanoid",
+		"subtypes": [ "Reptilian" ],
 		"speed": 30,
 		"languages": [ "Draconic" ],
 		"bonusLanguages": [ "Common", "Dwarven", "Gnomish", "Goblin", "Risko", "Undercommon" ],
@@ -1665,12 +1593,8 @@
 			"Cha": -2
 		},
 		"size": "small",
-		"type": {
-			"hd": 0,
-			"levels": 0,
-			"name": "Humanoid",
-			"subtypes": [ "Goblinoid" ]
-		},
+		"type": "Humanoid",
+		"subtypes": [ "Goblinoid" ],
 		"speed": 30,
 		"languages": [ "Goblin" ],
 		"bonusLanguages": [ "Common", "Draconic", "Dwarven", "Gnomish", "Risko", "Ulumi" ],
@@ -1731,12 +1655,8 @@
 			"Con": 2
 		},
 		"size": "medium",
-		"type": {
-			"hd": 0,
-			"levels": 0,
-			"name": "Humanoid",
-			"subtypes": [ "Goblinoid" ]
-		},
+		"type": "Humanoid",
+		"subtypes": [ "Goblinoid" ],
 		"speed": 30,
 		"languages": [ "Common", "Goblin" ],
 		"bonusLanguages": [ "Draconic", "Dwarven", "Infernal", "Giantish", "Ulumi" ],

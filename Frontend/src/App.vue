@@ -44,7 +44,7 @@ export default {
     DataService.getRules().then( response => {
       localStorage.setItem('rules', JSON.stringify(response));
     } );
-    DataService.getRaces().then( response => {
+    DataService.getCreatureTypes().then( response => {
       localStorage.setItem('races', JSON.stringify(response));
     } );
     DataService.getClasses().then( response => {
