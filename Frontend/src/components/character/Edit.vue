@@ -405,22 +405,17 @@
             </el-col>
 
             <el-col :span="14">
-              Special Abilities <br>
+              <h5 class="center-horz"> Special Abilities </h5>
               <div class="class-abils">
-                {{ cClass.abilities }}
                 <span v-for="(abilities, level) in cClass.abilities" :key="level">
-
-                  {{ abilities }}
-
-                  <span v-if="level > 0 && level <= cClass.levels">
-                    <span v-for="(abil, index) in abilities" :key="index">
-                      <el-input v-model="classes[cName].special[level][index]" class="class-abil" :aria-label="`Class Ability: ${abil}`" disabled>
+                  <span v-for="id in abilities" :key="id">
+                    <span v-for="(abil, index) in character.abilities" :key="index">
+                      <el-input v-if="abil.extras.id == id" v-model="abil.name" class="class-abil" :aria-label="`Class Ability: ${abil}`" disabled>
                         <template #prepend>Level {{ level }} </template>
                       </el-input>
                     </span>
                   </span>
                 </span>
-
               </div>
             </el-col>
           </el-row>
@@ -1616,13 +1611,11 @@ export default {
       abilityCollapse: [],
       abilityTypes: [ "Race", "Trait", "Class", "Feat", "Other" ],
       abilID: 0,
+      abilNames: [],
       atkNum: 0,
       atkName: "",
 
       itemFilter: "",
-
-                // newCondition: {},
-                // addingCondition: false,
 
       spellsTab: "",
       newSpell: { name: "", level: 0, class: "" },
@@ -2096,6 +2089,9 @@ export default {
         newAbil.trigger = "Continuous";
         newAbil.bonuses = {};
         this.character.abilities.push( newAbil );
+        if (newAbil.extras.category == "Feat") {
+          this.character.classes.total.abilities[this.newLevel.level].push( newAbil.extras.id );
+        }
         if (newAbil.extras.category == "Class") {
           cClass.abilities[this.newLevel.level].push( newAbil.extras.id );
         }
