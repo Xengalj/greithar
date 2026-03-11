@@ -103,16 +103,16 @@ After verifying the record, restart apache with `service apache2 restart`. Certb
 - [x] Check user timeout, get redirect working
 - [x] Get icons to update dynamically
 - [x] get table filtering working in bestiary
-- [ ] refactor CreatureCard to use a single nice storable JSON
+- [x] refactor CreatureCard to use a single nice storable JSON
 
-- [ ] creature card will display json of a creature given to it, json building done by parent
+- [x] creature card will display json of a creature given to it, json building done by parent
 
-- [ ] add campaigns & encounters
+- [x] add campaigns & encounters
 
 - [x] add Player/NPC builder/advancer
-- [ ] use <el-drawer> for equipment and things in builder
-- [ ] items -> encumbrance and compute carry weight
-- [ ] items -> total up gold value
+- [x] use <el-drawer> for equipment and things in builder
+- [x] items -> encumbrance and compute carry weight
+- [x] items -> total up gold value
 - [ ] REFACTOR to display on mobile & tablet
 
 
