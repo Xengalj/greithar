@@ -657,7 +657,7 @@
         <el-col :xs="7" :sm="4" :lg="3">
           <div class="custom-tree-node" v-if="data.value">
             <!-- Send to Group Loot -->
-            <el-button type="primary" circle size="small" @click="sendToGroupLoot(data)">
+            <el-button type="primary" circle size="small" @click="sendToGroupLoot(node)">
               <g-icon iconSize="16px" iconColor="#000" iconName="cart" />
             </el-button>
             <!-- Edit Item (in modal component) -->
@@ -2410,7 +2410,7 @@ export default {
     },
     saveCreature() { this.$emit('save-creature', this.creature); },
     openDrawer() { this.$emit('open-drawer'); },
-    sendToGroupLoot(item) { this.$emit('send-to-group-loot', item) },
+    sendToGroupLoot(node) { this.$emit('send-to-group-loot', node) },
 
     /***************************\
     *                           *

@@ -430,7 +430,7 @@ export default {
     deleteItem(node, data) {
       const parent = node.parent;
       const children = parent.data.children || parent.data;
-      const index = children.findIndex(d => d.label === data.label);
+      const index = children.findIndex(d => d.$treeNodeId === data.$treeNodeId);
       children.splice(index, 1);
       this.$message({ message: `${data.label} was removed from inventory`, type: "warning" });
     },

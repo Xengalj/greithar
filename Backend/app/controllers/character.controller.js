@@ -42,7 +42,7 @@ exports.read = (req, res) => {
       where: { id: req.body.character_id },
       include: [
         { model: User, attributes: ['id', 'username'] },
-        { model: Campaign, attributes: ['id', 'name' ] }
+        { model: Campaign, attributes: ['id', 'name', 'loot', 'loot_lock' ] }
       ]
     })
     .then(character => {
