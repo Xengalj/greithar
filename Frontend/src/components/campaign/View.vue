@@ -148,7 +148,7 @@
               XP : {{ this.rules.experience[character.basics.cr] }}
             </span>
             <span v-else>
-              Diety : {{ character.basics.diety }}
+              Diety : {{ character.basics.deity }}
             </span>
           </el-col>
         </el-row>
@@ -584,7 +584,7 @@
               </el-col>
 
               <el-col :sm="5" :lg="3">
-                <el-input-number v-if="data.value && data.value.Ammount" v-model="data.value.Ammount" :min="0" size="small" aria-label="Number of Items" />
+                <el-input-number v-if="data.value && data.value.Amount" v-model="data.value.Amount" :min="0" size="small" aria-label="Number of Items" />
               </el-col>
 
               <el-col :sm="3" :lg="2">
@@ -2465,7 +2465,7 @@ export default {
       for (let item of Object.values(container)) {
         if (item.value) {
           invTotal.value += item.value.Cost;
-          invTotal.weight += BagOfHolding ? 0 : item.value.Weight * (item.value.Ammount ? item.value.Ammount : 1);
+          invTotal.weight += BagOfHolding ? 0 : item.value.Weight * (item.value.Amount ? item.value.Amount : 1);
         }
         if (item.children && item.children.length) {
           if (item.label.includes("Bag of Holding") || item.label.includes("Handy Haversack")) {
@@ -2524,7 +2524,7 @@ export default {
             Description: "",
             Cost: 0,
             Weight: 0,
-            Ammount: 1,
+            Amount: 1,
             Extras: { Notes: [] }
           }
         };

@@ -28,9 +28,6 @@
       "extras": { "showMain": false },
       "bonuses": {}
     },
-
-
-
     "Aid Another": {
       "trigger": "Standard",
       "description": "Make an attack roll vs AC 10, if you hit, you assist an ally with an attack, their defense, or a particular skill.",
@@ -128,8 +125,6 @@
       "extras": { "showMain": false },
       "bonuses": {}
     },
-
-
     "Charge": {
       "trigger": "Full-Round",
       "description": "You may move up to double your speed (min 10 ft), directly to your enemy and make one attack with an additional +2 to hit and a -2 to AC until your next turn.",
@@ -172,186 +167,136 @@
   },
 
 
-
   "conditions": [
     {
       "name": "Asleep",
       "description": "You are resting and helpless, but can be awoken by an ally using Aid Another or by being wounded. While asleep you take a -10 on Perception checks, and cannot make perception checks that rely on vision.",
       "bonuses": {
-        "Asleep": {
-          "type": "Condition",
-          "value": -10,
-          "targets": [ "perception" ]
-        }
-      }
+        "Asleep": { "value": -10, "type": "Condition", "targets": [ "perception" ] }
+      },
+      "extras": {}
     },
     {
       "name": "Bleeding",
       "description": "You are bleeding and take the listed amount of damage at the beginning of every turn, it can be staunched with a DC 15 Heal check or any magical healing.",
-      "bonuses": {}
+      "bonuses": {},
+      "extras": {}
     },
     {
       "name": "Blinded",
       "description": "You are blind and cannot see, automatically failing checks that rely on vision, and granting enemies total concealment from you (50% miss chance). You must make a DC 10 Acrobatics check to move faster than half speed or fall prone.",
       "bonuses": {
-        "Blinded AC": {
-          "type": "Condition",
-          "value": -2,
-          "targets": [ "totalAC", "touchAC", "flatAC" ]
-        },
-        "Blinded Skills": {
-          "type": "Condition",
-          "value": -4,
-          "targets": [ "strSkills", "dexSkills", "perception" ]
-        }
+        "Blinded AC": { "value": -2, "type": "Condition", "targets": [ "totalAC", "touchAC", "flatAC" ] },
+        "Blinded Skills": { "value": -4, "type": "Condition", "targets": [ "strSkills", "dexSkills", "perception" ] }
       },
       "extras": { "noDexAC": true }
     },
     {
       "name": "Confused",
       "description": "You are mentally befuddled and cannot act normally. Roll on the confusion table on the wiki.",
-      "bonuses": {}
+      "bonuses": {},
+      "extras": {}
     },
     {
       "name": "Cowering",
       "description": "You are frozen in fear and can take no actions.",
       "bonuses": {
-        "Cowering": {
-          "type": "Conditions",
-          "value": -2,
-          "targets": [ "totalAC", "touchAC", "flatAC" ]
-        }
+        "Cowering": { "value": -2, "type": "Conditions", "targets": [ "totalAC", "touchAC", "flatAC" ] }
       },
       "extras": { "noDexAC": true }
     },
     {
       "name": "Dazed",
       "description": "You are unable to act normally and can take no actions, but have no penalty to AC.",
-      "bonuses": {}
+      "bonuses": {},
+      "extras": {}
     },
     {
       "name": "Dazzled",
       "description": "You are unable to see well because of over-stimulation of the eyes. You take a –1 penalty on attack rolls and sight-based Perception checks.",
       "bonuses": {
-        "Dazzled": {
-          "type": "Condition",
-          "value": -1,
-          "targets": [ "MeleeAtkBonus", "RangedAtkBonus" ]
-        }
-      }
+        "Dazzled": { "value": -1, "type": "Condition", "targets": [ "MeleeAtkBonus", "RangedAtkBonus" ] }
+      },
+      "extras": {}
     },
     {
       "name": "Deafened",
       "description": "You cannot hear, and automatically fail sound based Perception checks, and have a 20% spell failure chance for spells with verbal components.",
       "bonuses": {
-        "Deafened": {
-          "type": "Condition",
-          "value": -4,
-          "targets": [ "initiative", "perception" ]
-        }
-      }
+        "Deafened": { "value": -4, "type": "Condition", "targets": [ "initiative", "perception" ] }
+      },
+      "extras": {}
     },
     {
       "name": "Disabled",
       "description": "You may take a single move OR standard action each round (nor can you take full-round actions, but you can still take swift, immediate, and free actions). You move at half speed, and performing any standard action (or any other action the GM deems strenuous, including some free actions such as casting a Quicken Spell spell) deals 1 point of damage after the completion of the act, and you are now dying.",
-      "bonuses": {}
+      "bonuses": {},
+      "extras": {}
     },
     {
       "name": "Dying",
       "description": "You are unconscious, near death, and can take no actions. On all subsequent turns, make a DC 10 Stabilization check or lose 1 HP. If you have negative HP equal to your Constitution score, you die.",
-      "bonuses": {}
+      "bonuses": {},
+      "extras": {}
     },
     {
       "name": "Entangled",
       "description": "You are ensnared, and move at half speed (unless the bonds are anchored somehow). Attempting to cast a spell requiers a concentration check (DC 15 + pell level).",
       "bonuses": {
-        "Entangled Atk": {
-          "type": "Condition",
-          "value": -2,
-          "targets": [ "MeleeAtkBonus", "RangedAtkBonus" ]
-        },
-        "Entangled Dex": {
-          "type": "Condition",
-          "value": -4,
-          "targets": [ "Dex" ]
-        }
-      }
+        "Entangled Atk": { "value": -2, "type": "Condition", "targets": [ "MeleeAtkBonus", "RangedAtkBonus" ] },
+        "Entangled Dex": { "value": -4, "type": "Condition", "targets": [ "Dex" ] }
+      },
+      "extras": {}
     },
     {
       "name": "Exhausted",
       "description": "You move at half speed and cannot run or charge. After 1 hour of complete rest, you become fatigued instead of exhausted.",
       "bonuses": {
-        "Exhausted": {
-          "type": "Condition",
-          "value": -6,
-          "targets": [ "Str", "Dex" ]
-        }
-      }
+        "Exhausted": { "value": -6, "type": "Condition", "targets": [ "Str", "Dex" ] }
+      },
+      "extras": {}
     },
     {
       "name": "Fascinated",
       "description": "You are entranced by a supernatural or spell effect and can take no actions other than to pay attention the fascinating effect. Potential threats grant additional save chances, and obvious threats break fascination. An ally may use a standard action to break you free of the effect.",
       "bonuses": {
-        "Fascinated": {
-          "type": "Condition",
-          "value": -4,
-          "targets": [ "skills" ]
-        }
-      }
+        "Fascinated": { "value": -4, "type": "Condition", "targets": [ "skills" ] }
+      },
+      "extras": {}
     },
     {
       "name": "Fatigued",
       "description": "You can neither run nor charge, and doing anything that would cause fatigue, makes you exhausted instead. 8 hours of complete rest removes fatigue.",
       "bonuses": {
-        "Fatigued": {
-          "type": "Condition",
-          "value": -2,
-          "targets": [ "Str", "Dex" ]
-        }
-      }
+        "Fatigued": { "value": -2, "type": "Condition", "targets": [ "Str", "Dex" ] }
+      },
+      "extras": {}
     },
     {
       "name": "Fighting Defensively",
       "description": "You are fighting with a greater focus on your guard.",
       "bonuses": {
-        "Defensive AC": {
-          "type": "Dodge",
-          "value": 2,
-          "targets": [ "totalAC", "touch AC" ]
-        },
-        "Defesive Atk": {
-          "type": "Condition",
-          "value": -4,
-          "targets": [ "MeleeAtkBonus", "RangedAtkBonus" ]
-        }
-      }
+        "Defensive AC": { "value": 2, "type": "Dodge", "targets": [ "totalAC", "touch AC" ] },
+        "Defesive Atk": { "value": -4, "type": "Condition", "targets": [ "MeleeAtkBonus", "RangedAtkBonus" ] }
+      },
+      "extras": {}
     },
     {
       "name": "Frightened",
       "description": "You must flee from the source of the fear as best you can, and if you are unable to flee you may fight. Frightened is more extreme than shaken, with panicked being even more than frightened.",
       "bonuses": {
-        "Frightened": {
-          "type": "Condition",
-          "value": -2,
-          "targets": [ "MeleeAtkBonus", "RangedAtkBonus", "fort", "ref", "will", "skills" ]
-        }
-      }
+        "Frightened": { "value": -2, "type": "Condition", "targets": [ "MeleeAtkBonus", "RangedAtkBonus", "fort", "ref", "will", "skills" ] }
+      },
+      "extras": {}
     },
     {
       "name": "Grappled",
       "description": "You are restrained by a creature, trap, or effect and cannot move, or take actions that require two hands to perform. Attempting a spell or spell-like ability requires a concentration check (DC 10 + grappler's CMB + spell level).",
       "bonuses": {
-        "Grappled Dex": {
-          "type": "Condition",
-          "value": -4,
-          "targets": [ "Dex" ]
-        },
-        "Grappled Atk": {
-          "type": "Condition",
-          "value": -2,
-          "targets": [ "MeleeAtkBonus", "RangedAtkBonus" ]
-        }
-      }
+        "Grappled Dex": { "value": -4, "type": "Condition", "targets": [ "Dex" ] },
+        "Grappled Atk": { "value": -2, "type": "Condition", "targets": [ "MeleeAtkBonus", "RangedAtkBonus" ] }
+      },
+      "extras": {}
     },
     {
       "name": "Helpless",
@@ -362,39 +307,36 @@
     {
       "name": "Incorporeal",
       "description": "You have no physical body, are immune to all nonmagical attacks, take half damage from magic weapons, spells, spell-like effects, and supernatural effects, and take full damage from other incorporeal creatures and effects, as well as force effects.",
-      "bonuses": {}
+      "bonuses": {},
+      "extras": {}
     },
     {
       "name": "Invisible",
       "description": "You are visually undetectable, and ignore opponents' Dex bonus to AC.",
       "bonuses": {
-        "Invisible": {
-          "type": "Condition",
-          "value": 2,
-          "targets": [ "MeleeAtkBonus", "RangedAtkBonus" ]
-        }
-      }
+        "Invisible": { "value": 2, "type": "Condition", "targets": [ "MeleeAtkBonus", "RangedAtkBonus" ] }
+      },
+      "extras": {}
     },
     {
       "name": "Mounted",
       "description": "You get a free DC 5 Ride check every turn to use the mount's move action and speed instead of your own (still cannot take melee Full-Attack action). You get a +5 to attacks vs creatures smaller than your mount, and lances deal double damage on a mounted charge.",
-      "bonuses": {}
+      "bonuses": {},
+      "extras": {}
     },
     {
       "name": "Nauseated",
       "description": "You are experiencign stomach distress, may only take a single move action, and are unable to attack, cast spells, concentrate on spells, or do anything requiring attention.",
-      "bonuses": {}
+      "bonuses": {},
+      "extras": {}
     },
     {
       "name": "Panicked",
       "description": "You must drop anything you are holding and flee at top speed from the source of your fear, and any additionall dangers you encounter, along a random path (1d8). If cornered, you must cower but may use total defense.",
       "bonuses": {
-        "Panicked": {
-          "type": "Condition",
-          "value": -2,
-          "targets": [ "fort", "ref", "will", "skills" ]
-        }
-      }
+        "Panicked": { "value": -2, "type": "Condition", "targets": [ "fort", "ref", "will", "skills" ] }
+      },
+      "extras": {}
     },
     {
       "name": "Paralyzed",
@@ -405,17 +347,14 @@
     {
       "name": "Petrified",
       "description": "You have been turned to stone and are considered unconcious. If your body is incomplete when it returns to flesh, there will be some ammount of permanent hit point loss and/or dibilitation.",
-      "bonuses": {}
+      "bonuses": {},
+      "extras": {}
     },
     {
       "name": "Pinned",
       "description": "You are tightly bound and can take few actions, as well as losing your Dex Bonus. If you cast a spell that has only a verbal component, you must make a concentration check DC 10 + grappler's CMB + spell level.",
       "bonuses": {
-        "Pinned AC": {
-          "type": "Condition",
-          "value": -4,
-          "targets": [ "totalAC", "touchAC", "flatAC" ]
-        }
+        "Pinned AC": { "value": -4, "type": "Condition", "targets": [ "totalAC", "touchAC", "flatAC" ] }
       },
       "extras": { "noDexAC": true }
     },
@@ -423,61 +362,51 @@
       "name": "Prone",
       "description": "You are lying on the ground, have a penalty on melee weapons, and cannot use a ranged weapon (except for a crossbow). A prone defender gains a +4 bonus to Armor Class against ranged attacks, but takes a –4 penalty to AC against melee attacks.",
       "bonuses": {
-        "Prone": {
-          "type": "Condition",
-          "value": -4,
-          "targets": [ "MeleeAtkBonus" ]
-        }
-      }
+        "Prone": { "value": -4, "type": "Condition", "targets": [ "MeleeAtkBonus" ] }
+      },
+      "extras": {}
     },
     {
       "name": "Shaken",
       "description": "You are afraid and take a -2 on attacks, saves, skills, and ability checks. Shaken is a less sever state of fear than frightned or panicked.",
       "bonuses": {
-        "Shaken": {
-          "type": "Condition",
-          "value": -2,
-          "targets": [ "MeleeAtkBonus", "RangedAtkBonus", "fort", "ref", "will", "skills" ]
-        }
-      }
+        "Shaken": { "value": -2, "type": "Condition", "targets": [ "MeleeAtkBonus", "RangedAtkBonus", "fort", "ref", "will", "skills" ] }
+      },
+      "extras": {}
     },
     {
       "name": "Sickened",
       "description": "You feel ill and take a -2 penalty on attacks, weapon damage, saves, skills, and ability checks.",
       "bonuses": {
-        "Sickened": {
-          "type": "Condition",
-          "value": -2,
-          "targets": [ "MeleeAtkBonus", "RangedAtkBonus", "MeleeDmgBonus", "RangedDmgBonus", "fort", "ref", "will", "skills" ]
-        }
-      }
+        "Sickened": { "value": -2, "type": "Condition", "targets": [ "MeleeAtkBonus", "RangedAtkBonus", "MeleeDmgBonus", "RangedDmgBonus", "fort", "ref", "will", "skills" ] }
+      },
+      "extras": {}
     },
     {
       "name": "Stable",
       "description": "You have negative hit points but are no longer dying and you may make a Constitution check (DC 10 + current negative HP) each hour to become concious and disabled. If you became stable on your own, you lose 1 HP each time you fail the wake up check.",
-      "bonuses": {}
+      "bonuses": {},
+      "extras": {}
     },
     {
       "name": "Staggered",
       "description": "You may take a single move or standard action each round (but not both and no full-round actions).",
-      "bonuses": {}
+      "bonuses": {},
+      "extras": {}
     },
     {
       "name": "Stunned",
       "description": "You drop eveything you are holding, cannot take actions, take a -2 to AC, and lose your Dex bonus to AC. Attackers also get a +4 to perform combat maneuvers against you.",
       "bonuses": {
-        "Stunned": {
-          "type": "Condition",
-          "value": -2,
-          "targets": [ "totalAC", "touchAC", "flatAC" ]
-        }
+        "Stunned": { "value": -2, "type": "Condition", "targets": [ "totalAC", "touchAC", "flatAC" ] }
       },
       "extras": { "noDexAC": true }
     },
     {
       "name": "Unconcious",
       "description": "You are knocked out and helpless. If you have negative HP, or nonlethal damage greater than your current HP, you become lose conciousness.",
-      "bonuses": {}
+      "bonuses": {},
+      "extras": {}
     }
   ]
 }

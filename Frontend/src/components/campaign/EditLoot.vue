@@ -299,7 +299,7 @@ export default {
       for (let item of Object.values(container)) {
         if (item.value) {
           invTotal.value += item.value.Cost;
-          invTotal.weight += BagOfHolding ? 0 : item.value.Weight * (item.value.Ammount ? item.value.Ammount : 1);
+          invTotal.weight += BagOfHolding ? 0 : item.value.Weight * (item.value.Amount ? item.value.Amount : 1);
         }
         if (item.children && item.children.length) {
           if (item.label.includes("Bag of Holding") || item.label.includes("Handy Haversack")) {
@@ -381,7 +381,7 @@ export default {
               'Description': '',
               'Cost': value,
               'Weight': 1,
-              'Ammount': 1,
+              'Amount': 1,
               'Extras': { 'Notes': [ notes ] }
             }
           };
@@ -400,7 +400,7 @@ export default {
           Description: '',
           Cost: 1,
           Weight: 1,
-          Ammount: 1,
+          Amount: 1,
           Extras: { Notes: [] } }
         };
       this.loot.push(item);
@@ -414,7 +414,7 @@ export default {
             Description: "",
             Cost: 0,
             Weight: 0,
-            Ammount: 1,
+            Amount: 1,
             Extras: { Notes: [] }
           }
         };

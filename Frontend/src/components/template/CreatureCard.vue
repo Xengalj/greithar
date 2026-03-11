@@ -135,20 +135,25 @@
           </el-col>
 
           <el-col :span="12">
-            <el-tooltip v-if="creature.classes[creature.basics.type].hd" placement="top" effect="light">
-              <el-tag size="small" effect="dark" type="primary">{{ capFirsts(creature.basics.type) }}</el-tag>
-              <template #content>
-                {{ creature.classes[creature.basics.type].levels }} HD (1d{{ creature.classes[creature.basics.type].hd }})
-              </template>
-            </el-tooltip>
-            <el-tag v-else-if="creature.basics.type == 'humanoid'" size="small" effect="dark" type="primary">{{ creature.basics.race }}</el-tag>
-            <el-tag v-else size="small" effect="dark" type="primary">{{ creature.basics.type }}</el-tag>
+            <span v-if="creature.classes[creature.basics.type]">
+              <el-tooltip v-if="creature.classes[creature.basics.type].hd" placement="top" effect="light">
+                <el-tag size="small" effect="dark" type="primary">{{ capFirsts(creature.basics.type) }}</el-tag>
+                <template #content>
+                  {{ creature.classes[creature.basics.type].levels }} HD (1d{{ creature.classes[creature.basics.type].hd }})
+                </template>
+              </el-tooltip>
+              <span v-else> PLEASE REPORT CLASS HD ERROR </span>
+            </span>
+            <span v-else>
+              <el-tag v-if="creature.basics.type == 'Humanoid'" size="small" effect="dark" type="primary">{{ creature.basics.race }}</el-tag>
+              <el-tag v-else size="small" effect="dark" type="primary">{{ creature.basics.type }}</el-tag>
+            </span>
           </el-col>
         </el-row>
 
-        <el-row>
+        <el-row align="bottom">
           <span v-for="(cClass, cName) in creature.classes" :key="cName">
-            <el-tooltip v-if="cName != creature.basics.type" placement="top" effect="light">
+            <el-tooltip v-if="cName != creature.basics.type && cName != 'total'" placement="top" effect="light">
               <el-tag size="small" effect="dark" type="primary" style="margin: 0 1px 0 0;">{{ capFirsts(cName) }} {{ cClass.levels }}</el-tag>
               <template #content>
                 {{ cClass.levels }} HD (1d{{ cClass.hd }})
@@ -166,9 +171,9 @@
       <el-col :span="4" class="center-vert center-horz"> <g-icon iconSize="24px" icon-name="openScroll"/> </el-col>
       <el-col :span="20" class="center-vert"> {{ this.creature.basics.appearance.age }} years old, {{ this.creature.basics.appearance.height }}, {{ this.creature.basics.appearance.weight }} </el-col>
     </el-row>
-    <el-row v-if="this.creature.basics.diety">
+    <el-row v-if="this.creature.basics.deity">
       <el-col :span="4" class="center-vert center-horz"> <g-icon iconSize="24px" icon-name="moon"/> </el-col>
-      <el-col :span="20" class="center-vert"> Diety : {{ this.creature.basics.diety }} </el-col>
+      <el-col :span="20" class="center-vert"> Diety : {{ this.creature.basics.deity }} </el-col>
     </el-row>
     <el-row v-if="this.creature.basics.environment">
       <el-col :span="4" class="center-vert center-horz"> <g-icon iconSize="24px" icon-name="forest"/> </el-col>
@@ -185,7 +190,7 @@
       </el-col>
       <el-col :xs="3" :sm="3"  class="center-horz">
         <el-tooltip v-if="!settings.isMonster" placement="top" effect="light">
-          <el-button @click="this.$router.push({ name: 'character-edit', params: { id: character.id } })" type="info" style="margin:0" circle>
+          <el-button @click="this.$router.push({ name: 'character-edit', params: { id: creature.id } })" type="info" style="margin:0" circle>
             <g-icon iconSize="24px" iconColor="#000" iconName="quill" />
           </el-button>
           <template #content>
@@ -651,6 +656,10 @@
         </el-col>
         <el-col :xs="7" :sm="4" :lg="3">
           <div class="custom-tree-node" v-if="data.value">
+            <!-- Send to Group Loot -->
+            <el-button type="primary" circle size="small" @click="sendToGroupLoot(data)">
+              <g-icon iconSize="16px" iconColor="#000" iconName="cart" />
+            </el-button>
             <!-- Edit Item (in modal component) -->
             <el-button type="info" circle size="small" @click="editItem(data)">
               <g-icon iconSize="16px" iconColor="#000" iconName="quill" />
@@ -1316,7 +1325,7 @@ import GCondition from '@/components/template/GCondition.vue';
 export default {
   name: "CreatureCard",
   components: { HexGraph, GItem, GAbility, GCondition },
-  emits: [ 'open-drawer', 'save-creature' ],
+  emits: [ 'open-drawer', 'save-creature', 'send-to-group-loot' ],
   props: { source: { type: Object } },
   data() {
     return {
@@ -1941,7 +1950,7 @@ export default {
           actions[2]["children"].push(newAtk);
         }
 
-      } // End character.attacks loop
+      } // End creature.attacks loop
 
       /***************************\
       *                           *
@@ -2240,7 +2249,7 @@ export default {
     this.original.name = this.source.name;
     this.original.val = JSON.stringify(this.source);
     this.creature = this.source;
-    console.log(this.creature);
+    console.log('creature', this.creature);
   },
   mounted() {
     let tabs = document.getElementsByClassName('el-tabs__nav-scroll');
@@ -2251,13 +2260,15 @@ export default {
 
     // Put Add Spell button in class spells tabs
     tabs[0].appendChild( document.getElementById('addSpell') );
+    this.disabledCastPSPells();
+
   },
   updated() {
     if (this.original.name != this.source.name) {
       this.original.name = this.source.name;
       this.original.val = JSON.stringify(this.source);
       this.creature = this.source;
-      console.log(this.creature);
+      console.log('creature', this.creature);
     }
 
     // hide non magic classes from spells tab
@@ -2267,6 +2278,8 @@ export default {
         button.hidden = true;
       }
     }
+    this.disabledCastPSPells();
+
   },
 
   watch: {
@@ -2395,15 +2408,9 @@ export default {
 
       this.$message({ message: "Resting for 8 hours", type: "success" });
     },
-    saveCreature() {
-      this.$emit('save-creature', this.creature);
-
-      // CharacterService.updateCharacter(this.creature)
-      // .then((response) => { this.$message({ message: `${response.character.name} updated`, type: 'success', }); })
-      // .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
-    },
-
+    saveCreature() { this.$emit('save-creature', this.creature); },
     openDrawer() { this.$emit('open-drawer'); },
+    sendToGroupLoot(item) { this.$emit('send-to-group-loot', item) },
 
     /***************************\
     *                           *
@@ -2464,7 +2471,7 @@ export default {
           Description: '',
           Cost: 1,
           Weight: 1,
-          Ammount: 1,
+          Amount: 1,
           Extras: { Notes: [] } }
         };
       this.inventory[2].children.push(item);
@@ -2622,7 +2629,7 @@ export default {
     disabledCastPSPells() {
       let btn = "EL BTN";
       // For each class, if its a preppared caster
-      for (const [cName, cClass] of Object.entries( this.character.classes )) {
+      for (const [cName, cClass] of Object.entries( this.creature.classes )) {
         if (cClass.preparedSpells) {
           // For each preppared spell ([lvl][spell]),
           cClass.preparedSpells.forEach((spells, lvl) => {
@@ -2632,7 +2639,7 @@ export default {
               for (let i = 0; i < preps; i++) {
                 if ( this.$refs[`${spell}-${i}`]) {
                   btn = this.$refs[`${spell}-${i}`][0].$el;
-                  if (i+1 <= this.character.spells[cName][lvl][spell].casts) {
+                  if (i+1 <= this.creature.spells[cName][lvl][spell].casts) {
                     btn.setAttribute('disabled', true);
                     btn.classList.add('is-disabled');
                   }
@@ -2666,7 +2673,7 @@ export default {
         if (this.metamagic && this.metamagic.increase) {
           this.spellCost += this.metamagic.increase;
         }
-        if ( (this.character.classes[cName].openRemaining - this.spellCost) <= 0 ) {
+        if ( (this.creature.classes[cName].openRemaining - this.spellCost) <= 0 ) {
           this.gFatigue = 10 + cost;
         }
       }
@@ -2675,17 +2682,17 @@ export default {
     castGSpell(sName, spell, level, cName) {
       if (level == 0 && !this.metamagic.increase) {
         return;
-      } else if ( (this.character.classes[cName].openRemaining - this.spellCost) >= 0 ) {
-        this.character.classes[cName].openRemaining -= this.spellCost;
+      } else if ( (this.creature.classes[cName].openRemaining - this.spellCost) >= 0 ) {
+        this.creature.classes[cName].openRemaining -= this.spellCost;
       } else if (
-        ( this.character.classes[cName].openRemaining != 0 ) &&
-        ( (this.character.classes[cName].openRemaining - this.spellCost) < 0 )
+        ( this.creature.classes[cName].openRemaining != 0 ) &&
+        ( (this.creature.classes[cName].openRemaining - this.spellCost) < 0 )
       ) {
-        let remain = Math.abs(this.character.classes[cName].openRemaining - this.spellCost);
-        this.character.classes[cName].openRemaining = 0;
-        this.character.classes[cName].reserveRemaining -= remain;
-      } else if ( (this.character.classes[cName].reserveRemaining - this.spellCost) >= 0 ) {
-        this.character.classes[cName].reserveRemaining -= this.spellCost;
+        let remain = Math.abs(this.creature.classes[cName].openRemaining - this.spellCost);
+        this.creature.classes[cName].openRemaining = 0;
+        this.creature.classes[cName].reserveRemaining -= remain;
+      } else if ( (this.creature.classes[cName].reserveRemaining - this.spellCost) >= 0 ) {
+        this.creature.classes[cName].reserveRemaining -= this.spellCost;
       } else {
         this.$message({ message: `You do not have enough Galdur to cast ${sName}`, type: "error" });
         this.metamagic = {};
@@ -2719,8 +2726,8 @@ export default {
   justify-content: end;
 }
 
-.el-button.el-button--danger.el-button--small.el-tooltip__trigger {
-	margin-left: 0;
+.el-tree .el-button {
+  margin: 0 3px;
 }
 
 .spell {

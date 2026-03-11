@@ -47,8 +47,8 @@
         </el-tag>
       </el-col>
       <el-col :sm="5" :md="3">
-        <el-tag v-if="data.value && data.value.Ammount" type="info" effect="dark">
-          x {{ data.value.Ammount }}
+        <el-tag v-if="data.value && data.value.Amount" type="info" effect="dark">
+          x {{ data.value.Amount }}
         </el-tag>
       </el-col>
     </template>

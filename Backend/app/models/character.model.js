@@ -54,28 +54,6 @@ module.exports = (sequelize, Sequelize) => {
           levels: 0,
           abilites: [ [] ],
         }
-        // {
-        //   // tracks innate magic, HD from creature type
-        //   name: "humanoid",
-        //   levels: 0,
-        //   bab: 0,
-        //   hd: 0,
-        //   saves: {
-        //     fort: { mult: 0, bonus: 0 },
-        //     ref: { mult: 0, bonus: 0 },
-        //     will: { mult: 0, bonus: 0 }
-        //   },
-        //   magic: {
-        //     castingAtr: "Cha",
-        //     style: "Spontaneous Arcane",
-        //
-        //     // Innate is only Spontaneous
-        //     // Spontaneous Casters
-        //     remainingCasts: [ ],
-        //     spellsPerDay: [ ],
-        //   },
-        //   abilites: []
-        // ]
       }
     },
     abilities: {
@@ -175,7 +153,15 @@ module.exports = (sequelize, Sequelize) => {
           ] },
           { 'label': 'Items',        'extras': { 'icon': 'inventory', 'capacity': 100 }, 'children': [
             { 'label': 'Backpack',   'extras': { 'icon': 'backpack', 'capacity': 20 }, 'children': [], 'value':
-              { 'Cost': 2, 'Weight': 2, 'Description': "This leather knapsack has one large pocket that closes with a buckled strap and holds about 2 cubic feet of material. Some may have one or more smaller pockets on the sides." }
+              {
+                'Description': "This leather knapsack has one large pocket that closes with a buckled strap and holds about 2 cubic feet of material. Some may have one or more smaller pockets on the sides.",
+                'Cost': 2,
+                'Weight': 2,
+                "Ammount": 1,
+                "Extras": {
+                  "Notes": []
+                }
+              }
             }
           ] },
         ];

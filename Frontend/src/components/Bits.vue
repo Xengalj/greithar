@@ -302,16 +302,16 @@ export default {
           },
           extras: { "notes": [] }
         }
-        ],
-        skills: {
-          Acrobatics: {
-            ranks: 0,
-            class: false,
-            extras: {}
-          }
-        },
-        coins: { cp: 0, sp: 0, gp: 0, pp: 0 },
-        inventory: [
+      ],
+      skills: {
+        Acrobatics: {
+          ranks: 0,
+          class: false,
+          extras: {}
+        }
+      },
+      coins: { cp: 0, sp: 0, gp: 0, pp: 0 },
+      inventory: [
         {
           label: "Magic Items",
           extras: { icon: "amulet" },
@@ -321,27 +321,27 @@ export default {
           label: "Equipped",
           extras: { icon: "equipment" },
           children: [
-          {
-            label: "Armor",
-            extras: { icon: "armor", capacity: 1 },
-            children: []
-          },
-          {
-            label: "Weapons",
-            extras: { icon: "weapons" },
-            children: [
             {
-              label: "Hands",
-              extras: { icon: "abilityPalm", capacity: 2 },
+              label: "Armor",
+              extras: { icon: "armor", capacity: 1 },
               children: []
             },
             {
-              label: "Back",
-              extras: { icon: "swordShield", capacity: 2 },
-              children: []
+              label: "Weapons",
+              extras: { icon: "weapons" },
+              children: [
+                {
+                  label: "Hands",
+                  extras: { icon: "abilityPalm", capacity: 2 },
+                  children: []
+                },
+                {
+                  label: "Back",
+                  extras: { icon: "swordShield", capacity: 2 },
+                  children: []
+                }
+              ]
             }
-            ]
-          }
           ]
         },
         {
@@ -349,21 +349,22 @@ export default {
           extras: { icon: "inventory", capacity: 100 },
           children: []
         }
-        ],
-        spells: {},
-        settings: {
-          isNPC: false,
-          isMonster: true,
-          cardTab: "Abilities",
-          mainSections: [ "defense", "actions" ],
-          expandInventory: [ "Equipped", "Armor", "Weapons", "Hands", "Back", "Items" ],
+      ],
+      spells: {},
+      settings: {
+        isNPC: false,
+        isMonster: true,
+        cardTab: "Abilities",
+        mainSections: [ "defense", "actions" ],
+        expandInventory: [ "Equipped", "Armor", "Weapons", "Hands", "Back", "Items" ],
 
-          favoredClass: null, // or Object
-          appearance: null, // or Object
-          backstory: "",
-          diety: "",
-        }
+        favoredClass: null, // or Object
+        appearance: null, // or Object
+        backstory: "",
+        deity: "",
       }
+    }
+
 
     };
   },

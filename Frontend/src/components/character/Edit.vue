@@ -152,7 +152,7 @@
           </el-col>
           <!-- Diety -->
           <el-col :xs="24" :sm="12" :md="6">
-            <el-input v-model="character.basics.diety" aria-label="Worship Input">
+            <el-input v-model="character.settings.deity" aria-label="Worship Input">
               <template #prepend>Diety</template>
             </el-input>
           </el-col>
@@ -982,7 +982,7 @@
               <span v-if="data.value"> {{ data.value.Weight }} lbs. </span>
             </el-col>
             <el-col :span="3">
-              <el-input-number v-if="data.value" v-model="data.value.Ammount" :min="0" size="small" aria-label="Number of Items" />
+              <el-input-number v-if="data.value" v-model="data.value.Amount" :min="0" size="small" aria-label="Number of Items" />
             </el-col>
             <div class="custom-tree-node" v-if="data.value">
               <!-- Edit Item (in modal component) -->
@@ -1796,60 +1796,60 @@ export default {
       this.character = response.character;
       if (!this.character.user) { this.character.user = {} }
 
-      if (Array.isArray(response.character.abilities)) {
-        // setup abil ID
-        this.character.abilities.forEach(abil => {
-          if (this.abilID < abil.extras.id) {
-            this.abilID = abil.extras.id;
-          }
-        });
+      if (!response.character.settings.appearance) {
+        console.info('Restructuring Old Character');
 
-      } else {
-        console.warn('Restructuring Old Character');
         // Restructure classes
-        for (let [cName, cClass] of Object.entries(response.character.classes)) {
-          if (!cClass.bab) {
-            let newClass = {
-              "levels": cClass.levels,
-              "abilities": [],
-              "bab": this.classes[cName].bab,
-              "hd": this.classes[cName].hd,
-              "saves": this.classes[cName].saves
-            };
-            if (this.classes[cName].magic) {
-              newClass.magic = {
-                "style": this.classes[cName].magic.style,
-                "castingAtr": this.classes[cName].magic.castingAtr,
-                "casterLevel": cClass.levels,
-                "spellsPerDay": this.classes[cName].magic.spellsPerDay[cClass.levels],
-
-                "useGaldur": response.useGaldur,
-                "galdur": {
-                  "openTotal": 0,
-                  "openRemaining": 0,
-                  "reserveTotal": 0,
-                  "reserveRemaining": 0
-                }
-              };
-
-              if (this.classes[cName].magic.style.includes("Prepared")) {
-                newClass.magic.preparedSpells = [];
-                if (response.preparedSpells) {
-                  newClass.magic.preparedSpells = response.preparedSpells;
-                } else {
-                  this.classes[cName].magic.spellsPerDay[cClass.levels].forEach((spellSlots, lvl) => {
-                    for (let i = 0; i < spellSlots; i++) {
-                      newClass.magic.preparedSpells[lvl] = "";
-                    }
-                  });
-                }
-              } else {
-                newClass.magic.remainingCasts = response.remainingCasts;
-              }
-            }
-            this.character.classes[cName] = newClass;
-          } // end if response.class ! contain bab
+        if (!response.character.classes.total) {
+          this.character.classes.total = { levels: 0, abilities: [] };
         }
+        for (let [cName, cClass] of Object.entries(response.character.classes)) {
+          if (cName != 'total') { this.character.classes.total.levels += cClass.levels; }
+          let newClass = {
+            "levels": cClass.levels,
+            "hd": this.classes[cName].hd,
+            "bab": this.classes[cName].bab,
+            "saves": this.classes[cName].saves,
+            "abilities": []
+          };
+          if (this.classes[cName].magic) {
+            newClass.magic = {
+              "style": this.classes[cName].magic.style,
+              "castingAtr": this.classes[cName].magic.castingAtr,
+              "casterLevel": cClass.levels,
+              "spellsPerDay": this.classes[cName].magic.spellsPerDay[cClass.levels],
+              "useGaldur": response.useGaldur,
+              "galdur": {
+                "openTotal": 0,
+                "openRemaining": 0,
+                "reserveTotal": 0,
+                "reserveRemaining": 0
+              }
+            };
+
+            if (this.classes[cName].magic.style.includes("Prepared")) {
+              newClass.magic.preparedSpells = [];
+              if (response.preparedSpells) {
+                newClass.magic.preparedSpells = response.preparedSpells;
+              } else {
+                this.classes[cName].magic.spellsPerDay[cClass.levels].forEach((spellSlots, lvl) => {
+                  for (let i = 0; i < spellSlots; i++) {
+                    newClass.magic.preparedSpells[lvl] = "";
+                  }
+                });
+              }
+            } else {
+              newClass.magic.remainingCasts = response.remainingCasts;
+            }
+          }
+          this.character.classes[cName] = newClass;
+        }
+        for (let lvl = 0; lvl < this.character.classes.total.levels+1; lvl++) {
+          this.character.classes.total.abilities.push(
+            this.classes.total.special[lvl]
+          );
+        }
+
         // Restructure abilities
         if (!Array.isArray(response.character.abilities)) {
           let abils = [];
@@ -1877,7 +1877,30 @@ export default {
           this.character.abilities = abils;
         }
 
+        // Restructure Settings
+        let appearance = new Object(this.character.basics.appearance);
+        delete this.character.basics.appearance;
+        this.character.settings.appearance = appearance;
 
+        let favored = new Object(this.character.basics.favoredClass);
+        delete this.character.basics.favoredClass;
+        this.character.settings.favoredClass = favored;
+
+        let deity = this.character.basics.deity;
+        delete this.character.basics.deity;
+        this.character.settings.deity = deity;
+
+        // Restructure Basics
+        this.character.basics.subtypes = this.character.basics.type.subtypes;
+        this.character.basics.type = this.character.basics.type.name;
+      }
+      else {
+        // setup abil ID
+        this.character.abilities.forEach(abil => {
+          if (this.abilID < abil.extras.id) {
+            this.abilID = abil.extras.id;
+          }
+        });
       }
 
       this.loading = false;
@@ -2291,7 +2314,7 @@ export default {
             Description: "",
             Cost: 0,
             Weight: 0,
-            Ammount: 1,
+            Amount: 1,
             Extras: { Notes: [] }
           }
         };

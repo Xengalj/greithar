@@ -60,8 +60,14 @@
 
   <!-- Major Item Properties -->
   <el-divider> Properties </el-divider>
+  <el-row :gutter="10" style="margin-top: 10px">
+    <el-col :span="4"> Amount </el-col>
+    <el-col :span="12">
+      <el-input-number v-model="item.value['Amount']" :min="0" aria-label="Item Amount Input" />
+    </el-col>
+  </el-row>
   <div v-for="(value, prop) in item.value" :key="prop">
-    <div v-if="!['Description', 'Cost', 'Weight', 'Extras', 'Damage', 'Ammount', 'Bonuses'].includes(prop)">
+    <div v-if="!['Description', 'Cost', 'Weight', 'Extras', 'Damage', 'Amount', 'Bonuses'].includes(prop)">
       <el-row :gutter="5" justify="center">
         <el-col :span="4"> {{ prop }} </el-col>
         <el-col :span="12">
@@ -176,20 +182,22 @@
             <el-input-number v-model="item.value.Extras['Enhancement']" size="small" aria-label="Is Item Magic?" />
           </el-col>
         </el-row>
-        <el-row v-for="(damage, name) in item.value.Extras['extraDamages']" :key="name" :gutter="10"  style="margin-top:5px;">
-          <el-col :span="6"> {{ name }} </el-col>
-          <el-col :span="7">
-            <el-input v-model="item.value.Extras.extraDamages[name].Damage" placeholder="Dmg Die" :aria-label="`${capFirsts(name)} Damage Input`" />
-          </el-col>
-          <el-col :span="7">
-            <el-input v-model="damage.Type" placeholder="Dmg Type" :aria-label="`${capFirsts(name)} Type Input`" />
-          </el-col>
-          <el-col :span="2">
-            <el-button @click="delete item.value.Extras['extraDamages'][name]" circle>
-              <g-icon iconSize="16px" iconColor="#f56c6c" iconName="trash" />
-            </el-button>
-          </el-col>
-        </el-row>
+        <span v-if="item.value.Extras.extraDamages">
+          <el-row v-for="(damage, name) in item.value.Extras['extraDamages']" :key="name" :gutter="10"  style="margin-top:5px;">
+            <el-col :span="6"> {{ name }} </el-col>
+            <el-col :span="7">
+              <el-input v-model="item.value.Extras.extraDamages[name].Damage" placeholder="Dmg Die" :aria-label="`${capFirsts(name)} Damage Input`" />
+            </el-col>
+            <el-col :span="7">
+              <el-input v-model="damage.Type" placeholder="Dmg Type" :aria-label="`${capFirsts(name)} Type Input`" />
+            </el-col>
+            <el-col :span="2">
+              <el-button @click="delete item.value.Extras['extraDamages'][name]" circle>
+                <g-icon iconSize="16px" iconColor="#f56c6c" iconName="trash" />
+              </el-button>
+            </el-col>
+          </el-row>
+        </span>
         <el-row :gutter="10" justify="center" style="margin-top:5px;">
           <el-popconfirm title="Add Magic Damage?" @confirm="if(!item.value.Extras.extraDamages) {item.value.Extras.extraDamages = {};} item.value.Extras.extraDamages[propName] = {};" hide-icon>
             <template #reference>
