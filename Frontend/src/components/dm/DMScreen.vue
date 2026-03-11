@@ -12,28 +12,30 @@
           </div>
         </template>
 
-        <el-input v-model="campaign.extras.playerNotes[character.id].alignment" aria-label="Character AC">
+        <el-input v-model="campaign.extras.playerNotes[character.id].alignment" aria-label="Character AC" disabled>
           <template #prepend> Alignment </template>
         </el-input>
-        <el-input v-model="campaign.extras.playerNotes[character.id].HP" aria-label="Character Max Health">
+        <el-input v-model="campaign.extras.playerNotes[character.id].HP" aria-label="Character Max Health" disabled>
           <template #prepend>
             <el-tag type="danger" effect="dark" style="color: black"> HP </el-tag>
           </template>
         </el-input>
-        <el-input v-model="campaign.extras.playerNotes[character.id].AC" aria-label="Character Total AC">
+        <el-input v-model="campaign.extras.playerNotes[character.id].AC" aria-label="Character Total AC" disabled>
           <template #prepend>
             <el-tag color="#42d4f4" effect="dark" style="color: black"> AC </el-tag>
           </template>
         </el-input>
-        <el-input v-model="campaign.extras.playerNotes[character.id].perception" aria-label="Character Percpeption">
+        <el-input v-model="campaign.extras.playerNotes[character.id].perception" aria-label="Character Percpeption" disabled>
           <template #prepend> Perception </template>
         </el-input>
-        <el-button @click=" this.$router.push({ name: 'character-view', params: { id: character.id } }); " type="info" style="margin:0 10px" circle>
+        <el-button @click=" loadCharacter(character.id, -1) " type="info" style="margin:0 10px" circle>
           <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
         </el-button>
-        <el-tag v-for="cClass in character.classes" :key="cClass.name" size="large" effect="dark" type="primary" >
-          {{ capFirsts(cClass.name) }} {{ cClass.levels }}
-        </el-tag>
+        <span v-for="cClass in character.classes" :key="cClass.name">
+          <el-tag v-if="cClass.name != 'total'" size="large" effect="dark" type="primary" >
+            {{ capFirsts(cClass.name) }} {{ cClass.levels }}
+          </el-tag>
+        </span>
       </el-card>
     </el-row>
 
@@ -75,7 +77,7 @@
         <el-col :xs="12" :sm="8" :md="4">
           Race
           <el-select v-model="tempName.race" size="large" placeholder="Choose Race">
-            <el-option v-for="(race, name) in races" :key="name" :label="name" :value="name" />
+            <el-option v-for="(race, name) in races.races" :key="name" :label="name" :value="name" />
           </el-select>
         </el-col>
 
@@ -83,9 +85,9 @@
           <div v-if="tempName.race">
             Gender (♀, ♂, ⚨)
             <el-select v-model="tempName.gender" size="large" placeholder="Choose Gender">
-              <el-option v-if="races[tempName.race].female" key="female" label="♀ female" value="female" />
-              <el-option v-if="races[tempName.race].male" key="male" label="♂ male" value="male" />
-              <el-option v-if="races[tempName.race].agender" key="agender" label="⚨ agender" value="agender" />
+              <el-option v-if="races.races[tempName.race].female" key="female" label="♀ female" value="female" />
+              <el-option v-if="races.races[tempName.race].male" key="male" label="♂ male" value="male" />
+              <el-option v-if="races.races[tempName.race].agender" key="agender" label="⚨ agender" value="agender" />
             </el-select>
           </div>
         </el-col>
@@ -104,7 +106,6 @@
         </el-col>
       </el-row>
     </el-card>
-
 
     <el-card v-if="encounter">
       <el-input
@@ -232,6 +233,18 @@
               </template>
               <el-row>
                 <el-col :span="19">
+                  <el-input v-model="campaign.name" disabled>
+                    <template #prepend> Campaign </template>
+                  </el-input>
+                </el-col>
+                <el-col :span="5" class="center-horz">
+                  <el-button @click="this.$router.push({ name: 'campaign-edit', params: { id: encounter.campaignId } });" type="primary" style="margin:0" circle>
+                    <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
+                  </el-button>
+                </el-col>
+              </el-row>
+              <el-row>
+                <el-col :span="19">
                   <el-input v-model="encounter.extras.prev.name" disabled>
                     <template #prepend> Prev </template>
                   </el-input>
@@ -255,6 +268,29 @@
                 </el-col>
               </el-row>
             </el-collapse-item>
+
+            <!-- Group Loot -->
+            <el-collapse-item name="5">
+              <template #title>
+                <el-divider style="max-width:75%"> <g-icon iconSize="20px" iconName="cart" /> Loot </el-divider>
+              </template>
+              <template #default>
+                <h4 v-if="campaign.id">
+                  <g-icon iconSize="32px" iconName="inventory" /> Group Loot
+                  <el-tooltip v-if="campaign.loot_lock.username" placement="top" effect="light">
+                    <el-button type="warning" style="margin:0" circle>
+                      <g-icon iconSize="32px" iconColor="#000" iconName="lock" />
+                    </el-button>
+                    <template #content>
+                      <el-tag :color="campaign.loot_lock.color" size="small" effect="dark">
+                        {{ campaign.loot_lock.username }} ({{ new Date(campaign.loot_lock.releaseTime).getHours() }}:{{ new Date(campaign.loot_lock.releaseTime).getMinutes() }})
+                      </el-tag>
+                    </template>
+                  </el-tooltip>
+                </h4>
+                <g-loot :source="campaign.loot" @edit-loot="editLoot()"/>
+              </template>
+            </el-collapse-item>
           </el-collapse>
 
         </div>
@@ -266,14 +302,16 @@
 
 <script>
 // import DataService from "@/services/data.service";
-import CreatureCard from '@/components/template/CreatureCard.vue'
 import CampaignService from "@/services/campaign.service";
 import EncounterService from "@/services/encounter.service";
 import CharacterService from "@/services/character.service";
+import CreatureCard from '@/components/template/CreatureCard.vue'
+import GLoot from '@/components/template/GLoot.vue';
+
 
 export default {
   name: "DM Screen",
-  components: { CreatureCard },
+  components: { CreatureCard, GLoot },
   computed: {
     rules() { return JSON.parse(localStorage.getItem('rules')); },
     races() { return JSON.parse(localStorage.getItem('races')); },
@@ -326,6 +364,7 @@ export default {
     \***************************/
     capFirsts(string) { return string ? string.replace(/(^\w|\s\w)/g, m => m.toUpperCase()) : ""; },
     openDrawer() { this.drawer = true; },
+    editLoot() { this.$message({ message: "Do not edit group loot here", type: 'warning', }); },
 
     /***************************\
     *                           *
@@ -395,35 +434,20 @@ export default {
     genRandomName() {
       let fNames, surnames, rand = 0;
 
-      fNames = this.races[this.tempName.race][this.tempName.gender].names;
+      fNames = this.races.races[this.tempName.race][this.tempName.gender].names;
       rand = Math.floor(Math.random() * fNames.length);
       this.tempName.fName = fNames[rand];
 
-      surnames = this.races[this.tempName.race].surnames;
+      surnames = this.races.races[this.tempName.race].surnames;
       rand = Math.floor(Math.random() * Object.keys(surnames).length);
       this.tempName.surname = Object.keys(surnames)[rand];
     },
-
     loadCharacter(id, index) {
-      console.log(id);
       this.index = index;
-
       CharacterService.getCharacter(id)
-      .then((response) => {
-        console.log('response', response);
-        this.viewCreature(response.character);
-
-        // this.character = response.character;
-        // document.getElementsByClassName('title')[0].innerHTML = this.character.name;
-        // this.spellTabs = Object.keys(this.character.spells)[0];
-        //
-        // this.loading = false;
-      })
+      .then((response) => { this.viewCreature(response.character, index); })
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); })
-
-
     },
-
     viewCreature(creature, index) {
       this.drawer = false;
       this.creature = creature;
@@ -431,12 +455,16 @@ export default {
       this.creatureVisible = true;
     },
     saveCreature(creature) {
-      if (creature.settings.isMonster) {
-        this.encounter.monsters[this.index] = creature;
-      } else if (creature.settings.isNPC) {
-        this.encounter.npcs[this.index] = creature;
+      if (this.index < 0) {
+        this.$message({ message: "Do not overwrite player's toons here", type: 'warning', });
+      } else {
+        if (creature.settings.isMonster) {
+          this.encounter.monsters[this.index] = creature;
+        } else if (creature.settings.isNPC) {
+          this.encounter.npcs[this.index] = creature;
+        }
+        this.saveEncounter();
       }
-      this.saveEncounter();
     },
 
     // End Methods

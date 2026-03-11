@@ -58,9 +58,11 @@
                 <el-button @click=" this.$router.push({ name: 'character-view', params: { id: character.id } }); " type="info" style="margin:0 10px" circle>
                   <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
                 </el-button>
-                <el-tag v-for="cClass in character.classes" :key="cClass.name" size="large" effect="dark" type="primary" >
-                  {{ capFirsts(cClass.name) }} {{ cClass.levels }}
-                </el-tag>
+                <span v-for="cClass in character.classes" :key="cClass.name">
+                  <el-tag v-if="cClass.name != 'total'" size="large" effect="dark" type="primary" >
+                    {{ capFirsts(cClass.name) }} {{ cClass.levels }}
+                  </el-tag>
+                </span>
               </el-card>
             </div>
           </el-collapse-item>

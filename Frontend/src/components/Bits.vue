@@ -164,11 +164,6 @@ export default {
         Good +4
         Perfect +8
 
-
-    - set up character/view to update a toon to use new format
-      - setup character/view to use CreatureCard
-
-
     - set up encounters to have characters
       + characters belongsTo encounters (many to many)
 
