@@ -5,37 +5,38 @@
     <el-row justify="space-around">
       <el-card v-for="(character, index) in campaign.characters" :key="index" style="max-width: 200px">
         <template #header>
-          <div class="card-header">
-            <el-tag :color="character.color" size="large" effect="dark">
-              <span>{{ character.name }} ({{ character.user }})</span>
-            </el-tag>
-          </div>
+          <el-tag :color="character.color" size="large" effect="dark">
+            <span>{{ character.name }} ({{ character.user }})</span>
+          </el-tag>
         </template>
 
-        <el-input v-model="campaign.extras.playerNotes[character.id].alignment" aria-label="Character AC" disabled>
+        <el-input v-model="character.extras.alignment" aria-label="Character AC" disabled>
           <template #prepend> Alignment </template>
         </el-input>
-        <el-input v-model="campaign.extras.playerNotes[character.id].HP" aria-label="Character Max Health" disabled>
+        <el-input v-model="character.extras.HP" aria-label="Character Max Health" disabled>
           <template #prepend>
             <el-tag type="danger" effect="dark" style="color: black"> HP </el-tag>
           </template>
         </el-input>
-        <el-input v-model="campaign.extras.playerNotes[character.id].AC" aria-label="Character Total AC" disabled>
+        <el-input v-model="character.extras.AC" aria-label="Character Total AC" disabled>
           <template #prepend>
             <el-tag color="#42d4f4" effect="dark" style="color: black"> AC </el-tag>
           </template>
         </el-input>
-        <el-input v-model="campaign.extras.playerNotes[character.id].perception" aria-label="Character Percpeption" disabled>
+        <el-input v-model="character.extras.Perception" aria-label="Character Percpeption" disabled>
           <template #prepend> Perception </template>
         </el-input>
+        <div class="classList">
+          <span v-for="cClass in character.classes" :key="cClass.name">
+            <el-tag v-if="cClass.name != 'total'" size="small" effect="dark" type="primary">
+              {{ capFirsts(cClass.name) }} {{ cClass.levels }}
+            </el-tag>
+          </span>
+        </div>
+
         <el-button @click=" loadCharacter(character.id, -1) " type="info" style="margin:0 10px" circle>
           <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
         </el-button>
-        <span v-for="cClass in character.classes" :key="cClass.name">
-          <el-tag v-if="cClass.name != 'total'" size="large" effect="dark" type="primary" >
-            {{ capFirsts(cClass.name) }} {{ cClass.levels }}
-          </el-tag>
-        </span>
       </el-card>
     </el-row>
 
@@ -473,9 +474,15 @@ export default {
 </script>
 
 <style>
+.el-row,
 .el-card .el-row,
 .el-card .el-input,
 .el-card .el-textarea {
+  margin-bottom: 10px;
+}
+.classList {
+  display: flex;
+  justify-content: space-evenly;
   margin-bottom: 10px;
 }
 </style>

@@ -1124,7 +1124,7 @@
     },
     "Earth": {
       "Realm": "Elemental Plane of Earth",
-      "Burrow": {  
+      "Burrow": {
         "description": "Most earth creatures have a burrow speed.",
         "shortText": "",
         "location": "self",
@@ -1207,7 +1207,7 @@
         "location": "self",
         "trigger": "Continuous",
         "bonuses": {}
-      }      
+      }
     },
     "Gnome": {
       "Low-light Vision": {
@@ -1248,7 +1248,7 @@
         "location": "self",
         "trigger": "Continuous",
         "bonuses": {}
-      }      
+      }
     },
     "Good": {
       "Realm": "Heaven, Nirvana, Elysium",
@@ -1304,7 +1304,7 @@
         "location": "self",
         "trigger": "Standard",
         "bonuses": {}
-      },
+      }
     },
     "Halfling": {
       "Darkvision": {
@@ -1417,7 +1417,7 @@
         "trigger": "Continuous",
         "bonuses": {}
       }
-      
+
     },
     "Leshy": {
       "Darkvision": {
