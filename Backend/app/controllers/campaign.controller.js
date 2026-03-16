@@ -65,6 +65,12 @@ exports.readCampaign = async (req, res) => {
             name: character.name,
             user: user.username,
             color: user.usermeta.faveColor,
+            extras: {
+              alignment: character.basics.alignment,
+              HP: character.health.total,
+              AC: 10,
+              Perception: character.skills.Perception.ranks + (character.skills.Perception.class?3:0)
+            },
             classes: []
           };
           for (let [name, cClass] of Object.entries(character.classes)) {

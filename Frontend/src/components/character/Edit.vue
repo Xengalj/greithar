@@ -15,18 +15,58 @@
       </el-col>
     </el-row>
 
+
+    <!-- Level Up -->
+    <el-row :gutter="10" justify="center">
+      <el-col :xs="12" :sm="6" :md="6">
+        <el-input v-model="character.classes.total.levels" aria-label="Character Level" disabled>
+          <template #prepend>Level</template>
+        </el-input>
+      </el-col>
+      <el-col :xs="12" :sm="5" :md="3">
+        <el-popconfirm title="Choose a class" @confirm="openLevelDialog" hide-icon :hide-after="2000">
+          <template #reference>
+            <el-button type="primary">
+              <g-icon iconSize="24px" iconName="sparkle" />
+              <span style="padding:5px"> Level Up </span>
+            </el-button>
+          </template>
+          <template #actions="{ confirm }">
+            <el-select v-model="newLevel.class" aria-label="New Level Class" style="margin-bottom:5px">
+              <el-option v-for="(cClass, cName) in classes" :key="cName" :label="capFirsts(cName)" :value="cName" />
+            </el-select>
+            <el-button type="primary" size="small" @click="confirm" :disabled="newLevel.class == ''"> Go! </el-button>
+          </template>
+        </el-popconfirm>
+      </el-col>
+    </el-row>
+
+    <!-- Save, View, Back btns -->
+    <el-row :gutter="10" justify="center">
+      <el-col :xs="6" :sm="3" :md="2" class="center-horz" style="margin-bottom:10px;">
+        <el-button @click="this.$router.push({ name: 'character-view', params: { id: character.id } })" type="info"> View </el-button>
+      </el-col>
+      <el-col :xs="10" :sm="5" :md="3" class="center-horz">
+        <el-button @click="saveCharacter()" type="primary"> Save Changes </el-button>
+      </el-col>
+      <el-col :xs="14" :sm="6" :md="4" class="center-horz">
+        <el-button @click="$router.push({ name: 'character-list' })" type="warning" plain> Back to All Characters </el-button>
+      </el-col>
+    </el-row>
+
+
     <el-collapse v-model="sectionsCollapse" v-if="!loading">
       <!-- BASICS -->
       <el-collapse-item name="0">
         <template #title>
-          <el-divider style="max-width:75%"> <h4>
+          <el-divider style="max-width:75%">
             <el-col :xs="24" :span="0">
               <g-icon iconSize="26px" :iconName="character.basics.type.name" style="margin:0" /> Basics
             </el-col>
             <el-col :xs="0" :sm="24">
-              <g-icon iconSize="32px" :iconName="character.basics.type.name" /> Basics
+              <h4> <g-icon iconSize="32px" :iconName="character.basics.type.name" /> Basics </h4>
             </el-col>
-          </h4> </el-divider>
+          </el-divider>
         </template>
 
         <el-row :gutter="10" align="middle" class="basics">
@@ -162,33 +202,6 @@
               <template #prepend>Speed</template>
               <template #suffix>ft.</template>
             </el-input>
-          </el-col>
-        </el-row>
-        <br>
-
-
-        <!-- Level Up -->
-        <el-row :gutter="10" justify="center">
-          <el-col :xs="12" :sm="6" :md="6">
-            <el-input v-model="character.classes.total.levels" aria-label="Character Level" disabled>
-              <template #prepend>Level</template>
-            </el-input>
-          </el-col>
-          <el-col :xs="12" :sm="5" :md="3">
-            <el-popconfirm title="Choose a class" @confirm="openLevelDialog" hide-icon :hide-after="2000">
-              <template #reference>
-                <el-button type="primary">
-                  <g-icon iconSize="24px" iconName="sparkle" />
-                  <span style="padding:5px"> Level Up </span>
-                </el-button>
-              </template>
-              <template #actions="{ confirm }">
-                <el-select v-model="newLevel.class" aria-label="New Level Class" style="margin-bottom:5px">
-                  <el-option v-for="(cClass, cName) in classes" :key="cName" :label="capFirsts(cName)" :value="cName" />
-                </el-select>
-                <el-button type="primary" size="small" @click="confirm" :disabled="newLevel.class == ''"> Go! </el-button>
-              </template>
-            </el-popconfirm>
           </el-col>
         </el-row>
       </el-collapse-item>
@@ -373,10 +386,6 @@
                 <el-descriptions-item v-if="cClass.hd">
                   <template #label> Will </template>
                   +{{ Math.floor(cClass.levels * cClass.saves.will.mult) + cClass.saves.will.bonus }}
-                </el-descriptions-item>
-                <el-descriptions-item v-if="cClass.hd">
-                  <template #label> Ranks </template>
-                  {{ cClass.levels * cClass.ranks }}
                 </el-descriptions-item>
               </el-descriptions>
             </el-col>
@@ -1351,14 +1360,6 @@
       </el-collapse-item>
     </el-collapse>
 
-    <!-- FOOTER -->
-    <div style="text-align: right; margin-top: 10px;">
-      <el-button @click="$router.push({ name: 'character-list' })" type="warning" plain> Back to All Characters </el-button>
-
-      <el-button @click="this.$router.push({ name: 'character-view', params: { id: character.id } })" type="info"> View </el-button>
-      <el-button @click="saveCharacter()" type="primary"> Save Changes </el-button>
-    </div>
-
     <!-- Dialog -->
     <el-auto-resizer style="height: 10px">
       <template #default="{ width }">
@@ -1386,8 +1387,6 @@
                 </el-col>
               </el-row>
             </div>
-
-
 
             <!-- New Magic -->
             <div v-if="classes[newLevel.class].magic">
@@ -1544,17 +1543,22 @@
                     </el-col>
                     <el-col :span="10">
                       <el-input-number v-model="newLevel.skills[name].newRanks" :min="0"
-                      :max="(character.basics.cr+1) - (character.skills[name].ranks + newLevel.skills[name].backgroundRanks?newLevel.skills[name].backgroundRanks:0)"
-                      size="small" aria-label="New Ranks">
-                      <template #suffix>
-                        <g-icon v-if="newLevel.skills[name].newRanks>0" iconSize="20px" iconName="sparkle" iconColor="var(--el-color-warning)" />
+                        :max="(character.classes.total.levels+1) - (character.skills[name].ranks + newLevel.skills[name].backgroundRanks?newLevel.skills[name].backgroundRanks:0)"
+                        size="small" aria-label="New Ranks">
+                        <template #suffix>
+                          <g-icon v-if="newLevel.skills[name].newRanks>0" iconSize="20px" iconName="sparkle" iconColor="var(--el-color-warning)" />
                         </template>
                       </el-input-number>
+
                     </el-col>
                     <el-col :span="10">
                       <el-input-number v-if="skill.background" v-model="newLevel.skills[name].backgroundRanks" :min="0"
-                      :max="Math.min(2, character.basics.cr+1-character.skills[name].ranks-newLevel.skills[name].newRanks)"
-                      size="small" aria-label="New Background Ranks" />
+                        :max="Math.min(2, character.classes.total.levels+1-character.skills[name].ranks-newLevel.skills[name].newRanks)"
+                        size="small" aria-label="New Background Ranks">
+                        <template #suffix>
+                          <g-icon v-if="newLevel.skills[name].backgroundRanks>0" iconSize="20px" iconName="sparkle" iconColor="var(--el-color-warning)" />
+                          </template>
+                        </el-input-number>
                     </el-col>
                   </el-row>
                 </el-col>
@@ -1742,8 +1746,8 @@ export default {
       if (this.loading) { return attributes; }
       for (let [name, attr] of Object.entries(this.character.attributes)) {
         attributes[name].total = attr.base;
-        attributes[name].mod = Math.floor( (name == "-" ? 0 : attr.base - 10) / 2 );
         this.bonusLoop(attributes[name], name);
+        attributes[name].mod = Math.floor( (name == "-" ? 0 : attributes[name].total - 10) / 2 );
       }
       return attributes;
     },
@@ -2040,31 +2044,36 @@ export default {
       }
 
       // abilities
-      this.abilID++;
-      let newAbil = {
-        'name': this.classes.total.special[this.character.classes.total.levels+1],
-        'description': "",
-        extras: {
-          id: this.abilID,
-          active: true,
-          category: "Feat",
-          showMain: false,
-          notes: []
-        }
-      };
-      lvl.abilities.push(newAbil);
-
-      this.classes[lvl.class].special[lvl.level].forEach(abil => {
+      if (this.classes.total.special[this.character.classes.total.levels+1].length>0) {
+        let newAbil = {
+          'name': this.classes.total.special[this.character.classes.total.levels+1],
+          'description': "",
+          extras: {
+            id: this.abilID,
+            active: true,
+            category: "Feat",
+            showMain: false,
+            notes: []
+          }
+        };
         this.abilID++;
-        let newAbil = { 'name': abil, 'description': "", extras: {
-          id: this.abilID,
-          active: true,
-          category: "Class",
-          showMain: false,
-          notes: []
-        } };
         lvl.abilities.push(newAbil);
-      });
+      }
+
+      if (this.classes[lvl.class].special) {
+        this.classes[lvl.class].special[lvl.level].forEach(abil => {
+          this.abilID++;
+          let newAbil = { 'name': abil, 'description': "", extras: {
+            id: this.abilID,
+            active: true,
+            category: "Class",
+            showMain: false,
+            notes: []
+          } };
+          this.abilID++;
+          lvl.abilities.push(newAbil);
+        });
+      }
 
       // magic
       if (this.classes[lvl.class].magic) {
@@ -2113,6 +2122,7 @@ export default {
         newAbil.bonuses = {};
         this.character.abilities.push( newAbil );
         if (newAbil.extras.category == "Feat") {
+          this.character.classes.total.abilities[this.newLevel.level] = [];
           this.character.classes.total.abilities[this.newLevel.level].push( newAbil.extras.id );
         }
         if (newAbil.extras.category == "Class") {

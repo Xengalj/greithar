@@ -108,6 +108,7 @@ After verifying the record, restart apache with `service apache2 restart`. Certb
 - [x] creature card will display json of a creature given to it, json building done by parent
 
 - [x] add campaigns & encounters
+- [ ] update campaign search for adding NPCs (search on partial name)
 
 - [x] add Player/NPC builder/advancer
 - [x] use <el-drawer> for equipment and things in builder
@@ -115,6 +116,7 @@ After verifying the record, restart apache with `service apache2 restart`. Certb
 - [x] items -> total up gold value
 - [ ] REFACTOR to display on mobile & tablet
 
+- [ ] Admin Edit Page (able to import any data, update as JSON) (Toon, Campaign, Loot, Encounter, Etc)
 
 - [ ] implement Rule & Lore pages
 - [ ] [WikiJS](https://js.wiki/)

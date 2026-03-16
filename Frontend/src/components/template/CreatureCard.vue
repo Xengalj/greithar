@@ -1607,7 +1607,7 @@ export default {
         for (let [name, attr] of Object.entries(this.creature.attributes)) {
           attributes[name].total = attr.base;
           this.bonusLoop(attributes[name], name);
-          attributes[name].mod = Math.floor( (name=="-" ? 0 : attributes[name].total -10) / 2 );
+          attributes[name].mod = Math.floor( (name == "-" ? 0 : attributes[name].total - 10) / 2 );
         }
       }
       return attributes;

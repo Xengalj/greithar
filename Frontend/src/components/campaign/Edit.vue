@@ -33,36 +33,38 @@
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;" >
               <el-card v-for="(character, index) in campaign.characters" :key="index" style="max-width: 200px">
                 <template #header>
-                  <div class="card-header">
-                    <el-tag :color="character.color" size="large" effect="dark">
-                      <span>{{ character.name }} ({{ character.user }})</span>
-                    </el-tag>
-                  </div>
+                  <el-tag :color="character.color" size="large" effect="dark">
+                    <span>{{ character.name }} ({{ character.user }})</span>
+                  </el-tag>
                 </template>
-                <el-input v-model="campaign.extras.playerNotes[character.id].alignment" aria-label="Character AC">
+                <el-input v-model="character.extras.alignment" aria-label="Character AC">
                   <template #prepend> Alignment </template>
                 </el-input>
-                <el-input v-model="campaign.extras.playerNotes[character.id].HP" aria-label="Character Max Health">
+                <el-input v-model="character.extras.HP" aria-label="Character Max Health">
                   <template #prepend>
                     <el-tag type="danger" effect="dark" style="color: black"> HP </el-tag>
                   </template>
                 </el-input>
-                <el-input v-model="campaign.extras.playerNotes[character.id].AC" aria-label="Character Total AC">
+                <el-input v-model="character.extras.AC" aria-label="Character Total AC">
                   <template #prepend>
                     <el-tag color="#42d4f4" effect="dark"> AC </el-tag>
                   </template>
                 </el-input>
-                <el-input v-model="campaign.extras.playerNotes[character.id].perception" aria-label="Character Percpeption">
+                <el-input v-model="character.extras.Perception" aria-label="Character Percpeption">
                   <template #prepend> Perception </template>
                 </el-input>
+                <div class="classList">
+                  <span v-for="cClass in character.classes" :key="cClass.name">
+                    <el-tag v-if="cClass.name != 'total'" size="small" effect="dark" type="primary">
+                      {{ capFirsts(cClass.name) }} {{ cClass.levels }}
+                    </el-tag>
+                  </span>
+                </div>
+
+
                 <el-button @click=" this.$router.push({ name: 'character-view', params: { id: character.id } }); " type="info" style="margin:0 10px" circle>
                   <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
                 </el-button>
-                <span v-for="cClass in character.classes" :key="cClass.name">
-                  <el-tag v-if="cClass.name != 'total'" size="large" effect="dark" type="primary" >
-                    {{ capFirsts(cClass.name) }} {{ cClass.levels }}
-                  </el-tag>
-                </span>
               </el-card>
             </div>
           </el-collapse-item>
@@ -387,4 +389,10 @@ export default {
 .el-row {
   margin-bottom: 10px;
 }
+.classList {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 10px;
+}
+
 </style>

@@ -28,7 +28,7 @@
     >
       <el-table-column prop="name" label="Name" min-width="100" sortable />
       <el-table-column prop="user.username" label="User" sortable v-if="!userID" />
-      <el-table-column prop="basics.appearance.age" label="Age" sortable />
+      <el-table-column prop="settings.appearance.age" label="Age" sortable />
       <el-table-column prop="basics.race" label="Race" sortable />
       <el-table-column prop="classes" label="Class" min-width="90" sortable>
         <template #default="scope">
@@ -142,6 +142,7 @@ export default {
         this.totalToons = tmp.count;
         this.characters = tmp.rows;
         this.loading = false;
+        console.log(tmp);
       })
       .catch(err => { this.$message({ message: err, type: 'error', }); console.error(err); });
     },

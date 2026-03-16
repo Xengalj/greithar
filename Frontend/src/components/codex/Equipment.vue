@@ -1,4 +1,5 @@
 <template>
+  <div>
   <div style="margin: 0 2%">
 
     <div class="hero-section">
@@ -144,6 +145,7 @@
     </el-row>
   </el-dialog>
 
+</div>
 </template>
 
 <script>
@@ -323,8 +325,9 @@ export default {
       this.toonItem.value.Amount = 1;
       this.toonEdit = true;
     },
-    saveItem(item) {
-      this.toonItem = item;
+    saveItem() {
+      console.log(this.toonItem);
+      // this.toonItem = item;
       CharacterService.getAllCharacters(this.currentUser.id, 0, null)
       .then(response => {
         this.userToons = JSON.parse(response.characters).rows;

@@ -52,7 +52,7 @@ module.exports = (sequelize, Sequelize) => {
         total: {
           // tracks innate magic, level feats, abil increases
           levels: 0,
-          abilites: [ [] ],
+          abilities: [ [] ],
         }
       }
     },
@@ -157,7 +157,7 @@ module.exports = (sequelize, Sequelize) => {
                 'Description': "This leather knapsack has one large pocket that closes with a buckled strap and holds about 2 cubic feet of material. Some may have one or more smaller pockets on the sides.",
                 'Cost': 2,
                 'Weight': 2,
-                "Ammount": 1,
+                "Amount": 1,
                 "Extras": {
                   "Notes": []
                 }
