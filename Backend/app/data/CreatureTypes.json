@@ -827,7 +827,7 @@
         "trigger": "Continuous",
         "bonuses": {}
       },
-      "Cold Vulnerability": {
+      "Fire Vulnerability": {
         "description": "Cold creatures are vulnerable to fire damage.",
         "shortText": "fire",
         "location": "weaknesses",
@@ -1085,7 +1085,7 @@
         "bonuses": {}
       },
       "See in Darkness (Su)": {
-        "description": "Some divss can see perfectly in all darkness, even that made by spells.",
+        "description": "Some divs can see perfectly in all darkness, even that made by spells.",
         "shortText": "",
         "location": "self",
         "trigger": "Continuous",
@@ -1124,27 +1124,34 @@
     },
     "Earth": {
       "Realm": "Elemental Plane of Earth",
-      "Darkvision": {
-        "description": "XX can see in the dark up to 60 feet.",
-        "shortText": "Darkvision 60 ft.",
+      "Burrow": {  
+        "description": "Most earth creatures have a burrow speed.",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Tremorsense (Ex)": {
+        "description": "Most earth creatures are sensitive to vibrations in the ground, allowing them to pinpoint the location of anything in contact with the ground. Aquatic creatures can also use tremmor sense through water.",
+        "shortText": "Tremorsense 10 ft.",
         "location": "senses",
         "trigger": "Continuous",
         "bonuses": {}
       }
     },
     "Elemental": {
-      "Darkvision": {
-        "description": "XX can see in the dark up to 60 feet.",
-        "shortText": "Darkvision 60 ft.",
-        "location": "senses",
+      "Elemental Immunities": {
+        "description": "Elementals are immune to bleeding, paralysis, poison, sleep, stunning, critical hits, flanking, and precision damage.",
+        "shortText": "bleed, paralysis, poison, sleep, stun, critical hits, flanking, precision damage",
+        "location": "immunities",
         "trigger": "Continuous",
         "bonuses": {}
       }
     },
     "Elf": {
-      "Darkvision": {
-        "description": "XX can see in the dark up to 60 feet.",
-        "shortText": "Darkvision 60 ft.",
+      "Low-light Vision": {
+        "description": "Elves can see color in dim light up to 60 feet.",
+        "shortText": "Low-light Vision 60 ft.",
         "location": "senses",
         "trigger": "Continuous",
         "bonuses": {}
@@ -1152,87 +1159,152 @@
     },
     "Evil": {
       "Realm": "Hell, Abaddon, Abyss",
-      "Darkvision": {
-        "description": "XX can see in the dark up to 60 feet.",
-        "shortText": "Darkvision 60 ft.",
-        "location": "senses",
+      "Evil Blood": {
+        "description": "An evil creature is always considered to have an evil alignment for any effects that rely on alignment and any weapons they wield are evil aligned.",
+        "shortText": "",
+        "location": "self",
         "trigger": "Continuous",
         "bonuses": {}
       }
     },
     "Extraplanar": {
-      "Darkvision": {
-        "description": "XX can see in the dark up to 60 feet.",
-        "shortText": "Darkvision 60 ft.",
-        "location": "senses",
+      "Extraplanar": {
+        "description": "Any creature that is not on its home plane gains the extraplanar subtype, except when on a transitive plane (Astral, Ethereal, Shadow)",
+        "shortText": "",
+        "location": "self",
         "trigger": "Continuous",
         "bonuses": {}
       }
     },
     "Fire": {
       "Realm": "Elemental Plane of Fire",
-      "Darkvision": {
-        "description": "XX can see in the dark up to 60 feet.",
-        "shortText": "Darkvision 60 ft.",
-        "location": "senses",
+      "Fire Immunity": {
+        "description": "Fire creatures are immune to fire damage.",
+        "shortText": "fire",
+        "location": "immunities",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Cold Vulnerability": {
+        "description": "Fire creatures are vulnerable to cold damage.",
+        "shortText": "cold",
+        "location": "weaknesses",
         "trigger": "Continuous",
         "bonuses": {}
       }
     },
     "Giant": {
-      "Darkvision": {
-        "description": "XX can see in the dark up to 60 feet.",
-        "shortText": "Darkvision 60 ft.",
+      "Low-light Vision": {
+        "description": "Giants can see color in dim light up to 60 feet.",
+        "shortText": "Low-light Vision 60 ft.",
         "location": "senses",
         "trigger": "Continuous",
         "bonuses": {}
-      }
+      },
+      "Giant Skills": {
+        "description": "Giants treat Intimidate and Perception as class skills.",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Continuous",
+        "bonuses": {}
+      }      
     },
     "Gnome": {
-      "Darkvision": {
-        "description": "XX can see in the dark up to 60 feet.",
-        "shortText": "Darkvision 60 ft.",
+      "Low-light Vision": {
+        "description": "Gnomes can see color in dim light up to 60 feet.",
+        "shortText": "Low-light Vision 60 ft.",
         "location": "senses",
         "trigger": "Continuous",
         "bonuses": {}
       }
     },
     "Goblinoid": {
-      "Darkvision": {
-        "description": "XX can see in the dark up to 60 feet.",
-        "shortText": "Darkvision 60 ft.",
-        "location": "senses",
+      "Goblinoid Skills": {
+        "description": "Goblins treat Stealth as a class skill.",
+        "shortText": "",
+        "location": "self",
         "trigger": "Continuous",
         "bonuses": {}
       }
     },
     "Godspawn": {
-      "Darkvision": {
-        "description": "XX can see in the dark up to 60 feet.",
-        "shortText": "Darkvision 60 ft.",
-        "location": "senses",
+      "Hibernation (Ex)": {
+        "description": "Godspawn can hibernate for centuries and do not need to eat or breathe during hibernation. If forced into an environment where it would suffocate, it starts hibernating. While hibernating, they gain DR 50/Epic, and immunity to any spell or (Sp) that allows spell resistance, as well as divination.",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Free",
+        "bonuses": {}
+      },
+      "Regeneration (Ex)": {
+        "description": "All godspawn heal at a fixed rate per turn, and cannot die (even when their HP goes below 0). This regeneration cannot be suppressed and even successful death effects only delay its resurection by 3 rounds. A method to kill a godspawn has yet to be discovered.",
+        "shortText": "Regeneration 5",
+        "location": "Immunities",
         "trigger": "Continuous",
         "bonuses": {}
-      }
+      },
+      "Unstoppable Force (Ex)": {
+        "description": "Godspawn can always charge and gets a +20 racial bonus on CMB checks to overrun or Strength checks to break or destroy objects, which it can do as part of the charge. A godspawn's natural weapons ignore all forms of damage reduction and hardness.",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Continuous",
+        "bonuses": {}
+      }      
     },
     "Good": {
       "Realm": "Heaven, Nirvana, Elysium",
-      "Darkvision": {
-        "description": "XX can see in the dark up to 60 feet.",
-        "shortText": "Darkvision 60 ft.",
-        "location": "senses",
+      "Good Blood": {
+        "description": "A good creature is always considered to have a good alignment for any effects that rely on alignment and any weapons they wield are good aligned.",
+        "shortText": "",
+        "location": "self",
         "trigger": "Continuous",
         "bonuses": {}
       }
     },
     "Great Old One": {
-      "Darkvision": {
-        "description": "XX can see in the dark up to 60 feet.",
-        "shortText": "Darkvision 60 ft.",
-        "location": "senses",
+      "Great Old One Blood": {
+        "description": "Any weapons wielded by a Great Old One are chaotic aligned, epic, and Mythic for damage reduction purposes.",
+        "shortText": "",
+        "location": "self",
         "trigger": "Continuous",
         "bonuses": {}
-      }
+      },
+      "Immortality (Ex)": {
+        "description": "A Great Old One does not need to eat, drink, breathe or age. No method to kill a Great Old One has been discovered yet, as they just go dormant for a long time instead. Great Old Ones are also immune to ability damage, ability drain, aging, cold, death effects, disease, energy drain, mind effects, paralysis, and petrification",
+        "shortText": "ability damage, ability drain, aging, cold, death effects, disease, energy drain, mind effects, paralysis, petrification",
+        "location": "immunities",
+        "trigger": "Continuous",
+        "bonuses": {}
+      },
+      "Insanity (Ex)": {
+        "description": "Any creature that attempts to interact directly with a Great Old One's thoughts (like telepathy) must make a Will save or be driven permanently insane as per the spell. A Great Old One may activate this ability through its own telepathy as a standard action.",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Standard",
+        "bonuses": {}
+      },
+      "Mythic (Su)": {
+        "description": "A Great Old One has Mythic Power and counts as a 10th-rank Mythic creature, being able to expend Mythic Power as normal.",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Standard",
+        "bonuses": {}
+      },
+      "Otherworldly Insight (Ex)": {
+        "description": "All Great Old Ones gain a +10 insight bonus on initiative checks and AC",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Continuous",
+        "bonuses": {
+          "Otherworldly Insight": { "value": 10, "type": "Insight", "targets": [ "initiative", "totalAC", "touchAC", "flatAC" ]}
+        }
+      },
+      "Unspeakable Presence (Su)": {
+        "description": "A Great Old One's aura inflicts intense mental anguish on all creatures within 300 ft.",
+        "shortText": "",
+        "location": "self",
+        "trigger": "Standard",
+        "bonuses": {}
+      },
     },
     "Halfling": {
       "Darkvision": {
@@ -1337,13 +1409,15 @@
     },
     "Lawful": {
       "Realm": "Heaven, Utopia, Hell",
-      "Darkvision": {
-        "description": "XX can see in the dark up to 60 feet.",
-        "shortText": "Darkvision 60 ft.",
-        "location": "senses",
+
+            "Chaotic Blood": {
+        "description": "A chaotic creature is always considered to have a chaotic alignment for any effects that rely on alignment and any weapons they wield are chaotically aligned.",
+        "shortText": "",
+        "location": "",
         "trigger": "Continuous",
         "bonuses": {}
       }
+      
     },
     "Leshy": {
       "Darkvision": {
