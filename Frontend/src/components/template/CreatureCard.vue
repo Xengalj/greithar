@@ -1563,7 +1563,7 @@ export default {
       if (item) {
         bonuses[item.label] = {};
         bonuses[item.label].type = "Armor";
-        bonuses[item.label].targets = item.value.targets;
+        bonuses[item.label].targets = [ "totalAC", "flatAC" ];
         bonuses[item.label].value = item.value["AC Bonus"];
       }
       // Shields          For items in equipment . equipped . hands
@@ -1571,7 +1571,7 @@ export default {
         if (item.value["AC Bonus"]) {
           bonuses[item.label] = {};
           bonuses[item.label].type = "Shield";
-          bonuses[item.label].targets = item.value.targets;
+          bonuses[item.label].targets = [ "totalAC", "flatAC" ];
           bonuses[item.label].value = item.value["AC Bonus"];
         }
       }
@@ -1673,6 +1673,7 @@ export default {
       // touch = creature.ac.total - bonus.armor - bonus.shield - bonus.natural;
       // flat = creature.ac.total - bonus.dex - bonus.dodge;
       if (armor) {
+        // amror bonus done in bonuses() above
         bonus = Math.min(armor.value["Max Dex"], this.attributes.Dex.mod);
         this.applyBonus('Dex', bonus, ac.total);
         this.applyBonus('Dex', bonus, ac.touch);
@@ -1688,10 +1689,11 @@ export default {
         this.applyBonus('Size', bonus, ac.flat);
       }
       // neg dex still applies to flat footed
-      if (this.attributes.Dex < 0) {
-        ac.flat.total += this.attributes.Dex.mod;
-        ac.flat.sources.push(`${this.attributes.Dex} Dex`);
-      }
+      // if (this.attributes.Dex < 0) {
+      //   ac.flat.total += this.attributes.Dex.mod;
+      //   ac.flat.sources.push(`${this.attributes.Dex} Dex`);
+      // }
+
       this.bonusLoop(ac.total, "totalAC");
       this.bonusLoop(ac.touch, "touchAC");
       this.bonusLoop(ac.flat, "flatAC");
@@ -2300,37 +2302,50 @@ export default {
     tString = the target string we match to add to the bonus object: "atkBonus"
     */
     bonusLoop(object, tString) {
-      let debug = "TrevTest";
+      let debug = "totalAC";
       if (tString.includes(debug)) { console.log(tString, object); }
 
       let typedBonuses = {};
       let prefix = "";
       for (let [name, bonus] of Object.entries(this.bonuses)) {
         if (tString.includes(debug)) { console.log(name, bonus); }
-        if (tString.includes(debug)) { console.log(typedBonuses); }
+        // if (tString.includes(debug)) { console.log(typedBonuses); }
 
         if (bonus.targets && bonus.targets.includes(tString)) {
           if (bonus.value > 0) {
             prefix = "+";
             if (this.rules.bonuses[bonus.type] && !this.rules.bonuses[bonus.type].stacks) {
               // if this is a non stacking bonus
-              if (typedBonuses[bonus.type] && typedBonuses[bonus.type].value < bonus.value) {
-                // if the existing bonus is smaller and should be replaced
-                if (tString.includes(debug)) { console.log(`replace ${typedBonuses[bonus.type].value} ${typedBonuses[bonus.type].name}`); }
-                object.total -= typedBonuses[bonus.type].val;
-                object.sources.forEach((source, i) => {
-                  if (source.includes(typedBonuses[bonus.type].name)) {
-                    object.sources.splice(i, 1);
-                  }
-                });
-                // update existing typed, non-stacking bonus
-                typedBonuses[bonus.type] = { name: name, value: bonus.value };
+
+              if ( typedBonuses[bonus.type] ) {
+                // if we already have a bonus of this type
+                if (typedBonuses[bonus.type].value < bonus.value) {
+                  // if the existing bonus is smaller and should be replaced
+                  if (tString.includes(debug)) { console.log(`replace ${typedBonuses[bonus.type].value} ${typedBonuses[bonus.type].name}`); }
+                  object.total -= typedBonuses[bonus.type].val;
+                  object.sources.forEach((source, i) => {
+                    if (source.includes(typedBonuses[bonus.type].name)) {
+                      object.sources.splice(i, 1);
+                    }
+                  });
+                  // update existing typed, non-stacking bonus
+                  typedBonuses[bonus.type] = { name: name, value: bonus.value };
+
+                } else {
+                  // current bonus is higher
+                  if (tString.includes(debug)) { console.log(`current bonus is higher/doesn't exist`); }
+                  continue;
+                }
+
               } else {
-                if (tString.includes(debug)) { console.log(`current bonus is higher/doesn't exist`); }
-                continue;
-              } // end remove lower bonus
-            }
+                // Add new bonus
+                typedBonuses[bonus.type] = { name: name, value: bonus.value };
+              }
+            } // end isStacking
           } // end prefix = "+"
+
+          else { prefix = ""; }
+
           if (!object.sources.includes(`${prefix}${bonus.value} ${name}`)) {
             if (tString.includes(debug)) { console.log(`add ${prefix}${bonus.value} ${name}`); }
             object.total += parseInt(bonus.value);
@@ -2582,7 +2597,7 @@ export default {
       this.showCondition = false;
       this.dialog = false;
     },
-    // DELETE DONE BY REMOVING FROM SLECT
+    // DELETE DONE BY REMOVING FROM SELECT
 
     /***************************\
     *                           *
