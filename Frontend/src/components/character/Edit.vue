@@ -33,7 +33,7 @@
           </template>
           <template #actions="{ confirm }">
             <el-select v-model="newLevel.class" aria-label="New Level Class" style="margin-bottom:5px">
-              <el-option v-for="(cClass, cName) in classes" :key="cName" :label="capFirsts(cName)" :value="cName" />
+              <el-option v-for="(cClass, cName) in classes" :key="cName" :label="$capFirsts(cName)" :value="cName" />
             </el-select>
             <el-button type="primary" size="small" @click="confirm" :disabled="newLevel.class == ''"> Go! </el-button>
           </template>
@@ -362,7 +362,7 @@
         </template>
 
         <div v-for="(cClass, cName) in character.classes" :key="cName">
-          <el-divider> <h4> <g-icon iconName="magicSwirl" /> {{ capFirsts(cName) }} </h4> </el-divider>
+          <el-divider> <h4> <g-icon iconName="magicSwirl" /> {{ $capFirsts(cName) }} </h4> </el-divider>
 
           <el-row :gutter="10">
             <el-col :span="4">
@@ -1046,7 +1046,7 @@
         </el-popconfirm>
 
         <el-tabs v-model="spellsTab" type="card" ref="spellsTab" style="padding-top:10px;">
-          <el-tab-pane v-for="(cClass, cName) in character.spells" :key="cName" :label="capFirsts(cName)" :name="cName" >
+          <el-tab-pane v-for="(cClass, cName) in character.spells" :key="cName" :label="$capFirsts(cName)" :name="cName" >
             <el-collapse v-model="spellsCollapse">
               <el-collapse-item v-for="(spells, lvl) in cClass" :key="lvl" :name="lvl">
 
@@ -1345,10 +1345,10 @@
             <el-col :xs="24" :sm="6" :md="4">
               <el-row :gutter="10">
                 <el-col :xs="12" class="center-horz">
-                  <el-button @click="copySection(name, character[name])" type="info"> Copy {{ capFirsts(name) }} </el-button>
+                  <el-button @click="copySection(name, character[name])" type="info"> Copy {{ $capFirsts(name) }} </el-button>
                 </el-col>
                 <el-col :xs="12" class="center-horz">
-                  <el-button @click="loadJSON(name, sectionsJSON[name])" type="warning"> Update {{ capFirsts(name) }} </el-button>
+                  <el-button @click="loadJSON(name, sectionsJSON[name])" type="warning"> Update {{ $capFirsts(name) }} </el-button>
                 </el-col>
               </el-row>
             </el-col>
@@ -1371,7 +1371,7 @@
           <!-- LEVEL UP -->
           <div v-if="addingLevel">
             <h2> <g-icon iconName="magicSwirl" />
-              Level Up - Level {{ newLevel.level }} {{ capFirsts(newLevel.class) }}
+              Level Up - Level {{ newLevel.level }} {{ $capFirsts(newLevel.class) }}
             </h2>
             <!-- New Abilities -->
             <div v-if="newLevel.abilities.length > 0">
@@ -1760,7 +1760,7 @@ export default {
         let val = 0;
         for (let lvl = 0; lvl <= cClass.levels; lvl++) {
           val = this.classes[cName].magic.galdur[lvl];
-          this.applyBonus(`Level ${lvl}`, val, classes[cName]);
+          this.$applyBonus(`Level ${lvl}`, val, classes[cName]);
         }
         this.bonusLoop(classes[cName], `${cName}Galdur`);
       } // end class loop
@@ -1920,44 +1920,61 @@ export default {
     itemFilter(val) { this.$refs.tree.filter(val); }
   },
   methods: {
-    // Helper Methods
-    capFirsts(string) { return string ? string.replace(/(^\w|\s\w)/g, m => m.toUpperCase()) : ""; },
+    /***************************\
+    *                           *
+    *          HELPERS          *
+    *                           *
+    \***************************/
     /*
-    object = the bonus object we are adding to: { total: #, sources: [] }
-    tString = the target string we match to add to the bonus object: "atkBonus"
+     * Loop on all the bonuses, and apply them to the given object if needed
+     * * object = the bonus object we are adding to: { total: #, sources: [] }
+     * * tString = the target string we match to add to the bonus object: "atkBonus", "totalAC", "init"
     */
     bonusLoop(object, tString) {
-      let debug = "TrevTest";
+      let debug = "totalAC";
       if (tString.includes(debug)) { console.log(tString, object); }
 
-      let typedBonuses = {};
-      let prefix = "";
+      let prefix, typedBonuses = {};
       for (let [name, bonus] of Object.entries(this.bonuses)) {
+        prefix = "";
         if (tString.includes(debug)) { console.log(name, bonus); }
-        if (tString.includes(debug)) { console.log(typedBonuses); }
 
-        if (bonus.targets.includes(tString)) {
+        if (bonus.targets && bonus.targets.includes(tString)) {
           if (bonus.value > 0) {
             prefix = "+";
+
+            // if this is a non stacking bonus
             if (this.rules.bonuses[bonus.type] && !this.rules.bonuses[bonus.type].stacks) {
-              // if this is a non stacking bonus
-              if (typedBonuses[bonus.type] && typedBonuses[bonus.type].value < bonus.value) {
+
+              // if we already have a bonus of this type
+              if ( typedBonuses[bonus.type] ) {
+
                 // if the existing bonus is smaller and should be replaced
-                if (tString.includes(debug)) { console.log(`replace ${typedBonuses[bonus.type].value} ${typedBonuses[bonus.type].name}`); }
-                object.total -= typedBonuses[bonus.type].val;
-                object.sources.forEach((source, i) => {
-                  if (source.includes(typedBonuses[bonus.type].name)) {
-                    object.sources.splice(i, 1);
-                  }
-                });
-                // update existing typed, non-stacking bonus
-                typedBonuses[bonus.type] = { name: name, value: bonus.value };
+                if (typedBonuses[bonus.type].value < bonus.value) {
+                  if (tString.includes(debug)) { console.log(`replace ${typedBonuses[bonus.type].value} ${typedBonuses[bonus.type].name}`); }
+                  object.total -= typedBonuses[bonus.type].val;
+                  object.sources.forEach((source, i) => {
+                    if (source.includes(typedBonuses[bonus.type].name)) {
+                      object.sources.splice(i, 1);
+                    }
+                  });
+
+                  // update existing typed, non-stacking bonus
+                  typedBonuses[bonus.type] = { name: name, value: bonus.value };
+
+                // current bonus is higher
+                } else {
+                  if (tString.includes(debug)) { console.log(`current bonus is higher/doesn't exist`); }
+                  continue;
+                }
+
+              // Add new bonus
               } else {
-                if (tString.includes(debug)) { console.log(`current bonus is higher/doesn't exist`); }
-                continue;
-              } // end remove lower bonus
-            }
+                typedBonuses[bonus.type] = { name: name, value: bonus.value };
+              }
+            } // end isStacking
           } // end prefix = "+"
+
           if (!object.sources.includes(`${prefix}${bonus.value} ${name}`)) {
             if (tString.includes(debug)) { console.log(`add ${prefix}${bonus.value} ${name}`); }
             object.total += parseInt(bonus.value);
@@ -1965,13 +1982,6 @@ export default {
           }
         }
       } // End Bonuses Loop
-    },
-    applyBonus(name, value, obj) {
-      if (value != 0) {
-        let prefix = (value > 0) ? "+" : "";
-        obj.total += value;
-        obj.sources.push(`${prefix}${value} ${name}`);
-      }
     },
     saveCharacter() {
       CharacterService.updateCharacter(this.character)
@@ -2443,13 +2453,13 @@ export default {
     \***************************/
     copySection(name, obj) {
       navigator.clipboard.writeText(JSON.stringify(obj))
-      .then(() => { this.$message({ message: `${this.capFirsts(name)} coppied to clipboard`, type: 'success', }); })
+      .then(() => { this.$message({ message: `${this.$capFirsts(name)} coppied to clipboard`, type: 'success', }); })
       .catch(err => { console.error('Could not copy text: ', err); });
     },
     loadJSON(name, obj) {
       try {
         this.character[name] = JSON.parse(obj);
-        this.$message({ message: `${this.capFirsts(name)} updated`, type: 'success', });
+        this.$message({ message: `${this.$capFirsts(name)} updated`, type: 'success', });
       } catch (e) {
         console.error(e);
         this.$message({ message: e, type: 'error', });
