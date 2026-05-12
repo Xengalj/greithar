@@ -33,7 +33,7 @@
           </template>
           <template #actions="{ confirm }">
             <el-select v-model="newLevel.class" aria-label="New Level Class" style="margin-bottom:5px">
-              <el-option v-for="(cClass, cName) in classes" :key="cName" :label="$capFirsts(cName)" :value="cName" />
+              <el-option v-for="(cClass, cName) in classes" :key="cName" :label="capFirsts(cName)" :value="cName" />
             </el-select>
             <el-button type="primary" size="small" @click="confirm" :disabled="newLevel.class == ''"> Go! </el-button>
           </template>
@@ -362,7 +362,7 @@
         </template>
 
         <div v-for="(cClass, cName) in character.classes" :key="cName">
-          <el-divider> <h4> <g-icon iconName="magicSwirl" /> {{ $capFirsts(cName) }} </h4> </el-divider>
+          <el-divider> <h4> <g-icon iconName="magicSwirl" /> {{ capFirsts(cName) }} </h4> </el-divider>
 
           <el-row :gutter="10">
             <el-col :span="4">
@@ -1046,7 +1046,7 @@
         </el-popconfirm>
 
         <el-tabs v-model="spellsTab" type="card" ref="spellsTab" style="padding-top:10px;">
-          <el-tab-pane v-for="(cClass, cName) in character.spells" :key="cName" :label="$capFirsts(cName)" :name="cName" >
+          <el-tab-pane v-for="(cClass, cName) in character.spells" :key="cName" :label="capFirsts(cName)" :name="cName" >
             <el-collapse v-model="spellsCollapse">
               <el-collapse-item v-for="(spells, lvl) in cClass" :key="lvl" :name="lvl">
 
@@ -1345,10 +1345,10 @@
             <el-col :xs="24" :sm="6" :md="4">
               <el-row :gutter="10">
                 <el-col :xs="12" class="center-horz">
-                  <el-button @click="copySection(name, character[name])" type="info"> Copy {{ $capFirsts(name) }} </el-button>
+                  <el-button @click="copySection(name, character[name])" type="info"> Copy {{ capFirsts(name) }} </el-button>
                 </el-col>
                 <el-col :xs="12" class="center-horz">
-                  <el-button @click="loadJSON(name, sectionsJSON[name])" type="warning"> Update {{ $capFirsts(name) }} </el-button>
+                  <el-button @click="loadJSON(name, sectionsJSON[name])" type="warning"> Update {{ capFirsts(name) }} </el-button>
                 </el-col>
               </el-row>
             </el-col>
@@ -1371,7 +1371,7 @@
           <!-- LEVEL UP -->
           <div v-if="addingLevel">
             <h2> <g-icon iconName="magicSwirl" />
-              Level Up - Level {{ newLevel.level }} {{ $capFirsts(newLevel.class) }}
+              Level Up - Level {{ newLevel.level }} {{ capFirsts(newLevel.class) }}
             </h2>
             <!-- New Abilities -->
             <div v-if="newLevel.abilities.length > 0">
@@ -1760,7 +1760,7 @@ export default {
         let val = 0;
         for (let lvl = 0; lvl <= cClass.levels; lvl++) {
           val = this.classes[cName].magic.galdur[lvl];
-          this.$applyBonus(`Level ${lvl}`, val, classes[cName]);
+          this.applyBonus(`Level ${lvl}`, val, classes[cName]);
         }
         this.bonusLoop(classes[cName], `${cName}Galdur`);
       } // end class loop
@@ -1925,6 +1925,18 @@ export default {
     *          HELPERS          *
     *                           *
     \***************************/
+    capFirsts(string) {
+      if (Number.isInteger(string)) { string = string.toString(); }
+      return string ? string.replace(/(^\w|\s\w)/g, m => m.toUpperCase()) : "";
+    },
+    applyBonus( name, value, obj ) {
+      if (value != 0) {
+        let prefix = (value > 0) ? "+" : "";
+        obj.total += value;
+        obj.sources.push(`${prefix}${value} ${name}`);
+      }
+    },
+
     /*
      * Loop on all the bonuses, and apply them to the given object if needed
      * * object = the bonus object we are adding to: { total: #, sources: [] }
@@ -2453,13 +2465,13 @@ export default {
     \***************************/
     copySection(name, obj) {
       navigator.clipboard.writeText(JSON.stringify(obj))
-      .then(() => { this.$message({ message: `${this.$capFirsts(name)} coppied to clipboard`, type: 'success', }); })
+      .then(() => { this.$message({ message: `${this.capFirsts(name)} coppied to clipboard`, type: 'success', }); })
       .catch(err => { console.error('Could not copy text: ', err); });
     },
     loadJSON(name, obj) {
       try {
         this.character[name] = JSON.parse(obj);
-        this.$message({ message: `${this.$capFirsts(name)} updated`, type: 'success', });
+        this.$message({ message: `${this.capFirsts(name)} updated`, type: 'success', });
       } catch (e) {
         console.error(e);
         this.$message({ message: e, type: 'error', });
