@@ -11,7 +11,7 @@
         </el-input>
       </el-col>
       <el-col :xs="24" :sm="3" :md="2" class="center-horz">
-        <el-button @click="resetTable" type="warning" style="color: black;"> Reset </el-button>
+        <el-button @click="resetTable(); resetFilters();" type="warning" style="color: black;"> Reset </el-button>
       </el-col>
     </el-row>
 
@@ -200,26 +200,22 @@ export default {
         { label: 'CE', value: 'CE' },
       ],
       environFilter: [
-        { label: "Any", value: "any" },
-        { label: "Cold", value: "cold" },
-        { label: "Temperate", value: "temperate" },
-        { label: "Warm", value: "warm" },
-        { label: "Aquatic", value: "aquatic" },
-        { label: "Coastline", value: "coastline" },
-        { label: "Desert", value: "desert" },
-        { label: "Forest", value: "forest" },
-        { label: "Hills", value: "hills" },
-        { label: "Jungle", value: "jungle" },
-        { label: "Mountains", value: "mountains" },
-        { label: "Ocean", value: "ocean" },
-        { label: "Sea", value: "sea" },
-        { label: "Plains", value: "plains" },
-        { label: "River", value: "river" },
-        { label: "Lakes", value: "lakes" },
-        { label: "Swamp", value: "swamp" },
-        { label: "Marsh", value: "marsh" },
+        { label: "Extraplanar", value: "extraplanar" },
         { label: "Urban", value: "urban" },
-        { label: "Underground", value: "underground" }
+        { label: "Underground", value: "underground" },
+
+        { label: "Forest", value: "forest" },
+        { label: "Jungle", value: "jungle" },
+
+        { label: "Plains", value: "plains" },
+        { label: "Desert", value: "desert" },
+        { label: "Hills", value: "hills" },
+        { label: "Mountains", value: "mountains" },
+
+        { label: "Coastline", value: "coastline" },
+        { label: "Sea/Ocean", value: "sea/ocean" },
+        { label: "Lake/River", value: "lake/river" },
+        { label: "Marsh/Swamp", value: "marsh/swamp" }
       ],
 
       tableSearch: "",
@@ -459,24 +455,69 @@ export default {
     // all other filters
     handleFilter() {
       this.loading = true;
+      this.resetTable();
       let mons = this.tableData.map((mon) => mon);
       this.tableData = [];
       for (let i = 0; i < mons.length; i++) {
-        let hidden = true;
+        let hidden = { Type: true, Alignment: true, Environment: true };
+
         for (let [prop, choices] of Object.entries(this.filterChoices)) {
-          for (let choice of choices) {
-            if ( mons[i][prop].includes(choice) ) {
-              hidden = false;
+          // Alert and skip monsters without A given ${prop}
+          if (!mons[i][prop]) { console.error(` ${mons[i].Name} does not have a listed ${prop}! `); continue; }
+
+          if (prop == "Type") {
+            for (let choice of choices) {
+              if ( mons[i][prop].toLowerCase().includes(choice.toLowerCase()) ) {
+                hidden[prop] = false;
+              }
             }
           }
+
+          if (prop == "Alignment") {
+            for (let choice of choices) {
+              if ( mons[i][prop] == choice ) {
+                hidden[prop] = false;
+              }
+            }
+          }
+
+          if (prop == "Environment") {
+            let selected = [];
+            for (let choice of choices) {
+              if (choice.includes("/")) {
+                choice.split("/").forEach(item => {
+                  selected.push(item);
+                });
+              }
+              else if (choice.includes("extraplanar")) {
+                selected.push( "plane", "heaven", "nirvana", "elysium", "utopia", "purgatory", "limbo", "hell", "abaddon", "abyss", "infernus"  );
+              } else {
+                selected.push(choice);
+              }
+            }
+            choices = selected;
+
+            for (let choice of choices) {
+              if ( mons[i][prop].toLowerCase() == "any" || mons[i][prop].toLowerCase().includes(choice) ) {
+                hidden[prop] = false;
+              }
+            }
+          }
+
+          // allow unselected filters
+          if (choices.length < 1) { hidden[prop] = false; }
         }
-        if (!hidden) { this.tableData.push(mons[i]); }
+
+        if (!hidden.Type && !hidden.Alignment && !hidden.Environment) { this.tableData.push(mons[i]); }
       } // end mons loop
       this.loading = false;
     },
     resetTable() {
       this.tableSearch = "";
       this.tableData = this.allMonsters;
+    },
+    resetFilters() {
+      this.filterChoices = { Type: [], Alignment: [], Environment: [] };
     },
 
     /***************************\
