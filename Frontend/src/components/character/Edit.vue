@@ -32,8 +32,8 @@
             </el-button>
           </template>
           <template #actions="{ confirm }">
-            <el-select v-model="newLevel.class" aria-label="New Level Class" style="margin-bottom:5px">
-              <el-option v-for="(cClass, cName) in classes" :key="cName" :label="capFirsts(cName)" :value="cName" />
+            <el-select v-model="newLevel.class" @change="onClassSelect" aria-label="New Level Class" style="margin-bottom:5px">
+              <el-option v-for="(cClass, cName) in classes" :key="cName" :label="capFirsts(cName)" :value="cName" :style="'display: '+cClass.display" />
             </el-select>
             <el-button type="primary" size="small" @click="confirm" :disabled="newLevel.class == ''"> Go! </el-button>
           </template>
@@ -1368,6 +1368,88 @@
           <g-ability v-if="showAbil" :source="abil" @save-abil="saveAbility"/>
           <g-condition v-if="showCondition" :source="condition" @save-condition="saveCondition"/>
 
+          <!-- CUSTOM LEVEL -->
+          <div v-if="createCustomClass">
+            <h2> <g-icon iconName="magicSwirl" /> Create Custom Class </h2>
+
+            <el-descriptions v-if="createCustomClass" :column="1" border >
+              <el-descriptions-item>
+                <template #label> Class Name </template>
+                <el-input v-model="newLevel.class" aria-label="Custom Class Name" />
+              </el-descriptions-item>
+
+              <el-descriptions-item>
+                <template #label> Hit Die </template>
+                <el-input-number v-model="newLevel.hd" :min="0" :max="12" aria-label="Custom Class Hit Die">
+                  <template #prefix>
+                    <span>d</span>
+                  </template>
+                </el-input-number>
+              </el-descriptions-item>
+
+              <el-descriptions-item>
+                <template #label> BAB Progression </template>
+                <el-select v-model="newLevel.bab" aria-label="Custom Class BAB Progression">
+                  <el-option label="Slow (Level x 0.5)" :value="0.5" > Slow </el-option>
+                  <el-option label="Medium (Level x 0.75)" :value="0.75" > Medium </el-option>
+                  <el-option label="Fast (Level x 1)" :value="1" > Fast </el-option>
+                </el-select>
+              </el-descriptions-item>
+
+              <el-descriptions-item>
+                <template #label> Saves </template>
+                <el-row :gutter="10">
+                  <el-col :xs="24" :sm="12" :md="3">
+                    <el-tag effect="dark" type="primary"> Fortitude </el-tag>
+                  </el-col>
+                  <el-col :xs="24" :sm="12" :md="12">
+                    <el-select v-model="newLevel.saves.fort" value-key="saves" aria-label="Custom Class BAB Progression">
+                      <el-option v-for="(item, key) in saves" :key="key" :label="key" :value="item" > {{ key }} </el-option>
+                    </el-select>
+                  </el-col>
+                </el-row>
+
+                <el-row :gutter="10">
+                  <el-col :xs="24" :sm="12" :md="3">
+                    <el-tag effect="dark" type="primary"> Reflex </el-tag>
+                  </el-col>
+                  <el-col :xs="24" :sm="12" :md="12">
+                    <el-select v-model="newLevel.saves.ref" value-key="saves" aria-label="Custom Class BAB Progression">
+                      <el-option v-for="(item, key) in saves" :key="key" :label="key" :value="item" > {{ key }} </el-option>
+                    </el-select>
+                  </el-col>
+                </el-row>
+
+                <el-row :gutter="10">
+                  <el-col :xs="24" :sm="12" :md="3">
+                    <el-tag effect="dark" type="primary"> Will </el-tag>
+                  </el-col>
+                  <el-col :xs="24" :sm="12" :md="12">
+                    <el-select v-model="newLevel.saves.will" value-key="saves" aria-label="Custom Class BAB Progression">
+                      <el-option v-for="(item, key) in saves" :key="key" :label="key" :value="item" > {{ key }} </el-option>
+                    </el-select>
+                  </el-col>
+                </el-row>
+              </el-descriptions-item>
+
+              <el-descriptions-item>
+                <template #label> Skill Ranks </template>
+                <el-input-number v-model="newLevel.ranks" :min="0" :max="10" aria-label="Custom Class Ranks" />
+                (+ Int Mod)
+              </el-descriptions-item>
+            </el-descriptions>
+
+            <br>
+            <el-descriptions v-if="createCustomClass" :column="1" title="Magic" border>
+              <el-descriptions-item>
+                <template #label> Class Name </template>
+                <el-input v-model="newLevel.class" aria-label="Custom Class Name" />
+              </el-descriptions-item>
+
+            </el-descriptions>
+
+          </div>
+
           <!-- LEVEL UP -->
           <div v-if="addingLevel">
             <h2> <g-icon iconName="magicSwirl" />
@@ -1647,6 +1729,13 @@ export default {
       condition: {},
       showCondition: false,
 
+      createCustomClass: false,
+      saves: {
+        Good: { mult: 0.5, bonus: 2 },
+        Bad: { mult: 0.33, bonus: 0 }
+      },
+
+
       addingLevel: false,
       newLevel: { class: '' },
 
@@ -1661,7 +1750,14 @@ export default {
   computed: {
     rules() { return JSON.parse(localStorage.getItem('rules')); },
     races() { return JSON.parse(localStorage.getItem('races')); },
-    classes() { return JSON.parse(localStorage.getItem('classes')); },
+    classes() {
+      let classes = JSON.parse(localStorage.getItem('classes'));
+      // console.log(classes);
+      // Add a character's custom classes to the list, for the levelup select
+      // console.log();
+
+      return classes;
+    },
     equipment() { return JSON.parse(localStorage.getItem('equipment')); },
     feats() { return JSON.parse(localStorage.getItem('feats')); },
     actions() { return JSON.parse(localStorage.getItem('actions')); },
@@ -2044,6 +2140,18 @@ export default {
     },
 
     // Class Methods
+    onClassSelect() {
+      console.log(this.newLevel.class);
+      console.log(this.classes[this.newLevel.class]);
+      if (this.newLevel.class == "custom") {
+        console.log('Create custom class');
+        // this.newLevel = this.classes[this.newLevel.class];
+        this.newLevel.saves = {};
+
+        this.createCustomClass = true;
+        this.dialog = true;
+      }
+    },
     openLevelDialog() {
       let lvl = {
         "class": this.newLevel.class,
@@ -2053,6 +2161,13 @@ export default {
         "newSpells": [],
         "useGaldur": this.character.classes[this.newLevel.class] ? this.character.classes[this.newLevel.class].useGaldur : false,
       };
+
+      // if (this.newLevel.class == "custom") {
+      //   lvl.custom = true;
+      //   lvl.name = "";
+      //   lvl.saves = {};
+      // }
+
       // skills
       for (let [name, skill] of Object.entries(this.rules.skills)) {
         if ( this.classes[lvl.class].skills.includes(name) ) {
