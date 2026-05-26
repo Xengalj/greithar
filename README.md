@@ -118,6 +118,8 @@ After verifying the record, restart apache with `service apache2 restart`. Certb
 
 - [ ] Admin Edit Page (able to import any data, update as JSON) (Toon, Campaign, Loot, Encounter, Etc)
 
+- [ ] Unlearn/retrain a level in a class (hp, abilities, skills, spells, total)
+
 - [ ] implement Rule & Lore pages
 - [ ] [WikiJS](https://js.wiki/)
 

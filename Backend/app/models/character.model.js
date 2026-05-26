@@ -58,7 +58,23 @@ module.exports = (sequelize, Sequelize) => {
     },
     abilities: {
       type: Sequelize.JSON,
-      defaultValue: []
+      defaultValue: [
+        {
+          "name": "Favored Class Bonus",
+          "description": "You get a small bonus for each level in your favored class (usually +1 hp, ranks, or galdur)",
+          "shortText": "SHORT_BLURB",
+          "location": "self",
+          "trigger": "Continuous",
+          "bonuses": { "Favored Class": { "type": "Untyped", "value": 0, "targets": [ "HP" ] } },
+          "extras": {
+            "id": 1,
+            "active": true,
+            "showMain": false,
+            "category": "Other",
+            "notes": []
+          }
+        }
+      ]
     },
     conditions: {
       type: Sequelize.JSON,
@@ -180,10 +196,6 @@ module.exports = (sequelize, Sequelize) => {
         "cardTab": "Main",
         "mainSections": [ "defense", "actions", "resources" ],
         "expandInventory": [ "Equipped", "Armor", "Weapons", "Hands", "Back", "Items" ],
-        "favoredClass": {
-          "name": "",
-          "bonus": "+1 HP, Skill, or Galdur per Level"
-        },
         "appearance": {
           "age": 21,
           "gender": "",

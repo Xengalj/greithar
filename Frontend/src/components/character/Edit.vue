@@ -15,7 +15,6 @@
       </el-col>
     </el-row>
 
-
     <!-- Level Up -->
     <el-row :gutter="10" justify="center">
       <el-col :xs="12" :sm="6" :md="6">
@@ -32,10 +31,12 @@
             </el-button>
           </template>
           <template #actions="{ confirm }">
-            <el-select v-model="newLevel.class" @change="onClassSelect" aria-label="New Level Class" style="margin-bottom:5px">
-              <el-option v-for="(cClass, cName) in classes" :key="cName" :label="capFirsts(cName)" :value="cName" :style="'display: '+cClass.display" />
+            <el-select v-model="newLevelClass.name" @change="onClassSelect" aria-label="New Level Class" style="margin-bottom:5px">
+              <el-option-group v-for="group in classSelect" :key="group.label" :label="group.label">
+                <el-option v-for="name in group.options" :key="name" :label="capFirsts(name)" :value="name" />
+              </el-option-group>
             </el-select>
-            <el-button type="primary" size="small" @click="confirm" :disabled="newLevel.class == ''"> Go! </el-button>
+            <el-button type="primary" size="small" @click="confirm" :disabled="newLevelClass.name == ''"> Go! </el-button>
           </template>
         </el-popconfirm>
       </el-col>
@@ -447,19 +448,24 @@
                 </el-descriptions-item>
                 <el-descriptions-item>
                   <template #label> Spells Per Level </template>
-                  <span v-if="classes[cName].magic.spellsKnown.total">
-                    {{ classes[cName].magic.spellsKnown.total }}
+                  <span v-if="classes[cName]">
+                    <span v-if="classes[cName].magic.spellsKnown.total">
+                      {{ classes[cName].magic.spellsKnown.total }}
+                    </span>
+                    <span v-if="classes[cName].magic.spellsKnown.perLevel">
+                      {{ classes[cName].magic.spellsKnown.perLevel }}
+                    </span>
+                    <span v-if="classes[cName].magic.spellsKnown.byLevel">
+                      {{ classes[cName].magic.spellsKnown.byLevel[cClass.levels] }}
+                    </span>
                   </span>
-                  <span v-if="classes[cName].magic.spellsKnown.perLevel">
-                    {{ classes[cName].magic.spellsKnown.perLevel }}
-                  </span>
-                  <span v-if="classes[cName].magic.spellsKnown.byLevel">
-                    {{ classes[cName].magic.spellsKnown.byLevel[cClass.levels] }}
+                  <span v-else>
+                    <el-tag effect="plain" type="warning"> You must use the wiki </el-tag>
                   </span>
                 </el-descriptions-item>
                 <el-descriptions-item>
                   <template #label> Galdur / <br> Spell Slots </template>
-                  <el-switch v-model="cClass.magic.useGaldur" inline-prompt active-text=" Galdur " inactive-text=" Spell Slots " aria-label="Casting Style Switch" />
+                  <el-switch v-model="cClass.magic.useGaldur" inline-prompt active-text=" Galdur " inactive-text=" Spell Slots " :disabled="!cClass.magic.galdur" aria-label="Casting Style Switch" />
                   <span v-if="cClass.magic.useGaldur" style="margin-left: 20px;">
                     <el-tooltip placement="top" effect="light">
                       <el-tag effect="dark" type="info"> {{ cumulativeGaldur[cName].total }} Total Galdur </el-tag>
@@ -473,6 +479,7 @@
             </el-col>
 
             <el-col :span="14" :offset="2">
+              <!-- GALDUR -->
               <div v-if="cClass.magic.useGaldur">
                 <el-row :gutter="10" align="middle">
                   <el-col :span="4">
@@ -531,6 +538,7 @@
                 </el-row>
               </div>
 
+              <!-- PREPARED -->
               <div v-else-if="cClass.magic.style.includes('Prepared')">
                 <el-row :gutter="10" v-for="(numOfSpells, level) in cClass.magic.spellsPerDay" :key="level">
                   <el-col :span="2">
@@ -548,6 +556,7 @@
                 </el-row>
               </div>
 
+              <!-- SPONTANEOUS -->
               <!--
               <div v-else>
                 <el-row :gutter="10" v-for="(numOfSpells, level) in classes[cName].magic.spellsPerDay[cClass.levels]" :key="level">
@@ -1039,7 +1048,7 @@
             <el-input-number v-model="newSpell.level" :min="0" :max="9" size="small" aria-label="New Spell Level" />
             Class: <br>
             <el-select v-model="newSpell.class" aria-label="New Spell Class">
-              <el-option v-for="(cClass, cName) in character.classes" :key="cName" :label="cName" :value="cName" />
+              <el-option v-for="(cClass, cName) in character.classes" :key="cName" :label="capFirsts(cName)" :value="cName" />
             </el-select>
             <el-button type="primary" size="small" @click="confirm" :disabled="newSpell.name == '' || newSpell.class == ''">Yes</el-button>
           </template>
@@ -1047,9 +1056,9 @@
 
         <el-tabs v-model="spellsTab" type="card" ref="spellsTab" style="padding-top:10px;">
           <el-tab-pane v-for="(cClass, cName) in character.spells" :key="cName" :label="capFirsts(cName)" :name="cName" >
+            {{cName}}
             <el-collapse v-model="spellsCollapse">
               <el-collapse-item v-for="(spells, lvl) in cClass" :key="lvl" :name="lvl">
-
                 <template #title>
                   <el-row :gutter="10">
                     <el-col :span="7">
@@ -1058,11 +1067,11 @@
                     <el-col :span="7">
                       <el-tooltip placement="top" effect="light">
                         <el-tag effect="dark" type="info">
-                          Save DC : {{ 10 + lvl + (attributes[classes[cName].magic.castingAtr].mod) }}
+                          Save DC : {{ 10 + lvl + (attributes[character.classes[cName].magic.castingAtr].mod) }}
                         </el-tag>
                         <template #content>
                           10
-                          + {{ attributes[classes[cName].magic.castingAtr].mod }} {{ classes[cName].magic.castingAtr }}
+                          + {{ attributes[character.classes[cName].magic.castingAtr].mod }} {{ character.classes[cName].magic.castingAtr }}
                           + {{ lvl }} Level Spell
                         </template>
                       </el-tooltip>
@@ -1266,27 +1275,6 @@
                   </el-col>
                 </el-row>
               </el-collapse-item>
-
-              <el-collapse-item title="Favored Class Bonus" name="Favored Class Bonus">
-
-                <el-row>
-                  <span style="font-size:16px;">
-                    <g-icon iconName="magicSwirl" iconSize="24"/> Favored Class Bonus
-                  </span>
-                  <el-select v-model="character.settings.favoredClass.name" aria-label="Favored Class Select">
-                    <el-option v-for="(cClass, cName) in classes" :key="cName" :label="cName" :value="cName" />
-                  </el-select>
-                  <el-input v-model="character.settings.favoredClass.bonus" aria-label="Favored Class Bonus Input" />
-                </el-row>
-
-                <!-- <el-row>
-                  <el-col :span="4" class="center-vert"> Notes </el-col>
-                  <el-col :span="20">
-                    <el-input v-model="character.notes" type="textarea" :autosize="{ minRows: 2, maxRows: 20 }" aria-label="Notes Textarea" />
-                  </el-col>
-                </el-row> -->
-
-              </el-collapse-item>
             </el-collapse>
           </el-col>
 
@@ -1363,186 +1351,212 @@
     <!-- Dialog -->
     <el-auto-resizer style="height: 10px">
       <template #default="{ width }">
-        <el-dialog v-model="dialog" :width="width">
+        <el-dialog v-model="dialog" :width="width" @close="showAbil=false; showItem=false; showCondition=false; showCustomClass=false; addingLevel=false;">
           <g-item v-if="showItem" :source="item" @save-item="saveItem"/>
           <g-ability v-if="showAbil" :source="abil" @save-abil="saveAbility"/>
           <g-condition v-if="showCondition" :source="condition" @save-condition="saveCondition"/>
 
           <!-- CUSTOM LEVEL -->
-          <div v-if="createCustomClass">
+          <div v-if="showCustomClass">
             <h2> <g-icon iconName="magicSwirl" /> Create Custom Class </h2>
+            <el-row justify="center">
+              <el-descriptions :column="1" border >
+                <el-descriptions-item>
+                  <template #label> Class Name </template>
+                  <el-input v-model="customClass.name" placeholder="Enter Name" aria-label="Custom Class Name" />
+                </el-descriptions-item>
 
-            <el-descriptions v-if="createCustomClass" :column="1" border >
-              <el-descriptions-item>
-                <template #label> Class Name </template>
-                <el-input v-model="newLevel.class" aria-label="Custom Class Name" />
-              </el-descriptions-item>
+                <el-descriptions-item>
+                  <template #label> Hit Die </template>
+                  <el-input-number v-model="customClass.hd" :min="0" :max="12" aria-label="Custom Class Hit Die">
+                    <template #prefix>
+                      <span>d</span>
+                    </template>
+                  </el-input-number>
+                </el-descriptions-item>
 
-              <el-descriptions-item>
-                <template #label> Hit Die </template>
-                <el-input-number v-model="newLevel.hd" :min="0" :max="12" aria-label="Custom Class Hit Die">
-                  <template #prefix>
-                    <span>d</span>
-                  </template>
-                </el-input-number>
-              </el-descriptions-item>
+                <el-descriptions-item>
+                  <template #label> BAB Progression </template>
+                  <el-select v-model="customClass.bab" aria-label="Custom Class BAB Progression">
+                    <el-option label="Slow (Level x 0.5)" :value="0.5" > Slow </el-option>
+                    <el-option label="Medium (Level x 0.75)" :value="0.75" > Medium </el-option>
+                    <el-option label="Fast (Level x 1)" :value="1" > Fast </el-option>
+                  </el-select>
+                </el-descriptions-item>
 
-              <el-descriptions-item>
-                <template #label> BAB Progression </template>
-                <el-select v-model="newLevel.bab" aria-label="Custom Class BAB Progression">
-                  <el-option label="Slow (Level x 0.5)" :value="0.5" > Slow </el-option>
-                  <el-option label="Medium (Level x 0.75)" :value="0.75" > Medium </el-option>
-                  <el-option label="Fast (Level x 1)" :value="1" > Fast </el-option>
-                </el-select>
-              </el-descriptions-item>
+                <el-descriptions-item>
+                  <template #label> Saves </template>
+                  <el-row :gutter="10">
+                    <el-col :xs="24" :sm="8" :md="8">
+                      <el-tag effect="dark" type="primary"> Fortitude </el-tag>
+                    </el-col>
+                    <el-col :xs="24" :sm="12" :md="12">
+                      <el-select v-model="customClass.saves.fort" value-key="id" aria-label="Custom Class Fort Save">
+                        <el-option v-for="item in saves" :key="item.id" :label="item.id" :value="item" />
+                      </el-select>
+                    </el-col>
+                  </el-row>
+                  <el-row :gutter="10">
+                    <el-col :xs="24" :sm="8" :md="8">
+                      <el-tag effect="dark" type="primary"> Reflex </el-tag>
+                    </el-col>
+                    <el-col :xs="24" :sm="12" :md="12">
+                      <el-select v-model="customClass.saves.ref" value-key="id" aria-label="Custom Class Ref Save">
+                        <el-option v-for="item in saves" :key="item.id" :label="item.id" :value="item" />
+                      </el-select>
+                    </el-col>
+                  </el-row>
+                  <el-row :gutter="10">
+                    <el-col :xs="24" :sm="8" :md="8">
+                      <el-tag effect="dark" type="primary"> Will </el-tag>
+                    </el-col>
+                    <el-col :xs="24" :sm="12" :md="12">
+                      <el-select v-model="customClass.saves.will" value-key="id" aria-label="Custom Class Will Save">
+                        <el-option v-for="item in saves" :key="item.id" :label="item.id" :value="item" />
+                      </el-select>
+                    </el-col>
+                  </el-row>
+                </el-descriptions-item>
 
-              <el-descriptions-item>
-                <template #label> Saves </template>
-                <el-row :gutter="10">
-                  <el-col :xs="24" :sm="12" :md="3">
-                    <el-tag effect="dark" type="primary"> Fortitude </el-tag>
-                  </el-col>
-                  <el-col :xs="24" :sm="12" :md="12">
-                    <el-select v-model="newLevel.saves.fort" value-key="saves" aria-label="Custom Class BAB Progression">
-                      <el-option v-for="(item, key) in saves" :key="key" :label="key" :value="item" > {{ key }} </el-option>
-                    </el-select>
-                  </el-col>
-                </el-row>
+                <el-descriptions-item>
+                  <template #label> Skill Ranks </template>
+                  <el-input-number v-model="customClass.ranks" :min="0" :max="10" aria-label="Custom Class Ranks" />
+                  (+ Int Mod)
+                </el-descriptions-item>
 
-                <el-row :gutter="10">
-                  <el-col :xs="24" :sm="12" :md="3">
-                    <el-tag effect="dark" type="primary"> Reflex </el-tag>
-                  </el-col>
-                  <el-col :xs="24" :sm="12" :md="12">
-                    <el-select v-model="newLevel.saves.ref" value-key="saves" aria-label="Custom Class BAB Progression">
-                      <el-option v-for="(item, key) in saves" :key="key" :label="key" :value="item" > {{ key }} </el-option>
-                    </el-select>
-                  </el-col>
-                </el-row>
+                <el-descriptions-item>
+                  <template #label> Class Skills </template>
+                  <el-select v-model="customClass.skills" value-key="skill" aria-label="Custom Class Fort Save" multiple>
+                    <el-option v-for="(data, skill) in rules.skills" :key="skill" :label="skill" :value="skill" />
+                  </el-select>
+                </el-descriptions-item>
+              </el-descriptions>
+            </el-row>
 
-                <el-row :gutter="10">
-                  <el-col :xs="24" :sm="12" :md="3">
-                    <el-tag effect="dark" type="primary"> Will </el-tag>
-                  </el-col>
-                  <el-col :xs="24" :sm="12" :md="12">
-                    <el-select v-model="newLevel.saves.will" value-key="saves" aria-label="Custom Class BAB Progression">
-                      <el-option v-for="(item, key) in saves" :key="key" :label="key" :value="item" > {{ key }} </el-option>
-                    </el-select>
-                  </el-col>
-                </el-row>
-              </el-descriptions-item>
+            <el-row v-if="!customClass.magic" justify="center">
+              <el-button @click="customClass.magic = {}" size="large" type="success"> Add Magic </el-button>
+            </el-row>
 
-              <el-descriptions-item>
-                <template #label> Skill Ranks </template>
-                <el-input-number v-model="newLevel.ranks" :min="0" :max="10" aria-label="Custom Class Ranks" />
-                (+ Int Mod)
-              </el-descriptions-item>
-            </el-descriptions>
+            <el-row v-if="customClass.magic" justify="center">
+              <el-descriptions :column="1" border >
+                <el-descriptions-item>
+                  <template #label> Casting Style </template>
+                  <el-input v-model="customClass.magic.style" aria-label="New Class Magic Style" />
+                </el-descriptions-item>
 
-            <br>
-            <el-descriptions v-if="createCustomClass" :column="1" title="Magic" border>
-              <el-descriptions-item>
-                <template #label> Class Name </template>
-                <el-input v-model="newLevel.class" aria-label="Custom Class Name" />
-              </el-descriptions-item>
+                <el-descriptions-item>
+                  <template #label> Casting Attribute </template>
+                  <el-select v-model="customClass.magic.castingAtr" value-key="key" aria-label="Custom Class Magic Attribute">
+                    <el-option v-for="(item, key) in attributes" :key="key" :label="key" :value="key" > {{ key }} </el-option>
+                  </el-select>
+                </el-descriptions-item>
 
-            </el-descriptions>
+                <el-descriptions-item>
+                  <template #label> Spells per Day </template>
+                  <el-input type="textarea" v-model="customClass.magic.spellsPerDayTable" :autosize="{ minRows: 1, maxRows: 4 }" aria-label="Custom Class Spells Per Day" />
+                </el-descriptions-item>
+              </el-descriptions>
+            </el-row>
 
+            <el-row justify="center">
+              <el-tag size="large" effect="plain" type="warning">
+                Special Abilities must be manually added upon levelup
+              </el-tag>
+            </el-row>
+
+            <el-row justify="center">
+              <el-button type="primary" size="large" @click="this.showCustomClass = false; openLevelDialog()" :disabled="!customClass.name && customClass.name == 'custom'"> Go! </el-button>
+            </el-row>
           </div>
 
           <!-- LEVEL UP -->
           <div v-if="addingLevel">
-            <h2> <g-icon iconName="magicSwirl" />
-              Level Up - Level {{ newLevel.level }} {{ capFirsts(newLevel.class) }}
-            </h2>
+            <h2> <g-icon iconName="magicSwirl" /> Level {{ newLevel.level }} {{ capFirsts(newLevelClass.name) }} </h2>
+
             <!-- New Abilities -->
-            <div v-if="newLevel.abilities.length > 0">
-              <el-divider style="max-width:50%"> <h3> Abilities </h3> </el-divider>
-              <el-row :gutter="10" v-for="ability in newLevel.abilities" :key="ability">
-                <el-col :span="10">
+            <div>
+              <el-row :gutter="10" align="middle">
+                <el-divider> <h3> Abilities </h3> </el-divider>
+              </el-row>
+              <el-row :gutter="10" v-for="ability in newLevel.abilities" :key="ability" align="middle">
+                <el-col :xs="24" :sm="12" :md="12">
                   <el-input v-model="ability.name" :aria-label="`Class Ability: ${ability}`">
                     <template #prepend> Name </template>
                   </el-input>
+                  <el-input v-if="advanced" v-model="ability.extras.id" size="small" disabled>
+                    <template #prepend> ID </template>
+                  </el-input>
                 </el-col>
-                <el-col :span="13">
+                <el-col :xs="24" :sm="12" :md="12">
                   <el-input v-model="ability.description" type="textarea" :autosize="{ minRows: 2, maxRows: 4 }" placeholder="Enter ability description" aria-label="Ability Description"/>
                 </el-col>
+              </el-row>
+              <el-row :gutter="10" justify="center" align="middle">
+                <el-button @click="addClassAbility" type="success"> New </el-button>
               </el-row>
             </div>
 
             <!-- New Magic -->
-            <div v-if="classes[newLevel.class].magic">
-              <el-divider style="max-width:50%"> <h3> Magic </h3> </el-divider>
+            <div v-if="newLevelClass.magic">
+              <el-row :gutter="10" align="middle">
+                <el-divider> <h3> Magic </h3> </el-divider>
+              </el-row>
               <el-row :gutter="10">
-                <el-col :span="8">
+                <el-col :xs="24" :sm="12" :md="8" style="margin-bottom:10px">
                   <el-descriptions :column="1" border >
                     <el-descriptions-item>
                       <template #label> Casting Style </template>
-                      {{ classes[newLevel.class].magic.style }}
+                      {{ newLevelClass.magic.style }}
                     </el-descriptions-item>
                     <el-descriptions-item>
                       <template #label> Casting Attribute </template>
-                      {{ classes[newLevel.class].magic.castingAtr }}
+                      {{ newLevelClass.magic.castingAtr }}
                     </el-descriptions-item>
                     <el-descriptions-item>
                       <template #label> Galdur / <br> Spell Slots </template>
                       <el-switch
-                      v-model="newLevel.useGaldur"
+                      v-model="newLevelClass.useGaldur"
                       inline-prompt active-text=" Galdur "
                       inactive-text=" Spell Slots "
+                      :disabled="!newLevelClass.magic.galdur"
                       aria-label="Casting Type Switch" />
                     </el-descriptions-item>
                     <el-descriptions-item>
                       <template #label>
-                        {{ newLevel.useGaldur ? "Additional Galdur" : "Total Spell Slots" }}
+                        {{ newLevelClass.useGaldur ? "Additional Galdur" : "Total Spell Slots" }}
                       </template>
                       {{
-                        newLevel.useGaldur ?
-                        classes[newLevel.class].magic.galdur[newLevel.level] :
-                        classes[newLevel.class].magic.spellsPerDay[newLevel.level]
+                        newLevelClass.useGaldur ?
+                        newLevelClass.magic.galdur[newLevel.level] :
+                        newLevelClass.magic.spellsPerDayTable[newLevel.level]
                       }}
                     </el-descriptions-item>
                   </el-descriptions>
-                  <div class="center-horz" style="margin-top:10px">
-                    <div v-if="classes[newLevel.class].magic.spellsKnown">
-                      <!-- Cleric Total -->
-                      <span v-if="classes[newLevel.class].magic.spellsKnown.total">
-                        {{ classes[newLevel.class].magic.spellsKnown.total }}
+                  <div v-if="newLevelClass.magic.spellsKnown" class="center-horz" style="margin-top:10px">
+                    <!-- Cleric Total -->
+                    <span v-if="newLevelClass.magic.spellsKnown.total">
+                      {{ newLevelClass.magic.spellsKnown.total }}
+                    </span>
+                    <!-- Wizard Initial -->
+                    <span v-else-if="newLevel.level == 1 && newLevelClass.magic.spellsKnown.starting">
+                      Add {{ newLevelClass.magic.spellsKnown.starting }}
+                    </span>
+                    <!-- Wizard By Level -->
+                    <span v-else-if="newLevelClass.magic.spellsKnown.perLevel">
+                      Add {{ newLevelClass.magic.spellsKnown.perLevel }}
+                    </span>
+                    <!-- Bard By Level -->
+                    <span v-else-if="newLevelClass.magic.spellsKnown.byLevel[newLevel.level]">
+                      Add
+                      <span v-for="(num, index) in newLevelClass.magic.spellsKnown.byLevel[newLevel.level]" :key="index">
+                        {{ num }} level {{ index }}s{{ newLevelClass.magic.spellsKnown.byLevel[newLevel.level].length-1 > index ? ', and ' : '' }}
                       </span>
-                      <!-- Wizard Initial -->
-                      <span v-else-if="newLevel.level == 1 && classes[newLevel.class].magic.spellsKnown.starting">
-                        Add {{ classes[newLevel.class].magic.spellsKnown.starting }}
-                      </span>
-                      <!-- Wizard By Level -->
-                      <span v-else-if="classes[newLevel.class].magic.spellsKnown.perLevel">
-                        Add {{ classes[newLevel.class].magic.spellsKnown.perLevel }} 2
-                      </span>
-                      <!-- Bard By Level -->
-                      <span v-else-if="classes[newLevel.class].magic.spellsKnown.byLevel[newLevel.level]">
-                        Add
-                        <span v-for="(num, index) in classes[newLevel.class].magic.spellsKnown.byLevel[newLevel.level]" :key="index">
-                          {{ num }} level {{ index }}s{{ classes[newLevel.class].magic.spellsKnown.byLevel[newLevel.level].length-1 > index ? ', and ' : '' }}
-                        </span>
-                      </span>
-                    </div>
-                    <el-button @click="newLevel.newSpells.push({ 'name': '', 'level': 0, 'class': newLevel.class })" type="primary"  ref="addSpell">
-                      Add Spell
-                    </el-button>
+                    </span>
                   </div>
                 </el-col>
-                <el-col :span="16">
-                  <el-row :gutter="10" v-for="(spell, index) in newLevel.newSpells" :key="index">
-                    <el-col :offset="2" :span="6">
-                      <el-tooltip placement="top" content="Spell Level">
-                        <el-input-number v-model="spell.level" :min="0" :max="9" size="small" aria-label="New Spell Level" />
-                      </el-tooltip>
-                    </el-col>
-                    <el-col :span="14">
-                      <el-input v-model="spell.name" size="small" aria-label="New Spell Name">
-                        <template #prepend> Name </template>
-                      </el-input>
-                    </el-col>
-                    <el-col :span="1">
+                <el-col :xs="24" :sm="12" :md="16">
+                  <el-row v-for="(spell, index) in newLevel.newSpells" :key="index" :gutter="10" justify="center">
+                    <el-col :xs="3" :sm="2" :md="1">
                       <el-popconfirm title="Remove spell from spell list?" @confirm="newLevel.newSpells.splice(index, 1)" hide-icon>
                         <template #reference>
                           <el-button type="danger" size="small" circle>
@@ -1554,6 +1568,21 @@
                         </template>
                       </el-popconfirm>
                     </el-col>
+                    <el-col  :xs="12" :sm="9" :md="5">
+                      <el-tooltip placement="top" content="Spell Level">
+                        <el-input-number v-model="spell.level" :min="0" :max="9" size="small" aria-label="New Spell Level" />
+                      </el-tooltip>
+                    </el-col>
+                    <el-col :xs="24" :sm="12" :md="18">
+                      <el-input v-model="spell.name" size="small" aria-label="New Spell Name">
+                        <template #prepend> Name </template>
+                      </el-input>
+                    </el-col>
+                  </el-row>
+                  <el-row :gutter="10" justify="center" align="middle">
+                    <el-button @click="newLevel.newSpells.push({ 'name': '', 'level': 0, 'class': newLevelClass.name })" type="success"  ref="addSpell">
+                      Add Spell
+                    </el-button>
                   </el-row>
                 </el-col>
               </el-row>
@@ -1561,106 +1590,105 @@
 
             <!-- New Skills -->
             <div>
-              <el-divider style="max-width:50%"> <h3> Skills </h3> </el-divider>
-              <div v-if="newLevel.level == 1">
-                Class Skills:
-                <el-tag v-for="skill in classes[newLevel.class].skills" :key="skill" size="small" effect="dark" type="primary" style="margin-left:5px;">{{ skill }}</el-tag>
-              </div>
-              <el-row :gutter="10" class="center-vert" style="margin-bottom:5px; border-bottom:1px solid grey">
-                <el-col :span="6" class="center-vert"> <h5> Name (Ability) </h5> </el-col>
-                <el-col :span="4" class="center-horz" style="display:flex; justify-content:space-evenly;">
-                  <el-tooltip placement="top" effect="light">
-                    <g-icon iconSize="24px" iconName="magicSwirl" />
-                    <template #content> Class Skill </template>
-                  </el-tooltip>
-                  <el-tooltip placement="top" effect="light">
-                    <g-icon iconSize="24px" iconName="armor" />
-                    <template #content> Armor Penalty </template>
-                  </el-tooltip>
-                  <el-tooltip placement="top" effect="light">
-                    <g-icon iconSize="24px" iconName="openBook" />
-                    <template #content> Background Skill </template>
-                  </el-tooltip>
-                </el-col>
-                <el-col :offset="2" :span="10" :style=" (newRanks > Math.max(1, classes[newLevel.class].ranks + attributes.Int.mod)) || (backgroundRanks > 2) ? 'color:red' : ''">
-                  <el-row :gutter="10">
-                    <el-col :span="4" class="center-vert">
+              <el-row :gutter="10" align="middle">
+                <el-divider> <h3> Skills </h3> </el-divider>
+              </el-row>
+              <el-row :gutter="10" align="middle" style="margin-bottom:5px; border-bottom:1px solid grey">
+                <el-col :xs="18" :sm="8" :md="6"> <h5> Name (Ability) </h5> </el-col>
+                <el-col :xs="0" :sm="4" :md="4">
+                  <el-row justify="space-evenly" style="margin:0">
+                    <el-col :span="2">
                       <el-tooltip placement="top" effect="light">
-                        <g-icon iconSize="24px" iconName="sparkle" />
-                        <template #content> Current Ranks </template>
+                        <g-icon iconSize="24px" iconName="magicSwirl" />
+                        <template #content> Class Skill </template>
                       </el-tooltip>
                     </el-col>
-                    <el-col :span="10" class="center-horz center-vert">
-                      {{ newRanks }} / {{ Math.max(1, classes[newLevel.class].ranks + attributes.Int.mod) }} New Ranks
+                    <el-col :span="2">
+                      <el-tooltip placement="top" effect="light">
+                        <g-icon iconSize="24px" iconName="armor" />
+                        <template #content> Armor Penalty </template>
+                      </el-tooltip>
                     </el-col>
-                    <el-col :span="10" class="center-horz">
-                      {{ backgroundRanks }} / 2 New Background Ranks
+                    <el-col :span="2">
+                      <el-tooltip placement="top" effect="light">
+                        <g-icon iconSize="24px" iconName="openBook" />
+                        <template #content> Background Skill </template>
+                      </el-tooltip>
                     </el-col>
                   </el-row>
                 </el-col>
+                <el-col :xs="3" :sm="2" :md="4">
+                  <el-tooltip placement="top" effect="light">
+                    <g-icon iconSize="24px" iconName="sparkle" />
+                    <template #content> Current Ranks </template>
+                  </el-tooltip>
+                </el-col>
+                <el-col :xs="12" :sm="5" :md="5" :style=" (newRanks > Math.max(1, newLevelClass.ranks + attributes.Int.mod)) || (backgroundRanks > 2) ? 'color:red' : ''">
+                  {{ newRanks }} / {{ Math.max(1, newLevelClass.ranks + attributes.Int.mod) }} New Ranks
+                </el-col>
+                <el-col :xs="12" :sm="5" :md="5" :style=" (newRanks > Math.max(1, newLevelClass.ranks + attributes.Int.mod)) || (backgroundRanks > 2) ? 'color:red' : ''">
+                  {{ backgroundRanks }} / 2 New Background Ranks
+                </el-col>
               </el-row>
-              <el-row :gutter="10" v-for="(skill, name) in rules.skills" :key="name" style="margin-bottom:5px; border-bottom:1px solid grey">
-                <el-col :span="6">
+
+              <el-row v-for="(skill, name) in rules.skills" :key="name" :gutter="10" style="margin-bottom:5px; border-bottom:1px solid grey">
+                <el-col :xs="18" :sm="8" :md="6">
                   {{ name }}
                   <span v-if="['Artistry', 'Craft', 'Lore', 'Perform', 'Profession'].includes(name)"> ({{ character.skills[name].extras.specialty }}) </span>
                   ({{ skill.ability }})
                 </el-col>
-                <el-col :span="4" class="center-horz" style="display:flex; justify-content:space-evenly;">
-                  <div style="width:33%">
-                    <g-icon v-if="character.skills[name].class" iconSize="20px" iconName="magicSwirl" />
-                  </div>
-                  <div style="width:33%">
-                    <g-icon v-if="skill.armor_pen" iconSize="20px" iconName="armor" />
-                  </div>
-                  <div style="width:33%">
-                    <g-icon v-if="skill.background" iconSize="20px" iconName="openBook" />
-                  </div>
-                </el-col>
-                <el-col :offset="2" :span="10">
-                  <el-row :gutter="10">
-                    <el-col :span="4">
-                      <el-tag :effect="character.skills[name].ranks ? 'dark' : 'plain'">
-                        {{ character.skills[name].ranks }}
-                      </el-tag>
+                <el-col :xs="0" :sm="4" :md="4">
+                  <el-row justify="space-evenly" style="margin:0">
+                    <el-col :span="2">
+                      <g-icon v-if="character.skills[name].class" iconSize="20px" iconName="magicSwirl" />
                     </el-col>
-                    <el-col :span="10">
-                      <el-input-number v-model="newLevel.skills[name].newRanks" :min="0"
-                        :max="(character.classes.total.levels+1) - (character.skills[name].ranks + newLevel.skills[name].backgroundRanks?newLevel.skills[name].backgroundRanks:0)"
-                        size="small" aria-label="New Ranks">
-                        <template #suffix>
-                          <g-icon v-if="newLevel.skills[name].newRanks>0" iconSize="20px" iconName="sparkle" iconColor="var(--el-color-warning)" />
-                        </template>
-                      </el-input-number>
-
+                    <el-col :span="2">
+                      <g-icon v-if="skill.armor_pen" iconSize="20px" iconName="armor" />
                     </el-col>
-                    <el-col :span="10">
-                      <el-input-number v-if="skill.background" v-model="newLevel.skills[name].backgroundRanks" :min="0"
-                        :max="Math.min(2, character.classes.total.levels+1-character.skills[name].ranks-newLevel.skills[name].newRanks)"
-                        size="small" aria-label="New Background Ranks">
-                        <template #suffix>
-                          <g-icon v-if="newLevel.skills[name].backgroundRanks>0" iconSize="20px" iconName="sparkle" iconColor="var(--el-color-warning)" />
-                          </template>
-                        </el-input-number>
+                    <el-col :span="2">
+                      <g-icon v-if="skill.background" iconSize="20px" iconName="openBook" />
                     </el-col>
                   </el-row>
+                </el-col>
+                <el-col :xs="3" :sm="2" :md="4">
+                  <el-tag :effect="character.skills[name].ranks ? 'dark' : 'plain'">
+                    {{ character.skills[name].ranks }}
+                  </el-tag>
+                </el-col>
+                <el-col :xs="12" :sm="5" :md="5">
+                  <el-input-number v-model="newLevel.skills[name].newRanks" :min="0"
+                  :max="(character.classes.total.levels+1) - (character.skills[name].ranks + newLevel.skills[name].backgroundRanks?newLevel.skills[name].backgroundRanks:0)"
+                  size="small" aria-label="New Ranks">
+                  <template #suffix>
+                    <g-icon v-if="newLevel.skills[name].newRanks>0" iconSize="20px" iconName="sparkle" iconColor="var(--el-color-warning)" />
+                    </template>
+                  </el-input-number>
+                </el-col>
+                <el-col :xs="12" :sm="5" :md="5">
+                  <el-input-number v-if="skill.background" v-model="newLevel.skills[name].backgroundRanks" :min="0"
+                  :max="Math.min(2, character.classes.total.levels+1-character.skills[name].ranks-newLevel.skills[name].newRanks)"
+                  size="small" aria-label="New Background Ranks">
+                  <template #suffix>
+                    <g-icon v-if="newLevel.skills[name].backgroundRanks>0" iconSize="20px" iconName="sparkle" iconColor="var(--el-color-warning)" />
+                    </template>
+                  </el-input-number>
                 </el-col>
               </el-row>
             </div>
 
-            <el-row style="flex-direction:row-reverse">
+            <el-row justify="center">
               <el-button
                 type="primary"
                 @click="addLevel()"
                 :disabled="
-                  (newRanks == 0) ||
-                  (newRanks > Math.max(1, classes[newLevel.class].ranks + attributes.Int.mod)) ||
-                  (backgroundRanks > 2) ||
-                  (backgroundRanks == 0)"
+                (newRanks == 0) ||
+                (newRanks > Math.max(1, newLevelClass.ranks + attributes.Int.mod)) ||
+                (backgroundRanks > 2) ||
+                (backgroundRanks == 0)"
               >
                 Confirm Level Up
               </el-button>
             </el-row>
-
           </div> <!-- end level up -->
         </el-dialog>
       </template>
@@ -1729,15 +1757,23 @@ export default {
       condition: {},
       showCondition: false,
 
-      createCustomClass: false,
-      saves: {
-        Good: { mult: 0.5, bonus: 2 },
-        Bad: { mult: 0.33, bonus: 0 }
-      },
 
+      // Level Up
+      classSelect: [
+        { label: 'Current Classes', options: [] },
+        { label: 'New Classes', options: [] }
+      ],
+      showCustomClass: false,
+      customClass: {}, // data for new class
+      // saves select in custom class
+      saves: [
+        { id: "Good", data: { mult: 0.5, bonus: 2 } },
+        { id: "Bad", data: { mult: 0.33, bonus: 0 } }
+      ],
 
       addingLevel: false,
       newLevel: { class: '' },
+      newLevelClass: {},
 
       // Drawer
       characterJSON: "",
@@ -1750,14 +1786,7 @@ export default {
   computed: {
     rules() { return JSON.parse(localStorage.getItem('rules')); },
     races() { return JSON.parse(localStorage.getItem('races')); },
-    classes() {
-      let classes = JSON.parse(localStorage.getItem('classes'));
-      // console.log(classes);
-      // Add a character's custom classes to the list, for the levelup select
-      // console.log();
-
-      return classes;
-    },
+    classes() { return JSON.parse(localStorage.getItem('classes')); },
     equipment() { return JSON.parse(localStorage.getItem('equipment')); },
     feats() { return JSON.parse(localStorage.getItem('feats')); },
     actions() { return JSON.parse(localStorage.getItem('actions')); },
@@ -1882,7 +1911,6 @@ export default {
   },
   mounted() {
     if (!this.rules.size) { this.$router.push("/"); }
-    // TODO: Feats and Default Actions stuff
 
     if ( this.currentUser.roles.includes("admin") ) {
       UserService.getAllUsers()
@@ -1896,111 +1924,21 @@ export default {
       this.character = response.character;
       if (!this.character.user) { this.character.user = {} }
 
-      if (!response.character.settings.appearance) {
-        console.info('Restructuring Old Character');
+      // TODO: if toon has resources instead of allies
+      if (this.character.resources) { this.updateStructure(); }
 
-        // Restructure classes
-        if (!response.character.classes.total) {
-          this.character.classes.total = { levels: 0, abilities: [] };
+      // TODO: Feats and Default Actions stuff
+
+      // Set up the Class Select for levelup
+      for (let cName of Object.keys(this.character.classes)) {
+        if (cName != "total") {
+          this.classSelect[0].options.push(cName);
         }
-        for (let [cName, cClass] of Object.entries(response.character.classes)) {
-          if (cName != 'total') { this.character.classes.total.levels += cClass.levels; }
-          let newClass = {
-            "levels": cClass.levels,
-            "hd": this.classes[cName].hd,
-            "bab": this.classes[cName].bab,
-            "saves": this.classes[cName].saves,
-            "abilities": []
-          };
-          if (this.classes[cName].magic) {
-            newClass.magic = {
-              "style": this.classes[cName].magic.style,
-              "castingAtr": this.classes[cName].magic.castingAtr,
-              "casterLevel": cClass.levels,
-              "spellsPerDay": this.classes[cName].magic.spellsPerDay[cClass.levels],
-              "useGaldur": response.useGaldur,
-              "galdur": {
-                "openTotal": 0,
-                "openRemaining": 0,
-                "reserveTotal": 0,
-                "reserveRemaining": 0
-              }
-            };
-
-            if (this.classes[cName].magic.style.includes("Prepared")) {
-              newClass.magic.preparedSpells = [];
-              if (response.preparedSpells) {
-                newClass.magic.preparedSpells = response.preparedSpells;
-              } else {
-                this.classes[cName].magic.spellsPerDay[cClass.levels].forEach((spellSlots, lvl) => {
-                  for (let i = 0; i < spellSlots; i++) {
-                    newClass.magic.preparedSpells[lvl] = "";
-                  }
-                });
-              }
-            } else {
-              newClass.magic.remainingCasts = response.remainingCasts;
-            }
-          }
-          this.character.classes[cName] = newClass;
-        }
-        for (let lvl = 0; lvl < this.character.classes.total.levels+1; lvl++) {
-          this.character.classes.total.abilities.push(
-            this.classes.total.special[lvl]
-          );
-        }
-
-        // Restructure abilities
-        if (!Array.isArray(response.character.abilities)) {
-          let abils = [];
-          for (let [name, abil] of Object.entries(response.character.abilities)) {
-            this.abilID++;
-            if (!abil.location) {
-              let newAbil = {
-                name: name,
-                description: abil.description ? abil.description : "",
-                shortText: abil.benefit ? abil.benefit.text : "",
-                location: abil.benefit ? abil.benefit.target : "",
-                trigger: abil.trigger ? abil.trigger : "",
-                bonuses: abil.bonuses ? abil.bonuses : {},
-                extras: {
-                  active: abil.extras.active ? abil.extras.active : "",
-                  showMain: abil.extras.showMain ? abil.extras.showMain : "",
-                  category: abil.extras.category ? abil.extras.category : "Other",
-                  id: this.abilID,
-                  notes: []
-                }
-              };
-              abils.push(newAbil);
-            }
-          }
-          this.character.abilities = abils;
-        }
-
-        // Restructure Settings
-        let appearance = new Object(this.character.basics.appearance);
-        delete this.character.basics.appearance;
-        this.character.settings.appearance = appearance;
-
-        let favored = new Object(this.character.basics.favoredClass);
-        delete this.character.basics.favoredClass;
-        this.character.settings.favoredClass = favored;
-
-        let deity = this.character.basics.deity;
-        delete this.character.basics.deity;
-        this.character.settings.deity = deity;
-
-        // Restructure Basics
-        this.character.basics.subtypes = this.character.basics.type.subtypes;
-        this.character.basics.type = this.character.basics.type.name;
       }
-      else {
-        // setup abil ID
-        this.character.abilities.forEach(abil => {
-          if (this.abilID < abil.extras.id) {
-            this.abilID = abil.extras.id;
-          }
-        });
+      for (let cName of Object.keys(this.classes)) {
+        if ( !this.classSelect[0].options.includes(cName) && !["galdur", "total"].includes(cName) ) {
+          this.classSelect[1].options.push(cName);
+        }
       }
 
       this.loading = false;
@@ -2032,7 +1970,6 @@ export default {
         obj.sources.push(`${prefix}${value} ${name}`);
       }
     },
-
     /*
      * Loop on all the bonuses, and apply them to the given object if needed
      * * object = the bonus object we are adding to: { total: #, sources: [] }
@@ -2139,124 +2076,395 @@ export default {
       }
     },
 
-    // Class Methods
-    onClassSelect() {
-      console.log(this.newLevel.class);
-      console.log(this.classes[this.newLevel.class]);
-      if (this.newLevel.class == "custom") {
-        console.log('Create custom class');
-        // this.newLevel = this.classes[this.newLevel.class];
-        this.newLevel.saves = {};
+    updateStructure() {
+      console.info('Restructuring Old Character', this.character);
+      /***************************\
+      *                           *
+      *          CLASSES          *
+      *                           *
+      \***************************/
+      let totalLvl = 0;
+      for (let [cName, cClass] of Object.entries(this.character.classes)) {
+        if ( cName == 'total' || Object.keys(this.rules.creature_types).includes(cName) ) { continue; }
+        totalLvl += cClass.levels;
 
-        this.createCustomClass = true;
+        let classStructure = {
+          "levels": cClass.levels,
+          "hd": cClass.hd ? cClass.hd : this.classes[cName].hd,
+          "bab": cClass.bab ? cClass.bab : this.classes[cName].bab,
+          "ranks": cClass.ranks ? cClass.ranks : this.classes[cName].ranks,
+          "saves": cClass.saves ? cClass.saves : this.classes[cName].saves,
+          "abilities": cClass.abilities ? cClass.abilities : []
+        };
+
+        if (cClass.magic) {
+          classStructure.magic = {
+            "style": cClass.magic.style ? cClass.magic.style : this.classes[cName].magic.style,
+            "castingAtr": cClass.magic.castingAtr ? cClass.magic.castingAtr : this.classes[cName].magic.castingAtr,
+            "casterLevel": cClass.magic.casterLevel ? cClass.magic.casterLevel : cClass.levels,
+            "spellsPerDay": cClass.magic.spellsPerDay ? cClass.magic.spellsPerDay : this.classes[cName].magic.spellsPerDay[cClass.levels],
+            "useGaldur": cClass.magic.useGaldur ? cClass.magic.useGaldur : false,
+            "galdur": cClass.magic.galdur ? cClass.magic.galdur : { "openTotal": 0, "openRemaining": 0, "reserveTotal": 0, "reserveRemaining": 0 }
+          };
+
+          if (classStructure.magic.style.includes("Prepared")) {
+            if (cClass.magic.preparedSpells) {
+              classStructure.magic.preparedSpells = cClass.magic.preparedSpells;
+            } else {
+              classStructure.magic.preparedSpells = [];
+              this.classes[cName].magic.spellsPerDay[cClass.levels].forEach((spellSlots, lvl) => {
+                for (let i = 0; i < spellSlots; i++) {
+                  classStructure.magic.preparedSpells[lvl] = "";
+                }
+              });
+            }
+
+          } else if (classStructure.magic.style.includes("Spontaneous")) {
+            classStructure.magic.remainingCasts = cClass.magic.remainingCasts ? cClass.magic.remainingCasts : [];
+
+          } else {
+            let er = 'Casting Style is not Prepared or Spontaneous!';
+            this.$message({ message: er, type: 'error', });
+            console.error(er);
+          }
+        } // end class magic
+
+        this.character.classes[cName.toLowerCase()] = classStructure;
+      }
+
+      // add classes.total
+      if (!this.character.classes.total) { this.character.classes.total = { levels: 0, abilities: [] }; }
+      this.character.classes.total.levels = totalLvl;
+      for (let lvl = 0; lvl < totalLvl+1; lvl++) {
+        this.character.classes.total.abilities.push(
+          this.classes.total.special[lvl]
+        );
+      }
+
+      /***************************\
+      *                           *
+      *         ABILITIES         *
+      *                           *
+      \***************************/
+      if (!Array.isArray(this.character.abilities)) {
+        let abils = [];
+        for (let [name, abil] of Object.entries(this.character.abilities)) {
+          this.abilID++;
+          if (!abil.location) {
+            let newAbil = {
+              name: name,
+              description: abil.description ? abil.description : "",
+              shortText: abil.benefit ? abil.benefit.text : "",
+              location: abil.benefit ? abil.benefit.target : "",
+              trigger: abil.trigger ? abil.trigger : "",
+              bonuses: abil.bonuses ? abil.bonuses : {},
+              extras: {
+                id: this.abilID,
+                active: abil.extras.active ? abil.extras.active : false,
+                showMain: abil.extras.showMain ? abil.extras.showMain : false,
+                category: abil.extras.category ? abil.extras.category : "Other",
+                notes: []
+              }
+            };
+            abils.push(newAbil);
+          }
+        }
+        this.character.abilities = abils;
+      }
+
+      // setup abil ID
+      let newAbilsArr = [];
+      this.character.abilities.forEach(abil => {
+        this.abilID++;
+        let newStructure = {
+          name: abil.name,
+          description: abil.description ? abil.description : "",
+          shortText: abil.shortText ? abil.shortText : "",
+          location: abil.location ? abil.location : "",
+          trigger: abil.trigger ? abil.trigger : "",
+          bonuses: abil.bonuses ? abil.bonuses : {},
+          extras: {
+            id: abil.extras.id ? abil.extras.id : this.abilID,
+            active: abil.extras.active ? abil.extras.active : false,
+            showMain: abil.extras.showMain ? abil.extras.showMain : false,
+            category: abil.extras.category ? abil.extras.category : "Other",
+            notes: []
+          }
+        };
+        newAbilsArr.push(newStructure);
+        if (this.abilID < abil.extras.id) { this.abilID = abil.extras.id; }
+      });
+      this.character.abilities = newAbilsArr;
+
+      /***************************\
+      *                           *
+      *         SETTINGS          *
+      *                           *
+      \***************************/
+      let settings = this.character.settings;
+      if (!settings.customClasses) { settings.customClasses = {}; }
+
+      if (!settings.appearance) { settings.appearance = {}; }
+      if (this.character.basics.appearance) {
+        let appearance = new Object(this.character.basics.appearance);
+        delete this.character.basics.appearance;
+        this.character.settings.appearance = appearance;
+      }
+
+      if (this.character.basics.favoredClass) {
+        let fav = this.character.basics.favoredClass;
+        this.character.abilities.push({
+          "name": "Favored Class Bonus",
+          "description": `You get a small bonus for each level in ${fav.name} (${ fav.bonus ? fav.bonus : 'usually +1 hp, ranks, or galdur'})`,
+          "shortText": "SHORT_BLURB",
+          "location": "self",
+          "trigger": "Continuous",
+          "bonuses": { "Favored Class": { "type": "Untyped", "value": 0, "targets": [ "HP" ] } },
+          "extras": {
+            "id": 1,
+            "active": true,
+            "showMain": false,
+            "category": "Other",
+            "notes": []
+          }
+        });
+        delete this.character.basics.favoredClass;
+      }
+      if (this.character.settings.favoredClass) {
+        let fav = this.character.settings.favoredClass;
+        this.character.abilities.push({
+          "name": "Favored Class Bonus",
+          "description": `You get a small bonus for each level in ${fav.name} (${ fav.bonus ? fav.bonus : 'usually +1 hp, ranks, or galdur'})`,
+          "shortText": "SHORT_BLURB",
+          "location": "self",
+          "trigger": "Continuous",
+          "bonuses": { "Favored Class": { "type": "Untyped", "value": 0, "targets": [ "HP" ] } },
+          "extras": {
+            "id": 1,
+            "active": true,
+            "showMain": false,
+            "category": "Other",
+            "notes": []
+          }
+        });
+        delete this.character.settings.favoredClass;
+      }
+
+      if (this.character.basics.diety) {
+        let deity = this.character.basics.deity;
+        delete this.character.basics.deity;
+        this.character.settings.deity = deity;
+      }
+
+      // Restructure types
+      if (!this.character.basics.subtypes) {
+        this.character.basics.subtypes = this.character.basics.type.subtypes ? this.character.basics.type.subtypes : [];
+        this.character.basics.type = this.character.basics.type.name;
+      }
+    },
+
+    /***************************\
+    *                           *
+    *          LEVEL UP         *
+    *                           *
+    \***************************/
+    onClassSelect() {
+      if (this.newLevelClass.name == "custom") {
+        this.customClass = this.classes.custom;
+
+        // TODO: Remove
+        this.customClass = {
+          "name": "Cultist",
+          "hd": 8, "ranks": 4, "bab": 0.75,
+          "saves": { "fort": { "id": "Bad", "data": { "mult": 0.33, "bonus": 0 } }, "ref": { "id": "Bad", "data": { "mult": 0.33, "bonus": 0 } }, "will": { "id": "Good", "data": { "mult": 0.5, "bonus": 2 } } },
+          "skills": [ "Appraise", "Bluff", "Craft", "Disguise", "Intimidate", "Knowledge (arcana)", "Knowledge (religion)", "Knowledge (planes)", "Linguistics", "Profession", "Sleight of Hand", "Spellcraft", "Stealth", "Use Magic Device" ],
+          // "proficiency": [],
+          // "alignment": [],
+          "magic": {
+            "style": "Prepared Arcane",
+            "castingAtr": "Cha",
+            "spellsPerDayTable": "3 \t1 \t– \t– \t– \t– \t–\n4 \t2 \t– \t– \t– \t– \t–\n4 \t3 \t– \t– \t– \t– \t–\n4 \t3 \t1 \t– \t– \t– \t–\n4 \t4 \t2 \t– \t– \t– \t–\n5 \t4 \t3 \t– \t– \t– \t–\n5 \t4 \t3 \t1 \t– \t– \t–\n5 \t4 \t4 \t2 \t– \t– \t–\n5 \t5 \t4 \t3 \t– \t– \t–\n5 \t5 \t4 \t3 \t1 \t– \t–\n5 \t5 \t4 \t4 \t2 \t– \t–\n5 \t5 \t5 \t4 \t3 \t– \t–\n5 \t5 \t5 \t4 \t3 \t1 \t–\n5 \t5 \t5 \t4 \t4 \t2 \t–\n5 \t5 \t5 \t5 \t4 \t3 \t–\n5 \t5 \t5 \t5 \t4 \t3 \t1\n5 \t5 \t5 \t5 \t4 \t4 \t2\n5 \t5 \t5 \t5 \t5 \t4 \t3\n5 \t5 \t5 \t5 \t5 \t5 \t4\n5 \t5 \t5 \t5 \t5 \t5 \t5"
+          }
+        };
+
+        this.showCustomClass = true;
         this.dialog = true;
       }
     },
     openLevelDialog() {
-      let lvl = {
-        "class": this.newLevel.class,
-        "level": this.character.classes[this.newLevel.class] ? this.character.classes[this.newLevel.class].levels + 1 : 1,
-        "skills": {},
-        "abilities": [],
-        "newSpells": [],
-        "useGaldur": this.character.classes[this.newLevel.class] ? this.character.classes[this.newLevel.class].useGaldur : false,
+      let cClass = {
+        name: this.newLevelClass.name.toLowerCase(),
+        levels: 0,
+        hd: 0,
+        bab: 0,
+        ranks: 0,
+        saves: {
+          "ref": { "mult": 0, "bonus": 0 },
+          "fort": { "mult": 0, "bonus": 0 },
+          "will": { "mult": 0, "bonus": 0 }
+        },
+        abilities: []
       };
 
-      // if (this.newLevel.class == "custom") {
-      //   lvl.custom = true;
-      //   lvl.name = "";
-      //   lvl.saves = {};
-      // }
+      if (this.customClass.name) {
+        // if we are making a new custom class
+        for (let [key, value] of Object.entries(this.customClass)) {
+          cClass[key] = value;
+        }
+        cClass.name = cClass.name.toLowerCase();
+
+        if (this.customClass.magic) {
+          let spellsPerDayTable = [[]];
+          let tmpSPD = this.customClass.magic.spellsPerDayTable;
+          tmpSPD.split('\n').forEach((item, lvl) => {
+            spellsPerDayTable[lvl+1] = [];
+            item.split('\t').forEach((num, spLvl) => {
+              if (Number.isInteger(parseInt(num))) {
+                spellsPerDayTable[lvl+1][spLvl] = parseInt(num);
+              }
+            });
+          });
+          this.character.settings.customClasses[this.customClass.name] = {
+            "spellsPerDayTable": spellsPerDayTable,
+            "galdur": [],
+            "galdurTotal": []
+          };
+          this.customClass.magic.spellsPerDayTable = spellsPerDayTable;
+        }
+
+      } else {
+        for (let [key, value] of Object.entries(this.character.classes[cClass.name])) {
+          cClass[key] = value;
+        }
+        if (cClass.magic) {
+          let custom = this.character.settings.customClasses[cClass.name];
+          if (custom) {
+            cClass.magic.spellsPerDayTable = custom.spellsPerDayTable;
+          } else {
+            cClass.magic.spellsPerDayTable = this.classes[cClass.name].magic.spellsPerDayTable;
+          }
+        }
+      }
+
+
+
+      this.newLevel = {
+        "level": this.character.classes[cClass.name] ? this.character.classes[cClass.name].levels + 1 : 1,
+        "skills": [],     // new skill ranks
+        "abilities": [],  // new level / class abilities
+        "newSpells": [],
+      };
+
+console.log(this.newLevel);
+console.log(cClass);
 
       // skills
       for (let [name, skill] of Object.entries(this.rules.skills)) {
-        if ( this.classes[lvl.class].skills.includes(name) ) {
+        if ( this.newLevel.level == 1 && cClass.skills.includes(name) ) {
           this.character.skills[name].class = true;
         }
         let newSkill = { 'newRanks': 0 };
-        if (skill.background) {
-          newSkill.backgroundRanks = 0;
-        }
-        lvl.skills[name] = newSkill;
+        if (skill.background) { newSkill.backgroundRanks = 0; }
+        this.newLevel.skills[name] = newSkill;
       }
 
       // abilities
       if (this.classes.total.special[this.character.classes.total.levels+1].length>0) {
-        let newAbil = {
-          'name': this.classes.total.special[this.character.classes.total.levels+1],
-          'description': "",
-          extras: {
-            id: this.abilID,
-            active: true,
-            category: "Feat",
-            showMain: false,
-            notes: []
-          }
-        };
+        // if the character gets a new feat or attribute advancement this level:
         this.abilID++;
-        lvl.abilities.push(newAbil);
+        let newAbil = {};
+        this.classes.total.special[this.character.classes.total.levels+1].forEach(abil => {
+          newAbil = { 'name': abil, 'description': "",
+            'extras': {
+              id: this.abilID,
+              active: true,
+              showMain: false,
+              category: "Feat",
+              notes: []
+            }
+          };
+          this.newLevel.abilities.push(newAbil);
+        });
       }
-
-      if (this.classes[lvl.class].special) {
-        this.classes[lvl.class].special[lvl.level].forEach(abil => {
+      if (cClass.special) {
+        cClass.special[this.newLevel.level].forEach(abil => {
           this.abilID++;
-          let newAbil = { 'name': abil, 'description': "", extras: {
-            id: this.abilID,
-            active: true,
-            category: "Class",
-            showMain: false,
-            notes: []
-          } };
-          this.abilID++;
-          lvl.abilities.push(newAbil);
+          let newAbil = { 'name': abil, 'description': "",
+            'extras': {
+              id: this.abilID,
+              active: true,
+              showMain: false,
+              category: "Class",
+              notes: []
+            }
+          };
+          this.newLevel.abilities.push(newAbil);
         });
       }
 
-      // magic
-      if (this.classes[lvl.class].magic) {
-        if (this.classes[lvl.class].magic.spellsKnown.byLevel) {
-          let newSpellArr = this.classes[lvl.class].magic.spellsKnown.byLevel[lvl.level];
+      // Automatically prep new spells to be added
+      if ( cClass.magic ) {
+        if ( cClass.magic.spellsKnown && cClass.magic.spellsKnown.byLevel ) {
+          let newSpellArr = cClass.magic.spellsKnown.byLevel[this.newLevel.level];
           for (let level = 0; level < newSpellArr.length; level++) {
             let lvlNum = newSpellArr[level]; // new spells of level 'level'
             // if we already have spells of 'level'
-            if (this.character.spells[lvl.class] && this.character.spells[lvl.class][level]) {
+            if (this.character.spells[cClass.name] && this.character.spells[cClass.name][level]) {
               // reduce the number of added spells by the ammount we already have
-              lvlNum -= Object.keys(this.character.spells[lvl.class][level]).length;
+              lvlNum -= Object.keys(this.character.spells[cClass.name][level]).length;
             }
             for (let j = 0; j < lvlNum; j++) {
-              lvl.newSpells.push({ "name": '', "level": level, "class": lvl.class });
+              this.newLevel.newSpells.push({ "name": '', "level": level, "class": cClass.name });
             }
           }
         }
       }
 
-      this.newLevel = lvl;
+      this.newLevelClass = cClass;
       this.addingLevel = true;
       this.dialog = true;
+      console.log('new level class', this.newLevelClass);
+      console.log('new level', this.newLevel);
+    },
+    addClassAbility() {
+      this.abilID++;
+      this.newLevel.abilities.push({
+        name: "",
+        description: "",
+        shortText: "",
+        location: "Self",
+        trigger: "Standard",
+        bonuses: {},
+        extras: {
+          id: this.abilID,
+          active: true,
+          category: "Class",
+          showMain: false,
+          notes: []
+        }
+      });
     },
     addLevel() {
-      // Class
-      let source = this.classes[this.newLevel.class];
+      let source = this.newLevelClass;
+console.log('source', source);
       // if toon doesn't have a level in the given class yet, make a new obj for it
-      if ( !this.character.classes[this.newLevel.class] ) {
-        this.character.classes[this.newLevel.class] = {
+      if ( !this.character.classes[source.name] ) {
+        this.character.classes[source.name] = {
           levels: 0,
           hd: source.hd,
           bab: source.bab,
+          ranks: source.ranks,
           saves: source.saves,
-          abilities: [ [] ]
+          abilities: [ [] ],
         };
       }
-      let cClass = this.character.classes[this.newLevel.class];
+      this.character.health.total += (this.newLevel.level == 1) ? source.hd : source.hd / 2;
+      let cClass = this.character.classes[source.name];
       cClass.levels = this.newLevel.level;
       cClass.abilities[this.newLevel.level] = [];
 
       // New abilities
       this.newLevel.abilities.forEach(newAbil => {
-        newAbil.shortText = "";
-        newAbil.location = "";
-        newAbil.trigger = "Continuous";
-        newAbil.bonuses = {};
         this.character.abilities.push( newAbil );
         if (newAbil.extras.category == "Feat") {
           this.character.classes.total.abilities[this.newLevel.level] = [];
@@ -2267,50 +2475,69 @@ export default {
         }
       });
 
-      this.character.health.total += (this.newLevel.level == 1) ? source.hd : source.hd / 2;
-
       if ( source.magic ) {
-        cClass.useGaldur = cClass.useGaldur ? cClass.useGaldur : true;
-        cClass.openTotal = Math.floor( source.magic.galdurTotal[this.newLevel.level] / 2 );
-        cClass.openRemaining = cClass.openRemaining ? cClass.openRemaining : cClass.openTotal;
+        console.log('class has magic');
+        cClass.magic = cClass.magic ? cClass.magic :
+        {
+          style: source.magic.style,
+          castingAtr: source.magic.castingAtr,
+          casterLevel: this.newLevel.level,
+          useGaldur: source.magic.useGaldur ? source.magic.useGaldur : false,
+          galdur: source.magic.galdur ? source.magic.galdur : { "openTotal": 0, "reserveTotal": 0, "openRemaining": 0, "reserveRemaining": 0 },
+        };
 
-        cClass.reserveTotal = Math.ceil( source.magic.galdurTotal[this.newLevel.level] / 2 );
-        cClass.reserveRemaining = cClass.reserveRemaining ? cClass.reserveRemaining : cClass.reserveTotal;
-
-        if (source.magic.extraGaldur) {
-          cClass.extraTotal = source.magic.extraGaldur.total[cClass.levels];
-          cClass.extraRemaining = cClass.extraRemaining ? cClass.extraRemaining : source.magic.extraGaldur.total;
+        if (source.magic.spellsPerDayTable) {
+          cClass.magic.spellsPerDay = source.magic.spellsPerDayTable[this.newLevel.level];
+        } else if (this.character.settings.customClasses[source.name]) {
+          cClass.magic.spellsPerDay = this.character.settings.customClasses[source.name].spellsPerDayTable[this.newLevel.level];
+        } else {
+          cClass.magic.spellsPerDay = this.classes[source.name].magic.spellsPerDayTable
         }
 
-        cClass.spellsPerDay = source.magic.spellsPerDay[this.newLevel.level];
-
-        if (source.magic.style.includes('Prepared')) {
-          cClass.preparedSpells = [];
-          source.magic.spellsPerDay[this.newLevel.level].forEach((spells, level) => {
-            cClass.preparedSpells[level] = [];
+        if (source.magic.style.includes("Prepared")) {
+          let prepped = [];
+          if (!cClass.magic.preparedSpells) { cClass.magic.preparedSpells = []; }
+          console.log(cClass);
+          cClass.magic.spellsPerDay.forEach((spells, level) => {
+            if (!cClass.magic.preparedSpells[level]) { cClass.magic.preparedSpells[level] = []; }
+            prepped[level] = [];
             for (let i = 0; i < spells; i++) {
-              cClass.preparedSpells[level].push([]);
+              prepped[level][i] = cClass.magic.preparedSpells[level][i] ? cClass.magic.preparedSpells[level][i] : "";
             }
           });
+          cClass.magic.preparedSpells = prepped;
+
         } else if (source.magic.style.includes('Spontaneous')) {
-          cClass.remainingCasts = Array.from(cClass.spellsPerDay);
-          cClass.remainingCasts[0] = 1;
+          cClass.magic.remainingCasts = Array.from(cClass.magic.spellsPerDay);
+          cClass.magic.remainingCasts[0] = 1;
+        }
+
+        console.log(source);
+        if ( source.magic.galdurTotal ) {
+          cClass.magic.galdur.openTotal = Math.floor( source.magic.galdurTotal[this.newLevel.level] / 2 );
+          cClass.magic.galdur.openRemaining = cClass.magic.openRemaining ? cClass.magic.openRemaining : cClass.magic.openTotal;
+          cClass.magic.galdur.reserveTotal = Math.ceil( source.magic.galdurTotal[this.newLevel.level] / 2 );
+          cClass.magic.galdur.reserveRemaining = cClass.magic.reserveRemaining ? cClass.magic.reserveRemaining : cClass.magic.reserveTotal;
+          if (source.magic.extraGaldur) {
+            cClass.magic.galdur.extraTotal = source.magic.extraGaldur.total[cClass.levels];
+            cClass.magic.galdur.extraRemaining = cClass.magic.extraRemaining ? cClass.magic.extraRemaining : source.magic.extraGaldur.total;
+          }
         }
 
         // Even if no spells were added at level up, create the spot for em
-        if ( !this.character.spells[this.newLevel.class] ) { this.character.spells[this.newLevel.class] = []; }
+        if ( !this.character.spells[this.newLevelClass.name] ) { this.character.spells[this.newLevelClass.name] = []; }
         this.newLevel.newSpells.forEach(spell => {
           if ( !this.character.spells[spell.class][spell.level] ) { this.character.spells[spell.class][spell.level] = {}; }
           this.character.spells[spell.class][spell.level][spell.name] = {
-            "SR": true,
-            "castTime": "1 Standard",
             "casts": 0,
+            "castTime": "1 Standard",
             "components": "V, S, M/DF",
-            "description": "",
-            "duration": "Instant",
+            "description": "UPDATE ALL FIELDS WITH SPELL INFO",
             "range": "Close",
+            "target": "Self",
+            "duration": "Instant",
             "save": "Ref (half)",
-            "target": "Self"
+            "SR": true
           }
         });
       }
@@ -2346,7 +2573,8 @@ export default {
     },
     abilShowMain(name, abil) { abil.extras.showMain = abil.extras.showMain ? false : true; },
     addNewAbility() {
-      this.abil = {
+      this.abilID++;
+      this.abilities.push({
         name: "NEW ABILITY",
         description: "",
         shortText: "",
@@ -2354,14 +2582,13 @@ export default {
         trigger: "Standard",
         bonuses: {},
         extras: {
+          id: this.abilID,
           active: false,
+          category: "Other",
           showMain: false,
-          category: "Feat",
-          source: { class: "", level: 0 },
           notes: []
         }
-      };
-      this.abilities.push(this.abil);
+      });
       this.showAbil = true;
       this.dialog = true;
     },
@@ -2499,12 +2726,12 @@ export default {
           'casts': 0,
           'castTime': '1 Standard',
           'components': 'V, S, M/DF',
-          'target': 'Self',
+          "description": "UPDATE ALL FIELDS WITH SPELL INFO",
           'range': 'Close',
+          'target': 'Self',
           'duration': 'Instant',
           'save': 'Ref (half)',
-          'SR': true,
-          'description': ""
+          'SR': true
         };
         this.newSpell = { name: "", level: 0, class: "" };
       }
