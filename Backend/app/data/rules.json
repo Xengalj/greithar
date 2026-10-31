@@ -134,6 +134,42 @@
       "stacks": false
     }
   },
+  "triggers": [
+    { "color": "#E63415", "label": "Continuous",  "value": "continuous" },
+    { "color": "#FF6600", "label": "Standard",    "value": "standard" },
+    { "color": "#FFDE0A", "label": "Move",        "value": "move" },
+    { "color": "#3cb44b", "label": "Full-Round",  "value": "full-round" },
+    { "color": "#1EC79D", "label": "Swift",       "value": "swift" },
+    { "color": "#4167F0", "label": "Immediate",   "value": "immediate" },
+    { "color": "#911eb4", "label": "Free",        "value": "free" }
+  ],
+  "onMainLocations": [
+    { "color": "#E63415", "label": "Actions",           "value": "actions" },
+    { "color": "#FFDE0A", "label": "Senses",            "value": "senses" },
+    { "color": "#1EC79D", "label": "Immunities",        "value": "immunities" },
+    { "color": "#FF6600", "label": "Weaknesses",        "value": "weaknesses" },
+    { "color": "#911eb4", "label": "Special Defenses",  "value": "specialDef" }
+  ],
+  "abilityTypes": [
+    { "color": "#E63415", "label": "Race",        "value": "race" },
+    { "color": "#FF6600", "label": "Trait",       "value": "trait" },
+    { "color": "#FFDE0A", "label": "Class",       "value": "class" },
+    { "color": "#1EC79D", "label": "Feat",        "value": "feat" },
+    { "color": "#4167F0", "label": "Other",       "value": "other" }
+  ],
+  "proficiencies": [
+    { "color": "#E63415", "label": "Simple",      "value": "simple" },
+    { "color": "#FFDE0A", "label": "Martial",     "value": "martial" },
+    { "color": "#911eb4", "label": "Exotic",      "value": "exotic" }
+  ],
+  "rangeShapes": [
+    { "color": "#E63415", "label": "Increment",   "value": "Increment" },
+    { "color": "#FF6600", "label": "Ray",         "value": "Ray" },
+    { "color": "#FFDE0A", "label": "Line",        "value": "Line" },
+    { "color": "#1EC79D", "label": "Cone",        "value": "Cone" },
+    { "color": "#4167F0", "label": "Swift",       "value": "Swift" },
+    { "color": "#911eb4", "label": "Radius",      "value": "Radius" }
+  ],
   "targets": [
     { "color": "#E63415", "label": "Strength",            "value": "Str" },
     { "color": "#FF6600", "label": "Dexterity",           "value": "Dex" },
@@ -158,7 +194,6 @@
     { "color": "#FF6600", "label": "Ranged Damage Bonus", "value": "rangedDmgBonus" },
     { "color": "#3cb44b", "label": "Skills",              "value": "skills" }
   ],
-
   "Damage Types": {
     "Weapon": [
       { "color": "#4167F0", "label": "Bludgeoning",       "value": "Bludgeoning" },
@@ -211,6 +246,10 @@
     { "color": "#aaffc3", "label": "Thrown",              "value": "Thrown" },
     { "color": "#dcbeff", "label": "Tribal",              "value": "Tribal" }
   ],
+
+
+
+
   "natural_attacks": {
     "Bite": {
       "Damage": {  "fine": "1",  "diminuitive": "1d2",  "tiny": "1d3",  "small": "1d4",  "medium": "1d6",  "large": "1d8",  "huge": "2d6",  "gargantuan": "2d8",  "colossal": "4d6"  },

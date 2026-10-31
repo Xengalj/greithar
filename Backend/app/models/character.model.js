@@ -84,9 +84,9 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.JSON,
       defaultValue: {}
     },
-    resources: {
+    allies: {
       type: Sequelize.JSON,
-      defaultValue: {}
+      defaultValue: []
     },
     skills: {
       type: Sequelize.JSON,

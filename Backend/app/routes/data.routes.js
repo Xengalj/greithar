@@ -69,10 +69,11 @@ module.exports = function(app) {
         dynamicTyping: true,
         complete: function(results, file) {
           results["data"].forEach((monster, i) => {
-            if (monster.Name == search) {
+            if ( monster.Name.includes(search) ) {
               res.status(200).send(JSON.stringify(monster))
             }
           });
+          res.status(404).send({ message: `${search} not found` });
         },
         errors: function(errors, file) {
           res.status(200).send(errors);

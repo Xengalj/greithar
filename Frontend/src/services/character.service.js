@@ -64,7 +64,7 @@ class CharacterService {
       classes: character.classes,
       abilities: character.abilities,
       conditions: character.conditions,
-      attacks: character.attacks,
+      actions: character.actions,
       resources: character.resources,
       skills: character.skills,
       coins: character.coins,

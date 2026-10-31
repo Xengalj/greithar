@@ -51,6 +51,21 @@ exports.read = (req, res) => {
     })
     .catch(err => { res.status(500).send({ message: err.message }); });
 
+    // get characters by name (%LIKE%)
+  } else if (req.body.character_name) {
+    Character.findAndCountAll({
+      where: {
+        name: { [Op.substring]: req.body.character_name }
+      },
+      offset: req.body.offset,
+      limit: req.body.limit
+    })
+    .then(characters => {
+      if (!characters) { return res.status(404).send({ message: "No characters found!" }); }
+      res.status(200).send({ characters: JSON.stringify(characters) });
+    })
+    .catch(err => { res.status(500).send({ message: err.message }); });
+
   // get user's characters
   } else if (req.body.user_id) {
     Character.findAndCountAll({

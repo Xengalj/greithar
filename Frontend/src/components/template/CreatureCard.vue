@@ -3,7 +3,7 @@
 <h2>{{ title }}</h2>
 
 <!-- Basics -->
-<el-row :gutter="20" style="margin-bottom: 15px;">
+<el-row :gutter="20" align="bottom" style="margin-bottom: 15px;">
   <el-col :xs="24" :span="12" class="center-horz">
     <svg width="225" height="200">
       <HexGraph :abilities="[attributes.Str.total, attributes.Dex.total, attributes.Con.total, attributes.Int.total, attributes.Wis.total, attributes.Cha.total]"></HexGraph>
@@ -167,13 +167,13 @@
       </el-col>
     </el-row>
 
-    <el-row v-if="this.creature.basics.appearance">
+    <el-row v-if="this.creature.settings.appearance">
       <el-col :span="4" class="center-vert center-horz"> <g-icon iconSize="24px" icon-name="openScroll"/> </el-col>
-      <el-col :span="20" class="center-vert"> {{ this.creature.basics.appearance.age }} years old, {{ this.creature.basics.appearance.height }}, {{ this.creature.basics.appearance.weight }} </el-col>
+      <el-col :span="20" class="center-vert"> {{ this.creature.settings.appearance.age }} years old, {{ this.creature.settings.appearance.height }}, {{ this.creature.settings.appearance.weight }} </el-col>
     </el-row>
-    <el-row v-if="this.creature.basics.deity">
+    <el-row v-if="this.creature.settings.deity">
       <el-col :span="4" class="center-vert center-horz"> <g-icon iconSize="24px" icon-name="moon"/> </el-col>
-      <el-col :span="20" class="center-vert"> Diety : {{ this.creature.basics.deity }} </el-col>
+      <el-col :span="20" class="center-vert"> Diety : {{ this.creature.settings.deity }} </el-col>
     </el-row>
     <el-row v-if="this.creature.basics.environment">
       <el-col :span="4" class="center-vert center-horz"> <g-icon iconSize="24px" icon-name="forest"/> </el-col>
@@ -184,22 +184,41 @@
       <el-col :span="20" class="center-vert"> XP : {{ this.rules.experience[this.creature.basics.cr] }} </el-col>
     </el-row>
 
-    <el-row :gutter="10" justify="center" align="middle">
-      <el-col :xs="9" :sm="9">
-        <el-button @click="saveCreature()" type="primary" round> Save Changes </el-button>
-      </el-col>
-      <el-col :xs="3" :sm="3"  class="center-horz">
-        <el-tooltip v-if="!settings.isMonster" placement="top" effect="light">
-          <el-button @click="this.$router.push({ name: 'character-edit', params: { id: creature.id } })" type="info" style="margin:0" circle>
-            <g-icon iconSize="24px" iconColor="#000" iconName="quill" />
+    <el-row :gutter="10" justify="center" align="middle" class="el-input__wrapper">
+      <el-col :xs="4" :sm="3" :md="2">
+        <el-tooltip placement="top" effect="light">
+          <el-button @click="saveCreature()" type="success" circle>
+            <g-icon iconSize="24px" iconColor="#000" iconName="flag" />
           </el-button>
-          <template #content>
-            Edit Character
-          </template>
+          <template #content> Save Changes </template>
         </el-tooltip>
       </el-col>
-      <el-col :xs="9" :sm="9">
-        <el-button @click="openDrawer()" type="primary" round> Open Drawer </el-button>
+
+      <el-col :xs="3" :sm="3" :md="2" class="center-horz">
+        <el-tooltip v-if="!settings.isMonster" placement="top" effect="light">
+          <el-button @click="this.$router.push({ name: 'character-edit', params: { id: creature.id } })" type="info" circle>
+            <g-icon iconSize="24px" iconColor="#000" iconName="quill" />
+          </el-button>
+          <template #content> Edit Character </template>
+        </el-tooltip>
+      </el-col>
+
+      <el-col :xs="3" :sm="3" :md="2" class="center-horz">
+        <el-tooltip placement="top" effect="light">
+          <el-button @click="openDrawer()" type="primary" circle>
+            <g-icon iconSize="24px" iconColor="#000" iconName="openBook" />
+          </el-button>
+          <template #content> Open Drawer </template>
+        </el-tooltip>
+      </el-col>
+
+      <el-col :xs="3" :sm="3" :md="2" class="center-horz">
+        <el-tooltip placement="top" effect="light">
+          <el-button @click="rest()" type="warning" circle>
+            <g-icon iconSize="20px" iconColor="#000" iconName="campfire" />
+          </el-button>
+          <template #content> Rest for 8 Hours </template>
+        </el-tooltip>
       </el-col>
     </el-row>
   </el-col>
@@ -207,17 +226,6 @@
 
 
 <!-- Content Tabs -->
-<el-row :gutter="10" justify="center" align="middle">
-  <el-col :xs="4" :sm="0">
-    <el-button @click="rest()" id="restBtn" size="large" style="width:40px">
-      <el-tooltip placement="top" effect="light">
-        <g-icon iconSize="20px" iconName="campfire" />
-        <template #content>Rest for 8 Hours</template>
-      </el-tooltip>
-    </el-button>
-  </el-col>
-</el-row>
-
 <el-tabs v-model="settings.cardTab" type="card">
 
   <!-- Main -->
@@ -528,9 +536,45 @@
         </el-tree>
       </el-collapse-item>
 
-      <!-- Resources -->
-      <el-collapse-item name="resources">
-        <template #title> <g-icon iconName="star" /> Resources </template>
+      <!-- Special -->
+      <el-collapse-item name="special">
+        <template #title> <g-icon iconName="star" /> Special </template>
+
+        <!-- Conditions -->
+        <el-row :gutter="10" style="margin-top:7px;" justify="space-between">
+          <el-col :xs="9" :sm="5"> <g-icon iconSize="32px" iconName="dizzyStar" /> Conditions </el-col>
+          <el-col :xs="10" :sm="8">
+            <el-select v-model="creature.conditions" value-key="name" multiple placeholder="Common Conditions" aria-label="Conditions Select">
+              <template #tag>
+                <el-tag v-for="(condition, index) in creature.conditions" :key="condition" effect="dark" closable @close="creature.conditions.splice(index, 1)"> {{ condition.name }} </el-tag>
+              </template>
+              <el-option v-for="item in conditions" :key="item.name" :label="item.name" :value="item" >
+                <el-tag type="primary" style="margin-right: 8px" size="small" effect="dark"> {{ item.name }} </el-tag>
+              </el-option>
+              <template #footer>
+                <el-button text bg size="small" @click="addNewContion()"> Add custom condition </el-button>
+              </template>
+            </el-select>
+          </el-col>
+        </el-row>
+        <el-divider> Active </el-divider>
+        <el-row v-for="condition in creature.conditions" :key="condition.name" justify="space-between" align="middle">
+          <el-col :xs="12" :sm="6">
+            <el-tag type="info" size="large" effect="dark"> {{ condition.name }} </el-tag>
+          </el-col>
+          <el-col :xs="0" :sm="12"> {{ condition.description }} </el-col>
+          <el-col :xs="3" :sm="6">
+            <el-tag v-if="condition.extras && condition.extras.duration" size="small" effect="dark" type="warning" style="color:black">
+              {{ condition.extras.duration.left }} {{ condition.extras.duration.label }}
+            </el-tag>
+            &nbsp;
+            <el-button type="info" size="small" circle @click="editCondition(condition)">
+              <g-icon iconSize="16px" iconColor="#000" iconName="quill" />
+            </el-button>
+          </el-col>
+        </el-row>
+
+        <!-- Uses -->
         <div v-for="(abil, index) in abilities" :key="index">
           <el-row v-if="abil.extras.uses" :gutter="10" style="margin-bottom:10px">
             <el-col :span="6" class="center-horz">
@@ -538,24 +582,24 @@
             </el-col>
             <el-col :span="17" class="center-horz">
               <el-progress
-                :percentage="Math.floor((abil.extras.uses.left/abil.extras.uses.total)*100)"
-                :color="abil.extras.uses.color"
-                :text-inside="true"
-                :striped="true"
-                :stroke-width="30">
-                {{ abil.extras.uses.left }} / {{ abil.extras.uses.total }} {{ abil.extras.uses.label }}
-              </el-progress>
-            </el-col>
-          </el-row>
-          <el-row v-if="abil.extras.uses" :gutter="10" align="middle"  style="margin-bottom:10px">
-            <el-col :span="6" class="center-horz">
-              <el-input-number v-model="abil.extras.uses.left" :min="0" :max="abil.extras.uses.total" :aria-label="`Remaining ${abil.name}`" />
-            </el-col>
-            <el-col :span="17">
-              <el-input v-model="abil.extras.notes" :autosize="{ minRows: 1, maxRows: 4 }" :aria-label="`${abil.name} Notes`" type="textarea" />
-            </el-col>
-          </el-row>
-        </div>
+              :percentage="Math.floor((abil.extras.uses.left/abil.extras.uses.total)*100)"
+              :color="abil.extras.uses.color"
+              :text-inside="true"
+              :striped="true"
+              :stroke-width="30">
+              {{ abil.extras.uses.left }} / {{ abil.extras.uses.total }} {{ abil.extras.uses.label }}
+            </el-progress>
+          </el-col>
+        </el-row>
+        <el-row v-if="abil.extras.uses" :gutter="10" align="middle"  style="margin-bottom:10px">
+          <el-col :span="6" class="center-horz">
+            <el-input-number v-model="abil.extras.uses.left" :min="0" :max="abil.extras.uses.total" :aria-label="`Remaining ${abil.name}`" />
+          </el-col>
+          <el-col :span="17">
+            <el-input v-model="abil.extras.notes" :autosize="{ minRows: 1, maxRows: 4 }" :aria-label="`${abil.name} Notes`" type="textarea" />
+          </el-col>
+        </el-row>
+      </div>
       </el-collapse-item>
     </el-collapse>
   </el-tab-pane>
@@ -831,39 +875,6 @@
         </div>
       </el-collapse-item>
     </el-collapse>
-    <!-- Conditions -->
-    <el-row :gutter="10" style="margin-top:7px;" justify="space-between">
-      <el-col :xs="9" :sm="5"> <g-icon iconSize="32px" iconName="dizzyStar" /> Conditions </el-col>
-      <el-col :xs="10" :sm="8">
-        <el-select v-model="creature.conditions" value-key="name" multiple placeholder="Common Conditions" aria-label="Conditions Select">
-          <template #tag>
-            <el-tag v-for="(condition, index) in creature.conditions" :key="condition" effect="dark" closable @close="creature.conditions.splice(index, 1)"> {{ condition.name }} </el-tag>
-          </template>
-          <el-option v-for="item in conditions" :key="item.name" :label="item.name" :value="item" >
-            <el-tag type="primary" style="margin-right: 8px" size="small" effect="dark"> {{ item.name }} </el-tag>
-          </el-option>
-          <template #footer>
-            <el-button text bg size="small" @click="addNewContion()"> Add custom condition </el-button>
-          </template>
-        </el-select>
-      </el-col>
-    </el-row>
-    <el-divider> Active </el-divider>
-    <el-row v-for="condition in creature.conditions" :key="condition.name" justify="space-between" align="middle">
-      <el-col :xs="12" :sm="6">
-        <el-tag type="info" size="large" effect="dark"> {{ condition.name }} </el-tag>
-      </el-col>
-      <el-col :xs="0" :sm="12"> {{ condition.description }} </el-col>
-      <el-col :xs="3" :sm="6">
-        <el-tag v-if="condition.extras && condition.extras.duration" size="small" effect="dark" type="warning" style="color:black">
-          {{ condition.extras.duration.left }} {{ condition.extras.duration.label }}
-        </el-tag>
-        &nbsp;
-        <el-button type="info" size="small" circle @click="editCondition(condition)">
-          <g-icon iconSize="16px" iconColor="#000" iconName="quill" />
-        </el-button>
-      </el-col>
-    </el-row>
   </el-tab-pane>
 
   <!-- Magic -->
@@ -927,6 +938,7 @@
             <el-col :span="12">
               <el-row justify="space-between" align="middle">
                 <el-col :span="12">
+                  <el-tag effect="dark" type="info" size="large"> {{ cClass.magic.style }} Caster </el-tag> <br>
                   <el-tooltip placement="top" effect="light">
                     <el-tag effect="dark" type="primary" size="large">
                       Concentration: +{{ concentration[cName].total }}
@@ -963,7 +975,7 @@
                     </el-col>
                     <el-col :span="7">
                       <el-tooltip placement="top" effect="light">
-                        <el-tag effect="dark" type="info"> Save DC : {{ 10 + lvl + (attributes[cClass.magic.castingAtr].mod) }} </el-tag>
+                        <el-tag effect="dark" type="warning"> Save DC : {{ 10 + lvl + (attributes[cClass.magic.castingAtr].mod) }} </el-tag>
                         <template #content>
                           10
                           + {{ attributes[cClass.magic.castingAtr].mod }} {{ cClass.magic.castingAtr }}
@@ -983,59 +995,53 @@
                   </el-row>
                 </template>
 
-                <!--
-                  <el-row v-for="(spell, sName) in spells" :key="sName" :gutter="10" align="middle" style="margin-bottom:15px;">
+                <el-row v-for="(spell, index) in spells" :key="index" :gutter="10" align="middle" style="margin-bottom:15px;">
                   <el-col :span="4" class="center-horz">
-                  <el-button @click="castSSpell(cName, lvl)" :disabled="!cClass.magic.remainingCasts[lvl] > 0" type="primary" plain>
-                    {{ sName }}
-                  </el-button>
-                -->
-                <el-row v-for="(spell, sName) in spells" :key="sName" :gutter="10" align="middle" style="margin-bottom:15px;">
-                  <el-col :span="4" class="center-horz">
-                    <el-popconfirm :title="`Cast ${spell}`" @confirm="castPSpell(cName, lvl, spell, sName)" hide-icon>
+                    <el-popconfirm :title="`Cast ${spell}?`" @confirm="castPSpell(cName, lvl, spell, index)" hide-icon>
                       <template #reference>
-                        <el-button :ref="`${spell}-${sName}`" type="primary" plain> {{ spell }} </el-button>
+                        <el-button :ref="`${spell}-${index}`" type="primary" plain> {{ spell }} </el-button>
                       </template>
                       <template #actions="{ confirm }">
                         <el-button @click="confirm" size="small" type="primary"> Yes </el-button>
                       </template>
                     </el-popconfirm>
                   </el-col>
-                  <el-col :span="20">
+
+                  <el-col :span="20" v-if="creature.spells[cName][lvl][spell]" >
                     <el-row :gutter="10">
                       <el-col :span="8">
-                        <el-input v-model="spell.components" aria-label="Components">
+                        <el-input v-model="creature.spells[cName][lvl][spell].components" aria-label="Components">
                           <template #prepend>Components</template>
                         </el-input>
                       </el-col>
                       <el-col :span="8">
-                        <el-input v-model="spell.castTime" aria-label="Casting Time">
+                        <el-input v-model="creature.spells[cName][lvl][spell].castTime" aria-label="Casting Time">
                           <template #prepend>Cast Time</template>
                         </el-input>
                       </el-col>
                       <el-col :span="8">
-                        <el-input v-model="spell.duration" aria-label="Duration">
+                        <el-input v-model="creature.spells[cName][lvl][spell].duration" aria-label="Duration">
                           <template #prepend>Duration</template>
                         </el-input>
                       </el-col>
                     </el-row>
                     <el-row :gutter="10">
                       <el-col :span="8">
-                        <el-input v-model="spell.description" :autosize="{ minRows: 2, maxRows: 4 }" :aria-label="`${sName} Spell Description`"  type="textarea" />
+                        <el-input v-model="creature.spells[cName][lvl][spell].description" :autosize="{ minRows: 2, maxRows: 4 }" :aria-label="`${spell} Spell Description`"  type="textarea" />
                       </el-col>
                       <el-col :span="8">
-                        <el-input v-model="spell.target" aria-label="Target">
+                        <el-input v-model="creature.spells[cName][lvl][spell].target" aria-label="Target">
                           <template #prepend>Target</template>
                         </el-input>
-                        <el-input v-model="spell.range" aria-label="Range">
+                        <el-input v-model="creature.spells[cName][lvl][spell].range" aria-label="Range">
                           <template #prepend>Range</template>
                         </el-input>
                       </el-col>
                       <el-col :span="8" class="center-horz">
-                        <el-input v-model="spell.save" aria-label="Save">
+                        <el-input v-model="creature.spells[cName][lvl][spell].save" aria-label="Save">
                           <template #prepend>Save</template>
                         </el-input>
-                        <el-tag effect="dark" :type="spell.SR ? 'warning' : 'info'"> {{ spell.SR ? 'Yes' : 'No' }} SR </el-tag>
+                        <el-tag effect="dark" :type="creature.spells[cName][lvl][spell].SR ? 'warning' : 'info'"> {{ creature.spells[cName][lvl][spell].SR ? 'Yes' : 'No' }} SR </el-tag>
                       </el-col>
                     </el-row>
                   </el-col>
@@ -1044,204 +1050,6 @@
             </el-collapse>
           </div>
 
-          <!-- Spontaneous Spell List -->
-          <div v-else-if="cClass.magic.style.includes('Spontaneous') && !cClass.magic.useGaldur">
-            <el-collapse v-model="spellsCollapse">
-              <el-collapse-item v-for="(spells, lvl) in creature.spells[cName]" :key="lvl" :name="lvl">
-                <template #title>
-                  <el-row :gutter="10" justify="space-between">
-                    <el-col :xs="11" :sm="6">
-                      <el-tag effect="dark"> Level {{ lvl }} Spells </el-tag>
-                    </el-col>
-                    <el-col :xs="10" :sm="6">
-                      <el-tooltip placement="top" effect="light">
-                        <el-tag effect="dark" type="info"> Save DC : {{ 10 + lvl + (attributes[cClass.magic.castingAtr].mod) }} </el-tag>
-                        <template #content>
-                          10
-                          + {{ attributes[cClass.magic.castingAtr].mod }} {{ cClass.magic.castingAtr }}
-                          + {{ lvl }} Level Spell
-                        </template>
-                      </el-tooltip>
-                    </el-col>
-                    <el-col :xs="0" :sm="11">
-                      <el-tooltip placement="top" effect="light">
-                        <el-tag effect="dark" type="info"> Defensive Casting DC : {{ 15 + (lvl * 2) }} </el-tag>
-                        <template #content>
-                          Cast defensively to avoid an Attack of Opportunity <br>
-                          15 + {{ lvl * 2 }} (Spell Level x 2)
-                        </template>
-                      </el-tooltip>
-                    </el-col>
-                  </el-row>
-                </template>
-                <el-row class="center-horz, spell">
-                  <el-col :span="11">
-                    <el-tooltip placement="top" effect="light">
-                      <el-progress :text-inside="true" :stroke-width="24" :color="healthColors"
-                        :percentage=" Math.floor( ( cClass.magic.remainingCasts[lvl] / (cClass.magic.spellsPerDay[lvl] == -1 ? 1 : cClass.magic.spellsPerDay[lvl]) ) * 100 ) ">
-                        {{ cClass.magic.spellsPerDay[lvl] == -1 ? "∞" : cClass.magic.spellsPerDay[lvl] }} / {{ cClass.magic.spellsPerDay[lvl] == -1 ? "∞" : cClass.magic.spellsPerDay[lvl] }}
-                      </el-progress>
-                      <template #content> Remaining Spell Slots </template>
-                    </el-tooltip>
-                  </el-col>
-                </el-row>
-
-                <el-row v-for="(spell, sName) in spells" :key="sName" :gutter="10" align="middle" class="spell">
-                  <el-col :xs="12" :span="4" class="center-horz">
-                    <el-button @click="castSSpell(cClass, lvl)" :disabled="!cClass.magic.remainingCasts[lvl] > 0" type="primary" plain> {{ sName }} </el-button>
-                  </el-col>
-                  <el-col :xs="24" :span="20">
-                    <el-row :gutter="10">
-                      <el-col :xs="24" :span="8">
-                        <el-input v-model="spell.description" :autosize="{ minRows: 2, maxRows: 4 }" :aria-label="`${sName} Spell Description`"  type="textarea" />
-                        <el-input v-model="spell.components" aria-label="Components">
-                          <template #prepend>Components</template>
-                        </el-input>
-                      </el-col>
-                      <el-col :xs="24" :span="8">
-                        <el-input v-model="spell.castTime" aria-label="Casting Time">
-                          <template #prepend>Cast Time</template>
-                        </el-input>
-                        <el-input v-model="spell.duration" aria-label="Duration">
-                          <template #prepend>Duration</template>
-                        </el-input>
-                        <el-col :xs="0" :sm="24">
-                          <el-input v-model="spell.save" aria-label="Save">
-                            <template #prepend>Save</template>
-                          </el-input>
-                        </el-col>
-                      </el-col>
-                      <el-col :xs="24" :span="8">
-                        <el-input v-model="spell.target" aria-label="Target">
-                          <template #prepend>Target</template>
-                        </el-input>
-                        <el-input v-model="spell.range" aria-label="Range">
-                          <template #prepend>Range</template>
-                        </el-input>
-                        <el-col :xs="0" :sm="24" class="center-horz">
-                          <el-tag effect="dark" :type="spell.SR ? 'warning' : 'info'"> {{ spell.SR ? 'Yes' : 'No' }} SR </el-tag>
-                        </el-col>
-                      </el-col>
-                      <el-col :xs="14" :span="0">
-                        <el-input v-model="spell.save" aria-label="Save">
-                          <template #prepend>Save</template>
-                        </el-input>
-                      </el-col>
-                      <el-col :xs="10" :span="0" class="center-horz">
-                        <el-tag effect="dark" :type="spell.SR ? 'warning' : 'info'"> {{ spell.SR ? 'Yes' : 'No' }} SR </el-tag>
-                      </el-col>
-                    </el-row>
-                  </el-col>
-                </el-row>
-              </el-collapse-item>
-            </el-collapse>
-          </div>
-
-          <!-- Galdur Spell List -->
-          <div v-else>
-            <el-collapse v-model="spellsCollapse">
-              <el-collapse-item v-for="(spells, lvl) in creature.spells[cName]" :key="lvl" :name="lvl">
-                <template #title>
-                  <el-row :gutter="10">
-                    <el-col :span="7">
-                      <el-tag effect="dark"> Level {{ lvl }} Spells </el-tag>
-                    </el-col>
-                    <el-col :span="7">
-                      <el-tooltip placement="top" effect="light">
-                        <el-tag effect="dark" type="info"> Save DC : {{ 10 + lvl + (attributes[cClass.magic.castingAtr].mod) }} </el-tag>
-                        <template #content>
-                          10
-                          + {{ attributes[cClass.magic.castingAtr].mod }} {{ cClass.magic.castingAtr }}
-                          + {{ lvl }} Level Spell
-                        </template>
-                      </el-tooltip>
-                    </el-col>
-                    <el-col :span="10">
-                      <el-tooltip placement="top" effect="light">
-                        <el-tag effect="dark" type="info"> Defensive Casting DC : {{ 15 + (lvl * 2) }} </el-tag>
-                        <template #content>
-                          Cast defensively to avoid an Attack of Opportunity <br>
-                          15 + {{ lvl * 2 }} (Spell Level x 2)
-                        </template>
-                      </el-tooltip>
-                    </el-col>
-                  </el-row>
-                </template>
-                <el-row v-for="(spell, sName) in spells" :key="sName" :gutter="10" align="middle" style="margin-bottom:15px;">
-
-                  <el-col :span="4" class="center-horz">
-                    <el-popover @show="spellPop(spell, lvl, cName)" trigger="click">
-                      <template #reference>
-                        <el-button plain :type="(creature.classes[cName].openRemaining > 0) ? 'primary' : 'warning'"> {{ sName }} </el-button>
-                      </template>
-                      <template #default>
-                        <el-row> {{ `Cast for ${spellCost} Galdur?` }} </el-row>
-                        <el-row v-if="(cClass.magic.openRemaining - this.spellCost) <= 0">
-                          <el-tooltip placement="top" effect="light">
-                            <el-tag type="warning"> {{ `Will Save (DC ${this.gFatigue})` }} </el-tag>
-                            <template #content>
-                              Will : {{ saves.will.total > 0 ? "+" : "" }}{{ saves.will.total }}
-                            </template>
-                          </el-tooltip>
-                        </el-row>
-                        <el-row justify="end">
-                          <el-button
-                            @click="castGSpell(sName, spell, lvl, cName)"
-                            :disabled="( (cClass.magic.reserveRemaining - this.spellCost) < 0 ) || ( (lvl==0) && (cClass.magic.reserveRemaining==0) )"
-                            :type="( ((cClass.magic.reserveRemaining - this.spellCost) < 0 ) || ((lvl==0) && (cClass.magic.reserveRemaining==0)) ) ? 'danger' : 'primary'"
-                            size="small">
-                            <span v-if="( (cClass.magic.reserveRemaining - this.spellCost) < 0 ) || ( (lvl==0) && (cClass.magic.reserveRemaining==0) )">
-                              Not Enough Galdur
-                            </span>
-                            <span v-else> Yes </span>
-                          </el-button>
-                        </el-row>
-                      </template>
-                    </el-popover>
-                  </el-col>
-
-                  <el-col :span="20">
-                    <el-row :gutter="10">
-                      <el-col :span="8">
-                        <el-input v-model="spell.components" aria-label="Components">
-                          <template #prepend>Components</template>
-                        </el-input>
-                      </el-col>
-                      <el-col :span="8">
-                        <el-input v-model="spell.castTime" aria-label="Casting Time">
-                          <template #prepend>Cast Time</template>
-                        </el-input>
-                      </el-col>
-                      <el-col :span="8">
-                        <el-input v-model="spell.duration" aria-label="Duration">
-                          <template #prepend>Duration</template>
-                        </el-input>
-                      </el-col>
-                    </el-row>
-                    <el-row :gutter="10">
-                      <el-col :span="8">
-                        <el-input v-model="spell.description" :autosize="{ minRows: 2, maxRows: 4 }" :aria-label="`${sName} Spell Description`"  type="textarea" />
-                      </el-col>
-                      <el-col :span="8">
-                        <el-input v-model="spell.target" aria-label="Target">
-                          <template #prepend>Target</template>
-                        </el-input>
-                        <el-input v-model="spell.range" aria-label="Range">
-                          <template #prepend>Range</template>
-                        </el-input>
-                      </el-col>
-                      <el-col :span="8" class="center-horz">
-                        <el-input v-model="spell.save" aria-label="Save">
-                          <template #prepend>Save</template>
-                        </el-input>
-                        <el-tag effect="dark" :type="spell.SR ? 'warning' : 'info'"> {{ spell.SR ? 'Yes' : 'No' }} SR </el-tag>
-                      </el-col>
-                    </el-row>
-                  </el-col>
-                </el-row>
-              </el-collapse-item>
-            </el-collapse>
-          </div>
 
         </div>
       </el-tab-pane>
@@ -1688,11 +1496,6 @@ export default {
         this.applyBonus('Size', bonus, ac.touch);
         this.applyBonus('Size', bonus, ac.flat);
       }
-      // neg dex still applies to flat footed
-      // if (this.attributes.Dex < 0) {
-      //   ac.flat.total += this.attributes.Dex.mod;
-      //   ac.flat.sources.push(`${this.attributes.Dex} Dex`);
-      // }
 
       this.bonusLoop(ac.total, "totalAC");
       this.bonusLoop(ac.touch, "touchAC");
@@ -1892,7 +1695,7 @@ export default {
         // Add AbilMod to atkBonus
         if (atk.atkAbilOverride) {
           this.applyBonus(atk.atkAbilOverride, this.attributes[atk.atkAbilOverride].mod, newAtk.value.atkBonus);
-        } else if (atk.category == "Ranged") {
+        } else if (atk.Category == "Ranged") {
           this.applyBonus("Dex", this.attributes.Dex.mod, newAtk.value.atkBonus);
         } else if (atk.Category == "Secondary") {
           // all nat atks when using weapons too
@@ -1988,7 +1791,6 @@ export default {
               mult: weapon.value["Critical"].split("/")[1]
             },
             range: weapon.value.range,
-            // notes: weapon.value["Extras"]["Notes"]
             extras: (weapon.value.Extras) ? weapon.value.Extras : []
           }
         };
@@ -2004,8 +1806,8 @@ export default {
           this.applyBonus("Masterwork", 1, newAtk.value.atkBonus);
         }
         // Add AbilMod to atkBonus
-        if (weapon.value.Extras.atkAbilOverride) {
-          this.applyBonus(weapon.value.Extras.atkAbilOverride, this.attributes[weapon.value.Extras.atkAbilOverride].mod, newAtk.value.atkBonus);
+        if (weapon.value.atkAbilOverride && Object.keys(this.attributes).includes(weapon.value.atkAbilOverride)) {
+          this.applyBonus(weapon.value.atkAbilOverride, this.attributes[weapon.value.atkAbilOverride].mod, newAtk.value.atkBonus);
         } else if (type == "Ranged") {
           this.applyBonus("Dex", this.attributes.Dex.mod, newAtk.value.atkBonus);
         } else {
@@ -2015,8 +1817,8 @@ export default {
         // Damage Bonus
 
         // Add AbilMod to dmgBonus
-        if (weapon.value.Extras.dmgAbilOverride) {
-          this.applyBonus(weapon.value.Extras.dmgAbilOverride, this.attributes[weapon.value.Extras.dmgAbilOverride].mod, newAtk.value.dmgBonus);
+        if (weapon.value.dmgAbilOverride && Object.keys(this.attributes).includes(weapon.value.dmgAbilOverride)) {
+          this.applyBonus(weapon.value.dmgAbilOverride, this.attributes[weapon.value.dmgAbilOverride].mod, newAtk.value.dmgBonus);
 
         } else if ( weapon.value.Group.includes("Thrown") ||
           (weapon.value.Group.includes("Bows") && this.attributes.Str.mod < 0) ||
@@ -2074,18 +1876,6 @@ export default {
         type = (type == 'Melee') ? 0 : 1;
         actions[type].children.push(newAtk);
       } // End Weapons loop
-
-      // If only 1 Primary Natural Attack (no other atks), add 0.5 * Str
-      let sum = actions[0].children.length + actions[1].children.length + actions[2].children.length;
-      if ( sum == 1 ) {
-        if (actions[0].children.length) {
-          this.applyBonus("Str", (this.attributes.Str.mod / 2), actions[0].children[0].value.dmgBonus);
-        } else if (actions[1].children.length) {
-          this.applyBonus("Str", (this.attributes.Str.mod / 2), actions[1].children[0].value.dmgBonus);
-        } else if (actions[2].children.length) {
-          this.applyBonus("Str * 1.5", (this.attributes.Str.mod / 2), actions[2].children[0].value.dmgBonus);
-        }
-      }
 
       return actions;
     },
@@ -2246,7 +2036,6 @@ export default {
 
   },
 
-
   beforeMount(){
     this.original.name = this.source.name;
     this.original.val = JSON.stringify(this.source);
@@ -2255,15 +2044,9 @@ export default {
   },
   mounted() {
     let tabs = document.getElementsByClassName('el-tabs__nav-scroll');
-    // add Rest button to tabs
-    if (window.innerWidth > 360) {
-      tabs[1].appendChild( document.getElementById('restBtn') );
-    }
-
     // Put Add Spell button in class spells tabs
     tabs[0].appendChild( document.getElementById('addSpell') );
     this.disabledCastPSPells();
-
   },
   updated() {
     if (this.original.name != this.source.name) {
@@ -2302,7 +2085,7 @@ export default {
     tString = the target string we match to add to the bonus object: "atkBonus"
     */
     bonusLoop(object, tString) {
-      let debug = "totalAC";
+      let debug = "TODO";
       if (tString.includes(debug)) { console.log(tString, object); }
 
       let typedBonuses = {};
@@ -2631,8 +2414,6 @@ export default {
       }
     },
 
-
-
     // Prepared Spells
     castPSpell(cName, level, spell, index) {
       if (level == 0) { return; }
@@ -2673,7 +2454,6 @@ export default {
       this.metamagic = {};
     },
 
-
     // Add info into the spell popOver
     spellPop(spell, level, cName) {
       if (level == 0) {
@@ -2694,30 +2474,30 @@ export default {
       }
     },
     // Galdur Spells
-    castGSpell(sName, spell, level, cName) {
-      if (level == 0 && !this.metamagic.increase) {
-        return;
-      } else if ( (this.creature.classes[cName].openRemaining - this.spellCost) >= 0 ) {
-        this.creature.classes[cName].openRemaining -= this.spellCost;
-      } else if (
-        ( this.creature.classes[cName].openRemaining != 0 ) &&
-        ( (this.creature.classes[cName].openRemaining - this.spellCost) < 0 )
-      ) {
-        let remain = Math.abs(this.creature.classes[cName].openRemaining - this.spellCost);
-        this.creature.classes[cName].openRemaining = 0;
-        this.creature.classes[cName].reserveRemaining -= remain;
-      } else if ( (this.creature.classes[cName].reserveRemaining - this.spellCost) >= 0 ) {
-        this.creature.classes[cName].reserveRemaining -= this.spellCost;
-      } else {
-        this.$message({ message: `You do not have enough Galdur to cast ${sName}`, type: "error" });
-        this.metamagic = {};
-        return;
-      }
-
-      spell.casts++;
-      this.metamagic = {};
-      this.spellPop(spell, level, cName);
-    },
+    // castGSpell(sName, spell, level, cName) {
+    //   if (level == 0 && !this.metamagic.increase) {
+    //     return;
+    //   } else if ( (this.creature.classes[cName].openRemaining - this.spellCost) >= 0 ) {
+    //     this.creature.classes[cName].openRemaining -= this.spellCost;
+    //   } else if (
+    //     ( this.creature.classes[cName].openRemaining != 0 ) &&
+    //     ( (this.creature.classes[cName].openRemaining - this.spellCost) < 0 )
+    //   ) {
+    //     let remain = Math.abs(this.creature.classes[cName].openRemaining - this.spellCost);
+    //     this.creature.classes[cName].openRemaining = 0;
+    //     this.creature.classes[cName].reserveRemaining -= remain;
+    //   } else if ( (this.creature.classes[cName].reserveRemaining - this.spellCost) >= 0 ) {
+    //     this.creature.classes[cName].reserveRemaining -= this.spellCost;
+    //   } else {
+    //     this.$message({ message: `You do not have enough Galdur to cast ${sName}`, type: "error" });
+    //     this.metamagic = {};
+    //     return;
+    //   }
+    //
+    //   spell.casts++;
+    //   this.metamagic = {};
+    //   this.spellPop(spell, level, cName);
+    // },
 
 
   }

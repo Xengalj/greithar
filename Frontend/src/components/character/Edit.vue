@@ -43,15 +43,30 @@
     </el-row>
 
     <!-- Save, View, Back btns -->
-    <el-row :gutter="10" justify="center">
-      <el-col :xs="6" :sm="3" :md="2" class="center-horz" style="margin-bottom:10px;">
-        <el-button @click="this.$router.push({ name: 'character-view', params: { id: character.id } })" type="info"> View </el-button>
+    <el-row :gutter="10" justify="center" >
+      <el-col :xs="4" :sm="3" :md="2">
+        <el-tooltip placement="top" effect="light">
+          <el-button @click="this.$router.push({ name: 'character-view', params: { id: character.id } })" type="info" circle>
+            <g-icon iconSize="24px" iconColor="#000" iconName="eye" />
+          </el-button>
+          <template #content> View Character </template>
+        </el-tooltip>
       </el-col>
-      <el-col :xs="10" :sm="5" :md="3" class="center-horz">
-        <el-button @click="saveCharacter()" type="primary"> Save Changes </el-button>
+      <el-col :xs="4" :sm="3" :md="2">
+        <el-tooltip placement="top" effect="light">
+          <el-button @click="saveCharacter()" type="success" circle>
+            <g-icon iconSize="24px" iconColor="#000" iconName="flag" />
+          </el-button>
+          <template #content> Save Changes </template>
+        </el-tooltip>
       </el-col>
-      <el-col :xs="14" :sm="6" :md="4" class="center-horz">
-        <el-button @click="$router.push({ name: 'character-list' })" type="warning" plain> Back to All Characters </el-button>
+      <el-col :xs="3" :sm="3" :md="2">
+        <el-tooltip placement="top" effect="light">
+          <el-button @click="$router.push({ name: 'character-list' })" type="warning" circle>
+            <g-icon iconSize="24px" iconColor="#000" iconName="userList" />
+          </el-button>
+          <template #content> All Characters </template>
+        </el-tooltip>
       </el-col>
     </el-row>
 
@@ -60,14 +75,12 @@
       <!-- BASICS -->
       <el-collapse-item name="0">
         <template #title>
-          <el-divider style="max-width:75%">
-            <el-col :xs="24" :span="0">
-              <g-icon iconSize="26px" :iconName="character.basics.type.name" style="margin:0" /> Basics
-            </el-col>
+          <el-divider style="max-width:75%"> <h4>
+            <el-col :xs="24" :span="0"> Basics </el-col>
             <el-col :xs="0" :sm="24">
               <h4> <g-icon iconSize="32px" :iconName="character.basics.type.name" /> Basics </h4>
             </el-col>
-          </el-divider>
+          </h4> </el-divider>
         </template>
 
         <el-row :gutter="10" align="middle" class="basics">
@@ -211,140 +224,137 @@
       <el-collapse-item name="1">
         <template #title>
           <el-divider style="max-width:75%"> <h4>
-            <el-col :xs="24" :span="0">
-              <g-icon iconSize="26px" iconName="Compass" style="margin:0" /> Attributes
-            </el-col>
+            <el-col :xs="24" :span="0"> Attributes </el-col>
             <el-col :xs="0" :sm="24">
               <g-icon iconSize="32px" iconName="Compass" /> Attributes
             </el-col>
           </h4> </el-divider>
         </template>
 
-        <el-row style="padding-top:10px;">
-          <el-col :span="12" class="center-horz">
+        <el-row style="padding-top:10px;" align="middle">
+          <el-col :xs="24" :sm="12" class="center-horz">
             <svg width="225" height="200">
               <HexGraph :abilities="[attributes.Str.total, attributes.Dex.total, attributes.Con.total, attributes.Int.total, attributes.Wis.total, attributes.Cha.total]"></HexGraph>
             </svg>
           </el-col>
 
-          <el-col :span="12" class="center-horz center-vert">
-            <div class="stat-controls">
-              <el-row :gutter="10">
-                <!-- Strength -->
-                <el-col :span="2" class="center-vert">Str:</el-col>
-                <el-col :span="3">
-                  <el-tooltip v-if="attributes.Str.sources[0]" placement="top" effect="light">
-                    <el-tag size="large" effect="dark" type="info"> {{ attributes.Str.total }} </el-tag>
-                    <template #content> <span v-for="bonus in attributes.Str.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
-                  </el-tooltip>
-                  <el-tag v-else size="large" effect="dark" type="info"> {{ attributes.Str.total }} </el-tag>
-                  <el-tag size="small" effect="dark" type="primary"> {{ attributes.Str.mod }} </el-tag>
-                </el-col>
-                <el-col :span="6">
-                  <el-input-number v-model="character.attributes.Str.base" :min="1" aria-label="Base Strength Input" />
-                </el-col>
-                <!-- Intelligence -->
-                <el-col :span="2" :offset="1" class="center-vert">Int:</el-col>
-                <el-col :span="3">
-                  <el-tooltip v-if="attributes.Int.sources[0]" placement="top" effect="light">
-                    <el-tag size="large" effect="dark" type="info"> {{ attributes.Int.total }} </el-tag>
-                    <template #content> <span v-for="bonus in attributes.Int.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
-                  </el-tooltip>
-                  <el-tag v-else size="large" effect="dark" type="info"> {{ attributes.Int.total }} </el-tag>
-                  <el-tag size="small" effect="dark" type="primary"> {{ attributes.Int.mod }} </el-tag>
-                </el-col>
-                <el-col :span="6">
-                  <el-input-number v-model="character.attributes.Int.base" :min="1" aria-label="Base Intelligence Input" />
-                </el-col>
-              </el-row>
+          <el-col :xs="24" :sm="12">
+            <el-row align="middle">
 
-              <el-row :gutter="10">
-                <!-- Dexterity -->
-                <el-col :span="2" class="center-vert">Dex:</el-col>
-                <el-col :span="3">
-                  <el-tooltip v-if="attributes.Dex.sources[0]" placement="top" effect="light">
-                    <el-tag size="large" effect="dark" type="info"> {{ attributes.Dex.total }} </el-tag>
-                    <template #content> <span v-for="bonus in attributes.Dex.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
-                  </el-tooltip>
-                  <el-tag v-else size="large" effect="dark" type="info"> {{ attributes.Dex.total }} </el-tag>
-                  <el-tag size="small" effect="dark" type="primary"> {{ attributes.Dex.mod }} </el-tag>
-                </el-col>
-                <el-col :span="6">
-                  <el-input-number v-model="character.attributes.Dex.base" :min="1" aria-label="Base Dexterity Input" />
-                </el-col>
-                <!-- Wisdom -->
-                <el-col :span="2" :offset="1" class="center-vert">Wis:</el-col>
-                <el-col :span="3">
-                  <el-tooltip v-if="attributes.Wis.sources[0]" placement="top" effect="light">
-                    <el-tag size="large" effect="dark" type="info"> {{ attributes.Wis.total }} </el-tag>
-                    <template #content> <span v-for="bonus in attributes.Wis.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
-                  </el-tooltip>
-                  <el-tag v-else size="large" effect="dark" type="info"> {{ attributes.Wis.total }} </el-tag>
-                  <el-tag size="small" effect="dark" type="primary"> {{ attributes.Wis.mod }} </el-tag>
-                </el-col>
-                <el-col :span="6">
-                  <el-input-number v-model="character.attributes.Wis.base" :min="1" aria-label="Base Wisdom Input" />
-                </el-col>
-              </el-row>
+              <!-- Strength -->
+              <el-col :span="2"> Str: </el-col>
+              <el-col :xs="6" :sm="6" :md="3" style="margin-bottom: 5px;">
+                <el-tooltip v-if="attributes.Str.sources[0]" placement="top" effect="light">
+                  <el-tag size="large" effect="dark" type="info"> {{ attributes.Str.total }} </el-tag>
+                  <template #content> <span v-for="bonus in attributes.Str.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
+                </el-tooltip>
+                <el-tag v-else size="large" effect="dark" type="info"> {{ attributes.Str.total }} </el-tag>
+                <el-tag size="small" effect="dark" type="primary"> {{ attributes.Str.mod }} </el-tag>
+              </el-col>
+              <el-col :xs="16" :sm="16" :md="7">
+                <el-input-number v-model="character.attributes.Str.base" :min="1" aria-label="Base Strength Input" />
+              </el-col>
 
-              <el-row :gutter="10">
-                <!-- Constitution -->
-                <el-col :span="2" class="center-vert">Con:</el-col>
-                <el-col :span="3">
-                  <el-tooltip v-if="attributes.Con.sources[0]" placement="top" effect="light">
-                    <el-tag size="large" effect="dark" type="info"> {{ attributes.Con.total }} </el-tag>
-                    <template #content> <span v-for="bonus in attributes.Con.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
-                  </el-tooltip>
-                  <el-tag v-else size="large" effect="dark" type="info"> {{ attributes.Con.total }} </el-tag>
-                  <el-tag size="small" effect="dark" type="primary"> {{ attributes.Con.mod }} </el-tag>
-                </el-col>
-                <el-col :span="6">
-                  <el-input-number v-model="character.attributes.Con.base" :min="1" aria-label="Base Constitution Input" />
-                </el-col>
-                <!-- Charisma -->
-                <el-col :span="2" :offset="1" class="center-vert">Cha:</el-col>
-                <el-col :span="3">
-                  <el-tooltip v-if="attributes.Cha.sources[0]" placement="top" effect="light">
-                    <el-tag size="large" effect="dark" type="info"> {{ attributes.Cha.total }} </el-tag>
-                    <template #content> <span v-for="bonus in attributes.Cha.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
-                  </el-tooltip>
-                  <el-tag v-else size="large" effect="dark" type="info"> {{ attributes.Cha.total }} </el-tag>
-                  <el-tag size="small" effect="dark" type="primary"> {{ attributes.Cha.mod }} </el-tag>
-                </el-col>
-                <el-col :span="6">
-                  <el-input-number v-model="character.attributes.Cha.base" :min="1" aria-label="Base Charisma Input" />
-                </el-col>
-              </el-row>
+              <!-- Intelligence -->
+              <el-col :span="2"> Int: </el-col>
+              <el-col :xs="6" :sm="6" :md="3" style="margin-bottom: 5px;">
+                <el-tooltip v-if="attributes.Int.sources[0]" placement="top" effect="light">
+                  <el-tag size="large" effect="dark" type="info"> {{ attributes.Int.total }} </el-tag>
+                  <template #content> <span v-for="bonus in attributes.Int.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
+                </el-tooltip>
+                <el-tag v-else size="large" effect="dark" type="info"> {{ attributes.Int.total }} </el-tag>
+                <el-tag size="small" effect="dark" type="primary"> {{ attributes.Int.mod }} </el-tag>
+              </el-col>
+              <el-col :xs="16" :sm="16" :md="7">
+                <el-input-number v-model="character.attributes.Int.base" :min="1" aria-label="Base Intelligence Input" />
+              </el-col>
 
-              <!-- Health -->
-              <el-row :gutter="10">
-                <el-col :span="5" class="center-horz">
-                  <el-tag size="large" effect="dark" type="danger"> Damage </el-tag>
-                </el-col>
-                <el-col :span="6">
-                  <el-input-number v-model="character.health.damage" :min="0" :max="character.health.total + attributes.Con.total" aria-label="Current Damage" />
-                </el-col>
-                <el-col :offset="1" :span="5" class="center-horz">
-                  <el-tag size="large" effect="dark" type="warning"> Nonleathal </el-tag>
-                </el-col>
-                <el-col :span="6">
-                  <el-input-number v-model="character.health.nonlethal" :min="0" :max="character.health.total+1" aria-label="Current Nonlethal Damage" />
-                </el-col>
-              </el-row>
-              <el-row>
-                <el-col :span="24">
-                  <el-progress
-                    v-if="character.health.total > 0"
-                    :percentage="Math.floor(((character.health.total-character.health.damage)/character.health.total)*100)"
-                    :color="healthColors"
-                    :text-inside="true"
-                    :stroke-width="24"
-                  >
-                    {{ character.health.total-character.health.damage }} / {{ character.health.total }}
-                  </el-progress>
-                </el-col>
-              </el-row>
-            </div>
+              <!-- Dexterity -->
+              <el-col :span="2"> Dex: </el-col>
+              <el-col :xs="6" :sm="6" :md="3" style="margin-bottom: 5px;">
+                <el-tooltip v-if="attributes.Dex.sources[0]" placement="top" effect="light">
+                  <el-tag size="large" effect="dark" type="info"> {{ attributes.Dex.total }} </el-tag>
+                  <template #content> <span v-for="bonus in attributes.Dex.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
+                </el-tooltip>
+                <el-tag v-else size="large" effect="dark" type="info"> {{ attributes.Dex.total }} </el-tag>
+                <el-tag size="small" effect="dark" type="primary"> {{ attributes.Dex.mod }} </el-tag>
+              </el-col>
+              <el-col :xs="16" :sm="16" :md="7">
+                <el-input-number v-model="character.attributes.Dex.base" :min="1" aria-label="Base Dexterity Input" />
+              </el-col>
+
+              <!-- Wisdom -->
+              <el-col :span="2"> Wis: </el-col>
+              <el-col :xs="6" :sm="6" :md="3" style="margin-bottom: 5px;">
+                <el-tooltip v-if="attributes.Wis.sources[0]" placement="top" effect="light">
+                  <el-tag size="large" effect="dark" type="info"> {{ attributes.Wis.total }} </el-tag>
+                  <template #content> <span v-for="bonus in attributes.Wis.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
+                </el-tooltip>
+                <el-tag v-else size="large" effect="dark" type="info"> {{ attributes.Wis.total }} </el-tag>
+                <el-tag size="small" effect="dark" type="primary"> {{ attributes.Wis.mod }} </el-tag>
+              </el-col>
+              <el-col :xs="16" :sm="16" :md="7">
+                <el-input-number v-model="character.attributes.Wis.base" :min="1" aria-label="Base Wisdom Input" />
+              </el-col>
+
+              <!-- Constitution -->
+              <el-col :span="2"> Con: </el-col>
+              <el-col :xs="6" :sm="6" :md="3" style="margin-bottom: 5px;">
+                <el-tooltip v-if="attributes.Con.sources[0]" placement="top" effect="light">
+                  <el-tag size="large" effect="dark" type="info"> {{ attributes.Con.total }} </el-tag>
+                  <template #content> <span v-for="bonus in attributes.Con.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
+                </el-tooltip>
+                <el-tag v-else size="large" effect="dark" type="info"> {{ attributes.Con.total }} </el-tag>
+                <el-tag size="small" effect="dark" type="primary"> {{ attributes.Con.mod }} </el-tag>
+              </el-col>
+              <el-col :xs="16" :sm="16" :md="7">
+                <el-input-number v-model="character.attributes.Con.base" :min="1" aria-label="Base Constitution Input" />
+              </el-col>
+
+              <!-- Charisma -->
+              <el-col :span="2"> Cha: </el-col>
+              <el-col :xs="6" :sm="6" :md="3" style="margin-bottom: 5px;">
+                <el-tooltip v-if="attributes.Cha.sources[0]" placement="top" effect="light">
+                  <el-tag size="large" effect="dark" type="info"> {{ attributes.Cha.total }} </el-tag>
+                  <template #content> <span v-for="bonus in attributes.Cha.sources" :key="bonus"> {{ bonus+" " }} </span> </template>
+                </el-tooltip>
+                <el-tag v-else size="large" effect="dark" type="info"> {{ attributes.Cha.total }} </el-tag>
+                <el-tag size="small" effect="dark" type="primary"> {{ attributes.Cha.mod }} </el-tag>
+              </el-col>
+              <el-col :xs="16" :sm="16" :md="7">
+                <el-input-number v-model="character.attributes.Cha.base" :min="1" aria-label="Base Charisma Input" />
+              </el-col>
+            </el-row>
+
+            <!-- Health -->
+            <el-row>
+              <el-col :xs="10" :sm="8" :md="5">
+                <el-tag size="large" effect="dark" type="danger"> Damage </el-tag>
+              </el-col>
+              <el-col :xs="12" :sm="16" :md="7">
+                <el-input-number v-model="character.health.damage" :min="0" :max="character.health.total + attributes.Con.total" aria-label="Current Damage" />
+              </el-col>
+              <el-col :xs="10" :sm="8" :md="5">
+                <el-tag size="large" effect="dark" type="warning"> Nonleathal </el-tag>
+              </el-col>
+              <el-col :xs="12" :sm="16" :md="7">
+                <el-input-number v-model="character.health.nonlethal" :min="0" :max="character.health.total+1" aria-label="Current Nonlethal Damage" />
+              </el-col>
+            </el-row>
+            <el-row>
+              <el-col :span="24">
+                <el-progress
+                  v-if="character.health.total > 0"
+                  :percentage="Math.floor(((character.health.total-character.health.damage)/character.health.total)*100)"
+                  :color="healthColors"
+                  :text-inside="true"
+                  :stroke-width="24"
+                >
+                  {{ character.health.total-character.health.damage }} / {{ character.health.total }}
+                </el-progress>
+              </el-col>
+            </el-row>
+
           </el-col>
         </el-row>
       </el-collapse-item>
@@ -353,9 +363,7 @@
       <el-collapse-item name="2">
         <template #title>
           <el-divider style="max-width:75%"> <h4>
-            <el-col :xs="24" :span="0">
-              <g-icon iconSize="26px" iconName="magicSwirl" style="margin:0" /> Classes
-            </el-col>
+            <el-col :xs="24" :span="0"> Classes </el-col>
             <el-col :xs="0" :sm="24">
               <g-icon iconSize="32px" iconName="magicSwirl" /> Classes
             </el-col>
@@ -366,7 +374,8 @@
           <el-divider> <h4> <g-icon iconName="magicSwirl" /> {{ capFirsts(cName) }} </h4> </el-divider>
 
           <el-row :gutter="10">
-            <el-col :span="4">
+            <!-- Class Basics -->
+            <el-col :xs="24" :span="4">
               <el-descriptions :column="1" border >
                 <el-descriptions-item>
                   <template #label> Levels </template>
@@ -391,7 +400,8 @@
               </el-descriptions>
             </el-col>
 
-            <el-col :span="6">
+            <!-- Skills, Proficiencies -->
+            <el-col :xs="24" :span="8">
               <span v-if="cClass.hd">
                 <div v-if="classes[cName] && classes[cName].alignment.length < 9">
                   Allowed Alignments <br>
@@ -414,19 +424,27 @@
               </span>
             </el-col>
 
-            <el-col :span="14">
+            <!-- Special Abilities -->
+            <el-col :xs="24" :span="12">
               <h5 class="center-horz"> Special Abilities </h5>
-              <div class="class-abils">
-                <span v-for="(abilities, level) in cClass.abilities" :key="level">
-                  <span v-for="id in abilities" :key="id">
-                    <span v-for="(abil, index) in character.abilities" :key="index">
-                      <el-input v-if="abil.extras.id == id" v-model="abil.name" class="class-abil" :aria-label="`Class Ability: ${abil}`" disabled>
-                        <template #prepend>Level {{ level }} </template>
-                      </el-input>
-                    </span>
+              <span v-for="(abilities, level) in cClass.abilities" :key="level">
+                <span v-for="(id, id_index) in abilities" :key="id_index">
+                  <span v-for="(abil, abil_index) in character.abilities" :key="abil_index">
+                    <el-row v-if="abil.extras.id == id" :gutter="10">
+                      <el-col :xs="24" :sm="24" :md="18">
+                        <el-input v-model="abil.name" :aria-label="`Class Ability: ${abil}`" disabled>
+                          <template #prepend> Level {{ level }} </template>
+                        </el-input>
+                      </el-col>
+                      <el-col :xs="24" :sm="8" :md="5">
+                        <el-input v-model="cClass.abilities[level][id_index]" aria-label="inputName">
+                          <template #prepend> ID </template>
+                        </el-input>
+                      </el-col>
+                    </el-row>
                   </span>
                 </span>
-              </div>
+              </span>
             </el-col>
           </el-row>
 
@@ -587,9 +605,7 @@
       <el-collapse-item name="3">
         <template #title>
           <el-divider style="max-width:75%"> <h4>
-            <el-col :xs="24" :span="0">
-              <g-icon iconSize="26px" iconName="abilityPalm" style="margin:0" /> Abilities
-            </el-col>
+            <el-col :xs="24" :span="0"> Abilities </el-col>
             <el-col :xs="0" :sm="24">
               <g-icon iconSize="32px" iconName="abilityPalm" /> Abilities
             </el-col>
@@ -657,6 +673,8 @@
             </div>
           </el-collapse-item>
 
+          {{ TODO = "Custom Conditions" }}
+
           <!-- Attacks -->
           <el-collapse-item name="atacks">
             <template #title>
@@ -664,7 +682,7 @@
             </template>
             <el-row :gutter="10" justify="space-between">
               <el-col :span="16">
-                This section is for any extra attacks you may have like natural bite attacks or other unique damage dealling abilities
+                This section is for any extra attacks you may have like natural bite attacks, touch attacks, or other unique damage dealling abilities
               </el-col>
               <el-col :span="3">
                 <el-popconfirm title="Add New Attack?" @confirm="addNewAttack" hide-icon>
@@ -760,44 +778,6 @@
               </el-col>
             </el-row>
           </el-collapse-item>
-
-          <!-- Conditions -->
-          <el-collapse-item name="conditions">
-            <template #title>
-              <g-icon iconSize="32px" iconName="dizzyStar" /> Conditions
-            </template>
-            <el-row :gutter="10" justify="end">
-              <el-col :span="8">
-                <el-select v-model="character.conditions" value-key="name" multiple placeholder="Common Conditions" aria-label="Conditions Select">
-                  <template #tag>
-                    <el-tag v-for="(condition, index) in character.conditions" :key="condition" effect="dark" closable @close="character.conditions.splice(index, 1)"> {{ condition.name }} </el-tag>
-                  </template>
-                  <el-option v-for="item in conditions" :key="item.name" :label="item.name" :value="item" >
-                    <el-tag type="primary" style="margin-right: 8px" size="small" effect="dark"> {{ item.name }} </el-tag>
-                  </el-option>
-                  <template #footer>
-                    <el-button text bg size="small" @click="addNewContion()"> Add custom condition </el-button>
-                  </template>
-                </el-select>
-              </el-col>
-            </el-row>
-            <el-divider> Active </el-divider>
-            <el-row v-for="condition in character.conditions" :key="condition.name" justify="space-between" align="middle">
-              <el-col :xs="12" :sm="6">
-                <el-tag type="info" size="large" effect="dark"> {{ condition.name }} </el-tag>
-              </el-col>
-              <el-col :xs="0" :sm="12"> {{ condition.description }} </el-col>
-              <el-col :xs="3" :sm="6">
-                <el-tag v-if="condition.extras && condition.extras.duration" size="small" effect="dark" type="warning" style="color:black">
-                  {{ condition.extras.duration.left }} {{ condition.extras.duration.label }}
-                </el-tag>
-                &nbsp;
-                <el-button type="info" size="small" circle @click="editCondition(condition)">
-                  <g-icon iconSize="16px" iconColor="#000" iconName="quill" />
-                </el-button>
-              </el-col>
-            </el-row>
-          </el-collapse-item>
         </el-collapse>
       </el-collapse-item>
 
@@ -805,9 +785,7 @@
       <el-collapse-item name="4">
         <template #title>
           <el-divider style="max-width:75%"> <h4>
-            <el-col :xs="24" :span="0">
-              <g-icon iconSize="26px" iconName="sparkle" style="margin:0" /> Skills
-            </el-col>
+            <el-col :xs="24" :span="0"> Skills </el-col>
             <el-col :xs="0" :sm="24">
               <g-icon iconSize="32px" iconName="sparkle" /> Skills
             </el-col>
@@ -920,9 +898,7 @@
       <el-collapse-item name="5">
         <template #title>
           <el-divider style="max-width:75%"> <h4>
-            <el-col :xs="24" :span="0">
-              <g-icon iconSize="26px" iconName="chest" style="margin:0" /> Inventory
-            </el-col>
+            <el-col :xs="24" :span="0"> Inventory </el-col>
             <el-col :xs="0" :sm="24">
               <g-icon iconSize="32px" iconName="chest" /> Inventory
             </el-col>
@@ -973,7 +949,7 @@
             <el-input v-model="itemFilter" class="w-60 mb-2" placeholder="Item Search" aria-label="Item Search" />
           </el-col>
           <el-col :span="4">
-            <el-button type="primary" @click="editItem({})">Add Item</el-button>
+            <el-button type="success" @click="editItem({})">Add Item</el-button>
           </el-col>
         </el-row>
         <el-tree
@@ -1028,9 +1004,7 @@
       <el-collapse-item name="6">
         <template #title>
           <el-divider style="max-width:75%"> <h4>
-            <el-col :xs="24" :span="0">
-              <g-icon iconSize="26px" iconName="spellBook" style="margin:0" /> Spells Known
-            </el-col>
+            <el-col :xs="24" :span="0"> Spells </el-col>
             <el-col :xs="0" :sm="24">
               <g-icon iconSize="32px" iconName="spellBook" /> Spells Known
             </el-col>
@@ -1056,7 +1030,6 @@
 
         <el-tabs v-model="spellsTab" type="card" ref="spellsTab" style="padding-top:10px;">
           <el-tab-pane v-for="(cClass, cName) in character.spells" :key="cName" :label="capFirsts(cName)" :name="cName" >
-            {{cName}}
             <el-collapse v-model="spellsCollapse">
               <el-collapse-item v-for="(spells, lvl) in cClass" :key="lvl" :name="lvl">
                 <template #title>
@@ -1067,12 +1040,16 @@
                     <el-col :span="7">
                       <el-tooltip placement="top" effect="light">
                         <el-tag effect="dark" type="info">
-                          Save DC : {{ 10 + lvl + (attributes[character.classes[cName].magic.castingAtr].mod) }}
+                          <span v-if="character.classes[cName] && character.classes[cName].magic">
+                            Save DC : {{ 10 + lvl + (attributes[character.classes[cName].magic.castingAtr].mod) }}
+                          </span>
                         </el-tag>
                         <template #content>
-                          10
-                          + {{ attributes[character.classes[cName].magic.castingAtr].mod }} {{ character.classes[cName].magic.castingAtr }}
-                          + {{ lvl }} Level Spell
+                          <span v-if="character.classes[cName] && character.classes[cName].magic">
+                            10
+                            + {{ attributes[character.classes[cName].magic.castingAtr].mod }} {{ character.classes[cName].magic.castingAtr }}
+                            + {{ lvl }} Level Spell
+                          </span>
                         </template>
                       </el-tooltip>
                     </el-col>
@@ -1153,9 +1130,7 @@
       <el-collapse-item name="7">
         <template #title>
           <el-divider style="max-width:75%"> <h4>
-            <el-col :xs="24" :span="0">
-              <g-icon iconSize="26px" iconName="openScroll" style="margin:0" /> Extras
-            </el-col>
+            <el-col :xs="24" :span="0"> Extras </el-col>
             <el-col :xs="0" :sm="24">
               <g-icon iconSize="32px" iconName="openScroll" /> Extras
             </el-col>
@@ -1165,7 +1140,7 @@
         <el-row :gutter="10" justify="center">
           <el-col :span="12">
 
-            <el-collapse v-model="settingsCollapse">
+            <el-collapse v-model="extrasCollapse">
               <el-collapse-item title="Settings" name="settings">
                 <el-descriptions :column="1" border >
                   <el-descriptions-item v-if="advanced" >
@@ -1259,22 +1234,54 @@
               </el-collapse-item>
 
               <el-collapse-item title="Backstory" name="backstory">
-                <el-row>
-                  <el-col :span="4" class="center-vert"> Backstory </el-col>
-                  <el-col :span="20">
-                    <el-input v-model="character.basics.backstory" type="textarea" :autosize="{ minRows: 2, maxRows: 10 }" aria-label="Backstory Textarea" />
+                <el-input v-model="character.basics.backstory" type="textarea" :autosize="{ minRows: 2, maxRows: 10 }" aria-label="Backstory Textarea" />
+              </el-collapse-item>
+
+              <el-collapse-item name="notes">
+                <template #title>
+                  <g-icon iconSize="32px" iconName="openBook" /> Notes
+                </template>
+                <el-input v-model="character.notes" type="textarea" :autosize="{ minRows: 2, maxRows: 20 }" aria-label="Notes Textarea" />
+              </el-collapse-item>
+
+
+              <el-collapse-item name="conditions">
+                <template #title>
+                  <g-icon iconSize="32px" iconName="dizzyStar" /> Conditions
+                </template>
+
+                <el-select v-model="character.conditions" value-key="name" multiple placeholder="Common Conditions" aria-label="Conditions Select">
+                  <template #tag>
+                    <el-tag v-for="(condition, index) in character.conditions" :key="condition" effect="dark" closable @close="character.conditions.splice(index, 1)"> {{ condition.name }} </el-tag>
+                  </template>
+                  <el-option v-for="item in conditions" :key="item.name" :label="item.name" :value="item" >
+                    <el-tag type="primary" style="margin-right: 8px" size="small" effect="dark"> {{ item.name }} </el-tag>
+                  </el-option>
+                  <template #footer>
+                    <el-button text bg size="small" @click="addNewContion()"> Add custom condition </el-button>
+                  </template>
+                </el-select>
+
+                <el-divider> Active </el-divider>
+                <el-row v-for="condition in character.conditions" :key="condition.name" justify="space-between" align="middle">
+                  <el-col :xs="12" :sm="6">
+                    <el-tag type="info" size="large" effect="dark"> {{ condition.name }} </el-tag>
+                  </el-col>
+                  <el-col :xs="0" :sm="12"> {{ condition.description }} </el-col>
+                  <el-col :xs="3" :sm="6">
+                    <el-tag v-if="condition.extras && condition.extras.duration" size="small" effect="dark" type="warning" style="color:black">
+                      {{ condition.extras.duration.left }} {{ condition.extras.duration.label }}
+                    </el-tag>
+                    &nbsp;
+                    <el-button type="info" size="small" circle @click="editCondition(condition)">
+                      <g-icon iconSize="16px" iconColor="#000" iconName="quill" />
+                    </el-button>
                   </el-col>
                 </el-row>
               </el-collapse-item>
 
-              <el-collapse-item title="Notes" name="Notes">
-                <el-row>
-                  <el-col :span="4" class="center-vert"> Notes </el-col>
-                  <el-col :span="20">
-                    <el-input v-model="character.notes" type="textarea" :autosize="{ minRows: 2, maxRows: 20 }" aria-label="Notes Textarea" />
-                  </el-col>
-                </el-row>
-              </el-collapse-item>
+
+
             </el-collapse>
           </el-col>
 
@@ -1303,9 +1310,7 @@
       <el-collapse-item name="8" v-if="advanced">
         <template #title>
           <el-divider style="max-width:75%"> <h4>
-            <el-col :xs="24" :span="0">
-              <g-icon iconSize="26px" iconName="lockedBook" style="margin:0" /> Admin Edit
-            </el-col>
+            <el-col :xs="24" :span="0"> Edit </el-col>
             <el-col :xs="0" :sm="24">
               <g-icon iconSize="32px" iconName="lockedBook" /> Admin Edit
             </el-col>
@@ -1351,7 +1356,10 @@
     <!-- Dialog -->
     <el-auto-resizer style="height: 10px">
       <template #default="{ width }">
-        <el-dialog v-model="dialog" :width="width" @close="showAbil=false; showItem=false; showCondition=false; showCustomClass=false; addingLevel=false;">
+        <el-dialog v-model="dialog" :width="width" @close="showAlterant=false; showAbil=false; showItem=false; showCondition=false; showCustomClass=false; addingLevel=false;">
+
+          <g-alterant v-if="showAlterant" :source="alterant" @save="showAlterant=false; dialog=false;" />
+
           <g-item v-if="showItem" :source="item" @save-item="saveItem"/>
           <g-ability v-if="showAbil" :source="abil" @save-abil="saveAbility"/>
           <g-condition v-if="showCondition" :source="condition" @save-condition="saveCondition"/>
@@ -1705,13 +1713,16 @@ import CampaignService from "@/services/campaign.service";
 import EncounterService from "@/services/encounter.service";
 
 import HexGraph from '@/components/template/HexGraph.vue';
+import GAlterant from '@/components/template/GAlterant.vue';
+
+
 import GItem from '@/components/template/GItem.vue';
 import GAbility from '@/components/template/GAbility.vue';
 import GCondition from '@/components/template/GCondition.vue';
 
 export default {
   name: "Edit Character",
-  components: { HexGraph, GItem, GAbility, GCondition },
+  components: { HexGraph, GAlterant, GItem, GAbility, GCondition },
   data() {
     return {
       loading: true,
@@ -1736,7 +1747,7 @@ export default {
       spellsCollapse: [],
 
       // Extras Section
-      settingsCollapse: [],
+      extrasCollapse: [],
 
       campaignName: "",
       campaigns: [],
@@ -1750,12 +1761,16 @@ export default {
       // Dialogs
       dialog: false,
       dialogWidth: 750,
+      alterant: {},
+      showAlterant: false,
+
       abil: {},
       showAbil: false,
       item: {},
       showItem: false,
       condition: {},
       showCondition: false,
+
 
 
       // Level Up
@@ -1802,12 +1817,12 @@ export default {
       let bonuses = {};
       if (this.loading) { return bonuses; }
 
-      for (let [name, val] of Object.entries(this.races.races[this.character.basics.race].abilityMods)) {
-        bonuses[`Racial ${name} Bonus`] = {};
-        bonuses[`Racial ${name} Bonus`].type = "Racial";
-        bonuses[`Racial ${name} Bonus`].targets = [ name ];
-        bonuses[`Racial ${name} Bonus`].value = val;
-      }
+      // for (let [name, val] of Object.entries(this.races.races[this.character.basics.race].abilityMods)) {
+      //   bonuses[`Racial ${name} Bonus`] = {};
+      //   bonuses[`Racial ${name} Bonus`].type = "Racial";
+      //   bonuses[`Racial ${name} Bonus`].targets = [ name ];
+      //   bonuses[`Racial ${name} Bonus`].value = val;
+      // }
 
       // Add feats and other abilities to bonuses
       for (const ability in this.abilities) {
@@ -1880,7 +1895,7 @@ export default {
     cumulativeGaldur() {
       let classes = {};
       for (let [cName, cClass] of Object.entries(this.character.classes)) {
-        if (!cClass.useGaldur) { continue; }
+        if (!cClass.magic || !cClass.magic.useGaldur) { continue; }
         classes[cName] = { "total": 0, "sources": [] };
         let val = 0;
         for (let lvl = 0; lvl <= cClass.levels; lvl++) {
@@ -1889,7 +1904,6 @@ export default {
         }
         this.bonusLoop(classes[cName], `${cName}Galdur`);
       } // end class loop
-
       return classes;
     },
 
@@ -1924,8 +1938,10 @@ export default {
       this.character = response.character;
       if (!this.character.user) { this.character.user = {} }
 
-      // TODO: if toon has resources instead of allies
-      if (this.character.resources) { this.updateStructure(); }
+      // TODO:
+      let update = this.character.classes.total.hd != null;
+      update = true;
+      if (update) { this.updateStructure(); }
 
       // TODO: Feats and Default Actions stuff
 
@@ -2085,7 +2101,16 @@ export default {
       \***************************/
       let totalLvl = 0;
       for (let [cName, cClass] of Object.entries(this.character.classes)) {
-        if ( cName == 'total' || Object.keys(this.rules.creature_types).includes(cName) ) { continue; }
+        if ( Object.keys(this.rules.creature_types).includes(cName) ) { continue; }
+        if ( cName == 'total' ) {
+          for (let [key, value] of Object.entries(cClass)) {
+            if ( key != 'levels' && value == 0 ) {
+              delete cClass[key];
+            }
+          }
+          continue;
+        }
+
         totalLvl += cClass.levels;
 
         let classStructure = {
@@ -2097,12 +2122,13 @@ export default {
           "abilities": cClass.abilities ? cClass.abilities : []
         };
 
-        if (cClass.magic) {
+        if (cClass.magic || this.classes[cName].magic) {
+          if (!cClass.magic) { cClass.magic = {}; }
           classStructure.magic = {
             "style": cClass.magic.style ? cClass.magic.style : this.classes[cName].magic.style,
             "castingAtr": cClass.magic.castingAtr ? cClass.magic.castingAtr : this.classes[cName].magic.castingAtr,
             "casterLevel": cClass.magic.casterLevel ? cClass.magic.casterLevel : cClass.levels,
-            "spellsPerDay": cClass.magic.spellsPerDay ? cClass.magic.spellsPerDay : this.classes[cName].magic.spellsPerDay[cClass.levels],
+            "spellsPerDay": cClass.magic.spellsPerDay ? cClass.magic.spellsPerDay : this.classes[cName].magic.spellsPerDayTable[cClass.levels],
             "useGaldur": cClass.magic.useGaldur ? cClass.magic.useGaldur : false,
             "galdur": cClass.magic.galdur ? cClass.magic.galdur : { "openTotal": 0, "openRemaining": 0, "reserveTotal": 0, "reserveRemaining": 0 }
           };
@@ -2112,7 +2138,7 @@ export default {
               classStructure.magic.preparedSpells = cClass.magic.preparedSpells;
             } else {
               classStructure.magic.preparedSpells = [];
-              this.classes[cName].magic.spellsPerDay[cClass.levels].forEach((spellSlots, lvl) => {
+              this.classes[cName].magic.spellsPerDayTable[cClass.levels].forEach((spellSlots, lvl) => {
                 for (let i = 0; i < spellSlots; i++) {
                   classStructure.magic.preparedSpells[lvl] = "";
                 }
@@ -2171,6 +2197,27 @@ export default {
         }
         this.character.abilities = abils;
       }
+
+      this.abilID++;
+      let abil = {
+        name: `${this.character.basics.race} Attribute Modifiers`,
+        description: `${this.character.basics.race}'s get a bonus / malus to...`,
+        shortText: "",
+        location: "",
+        trigger: "Continuous",
+        bonuses: {},
+        extras: {
+          id: this.abilID,
+          active: true,
+          showMain: false,
+          category: "Race",
+          notes: []
+        }
+      };
+      for (let [name, val] of Object.entries(this.races.races[this.character.basics.race].abilityMods)) {
+        abil.bonuses[`Racial ${name} Bonus`] = { type: "Racial", targets: [ name ], value: val };
+      }
+      this.character.abilities.push(abil);
 
       // setup abil ID
       let newAbilsArr = [];
@@ -2333,9 +2380,9 @@ export default {
         }
 
       } else {
-        for (let [key, value] of Object.entries(this.character.classes[cClass.name])) {
-          cClass[key] = value;
-        }
+        let source = this.character.classes[cClass.name] ? this.character.classes[cClass.name] : this.classes[cClass.name];
+        for (let [key, value] of Object.entries( source )) { cClass[key] = value; }
+        // set up spellsPerDayTable
         if (cClass.magic) {
           let custom = this.character.settings.customClasses[cClass.name];
           if (custom) {
@@ -2344,6 +2391,8 @@ export default {
             cClass.magic.spellsPerDayTable = this.classes[cClass.name].magic.spellsPerDayTable;
           }
         }
+        // add new abilities from json
+        if (this.classes[cClass.name]) { cClass.special = this.classes[cClass.name].special; }
       }
 
 
@@ -2354,9 +2403,6 @@ export default {
         "abilities": [],  // new level / class abilities
         "newSpells": [],
       };
-
-console.log(this.newLevel);
-console.log(cClass);
 
       // skills
       for (let [name, skill] of Object.entries(this.rules.skills)) {
@@ -2374,8 +2420,14 @@ console.log(cClass);
         this.abilID++;
         let newAbil = {};
         this.classes.total.special[this.character.classes.total.levels+1].forEach(abil => {
-          newAbil = { 'name': abil, 'description': "",
-            'extras': {
+          newAbil = {
+            name: abil,
+            description: "",
+            shortText: "",
+            location: "Self",
+            trigger: "Standard",
+            bonuses: {},
+            extras: {
               id: this.abilID,
               active: true,
               showMain: false,
@@ -2389,8 +2441,14 @@ console.log(cClass);
       if (cClass.special) {
         cClass.special[this.newLevel.level].forEach(abil => {
           this.abilID++;
-          let newAbil = { 'name': abil, 'description': "",
-            'extras': {
+          let newAbil = {
+            name: abil,
+            description: "",
+            shortText: "",
+            location: "Self",
+            trigger: "Standard",
+            bonuses: {},
+            extras: {
               id: this.abilID,
               active: true,
               showMain: false,
@@ -2423,8 +2481,6 @@ console.log(cClass);
       this.newLevelClass = cClass;
       this.addingLevel = true;
       this.dialog = true;
-      console.log('new level class', this.newLevelClass);
-      console.log('new level', this.newLevel);
     },
     addClassAbility() {
       this.abilID++;
@@ -2438,15 +2494,14 @@ console.log(cClass);
         extras: {
           id: this.abilID,
           active: true,
-          category: "Class",
           showMain: false,
+          category: "Class",
           notes: []
         }
       });
     },
     addLevel() {
       let source = this.newLevelClass;
-console.log('source', source);
       // if toon doesn't have a level in the given class yet, make a new obj for it
       if ( !this.character.classes[source.name] ) {
         this.character.classes[source.name] = {
@@ -2476,7 +2531,6 @@ console.log('source', source);
       });
 
       if ( source.magic ) {
-        console.log('class has magic');
         cClass.magic = cClass.magic ? cClass.magic :
         {
           style: source.magic.style,
@@ -2497,7 +2551,6 @@ console.log('source', source);
         if (source.magic.style.includes("Prepared")) {
           let prepped = [];
           if (!cClass.magic.preparedSpells) { cClass.magic.preparedSpells = []; }
-          console.log(cClass);
           cClass.magic.spellsPerDay.forEach((spells, level) => {
             if (!cClass.magic.preparedSpells[level]) { cClass.magic.preparedSpells[level] = []; }
             prepped[level] = [];
@@ -2512,7 +2565,6 @@ console.log('source', source);
           cClass.magic.remainingCasts[0] = 1;
         }
 
-        console.log(source);
         if ( source.magic.galdurTotal ) {
           cClass.magic.galdur.openTotal = Math.floor( source.magic.galdurTotal[this.newLevel.level] / 2 );
           cClass.magic.galdur.openRemaining = cClass.magic.openRemaining ? cClass.magic.openRemaining : cClass.magic.openTotal;
@@ -2574,25 +2626,35 @@ console.log('source', source);
     abilShowMain(name, abil) { abil.extras.showMain = abil.extras.showMain ? false : true; },
     addNewAbility() {
       this.abilID++;
-      this.abilities.push({
-        name: "NEW ABILITY",
-        description: "",
-        shortText: "",
-        location: "Self",
-        trigger: "Standard",
-        bonuses: {},
-        extras: {
-          id: this.abilID,
+      // this.alterant = {};
+      this.alterant = {
+        label: "NEW ABILITY",
+        value: {
+          description: "",
+          notes: [],
+          bonuses: {},
+
+          ability: {
+            id: this.abilID,
+            category: "Other",
+          },
+          trigger: "Standard",
           active: false,
-          category: "Other",
-          showMain: false,
-          notes: []
+          onMain: {
+            showMain: false,
+            shortText: "",
+            location: "actions",
+          }
         }
-      });
-      this.showAbil = true;
+      };
+
+      // this.abilities.push( this.alterant );
+      this.showAlterant = true;
       this.dialog = true;
     },
     editAbility(ability) {
+      this.alterant = ability;
+
       this.abil = {};
       this.abil = ability;
       this.showAbil = true;
@@ -2630,12 +2692,32 @@ console.log('source', source);
     *                           *
     \***************************/
     addNewContion() {
+      /*
+      this.alterant = {
+        label: "NEW CONDITION",
+        value: {
+          description: "",
+          notes: []
+          bonuses: {},
+
+          condition: {
+            noDexAC: true
+          },
+          duration: {
+            total: 4,
+            left: 3,
+            label: "rounds"
+          }
+        }
+      };
+      */
       this.condition = {
         name: "NEW CONDITION",
         description: "",
         bonuses: {},
         extras: { notes: [] }
       };
+
       this.conditions.push(this.condition);
       this.activeConditions.push(this.condition);
       this.showCondition = true;
@@ -2685,19 +2767,45 @@ console.log('source', source);
         item = {
           label: "",
           value: {
-            Description: "",
-            Cost: 0,
-            Weight: 0,
-            Amount: 1,
-            Extras: { Notes: [] }
+            description: "",
+            notes: [],
+
+            cost: 0,
+            weight: 0,
+            amount: 1,
+
+            masterwork: false,
+            proficiency: "Simple",
+            category: "Light",
+            group: [ "Light Blades", "Thrown" ],
+
+            damage: {'fine':'0','diminuitive':'1','tiny':'1d2','small':'1d3','medium':'1d4','large':'1d6','huge':'1d8','gargantuan':'2d6','colossal':'3d6'},
+            "damage type": [ "Piercing", "Slashing" ],
+            critical: "19/x2",
+            range: { distance: 10, shape: "" },
+
+            magic: {
+              enhancement: 0,
+              qualities: [
+                { label: "Flaming", die: "1d6", type: "Fire" }
+              ]
+            }
+            // end
           }
         };
       }
       this.item = item;
-      this.showItem = true;
+
+      this.alterant = item;
+      this.showAlterant = true;
+
+
+      // this.character.inventory[2].children.push(this.item);
+      // this.showItem = true;
       this.dialog = true;
     },
     saveItem() {
+      this.character.inventory[2].children.push(this.item);
       this.showAbil = false;
       this.dialog = false;
     },
@@ -2812,7 +2920,11 @@ console.log('source', source);
     },
     loadJSON(name, obj) {
       try {
-        this.character[name] = JSON.parse(obj);
+        if (name == 'character') {
+          this.character = JSON.parse(obj);
+        } else {
+          this.character[name] = JSON.parse(obj);
+        }
         this.$message({ message: `${this.capFirsts(name)} updated`, type: 'success', });
       } catch (e) {
         console.error(e);
@@ -2829,8 +2941,6 @@ h4 { margin: 0; }
 .el-row { margin-bottom: 10px; }
 .basics .el-col { margin-bottom: 10px; }
 .el-row label { margin: 0; }
-
-.stat-controls > :not(:last-child) { margin-bottom: 20px; }
 
 .class-abil {
   width: 48%;
